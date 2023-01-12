@@ -10,6 +10,7 @@ HOMEBREW_CASK_OPTS="--appdir=/Applications --fontdir=/Library/Fonts"
 HOMEBREW_NO_AUTO_UPDATE=1
 HOMEBREW_NO_INSTALL_UPGRADE=1
 
+export GOKU_EDN_CONFIG_FILE=~/.karabiner.edn
 export STARSHIP_CONFIG=~/.starship.toml
 
 # XDG_CONFIG_HOME="$HOME/.config"
