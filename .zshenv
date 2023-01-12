@@ -1,0 +1,14 @@
+TZ="America/Los_Angeles"
+VISUAL="code"
+EDITOR=$VISUAL
+
+GEM_HOME="$HOME/.gem"
+HOMEBREW_CACHE="/Library/Caches/Homebrew"
+HOMEBREW_NO_INSTALL_UPGRADE=1
+HOMEBREW_NO_AUTO_UPDATE=1
+
+GITHUB_USERNAME="kaushikgopal"
+
+# XDG_CONFIG_HOME="$HOME/.config"
+# XDG_DATA_HOME="$HOME/.data"
+# XDG_CACHE_HOME="$HOME/.cache"
