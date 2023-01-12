@@ -53,7 +53,11 @@ echo -e "${PURPLE}---- homebrew cleanup${NC}"
 # brew outdated
 # Remove stale lock files and outdated downloads for all formulae and casks
 # remove old versions of installed formulae
-brew cleanup
+# brew cleanup
+
+# make system mactch brewfile
+brew bundle --force cleanup --file=".brewfile"
+
 # get rid of unused dependencies (used only at time of installation)
 brew autoremove
 brew doctor
