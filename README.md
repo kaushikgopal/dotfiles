@@ -26,3 +26,13 @@ chmod +x .setup.sh
 ```sh
 ./.update.sh
 ```
+
+## adding to dotfiles
+
+From the `.gitignore` file, you'll notice i ignore *everything*. This is intentional. In keeping with the above goals, i _only_ add the things i feel necessary for my specific environment.
+
+To add to this dotfiles repo:
+
+```sh
+git add -f .xxxx
+```
