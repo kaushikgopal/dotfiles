@@ -1,0 +1,119 @@
+tap "buo/cask-upgrade"  # better cask upgrading (see `cu`)
+tap "candid82/brew" # goku
+tap "homebrew/bundle"
+tap "homebrew/cask"
+tap "homebrew/cask-fonts"
+tap "kaushikgopal/tools"
+tap "homebrew/core"
+tap "neovim/neovim"
+tap "yqrashawn/goku" # goku
+
+brew "bat"
+brew "briss" # pdf cropping tool
+brew "coreutils" # for gnu date
+brew "curl"
+brew "diff-so-fancy"
+brew "eye-d3"
+brew "exa"
+brew "fd"
+brew "ffmpeg"
+brew "node"
+brew "gawk"
+brew "gum"
+brew "poppler"
+brew "git"
+brew "git-lfs"
+brew "git-number"
+brew "github-keygen"
+brew "gh"
+brew "gnupg" # "openssl"
+brew "htmltest"
+brew "hugo"
+brew "imagemagick"
+brew "mas"
+brew "neofetch"
+brew "neovim"
+brew "openssl"
+brew "pgcli"
+brew "ripgrep"
+brew "rsync"
+brew "sox"
+brew "speedtest-cli"
+brew "starship"
+brew "tmux"
+brew "trash"
+brew "tree"
+brew "wget"
+brew "youtube-dl"
+brew "zoxide"
+brew "zsh-autosuggestions"          # fish like suggestions (from history + completions)
+brew "zsh-syntax-highlighting"      # fish like syntax highlighting
+brew "yqrashawn/goku/goku"
+# brew "zsh-completions"              # autocomplete candidates (without tab) - DOESN'T WORK
+
+cask "1password", args: { appdir: "/Applications" }
+# cask "alacritty", args: { appdir: "/Applications" }
+cask "alfred", args: { appdir: "/Applications" }
+cask "alt-tab", args: { appdir: "/Applications" }
+cask "carbon-copy-cloner", args: { appdir: "/Applications" }
+cask "cursorsense", args: { appdir: "/Applications" }
+cask "firefox", args: { appdir: "/Applications" }
+# cask "font-cascadia-code-pl"
+# cask "font-cascadia-code"
+# cask "font-ibm-plex-mono"
+# cask "font-new-york"
+# cask "font-sf-compact"
+# cask "font-sf-mono"
+# cask "font-sf-pro"
+# cask "font-ia-writer-mono", args: { fontdir: "/Library/Fonts" }
+# cask "font-ibm-plex-sans", args: { fontdir: "/Library/Fonts" }
+# cask "font-ibm-plex-serif", args: { fontdir: "/Library/Fonts" }
+cask "font-inter", args: { fontdir: "/Library/Fonts" }
+cask "font-recursive-kg", args: { fontdir: "/Library/Fonts" }
+cask "hiddenbar", args: { appdir: "/Applications" }
+cask "imageoptim", args: { appdir: "/Applications" }
+# cask "iterm2", args: { appdir: "/Applications" }
+cask "karabiner-elements", args: { appdir: "/Applications" }
+cask "keyboard-maestro", args: { appdir: "/Applications" }
+cask "loopback", args: { appdir: "/Applications" }
+# cask "maccy", args: { appdir: "/Applications" }
+cask "maestral", args: { appdir: "/Applications" }
+cask "obsidian", args: { appdir: "/Applications" }
+cask "proxyman", args: { appdir: "/Applications" }
+cask "soulver", args: { appdir: "/Applications" }
+cask "soundsource", args: { appdir: "/Applications" }
+cask "tailscale", args: { appdir: "/Applications" }
+cask "the-unarchiver", args: { appdir: "/Applications" }
+cask "visual-studio-code", args: { appdir: "/Applications" }
+cask "webpquicklook", args: { appdir: "/Applications" }
+
+mas "iA Writer", id: 775737590, args: { appdir: "/Applications" }
+mas "Xcode", id: 497799835, args: { appdir: "/Applications" }
+mas "Hand Mirror", id: 1502839586, args: { appdir: "/Applications" }
+mas "Things 3", id: 904280696, args: { appdir: "/Applications" }
+
+
+# required for android development (zulu)
+# tap "mdogan/zulu"
+# cask "zulu"
+# cask "zulu-jdk11"
+# cask "zulu-jdk16"
+# cask "zulu-jdk17"
+# cask "zulu-jdk8"
+
+
+# brew "python@3.10"
+# brew "pyenv"
+# brew "pyenv-virtualenv"
+# brew "python-tabulate"
+# brew "python-yq"
+
+# brew "ruby-build"
+# brew "rbenv"
+# brew "ruby-install"
+
+# brew "alexanderwillner/tap/things.sh"
+
+# brew "docker-compose"
+# brew "docker-credential-helper-ecr"
+# cask "docker"
