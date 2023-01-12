@@ -1,0 +1,162 @@
+# Configuring starship
+
+# Inserts a blank line between shell prompts
+command_timeout = 200
+add_newline = true
+
+
+###############################################
+# overarching prompt format
+
+# functionally equivalent to $all
+
+format = """
+[╭─](#878787)\
+$username\
+$hostname\
+$localip\
+$shlvl\
+$singularity\
+$kubernetes\
+$directory\
+$vcsh\
+$git_branch\
+$git_commit\
+$git_state\
+$git_metrics\
+$git_status\
+$hg_branch\
+$battery\
+$docker_context\
+$package\
+$c\
+$cmake\
+$cobol\
+$daml\
+$dart\
+$deno\
+$dotnet\
+$elixir\
+$elm\
+$erlang\
+$golang\
+$haskell\
+$helm\
+$java\
+$julia\
+$kotlin\
+$lua\
+$nim\
+$nodejs\
+$ocaml\
+$perl\
+$php\
+$pulumi\
+$purescript\
+$python\
+$raku\
+$rlang\
+$red\
+$ruby\
+$rust\
+$scala\
+$swift\
+$terraform\
+$vlang\
+$vagrant\
+$zig\
+$buf\
+$nix_shell\
+$conda\
+$spack\
+$memory_usage\
+$aws\
+$gcloud\
+$openstack\
+$azure\
+$env_var\
+$crystal\
+$custom\
+$sudo\
+$cmd_duration\
+$line_break\
+$jobs\
+$time\
+$status\
+$container\
+$shell\
+$character"""
+# ###############################################
+
+
+# Replace the "❯" symbol in the prompt with "$"
+[character]
+success_symbol  = "[╰─ ‡](#878787)"
+error_symbol    = "[╰─ ](#878787)[‡](red)"
+
+
+[directory]
+format = "[\\[](#878787)[$path]($style)[\\]](#878787)"
+style = "fg:purple"
+truncation_length = 0
+truncate_to_repo = false
+truncation_symbol = "…/"
+
+[git_branch]
+format = "[ $symbol$branch]($style)"
+style = "fg:3"
+#format = "on [$symbol$branch]($style) "
+
+[git_status]
+# https://starship.rs/config/#git-status
+format = ' [$staged$modified$deleted $untracked $conflicted$stashed$renamed $ahead_behind]($style) '
+# style = "bold black"
+#format = '([\[$all_status$ahead_behind\]]($style) )'
+#all_status : $conflicted$stashed$deleted$renamed$modified$staged$untracked
+staged = "[+${count}](white)"
+modified = "[*${count}](gray)"
+deleted = "[-${count}](1)"
+
+conflicted = "🤼 ${count}"
+stashed = "📦 ${count}"
+renamed = "🎭 ${count}"
+untracked = "🐾 ${count}"
+
+# ahead_behind
+ahead = "🐰"
+behind = "🐢"
+diverged = "🙈"
+
+[battery]
+full_symbol = " 🔋 "
+charging_symbol = " 🔌 "
+discharging_symbol = " 💀 "
+unknown_symbol = " 📟 "
+
+# "bold red" style when capacity is between 0% and 10%
+[[battery.display]]
+threshold = 50
+style = "1"
+
+# "bold yellow" style when capacity is between 10% and 30%
+[[battery.display]]
+threshold = 30
+style = "yellow"
+
+[username]
+format = "[ $user@]($style)"
+style_user = "bg:#ffea7f fg:#111111"
+
+[hostname]
+format = "[$hostname ]($style)[—](#878787)"
+style = "bg:#ffea7f fg:#111111"
+
+[nodejs]
+symbol = "📦"
+
+# [jobs]
+# symbol = "+ "
+# threshold = 4
+
+# [package]
+# symbol = "🎁 "
