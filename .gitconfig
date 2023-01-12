@@ -1,0 +1,103 @@
+[alias]
+  a     = add
+  #b    = "!. githelpers && pretty_git_branch"
+  ba    = "!. githelpers && pretty_git_branch_all"
+  c     = commit
+  co    = checkout
+  ca    = commit --amend # --no-edit
+  chp   = cherry-pick
+  cob  = checkout -B                          # switch to a branch, creating it if necessary
+  d   = diff
+  dc    = diff --cached
+  l     = "!. githelpers && GIT_NO_PAGER=1 pretty_git_log -20"
+  ll    = "!. githelpers && pretty_git_log_full"
+  mt    = mergetool
+  reb   = !"r() { git rebase --autosquash -i HEAD~$1; }; r"       # Interactive rebase with the given number of latest commits
+  rv    = remote -v
+  wip   =  !"wip()  { git add .; git commit -a -m '--wip-- [ci skip]' --no-verify; }; wip"     # basically an immediate commit that u want in you reflog
+  wipr  =  !"wipr() { git reset --soft HEAD~; git reset ; }; wipr"   # undo last commit (works well with gwip) - watch out though
+  # co  = !"co() { git_quick_checkout_with_number_from_status_changed $1; }; co"
+  #cob   = checkout -b
+  #cvmn = !"c() { git commit -vm \"$1\" --no-verify; }; c"                     # commit with message without verifying
+  #dww  = diff -w --word-diff
+  #l     = !git --no-pager log --color --pretty=format:'%Cred%h%Creset %C(yellow)%d%Creset %s %C(green)%cr %C(dim white)%an%Creset' --date=short --abbrev=7 --abbrev-commit -25
+  #ll    = !git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(dim white)%an%Creset' --abbrev-commit
+  #last  =  !"last() { git_changed_from_last_tag $1; }; last" # see the last time this file was changed
+  #pr    = !"pr() { git fetch origin pull/$1/head:pr-$1; git checkout pr-$1; }; pr" # git pr 123
+  #rlog  = !git reflog --format='%C(auto)%h %<|(10)%gd %s %C(blue)%cd'
+  #r     = rebase
+  #ss  = !"ss() { git status -s | awk '{print NR,$0}' | awk -F: '{ print \"\\033[1;30m\" $1 \"\\033[0m\" }'; }; ss" # view status of files changed
+  #sshow = "!sshow() { git stash show stash^{/$*} -p; }; sshow"                # show: files changed, insertions, and deletions
+  #st    = status
+  # git stash --include-untracked --keep-index https://graysonkoonce.com/stacked-pull-requests-keeping-github-diffs-small/
+
+[core]
+  editor = code --wait --new-window
+  excludesfile = ~/.gitignore_global
+  attributesfile = ~/.gitattributes
+  whitespace = trailing-space,space-before-tab
+  pager = diff-so-fancy | less --tabs=4 -RFX
+[color]
+  ui = always                                                                 # Use colors in Git commands that are capable of colored output when outputting to the terminal
+[color "branch"]
+  current = yellow reverse
+  local = yellow
+  remote = green
+[color "diff"]
+  meta = magenta bold
+  frag = cyan bold
+  old = red reverse
+  new = green reverse
+  whitespace = white reverse
+[color "status"]
+  header = white normal dim
+  added = red
+  changed = green
+  untracked = blue
+  branch = yellow
+[url "git@github.com:"]                                                       # URL shorthands
+  insteadOf = "gh:"
+  pushInsteadOf = "github:"
+  pushInsteadOf = "git://github.com/"
+[url "git://github.com/"]
+  insteadOf = "github:"
+[url "git@gist.github.com:"]
+  insteadOf = "gst:"
+  pushInsteadOf = "gist:"
+  pushInsteadOf = "git://gist.github.com/"
+[url "git://gist.github.com/"]
+  insteadOf = "gist:"
+[push]
+  default = tracking
+[diff]
+  mnemonicprefix = true
+  compactionHeuristic = true
+  tool = vscode
+[difftool "vscode"]
+  cmd = code --wait --diff $LOCAL $REMOTE
+[merge]
+  log = true
+  tool = vscode
+  stat = true
+[mergetool "vscode"]
+  cmd = code --wait $MERGED
+  keepBackup = false
+[filter "lfs"]
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
+[credential]
+	helper = osxkeychain
+[status]
+  submoduleSummary = true
+[pull]
+  rebase = false
+[feature]
+  manyFiles = 1
+[interactive]
+  diffFilter = diff-so-fancy --patch
+[add "interactive"]
+	useBuiltin = false
+[includeIf "gitdir:~/"]
+  path = .gitconfig-private
