@@ -14,6 +14,10 @@ magic-enter() {
   in_repo_root_folder=$(git rev-parse --show-toplevel)
   repo_has_changes=$(git status -s --ignore-submodules=dirty)
 
+  # is_git_repository="true" && echo "is_git_repo: true" || echo "is_git_repo: false"
+  # in_repo_root_folder="$PWD" && echo "in_repo_root_folder: true" || echo "in_repo_root_folder: false"
+  # [[ -n "$repo_has_changes" ]] && echo "repo_has_changes: true" || echo "repo_has_changes: false"
+
   if [ "$is_git_repository" = true ] && [ "$in_repo_root_folder" = $PWD ] && [ ! -z "$repo_has_changes" ]; then
     BUFFER="$MAGIC_ENTER_GIT_COMMAND"
   else
