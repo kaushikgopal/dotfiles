@@ -1,8 +1,8 @@
 
 # Hooks
-chpwd() {
-  ls -lG
-}
+# chpwd() {
+#   ls -lG
+# }
 
 # Functions
 
