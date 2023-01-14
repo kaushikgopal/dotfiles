@@ -45,6 +45,7 @@ setopt HIST_IGNORE_ALL_DUPS  # don't record dupes in history
 . $HOME/.functions.zsh
 . $HOME/.aliases.zsh
 . $HOME/.secrets.zsh
+source $HOME/.plugins.zsh/almostontop/almostontop.plugin.zsh
 source $HOME/.plugins.zsh/magic-enter.plugin.zsh
 source $HOME/.plugins.zsh/gitfast/gitfast.plugin.zsh
 
