@@ -16,7 +16,7 @@ On a new Mac, you want to run this command:
 
 ```sh
 # get the token from github
-/bin/bash -c -e "$(curl -fsSL https://raw.githubusercontent.com/kaushikgopal/dotfiles/master/.setup.sh?token=xxx)"
+curl -LJO https://raw.githubusercontent.com/kaushikgopal/dotfiles/master/.setup.sh
 chmod +x .setup.sh
 ./.setup.sh
 ```
