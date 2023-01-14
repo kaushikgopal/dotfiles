@@ -60,7 +60,7 @@ function g() {
 function tot() {
     if ! type "almostontop" > /dev/null; then
         echo "installing almostontop first..."
-        source ./.plugins.zsh/almostontop/almostontop.plugin.zsh
+        source $HOME/.plugins.zsh/almostontop/almostontop.plugin.zsh
     fi
 
     if (( $# == 0 )); then
