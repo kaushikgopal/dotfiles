@@ -208,8 +208,8 @@ fi
 # needed for shift-recurrence pirate
 # pip3 install --user git+git://github.com/GothenburgBitFactory/tasklib@develop
 
-source $HOME/.config/update.sh
-source $HOME/.config/cleanup.sh
+source $HOME/.update.sh
+# source $HOME/.cleanup.sh
 
 # if (( $# > 0 ))
 # then
