@@ -8,8 +8,6 @@ tap "buo/cask-upgrade"  # better cask upgrading (see `cu`)
 tap "candid82/brew" # goku
 tap "yqrashawn/goku" # goku
 
-# tap "neovim/neovim"
-
 brew "bat"
 brew "briss" # pdf cropping tool
 brew "coreutils" # for gnu date
@@ -32,6 +30,7 @@ brew "hugo"
 brew "imagemagick"
 brew "mas"
 brew "neofetch"
+brew "neovim"
 brew "node"
 brew "openssl"
 brew "pgcli"
