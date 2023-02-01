@@ -133,31 +133,31 @@ function clone_if_absent {
 #echo -e "${PURPLE}---- symlink .config version${NC}"
 #ln -s  $XDG_CONFIG_HOME/vscode-settings.json  ~/Library/Application\ Support/Code/User/settings.json
 
-# echo -e "\n\n\n${YELLOW}---- Setting up (neo)vim${NC}"
-# mkdir -p $XDG_DATA_HOME/nvim/site/pack/kg/start
-# cd $XDG_DATA_HOME/nvim/site/pack/kg/start
-#
+echo -e "\n\n\n${YELLOW}---- Setting up (neo)vim${NC}"
+#mkdir -p $HOME/.vim/pack/kg/start
+#cd $HOME/.vim/pack/kg/start
+
 # clone_if_absent surround https://github.com/tpope/vim-surround.git
 # clone_if_absent vim-polyglot https://github.com/sheerun/vim-polyglot
 # clone_if_absent vim-smoothie https://github.com/psliwka/vim-smoothie.git
 # clone_if_absent vim-vinegar https://github.com/tpope/vim-vinegar
 # clone_if_absent targets https://github.com/wellle/targets.vim.git
-#
-# clone_if_absent plenary https://github.com/nvim-lua/plenary.nvim
-# clone_if_absent telescope https://github.com/nvim-telescope/telescope.nvim
-# clone_if_absent telescope-fzy-native https://github.com/nvim-telescope/telescope-fzy-native.nvim
-#
+
+clone_if_absent plenary https://github.com/nvim-lua/plenary.nvim
+clone_if_absent telescope https://github.com/nvim-telescope/telescope.nvim
+clone_if_absent telescope-fzy-native https://github.com/nvim-telescope/telescope-fzy-native.nvim
+
 # # clone_if_absent vim-table-mode https://github.com/dhruvasagar/vim-table-mode.git
 # # clone_if_absent vim-livedown https://github.com/shime/vim-livedown.git
 # #clone_if_absent vimwiki "https://github.com/vimwiki/vimwiki --branch dev"
 # #clone_if_absent taskwiki https://github.com/tools-life/taskwiki
 #
 # #clone_if_absent vim-monokai-pro https://github.com/phanviet/vim-monokai-pro.git
-# clone_if_absent vim-colors-xcode https://github.com/arzg/vim-colors-xcode.git
+clone_if_absent vim-colors-xcode https://github.com/arzg/vim-colors-xcode.git
 # #clone_if_absent vim-airline https://github.com/vim-airline/vim-airline.git
 # #clone_if_absent vim-airline-themes https://github.com/vim-airline/vim-airline-themes.git
 # #clone_if_absent nord-vim https://github.com/arcticicestudio/nord-vim.git
-#
+
 # # clone_if_absent limelight https://github.com/junegunn/limelight.vim.git
 # # clone_if_absent goyo https://github.com/junegunn/goyo.vim.git
 
