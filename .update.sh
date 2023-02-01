@@ -12,6 +12,8 @@ NC='\033[0m' # No Color
 echo -e "\n\n\n${YELLOW}---- Homebrew updates${NC}"
 echo -e "${PURPLE}---- installing from brewfile${NC}"
 brew bundle install -v --file=".brewfile"
+#echo -e "${PURPLE}---- clean up to match brewfile ${NC}"
+#brew bundle --force cleanup
 echo -e "${PURPLE}---- cask upgrade (via cu) ${NC}"
 brew cu --all --cleanup --yes
 echo -e "${PURPLE}\n\n\n\n---- updating formulae${NC}"
