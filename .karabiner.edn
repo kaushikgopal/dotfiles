@@ -200,21 +200,20 @@
         :rules [
 
 
-          ;; j → [
-          ;; k → ]
-          [:j    :open_bracket  :f-mode]
-          [:k    :close_bracket :f-mode]
+          ;; j → (
+          ;; k → )
+          [:j    :!S9   :f-mode]
+          [:k    :!S0   :f-mode]
 
           ;; tab j → {
           ;; tab k → }
           [:j    :!Sopen_bracket  :tab-mode]
           [:k    :!Sclose_bracket :tab-mode]
 
-          ;; l → (
-          ;; ; → )
-          [ :l          :!S9  :f-mode]
-          [ :semicolon  :!S0  :f-mode]
-
+          ;; l → [
+          ;; ; → ]
+          [ :l          :open_bracket :f-mode]
+          [ :semicolon  :close_bracket :f-mode]
 
     ]}
 

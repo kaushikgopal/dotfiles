@@ -355,7 +355,8 @@
             "key_code" : "j"
           },
           "to" : [ {
-            "key_code" : "open_bracket"
+            "key_code" : "9",
+            "modifiers" : [ "left_shift" ]
           } ],
           "conditions" : [ {
             "name" : "f-mode",
@@ -374,7 +375,8 @@
               "value" : 1
             }
           }, {
-            "key_code" : "open_bracket"
+            "key_code" : "9",
+            "modifiers" : [ "left_shift" ]
           } ],
           "from" : {
             "simultaneous" : [ {
@@ -400,7 +402,8 @@
             "key_code" : "k"
           },
           "to" : [ {
-            "key_code" : "close_bracket"
+            "key_code" : "0",
+            "modifiers" : [ "left_shift" ]
           } ],
           "conditions" : [ {
             "name" : "f-mode",
@@ -419,7 +422,8 @@
               "value" : 1
             }
           }, {
-            "key_code" : "close_bracket"
+            "key_code" : "0",
+            "modifiers" : [ "left_shift" ]
           } ],
           "from" : {
             "simultaneous" : [ {
@@ -473,8 +477,7 @@
             "key_code" : "l"
           },
           "to" : [ {
-            "key_code" : "9",
-            "modifiers" : [ "left_shift" ]
+            "key_code" : "open_bracket"
           } ],
           "conditions" : [ {
             "name" : "f-mode",
@@ -493,8 +496,7 @@
               "value" : 1
             }
           }, {
-            "key_code" : "9",
-            "modifiers" : [ "left_shift" ]
+            "key_code" : "open_bracket"
           } ],
           "from" : {
             "simultaneous" : [ {
@@ -520,8 +522,7 @@
             "key_code" : "semicolon"
           },
           "to" : [ {
-            "key_code" : "0",
-            "modifiers" : [ "left_shift" ]
+            "key_code" : "close_bracket"
           } ],
           "conditions" : [ {
             "name" : "f-mode",
@@ -540,8 +541,7 @@
               "value" : 1
             }
           }, {
-            "key_code" : "0",
-            "modifiers" : [ "left_shift" ]
+            "key_code" : "close_bracket"
           } ],
           "from" : {
             "simultaneous" : [ {
