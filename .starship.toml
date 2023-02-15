@@ -1,9 +1,9 @@
 # Configuring starship
 
-# Inserts a blank line between shell prompts
 command_timeout = 200
-add_newline = true
 
+# Inserts a blank line between shell prompts
+add_newline = true
 
 ###############################################
 # overarching prompt format
@@ -11,7 +11,7 @@ add_newline = true
 # functionally equivalent to $all
 
 format = """
-[╭─](#878787)\
+[](#878787)\
 $username\
 $hostname\
 $localip\
@@ -91,8 +91,8 @@ $character"""
 
 # Replace the "❯" symbol in the prompt with "$"
 [character]
-success_symbol  = "[╰─ ‡](#878787)"
-error_symbol    = "[╰─ ](#878787)[‡](red)"
+success_symbol  = "[###](#878787)"
+error_symbol    = "[###](red)"
 
 
 [directory]
