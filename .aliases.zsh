@@ -39,11 +39,9 @@ alias rr='rg --no-ignore --hidden -S'   # hidden + smartcase
 
 alias b='bat'
 alias c='code'
-alias cal='ncal -B 1 -A 1'
 alias cat='bat'
 alias diff='git diff --no-index'
 alias gw='./gradlew'
-alias ncal='ncal -B 1 -A 2'
 alias o='open'
 alias oo='open .'
 alias s='soulver'
