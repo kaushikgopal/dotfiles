@@ -51,6 +51,10 @@ brew "zsh-syntax-highlighting"      # fish like syntax highlighting
 # brew "neovim"
 # brew "zsh-completions"              # autocomplete candidates (without tab) - DOESN'T WORK
 
+# Android/Java development
+tap "mdogan/zulu"
+brew "zulu-jdk17"
+
 
 cask "1password"
 cask "alfred"
@@ -90,6 +94,7 @@ cask "webpquicklook"
 # cask "font-sf-pro"
 # cask "iterm2"
 # cask "maccy"
+
 
 mas "iA Writer", id: 775737590
 mas "Xcode", id: 497799835
