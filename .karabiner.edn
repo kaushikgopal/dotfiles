@@ -205,15 +205,15 @@
           [:j    :!S9   :f-mode]
           [:k    :!S0   :f-mode]
 
-          ;; tab j → {
-          ;; tab k → }
-          [:j    :!Sopen_bracket  :tab-mode]
-          [:k    :!Sclose_bracket :tab-mode]
+          ;; tab j → [
+          ;; tab k → ]
+          [:j    :open_bracket  :tab-mode]
+          [:k    :close_bracket :tab-mode]
 
-          ;; l → [
-          ;; ; → ]
-          [ :l          :open_bracket :f-mode]
-          [ :semicolon  :close_bracket :f-mode]
+          ;; l → {
+          ;; ; → }
+          [ :l          :!Sopen_bracket :f-mode]
+          [ :semicolon  :!Sclose_bracket :f-mode]
 
     ]}
 
