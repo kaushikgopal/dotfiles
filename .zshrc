@@ -7,12 +7,11 @@ path=(
     /opt/homebrew/bin
     /opt/homebrew/sbin
     /usr/local/bin
-    /bin
     /usr/bin
+    /bin
+    /usr/local/sbin
     /usr/sbin
     /sbin
-    /usr/local/sbin
-    $HOME/bin
     $ANDROID_HOME/platform-tools
     $ANDROID_HOME/tools
     $ANDROID_HOME/emulator
