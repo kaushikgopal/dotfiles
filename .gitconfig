@@ -36,7 +36,7 @@
   excludesfile = ~/.gitignore_global
   attributesfile = ~/.gitattributes
   whitespace = trailing-space,space-before-tab
-  pager = diff-so-fancy | less --tabs=4 -RFX
+  pager = delta
 [color]
   ui = always                                                                 # Use colors in Git commands that are capable of colored output when outputting to the terminal
 [color "branch"]
@@ -69,16 +69,20 @@
   insteadOf = "gist:"
 [push]
   default = tracking
+[delta]
+  navigate = true
+  features = tangara-chilensis
+[delta "interactive"]
+    keep-plus-minus-markers = false
 [diff]
+  colorMoved = default
   mnemonicprefix = true
   compactionHeuristic = true
-  tool = vscode
-[difftool "vscode"]
-  cmd = code --wait --diff $LOCAL $REMOTE
 [merge]
   log = true
   tool = vscode
   stat = true
+  conflictStyle = diff3
 [mergetool "vscode"]
   cmd = code --wait $MERGED
   keepBackup = false
@@ -96,8 +100,10 @@
 [feature]
   manyFiles = 1
 [interactive]
-  diffFilter = diff-so-fancy --patch
+  diffFilter = delta --color-only --features=interactive
 [add "interactive"]
 	useBuiltin = false
 [includeIf "gitdir:~/"]
-  path = .gitconfig-private
+    path = .gitconfig-private
+[include]
+    path = .themes.gitconfig
