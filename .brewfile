@@ -51,12 +51,8 @@ brew "zsh-syntax-highlighting"      # fish like syntax highlighting
 # brew "neovim"
 # brew "zsh-completions"              # autocomplete candidates (without tab) - DOESN'T WORK
 
-# Android/Java development
-tap "mdogan/zulu"
-brew "zulu-jdk17"
-
-
 cask "1password"
+cask "1password-cli"    # required for Alfred integration
 cask "alfred"
 cask "alt-tab"
 cask "cursorsense"
@@ -97,14 +93,12 @@ mas "Xcode", id: 497799835
 mas "Hand Mirror", id: 1502839586
 mas "Things 3", id: 904280696
 
-
 # required for android development (zulu)
-# tap "mdogan/zulu"
-# cask "zulu"
-# cask "zulu-jdk11"
-# cask "zulu-jdk16"
-# cask "zulu-jdk17"
-# cask "zulu-jdk8"
+tap "mdogan/zulu"
+cask "zulu-jdk17"
+#cask "zulu-jdk16"
+#cask "zulu-jdk11"
+#cask "zulu-jdk8"
 
 # brew "python@3.10"
 # brew "pyenv"
