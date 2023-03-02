@@ -73,8 +73,8 @@ set ignorecase smartcase
 " =========================================================
 " Colorscheme Theme
 " =========================================================
-
 set termguicolors
+
 augroup MyColors
     autocmd!
     autocmd ColorScheme * highlight LineNr ctermfg=246 ctermbg=236 cterm=NONE guifg=#959394 guibg=#2d2a2e gui=NONE
@@ -82,10 +82,6 @@ augroup MyColors
 augroup END
 "colorscheme monokai_pro
 colorscheme xcodedarkhc
-
-" command that will output what the current syntax
-":let s = synID(line('.'), col('.'), 1) | echo synIDattr(s, 'name') . ' -> ' . synIDattr(synIDtrans(s), 'name')
-
 
 " Vimwiki/Taskwiki
 " hi link TaskWikiHeaderDef    TaskWikiTaskUuid
