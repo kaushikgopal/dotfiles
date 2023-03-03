@@ -147,7 +147,7 @@ clone_if_absent plenary https://github.com/nvim-lua/plenary.nvim
 clone_if_absent telescope https://github.com/nvim-telescope/telescope.nvim
 clone_if_absent telescope-fzy-native https://github.com/nvim-telescope/telescope-fzy-native.nvim
 
-# # clone_if_absent vim-table-mode https://github.com/dhruvasagar/vim-table-mode.git
+clone_if_absent vim-table-mode https://github.com/dhruvasagar/vim-table-mode.git
 # # clone_if_absent vim-livedown https://github.com/shime/vim-livedown.git
 # #clone_if_absent vimwiki "https://github.com/vimwiki/vimwiki --branch dev"
 # #clone_if_absent taskwiki https://github.com/tools-life/taskwiki
