@@ -59,6 +59,7 @@ cask "cursorsense"
 cask "firefox"
 cask "font-inter"
 cask "font-recursive-kg"
+cask "font-ibm-plex"
 cask "imageoptim"
 cask "karabiner-elements"
 cask "keyboard-maestro"
@@ -99,6 +100,10 @@ cask "zulu-jdk17"
 #cask "zulu-jdk16"
 #cask "zulu-jdk11"
 #cask "zulu-jdk8"
+
+# required for heroku deployed apps
+brew tap heroku/brew
+brew install heroku
 
 # brew "python@3.10"
 # brew "pyenv"

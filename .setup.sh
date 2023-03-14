@@ -227,5 +227,8 @@ source $HOME/.update.sh
 #     #sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
 # fi
 
+# install xcode
+xcode-select --install
+
 unset delete_if_exists;
 unset clone_if_absent;
