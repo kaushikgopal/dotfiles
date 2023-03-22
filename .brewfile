@@ -71,7 +71,6 @@ cask "proxyman"
 cask "soulver"
 cask "soundsource"
 cask "superduper"
-cask "tailscale"
 cask "the-unarchiver"
 cask "visual-studio-code"
 cask "webpquicklook"
@@ -93,6 +92,7 @@ mas "iA Writer", id: 775737590
 mas "Xcode", id: 497799835
 mas "Hand Mirror", id: 1502839586
 mas "Things 3", id: 904280696
+mas "Tailscale", id: 1475387142
 
 # required for android development (zulu)
 tap "mdogan/zulu"
