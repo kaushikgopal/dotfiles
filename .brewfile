@@ -54,7 +54,7 @@ brew "zsh-syntax-highlighting"      # fish like syntax highlighting
 
 cask "1password"
 cask "1password-cli"    # required for Alfred integration
-cask "alfred"
+cask "raycast"
 cask "alt-tab"
 cask "cursorsense"
 cask "firefox"
