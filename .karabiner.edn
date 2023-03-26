@@ -212,8 +212,8 @@
 
           ;; l → {
           ;; ; → }
-          [ :l          :!Sopen_bracket :f-mode]
-          [ :semicolon  :!Sclose_bracket :f-mode]
+          [ :l          :!Sopen_bracket :tab-mode]
+          [ :semicolon  :!Sclose_bracket :tab-mode]
 
     ]}
 
