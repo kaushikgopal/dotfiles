@@ -55,7 +55,6 @@ brew "zsh-syntax-highlighting"      # fish like syntax highlighting
 cask "1password"
 cask "1password-cli"    # required for Alfred integration
 cask "raycast"
-cask "alt-tab"
 cask "cursorsense"
 cask "firefox"
 cask "font-inter"
@@ -97,9 +96,7 @@ mas "Tailscale", id: 1475387142
 # required for android development (zulu)
 tap "mdogan/zulu"
 cask "zulu-jdk17"
-#cask "zulu-jdk16"
-#cask "zulu-jdk11"
-#cask "zulu-jdk8"
+brew kotlin
 
 # required for .rb development
 brew asdf
