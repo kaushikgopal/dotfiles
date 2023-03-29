@@ -7,6 +7,13 @@ GRAY='\033[1;30m'       # info
 PURPLE='\033[1;35m'     # making change
 NC='\033[0m' # No Color
 
+
+echo -e "\n\n\n${YELLOW}---- Do these settings manually${NC}"
+echo -e "${PURPLE}---- Keyboard > Keyboard Shortcuts > Spotlight${NC}"
+echo -e "${PURPLE}----      disable \"show spotlight search\"${NC}"
+echo -e "${PURPLE}----      disable \"show finder search window\"${NC}"
+
+
 echo -e "\n\n\n${YELLOW}---- MacOS related changes${NC}"
 
 # Keep-alive: update existing `sudo` time stamp until `macos` has finished
