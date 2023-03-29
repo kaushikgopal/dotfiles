@@ -69,11 +69,6 @@
   insteadOf = "gist:"
 [push]
   default = tracking
-[delta]
-  navigate = true
-  features = tangara-chilensis
-[delta "interactive"]
-    keep-plus-minus-markers = false
 [diff]
   colorMoved = default
   mnemonicprefix = true
@@ -106,4 +101,9 @@
 [includeIf "gitdir:~/"]
     path = .gitconfig-private
 [include]
-    path = .themes.gitconfig
+    path = ~/.themes.gitconfig
+[delta]
+  navigate = true
+#  features = tangara-chilensis
+[delta "interactive"]
+    keep-plus-minus-markers = false
