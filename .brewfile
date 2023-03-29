@@ -97,6 +97,7 @@ mas "Tailscale", id: 1475387142
 tap "mdogan/zulu"
 cask "zulu-jdk17"
 brew kotlin
+brew gradle
 
 # required for .rb development
 brew asdf
