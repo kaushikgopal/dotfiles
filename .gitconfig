@@ -32,7 +32,7 @@
   # git stash --include-untracked --keep-index https://graysonkoonce.com/stacked-pull-requests-keeping-github-diffs-small/
 
 [core]
-  editor = "code --wait"
+  editor = nvim
   excludesfile = ~/.gitignore_global
   attributesfile = ~/.gitattributes
   whitespace = trailing-space,space-before-tab
