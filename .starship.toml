@@ -91,8 +91,8 @@ $character\
 
 # Replace the "❯" symbol in the prompt with "$"
 [character]
-success_symbol  = "[‡](#878787)"
-error_symbol    = "[‡](red)"
+success_symbol  = "[‡](#878787)\n"
+error_symbol    = "[‡](red)\n"
 
 
 [directory]
@@ -146,11 +146,11 @@ style = "yellow"
 
 [username]
 format = "[ $user@]($style)"
-style_user = "bg:#ffea7f fg:#111111"
+style_user = "bg:white fg:black"
 
 [hostname]
-format = "[$hostname ]($style)[—](#878787)"
-style = "bg:#ffea7f fg:#111111"
+format = "[$hostname ]($style)(#878787)"
+style = "bg:white fg:black"
 
 [nodejs]
 symbol = "📦"
