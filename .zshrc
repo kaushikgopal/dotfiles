@@ -62,7 +62,7 @@ eval "$(zoxide init --cmd j zsh)"
 
 
 # .rb development
-. /opt/homebrew/opt/asdf/libexec/asdf.sh
+. $(brew --prefix)/opt/asdf/libexec/asdf.sh
 
 # make zsh tab completion fix capitalization errors for directories and files
 # 0 -- vanilla completion (abc => abc)
