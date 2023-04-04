@@ -9,103 +9,103 @@ add_newline = true
 # overarching prompt format
 
 # functionally equivalent to $all
-
 format = """
-[](#878787)\
 $username\
 $hostname\
 $localip\
 $shlvl\
-$singularity\
-$kubernetes\
 $directory\
-$vcsh\
 $git_branch\
+$time\
 $git_commit\
 $git_state\
 $git_metrics\
-$git_status\
-$hg_branch\
 $battery\
 $docker_context\
 $package\
-$c\
-$cmake\
-$cobol\
-$daml\
-$dart\
-$deno\
-$dotnet\
-$elixir\
-$elm\
-$erlang\
 $golang\
-$haskell\
-$helm\
 $java\
-$julia\
 $kotlin\
-$lua\
-$nim\
 $nodejs\
-$ocaml\
-$perl\
-$php\
-$pulumi\
-$purescript\
 $python\
-$raku\
-$rlang\
-$red\
 $ruby\
 $rust\
-$scala\
 $swift\
-$terraform\
-$vlang\
-$vagrant\
-$zig\
-$buf\
-$nix_shell\
-$conda\
-$spack\
 $memory_usage\
-$aws\
-$gcloud\
-$openstack\
-$azure\
 $env_var\
-$crystal\
 $custom\
 $sudo\
 $cmd_duration\
-$line_break\
 $jobs\
-$time\
 $status\
 $container\
 $shell\
-$character"""
-# ###############################################
+$character\
+"""
+
+# $aws\
+# $azure\
+# $buf\
+# $c\
+# $cmake\
+# $cobol\
+# $conda\
+# $crystal\
+# $daml\
+# $dart\
+# $deno\
+# $dotnet\
+# $elixir\
+# $elm\
+# $erlang\
+# $gcloud\
+# $git_status\
+# $haskell\
+# $helm\
+# $hg_branch\
+# $julia\
+# $kubernetes\
+# $lua\
+# $nim\
+# $nix_shell\
+# $ocaml\
+# $openstack\
+# $perl\
+# $php\
+# $pulumi\
+# $purescript\
+# $raku\
+# $red\
+# $rlang\
+# $scala\
+# $singularity\
+# $spack\
+# $terraform\
+# $vagrant\
+# $vcsh\
+# $vlang\
+# $zig\
+
+###############################################
 
 
 # Replace the "❯" symbol in the prompt with "$"
 [character]
-success_symbol  = "[###](#878787)"
-error_symbol    = "[###](red)"
+success_symbol  = "[‡](#878787)"
+error_symbol    = "[‡](red)"
 
 
 [directory]
-format = "[\\[](#878787)[$path]($style)[\\]](#878787)"
-style = "fg:purple"
+format = "[ $path ]($style)"
+style = "fg:black bg:purple"
 truncation_length = 0
 truncate_to_repo = false
 truncation_symbol = "…/"
 
 [git_branch]
-symbol = "‡"
-format = "[ $symbol $branch]($style)"
-style = "fg:3"
+symbol = ""
+format = "[$symbol $branch ]($style)"
+style = "bg:3 fg:black"
 #format = "on [$symbol$branch]($style) "
 
 [git_status]
@@ -154,6 +154,11 @@ style = "bg:#ffea7f fg:#111111"
 
 [nodejs]
 symbol = "📦"
+
+[time]
+disabled = false
+format = "[ $time ]($style)"
+style = "fg:8"
 
 # [jobs]
 # symbol = "+ "
