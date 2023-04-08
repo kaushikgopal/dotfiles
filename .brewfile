@@ -102,6 +102,9 @@ brew gradle
 # required for .rb development
 brew asdf
 
+# required for caper development
+brew glab
+
 # required for heroku deployed apps
 brew tap heroku/brew
 brew install heroku
