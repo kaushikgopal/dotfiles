@@ -259,20 +259,20 @@
     ;; }
     ;; {:des "tab-mode: quick open applications"
     ;;  :rules [:tab-mode
-          [:t [:km "wm: minor left"] ] ;; Window move
-          [:y [:km "wm: major left"] ] ;; Window move
-          [:u [:km "wm: half left"] ] ;; Window move
-          [:o [:km "wm: half right"] ] ;; Window move
-          [:p [:km "wm: major right"] ] ;; Window move
-          [:open_bracket [:km "wm: minor right"] ] ;; Window move
+          ;;[:t [:km "wm: minor left"] ] ;; Window move
+          ;;[:y [:km "wm: major left"] ] ;; Window move
+          ;;[:u [:km "wm: half left"] ] ;; Window move
+          ;;[:o [:km "wm: half right"] ] ;; Window move
+          ;;[:p [:km "wm: major right"] ] ;; Window move
+          ;;[:open_bracket [:km "wm: minor right"] ] ;; Window move
 
-          [:j [:km "wm: split 3 left"] ] ;; Window move
-          [:k [:km "wm: split 3 center"] ] ;; Window move
-          [:l [:km "wm: split 3 right"] ] ;; Window move
+          ;;[:j [:km "wm: split 3 left"] ] ;; Window move
+          ;;[:k [:km "wm: split 3 center"] ] ;; Window move
+          ;;[:l [:km "wm: split 3 right"] ] ;; Window move
 
-          [:c [:km "wm: center"] ] ;; Window move
-          [:v [:km "wm: vertical fill"] ] ;; Window move
-          [:f [:km "wm: full"] ] ;; Window move
+          ;;[:c [:km "wm: center"] ] ;; Window move
+          ;;[:v [:km "wm: vertical fill"] ] ;; Window move
+          ;;[:f [:km "wm: full"] ] ;; Window move
 
     ]}
 
