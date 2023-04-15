@@ -73,7 +73,6 @@ set ignorecase smartcase
 " =========================================================
 " Colorscheme Theme
 " =========================================================
-set termguicolors
 
 augroup MyColors
     autocmd!
