@@ -1,18 +1,13 @@
-/* Add space between the title of the note + first line of tags (and the second line) */
+body {
+  --h1-size: 2em;
+  --h2-size: 1.3em;
 
-.view-header-title-container {
-  margin: 0 !important;
-}
-.markdown-source-view.mod-cm6 .cm-line:first-child {
-  padding-bottom: 1em;
-}
-/* preview mode */
-.mod-header + div > p {
-  margin-top: 0;
-}
-.mod-header + div > p:first-child br {
-  content: "A" !important;
-  display: block !important;
-  margin-bottom: 1em !important;
+  --h2-color: var(--color-yellow);
+  --h3-color: var(--color-yellow);
+
+  --list-indent: 2em;
+  --list-spacing: 0.09em;
 }
 
+.tasks-backlink {
+    white-space: nowrap;
