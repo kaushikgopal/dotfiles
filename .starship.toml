@@ -16,6 +16,7 @@ $localip\
 $shlvl\
 $directory\
 $git_branch\
+$git_status\
 $time\
 $git_commit\
 $git_state\
