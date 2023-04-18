@@ -259,6 +259,24 @@ function! GetSyntax()
     exec "hi ".synIDattr(GetSyntaxParentID(), 'name')
 endfunction
 
+" =======================================================================
+" TwiddleCase : Visually select the desired text
+"                press the tilde character ~
+"                to cycle through lower, upper & title
+" =======================================================================
+
+function! TwiddleCase(str)
+  if a:str ==# toupper(a:str)
+    let result = tolower(a:str)
+  elseif a:str ==# tolower(a:str)
+    let result = substitute(a:str,'\(\<\w\+\>\)', '\u\1', 'g')
+  else
+    let result = toupper(a:str)
+  endif
+  return result
+endfunction
+vnoremap ~ y:call setreg('', TwiddleCase(@"), getregtype(''))<CR>gv""Pgv
+
 " =========================================================
 " Keymapping / Keyboard shortcuts
 " =========================================================
