@@ -106,7 +106,7 @@
 ;; press this in combination with something else and depending on your rule, make things happen
 :layers {
     :tab-mode   {:key :tab}
-    :caps-mode {:key :caps_lock :alone {:key :escape}}
+    :caps-mode {:key :caps_lock}
 } ;; layers
 
 
