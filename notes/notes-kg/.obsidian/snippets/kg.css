@@ -11,3 +11,9 @@ body {
 
 .tasks-backlink {
     white-space: nowrap;
+}
+
+.HyperMD-header.HyperMD-header-2.cm-line .cm-header.cm-header-2.cm-hmd-internal-link {
+    color: var(--h2-color);
+    text-decoration: underline;
+}
