@@ -89,6 +89,9 @@ function clone_if_absent {
 #echo -e "\n\n\n${YELLOW}---- Setting up zsh shell through brew${NC}"
 #brew install zsh
 
+curl https://lab.al0.de/a0n/oh-my-zsh/-/raw/master/plugins/adb/_adb > $(brew --prefix)/share/zsh/site-functions/_adb
+chmod +x $(brew --prefix)/share/zsh/site-functions/_adb
+
 ##############################################################
 # Fish shell
 ##############################################################
