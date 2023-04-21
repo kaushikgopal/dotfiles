@@ -10,6 +10,11 @@ HOMEBREW_CASK_OPTS="--appdir=/Applications --fontdir=/Library/Fonts"
 HOMEBREW_NO_AUTO_UPDATE=1
 HOMEBREW_NO_INSTALL_UPGRADE=1
 
+
+export FZF_DEFAULT_COMMAND='fd --type file --no-ignore-vcs --color=always'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_DEFAULT_OPTS="--ansi"
+
 export GOKU_EDN_CONFIG_FILE=~/.karabiner.edn
 export STARSHIP_CONFIG=~/.starship.toml
 

@@ -213,6 +213,7 @@ fi
 
 
 source $HOME/.update.sh
+$(brew --prefix)/opt/fzf/install
 source $HOME/.macos.sh
 # source $HOME/.cleanup.sh
 
