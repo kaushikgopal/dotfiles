@@ -98,7 +98,7 @@ error_symbol    = "[‡](red)\n"
 
 [directory]
 format = "[ $path ]($style)"
-style = "fg:black bg:purple"
+style = "fg:black bg:blue"
 truncation_length = 0
 truncate_to_repo = false
 truncation_symbol = "…/"
