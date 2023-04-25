@@ -9,11 +9,39 @@ body {
   --list-spacing: 0.09em;
 }
 
+ul.contains-task-list {
+  padding-left: 0;
+}
+
+
+ul.contains-task-list {
+  text-decoration: none;
+}
+
+ul.contains-task-list > li {
+  padding: 0.4rem 0;
+}
+ul.contains-task-list > li:nth-child(odd) {
+  background-color: var(--background-secondary);
+}
+
 .tasks-backlink {
   white-space: nowrap;
   font-weight: bold;
   font-size: 0.7rem;
+  text-decoration: none;
 }
+.task-extras .tasks-backlink,
+.task-extras .tasks-backlink a
+{
+  color: var(--text-muted) !important;
+  padding: 0.5rem 0;
+}
+
+.tasks-edit {
+  display: none;
+}
+
 
 .HyperMD-header.HyperMD-header-2.cm-line .cm-header.cm-header-2.cm-hmd-internal-link {
   color: var(--h2-color);
