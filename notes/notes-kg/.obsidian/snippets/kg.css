@@ -9,13 +9,9 @@ body {
   --list-spacing: 0.09em;
 }
 
+.is-mobile .markdown-rendered ul.contains-task-list,
 ul.contains-task-list {
   padding-left: 0;
-}
-
-
-ul.contains-task-list {
-  text-decoration: none;
 }
 
 ul.contains-task-list > li {
