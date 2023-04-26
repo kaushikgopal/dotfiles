@@ -36,7 +36,7 @@
   excludesfile = ~/.gitignore_global
   attributesfile = ~/.gitattributes
   whitespace = trailing-space,space-before-tab
-  pager = delta
+  pager = "delta"
 [color]
   ui = always                                                                 # Use colors in Git commands that are capable of colored output when outputting to the terminal
 [color "branch"]
@@ -44,10 +44,10 @@
   local = yellow
   remote = green
 [color "diff"]
-  meta = magenta bold
-  frag = cyan bold
-  old = red reverse
-  new = green reverse
+#  meta = magenta bold
+#  frag = cyan bold
+#  old = red reverse
+#  new = green reverse
   whitespace = white reverse
 [color "status"]
   header = white normal dim
@@ -55,6 +55,31 @@
   changed = green
   untracked = blue
   branch = yellow
+[diff]
+  colorMoved = default
+  mnemonicprefix = true
+  compactionHeuristic = true
+[interactive]
+  diffFilter = delta --color-only --features=interactive
+[delta]
+  line-numbers = true
+  navigate = true
+  features = decorations
+[delta "interactive"]
+  keep-plus-minus-markers = false
+[delta "decorations"]
+    commit-decoration-style = blue ol
+    commit-style = raw
+    file-style = omit
+    hunk-header-decoration-style = blue box
+    hunk-header-file-style = red
+    hunk-header-line-number-style = "#067a00"
+    hunk-header-style = file line-number syntax
+[merge]
+  log = true
+  tool = vscode
+  stat = true
+  conflictStyle = diff3
 [url "git@github.com:"]                                                       # URL shorthands
   insteadOf = "gh:"
   pushInsteadOf = "github:"
@@ -69,15 +94,6 @@
   insteadOf = "gist:"
 [push]
   default = tracking
-[diff]
-  colorMoved = default
-  mnemonicprefix = true
-  compactionHeuristic = true
-[merge]
-  log = true
-  tool = vscode
-  stat = true
-  conflictStyle = diff3
 [mergetool "vscode"]
   cmd = code --wait $MERGED
   keepBackup = false
@@ -94,16 +110,7 @@
   rebase = false
 [feature]
   manyFiles = 1
-[interactive]
-  diffFilter = delta --color-only --features=interactive
-[add "interactive"]
-	useBuiltin = false
 [includeIf "gitdir:~/"]
     path = .gitconfig-private
-[include]
-    path = ~/.themes.gitconfig
-[delta]
-  navigate = true
-#  features = tangara-chilensis
-[delta "interactive"]
-    keep-plus-minus-markers = false
+#[include]
+    # path = ~/.themes.gitconfig
