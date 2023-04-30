@@ -2,8 +2,9 @@ body {
   --h1-size: 1.25rem;
   --h2-size: 1.1rem;
 
+  --h1-color: var(--color-orange);
   --h2-color: var(--color-yellow);
-  --h3-color: var(--color-yellow);
+  --h3-color: var(--color-green);
 
   --list-indent: 2em;
   --list-spacing: 0.09em;
