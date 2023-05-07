@@ -294,7 +294,8 @@ noremap + <c-a>
 " - instead of control + x to decrease a number
 noremap - <c-x>
 " 0 toggles between acting like ^ and 0 on second press
-nnoremap <expr> <silent> 0 col('.') == match(getline('.'),'\S')+1 ? '0' : '^'
+"nnoremap <expr> <silent> 0 col('.') == match(getline('.'),'\S')+0 ? '0' : '^'
+
 " Replace L -> $ (end of line)
 noremap L $
 " toggle spell check
