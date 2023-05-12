@@ -198,6 +198,7 @@
     {:des "tab + i = -"
         :rules [
           [:i    :hyphen   :tab-mode]
+          [:o    :equal_sign   :tab-mode]
     ]}
 
     {:des "homerow braces"
