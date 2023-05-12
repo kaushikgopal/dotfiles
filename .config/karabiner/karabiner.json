@@ -349,6 +349,22 @@
           "type" : "basic"
         } ]
       }, {
+        "description" : "tab + i = -",
+        "manipulators" : [ {
+          "from" : {
+            "key_code" : "i"
+          },
+          "to" : [ {
+            "key_code" : "hyphen"
+          } ],
+          "conditions" : [ {
+            "name" : "tab-mode",
+            "value" : 1,
+            "type" : "variable_if"
+          } ],
+          "type" : "basic"
+        } ]
+      }, {
         "description" : "homerow braces",
         "manipulators" : [ {
           "from" : {

@@ -195,10 +195,13 @@
     ;; Key mappings
     ;; ----------------------------------
 
-    {:des "homerow braces"
-
+    {:des "tab + i = -"
         :rules [
+          [:i    :hyphen   :tab-mode]
+    ]}
 
+    {:des "homerow braces"
+        :rules [
 
           ;; j → (
           ;; k → )
@@ -214,7 +217,6 @@
           ;; ; → }
           [ :l          :!Sopen_bracket :tab-mode]
           [ :semicolon  :!Sclose_bracket :tab-mode]
-
     ]}
 
 
