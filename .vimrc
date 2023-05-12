@@ -297,7 +297,7 @@ noremap - <c-x>
 "nnoremap <expr> <silent> 0 col('.') == match(getline('.'),'\S')+0 ? '0' : '^'
 
 " Replace L -> $ (end of line)
-noremap L $
+"noremap L $
 " toggle spell check
 nnoremap <leader>s :set spell!<cr>
 " reload neovim config with without restart
