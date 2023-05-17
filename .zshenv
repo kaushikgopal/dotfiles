@@ -19,6 +19,7 @@ export FZF_DEFAULT_OPTS="--ansi"
 
 export GOKU_EDN_CONFIG_FILE=~/.karabiner.edn
 export STARSHIP_CONFIG=~/.starship.toml
+export BAT_CONFIG_PATH=~/.bat.conf
 
 # XDG_CONFIG_HOME="$HOME/.config"
 # XDG_DATA_HOME="$HOME/.data"
