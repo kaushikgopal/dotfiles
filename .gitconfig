@@ -1,6 +1,5 @@
 [alias]
   a     = add
-  #b    = "!. githelpers && pretty_git_branch"
   ba    = "!. githelpers && pretty_git_branch_all"
   c     = commit
   co    = checkout
@@ -16,27 +15,7 @@
   rv    = remote -v
   wip   =  !"wip()  { git add .; git commit -a -m '--wip-- [ci skip]' --no-verify; }; wip"     # basically an immediate commit that u want in you reflog
   wipr  =  !"wipr() { git reset --soft HEAD~; git reset ; }; wipr"   # undo last commit (works well with gwip) - watch out though
-  # co  = !"co() { git_quick_checkout_with_number_from_status_changed $1; }; co"
-  #cob   = checkout -b
-  #cvmn = !"c() { git commit -vm \"$1\" --no-verify; }; c"                     # commit with message without verifying
-  #dww  = diff -w --word-diff
-  #l     = !git --no-pager log --color --pretty=format:'%Cred%h%Creset %C(yellow)%d%Creset %s %C(green)%cr %C(dim white)%an%Creset' --date=short --abbrev=7 --abbrev-commit -25
-  #ll    = !git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(dim white)%an%Creset' --abbrev-commit
-  #last  =  !"last() { git_changed_from_last_tag $1; }; last" # see the last time this file was changed
-  #pr    = !"pr() { git fetch origin pull/$1/head:pr-$1; git checkout pr-$1; }; pr" # git pr 123
-  #rlog  = !git reflog --format='%C(auto)%h %<|(10)%gd %s %C(blue)%cd'
-  #r     = rebase
-  #ss  = !"ss() { git status -s | awk '{print NR,$0}' | awk -F: '{ print \"\\033[1;30m\" $1 \"\\033[0m\" }'; }; ss" # view status of files changed
-  #sshow = "!sshow() { git stash show stash^{/$*} -p; }; sshow"                # show: files changed, insertions, and deletions
-  #st    = status
-  # git stash --include-untracked --keep-index https://graysonkoonce.com/stacked-pull-requests-keeping-github-diffs-small/
 
-[core]
-  editor = nvim
-  excludesfile = ~/.gitignore_global
-  attributesfile = ~/.gitattributes
-  whitespace = trailing-space,space-before-tab
-  pager = "delta"
 [color]
   ui = always                                                                 # Use colors in Git commands that are capable of colored output when outputting to the terminal
 [color "branch"]
@@ -55,31 +34,88 @@
   changed = green
   untracked = blue
   branch = yellow
+
+[core]
+  editor = nvim
+  excludesfile = ~/.gitignore_global
+  attributesfile = ~/.gitattributes
+  whitespace = trailing-space,space-before-tab
+  pager = "delta"
+
+[credential]
+	helper = osxkeychain
+
+[delta]
+	file-style = black
+	hunk-header-decoration-style = black box
+	hunk-header-line-number-style = black
+	line-numbers = true
+	line-numbers-left-format = {nm:>3}│
+	line-numbers-left-style = black
+	line-numbers-minus-style = black
+	line-numbers-plus-style = black
+	line-numbers-right-format = {np:>3}│
+	line-numbers-right-style = black
+	line-numbers-zero-style = black
+	minus-emph-style = red bold
+	minus-empty-line-marker-style = omit
+	minus-style = red
+	navigate = false
+	plus-emph-style = green bold
+	plus-empty-line-marker-style = omit
+	plus-style = green
+	side-by-side = false
+	syntax-theme = base16
+	true-color = auto
+  	file-decoration-style = black ul
+    zero-style = black
+
 [diff]
   colorMoved = default
   mnemonicprefix = true
   compactionHeuristic = true
+	show = delta
+
+[feature]
+  manyFiles = 1
+
+[filter "lfs"]
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
+
+[includeIf "gitdir:~/"]
+    path = .gitconfig-private
+
+[init]
+	defaultBranch = master
+
 [interactive]
   diffFilter = delta --color-only --features=interactive
-[delta]
-  line-numbers = true
-  navigate = true
-  features = decorations
-[delta "interactive"]
-  keep-plus-minus-markers = false
-[delta "decorations"]
-    commit-decoration-style = blue ol
-    commit-style = raw
-    file-style = omit
-    hunk-header-decoration-style = blue box
-    hunk-header-file-style = red
-    hunk-header-line-number-style = "#067a00"
-    hunk-header-style = file line-number syntax
+
 [merge]
   log = true
   tool = vscode
   stat = true
   conflictStyle = diff3
+
+[mergetool "vscode"]
+  cmd = code --wait $MERGED
+  keepBackup = false
+
+[pager]
+    show = delta
+
+[pull]
+  rebase = false
+
+[push]
+  default = tracking
+
+[status]
+  submoduleSummary = true
+
 [url "git@github.com:"]                                                       # URL shorthands
   insteadOf = "gh:"
   pushInsteadOf = "github:"
@@ -92,25 +128,3 @@
   pushInsteadOf = "git://gist.github.com/"
 [url "git://gist.github.com/"]
   insteadOf = "gist:"
-[push]
-  default = tracking
-[mergetool "vscode"]
-  cmd = code --wait $MERGED
-  keepBackup = false
-[filter "lfs"]
-  clean = git-lfs clean -- %f
-  smudge = git-lfs smudge -- %f
-  process = git-lfs filter-process
-  required = true
-[credential]
-	helper = osxkeychain
-[status]
-  submoduleSummary = true
-[pull]
-  rebase = false
-[feature]
-  manyFiles = 1
-[includeIf "gitdir:~/"]
-    path = .gitconfig-private
-#[include]
-    # path = ~/.themes.gitconfig
