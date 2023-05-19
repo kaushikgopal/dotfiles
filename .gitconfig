@@ -5,9 +5,10 @@
   co    = checkout
   ca    = commit --amend # --no-edit
   chp   = cherry-pick
-  cob  = checkout -B                          # switch to a branch, creating it if necessary
-  d   = diff
+  cob   = checkout -B                          # switch to a branch, creating it if necessary
+  d     = diff
   dc    = diff --cached
+  ds    = diff --staged
   l     = "!. githelpers && GIT_NO_PAGER=1 pretty_git_log -20"
   ll    = "!. githelpers && pretty_git_log_full"
   mt    = mergetool
@@ -47,7 +48,6 @@
 
 [delta]
 	file-style = black
-	hunk-header-decoration-style = black box
 	hunk-header-line-number-style = black
 	line-numbers = true
 	line-numbers-left-format = {nm:>3}│
@@ -64,10 +64,11 @@
 	plus-emph-style = green bold
 	plus-empty-line-marker-style = omit
 	plus-style = green
-	side-by-side = false
-	syntax-theme = base16
+	side-by-side = true
 	true-color = auto
   	file-decoration-style = black ul
+    hunk-header-decoration-style = black box
+    syntax-theme = base16
     zero-style = black
 
 [diff]
