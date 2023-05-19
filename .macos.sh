@@ -98,10 +98,11 @@ osascript -e 'tell application "System Preferences" to quit'
 ## https://www.defaults-write.com/disable-press-and-hold-option-in-mac-os-x-10-7/
 ## https://apple.stackexchange.com/questions/10467/how-to-increase-keyboard-key-repeat-rate-on-os-x
 ## Disable press-and-hold for keys in favor of key repeat
-#defaults write -g ApplePressAndHoldEnabled -bool false
+defaults write -g ApplePressAndHoldEnabled -bool false
 ## Set a blazingly fast keyboard repeat rate
-#defaults write -g InitialKeyRepeat -int 15 # normal minimum is 15 (225 ms)
-#defaults write -g KeyRepeat -int 1 # default is 2 (or 30 ms)
+defaults write -g InitialKeyRepeat -int 10 # normal minimum is 15 (225 ms)
+defaults write -g KeyRepeat -int 1 # normal minimum is 2 (30 ms)
+
 ## Stop iTunes from responding to the keyboard media keys
 #launchctl unload -w /System/Library/LaunchAgents/com.apple.rcd.plist 2> /dev/null
 ################################################################################
