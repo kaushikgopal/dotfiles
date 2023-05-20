@@ -115,9 +115,9 @@ format = ' [$staged$modified$deleted $untracked $conflicted$stashed$renamed $ahe
 # style = "bold black"
 #format = '([\[$all_status$ahead_behind\]]($style) )'
 #all_status : $conflicted$stashed$deleted$renamed$modified$staged$untracked
-staged = "[+${count}](white)"
-modified = "[*${count}](gray)"
-deleted = "[-${count}](1)"
+staged = "[+${count}](green)"
+modified = "[*${count}](yellow)"
+deleted = "[-${count}](red)"
 
 conflicted = "🤼 ${count}"
 stashed = "📦 [+${count}](white)"
