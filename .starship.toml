@@ -120,7 +120,7 @@ modified = "[*${count}](gray)"
 deleted = "[-${count}](1)"
 
 conflicted = "🤼 ${count}"
-stashed = "📦 ${count}"
+stashed = "📦 [+${count}](white)"
 renamed = "🎭 ${count}"
 untracked = "🐾 ${count}"
 
