@@ -1,6 +1,7 @@
 body {
-  --h1-size: 1.25rem;
-  --h2-size: 1.1rem;
+  --h1-size: 1.3rem;
+  --h2-size: 1.2rem;
+  --h3-size: 1rem;
 
   --h1-color: var(--color-red);
   --h2-color: var(--color-orange);
