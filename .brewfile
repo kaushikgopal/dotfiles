@@ -61,6 +61,7 @@ cask "firefox"
 cask "font-inter"
 cask "font-recursive-kg"
 cask "font-ibm-plex"
+cask "github"
 cask "imageoptim"
 cask "keyboard-maestro"
 cask "loopback"
@@ -105,7 +106,6 @@ brew scrcpy
 brew asdf
 
 # required for caper development
-brew glab
 brew grpcurl
 
 # required for heroku deployed apps
