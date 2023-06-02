@@ -4,6 +4,7 @@
 typeset -U path
 path=(
     /Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home/bin
+    ~/bin
     /opt/homebrew/bin
     /opt/homebrew/sbin
     /usr/local/bin
