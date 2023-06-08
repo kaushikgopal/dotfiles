@@ -1,47 +1,56 @@
 body {
-  --h1-size: 1.3rem;
-  --h2-size: 1.2rem;
+  --h1-size: 1.7rem;
+  --h2-size: 1.4rem;
   --h3-size: 1rem;
 
+  /* Minimal Theme Settings > Colorful Headings (takes care of this now) */
+  /*
   --h1-color: var(--color-red);
   --h2-color: var(--color-orange);
   --h3-color: var(--color-green);
+  */
 
-  --list-indent: 2em;
-  --list-spacing: 0.09em;
-}
-
-.is-mobile .markdown-rendered ul.contains-task-list,
-ul.contains-task-list {
-  padding-left: 0;
+  /*--link-color: inherit;*/
 }
 
-ul.contains-task-list > li {
-  padding: 0.4rem 0;
+/* always show the filename in title-bar */
+.view-header-title-container {
+  opacity: unset;
 }
-ul.contains-task-list > li:nth-child(odd) {
-  background-color: var(--background-secondary);
+
+/* internal & external link headings should respect colorful headings colors */
+.cm-header.cm-header-1.cm-link,
+.cm-header.cm-header-1.cm-hmd-internal-link {
+  color: var(--h1-color);
 }
+.cm-header.cm-header-2.cm-link,
+.cm-header.cm-header-2.cm-hmd-internal-link {
+  color: var(--h2-color);
+}
+
+.cm-header.cm-header-3.cm-link,
+.cm-header.cm-header-3.cm-hmd-internal-link {
+  color: var(--h3-color);
+}
+
+.cm-header.cm-header-4.cm-link,
+.cm-header.cm-header-4.cm-hmd-internal-link {
+  color: var(--h4-color);
+}
+
+
+
 
 .tasks-backlink {
   white-space: nowrap;
   font-weight: bold;
   font-size: 0.7rem;
-  text-decoration: none;
+  /*text-decoration: none;*/
 }
 .task-extras .tasks-backlink,
 .task-extras .tasks-backlink a
 {
   color: var(--text-muted) !important;
-  padding: 0.5rem 0;
+  /*padding: 0.5rem 0;*/
 }
 
-.tasks-edit {
-  display: none;
-}
-
-
-.HyperMD-header.HyperMD-header-2.cm-line .cm-header.cm-header-2.cm-hmd-internal-link {
-  color: var(--h2-color);
-  text-decoration: underline;
-}
