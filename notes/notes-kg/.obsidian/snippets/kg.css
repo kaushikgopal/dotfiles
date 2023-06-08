@@ -11,6 +11,9 @@ body {
   */
 
   /*--link-color: inherit;*/
+
+  --code-background: var(--ui1);
+  --code-size: var(--font-small); /* regular size */
 }
 
 /* always show the filename in title-bar */
@@ -39,7 +42,10 @@ body {
 }
 
 
-
+/* code snippet colors */
+.cm-s-obsidian span.cm-inline-code {
+  padding: .25rem;
+}
 
 .tasks-backlink {
   white-space: nowrap;
