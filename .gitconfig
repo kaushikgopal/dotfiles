@@ -67,7 +67,8 @@
 	side-by-side = true
 	true-color = auto
   	file-decoration-style = black ul
-    hunk-header-decoration-style = black box
+    hunk-header-style = raw
+    hunk-header-decoration-style = ul
     syntax-theme = base16
     zero-style = black
 
