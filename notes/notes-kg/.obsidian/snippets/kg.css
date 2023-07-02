@@ -1,16 +1,7 @@
 body {
-  --h1-size: 1.7rem;
+  --h1-size: 1.8rem;
   --h2-size: 1.4rem;
-  --h3-size: 1rem;
-
-  /* Minimal Theme Settings > Colorful Headings (takes care of this now) */
-  /*
-  --h1-color: var(--color-red);
-  --h2-color: var(--color-orange);
-  --h3-color: var(--color-green);
-  */
-
-  /*--link-color: inherit;*/
+  --h3-size: 1.2rem;
 
   --code-background: var(--ui1);
   --code-size: var(--font-small); /* regular size */
@@ -30,33 +21,57 @@ body {
 .cm-header.cm-header-2.cm-hmd-internal-link {
   color: var(--h2-color);
 }
-
 .cm-header.cm-header-3.cm-link,
 .cm-header.cm-header-3.cm-hmd-internal-link {
   color: var(--h3-color);
 }
-
 .cm-header.cm-header-4.cm-link,
 .cm-header.cm-header-4.cm-hmd-internal-link {
   color: var(--h4-color);
 }
-
-
-/* code snippet colors */
+/* add top/bottom spacing to code snippets */
 .cm-s-obsidian span.cm-inline-code {
-  padding: .25rem;
+  padding: .25rem 0;
 }
 
+
+/*********************************
+       DataView plugin
+ *********************************/
+
+.dataview-inline {
+  background-color: var(--code-background);
+}
+
+
+/*********************************
+        TASKS plugin
+ *********************************/
+
+/* left align task lists */
+.tasks-count {
+  padding-left: 0;
+  font-weight: bold;
+}
+.markdown-rendered ul, .markdown-rendered ol {
+   padding-inline-start: 0 !important;
+}
+.markdown-source-view.mod-cm6 .task-list-item-checkbox,
+ul > li.task-list-item .task-list-item-checkbox {
+  margin-inline-start: calc(var(--checkbox-size) * -1.5);
+}
+
+/* format the backlink in a task */
 .tasks-backlink {
   white-space: nowrap;
-  font-weight: bold;
-  font-size: 0.7rem;
-  /*text-decoration: none;*/
 }
 .task-extras .tasks-backlink,
 .task-extras .tasks-backlink a
 {
-  color: var(--text-muted) !important;
-  /*padding: 0.5rem 0;*/
+  color: var(--text-faint) !important;
 }
 
+/* format the dates displayed in a task */
+.task-due, .task-scheduled {
+  color: var(--text-faint);
+}
