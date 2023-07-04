@@ -1,7 +1,7 @@
 body {
-  --h1-size: 1.8rem;
-  --h2-size: 1.4rem;
-  --h3-size: 1.2rem;
+  --h1-size: 3rem;
+  --h2-size: 2rem;
+  --h3-size: 1rem;
 
   --code-background: var(--ui1);
   --code-size: var(--font-small); /* regular size */
@@ -53,17 +53,26 @@ body {
         TASKS plugin
  *********************************/
 
-/* left padding on general tasks */
-body { --list-edit-offset: 0em; }
-
+/* left padding on general tasks*/
+body {
+  --list-edit-offset: 0em;
+}
 /* reduce padding for tasks inside query + checkbox */
-.markdown-rendered ul, .markdown-rendered ol {
+.markdown-rendered ul,
+.markdown-rendered ol {
   padding-inline-start: 0.5rem;
 }
-/* alignt the input checkbox insider query resultss*/
+.is-mobile .markdown-rendered div>ul,
+.is-mobile .markdown-rendered div>ol {
+  padding-inline-start: 0rem;
+}
+
+/* align the input checkbox insider query resultss*/
 .markdown-source-view.mod-cm6 .contains-task-list.plugin-tasks-query-result .task-list-item-checkbox,
-.contains-task-list.plugin-tasks-query-result ul > li.task-list-item .task-list-item-checkbox {
-  right: 0.5rem;
+.contains-task-list.plugin-tasks-query-result ul > li.task-list-item .task-list-item-checkbox,
+.is-mobile .markdown-source-view.mod-cm6 .contains-task-list.plugin-tasks-query-result .task-list-item-checkbox,
+.is-mobile .contains-task-list.plugin-tasks-query-result ul > li.task-list-item .task-list-item-checkbox {
+  right: 0.4rem;
 }
 
 .tasks-count {
