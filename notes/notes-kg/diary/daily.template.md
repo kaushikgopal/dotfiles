@@ -1,6 +1,5 @@
 #### 🧠 🗑️
 
-<% tp.file.cursor() %>
 
 
 
@@ -8,22 +7,21 @@
 ----
 > [!quote] <% tp.web.daily_quote() %>
 # Goals
-## This month (T-<% moment().endOf("month").diff(moment().startOf('day'), "days") %>D)
-```tasks
-not done
-tags include #month 
-happens this month
-sort by priority
-hide edit button
-```
-## This year (T-<% moment("12-31", "MM-DD").diff(moment().startOf('day'), "days") %>D)
+
+> [!hint]
+>  - [[Goals#2023]]
+>  - <% moment("12-31", "MM-DD").diff(moment().startOf('day'), "months") %> months left
+>  - <% moment().endOf("month").diff(moment().startOf('day'), "days") %> days left this month
 
 ```tasks
 not done
-tags include #year
+tags include #goal
 sort by priority
+happens before in 3 days
+hide created date
 hide edit button
 ```
+
 
 ----
 # Tasks
