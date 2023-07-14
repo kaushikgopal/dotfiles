@@ -112,8 +112,10 @@ defaults write -g KeyRepeat -int 1 # normal minimum is 2 (30 ms)
 ## sudo pmset -a lidwake 1
 ## # Restart automatically on power loss
 ## sudo pmset -a autorestart 1
-## # Restart automatically if the computer freezes
-## sudo systemsetup -setrestartfreeze on
+# Restart automatically after power failure
+sudo systemsetup -setwaitforstartupafterpowerfailure 60
+# Restart automatically if the computer freezes
+sudo systemsetup -setrestartfreeze on
 ## # Sleep the display after 15 minutes
 ## sudo pmset -a displaysleep 15
 ## # Disable machine sleep while charging
