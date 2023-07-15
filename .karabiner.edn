@@ -109,7 +109,6 @@
     :caps-mode {:key :caps_lock :alone {:key :escape}}
 } ;; layers
 
-
 ;; simlayers are basically "hyper" keys
 ;; layers works too, but only recommended for non-typing keys like . or tab
 ;; to use more regular typing keys, use simlayers
@@ -191,55 +190,95 @@
        [:##left_command :left_option]
     ]}
 
+
+
+
+    ;; ----------------------------------
     ;; ----------------------------------
     ;; Key mappings
     ;; ----------------------------------
-
-    {:des "tab + i = -"
-        :rules [
-          [:i    :hyphen   :tab-mode]
-          [:o    :equal_sign   :tab-mode]
-    ]}
-
-    {:des "homerow braces"
-        :rules [
-
-          ;; j → (
-          ;; k → )
-          [:j    :!S9   :f-mode]
-          [:k    :!S0   :f-mode]
-
-          ;; tab j → [
-          ;; tab k → ]
-          [:j    :open_bracket  :tab-mode]
-          [:k    :close_bracket :tab-mode]
-
-          ;; l → {
-          ;; ; → }
-          [ :l          :!Sopen_bracket :tab-mode]
-          [ :semicolon  :!Sclose_bracket :tab-mode]
-    ]}
+    ;; ----------------------------------
 
 
-    {:des "delete sequences"
-     :rules [:j-mode
-        ;; delete word
-        [:w :!Tw                    :terminals]
-        [:w :!Odelete_or_backspace  :!terminals]
 
-        ;; backspace
-        [:f :delete_or_backspace]
+      ;; -----------------------------------------
+      ;; j-mode (deletion related shortcuts)
+      ;; -----------------------------------------
 
-        ;; delete line
-        [:l :!Tu                    :terminals]
-        [:l :!Cdelete_or_backspace  :!terminals]
-    ]}
+      {:des "j-mode (deletion related shortcuts)"
+       :rules [:j-mode
 
-    {:des "quick tab switch"
-     :rules [:j-mode
-        [:##x :!CSopen_bracket   ]   ;; switch tabs in most apps  ;; Cmd Shift [
-        [:##c :!CSclose_bracket  ]  ;; switch tabs in most apps  ;; Cmd Shift ]
-    ]}
+          ;;  s d f  ||| line word char
+
+          ;; delete line
+          [:s :!Tu                    :terminals]
+          [:s :!Cdelete_or_backspace  :!terminals]
+
+          ;; delete word
+          [:d :!Tw                    :terminals]
+          [:d :!Odelete_or_backspace  :!terminals]
+
+          ;; delete char | backspace
+          [:f :delete_or_backspace]
+      ]}
+
+      ;; -----------------------------------------
+      ;; f-mode (special characters)
+      ;; -----------------------------------------
+
+      {:des "f-mode (special characters) ... mostly"
+          :rules [
+
+            ;;  i o  ||| - =
+            [:i    :hyphen   :f-mode]
+            [:o    :equal_sign   :f-mode]
+
+            ;;  jkl;  ||| []{}
+            [:j          :open_bracket    :f-mode]
+            [:k          :close_bracket   :f-mode]
+            [:l          :!Sopen_bracket  :f-mode]
+            [:semicolon  :!Sclose_bracket :f-mode]
+
+            ;; jk ||| ()  -- special case we use tab
+            [:j    :!S9   :tab-mode]
+            [:k    :!S0   :tab-mode]
+      ]}
+
+      ;; -----------------------------------------
+      ;; tab-mode (window management)
+      ;; -----------------------------------------
+
+      {:des "tab-mode: window management"
+       :rules [:tab-mode
+
+          [:##i [:km "wm: toggle left"] ]
+          [:##o [:km "wm: toggle right"] ]
+
+          ;; m    <->   ,     |||   cmd shift [      <->     cmd shift ]
+          [:##m     :!CSopen_bracket   ]   ;; switch tabs in most apps  ;; Cmd Shift [
+          [:##comma :!CSclose_bracket  ]  ;; switch tabs in most apps  ;; Cmd Shift ]
+
+      ]}
+
+
+          ;;[:t [:km "wm: minor left"] ] ;; Window move
+          ;;[:y [:km "wm: major left"] ] ;; Window move
+          ;;[:u [:km "wm: half left"] ] ;; Window move
+          ;;[:p [:km "wm: major right"] ] ;; Window move
+          ;;[:open_bracket [:km "wm: minor right"] ] ;; Window move
+
+          ;;[:j [:km "wm: split 3 left"] ] ;; Window move
+          ;;[:k [:km "wm: split 3 center"] ] ;; Window move
+          ;;[:l [:km "wm: split 3 right"] ] ;; Window move
+
+          ;;[:c [:km "wm: center"] ] ;; Window move
+          ;;[:v [:km "wm: vertical fill"] ] ;; Window move
+          ;;[:f [:km "wm: full"] ] ;; Window move
+
+
+    ;; -----------------------------------------
+    ;; caps-mode (arrow keys)
+    ;; -----------------------------------------
 
     {:des "turbo charge caps-lock"
         :rules [:caps-mode
@@ -257,25 +296,6 @@
           [:right_arrow {:mkey {:x 1536}}]
           [:return_or_enter {:pkey :button1}]
           [:!Creturn_or_enter {:pkey :button2}]
-
-    ;;   ]
-    ;; }
-    ;; {:des "tab-mode: quick open applications"
-    ;;  :rules [:tab-mode
-          ;;[:t [:km "wm: minor left"] ] ;; Window move
-          ;;[:y [:km "wm: major left"] ] ;; Window move
-          ;;[:u [:km "wm: half left"] ] ;; Window move
-          ;;[:o [:km "wm: half right"] ] ;; Window move
-          ;;[:p [:km "wm: major right"] ] ;; Window move
-          ;;[:open_bracket [:km "wm: minor right"] ] ;; Window move
-
-          ;;[:j [:km "wm: split 3 left"] ] ;; Window move
-          ;;[:k [:km "wm: split 3 center"] ] ;; Window move
-          ;;[:l [:km "wm: split 3 right"] ] ;; Window move
-
-          ;;[:c [:km "wm: center"] ] ;; Window move
-          ;;[:v [:km "wm: vertical fill"] ] ;; Window move
-          ;;[:f [:km "wm: full"] ] ;; Window move
 
     ]}
 
