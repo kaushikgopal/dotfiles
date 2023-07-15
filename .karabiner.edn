@@ -240,6 +240,8 @@
             [:semicolon  :!Sclose_bracket :f-mode]
 
             ;; jk ||| ()  -- special case we use tab
+            [:m    :!S9   :f-mode]
+            [:comma    :!S0   :f-mode]
             [:j    :!S9   :tab-mode]
             [:k    :!S0   :tab-mode]
       ]}
