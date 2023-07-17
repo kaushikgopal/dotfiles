@@ -234,17 +234,14 @@
             [:i    :!Sequal_sign   :f-mode]
             [:o    :equal_sign   :f-mode]
 
-            ;;  jkl;  ||| []()
-            [:j          :open_bracket    :f-mode]
-            [:k          :close_bracket   :f-mode]
-            [:l          :!S9  :f-mode]
-            [:semicolon  :!S0 :f-mode]
-
             ;; jk ||| ()  -- special case we use tab
-            [:m       :!Sopen_bracket   :f-mode]
-            [:comma   :!Sclose_bracket   :f-mode]
-            [:j    :!S9   :tab-mode]
-            [:k    :!S0   :tab-mode]
+            [:j    :!S9   :f-mode]
+            [:k    :!S0   :f-mode]
+            [:l           :!Sopen_bracket   :f-mode]
+            [:semicolon   :!Sclose_bracket   :f-mode]
+            ;;  m,  ||| {}
+            [:m          :open_bracket    :f-mode]
+            [:comma          :close_bracket   :f-mode]
       ]}
 
       ;; -----------------------------------------
