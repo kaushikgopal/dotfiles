@@ -229,19 +229,20 @@
       {:des "f-mode (special characters) ... mostly"
           :rules [
 
-            ;;  i o  ||| - =
-            [:i    :hyphen   :f-mode]
+            ;;  u i o  ||| - + =
+            [:u    :hyphen   :f-mode]
+            [:i    :!Sequal_sign   :f-mode]
             [:o    :equal_sign   :f-mode]
 
-            ;;  jkl;  ||| []{}
+            ;;  jkl;  ||| []()
             [:j          :open_bracket    :f-mode]
             [:k          :close_bracket   :f-mode]
-            [:l          :!Sopen_bracket  :f-mode]
-            [:semicolon  :!Sclose_bracket :f-mode]
+            [:l          :!S9  :f-mode]
+            [:semicolon  :!S0 :f-mode]
 
             ;; jk ||| ()  -- special case we use tab
-            [:m    :!S9   :f-mode]
-            [:comma    :!S0   :f-mode]
+            [:m       :!Sopen_bracket   :f-mode]
+            [:comma   :!Sclose_bracket   :f-mode]
             [:j    :!S9   :tab-mode]
             [:k    :!S0   :tab-mode]
       ]}
@@ -255,6 +256,10 @@
 
           [:##i [:km "wm: toggle left"] ]
           [:##o [:km "wm: toggle right"] ]
+
+          [:##f [:km "wm: toggle full"] ]
+          [:##c [:km "wm: toggle center"] ]
+          [:##v [:km "wm: toggle vertical"] ]
 
           ;; m    <->   ,     |||   cmd shift [      <->     cmd shift ]
           [:##m     :!CSopen_bracket   ]   ;; switch tabs in most apps  ;; Cmd Shift [

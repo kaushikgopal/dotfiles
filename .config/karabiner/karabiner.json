@@ -616,7 +616,7 @@
         "description" : "f-mode (special characters) ... mostly",
         "manipulators" : [ {
           "from" : {
-            "key_code" : "i"
+            "key_code" : "u"
           },
           "to" : [ {
             "key_code" : "hyphen"
@@ -639,6 +639,53 @@
             }
           }, {
             "key_code" : "hyphen"
+          } ],
+          "from" : {
+            "simultaneous" : [ {
+              "key_code" : "f"
+            }, {
+              "key_code" : "u"
+            } ],
+            "simultaneous_options" : {
+              "detect_key_down_uninterruptedly" : true,
+              "key_down_order" : "strict",
+              "key_up_order" : "strict_inverse",
+              "key_up_when" : "any",
+              "to_after_key_up" : [ {
+                "set_variable" : {
+                  "name" : "f-mode",
+                  "value" : 0
+                }
+              } ]
+            }
+          }
+        }, {
+          "from" : {
+            "key_code" : "i"
+          },
+          "to" : [ {
+            "key_code" : "equal_sign",
+            "modifiers" : [ "left_shift" ]
+          } ],
+          "conditions" : [ {
+            "name" : "f-mode",
+            "value" : 1,
+            "type" : "variable_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "type" : "basic",
+          "parameters" : {
+            "basic.simultaneous_threshold_milliseconds" : 250
+          },
+          "to" : [ {
+            "set_variable" : {
+              "name" : "f-mode",
+              "value" : 1
+            }
+          }, {
+            "key_code" : "equal_sign",
+            "modifiers" : [ "left_shift" ]
           } ],
           "from" : {
             "simultaneous" : [ {
@@ -799,7 +846,7 @@
             "key_code" : "l"
           },
           "to" : [ {
-            "key_code" : "open_bracket",
+            "key_code" : "9",
             "modifiers" : [ "left_shift" ]
           } ],
           "conditions" : [ {
@@ -819,7 +866,7 @@
               "value" : 1
             }
           }, {
-            "key_code" : "open_bracket",
+            "key_code" : "9",
             "modifiers" : [ "left_shift" ]
           } ],
           "from" : {
@@ -846,7 +893,7 @@
             "key_code" : "semicolon"
           },
           "to" : [ {
-            "key_code" : "close_bracket",
+            "key_code" : "0",
             "modifiers" : [ "left_shift" ]
           } ],
           "conditions" : [ {
@@ -866,7 +913,7 @@
               "value" : 1
             }
           }, {
-            "key_code" : "close_bracket",
+            "key_code" : "0",
             "modifiers" : [ "left_shift" ]
           } ],
           "from" : {
@@ -893,7 +940,7 @@
             "key_code" : "m"
           },
           "to" : [ {
-            "key_code" : "9",
+            "key_code" : "open_bracket",
             "modifiers" : [ "left_shift" ]
           } ],
           "conditions" : [ {
@@ -913,7 +960,7 @@
               "value" : 1
             }
           }, {
-            "key_code" : "9",
+            "key_code" : "open_bracket",
             "modifiers" : [ "left_shift" ]
           } ],
           "from" : {
@@ -940,7 +987,7 @@
             "key_code" : "comma"
           },
           "to" : [ {
-            "key_code" : "0",
+            "key_code" : "close_bracket",
             "modifiers" : [ "left_shift" ]
           } ],
           "conditions" : [ {
@@ -960,7 +1007,7 @@
               "value" : 1
             }
           }, {
-            "key_code" : "0",
+            "key_code" : "close_bracket",
             "modifiers" : [ "left_shift" ]
           } ],
           "from" : {
@@ -1038,6 +1085,54 @@
           },
           "to" : [ {
             "shell_command" : "osascript -e 'tell application \"Keyboard Maestro Engine\" to do script \"wm: toggle right\"'"
+          } ],
+          "conditions" : [ {
+            "name" : "tab-mode",
+            "value" : 1,
+            "type" : "variable_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "f",
+            "modifiers" : {
+              "optional" : [ "any" ]
+            }
+          },
+          "to" : [ {
+            "shell_command" : "osascript -e 'tell application \"Keyboard Maestro Engine\" to do script \"wm: toggle full\"'"
+          } ],
+          "conditions" : [ {
+            "name" : "tab-mode",
+            "value" : 1,
+            "type" : "variable_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "c",
+            "modifiers" : {
+              "optional" : [ "any" ]
+            }
+          },
+          "to" : [ {
+            "shell_command" : "osascript -e 'tell application \"Keyboard Maestro Engine\" to do script \"wm: toggle center\"'"
+          } ],
+          "conditions" : [ {
+            "name" : "tab-mode",
+            "value" : 1,
+            "type" : "variable_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "v",
+            "modifiers" : {
+              "optional" : [ "any" ]
+            }
+          },
+          "to" : [ {
+            "shell_command" : "osascript -e 'tell application \"Keyboard Maestro Engine\" to do script \"wm: toggle vertical\"'"
           } ],
           "conditions" : [ {
             "name" : "tab-mode",
