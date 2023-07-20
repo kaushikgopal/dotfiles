@@ -239,9 +239,9 @@
             [:k    :!S0   :f-mode]
             [:l           :!Sopen_bracket   :f-mode]
             [:semicolon   :!Sclose_bracket   :f-mode]
-            ;;  m,  ||| {}
-            [:m          :open_bracket    :f-mode]
-            [:comma          :close_bracket   :f-mode]
+
+            [:m     :open_bracket   :f-mode]
+            [:comma :close_bracket  :f-mode]
       ]}
 
       ;; -----------------------------------------
