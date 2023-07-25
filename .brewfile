@@ -41,6 +41,7 @@ brew "ripgrep"
 brew "rsync"
 brew "sox"
 brew "starship"
+brew "tailscale"
 brew "tmux"
 brew "trash"
 brew "tree"
@@ -54,9 +55,10 @@ brew "zsh-syntax-highlighting"      # fish like syntax highlighting
 # brew "zsh-completions"              # autocomplete candidates (without tab) - DOESN'T WORK
 
 cask "1password"
-cask "1password-cli"    # required for Alfred integration
-cask "raycast"
-cask "cursorsense"
+# cask "1password-cli"    # required for Alfred integration
+# cask "raycast"
+# cask "cursorsense"
+cask "brave-browser"
 cask "firefox"
 cask "font-inter"
 cask "font-recursive-kg"
@@ -66,16 +68,16 @@ cask "imageoptim"
 cask "keyboard-maestro"
 cask "loopback"
 cask "maestral"
-cask "microsoft-edge"
+# cask "microsoft-edge"
 cask "obsidian"
-cask "proxyman"
+# cask "proxyman"
 cask "soulver"
 cask "soundsource"
 cask "superduper"
 cask "the-unarchiver"
 cask "visual-studio-code"
 cask "webpquicklook"
-cask "zerotier-one"
+# cask "zerotier-one"
 # cask "font-cascadia-code-pl"
 # cask "font-cascadia-code"
 # cask "font-ia-writer-mono"
@@ -107,6 +109,7 @@ brew asdf
 
 # required for caper development
 brew grpcurl
+
 
 # required for heroku deployed apps
 brew tap heroku/brew
