@@ -5,10 +5,8 @@ tap "homebrew/core"
 
 tap "kaushikgopal/tools"
 tap "buo/cask-upgrade"  # better cask upgrading (see `cu`)
-tap "candid82/brew" # goku
-tap "yqrashawn/goku" # goku
-cask "karabiner-elements"
 
+# CLI tools
 brew "bat"
 brew "briss" # pdf cropping tool
 brew "coreutils" # for gnu date
@@ -19,12 +17,6 @@ brew "fd"
 brew "ffmpeg"
 brew "fzf"
 brew "gawk"
-brew "gh"
-brew "git-delta"
-brew "git-lfs"
-brew "git-number"
-brew "git"
-brew "github-keygen"
 brew "gnupg" # "openssl"
 brew "gum"
 brew "htmltest"
@@ -47,39 +39,74 @@ brew "trash"
 brew "tree"
 brew "wget"
 brew "youtube-dl"
-brew "yqrashawn/goku/goku"
 brew "zoxide"
 brew "zsh-autosuggestions"          # fish like suggestions (from history + completions)
 brew "zsh-syntax-highlighting"      # fish like syntax highlighting
-# brew "neovim"
 # brew "zsh-completions"              # autocomplete candidates (without tab) - DOESN'T WORK
 
+# development ## general
+brew "glab"
+cask "github"
+brew grpcurl  # caper
+brew "gh"
+brew "git-delta"
+brew "git-lfs"
+brew "git-number"
+brew "git"
+brew "github-keygen"
+
+# brew "docker-compose"
+# brew "docker-credential-helper-ecr"
+# cask "docker"
+
+# development ## android (zulu)
+tap "mdogan/zulu"
+cask "zulu-jdk17"
+brew kotlin
+brew gradle
+brew scrcpy
+
+# development ## .rb
+brew asdf
+# brew "ruby-build"
+# brew "rbenv"
+# brew "ruby-install"
+
+# development ## heroku
+brew tap heroku/brew
+brew install heroku
+
+# development ## .py
+# brew "python@3.10"
+# brew "pyenv"
+# brew "pyenv-virtualenv"
+# brew "python-tabulate"
+# brew "python-yq"
+
+
+# Mac apps
 cask "1password"
-# cask "1password-cli"    # required for Alfred integration
-# cask "raycast"
-# cask "cursorsense"
 cask "brave-browser"
 cask "firefox"
 cask "font-inter"
 cask "font-recursive-kg"
 cask "font-ibm-plex"
-cask "github"
 cask "imageoptim"
 cask "keyboard-maestro"
 cask "loopback"
 cask "maestral"
-# cask "microsoft-edge"
 cask "obsidian"
-# cask "proxyman"
 cask "soulver"
 cask "soundsource"
 cask "superduper"
 cask "the-unarchiver"
 cask "visual-studio-code"
 cask "webpquicklook"
-# cask "zerotier-one"
-# cask "font-cascadia-code-pl"
+
+# cask "1password-cli"    # required for Alfred integration
+# cask "cursorsense"
 # cask "font-cascadia-code"
+# cask "font-cascadia-code-pl"
 # cask "font-ia-writer-mono"
 # cask "font-ibm-plex-mono"
 # cask "font-ibm-plex-sans"
@@ -90,44 +117,24 @@ cask "webpquicklook"
 # cask "font-sf-pro"
 # cask "iterm2"
 # cask "maccy"
+# cask "microsoft-edge"
+# cask "proxyman"
+# cask "raycast"
+# cask "zerotier-one"
 
+# goku
+tap "candid82/brew"
+tap "yqrashawn/goku"
+cask "karabiner-elements"
+brew "yqrashawn/goku/goku"
 
 mas "iA Writer", id: 775737590
 mas "Xcode", id: 497799835
 mas "Hand Mirror", id: 1502839586
 mas "Things 3", id: 904280696
 
-# required for android development (zulu)
-tap "mdogan/zulu"
-cask "zulu-jdk17"
-brew kotlin
-brew gradle
-brew scrcpy
-
-# required for .rb development
-brew asdf
-
-# required for caper development
-brew grpcurl
 
 
-# required for heroku deployed apps
-brew tap heroku/brew
-brew install heroku
-
-# brew "python@3.10"
-# brew "pyenv"
-# brew "pyenv-virtualenv"
-# brew "python-tabulate"
-# brew "python-yq"
-
-# brew "ruby-build"
-# brew "rbenv"
-# brew "ruby-install"
-
-# brew "docker-compose"
-# brew "docker-credential-helper-ecr"
-# cask "docker"
 
 
 
@@ -136,4 +143,3 @@ brew install heroku
 ##################
 
 # brew deps --tree --installed asdf
-#
