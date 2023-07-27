@@ -73,19 +73,19 @@
     zero-style = black
 
 [diff]
-  colorMoved = default
-  mnemonicprefix = true
-  compactionHeuristic = true
-	show = delta
+    colorMoved = default
+    mnemonicprefix = true
+    compactionHeuristic = true
+    show = delta
 
 [feature]
-  manyFiles = 1
+    manyFiles = 1
 
 [filter "lfs"]
-  clean = git-lfs clean -- %f
-  smudge = git-lfs smudge -- %f
-  process = git-lfs filter-process
-  required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
 
 [includeIf "gitdir:~/"]
     path = .gitconfig-private
