@@ -5,8 +5,12 @@
 
 # Tasks
 
+The key to my productivity is knowing which tasks take 5 minutes or less. If i know it's more than 5 minutes throw it in a list and then prioritize it right away.
+
 [[;Things]]
 [[;Inbox]]
+
+
 
 ### ⏫ Important & Urgent
 ```tasks
@@ -42,5 +46,6 @@ hide edit button
 ## Done
 
 ```tasks
-done on {{ date:YYYY-MM-DD }}
+done on <% tp.date.now("YYYY-MM-DD") %>
+path does not include <% tp.file.title %>
 ```
