@@ -1,10 +1,8 @@
 # navigation
 alias ..="cd .."
-alias cd..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
-alias -- -="cd -"
 
 
 # better ls
@@ -49,6 +47,10 @@ alias t='trash'
 alias v='nvim'
 alias vi='nvim'
 
+
+# scripts from specific directories that I like to run directly
+alias oncall='kotlin ~/_src/caper/caper-repo/caper/buildSrc/scripts/oncall.main.kts'
+alias tags='kotlin ~/_src/kotlin-scripts/5.pluck-tags-from-blog-posts.main.kts ~/_src/kau.sh/content/blog'
 
 
 # almost functions
