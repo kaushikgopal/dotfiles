@@ -3,6 +3,10 @@ body {
   --h2-size: 1.8rem;
   --h3-size: 1.1rem;
 
+
+  --h1-weight: normal;
+  --h2-weight: normal;
+
   --code-background: var(--ui1);
   --code-size: var(--font-small); /* regular size */
 }
