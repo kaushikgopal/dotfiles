@@ -87,8 +87,9 @@ brew install heroku
 
 # Mac apps
 cask "1password"
-cask "brave-browser"
-cask "firefox"
+cask "font-ia-writer-duo"
+cask "font-ia-writer-mono"
+cask "font-ia-writer-quattro"
 cask "font-ibm-plex"
 cask "font-inter"
 cask "font-recursive-kg"
@@ -105,11 +106,12 @@ cask "the-unarchiver"
 cask "visual-studio-code"
 cask "webpquicklook"
 
+# cask "brave-browser"
+# cask "firefox"
 # cask "1password-cli"    # required for Alfred integration
 # cask "cursorsense"
 # cask "font-cascadia-code"
 # cask "font-cascadia-code-pl"
-# cask "font-ia-writer-mono"
 # cask "font-ibm-plex-mono"
 # cask "font-ibm-plex-sans"
 # cask "font-ibm-plex-serif"
