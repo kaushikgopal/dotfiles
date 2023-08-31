@@ -9,7 +9,7 @@ The key to my productivity is knowing which tasks take 5 minutes or less. If i k
 
 [[;Things]]
 [[;Inbox]]
-
+[[ic/caper/;Caper Todo|;Caper Todo]]
 
 
 ### ⏫ Important & Urgent
