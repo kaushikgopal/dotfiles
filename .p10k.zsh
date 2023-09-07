@@ -384,8 +384,8 @@
     if (( $1 )); then
       # Styling for up-to-date Git status.
       local       meta='%244F'  # grey foreground
-      local   modified='%178F'  # yellow foreground
       local      clean='%42F'   # green foreground
+      local   modified='%178F'  # yellow foreground
       local  untracked='%39F'   # blue foreground
       local conflicted='%196F'  # red foreground
     else
