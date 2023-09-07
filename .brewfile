@@ -30,9 +30,10 @@ brew "openssl"
 brew "pgcli"
 brew "poppler"
 brew "ripgrep"
+brew "romkatv/powerlevel10k/powerlevel10k"
 brew "rsync"
 brew "sox"
-brew "romkatv/powerlevel10k/powerlevel10k"
+brew "xmlstarlet"   # fine-grain xml manipulation
 
 brew "tailscale"
 brew "tmux"
@@ -48,7 +49,7 @@ brew "zsh-syntax-highlighting"      # fish like syntax highlighting
 # development ## general
 brew "glab"
 cask "github"
-brew grpcurl  # caper
+brew "grpcurl"  # caper
 brew "gh"
 brew "git-delta"
 brew "git-lfs"
@@ -63,19 +64,19 @@ brew "github-keygen"
 # development ## android (zulu)
 tap "mdogan/zulu"
 cask "zulu-jdk17"
-brew kotlin
-brew gradle
-brew scrcpy
+brew "kotlin"
+brew "gradle"
+brew "scrcpy"
 
 # development ## .rb
-brew asdf
+brew "asdf"
 # brew "ruby-build"
 # brew "rbenv"
 # brew "ruby-install"
 
 # development ## heroku
-brew tap heroku/brew
-brew install heroku
+# brew tap heroku/brew
+# brew install heroku
 
 # development ## .py
 # brew "python@3.10"
@@ -87,12 +88,16 @@ brew install heroku
 
 # Mac apps
 cask "1password"
+cask "brave-browser"
 cask "font-ia-writer-duo"
 cask "font-ia-writer-mono"
 cask "font-ia-writer-quattro"
 cask "font-ibm-plex"
 cask "font-inter"
 cask "font-recursive-kg"
+cask "font-sf-compact"
+cask "font-sf-mono"
+cask "font-sf-pro"
 cask "imageoptim"
 cask "keyboard-maestro"
 cask "loopback"
@@ -106,7 +111,6 @@ cask "the-unarchiver"
 cask "visual-studio-code"
 cask "webpquicklook"
 
-# cask "brave-browser"
 # cask "firefox"
 # cask "1password-cli"    # required for Alfred integration
 # cask "cursorsense"
@@ -116,9 +120,6 @@ cask "webpquicklook"
 # cask "font-ibm-plex-sans"
 # cask "font-ibm-plex-serif"
 # cask "font-new-york"
-# cask "font-sf-compact"
-# cask "font-sf-mono"
-# cask "font-sf-pro"
 # cask "iterm2"
 # cask "maccy"
 # cask "microsoft-edge"
@@ -135,7 +136,7 @@ brew "yqrashawn/goku/goku"
 mas "iA Writer", id: 775737590
 mas "Xcode", id: 497799835
 mas "Hand Mirror", id: 1502839586
-mas "Things 3", id: 904280696
+# mas "Things 3", id: 904280696
 
 
 
