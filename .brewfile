@@ -147,4 +147,22 @@ mas "Hand Mirror", id: 1502839586
 # Helpful commands
 ##################
 
+# track transitive dependencies
 # brew deps --tree --installed asdf
+
+# clean up to match brewfile
+# brew bundle --force cleanup --file=".brewfile"
+
+# install from brewfile
+# brew bundle install -v --file=".brewfile"
+
+# upgrade casks (via cu)
+brew cu --all --cleanup --yes
+
+# update formulae
+# update the local downloaded git repo with latest code
+# brew update
+
+# upgrade packages
+# does the actual upgrade of packages to update formulate from above step
+brew upgrade
