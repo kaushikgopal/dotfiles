@@ -157,7 +157,7 @@ mas "Hand Mirror", id: 1502839586
 # brew bundle install -v --file=".brewfile"
 
 # upgrade casks (via cu)
-brew cu --all --cleanup --yes
+# brew cu --all --cleanup --yes
 
 # update formulae
 # update the local downloaded git repo with latest code
@@ -165,4 +165,4 @@ brew cu --all --cleanup --yes
 
 # upgrade packages
 # does the actual upgrade of packages to update formulate from above step
-brew upgrade
+# brew upgrade
