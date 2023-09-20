@@ -79,12 +79,12 @@ brew "asdf"
 # brew install heroku
 
 # development ## .py
-# brew "python@3.10"
 # brew "pyenv"
 # brew "pyenv-virtualenv"
 # brew "python-tabulate"
-# brew "python-yq"
-
+# brew "python@3.10"
+brew "python3"    # caper local mock server
+brew "python-yq"  # caper local mock server
 
 # Mac apps
 cask "1password"
