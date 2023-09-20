@@ -322,6 +322,9 @@ defaults write com.apple.dock showhidden -bool true
 ## Bottom right screen corner → ⌘ Desktop
 #defaults write com.apple.dock wvous-br-corner -int 4
 #defaults write com.apple.dock wvous-br-modifier -int 1048576
+## Single-Application mode (legacy MacOS option)
+defaults write com.apple.dock single-app -bool false
+
 ################################################################################
 ## Safari & WebKit                                                             #
 ################################################################################
