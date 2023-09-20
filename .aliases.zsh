@@ -51,6 +51,7 @@ alias vi='nvim'
 # scripts from specific directories that I like to run directly
 alias oncall='kotlin ~/_src/caper/caper-repo/caper/buildSrc/scripts/oncall.main.kts'
 alias tags='kotlin ~/_src/kotlin-scripts/5.pluck-tags-from-blog-posts.main.kts ~/_src/kau.sh/content/blog'
+alias ktfmt='java -jar /usr/local/bin/ktfmt-0.43-jar-with-dependencies.jar'
 
 
 # almost functions
