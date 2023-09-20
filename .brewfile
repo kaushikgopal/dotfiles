@@ -111,7 +111,7 @@ cask "the-unarchiver"
 cask "visual-studio-code"
 cask "webpquicklook"
 
-# cask "firefox"
+cask "firefox"
 # cask "1password-cli"    # required for Alfred integration
 # cask "cursorsense"
 # cask "font-cascadia-code"
