@@ -10,7 +10,6 @@ fi
 
 typeset -U path
 path=(
-    /Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home/bin
     ~/bin
     /opt/homebrew/bin
     /opt/homebrew/sbin
@@ -25,10 +24,11 @@ path=(
     $ANDROID_HOME/emulator
 )
 export PATH
+
+    # /Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home/bin
     # $HOME/.local/bin
     # $HOME/.fig/bin
     # $HOME/.pyenv/shims
-
 
 
 # Prompt related configurations
