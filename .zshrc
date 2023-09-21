@@ -19,6 +19,7 @@ path=(
     /usr/local/sbin
     /usr/sbin
     /sbin
+    ~/.local/bin                  # pipx
     $ANDROID_HOME/platform-tools
     $ANDROID_HOME/tools
     $ANDROID_HOME/emulator
