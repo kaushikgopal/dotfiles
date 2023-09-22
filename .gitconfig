@@ -1,6 +1,7 @@
 [alias]
   a     = add
   ba    = "!. githelpers && pretty_git_branch_all"
+  bd    = branch -D
   c     = commit
   co    = checkout
   ca    = commit --amend # --no-edit
