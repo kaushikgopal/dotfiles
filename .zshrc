@@ -40,6 +40,11 @@ export PATH
 # PS1="${NEWLINE}%{$fg[white]%}%n@%m %{$fg[magenta]%}%~ %{$reset_color%}${NEWLINE}%{$fg[yellow]%}${HASH}%{$reset_color%} "
 
 
+# Get the brew prefix
+# /opt/homebrew/opt/
+# /usr/local/share/
+brew_prefix=$(brew --prefix)
+
 
 # history settings
 HISTFILE=$HOME/.zsh_history
@@ -92,13 +97,19 @@ source $(brew --prefix)/share/zsh/site-functions
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh  # has to be at the very end
 ## copilot shortcut
-eval "$(github-copilot-cli alias -- "$0")"
+# eval "$(github-copilot-cli alias -- "$0")"
 
 # zprof
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-source $(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme
+
+# Check if the brew prefix is `/opt/homebrew/opt`
+if [[ "${brew_prefix}" == "/opt/homebrew/opt" ]]; then
+  source "/opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme"
+else
+  source "/usr/local/share/powerlevel10k/powerlevel10k.zsh-theme"
+fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

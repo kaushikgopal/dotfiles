@@ -30,7 +30,7 @@ brew "openssl"
 brew "pgcli"
 brew "poppler"
 brew "ripgrep"
-brew "romkatv/powerlevel10k/powerlevel10k"
+brew "powerlevel10k"
 brew "rsync"
 brew "sox"
 brew "xmlstarlet"   # fine-grain xml manipulation
