@@ -6,10 +6,9 @@ alias .....="cd ../../../.."
 
 
 # better ls
-alias l='ls -G'
-alias la='ls -aG'
-alias ll='ls -lG'
-alias lla='ls -alG'
+alias ls='ls -G'
+alias l='ls -lG'
+alias la='ls -alG'
 alias ld='tree -d -CFL 1'
 alias tr='tree --dirsfirst -CFL 3'
 
