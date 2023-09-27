@@ -37,7 +37,7 @@ alias rr='rg --no-ignore --hidden -S'   # hidden + smartcase
 alias b='bat'
 alias c='code'
 alias cat='bat'
-#alias diff=/Applications/Xcode.app/Contents/Developer/usr/bin/opendiff
+alias f='fleet'
 alias gw='./gradlew'
 alias o='open'
 alias oo='open .'
@@ -46,6 +46,8 @@ alias t='trash'
 alias v='nvim'
 alias vi='nvim'
 
+#alias diff=/Applications/Xcode.app/Contents/Developer/usr/bin/opendiff
+
 
 # scripts from specific directories that I like to run directly
 alias oncall='kotlin ~/_src/caper/caper-repo/caper/buildSrc/scripts/oncall.main.kts'
@@ -53,9 +55,15 @@ alias tags='kotlin ~/_src/kotlin-scripts/5.pluck-tags-from-blog-posts.main.kts ~
 alias ktfmt='java -jar /usr/local/bin/ktfmt-0.43-jar-with-dependencies.jar'
 
 
-# almost functions
+# these were almost .functions.zsh
+
 alias battery='pmset -g batt'
-alias tds="find . -name '*.DS_Store' -type f -ls -delete" # Recursively delete `.DS_Store` files
+#alias battery='pmset -g batt # | grep -Eo "\d+%" | cut -d% -f1'
+
+
+# Recursively trash `.DS_Store` files
+alias tds="find . -name '*.DS_Store' -type f -ls -delete"
+
 # Empty the Trash on all mounted volumes and the main HDD. then clear the useless sleepimage
 alias emptytrash=" \
     sudo rm -rfv /Volumes/*/.Trashes; \
@@ -64,4 +72,3 @@ alias emptytrash=" \
     rm -rv \"$HOME/Library/Application Support/stremio/Cache\";  \
     rm -rv \"$HOME/Library/Application Support/stremio/stremio-cache\" \
 "
-#alias battery='pmset -g batt # | grep -Eo "\d+%" | cut -d% -f1'
