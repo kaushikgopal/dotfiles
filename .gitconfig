@@ -48,30 +48,30 @@
 	helper = osxkeychain
 
 [delta]
-	file-style = black
-	hunk-header-line-number-style = black
-	line-numbers = true
-	line-numbers-left-format = {nm:>3}│
-	line-numbers-left-style = black
-	line-numbers-minus-style = black
-	line-numbers-plus-style = black
-	line-numbers-right-format = {np:>3}│
-	line-numbers-right-style = black
-	line-numbers-zero-style = black
-	minus-emph-style = red bold
-	minus-empty-line-marker-style = omit
-	minus-style = red
-	navigate = false
-	plus-emph-style = green bold
-	plus-empty-line-marker-style = omit
-	plus-style = green
-	side-by-side = true
-	true-color = auto
-  	file-decoration-style = black ul
-    hunk-header-style = raw
-    hunk-header-decoration-style = ul
+    file-decoration-style = black ul
+    file-style = black
+    line-numbers = true
+    line-numbers-left-format = {nm:>3}│
+    line-numbers-left-style = black
+    line-numbers-minus-style = black
+    line-numbers-plus-style = black
+    line-numbers-right-format = {np:>3}│
+    line-numbers-right-style = black
+    line-numbers-zero-style = black
+    minus-emph-style = red bold
+    minus-empty-line-marker-style = omit
+    minus-style = red
+    navigate = false
+    plus-emph-style = green bold
+    plus-empty-line-marker-style = omit
+    plus-style = green
+    side-by-side = false
     syntax-theme = base16
+    true-color = auto
     zero-style = black
+;     hunk-header-decoration-style = ul
+;     hunk-header-line-number-style = black
+;     hunk-header-style = raw
 
 [diff]
     colorMoved = default
