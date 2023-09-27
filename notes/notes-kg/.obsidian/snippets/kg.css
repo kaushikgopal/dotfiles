@@ -1,109 +1,109 @@
 body {
-  --h1-size: 2.2rem;
-  --h2-size: 1.8rem;
-  --h3-size: 1.1rem;
+    --h1-size: 0.95rem;
+    --h2-size: 0.91rem;
+    --h3-size: 0.9rem;
 
 
-  --h1-weight: normal;
-  --h2-weight: normal;
+    --h1-weight: normal;
+    --h2-weight: normal;
 
-  --code-background: var(--ui1);
-  --code-size: var(--font-small); /* regular size */
-}
-
-/* always show the filename in title-bar */
-.view-header-title-container {
-  opacity: unset;
+    --code-background: var(--ui1);
+    --code-size: var(--font-small); /* regular size */
 }
 
-/* show edit-block button closer to the actual block */
-.markdown-source-view.mod-cm6.is-live-preview.is-readable-line-width .cm-embed-block>.edit-block-button {
-  left: max(calc(50% + var(--folding-offset) - var(--line-width-adaptive)/ 2),calc(50% + var(--folding-offset) - var(--max-width)/ 2));
-}
+/*!* always show the filename in title-bar *!*/
+/*.view-header-title-container {*/
+/*    opacity: unset;*/
+/*}*/
 
-/* internal & external link headings should respect colorful headings colors */
-.cm-header.cm-header-1.cm-link,
-.cm-header.cm-header-1.cm-hmd-internal-link {
-  color: var(--h1-color);
-}
-.cm-header.cm-header-2.cm-link,
-.cm-header.cm-header-2.cm-hmd-internal-link {
-  color: var(--h2-color);
-}
-.cm-header.cm-header-3.cm-link,
-.cm-header.cm-header-3.cm-hmd-internal-link {
-  color: var(--h3-color);
-}
-.cm-header.cm-header-4.cm-link,
-.cm-header.cm-header-4.cm-hmd-internal-link {
-  color: var(--h4-color);
-}
+/*!* show edit-block button closer to the actual block *!*/
+/*.markdown-source-view.mod-cm6.is-live-preview.is-readable-line-width .cm-embed-block>.edit-block-button {*/
+/*    left: max(calc(50% + var(--folding-offset) - var(--line-width-adaptive)/ 2),calc(50% + var(--folding-offset) - var(--max-width)/ 2));*/
+/*}*/
 
-/* add top/bottom spacing to code snippets */
-.cm-s-obsidian span.cm-inline-code {
-  padding: .25rem 0;
-}
+/*!* internal & external link headings should respect colorful headings colors *!*/
+/*.cm-header.cm-header-1.cm-link,*/
+/*.cm-header.cm-header-1.cm-hmd-internal-link {*/
+/*    color: var(--h1-color);*/
+/*}*/
+/*.cm-header.cm-header-2.cm-link,*/
+/*.cm-header.cm-header-2.cm-hmd-internal-link {*/
+/*    color: var(--h2-color);*/
+/*}*/
+/*.cm-header.cm-header-3.cm-link,*/
+/*.cm-header.cm-header-3.cm-hmd-internal-link {*/
+/*    color: var(--h3-color);*/
+/*}*/
+/*.cm-header.cm-header-4.cm-link,*/
+/*.cm-header.cm-header-4.cm-hmd-internal-link {*/
+/*    color: var(--h4-color);*/
+/*}*/
 
-/* inline code snippets should be the same size */
-.cm-s-obsidian .cm-templater-command {
-  font-size: 1em;
-}
+/*!* add top/bottom spacing to code snippets *!*/
+/*.cm-s-obsidian span.cm-inline-code {*/
+/*    padding: .25rem 0;*/
+/*}*/
 
-/*********************************
-       DataView plugin
- *********************************/
+/*!* inline code snippets should be the same size *!*/
+/*.cm-s-obsidian .cm-templater-command {*/
+/*    font-size: 1em;*/
+/*}*/
 
-.dataview-inline {
-  background-color: var(--code-background);
-}
+/*!**********************************/
+/*       DataView plugin*/
+/* *********************************!*/
+
+/*.dataview-inline {*/
+/*    background-color: var(--code-background);*/
+/*}*/
 
 
-/*********************************
-        TASKS plugin
- *********************************/
+/*!**********************************/
+/*        TASKS plugin*/
+/* *********************************!*/
 
-/* left padding on general tasks*/
-body {
-  --list-edit-offset: 0em;
-}
-/* reduce padding for tasks inside query + checkbox */
-.markdown-rendered ul,
-.markdown-rendered ol {
-  padding-inline-start: 0.5rem;
-}
-.is-mobile .markdown-rendered div>ul,
-.is-mobile .markdown-rendered div>ol {
-  padding-inline-start: 0rem;
-}
+/*!* left padding on general tasks*!*/
+/*body {*/
+/*    --list-edit-offset: 0em;*/
+/*}*/
+/*!* reduce padding for tasks inside query + checkbox *!*/
+/*.markdown-rendered ul,*/
+/*.markdown-rendered ol {*/
+/*    padding-inline-start: 0.5rem;*/
+/*}*/
+/*.is-mobile .markdown-rendered div>ul,*/
+/*.is-mobile .markdown-rendered div>ol {*/
+/*    padding-inline-start: 0rem;*/
+/*}*/
 
-/* align the input checkbox insider query resultss*/
-.markdown-source-view.mod-cm6 .contains-task-list.plugin-tasks-query-result .task-list-item-checkbox,
-.contains-task-list.plugin-tasks-query-result ul > li.task-list-item .task-list-item-checkbox,
-.is-mobile .markdown-source-view.mod-cm6 .contains-task-list.plugin-tasks-query-result .task-list-item-checkbox,
-.is-mobile .contains-task-list.plugin-tasks-query-result ul > li.task-list-item .task-list-item-checkbox {
-  right: 0.4rem;
-}
+/*!* align the input checkbox insider query resultss*!*/
+/*.markdown-source-view.mod-cm6 .contains-task-list.plugin-tasks-query-result .task-list-item-checkbox,*/
+/*.contains-task-list.plugin-tasks-query-result ul > li.task-list-item .task-list-item-checkbox,*/
+/*.is-mobile .markdown-source-view.mod-cm6 .contains-task-list.plugin-tasks-query-result .task-list-item-checkbox,*/
+/*.is-mobile .contains-task-list.plugin-tasks-query-result ul > li.task-list-item .task-list-item-checkbox {*/
+/*    right: 0.4rem;*/
+/*}*/
 
-.tasks-count {
-  font-weight: bold;
-  padding-inline-start: 0;
-}
-.markdown-source-view.mod-cm6 .task-list-item-checkbox,
-ul > li.task-list-item .task-list-item-checkbox {
-  /*margin-inline-start: calc(var(--checkbox-size) * -1.5);*/
-}
+/*.tasks-count {*/
+/*    font-weight: bold;*/
+/*    padding-inline-start: 0;*/
+/*}*/
+/*.markdown-source-view.mod-cm6 .task-list-item-checkbox,*/
+/*ul > li.task-list-item .task-list-item-checkbox {*/
+/*    !*margin-inline-start: calc(var(--checkbox-size) * -1.5);*!*/
+/*}*/
 
-/* format the backlink in a task */
-.tasks-backlink {
-  white-space: nowrap;
-}
-.task-extras .tasks-backlink,
-.task-extras .tasks-backlink a
-{
-  color: var(--text-faint) !important;
-}
+/*!* format the backlink in a task *!*/
+/*.tasks-backlink {*/
+/*    white-space: nowrap;*/
+/*}*/
+/*.task-extras .tasks-backlink,*/
+/*.task-extras .tasks-backlink a*/
+/*{*/
+/*    color: var(--text-faint) !important;*/
+/*}*/
 
-/* format the dates displayed in a task */
-.task-due, .task-scheduled {
-  color: var(--text-faint);
-}
+/*!* format the dates displayed in a task *!*/
+/*.task-due, .task-scheduled {*/
+/*    color: var(--text-faint);*/
+/*}*/
