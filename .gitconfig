@@ -1,22 +1,21 @@
 [alias]
-  a     = add
-  ba    = "!. githelpers && pretty_git_branch_all"
-  bd    = branch -D
-  c     = commit
-  co    = checkout
-  ca    = commit --amend # --no-edit
-  chp   = cherry-pick
-  cob   = checkout -B                          # switch to a branch, creating it if necessary
-  d     = diff
-  dc    = diff --cached
-  ds    = diff --staged
-  l     = "!. githelpers && GIT_NO_PAGER=1 pretty_git_log -20"
-  ll    = "!. githelpers && pretty_git_log_full"
-  mt    = mergetool
-  reb   = !"r() { git rebase --autosquash -i HEAD~$1; }; r"       # Interactive rebase with the given number of latest commits
-  rv    = remote -v
-  wip   =  !"wip()  { git add .; git commit -a -m '--wip-- [ci skip]' --no-verify; }; wip"     # basically an immediate commit that u want in you reflog
-  wipr  =  !"wipr() { git reset --soft HEAD~; git reset ; }; wipr"   # undo last commit (works well with gwip) - watch out though
+    a     = add
+    ba    = branch -a
+    bd    = branch -D
+    c     = commit
+    co    = checkout
+    ca    = commit --amend # --no-edit
+    chp   = cherry-pick
+    cob   = checkout -B                          # switch to a branch, creating it if necessary
+    d     = diff
+    dc    = diff --cached
+    ds    = diff --staged
+    mt    = mergetool
+    reb   = !"r() { git rebase --autosquash -i HEAD~$1; }; r"       # Interactive rebase with the given number of latest commits
+    rv    = remote -v
+    wip   =  !"wip()  { git add .; git commit -a -m '--wip-- [ci skip]' --no-verify; }; wip"     # basically an immediate commit that u want in you reflog
+    wipr  =  !"wipr() { git reset --soft HEAD~; git reset ; }; wipr"   # undo last commit (works well with gwip) - watch out though
+    l = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit #logline
 
 [color]
   ui = always                                                                 # Use colors in Git commands that are capable of colored output when outputting to the terminal
