@@ -88,7 +88,6 @@ brew "python-yq"  # caper local mock server
 
 # Mac apps
 cask "1password"
-cask "brave-browser"
 cask "font-ia-writer-duo"
 cask "font-ia-writer-mono"
 cask "font-ia-writer-quattro"
@@ -108,10 +107,11 @@ cask "soundsource"
 cask "steermouse"
 cask "superduper"
 cask "the-unarchiver"
-cask "visual-studio-code"
+cask "vivaldi"
 cask "webpquicklook"
 
 cask "firefox"
+# cask "brave-browser"
 # cask "1password-cli"    # required for Alfred integration
 # cask "cursorsense"
 # cask "font-cascadia-code"
@@ -126,6 +126,7 @@ cask "firefox"
 # cask "proxyman"
 # cask "raycast"
 # cask "zerotier-one"
+# cask "visual-studio-code"
 
 # goku
 tap "candid82/brew"
