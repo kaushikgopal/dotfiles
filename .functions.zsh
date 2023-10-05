@@ -48,32 +48,6 @@ function g() {
                 # head to the root of this repo
                 root   = [ ! -z `git rev-parse --show-cdup` ] && cd `git rev-parse --show-cdup || pwd`
                 ;;
-            l) # better git logging
-
-               case "$2" in
-                    help)
-                      echo "we have two commands:"
-                      echo "   -- l # defaults to 12 lines"
-                      echo "   -- l <number-of-commits>"
-                      echo "   -- ll # all commits"
-                    ;;
-
-                    *)
-                       # git logline
-                      if [[ "$2" =~ ^[0-9]+$ ]]; then
-                          # argument is a number
-                          git log -n $2 --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-                      elif [[ -z "$2" ]]; then
-                          # argument was not provided
-                          git log -n 12 --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-                      else
-                          # non-number argument provided
-                          git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit $2
-                      fi
-                    ;;
-
-               esac
-               ;;
             mr)
                # handle "MR" (merge requests from git lab)
                case "$2" in

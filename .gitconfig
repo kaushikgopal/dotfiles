@@ -15,8 +15,9 @@
     rv    = remote -v
     wip   =  !"wip()  { git add .; git commit -a -m '--wip-- [ci skip]' --no-verify; }; wip"     # basically an immediate commit that u want in you reflog
     wipr  =  !"wipr() { git reset --soft HEAD~; git reset ; }; wipr"   # undo last commit (works well with gwip) - watch out though
-    # l =  log -n 12 --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit #logline # moved to .zsh function
-    ll = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit #logline
+    ll = log --decorate --topo-order --date=format-local:'%Y-%m-%d' --pretty=format:'%C(cyan)%h%Creset %C(black bold)%ad%Creset%C(auto)%d %s %C(blue)%an%Creset'
+    l = ll -12      # format -> default/ original time zone (either committer’s or author’s)
+                    # format-local -> user's local timezone instead
 
 [color]
   ui = always                                                                 # Use colors in Git commands that are capable of colored output when outputting to the terminal
