@@ -9,6 +9,14 @@ body {
 
     --code-background: var(--ui1);
     --code-size: var(--font-small); /* regular size */
+
+    --h1-color: var(--color-red);
+    --h2-color: var(--color-purple);
+    --h3-color: var(--color-green);
+    --h4-color: var(--color-blue);
+    --h5-color: var(--color-yellow);
+    --h6-color: var(--color-orange);
+
 }
 
 /*!* always show the filename in title-bar *!*/
