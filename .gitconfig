@@ -18,7 +18,7 @@
 
     # format -> default/ original time zone (either committer’s or author’s)
     # format-local -> user's local timezone instead
-    ll = log     --decorate --topo-order --date=format-local:'%Y-%m-%d' --pretty=format:'%C(cyan)%h%Creset %C(black bold)%ad%Creset%C(auto) %s %C(blue)%an%C(auto)%d%Creset'
+    ll = log --decorate --topo-order --date=short --pretty=format:'%C(magenta)%h%Creset %C(bold black)%ad%C(reset)%C(auto) %s %C(blue)%an%C(auto)%+D%C(reset)'
     l =  ll -30
 
 
