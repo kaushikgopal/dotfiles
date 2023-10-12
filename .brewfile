@@ -24,7 +24,6 @@ brew "hugo"
 brew "imagemagick"
 brew "mas"
 brew "neofetch"
-brew "neovim"
 brew "node"
 brew "openssl"
 brew "pgcli"
@@ -34,6 +33,9 @@ brew "powerlevel10k"
 brew "rsync"
 brew "sox"
 brew "xmlstarlet"   # fine-grain xml manipulation
+
+# brew "neovim"
+
 
 brew "tailscale"
 brew "tmux"
