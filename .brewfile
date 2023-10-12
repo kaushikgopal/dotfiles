@@ -93,13 +93,9 @@ brew "python-yq"  # caper local mock server
 cask "1password"
 cask "font-ia-writer-duo"
 cask "font-ia-writer-mono"
-cask "font-ia-writer-quattro"
-cask "font-ibm-plex"
 cask "font-inter"
 cask "font-recursive-kg"
-cask "font-sf-compact"
 cask "font-sf-mono"
-cask "font-sf-pro"
 cask "imageoptim"
 cask "keyboard-maestro"
 cask "loopback"
@@ -113,7 +109,11 @@ cask "the-unarchiver"
 cask "vivaldi"
 cask "webpquicklook"
 
-cask "firefox"
+# cask "font-sf-pro"
+# cask "font-sf-compact"
+# cask "font-ia-writer-quattro"
+# cask "firefox"
+# cask "font-ibm-plex"
 # cask "brave-browser"
 # cask "1password-cli"    # required for Alfred integration
 # cask "cursorsense"
@@ -137,9 +137,9 @@ tap "yqrashawn/goku"
 cask "karabiner-elements"
 brew "yqrashawn/goku/goku"
 
-mas "iA Writer", id: 775737590
+# mas "iA Writer", id: 775737590
 mas "Xcode", id: 497799835
-mas "Hand Mirror", id: 1502839586
+# mas "Hand Mirror", id: 1502839586
 # mas "Things 3", id: 904280696
 
 
