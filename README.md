@@ -15,7 +15,7 @@
 On a new Mac, you want to run this command:
 
 ```sh
-# get the token from github
+# dotfiles is a public repo (no auth required)
 curl -LJO https://raw.githubusercontent.com/kaushikgopal/dotfiles/master/.setup.sh
 chmod +x .setup.sh
 ./.setup.sh
