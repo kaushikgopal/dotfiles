@@ -48,18 +48,21 @@ brew "zsh-syntax-highlighting"      # fish like syntax highlighting
 
 # development ## general
 brew "glab"
-cask "github"
 brew "grpcurl"  # caper
 brew "gh"
 brew "git-delta"
 brew "git-lfs"
 brew "git-number"
 brew "git"
+brew homebrew/cask/gitup  # amazing gui for mac
 brew "github-keygen"
+cask "meld"               # merge tool
+
 
 # brew "docker-compose"
 # brew "docker-credential-helper-ecr"
 # cask "docker"
+# cask "github"
 
 # development ## android (zulu)
 tap "mdogan/zulu"

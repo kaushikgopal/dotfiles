@@ -103,10 +103,13 @@
   diffFilter = delta --color-only --features=interactive
 
 [merge]
-  log = true
-  tool = vscode
-  stat = true
-  conflictStyle = diff3
+  tool = meld
+;   log = true
+;   stat = true
+;   conflictStyle = diff3
+[mergetool "meld"]
+  cmd = meld "$LOCAL" "$MERGED" "$REMOTE" --output "$MERGED"
+;   cmd = meld "$LOCAL" "$BASE" "$REMOTE" --output "$MERGED"
 
 [mergetool "vscode"]
   cmd = code --wait $MERGED
