@@ -44,8 +44,6 @@ alias o='open'
 alias oo='open .'
 alias s='soulver'
 alias t='trash'
-alias v='nvim'
-alias vi='nvim'
 
 #alias diff=/Applications/Xcode.app/Contents/Developer/usr/bin/opendiff
 
