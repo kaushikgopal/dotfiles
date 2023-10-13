@@ -106,7 +106,7 @@ source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 
 # Check if the brew prefix is `/opt/homebrew/opt`
 if [[ "${brew_prefix}" == "/opt/homebrew" ]]; then
-  source "${brew_prefix}/opt/powerlevel10k/powerlevel10k.zsh-theme"
+  source "${brew_prefix}/share/powerlevel10k/powerlevel10k.zsh-theme"
 else
   source "${brew_prefix}/powerlevel10k/powerlevel10k.zsh-theme"
 fi
