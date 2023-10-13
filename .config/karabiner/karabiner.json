@@ -1,8 +1,10 @@
 {
   "global" : {
+    "ask_for_confirmation_before_quitting" : true,
     "check_for_updates_on_startup" : true,
     "show_in_menu_bar" : false,
-    "show_profile_name_in_menu_bar" : false
+    "show_profile_name_in_menu_bar" : false,
+    "unsafe_ui" : false
   },
   "profiles" : [ {
     "complex_modifications" : {
@@ -72,6 +74,8 @@
               "vendor_id" : 1452
             }, {
               "vendor_id" : 76
+            }, {
+              "is_built_in_keyboard" : true
             } ],
             "type" : "device_if"
           } ],
@@ -1091,7 +1095,8 @@
       },
       "ignore" : false,
       "manipulate_caps_lock_led" : true,
-      "simple_modifications" : [ ]
+      "simple_modifications" : [ ],
+      "treat_as_built_in_keyboard" : false
     }, {
       "disable_built_in_keyboard_if_exists" : false,
       "fn_function_keys" : [ ],
@@ -1103,7 +1108,8 @@
       },
       "ignore" : false,
       "manipulate_caps_lock_led" : true,
-      "simple_modifications" : [ ]
+      "simple_modifications" : [ ],
+      "treat_as_built_in_keyboard" : false
     }, {
       "disable_built_in_keyboard_if_exists" : false,
       "fn_function_keys" : [ ],
@@ -1115,7 +1121,41 @@
       },
       "ignore" : false,
       "manipulate_caps_lock_led" : false,
-      "simple_modifications" : [ ]
+      "simple_modifications" : [ ],
+      "treat_as_built_in_keyboard" : false
+    }, {
+      "disable_built_in_keyboard_if_exists" : false,
+      "fn_function_keys" : [ ],
+      "identifiers" : {
+        "is_keyboard" : true,
+        "is_pointing_device" : false,
+        "product_id" : 0,
+        "vendor_id" : 0
+      },
+      "ignore" : false,
+      "manipulate_caps_lock_led" : true,
+      "simple_modifications" : [ ],
+      "treat_as_built_in_keyboard" : false
+    }, {
+      "disable_built_in_keyboard_if_exists" : false,
+      "fn_function_keys" : [ ],
+      "identifiers" : {
+        "is_keyboard" : false,
+        "is_pointing_device" : true,
+        "product_id" : 0,
+        "vendor_id" : 0
+      },
+      "ignore" : true,
+      "manipulate_caps_lock_led" : false,
+      "simple_modifications" : [ {
+        "from" : {
+          "key_code" : "right_command"
+        },
+        "to" : [ {
+          "key_code" : "right_control"
+        } ]
+      } ],
+      "treat_as_built_in_keyboard" : false
     } ],
     "fn_function_keys" : [ {
       "from" : {
