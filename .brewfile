@@ -1,3 +1,14 @@
+# file location: ~/.brewfile
+# brew bundle --file=".brewfile"
+
+
+# set arguments for all 'brew cask install' commands
+cask_args appdir: '/Applications', no_quarantine: true
+
+# java_present = system('/usr/libexec/java_home --failfast')
+is_arm = Hardware::CPU.arm?   # TODO: All lines that are based on this condition are currently not working for ARM architecture - and thus this check
+
+
 tap "homebrew/bundle"
 tap "homebrew/cask-fonts"
 
@@ -6,7 +17,6 @@ tap "buo/cask-upgrade"  # better cask upgrading (see `cu`)
 
 # CLI tools
 brew "bat"
-brew "briss" # pdf cropping tool
 brew "coreutils" # for gnu date
 brew "curl"
 brew "exa"
@@ -33,9 +43,8 @@ brew "sox"
 brew "xmlstarlet"   # fine-grain xml manipulation
 
 # brew "neovim"
+# brew "briss" # pdf cropping tool
 
-
-brew "tailscale"
 brew "tmux"
 brew "trash"
 brew "tree"
@@ -54,10 +63,9 @@ brew "git-delta"
 brew "git-lfs"
 brew "git-number"
 brew "git"
-brew homebrew/cask/gitup  # amazing gui for mac
 brew "github-keygen"
 cask "meld"               # merge tool
-
+cask "gitup"  # amazing gui for mac
 
 # brew "docker-compose"
 # brew "docker-credential-helper-ecr"
@@ -106,6 +114,7 @@ cask "soulver"
 cask "soundsource"
 cask "steermouse"
 cask "superduper"
+cask "tailscale"
 cask "the-unarchiver"
 cask "vivaldi"
 cask "webpquicklook"
@@ -151,6 +160,8 @@ mas "Xcode", id: 497799835
 ##################
 # Helpful commands
 ##################
+
+# https://gist.github.com/ChristopherA/a579274536aab36ea9966f301ff14f3f
 
 # track transitive dependencies
 # brew deps --tree --installed asdf
