@@ -1,9 +1,13 @@
 #!/usr/bin/env bash
 
-YELLOW='\033[1;33m'     # switching section
-GRAY='\033[1;30m'       # info
-PURPLE='\033[1;35m'     # making change
-NC='\033[0m'            # No Color
+# switching section
+YELLOW='\033[1;33m'
+# info
+GRAY='\033[1;30m'
+# making change
+PURPLE='\033[1;35m'
+# No Color
+NC='\033[0m'
 
 ##############################################################
 # Basics (git & dotfiles)
@@ -11,25 +15,20 @@ NC='\033[0m'            # No Color
 
 echo -e "${YELLOW}---- setting up homebrew${NC}"
 
-if test ! $(which brew); then
-    echo -e "\n\n\n${YELLOW}---- Homebrew not found. Installing...${NC}"
-    # Install Homebrew
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+if ! command -v brew &>/dev/null; then
+  echo -e "\n\n\n${YELLOW}---- Homebrew not found. Installing...${NC}"
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 else
-    echo -e "${GRAY}---- Homebrew is already installed.${NC}"
+  echo -e "${GRAY}---- Homebrew is already installed.${NC}"
 fi
 
-which -s brew
-if [[ $? != 0 ]] ; then
-    # Install Homebrew
-    echo "hmmm"
-    /bin/bash -c -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-fi
+echo -e "${GRAY}---- Turning homebrew analytics off.${NC}"
+brew analytics off
 
 echo -e "\n\n\n${YELLOW}---- installing Xcode command tools (without all of Xcode)${NC}"
 touch /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress;
 softwareupdate --install -a --verbose
-rm /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress
+rm -f /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress
 
 echo -e "${YELLOW}---- setting up github${NC}"
 brew install git
@@ -38,12 +37,11 @@ brew install gh
 echo -e "\n\n\n${YELLOW}---- Setting up git${NC}"
 gh auth status &> tmp_gh_login.txt
 if grep -om1 "Logged in" tmp_gh_login.txt; then
-    rm tmp_gh_login.txt
+    rm -f tmp_gh_login.txt
     echo -e "${GRAY}---- logged in to github${NC}"
 else
-    rm tmp_gh_login.txt
+    rm -f tmp_gh_login.txt
     echo -e "${PURPLE}---- you need to setup github, follow the prompts now ${NC}"
-    # first time mac installation
     gh auth login
 fi
 
@@ -212,8 +210,7 @@ cd ~
 ##############################################################
 
 if [ ! -f /usr/local/bin/pdflatex ]; then
-	echo -e "\n\n\n${PURPLE}---- enable quick look plugins${NC}"
-	# first time mac installation
+    echo -e "\n\n\n${PURPLE}---- enable quick look plugins${NC}"
     sudo ln -s /Library/Tex/Distributions/.DefaultTeX/Contents/Programs/x86_64/pdflatex  /usr/local/bin/
 fi
 
