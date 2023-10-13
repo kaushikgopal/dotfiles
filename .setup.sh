@@ -12,8 +12,14 @@ NC='\033[0m'
 ##############################################################
 # Basics (git & dotfiles)
 ##############################################################
-echo -e "${YELLOW}---- Install Xcode-Select ${NC}"
-xcode-select --install
+
+echo -e "\n\n\n${PURPLE}---- Check for Apple Software Updates then restart your computer. \n Have you done this (no seriously!)${NC}"
+
+echo -e "\n\n\n${YELLOW}---- installing Xcode command tools (without all of Xcode)${NC}"
+touch /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress;
+softwareupdate --install -a --verbose
+rm -f /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress
+
 
 echo -e "${YELLOW}---- setting up homebrew${NC}"
 
@@ -26,11 +32,6 @@ fi
 
 echo -e "${GRAY}---- Turning homebrew analytics off.${NC}"
 brew analytics off
-
-echo -e "\n\n\n${YELLOW}---- installing Xcode command tools (without all of Xcode)${NC}"
-touch /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress;
-softwareupdate --install -a --verbose
-rm -f /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress
 
 echo -e "${YELLOW}---- setting up github${NC}"
 brew install git
