@@ -1,4 +1,9 @@
 {
+    ;; I've written extensively about this script/goku/karabiner over at my blog
+    ;; You might find this post particularly helpful:
+    ;;
+    ;;          https://kau.sh/blog/hacking-your-keyboard/
+    ;;
     ;; :!Ca is keycode :a and prefix a with !C
 
     ;; C  | left_command
