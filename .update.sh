@@ -24,6 +24,6 @@ echo -e "${PURPLE}\n\n\n\n---- updating formulae${NC}"
 # update the local downloaded git repo with latest code
 brew update
 
-echo -e "${PURPLE}---- upgrading packages${NC}"
+#echo -e "${PURPLE}---- upgrading packages${NC}"
 # does the actual upgrade of packages to update formulate from above step
 brew upgrade

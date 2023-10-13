@@ -19,7 +19,8 @@ echo -e "\n\n\n${YELLOW}---- installing Xcode command tools (without all of Xcod
 touch /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress;
 softwareupdate --install -a --verbose
 rm -f /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress
-
+# install xcode
+# xcode-select --install
 
 echo -e "${YELLOW}---- setting up homebrew${NC}"
 
@@ -224,7 +225,7 @@ fi
 
 source $HOME/.update.sh
 $(brew --prefix)/opt/fzf/install
-source $HOME/.macos.sh
+# source $HOME/.macos.sh
 # source $HOME/.cleanup.sh
 
 # if (( $# > 0 ))
@@ -242,9 +243,6 @@ source $HOME/.macos.sh
 #     #xcode-select --install
 #     #sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
 # fi
-
-# install xcode
-xcode-select --install
 
 unset delete_if_exists;
 unset clone_if_absent;
