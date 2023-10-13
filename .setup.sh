@@ -10,9 +10,19 @@ NC='\033[0m'            # No Color
 ##############################################################
 
 echo -e "${YELLOW}---- setting up homebrew${NC}"
+
+if test ! $(which brew); then
+    echo -e "\n\n\n${YELLOW}---- Homebrew not found. Installing...${NC}"
+    # Install Homebrew
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+else
+    echo -e "${GRAY}---- Homebrew is already installed.${NC}"
+fi
+
 which -s brew
 if [[ $? != 0 ]] ; then
     # Install Homebrew
+    echo "hmmm"
     /bin/bash -c -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 fi
 
