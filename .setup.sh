@@ -12,6 +12,8 @@ NC='\033[0m'
 ##############################################################
 # Basics (git & dotfiles)
 ##############################################################
+echo -e "${YELLOW}---- Install Xcode-Select ${NC}"
+xcode-select --install
 
 echo -e "${YELLOW}---- setting up homebrew${NC}"
 
