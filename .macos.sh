@@ -324,7 +324,7 @@ defaults write com.apple.dock showhidden -bool true
 #defaults write com.apple.dock wvous-br-corner -int 4
 #defaults write com.apple.dock wvous-br-modifier -int 1048576
 ## Single-Application mode (legacy MacOS option)
-defaults write com.apple.dock single-app -bool false
+#defaults write com.apple.dock single-app -bool false
 
 ################################################################################
 ## Safari & WebKit                                                             #
