@@ -37,7 +37,7 @@ function g() {
         git-number
     else
         case "$1" in
-            d | a | co | reset | dc)
+            d | a | co | reset | dc | root)
                 git-number $argv
                 ;;
             b)
