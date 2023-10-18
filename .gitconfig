@@ -43,7 +43,7 @@
   branch = yellow
 
 [core]
-  editor = nvim
+  editor = idea -e --wait
   excludesfile = ~/.gitignore_global
   attributesfile = ~/.gitattributes
   whitespace = trailing-space,space-before-tab
