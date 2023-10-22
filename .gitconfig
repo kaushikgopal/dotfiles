@@ -141,3 +141,5 @@
   insteadOf = "gist:"
 [index]
 	skipHash = false
+[log]
+	follow = true
