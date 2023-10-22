@@ -53,8 +53,8 @@
 	- [ ] Packing Cube 1
 		- [ ] Undies = n + 1 (includes day you travel day back + a spare)
 		- [ ] Banianas = n/2 + 1 (spare) 
-			- [ ] If hiking : increase Banian per day
-		- [ ] Socks = n/2 + 1
+			- [ ] If hiking/exercising : increase Banian per day
+		- [ ] Socks = n/2 + 1 (exercising increase)
 	- [ ] Packing Cube 2
 		- [ ] Tshirts = n/2
 		- [ ] Shirts = n/2
