@@ -37,6 +37,7 @@ brew "openssl"
 brew "pgcli"
 brew "poppler"
 brew "ripgrep"
+brew "renameutils"  # bulk renaming / copying
 brew "powerlevel10k"
 brew "rsync"
 brew "sox"
