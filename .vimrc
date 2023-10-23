@@ -80,7 +80,7 @@ augroup MyColors
                       "\ | highlight Cursor ctermfg=236 ctermbg=246 cterm=NONE guifg=#2d2a2e guibg=#959394 gui=NONE
 augroup END
 "colorscheme monokai_pro
-colorscheme xcodedarkhc
+"colorscheme xcodedarkhc
 
 " Vimwiki/Taskwiki
 " hi link TaskWikiHeaderDef    TaskWikiTaskUuid
@@ -323,38 +323,38 @@ nnoremap <silent> <leader><CR> :call append(line('.')-1, '')<CR>:call append('.'
 "========================
 " Telescope related mappings
 "========================
-
- " cd into the directory passed through arg
- au VimEnter * if isdirectory(argv(0)) | exec 'Telescope find_files cwd=' . argv(0) | endif
-
-lua <<EOF
-require("telescope").setup {
-    defaults = {
-        vimgrep_arguments = {
-            'rg',
-            '--color=never',
-            '--no-heading',
-            '--with-filename',
-            '--line-number',
-            '--column',
-            '-u', -- thats the new thing
-            '--smart-case'
-         }
-    },
-    pickers = {
-        find_files = {
-            -- remove ./ from fd results
-            find_command = { "fd", "--type", "f", "--strip-cwd-prefix" }
-        },
-    }
-}
-EOF
-
+""
+"" " cd into the directory passed through arg
+"" au VimEnter * if isdirectory(argv(0)) | exec 'Telescope find_files cwd=' . argv(0) | endif
+""
+"lua <<EOF
+"require("telescope").setup {
+""    defaults = {
+""        vimgrep_arguments = {
+""            'rg',
+""            '--color=never',
+""            '--no-heading',
+""            '--with-filename',
+""            '--line-number',
+""            '--column',
+""            '-u', -- thats the new thing
+""            '--smart-case'
+""         }
+""    },
+""    pickers = {
+""        find_files = {
+""            -- remove ./ from fd results
+""            find_command = { "fd", "--type", "f", "--strip-cwd-prefix" }
+""        },
+""    }
+""}
+"EOF
+""
 " Using Lua functions
-nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
-nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
-nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
-nnoremap <leader>ft <cmd>lua require('telescope.builtin').help_tags()<cr>
+"nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
+"nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
+"nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
+"nnoremap <leader>ft <cmd>lua require('telescope.builtin').help_tags()<cr>
 
 "========================
 " Spell checks
@@ -381,19 +381,19 @@ xmap N <SID>(search-backward)zzzv
 "=========================
 " Quick renaming of a file
 "=========================
-
-function! RenameFile()
-    let old_name = expand('%')
-    let new_name = input('New file name: ', expand('%'), 'file')
-    if new_name != '' && new_name != old_name
-        exec ':saveas ' . new_name
-        exec ':silent !rm ' . old_name
-        redraw!
-    endif
-endfunction
-
+""
+"function! RenameFile()
+""    let old_name = expand('%')
+""    let new_name = input('New file name: ', expand('%'), 'file')
+""    if new_name != '' && new_name != old_name
+""        exec ':saveas ' . new_name
+""        exec ':silent !rm ' . old_name
+""        redraw!
+""    endif
+"endfunction
+""
 " mnemonic is "edit filename"
-map <leader>e :call RenameFile()<cr>
+"map <leader>e :call RenameFile()<cr>
 
 "========================
 " Markdown helpers
