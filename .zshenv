@@ -1,5 +1,5 @@
 TZ="America/Los_Angeles"
-VISUAL="code"
+VISUAL="idea"
 EDITOR=$VISUAL
 
 
