@@ -1,4 +1,8 @@
-#travel
+---
+travel-date: {{date:YYYY-MM}}
+place: 
+description: 
+---
 
 [Travel Tips](https://www.schwab.com/learn/story/ways-to-save-money-when-traveling-abroad)
 
@@ -122,7 +126,7 @@
 	- [ ] Remove Window locks
 - [ ] Consolidate pictures [photos](photos.google.com)
 - [ ] Email peeps topics/photos
-- [ ] [[Expensify Reimbursement]]
+- [ ] [[archive/ic/Expensify Reimbursement]]
 - [ ] Replenish
 
 
