@@ -287,7 +287,7 @@ sudo systemsetup -setrestartfreeze on
 ## Automatically hide and show the Dock
 #defaults write com.apple.dock autohide -bool true
 # Make Dock icons of hidden applications translucent
-defaults write com.apple.dock showhidden -bool true
+#defaults write com.apple.dock showhidden -bool true
 ## Don’t show recent applications in Dock
 #defaults write com.apple.dock show-recents -bool false
 ## Disable the Launchpad gesture (pinch with thumb and three fingers)
