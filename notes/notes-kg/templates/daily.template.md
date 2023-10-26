@@ -1,28 +1,31 @@
-# {{DATE:dddd}}
-
-## Journal
+{{DATE:dddd}}
 
 <% tp.file.cursor(1) %>
 
-
-
-
 ---
-## today
+[[projects/;tasks - personal|personal]] | [[projects/;tasks - work - caper|work]] | [[projects/;tasks - all|all]] | [[projects/;inbox|inbox]]
 
-Pick next tasks from 👉 [[projects/;tasks - personal|Next Tasks ;personal]]
-
+## Priority High
 ```tasks
 not done
-priority is above none
-happens before in 7 days
+priority is above medium
+happens before in 10 days
 starts before tomorrow
 hide created date
 hide edit button
-group by priority
+heading does not include Daily Review
 ```
-
-### Reminders / (Over) Due
+## Priority Medium
+```tasks
+not done
+priority is medium
+happens before in 30 days
+starts before tomorrow
+hide created date
+hide edit button
+heading does not include Daily Review
+```
+## Reminders / (Over) Due
 ```tasks
 not done
 due before tomorrow
@@ -30,7 +33,6 @@ sort by priority
 hide created date
 hide edit button
 ```
-
 
 ---
 ## Daily Review
@@ -47,16 +49,10 @@ Do this at the end of the day
 - [ ] Pick 🔼 
 
 
-
 The key to my productivity is knowing which tasks take 5 minutes or less. If i know it's more than 5 minutes throw it in a list and then prioritize it right away.
 
-[[;tasks - all]]
-[[;tasks - personal]]
-[[;tasks - work - caper|;tasks - work - caper]]
-
-
 ---
-## archived
+## Archived
 ```tasks
 done on <% tp.date.now("YYYY-MM-DD") %>
 hide due date
