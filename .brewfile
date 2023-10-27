@@ -19,7 +19,7 @@ tap "buo/cask-upgrade"  # better cask upgrading (see `cu`)
 brew "bat"
 brew "coreutils" # for gnu date
 brew "curl"
-brew "exa"
+brew "exiftool"
 brew "eye-d3"
 brew "fd"
 brew "ffmpeg"
@@ -36,15 +36,16 @@ brew "node"
 brew "openssl"
 brew "pgcli"
 brew "poppler"
-brew "ripgrep"
-brew "renameutils"  # bulk renaming / copying
 brew "powerlevel10k"
+brew "renameutils"  # bulk renaming / copying
+brew "ripgrep"
 brew "rsync"
 brew "sox"
 brew "xmlstarlet"   # fine-grain xml manipulation
 
 # brew "neovim"
 # brew "briss" # pdf cropping tool
+# brew "exa"
 
 brew "tmux"
 brew "trash"
@@ -97,6 +98,10 @@ brew "asdf"
 # brew "python@3.10"
 brew "python3"    # caper local mock server
 brew "python-yq"  # caper local mock server
+
+# development ## work
+brew "bazel"
+brew "pipx"
 
 # Mac apps
 cask "1password"
