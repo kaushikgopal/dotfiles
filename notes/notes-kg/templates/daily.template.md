@@ -3,7 +3,7 @@
 <% tp.file.cursor(1) %>
 
 ---
-[[projects/;tasks - personal|personal]] | [[projects/;tasks - work - caper|work]] | [[projects/;tasks - all|all]] | [[projects/;inbox|inbox]]
+[[projects/;home|;home]] | [[projects/;work|;work]] | [[projects/;all|;all]] | [[projects/;inbox|;inbox]] | [[projects/;dev|;dev]] | [[projects/;money|;money]]
 
 ## Priority High
 ```tasks
@@ -29,6 +29,7 @@ heading does not include Daily Review
 ```tasks
 not done
 due before tomorrow
+priority is below medium
 sort by priority
 hide created date
 hide edit button
