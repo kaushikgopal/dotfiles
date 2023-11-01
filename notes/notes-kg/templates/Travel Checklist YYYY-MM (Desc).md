@@ -45,7 +45,9 @@ description:
 	- [ ] Turn ON Hue Automation
 	- [ ] Turn OFF Lutron Automation
 	- [ ] Add Window locks
-- [ ] Turn Gas off
+- [ ] Turn overall water off (do it slowly in stages, not right away)
+- [ ] Turn gas off for water heater
+- [ ] Turn gas stove lock off
 - [ ] Turn AC off
 
 
@@ -118,6 +120,9 @@ description:
 - [ ] Slippers (Flip Flops)
 
 ## Post Trip
+
+- [ ] Turn overall water on (do it slowly in stages, not right away)
+- [ ] Turn gas back on for water heater
 
 - [ ] Laundry used clothes 🧺
 - [ ] Setup Home Security Automation Back
