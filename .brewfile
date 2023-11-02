@@ -106,12 +106,11 @@ brew "pipx"
 # Mac apps
 cask "1password"
 cask "font-ia-writer-duo"
-cask "font-ia-writer-mono"
-cask "font-ibm-plex-sans"
-cask "font-ibm-plex-serif"
 cask "font-inter"
 cask "font-recursive-kg"
+cask "font-sf-compact"
 cask "font-sf-mono"
+cask "font-sf-pro"
 cask "imageoptim"
 cask "jetbrains-toolbox"
 cask "keyboard-maestro"
@@ -128,17 +127,18 @@ cask "the-unarchiver"
 cask "vivaldi"
 cask "webpquicklook"
 
-# cask "font-sf-pro"
-# cask "font-sf-compact"
-# cask "font-ia-writer-quattro"
-# cask "firefox"
-# cask "font-ibm-plex"
-# cask "brave-browser"
 # cask "1password-cli"    # required for Alfred integration
+# cask "brave-browser"
 # cask "cursorsense"
+# cask "firefox"
 # cask "font-cascadia-code"
 # cask "font-cascadia-code-pl"
+# cask "font-ia-writer-mono"
+# cask "font-ia-writer-quattro"
+# cask "font-ibm-plex"
 # cask "font-ibm-plex-mono"
+# cask "font-ibm-plex-sans"
+# cask "font-ibm-plex-serif"
 # cask "font-new-york"
 # cask "iterm2"
 # cask "maccy"
@@ -173,19 +173,4 @@ mas "Xcode", id: 497799835
 # track transitive dependencies
 # brew deps --tree --installed asdf
 
-# clean up to match brewfile
-# brew bundle --force cleanup --file=".brewfile"
-
-# install from brewfile
-# brew bundle install -v --file=".brewfile"
-
-# upgrade casks (via cu)
-# brew cu --all --cleanup --yes
-
-# update formulae
-# update the local downloaded git repo with latest code
-# brew update
-
-# upgrade packages
-# does the actual upgrade of packages to update formulate from above step
-# brew upgrade
+# see ~/.brew.sh for more commands

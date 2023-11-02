@@ -223,7 +223,7 @@ fi
 # pip3 install --user git+git://github.com/GothenburgBitFactory/tasklib@develop
 
 
-source $HOME/.update.sh
+source $HOME/.brew.sh
 $(brew --prefix)/opt/fzf/install
 # source $HOME/.macos.sh
 # source $HOME/.cleanup.sh
