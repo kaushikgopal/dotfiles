@@ -1,10 +1,3 @@
-# navigation
-alias ..="cd .."
-alias ...="cd ../.."
-alias ....="cd ../../.."
-alias .....="cd ../../../.."
-
-
 # better ls
 alias ls='ls -G'
 alias l='ls -lG'
