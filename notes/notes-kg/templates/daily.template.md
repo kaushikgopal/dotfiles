@@ -2,6 +2,14 @@
 
 <% tp.file.cursor(1) %>
 
+
+### Home
+
+
+### Work
+
+
+
 ---
 [[projects/;home|;home]] | [[projects/;work|;work]] | [[projects/;all|;all]] | [[projects/;inbox|;inbox]] | [[projects/;dev|;dev]] | [[projects/;money|;money]]
 
