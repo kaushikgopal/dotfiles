@@ -106,6 +106,7 @@ brew "pipx"
 # Mac apps
 cask "1password"
 cask "font-ia-writer-duo"
+cask "font-ibm-plex"
 cask "font-inter"
 cask "font-recursive-kg"
 cask "font-sf-compact"
