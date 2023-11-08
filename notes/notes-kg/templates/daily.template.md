@@ -17,7 +17,7 @@
 ```tasks
 not done
 priority is above medium
-happens before in 10 days
+(happens before in 10 days) OR (no due date)
 starts before tomorrow
 hide created date
 hide edit button
@@ -27,7 +27,7 @@ heading does not include Daily Review
 ```tasks
 not done
 priority is medium
-happens before in 30 days
+(happens before in 30 days) OR (no due date)
 starts before tomorrow
 hide created date
 hide edit button
