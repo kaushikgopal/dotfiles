@@ -194,11 +194,6 @@
 ;;    ]}
 
 
-    {:des "Apple specific mappings"
-     :rules [:apple
-       [:##right_command :right_control]
-    ]}
-
     {:des "Kinesis Advantage2 specific mappings"
      :rules [:kinesis
        [:non_us_backslash :!QWspacebar] ;; § -> emoji viewer
@@ -298,27 +293,55 @@
 
 
     ;; -----------------------------------------
-    ;; caps-mode (arrow keys)
+    ;; caps-mode
     ;; -----------------------------------------
 
-    {:des "turbo charge caps-lock"
-        :rules [:caps-mode
-          ;; caps lock : arrow mode
-          [:##h :##left_arrow  ]
-          [:##j :##down_arrow  ]
-          [:##k :##up_arrow    ]
-          [:##l :##right_arrow ]
+    {:des "Caps Lock -> Escape | Ctrl | Vim movements | Mouse movement"
+        :rules [ :caps-mode
 
+          ;[:caps_lock ["caps-mode" 1] nil {:afterup ["caps-mode" 0] :alone :escape}]
+          ; [:h :left_arrow ["caps-mode" 1]]
+
+          ;; caps lock : arrow mode
+          [:h :left_arrow]
+          [:j :down_arrow]
+          [:k :up_arrow  ]
+          [:l :right_arrow]
 
           ;; Quick Mouse handles
-          [:down_arrow {:mkey {:y 1536}}]
-          [:up_arrow {:mkey {:y -1536}}]
-          [:left_arrow {:mkey {:x -1536}}]
-          [:right_arrow {:mkey {:x 1536}}]
-          [:return_or_enter {:pkey :button1}]
+          [:down_arrow {:mkey {:y 1536}}     ]
+          [:up_arrow {:mkey {:y -1536}}      ]
+          [:left_arrow {:mkey {:x -1536}}    ]
+          [:right_arrow {:mkey {:x 1536}}    ]
+          [:return_or_enter {:pkey :button1} ]
           [:!Creturn_or_enter {:pkey :button2}]
 
-    ]}
+          ;; Ctrl handles
+          [:!Sj [:!TSj]]                                    ;; Ctrl Shift J
+
+          [:a [:!Ta]]                                      ;; Ctrl a
+          [:b [:!Tb]]                                      ;; Ctrl b
+          [:c [:!Tc]]                                      ;; Ctrl c
+          [:d [:!Td]]                                      ;; Ctrl d
+          [:e [:!Te]]                                      ;; Ctrl e
+          [:f [:!Tf]]                                      ;; Ctrl f
+          [:g [:!Tg]]                                      ;; Ctrl g
+          [:i [:!Ti]]                                      ;; Ctrl i
+          [:m [:!Tm]]                                      ;; Ctrl m
+          [:n [:!Tn]]                                      ;; Ctrl n
+          [:o [:!To]]                                      ;; Ctrl o
+          [:p [:!Tp]]                                      ;; Ctrl p
+          [:q [:!Tq]]                                      ;; Ctrl q
+          [:r [:!Tr]]                                      ;; Ctrl r
+          [:s [:!Ts]]                                      ;; Ctrl s
+          [:t [:!Tt]]                                      ;; Ctrl t
+          [:u [:!Tu]]                                      ;; Ctrl u
+          [:v [:!Tv]]                                      ;; Ctrl v
+          [:w [:!Tw]]                                      ;; Ctrl w
+          [:x [:!Tx]]                                      ;; Ctrl x
+          [:y [:!Ty]]                                      ;; Ctrl y
+          [:z [:!Tz]]                                      ;; Ctrl z
+  ]}
 
 
 ;    {:des "testing"
