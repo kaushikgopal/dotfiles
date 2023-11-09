@@ -300,10 +300,32 @@
     {:des "Caps Lock -> Escape (alone) | Ctrl (simple)"
      :rules [
         [:##caps_lock :right_control nil {:alone [:escape]}]
+
+        ;; vim like arrow key mappings
         [:!Wh :left_arrow]
         [:!Wj :down_arrow]
         [:!Wk :up_arrow  ]
         [:!Wl :right_arrow]
+
+        ;; Modifier + arrow keys
+        ;;  triggering them with caps-lock requires explicit mapping
+        [:!CWh :!Cleft_arrow]
+        [:!CWj :!Cdown_arrow]
+        [:!CWk :!Cup_arrow  ]
+        [:!CWl :!Cright_arrow]
+        [:!SWh :!Sleft_arrow]
+        [:!SWj :!Sdown_arrow]
+        [:!SWk :!Sup_arrow  ]
+        [:!SWl :!Sright_arrow]
+        [:!SWh :!Sleft_arrow]
+        [:!SWj :!Sdown_arrow]
+        [:!SWk :!Sup_arrow  ]
+        [:!SWl :!Sright_arrow]
+        [:!OWh :!Oleft_arrow]
+        [:!OWj :!Odown_arrow]
+        [:!OWk :!Oup_arrow  ]
+        [:!OWl :!Oright_arrow]
+
 
         ;; Quick Mouse handles
         [:!Wdown_arrow {:mkey {:y 1536}}     ]
