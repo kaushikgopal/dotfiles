@@ -103,10 +103,15 @@
   diffFilter = delta --color-only --features=interactive
 
 [merge]
-  tool = meld
+  tool = idea
 ;   log = true
 ;   stat = true
 ;   conflictStyle = diff3
+
+[mergetool "idea"]
+  cmd = idea merge \"$LOCAL\" \"$REMOTE\" \"$BASE\" \"$MERGED\"
+  trustExitCode = true
+
 [mergetool "meld"]
   cmd = meld "$LOCAL" "$MERGED" "$REMOTE" --output "$MERGED"
 ;   cmd = meld "$LOCAL" "$BASE" "$REMOTE" --output "$MERGED"
