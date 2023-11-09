@@ -193,7 +193,6 @@
 ;;       [:##left_command :left_option]
 ;;    ]}
 
-
     {:des "Kinesis Advantage2 specific mappings"
      :rules [:kinesis
        [:non_us_backslash :!QWspacebar] ;; § -> emoji viewer
@@ -202,14 +201,16 @@
     ]}
 
 
-
-
     ;; ----------------------------------
     ;; ----------------------------------
     ;; Key mappings
     ;; ----------------------------------
     ;; ----------------------------------
 
+    {:des "Right Cmd (alone) -> Enter"
+     :rules [ :apple
+        [:##right_command :right_command nil {:alone [:return_or_enter]}]
+    ]}
 
 
       ;; -----------------------------------------
@@ -236,7 +237,6 @@
       ;; -----------------------------------------
       ;; f-mode (special characters)
       ;; -----------------------------------------
-
       {:des "f-mode (special characters) ... mostly"
           :rules [
 
@@ -295,6 +295,18 @@
     ;; -----------------------------------------
     ;; caps-mode
     ;; -----------------------------------------
+
+
+;;     {:des "Caps Lock -> Escape (alone) | Ctrl (simple)"
+;;      :rules [
+;;         [:##caps_lock :right_control nil {:alone [:escape]}]
+;;         [:!Wh :left_arrow]
+;;     ]}
+;;
+;;     {:des "Caps Lock -> Escape (alone) | Ctrl (simple)"
+;;      :rules [:caps-mode
+;;         [:h :left_arrow]
+;;     ]}
 
     {:des "Caps Lock -> Escape | Ctrl | Vim movements | Mouse movement"
         :rules [ :caps-mode

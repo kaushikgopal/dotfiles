@@ -104,6 +104,33 @@
           "type" : "basic"
         } ]
       }, {
+        "description" : "Right Cmd (alone) -> Enter",
+        "manipulators" : [ {
+          "to_if_alone" : [ {
+            "key_code" : "return_or_enter"
+          } ],
+          "from" : {
+            "key_code" : "right_command",
+            "modifiers" : {
+              "optional" : [ "any" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "right_command"
+          } ],
+          "conditions" : [ {
+            "identifiers" : [ {
+              "vendor_id" : 1452
+            }, {
+              "vendor_id" : 76
+            }, {
+              "is_built_in_keyboard" : true
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        } ]
+      }, {
         "description" : "j-mode (deletion related shortcuts)",
         "manipulators" : [ {
           "from" : {
