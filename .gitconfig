@@ -108,8 +108,11 @@
 ;   stat = true
 ;   conflictStyle = diff3
 
+[mergetool]
+  keepBackup = false
+
 [mergetool "idea"]
-  cmd = idea merge \"$LOCAL\" \"$REMOTE\" \"$BASE\" \"$MERGED\"
+  cmd = idea merge $LOCAL $REMOTE $BASE $MERGED
   trustExitCode = true
 
 [mergetool "meld"]
@@ -118,7 +121,6 @@
 
 [mergetool "vscode"]
   cmd = code --wait $MERGED
-  keepBackup = false
 
 [pager]
     show = delta
