@@ -136,6 +136,8 @@
 :applications {
     :terminals  [ "^com\\.apple\\.Terminal$",
                  "^com\\.googlecode\\.iterm2$"]
+    :intellij   [ "com.google.android.studio",
+                 "^com\\.jetbrains\\..*$"]
 }
 
 ;; main contains multiple manipulators
@@ -213,7 +215,112 @@
     ]}
 
 
-      ;; -----------------------------------------
+       ;; -----------------------------------------
+       ;; caps-mode
+       ;; -----------------------------------------
+
+
+     {:des "Caps Lock -> Escape (alone) | Ctrl (simple)"
+      :rules [
+          [:##caps_lock :right_control nil {:alone [:escape]}]
+
+              ;; F  | fn
+              ;; Q  | right_command
+              ;; E  | right_option
+              ;; R  | right_shift
+              ;; P  | caps_lock
+
+          ;; W  | right_control
+          ;; vim like arrow key mappings
+          [:!Wh :left_arrow]
+          [:!Wj :down_arrow]
+          [:!Wk :up_arrow  ]
+          [:!Wl :right_arrow]
+
+          ;; Modifier + arrow keys
+          ;;  triggering them with caps-lock requires explicit mapping
+
+          ;; C  | left_command
+          [:!WCh :!Cleft_arrow]
+          [:!WCj :!Cdown_arrow]
+          [:!WCk :!Cup_arrow  ]
+          [:!WCl :!Cright_arrow]
+
+          ;; S  | left_shift
+          ;; T  | left_control
+          [:!WSh :!Sleft_arrow]
+          [:!WSj :!Sdown_arrow  :!intellij]
+          [:!WSj :!TSj          :intellij]          ;; join line in intellij
+          [:!WSk :!Sup_arrow  ]
+          [:!WSl :!Sright_arrow]
+          [:!WSh :!Sleft_arrow]
+
+          ;; O  | left_option
+          [:!WOh :!Oleft_arrow]
+          [:!WOj :!Odown_arrow]
+          [:!WOk :!Oup_arrow  ]
+          [:!WOl :!Oright_arrow]
+
+          ;; Special modifier combo keys
+
+          ;; Quick Mouse handles
+          [:!Wdown_arrow {:mkey {:y 1536}}     ]
+          [:!Wup_arrow {:mkey {:y -1536}}      ]
+          [:!Wleft_arrow {:mkey {:x -1536}}    ]
+          [:!Wright_arrow {:mkey {:x 1536}}    ]
+          [:!Wreturn_or_enter {:pkey :button1} ]
+          [:!CWreturn_or_enter {:pkey :button2}]
+      ]}
+
+     ;;     {:des "Caps Lock -> Escape | Ctrl | Vim movements | Mouse movement"
+     ;;         :rules [ :caps-mode
+     ;;
+     ;;           ;[:caps_lock ["caps-mode" 1] nil {:afterup ["caps-mode" 0] :alone :escape}]
+     ;;           ; [:h :left_arrow ["caps-mode" 1]]
+     ;;
+     ;;           ;; caps lock : arrow mode
+     ;;           [:h :left_arrow]
+     ;;           [:j :down_arrow]
+     ;;           [:k :up_arrow  ]
+     ;;           [:l :right_arrow]
+     ;;
+     ;;           ;; Quick Mouse handles
+     ;;           [:down_arrow {:mkey {:y 1536}}     ]
+     ;;           [:up_arrow {:mkey {:y -1536}}      ]
+     ;;           [:left_arrow {:mkey {:x -1536}}    ]
+     ;;           [:right_arrow {:mkey {:x 1536}}    ]
+     ;;           [:return_or_enter {:pkey :button1} ]
+     ;;           [:!Creturn_or_enter {:pkey :button2}]
+     ;;
+     ;;           ;; Ctrl handles
+     ;;           [:!Sj [:!TSj]]                                    ;; Ctrl Shift J
+     ;;
+     ;;           [:a [:!Ta]]                                      ;; Ctrl a
+     ;;           [:b [:!Tb]]                                      ;; Ctrl b
+     ;;           [:c [:!Tc]]                                      ;; Ctrl c
+     ;;           [:d [:!Td]]                                      ;; Ctrl d
+     ;;           [:e [:!Te]]                                      ;; Ctrl e
+     ;;           [:f [:!Tf]]                                      ;; Ctrl f
+     ;;           [:g [:!Tg]]                                      ;; Ctrl g
+     ;;           [:i [:!Ti]]                                      ;; Ctrl i
+     ;;           [:m [:!Tm]]                                      ;; Ctrl m
+     ;;           [:n [:!Tn]]                                      ;; Ctrl n
+     ;;           [:o [:!To]]                                      ;; Ctrl o
+     ;;           [:p [:!Tp]]                                      ;; Ctrl p
+     ;;           [:q [:!Tq]]                                      ;; Ctrl q
+     ;;           [:r [:!Tr]]                                      ;; Ctrl r
+     ;;           [:s [:!Ts]]                                      ;; Ctrl s
+     ;;           [:t [:!Tt]]                                      ;; Ctrl t
+     ;;           [:u [:!Tu]]                                      ;; Ctrl u
+     ;;           [:v [:!Tv]]                                      ;; Ctrl v
+     ;;           [:w [:!Tw]]                                      ;; Ctrl w
+     ;;           [:x [:!Tx]]                                      ;; Ctrl x
+     ;;           [:y [:!Ty]]                                      ;; Ctrl y
+     ;;           [:z [:!Tz]]                                      ;; Ctrl z
+     ;;   ]}
+
+
+       ;; -----------------------------------------
       ;; j-mode (deletion related shortcuts)
       ;; -----------------------------------------
 
@@ -291,98 +398,6 @@
           ;;[:v [:km "wm: vertical fill"] ] ;; Window move
           ;;[:f [:km "wm: full"] ] ;; Window move
 
-
-    ;; -----------------------------------------
-    ;; caps-mode
-    ;; -----------------------------------------
-
-
-    {:des "Caps Lock -> Escape (alone) | Ctrl (simple)"
-     :rules [
-        [:##caps_lock :right_control nil {:alone [:escape]}]
-
-        ;; vim like arrow key mappings
-        [:!Wh :left_arrow]
-        [:!Wj :down_arrow]
-        [:!Wk :up_arrow  ]
-        [:!Wl :right_arrow]
-
-        ;; Modifier + arrow keys
-        ;;  triggering them with caps-lock requires explicit mapping
-        [:!CWh :!Cleft_arrow]
-        [:!CWj :!Cdown_arrow]
-        [:!CWk :!Cup_arrow  ]
-        [:!CWl :!Cright_arrow]
-        [:!SWh :!Sleft_arrow]
-        [:!SWj :!Sdown_arrow]
-        [:!SWk :!Sup_arrow  ]
-        [:!SWl :!Sright_arrow]
-        [:!SWh :!Sleft_arrow]
-        [:!SWj :!Sdown_arrow]
-        [:!SWk :!Sup_arrow  ]
-        [:!SWl :!Sright_arrow]
-        [:!OWh :!Oleft_arrow]
-        [:!OWj :!Odown_arrow]
-        [:!OWk :!Oup_arrow  ]
-        [:!OWl :!Oright_arrow]
-
-
-        ;; Quick Mouse handles
-        [:!Wdown_arrow {:mkey {:y 1536}}     ]
-        [:!Wup_arrow {:mkey {:y -1536}}      ]
-        [:!Wleft_arrow {:mkey {:x -1536}}    ]
-        [:!Wright_arrow {:mkey {:x 1536}}    ]
-        [:!Wreturn_or_enter {:pkey :button1} ]
-        [:!CWreturn_or_enter {:pkey :button2}]
-
-]}
-
-;;     {:des "Caps Lock -> Escape | Ctrl | Vim movements | Mouse movement"
-;;         :rules [ :caps-mode
-;;
-;;           ;[:caps_lock ["caps-mode" 1] nil {:afterup ["caps-mode" 0] :alone :escape}]
-;;           ; [:h :left_arrow ["caps-mode" 1]]
-;;
-;;           ;; caps lock : arrow mode
-;;           [:h :left_arrow]
-;;           [:j :down_arrow]
-;;           [:k :up_arrow  ]
-;;           [:l :right_arrow]
-;;
-;;           ;; Quick Mouse handles
-;;           [:down_arrow {:mkey {:y 1536}}     ]
-;;           [:up_arrow {:mkey {:y -1536}}      ]
-;;           [:left_arrow {:mkey {:x -1536}}    ]
-;;           [:right_arrow {:mkey {:x 1536}}    ]
-;;           [:return_or_enter {:pkey :button1} ]
-;;           [:!Creturn_or_enter {:pkey :button2}]
-;;
-;;           ;; Ctrl handles
-;;           [:!Sj [:!TSj]]                                    ;; Ctrl Shift J
-;;
-;;           [:a [:!Ta]]                                      ;; Ctrl a
-;;           [:b [:!Tb]]                                      ;; Ctrl b
-;;           [:c [:!Tc]]                                      ;; Ctrl c
-;;           [:d [:!Td]]                                      ;; Ctrl d
-;;           [:e [:!Te]]                                      ;; Ctrl e
-;;           [:f [:!Tf]]                                      ;; Ctrl f
-;;           [:g [:!Tg]]                                      ;; Ctrl g
-;;           [:i [:!Ti]]                                      ;; Ctrl i
-;;           [:m [:!Tm]]                                      ;; Ctrl m
-;;           [:n [:!Tn]]                                      ;; Ctrl n
-;;           [:o [:!To]]                                      ;; Ctrl o
-;;           [:p [:!Tp]]                                      ;; Ctrl p
-;;           [:q [:!Tq]]                                      ;; Ctrl q
-;;           [:r [:!Tr]]                                      ;; Ctrl r
-;;           [:s [:!Ts]]                                      ;; Ctrl s
-;;           [:t [:!Tt]]                                      ;; Ctrl t
-;;           [:u [:!Tu]]                                      ;; Ctrl u
-;;           [:v [:!Tv]]                                      ;; Ctrl v
-;;           [:w [:!Tw]]                                      ;; Ctrl w
-;;           [:x [:!Tx]]                                      ;; Ctrl x
-;;           [:y [:!Ty]]                                      ;; Ctrl y
-;;           [:z [:!Tz]]                                      ;; Ctrl z
-;;   ]}
 
 
 ;    {:des "testing"
