@@ -262,6 +262,11 @@
           [:!WOl :!Oright_arrow]
 
           ;; Special modifier combo keys
+          ;; cmd alt arrow keys
+          [:!WCOh :!COleft_arrow]
+          [:!WCOj :!COdown_arrow]
+          [:!WCOk :!COup_arrow  ]
+          [:!WCOl :!COright_arrow]
 
           ;; Quick Mouse handles
           [:!Wdown_arrow {:mkey {:y 1536}}     ]
