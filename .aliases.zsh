@@ -1,6 +1,5 @@
 # better ls
-alias ls='ls -G'
-alias l='ls -lG'
+alias l='ls -G'
 alias la='ls -alG'
 alias ld='tree -d -CFL 1'
 alias tr='tree --dirsfirst -CFL 3'
