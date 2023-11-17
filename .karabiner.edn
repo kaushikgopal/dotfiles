@@ -358,11 +358,16 @@
             [:o    :equal_sign   :f-mode]
 
             ;; []  -- special case we use tab
-            [:j     :open_bracket   :f-mode]
-            [:k :close_bracket  :f-mode]
+;;             [:j     :open_bracket   :f-mode]
+;;             [:k     :close_bracket  :f-mode]
+            [:m     :open_bracket   :f-mode]
+            [:comma     :close_bracket  :f-mode]
             ;; ()  -- special case we use tab
-            [:m       :!S9   :f-mode]
-            [:comma   :!S0   :f-mode]
+;;             [:m       :!S9   :f-mode]
+;;             [:comma   :!S0   :f-mode]
+            [:j       :!S9   :f-mode]
+            [:k   :!S0   :f-mode]
+
             ;; {}  -- special case we use tab
             [:l           :!Sopen_bracket   :f-mode]
             [:semicolon   :!Sclose_bracket   :f-mode]
