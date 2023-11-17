@@ -10,6 +10,7 @@
     d     = diff
     dc    = diff --cached
     ds    = diff --staged
+    pmr   = push -o merge_request.create -o merge_request.merge_when_pipeline_succeeds  # push MR
     mt    = mergetool
     reb   = !"r() { git rebase --autosquash -i HEAD~$1; }; r"       # Interactive rebase with the given number of latest commits
     root  = "rev-parse --show-toplevel"
