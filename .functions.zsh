@@ -120,19 +120,12 @@ function g() {
 
     if (( $# == 0 )); then
         # echo "XXX - no arguments supplied"
-        git-number
+        git status
     else
         case "$1" in
-            d | a | co | reset | dc | root)
-                git-number $argv
-                ;;
-            b)
-                # echo "YYY - git branch ${@:2}"
-                git branch "${@:2}"
-                ;;
             root)
                 # head to the root of this repo
-                root   = [ ! -z `git rev-parse --show-cdup` ] && cd `git rev-parse --show-cdup || pwd`
+                [ ! -z `git rev-parse --show-cdup` ] && cd `git rev-parse --show-cdup || pwd`
                 ;;
             mr)
                # handle "MR" (merge requests from git lab)

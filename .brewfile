@@ -63,7 +63,6 @@ brew "grpcurl"  # caper
 brew "gh"
 brew "git-delta"
 brew "git-lfs"
-brew "git-number"
 brew "git"
 brew "github-keygen"
 cask "meld"               # merge tool
@@ -72,6 +71,7 @@ cask "gitup"  # amazing gui for mac
 # brew "docker-compose"
 # brew "docker-credential-helper-ecr"
 # cask "docker"
+# brew "git-number"  # using git add -i and another script
 
 # development ## android (zulu)
 tap "mdogan/zulu"
