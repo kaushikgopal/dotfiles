@@ -115,53 +115,53 @@ function flushdns() {
     say cleared
 }
 
-function g() {
-    # echo "000 Argument 1 ($1) 2 ($2) 3 ($3)"
-
-    if (( $# == 0 )); then
-        # echo "XXX - no arguments supplied"
-        git status
-    else
-        case "$1" in
-            root)
-                # head to the root of this repo
-                [ ! -z `git rev-parse --show-cdup` ] && cd `git rev-parse --show-cdup || pwd`
-                ;;
-            mr)
-               # handle "MR" (merge requests from git lab)
-               case "$2" in
-                    help)
-                    echo "we have two commands:"
-                    echo "   -- g mr origin <MR-NUMBER>"
-                    echo "   -- g mr pull <MR-NUMBER>"
-                    ;;
-                    origin)
-                    # g 1  2      3
-                    # g mr origin 2597
-                    # mr    = !sh -c 'git fetch $1 merge-requests/$2/head:mr-$1-$2 && git checkout mr-$1-$2' -
-                    git fetch "$2" merge-requests/"$3"/head:mr-"$2-$3" && git checkout mr-"$2-$3"
-                    ;;
-
-                    pull)
-                    # g mr pull
-                    # g pull origin merge-requests/10/head
-                    mrno="$(git symbolic-ref --short HEAD | awk -F'-' '{print $NF}')"
-                    git pull origin merge-requests/"$mrno"/head
-                    ;;
-
-                    *)
-                    echo "🚨 I don't understand !!"
-                    return 1
-                    ;;
-               esac
-               ;;
-            *)
-                # echo "ZZZ - git $argv"
-                git $argv
-                ;;
-        esac
-    fi
-}
+#function g() {
+#    # echo "000 Argument 1 ($1) 2 ($2) 3 ($3)"
+#
+#    if (( $# == 0 )); then
+#        # echo "XXX - no arguments supplied"
+#        git status
+#    else
+#        case "$1" in
+#            root)
+#                # head to the root of this repo
+#                [ ! -z `git rev-parse --show-cdup` ] && cd `git rev-parse --show-cdup || pwd`
+#                ;;
+#            mr)
+#               # handle "MR" (merge requests from git lab)
+#               case "$2" in
+#                    help)
+#                    echo "we have two commands:"
+#                    echo "   -- g mr origin <MR-NUMBER>"
+#                    echo "   -- g mr pull <MR-NUMBER>"
+#                    ;;
+#                    origin)
+#                    # g 1  2      3
+#                    # g mr origin 2597
+#                    # mr    = !sh -c 'git fetch $1 merge-requests/$2/head:mr-$1-$2 && git checkout mr-$1-$2' -
+#                    git fetch "$2" merge-requests/"$3"/head:mr-"$2-$3" && git checkout mr-"$2-$3"
+#                    ;;
+#
+#                    pull)
+#                    # g mr pull
+#                    # g pull origin merge-requests/10/head
+#                    mrno="$(git symbolic-ref --short HEAD | awk -F'-' '{print $NF}')"
+#                    git pull origin merge-requests/"$mrno"/head
+#                    ;;
+#
+#                    *)
+#                    echo "🚨 I don't understand !!"
+#                    return 1
+#                    ;;
+#               esac
+#               ;;
+#            *)
+#                # echo "ZZZ - git $argv"
+#                git $argv
+#                ;;
+#        esac
+#    fi
+#}
 
 function hu() {
     case "$1" in

@@ -1,5 +1,5 @@
 # Default commands
-: ${MAGIC_ENTER_GIT_COMMAND:="git-number"}  # run when in a git repository
+: ${MAGIC_ENTER_GIT_COMMAND:="git status"}  # run when in a git repository
 : ${MAGIC_ENTER_OTHER_COMMAND:="l"}        # run anywhere else
 
 magic-enter() {
