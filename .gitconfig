@@ -1,6 +1,6 @@
 [alias]
     a     = add
-    ba    = branch
+    b     = branch
     ba    = branch -a
     bd    = branch -D
     c     = commit
