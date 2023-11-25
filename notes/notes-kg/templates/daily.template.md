@@ -3,15 +3,15 @@
 <% tp.file.cursor(1) %>
 
 
-### Home
-
-
-### Work
-
-
-
 ---
-[[projects/;home|;home]] | [[projects/;work|;work]] | [[projects/;all|;all]] | [[projects/;inbox|;inbox]] | [[projects/;dev|;dev]] | [[projects/;money|;money]]
+[[projects/;home|;home]] | [[projects/;work|;work]] | [[projects/;inbox|;inbox]] | [[projects/;all#Grocery|;grocery]]
+
+[[diary/;goals|;goals]]
+1. Caper | Work
+2. [[projects/;pudi.app|;pudi.app]]
+3. [[archive/skyview/;skyview Reminders + Maintenance|;skyview]]
+4. [[projects/;Mobile App Clinic kgandkg|;Mobile App Clinic kgandkg]]
+5. [[projects/;letters.kau.sh|;letters.kau.sh]]  + [[projects/;blog ;kau.sh|;blog ;kau.sh]]
 
 ## Priority High
 ```tasks
