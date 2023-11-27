@@ -38,6 +38,11 @@ body {
     color: var(--h4-color);
 }
 
+/* add spacing between a header and a list that follows right after */
+.cm-s-obsidian .cm-line.HyperMD-header + .cm-line:not(.HyperMD-header):not(:has(>br:only-child)) {
+    padding-top: 6px;
+}
+
 
 /*!* always show the filename in title-bar *!*/
 /*.view-header-title-container {*/
