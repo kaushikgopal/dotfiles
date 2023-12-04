@@ -1,5 +1,5 @@
 # Default commands
-: ${MAGIC_ENTER_GIT_COMMAND:="git status"}  # run when in a git repository
+: ${MAGIC_ENTER_GIT_COMMAND:="git status --short"}  # run when in a git repository
 : ${MAGIC_ENTER_OTHER_COMMAND:="l"}        # run anywhere else
 
 magic-enter() {
@@ -9,16 +9,28 @@ magic-enter() {
     return
   fi
 
+  inside_git_repository=$(git rev-parse --is-inside-work-tree)
 
-  is_git_repository=$(git rev-parse --is-inside-work-tree)
-  in_repo_root_folder=$(git rev-parse --show-toplevel)
+  # in a repo root folder
+  toplevel_git_dir=$(git rev-parse --show-toplevel 2> /dev/null)
+  current_dir_name=$(basename "$(pwd)")
+  is_capercore_dir=false
+  if [[ "$current_dir_name" == "capercore" ]]; then
+      is_capercore_dir=true
+  fi
+  in_repo=false
+  if [[ $toplevel_git_dir == "$(pwd)" || $is_capercore_dir == true ]]; then
+    in_repo=true
+  fi
+
   repo_has_changes=$(git status -s --ignore-submodules=dirty)
 
-  # is_git_repository="true" && echo "is_git_repo: true" || echo "is_git_repo: false"
-  # in_repo_root_folder="$PWD" && echo "in_repo_root_folder: true" || echo "in_repo_root_folder: false"
+  # toplevel_git_dir="$PWD" && echo "toplevel_git_dir: true" || echo "toplevel_git_dir: false"
+
+  # inside_git_repository="true" && echo "is_git_repo: true" || echo "is_git_repo: false"
   # [[ -n "$repo_has_changes" ]] && echo "repo_has_changes: true" || echo "repo_has_changes: false"
 
-  if [ "$is_git_repository" = true ] && [ "$in_repo_root_folder" = $PWD ] && [ ! -z "$repo_has_changes" ]; then
+  if [ "$inside_git_repository" = true ] && [ "$in_repo" = true ] && [ ! -z "$repo_has_changes" ]; then
     BUFFER="$MAGIC_ENTER_GIT_COMMAND"
   else
     BUFFER="$MAGIC_ENTER_OTHER_COMMAND"
