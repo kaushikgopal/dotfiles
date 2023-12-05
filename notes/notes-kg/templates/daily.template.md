@@ -6,12 +6,12 @@
 ---
 [[projects/;home|;home]] | [[projects/;work|;work]] | [[projects/;inbox|;inbox]] | [[projects/;all#Grocery|;grocery]]
 
-[[diary/;goals|;goals]]
-1. Caper | Work
-2. [[projects/;pudi.app|;pudi.app]]
-3. [[archive/skyview/;skyview Reminders + Maintenance|;skyview]]
-4. [[projects/;Mobile App Clinic kgandkg|;Mobile App Clinic kgandkg]]
-5. [[projects/;letters.kau.sh|;letters.kau.sh]]  + [[projects/;blog ;kau.sh|;blog ;kau.sh]]
+[[diary/;goals|;goals]]:
+* [[projects/;work|;work Caper]]
+* [[projects/;Mobile App Clinic kgandkg|;Mobile App Clinic kgandkg]]
+* [[projects/;letters.kau.sh|;letters.kau.sh]]  + [[projects/;blog ;kau.sh|;blog ;kau.sh]]
+* [[projects/;pudi.app|;pudi.app]]
+* [[archive/skyview/;skyview Reminders + Maintenance|;skyview]]
 
 ## Priority High
 ```tasks
