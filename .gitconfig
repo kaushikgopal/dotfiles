@@ -1,14 +1,18 @@
 [alias]
-    a     = add
+    # convenience alias that takes file number
+    a     = !"a() { git add $(git status --porcelain | cut -b4- | sed -n \"$1p;$1q\"); }; a"
+    cho    = !"cho() { git checkout $(git status --porcelain | cut -b4- | sed -n \"$1p;$1q\"); }; cho"
+    d     = !"d() { git diff $(git status --porcelain | cut -b4- | sed -n \"$1p;$1q\"); }; d"
+    r     = !"r() { git reset $(git status --porcelain | cut -b4- | sed -n \"$1p;$1q\"); }; r"
+
     b     = branch
     ba    = branch -a
     bd    = branch -D
     c     = commit
     ca    = commit --amend # --no-edit
     chp   = cherry-pick
-    co    = checkout
+    co     = checkout
     cob   = checkout -B                          # switch to a branch, creating it if necessary
-    d     = diff
     dc    = diff --cached
     ds    = diff --staged
     pmr   = push -o merge_request.create -o merge_request.merge_when_pipeline_succeeds  # push MR
@@ -16,7 +20,7 @@
     reb   = !"r() { git rebase --autosquash -i HEAD~$1; }; r"       # Interactive rebase with the given number of latest commits
 ;     root  = "rev-parse --show-toplevel"
     rv    = remote -v
-    s     = status
+    s     = status --short
     wip   =  !"wip()  { git add .; git commit -a -m '--wip-- [ci skip]' --no-verify; }; wip"     # basically an immediate commit that u want in you reflog
     wipr  =  !"wipr() { git reset --soft HEAD~; git reset ; }; wipr"   # undo last commit (works well with gwip) - watch out though
 

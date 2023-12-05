@@ -88,7 +88,7 @@ description:
 - [ ] Wipes
 - [ ] Eye drops - Replenish
 - [ ] Water bottle
-- [ ] Neck Pillow
+- [ ] Neck Pillow (remember to keep it right away)
 
 ### Tech Electronics Kit
 - [ ] Cable: lightening → USB-A
