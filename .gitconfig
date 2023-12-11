@@ -1,9 +1,9 @@
 [alias]
     # convenience alias that takes file number
-    a     = !"a() { git add $(git status --porcelain | cut -b4- | sed -n \"$1p;$1q\"); }; a"
-    cho    = !"cho() { git checkout $(git status --porcelain | cut -b4- | sed -n \"$1p;$1q\"); }; cho"
+    a     = !"a() { [ "$1" = "." ] && git add . || git add $(git status --porcelain | cut -b4- | sed -n \"$1p;$1q\"); }; a"
+    co    = !"co() { [ "$1" = "." ] && git checkout . || git checkout $(git status --porcelain | cut -b4- | sed -n \"$1p;$1q\"); }; co"
     d     = !"d() { git diff $(git status --porcelain | cut -b4- | sed -n \"$1p;$1q\"); }; d"
-    r     = !"r() { git reset $(git status --porcelain | cut -b4- | sed -n \"$1p;$1q\"); }; r"
+    r     = !"r() { [ "$1" = "." ] && git reset . || git reset $(git status --porcelain | cut -b4- | sed -n \"$1p;$1q\"); }; r"
 
     b     = branch
     ba    = branch -a
@@ -11,7 +11,7 @@
     c     = commit
     ca    = commit --amend # --no-edit
     chp   = cherry-pick
-    co     = checkout
+    che     = checkout
     cob   = checkout -B                          # switch to a branch, creating it if necessary
     dc    = diff --cached
     ds    = diff --staged
@@ -94,12 +94,6 @@
 [feature]
     manyFiles = 1
 
-[filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
-
 [includeIf "gitdir:~/"]
     path = .gitconfig-private
 
@@ -157,3 +151,8 @@
 	skipHash = false
 [log]
 	follow = true
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
