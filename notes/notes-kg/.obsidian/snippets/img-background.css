@@ -1,0 +1,4 @@
+div[src$='.png'] {
+    background-color: white;
+    filter: opacity(1) drop-shadow(0 0 0 white);
+}
