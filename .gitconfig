@@ -1,6 +1,7 @@
 [alias]
     # convenience alias that takes file number
     a     = !"a() { [ "$1" = "." ] && git add . || git add $(git status --porcelain | cut -b4- | sed -n \"$1p;$1q\"); }; a"
+    af     = !"af() { [ "$1" = "." ] && git add -f . || git add -f $(git status --porcelain | cut -b4- | sed -n \"$1p;$1q\"); }; af"
     co    = !"co() { [ "$1" = "." ] && git checkout . || git checkout $(git status --porcelain | cut -b4- | sed -n \"$1p;$1q\"); }; co"
     d     = !"d() { git diff $(git status --porcelain | cut -b4- | sed -n \"$1p;$1q\"); }; d"
     r     = !"r() { [ "$1" = "." ] && git reset . || git reset $(git status --porcelain | cut -b4- | sed -n \"$1p;$1q\"); }; r"
@@ -11,7 +12,7 @@
     c     = commit
     ca    = commit --amend # --no-edit
     chp   = cherry-pick
-    che     = checkout
+    che   = checkout
     cob   = checkout -B                          # switch to a branch, creating it if necessary
     dc    = diff --cached
     ds    = diff --staged
