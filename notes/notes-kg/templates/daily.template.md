@@ -1,7 +1,5 @@
 {{DATE:dddd}}
 
-<% tp.file.cursor(1) %>
-
 - [ ] Review google calendar
 - [ ] Empty inboxes
 	- [ ] Work email
@@ -9,7 +7,7 @@
 	- [ ] empty [[projects/;inbox|;inbox]] 
 - [ ] Pick ⏫ | 🔼 (2 tasks) for tomorrow
 
-
+<% tp.file.cursor(1) %>
 
 ---
 [[projects/;home|;home]] | [[projects/;work|;work]] | [[projects/;inbox|;inbox]] | [[projects/;all#Grocery|;grocery]]
@@ -21,27 +19,27 @@
 * [[projects/;pudi.app|;pudi.app]]
 * [[archive/skyview/;skyview Reminders + Maintenance|;skyview]]
 
-## Priority High
+## Priority High / upcoming 20 days
 ```tasks
 not done
 priority is above medium
+(happens before in 20 days) OR (no due date)
+starts before tomorrow
+hide created date
+hide edit button
+heading does not include Daily Review
+```
+## Priority Medium / upcoming 10 days
+```tasks
+not done
+priority is medium
 (happens before in 10 days) OR (no due date)
 starts before tomorrow
 hide created date
 hide edit button
 heading does not include Daily Review
 ```
-## Priority Medium
-```tasks
-not done
-priority is medium
-(happens before in 30 days) OR (no due date)
-starts before tomorrow
-hide created date
-hide edit button
-heading does not include Daily Review
-```
-## Reminders / (Over) Due
+## (Over) Due
 ```tasks
 not done
 due before tomorrow
