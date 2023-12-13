@@ -30,6 +30,24 @@
     ll = log --decorate --date=short --pretty=format:'%C(magenta)%h%Creset %C(bold black)%ad%C(reset)%C(auto) %s %C(blue)%an%C(auto) %D%C(reset)'
     l =  ll --topo-order -30 --pretty=format:'%C(magenta)%h%Creset %C(yellow)%ad%C(reset)%C(auto) %s %C(blue)%an %C(bold black)%D%C(reset)'
 
+[core]
+  editor = idea -e --wait
+  excludesfile = ~/.gitignore_global
+  attributesfile = ~/.gitattributes
+  whitespace = trailing-space,space-before-tab
+  pager = "delta"
+
+[credential]
+	helper = osxkeychain
+
+[feature]
+    manyFiles = 1
+
+[includeIf "gitdir:~/"]
+    path = .gitconfig-private
+
+[init]
+	defaultBranch = master
 
 [color]
   ui = always                                                                 # Use colors in Git commands that are capable of colored output when outputting to the terminal
@@ -50,16 +68,11 @@
   untracked = blue
   branch = yellow
 
-[core]
-  editor = idea -e --wait
-  excludesfile = ~/.gitignore_global
-  attributesfile = ~/.gitattributes
-  whitespace = trailing-space,space-before-tab
-  pager = "delta"
-
-[credential]
-	helper = osxkeychain
-
+[diff]
+    colorMoved = default
+    mnemonicprefix = true
+    compactionHeuristic = true
+    show = delta
 [delta]
     file-decoration-style = black ul
     file-style = black
@@ -85,47 +98,27 @@
 ;     hunk-header-decoration-style = ul
 ;     hunk-header-line-number-style = black
 ;     hunk-header-style = raw
-
-[diff]
-    colorMoved = default
-    mnemonicprefix = true
-    compactionHeuristic = true
-    show = delta
-
-[feature]
-    manyFiles = 1
-
-[includeIf "gitdir:~/"]
-    path = .gitconfig-private
-
-[init]
-	defaultBranch = master
-
-[interactive]
-  diffFilter = delta --color-only --features=interactive
+[pager]
+  show = delta
 
 [merge]
   tool = idea
 ;   log = true
 ;   stat = true
 ;   conflictStyle = diff3
-
 [mergetool]
   keepBackup = false
-
 [mergetool "idea"]
   cmd = idea merge $LOCAL $REMOTE $BASE $MERGED
   trustExitCode = true
-
 [mergetool "meld"]
   cmd = meld "$LOCAL" "$MERGED" "$REMOTE" --output "$MERGED"
 ;   cmd = meld "$LOCAL" "$BASE" "$REMOTE" --output "$MERGED"
-
 [mergetool "vscode"]
   cmd = code --wait $MERGED
 
-[pager]
-    show = delta
+[interactive]
+  diffFilter = delta --color-only --features=interactive
 
 [pull]
   rebase = false
@@ -152,6 +145,7 @@
 	skipHash = false
 [log]
 	follow = true
+
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
