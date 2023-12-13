@@ -12,13 +12,14 @@
 ---
 [[projects/;home|;home]] | [[projects/;work|;work]] | [[projects/;inbox|;inbox]] | [[projects/;all#Grocery|;grocery]]
 
-[[diary/;goals|;goals]]:
-* [[projects/;work|;work Caper]]
-* [[projects/;Mobile App Clinic kgandkg|;Mobile App Clinic kgandkg]]
-* [[projects/;letters.kau.sh|;letters.kau.sh]]  + [[projects/;blog ;kau.sh|;blog ;kau.sh]]
-* [[projects/;pudi.app|;pudi.app]]
-* [[archive/skyview/;skyview Reminders + Maintenance|;skyview]]
+_[[diary/;goals|;goals]]_
 
+1. [[projects/;work|;work Caper]]
+2. [[projects/;Mobile App Clinic kgandkg|Mobile App Clinic kgandkg]]
+3. [[projects/;letters.kau.sh|;letters.kau.sh]]  + [[projects/;blog ;kau.sh|;blog ;kau.sh]]
+4. [[archive/;Idiomatic Kotlin|Idiomatic Kotlin]]
+5. [[projects/;pudi.app|pudi.app]]
+6. [[archive/skyview/;skyview Reminders + Maintenance|skyview]]
 ## Priority High / upcoming 20 days
 ```tasks
 not done
