@@ -17,7 +17,7 @@ _[[diary/;goals|;goals]]_
 1. [[projects/;work|;work Caper]]
 2. [[projects/;Mobile App Clinic kgandkg|Mobile App Clinic kgandkg]]
 3. [[projects/;letters.kau.sh|;letters.kau.sh]]  + [[projects/;blog ;kau.sh|;blog ;kau.sh]]
-4. [[archive/;Idiomatic Kotlin|Idiomatic Kotlin]]
+4. [[archive/;effectivekotli.in|Idiomatic Kotlin]]
 5. [[projects/;pudi.app|pudi.app]]
 6. [[archive/skyview/;skyview Reminders + Maintenance|skyview]]
 ## Priority High / upcoming 20 days
