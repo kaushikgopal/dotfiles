@@ -12,7 +12,7 @@
     c     = commit
     ca    = commit --amend # --no-edit
     chp   = cherry-pick
-    che   = checkout
+    ch   = checkout
     cob   = checkout -B                          # switch to a branch, creating it if necessary
     dc    = diff --cached
     ds    = diff --staged
