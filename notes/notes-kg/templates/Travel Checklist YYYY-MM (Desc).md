@@ -131,7 +131,7 @@ description:
 	- [ ] Remove Window locks
 - [ ] Consolidate pictures [photos](photos.google.com)
 - [ ] Email peeps topics/photos
-- [ ] [[archive/ic/Expensify Reimbursement]]
+- [ ] [[ic/Expensify Reimbursement]]
 - [ ] Replenish
 
 
