@@ -105,6 +105,7 @@ brew "pipx"
 
 # Mac apps
 cask "1password"
+cask "arc"
 cask "font-ia-writer-duo"
 cask "font-ibm-plex-mono-kg"
 cask "font-inter"
@@ -125,7 +126,6 @@ cask "steermouse"
 cask "superduper"
 cask "tailscale"
 cask "the-unarchiver"
-cask "vivaldi"
 cask "webpquicklook"
 
 # cask "font-sf-pro"
@@ -149,6 +149,8 @@ cask "webpquicklook"
 # cask "proxyman"
 # cask "zerotier-one"
 # cask "visual-studio-code"
+# cask "vivaldi"
+
 
 # goku
 tap "candid82/brew"
