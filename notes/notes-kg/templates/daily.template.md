@@ -1,25 +1,28 @@
 {{DATE:dddd}}
 
-- [ ] Review google calendar
-- [ ] Empty inboxes
-	- [ ] Work email
-	- [ ] Personal Email
-	- [ ] empty [[projects/;inbox|;inbox]] 
-- [ ] Pick ⏫ | 🔼 (2 tasks) for tomorrow
+- [ ] Morning
+    - [ ] Empty inboxes
+    	- [ ] Personal Email
+    	- [ ] Work email
+    	- [ ] review [[inbox.todo|inbox.todo]] 
+    	- [ ] review Slack conversations
+    - [ ] Pick tasks to do today
+    - [ ] Schedule them into Google Calendar
+- [ ] Night
+    - [ ] Move tasks to inbox/next day
+    - [ ] Pick ⏫ | 🔼 (2 tasks) for tomorrow from [[todo|todo]] | [[work.todo|work.todo]]
+    - [ ] review goals/top of mind
+    - [ ] review google calendar tomorrow (accept/deny appointments)
 
+
+*inbox tasks go here*
 <% tp.file.cursor(1) %>
 
+## Today
+*put tasks that you plan to do today here*
+
 ---
-[[projects/;home|;home]] | [[projects/;work|;work]] | [[projects/;inbox|;inbox]] | [[projects/;all#Grocery|;grocery]]
-
-_[[diary/;goals|;goals]]_
-
-1. [[projects/;work|;work Caper]]
-2. [[projects/;Mobile App Clinic kgandkg|Mobile App Clinic kgandkg]]
-3. [[projects/;letters.kau.sh|;letters.kau.sh]]  + [[projects/;blog ;kau.sh|;blog ;kau.sh]]
-4. [[archive/;effectivekotli.in|Idiomatic Kotlin]]
-5. [[projects/;pudi.app|pudi.app]]
-6. [[archive/skyview/;skyview Reminders + Maintenance|skyview]]
+[[todo|todo]] | [[work.todo|work.todo]] | [[inbox.todo|inbox.todo]] | [[all.todo#Grocery|;grocery]]
 ## Priority High / upcoming 20 days
 ```tasks
 not done
