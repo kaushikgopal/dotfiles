@@ -164,21 +164,9 @@ function flushdns() {
 #}
 
 function hu() {
-    case "$1" in
-        "push*")
-            echo "0000"
-            trash resources public
-            hugo --gc --minify
-            firebase deploy --non-interactive --only hosting -m (git rev-parse --short HEAD);;
-        "drafts")
-            echo "1111"
-            trash resources public
-            hugo server --bind=0.0.0.0 -D;;
-        *)
-            echo "222"
-            trash resources public
-            hugo server --bind=0.0.0.0 $argv;;
-    esac
+    trash resources public;
+    # hugo server --bind=0.0.0.0 --gc --minify $argv;
+    hugo server --bind=0.0.0.0 $argv;
 }
 
 # switch jdks (courtesy: https://twitter.com/JakeWharton/status/1463524757765251082?s=20&t=3Zhu54Kul_i3iai2DzCXJQ)
