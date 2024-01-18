@@ -281,7 +281,8 @@ sudo systemsetup -setrestartfreeze on
 ## defaults write com.apple.dock mru-spaces -bool false
 ## Remove the auto-hiding Dock delay
 ## defaults write com.apple.dock autohide-delay -float 0 # Intel based macs
-#defaults write com.apple.dock autohide-delay -float 0 && defaults write com.apple.dock autohide-time-modifier -float 0.4 && killall Dock # Arm based macs
+# defaults write com.apple.dock autohide-delay -float 0 && defaults write com.apple.dock autohide-time-modifier -float 0.4 && killall Dock # Arm based macs
+defaults write com.apple.dock autohide-delay -int 60
 ## Remove the animation when hiding/showing the Dock
 #defaults write com.apple.dock autohide-time-modifier -float 0
 ## Automatically hide and show the Dock
