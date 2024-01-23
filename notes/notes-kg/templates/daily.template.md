@@ -1,24 +1,19 @@
 {{DATE:dddd}}
 
+<% tp.file.cursor(1) %>
+
+- - -
+[[1.todo|primary.todo]] | [[2.todo|work.todo]] | [[inbox.todo|inbox.todo]] | [[all.todo#Grocery|;grocery]] | [[letters.kau.sh.todo]] | [[blog/blog.kau.sh.todo|blog.kau.sh.todo]]
+- - -
 - [ ] Morning: Pick tasks to do today
 - [ ] Morning: Schedule them into Google Calendar
 - [ ] Morning: Personal Inbox
 - [ ] Morning: Work Inbox
 - [ ] Morning: Slack conversations
-
 - [ ] Night: Move tasks to inbox/next day
 - [ ] Night: Pick ⏫ | 🔼 (2 tasks) for tomorrow from [[1.todo|1.todo]] | [[2.todo|2.todo]]
 
-- review [[inbox.todo|inbox.todo]] 
-- review goals/top of mind
-
-
-<% tp.file.cursor(1) %>
-
-
----
-[[1.todo|1.todo]] | [[2.todo|2.todo]] | [[inbox.todo|inbox.todo]] | [[all.todo#Grocery|;grocery]] | [[letters.kau.sh.todo]] | [[blog/blog.kau.sh.todo|blog.kau.sh.todo]]
-## (Over) Due
+**(Over) Due**
 ```tasks
 not done
 due before tomorrow
@@ -27,7 +22,8 @@ sort by priority
 hide created date
 hide edit button
 ```
-## Priority High / upcoming 20 days
+
+**Priority High / upcoming 20 days**
 ```tasks
 not done
 priority is above medium
@@ -37,7 +33,8 @@ hide created date
 hide edit button
 heading does not include Daily Review
 ```
-## Priority Medium / upcoming 10 days
+
+**Priority Medium / upcoming 10 days**
 ```tasks
 not done
 priority is medium
@@ -47,11 +44,7 @@ hide created date
 hide edit button
 heading does not include Daily Review
 ```
----
-
-The key to my productivity is knowing which tasks take 5 minutes or less. If i know it's more than 5 minutes throw it in a list and then prioritize it right away.
-
----
+- - -
 ## Archived
 ```tasks
 done on <% tp.date.now("YYYY-MM-DD") %>
