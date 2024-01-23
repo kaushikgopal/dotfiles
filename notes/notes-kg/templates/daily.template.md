@@ -13,16 +13,6 @@
 - [ ] Night: Move tasks to inbox/next day
 - [ ] Night: Pick ⏫ | 🔼 (2 tasks) for tomorrow from [[1.todo|1.todo]] | [[2.todo|2.todo]]
 
-**(Over) Due**
-```tasks
-not done
-due before tomorrow
-priority is below medium
-sort by priority
-hide created date
-hide edit button
-```
-
 **Priority High / upcoming 20 days**
 ```tasks
 not done
@@ -33,7 +23,15 @@ hide created date
 hide edit button
 heading does not include Daily Review
 ```
-
+**(Over) Due**
+```tasks
+not done
+due before tomorrow
+priority is below medium
+sort by priority
+hide created date
+hide edit button
+```
 **Priority Medium / upcoming 10 days**
 ```tasks
 not done
