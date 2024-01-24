@@ -105,6 +105,7 @@ brew "pipx"
 
 # Mac apps
 cask "1password"
+cask "1password-cli"    # required for Raycast/Alfred integration
 cask "arc"
 cask "font-ia-writer-duo"
 cask "font-ibm-plex-mono-kg"
@@ -120,6 +121,7 @@ cask "keyboard-maestro"
 cask "loopback"
 cask "maestral"
 cask "netnewswire"
+cask "notunes"
 cask "obsidian"
 cask "raycast"
 cask "soulver"
@@ -132,7 +134,6 @@ cask "webpquicklook"
 
 # cask "font-sf-pro"
 # cask "font-sf-compact"
-# cask "1password-cli"    # required for Alfred integration
 # cask "brave-browser"
 # cask "cursorsense"
 # cask "firefox"
