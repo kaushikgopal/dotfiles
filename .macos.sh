@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+# good reference to find your Defaults
+# https://macos-defaults.com/
+
+
 # ~/.macos — https://mths.be/macos
 
 YELLOW='\033[1;33m'     # switching section
@@ -23,6 +27,8 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 # prevent them from overriding settings
 # we’re about to change
 osascript -e 'tell application "System Preferences" to quit'
+
+
 
 ################################################################################
 ## General UI/UX                                                               #
@@ -103,6 +109,13 @@ defaults write -g ApplePressAndHoldEnabled -bool false
 ## Set a blazingly fast keyboard repeat rate
 defaults write -g InitialKeyRepeat -int 12 # normal minimum is 15 (225 ms)
 defaults write -g KeyRepeat -int 1 # normal minimum is 2 (30 ms)
+
+# Double-tap Fn key to enable dictation (and not emoji picker)
+defaults write com.apple.HIToolbox AppleDictationAutoEnable -bool true
+defaults write com.apple.HIToolbox AppleDictationFnFnKey -int 1
+
+defaults read com.apple.HIToolbox AppleDictationAutoEnable
+defaults read com.apple.HIToolbox AppleDictationFnFnKey
 
 ## Stop iTunes from responding to the keyboard media keys
 #launchctl unload -w /System/Library/LaunchAgents/com.apple.rcd.plist 2> /dev/null
