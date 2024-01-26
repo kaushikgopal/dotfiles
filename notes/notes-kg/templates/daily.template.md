@@ -3,7 +3,7 @@
 <% tp.file.cursor(1) %>
 
 - - -
-[[1.todo|primary.todo]] | [[2.todo|work.todo]] | [[inbox.todo|inbox.todo]] | [[all.todo#Grocery|;grocery]] | [[letters.kau.sh.todo]] | [[blog/blog.kau.sh.todo|blog.kau.sh.todo]]
+[[1.primary.todo|primary.todo]] | [[2.work.todo|work.todo]] | [[inbox.todo|inbox.todo]] | [[all.todo#Grocery|;grocery]] | [[letters.kau.sh.todo]] | [[blog/blog.kau.sh.todo|blog.kau.sh.todo]]
 - - -
 - [ ] Morning: Pick tasks to do today
 - [ ] Morning: Schedule them into Google Calendar
@@ -11,7 +11,7 @@
 - [ ] Morning: Work Inbox
 - [ ] Morning: Slack conversations
 - [ ] Night: Move tasks to inbox/next day
-- [ ] Night: Pick ⏫ | 🔼 (2 tasks) for tomorrow from [[1.todo|1.todo]] | [[2.todo|2.todo]]
+- [ ] Night: Pick ⏫ | 🔼 (2 tasks) for tomorrow from [[1.primary.todo|1.primary.todo]] | [[2.work.todo|2.work.todo]]
 
 **Priority High / upcoming 20 days**
 ```tasks
