@@ -20,15 +20,14 @@ alias cp='cp -v'
 
 
 # useful defaults for these specific commands
+alias hi='history -i'
 
 alias fdu='fd -u' # --unrestricted =  # hidden + ignored -HI
 # sample commands
 #   fdu -e pdf
 #   fdu '^\.DS_Store$' -X rm -i
 
-alias hi='history -i'
-
-alias rr='rg --no-ignore --hidden -S'   # hidden + smartcase
+alias rgus='rg --no-ignore --hidden --smart-case'   # -uu = --no-ignore --hidden ; -S = --smart-case
 
 
 alias b='bat'
