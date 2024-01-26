@@ -21,7 +21,7 @@
     reb   = !"r() { git rebase --autosquash -i HEAD~$1; }; r"       # Interactive rebase with the given number of latest commits
 ;     root  = "rev-parse --show-toplevel"
     rv    = remote -v
-    s     = status --short
+    ss    = status --short
     wip   =  !"wip()  { git add .; git commit -a -m '--wip-- [ci skip]' --no-verify; }; wip"     # basically an immediate commit that u want in you reflog
     wipr  =  !"wipr() { git reset --soft HEAD~; git reset ; }; wipr"   # undo last commit (works well with gwip) - watch out though
 
@@ -129,7 +129,7 @@
 [status]
   submoduleSummary = true
 
-[url "git@github.com:"]                                                       # URL shorthands
+[url "git@github.com:"]                   # URL shorthands
   insteadOf = "gh:"
   pushInsteadOf = "github:"
   pushInsteadOf = "git://github.com/"
