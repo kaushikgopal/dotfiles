@@ -72,7 +72,6 @@ cask "gitup"  # amazing gui for mac
 # brew "docker-compose"
 # brew "docker-credential-helper-ecr"
 # cask "docker"
-# brew "git-number"  # using git add -i and another script
 
 # development ## android (zulu)
 tap "mdogan/zulu"

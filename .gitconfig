@@ -1,11 +1,142 @@
 [alias]
-    # convenience alias that takes file number
-    a     = !"a() { [ "$1" = "." ] && git add . || git add $(git status --porcelain | cut -b4- | sed -n \"$1p;$1q\"); }; a"
-    af     = !"af() { [ "$1" = "." ] && git add -f . || git add -f $(git status --porcelain | cut -b4- | sed -n \"$1p;$1q\"); }; af"
-    ch    = !"ch() { [ "$1" = "." ] && git checkout . || git checkout $(git status --porcelain | cut -b4- | sed -n \"$1p;$1q\"); }; ch"
-    d     = !"d() { git diff $(git status --porcelain | cut -b4- | sed -n \"$1p;$1q\"); }; d"
-    r     = !"r() { [ "$1" = "." ] && git reset . || git reset $(git status --porcelain | cut -b4- | sed -n \"$1p;$1q\"); }; r"
-
+    a = "!f() { \
+        if [[ $# -eq 0 || \"$1\" == \".\" ]]; then \
+            git add .; \
+        else \
+          files_to_add=(); \
+          for arg in $(seq $(git status --porcelain | wc -l)); do \
+              files_to_add+=($(git status --porcelain | sed -n ${arg}p | awk '{print $2}')); \
+          done; \
+          if [[ $1 == *'-'* ]]; then \
+              IFS='-' read -ra RANGE <<< \"$1\"; \
+              for i in $(seq ${RANGE[0]} ${RANGE[1]}); do \
+                  git add \"${files_to_add[$i-1]}\"; \
+              done; \
+          elif [[ $1 == *','* ]]; then \
+              IFS=',' read -ra NUMS <<< \"$1\"; \
+              for i in \"${NUMS[@]}\"; do \
+                  git add \"${files_to_add[$i-1]}\"; \
+              done; \
+          else \
+              git add \"${files_to_add[$1-1]}\"; \
+          fi; \
+        fi; \
+    }; f"
+    r = "!f() { \
+        if [[ $# -eq 0 || \"$1\" == \".\" ]]; then \
+            git reset .; \
+        else \
+          files_to_add=(); \
+          for arg in $(seq $(git status --porcelain | wc -l)); do \
+              files_to_add+=($(git status --porcelain | sed -n ${arg}p | awk '{print $2}')); \
+          done; \
+          if [[ $1 == *'-'* ]]; then \
+              IFS='-' read -ra RANGE <<< \"$1\"; \
+              for i in $(seq ${RANGE[0]} ${RANGE[1]}); do \
+                  git reset \"${files_to_add[$i-1]}\"; \
+              done; \
+          elif [[ $1 == *','* ]]; then \
+              IFS=',' read -ra NUMS <<< \"$1\"; \
+              for i in \"${NUMS[@]}\"; do \
+                  git reset \"${files_to_add[$i-1]}\"; \
+              done; \
+          else \
+              git reset \"${files_to_add[$1-1]}\"; \
+          fi; \
+        fi; \
+    }; f"
+    ch = "!f() { \
+        if [[ $# -eq 0 || \"$1\" == \".\" ]]; then \
+            git checkout .; \
+        else \
+          files_to_add=(); \
+          for arg in $(seq $(git status --porcelain | wc -l)); do \
+              files_to_add+=($(git status --porcelain | sed -n ${arg}p | awk '{print $2}')); \
+          done; \
+          if [[ $1 == *'-'* ]]; then \
+              IFS='-' read -ra RANGE <<< \"$1\"; \
+              for i in $(seq ${RANGE[0]} ${RANGE[1]}); do \
+                  git checkout \"${files_to_add[$i-1]}\"; \
+              done; \
+          elif [[ $1 == *','* ]]; then \
+              IFS=',' read -ra NUMS <<< \"$1\"; \
+              for i in \"${NUMS[@]}\"; do \
+                  git checkout \"${files_to_add[$i-1]}\"; \
+              done; \
+          else \
+              git checkout \"${files_to_add[$1-1]}\"; \
+          fi; \
+        fi; \
+    }; f"
+    d = "!f() { \
+        if [[ $# -eq 0 || \"$1\" == \".\" ]]; then \
+            git diff .; \
+        else \
+          files_to_add=(); \
+          for arg in $(seq $(git status --porcelain | wc -l)); do \
+              files_to_add+=($(git status --porcelain | sed -n ${arg}p | awk '{print $2}')); \
+          done; \
+          if [[ $1 == *'-'* ]]; then \
+              IFS='-' read -ra RANGE <<< \"$1\"; \
+              for i in $(seq ${RANGE[0]} ${RANGE[1]}); do \
+                  git diff \"${files_to_add[$i-1]}\"; \
+              done; \
+          elif [[ $1 == *','* ]]; then \
+              IFS=',' read -ra NUMS <<< \"$1\"; \
+              for i in \"${NUMS[@]}\"; do \
+                  git diff \"${files_to_add[$i-1]}\"; \
+              done; \
+          else \
+              git diff \"${files_to_add[$1-1]}\"; \
+          fi; \
+        fi; \
+    }; f"
+    dc = "!f() { \
+        if [[ $# -eq 0 || \"$1\" == \".\" ]]; then \
+            git diff --cached .; \
+        else \
+          files_to_add=(); \
+          for arg in $(seq $(git status --porcelain | wc -l)); do \
+              files_to_add+=($(git status --porcelain | sed -n ${arg}p | awk '{print $2}')); \
+          done; \
+          if [[ $1 == *'-'* ]]; then \
+              IFS='-' read -ra RANGE <<< \"$1\"; \
+              for i in $(seq ${RANGE[0]} ${RANGE[1]}); do \
+                  git diff --cached \"${files_to_add[$i-1]}\"; \
+              done; \
+          elif [[ $1 == *','* ]]; then \
+              IFS=',' read -ra NUMS <<< \"$1\"; \
+              for i in \"${NUMS[@]}\"; do \
+                  git diff --cached \"${files_to_add[$i-1]}\"; \
+              done; \
+          else \
+              git diff --cached \"${files_to_add[$1-1]}\"; \
+          fi; \
+        fi; \
+    }; f"
+    ds = "!f() { \
+        if [[ $# -eq 0 || \"$1\" == \".\" ]]; then \
+            git diff --staged .; \
+        else \
+          files_to_add=(); \
+          for arg in $(seq $(git status --porcelain | wc -l)); do \
+              files_to_add+=($(git status --porcelain | sed -n ${arg}p | awk '{print $2}')); \
+          done; \
+          if [[ $1 == *'-'* ]]; then \
+              IFS='-' read -ra RANGE <<< \"$1\"; \
+              for i in $(seq ${RANGE[0]} ${RANGE[1]}); do \
+                  git diff --staged \"${files_to_add[$i-1]}\"; \
+              done; \
+          elif [[ $1 == *','* ]]; then \
+              IFS=',' read -ra NUMS <<< \"$1\"; \
+              for i in \"${NUMS[@]}\"; do \
+                  git diff --staged \"${files_to_add[$i-1]}\"; \
+              done; \
+          else \
+              git diff --staged \"${files_to_add[$1-1]}\"; \
+          fi; \
+        fi; \
+    }; f"
     b     = branch
     ba    = branch -a
     bd    = branch -D
@@ -14,12 +145,9 @@
     chp   = cherry-pick
     co   = checkout
     cob   = checkout -B                          # switch to a branch, creating it if necessary
-    dc    = diff --cached
-    ds    = diff --staged
     pmr   = push -o merge_request.create -o merge_request.merge_when_pipeline_succeeds  # push MR
     mt    = mergetool
     reb   = !"r() { git rebase --autosquash -i HEAD~$1; }; r"       # Interactive rebase with the given number of latest commits
-;     root  = "rev-parse --show-toplevel"
     rv    = remote -v
     ss    = status --short
     wip   =  !"wip()  { git add .; git commit -a -m '--wip-- [ci skip]' --no-verify; }; wip"     # basically an immediate commit that u want in you reflog
