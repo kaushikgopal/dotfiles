@@ -3,6 +3,8 @@
 # good reference to find your Defaults
 # https://macos-defaults.com/
 
+# Run this script after you have dropbox sync done
+cp ~/_sync/apps/US\ Plain\ Keyboard.keylayout ~/Library/Keyboard Layouts/
 
 # ~/.macos — https://mths.be/macos
 
