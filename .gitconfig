@@ -178,7 +178,7 @@
 	defaultBranch = master
 
 [color]
-  ui = always                                                                 # Use colors in Git commands that are capable of colored output when outputting to the terminal
+  ui = always           # Use colors in Git commands that are capable of colored output when outputting to the terminal
 [color "branch"]
   current = yellow reverse
   local = yellow
@@ -188,7 +188,7 @@
 #  frag = cyan bold
 #  old = red reverse
 #  new = green reverse
-  whitespace = white reverse
+#  whitespace = red reverse
 [color "status"]
   header = white normal dim
   added = red
@@ -203,7 +203,9 @@
     show = delta
 [delta]
     file-decoration-style = black ul
-    file-style = black
+    file-style = box gray
+    hunk-header-decoration-style = black ul
+    hunk-header-style = omit
     line-numbers = true
     line-numbers-left-format = {nm:>3}│
     line-numbers-left-style = black
@@ -222,10 +224,9 @@
     side-by-side = false
     syntax-theme = base16
     true-color = auto
+    whitespace-error-style = red reverse
     zero-style = black
-;     hunk-header-decoration-style = ul
-;     hunk-header-line-number-style = black
-;     hunk-header-style = raw
+
 [pager]
   show = delta
 
