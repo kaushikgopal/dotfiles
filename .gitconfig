@@ -163,7 +163,7 @@
     cleaner = !git branch --merged master --no-color | grep -v '^[ *]*master$' | xargs git branch -d
     b     = branch
     ba    = branch -a
-    bd    = branch -D
+    bnc   = branch --no-color
     c     = commit
     ca    = commit --amend # --no-edit
     chp   = cherry-pick
