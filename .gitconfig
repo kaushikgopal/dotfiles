@@ -22,6 +22,29 @@
           fi; \
         fi; \
     }; f"
+    ap = "!f() { \
+        if [[ $# -eq 0 || \"$1\" == \".\" ]]; then \
+            git add -p .; \
+        else \
+          files_to_add=(); \
+          for arg in $(seq $(git status --porcelain | wc -l)); do \
+              files_to_add+=($(git status --porcelain | sed -n ${arg}p | awk '{print $2}')); \
+          done; \
+          if [[ $1 == *'-'* ]]; then \
+              IFS='-' read -ra RANGE <<< \"$1\"; \
+              for i in $(seq ${RANGE[0]} ${RANGE[1]}); do \
+                  git add -p \"${files_to_add[$i-1]}\"; \
+              done; \
+          elif [[ $1 == *','* ]]; then \
+              IFS=',' read -ra NUMS <<< \"$1\"; \
+              for i in \"${NUMS[@]}\"; do \
+                  git add -p \"${files_to_add[$i-1]}\"; \
+              done; \
+          else \
+              git add -p \"${files_to_add[$1-1]}\"; \
+          fi; \
+        fi; \
+    }; f"
     r = "!f() { \
         if [[ $# -eq 0 || \"$1\" == \".\" ]]; then \
             git reset .; \
