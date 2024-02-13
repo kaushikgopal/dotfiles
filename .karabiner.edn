@@ -224,13 +224,19 @@
       :rules [
           [:##caps_lock :right_control nil {:alone [:escape]}]
 
-              ;; F  | fn
-              ;; Q  | right_command
-              ;; E  | right_option
-              ;; R  | right_shift
-              ;; P  | caps_lock
-
+          ;; P  | caps_lock
           ;; W  | right_control
+
+          ;; C  | left_command
+          ;; Q  | right_command
+
+          ;; E  | right_option
+          ;; O  | left_option
+
+          ;; R  | right_shift
+          ;; S  | left_shift
+
+
           ;; vim like arrow key mappings
           [:!Wh :left_arrow]
           [:!Wj :down_arrow]
@@ -238,35 +244,40 @@
           [:!Wl :right_arrow]
 
           ;; Modifier + arrow keys
-          ;;  triggering them with caps-lock requires explicit mapping
+          ;; triggering them with caps-lock requires explicit mapping
 
-          ;; C  | left_command
+          ;; (W) left_command + arrow keys
           [:!WCh :!Cleft_arrow]
           [:!WCj :!Cdown_arrow]
           [:!WCk :!Cup_arrow  ]
           [:!WCl :!Cright_arrow]
 
-          ;; S  | left_shift
-          ;; T  | left_control
+          ;; (W) left_shift + arrow keys
           [:!WSh :!Sleft_arrow]
-          [:!WSj :!Sdown_arrow  :!intellij]
-          [:!WSj :!TSj          :intellij]          ;; join line in intellij
-          [:!WSk :!Sup_arrow  ]
           [:!WSl :!Sright_arrow]
           [:!WSh :!Sleft_arrow]
+          [:!WSk :!Sup_arrow  ]
+          [:!WSj :!Sdown_arrow  :!intellij]
+          [:!WSj :!TSj          :intellij]     ;; special for intellij (join line)
 
-          ;; O  | left_option
+          ;; (W) left_option + arrow keys
           [:!WOh :!Oleft_arrow]
           [:!WOj :!Odown_arrow]
           [:!WOk :!Oup_arrow  ]
           [:!WOl :!Oright_arrow]
 
-          ;; Special modifier combo keys
-          ;; cmd alt arrow keys
+          ;; (W) left_command + left_option + arrow keys
           [:!WCOh :!COleft_arrow]
           [:!WCOj :!COdown_arrow]
           [:!WCOk :!COup_arrow  ]
           [:!WCOl :!COright_arrow]
+
+          ;; (W) left_shift + left_command + arrow keys
+          [:!WSCh :!SCleft_arrow]
+          [:!WSCj :!SCdown_arrow]
+          [:!WSCk :!SCup_arrow  ]
+          [:!WSCl :!SCright_arrow]
+
 
           ;; Quick Mouse handles
           [:!Wdown_arrow {:mkey {:y 1536}}     ]
