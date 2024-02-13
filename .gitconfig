@@ -160,6 +160,7 @@
           fi; \
         fi; \
     }; f"
+    cleaner = !git branch --merged master --no-color | grep -v '^[ *]*master$' | xargs git branch -d
     b     = branch
     ba    = branch -a
     bd    = branch -D
