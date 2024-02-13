@@ -28,7 +28,7 @@ alias fdu='fd -u' # --unrestricted =  # hidden + ignored -HI
 #   fdu '^\.DS_Store$' -X rm -i
 
 alias rgus='rg --no-ignore --hidden --smart-case'   # -uu = --no-ignore --hidden ; -S = --smart-case
-
+alias rgnc='rg --color=never'
 
 alias b='bat'
 alias c='code'
