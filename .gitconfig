@@ -271,7 +271,7 @@
   cmd = code --wait $MERGED
 
 [interactive]
-  diffFilter = delta --color-only --features=interactive
+  diffFilter = delta
 
 [pull]
   rebase = false
