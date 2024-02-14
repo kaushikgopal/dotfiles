@@ -195,12 +195,12 @@
 [feature]
     manyFiles = 1
 
-[includeIf "gitdir:~/"]
-    path = .gitconfig-private
-
-[init]
-	defaultBranch = master
-
+[includeIf "gitdir:~/src/off/"]
+    path = ~/.gitconfig-off
+[includeIf "gitdir:~/src/oss/"]
+    path = ~/.gitconfig-oss
+[includeIf "gitdir:~/src/per/"]
+    path = ~/.gitconfig-per
 [color]
   ui = always           # Use colors in Git commands that are capable of colored output when outputting to the terminal
 [color "branch"]
