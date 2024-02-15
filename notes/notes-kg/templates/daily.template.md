@@ -1,3 +1,4 @@
+[[<% fileDate = moment(tp.file.title, 'YYYY-MM-DD').subtract(1, 'd').format('YYYY-MM-DD') %>|Yesterday]] | [[<% fileDate = moment(tp.file.title, 'YYYY-MM-DD').add(1, 'd').format('YYYY-MM-DD') %>|Tomorrow]]
 ### <% moment(tp.file.title,'YYYY-MM-DD').format("dddd") %>
 
 - Morning: Pick tasks to do today
