@@ -1,6 +1,6 @@
 # better ls
-alias l='ls -G'
-alias la='ls -alG'
+# alias l='ls -G'        # -G = color
+alias lah='ls -lahG'    # -a = all, -h = human readable, -l = long format
 alias ld='tree -d -CFL 1'
 alias tr='tree --dirsfirst -CFL 3'
 
@@ -22,7 +22,7 @@ alias cp='cp -v'
 # useful defaults for these specific commands
 alias hi='history -i'
 
-alias fdu='fd -u' # --unrestricted =  # hidden + ignored -HI
+alias fdup='fd -u -p' # --unrestricted =  # hidden + ignored -HI # -p = match full path
 # sample commands
 #   fdu -e pdf
 #   fdu '^\.DS_Store$' -X rm -i
