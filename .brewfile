@@ -107,6 +107,7 @@ brew "pipx"
 cask "1password"
 cask "1password-cli"    # required for Raycast/Alfred integration
 cask "arc"
+cask "google-drive"
 cask "font-ia-writer-duo"
 cask "font-ibm-plex-mono-kg"
 cask "font-inter"
