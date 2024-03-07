@@ -10,7 +10,8 @@ HOMEBREW_CASK_OPTS="--appdir=/Applications --fontdir=/Library/Fonts"
 HOMEBREW_NO_AUTO_UPDATE=1
 HOMEBREW_NO_INSTALL_UPGRADE=1
 
-export JAVA_HOME=$(/usr/libexec/java_home -v"17")
+# export JAVA_HOME=$(/usr/libexec/java_home -v"17")
+export JAVA_HOME=$HOME/Applications/Android\ Studio.app/Contents/jbr/Contents/Home
 export ANDROID_HOME=$HOME/Library/Android/sdk
 
 export FZF_DEFAULT_COMMAND='fd --type file --no-ignore-vcs --color=always'
