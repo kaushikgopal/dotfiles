@@ -387,7 +387,19 @@
       # Otherwise show the first 12 .. the last 12.
       # Tip: To always show local branch name in full without truncation, delete the next line.
       # (( $#branch > 32 )) && branch[13,-13]=".."  # <-- this line
-      res+="${clean}${(g::)POWERLEVEL9K_VCS_BRANCH_ICON}${branch//\%/%%}"
+      # res+="${clean}${(g::)POWERLEVEL9K_VCS_BRANCH_ICON}${branch//\%/%%}"
+
+      # if branch name is greater than 32 characters
+      # show the characters after 32 in different color
+      if (( $#branch > 32 )); then
+        local branch_length=${#branch}
+        local branch_start=${branch[1,32]}
+        local branch_end=${branch[33,$branch_length]}
+        res+="${clean}${branch_start}${conflicted}${branch_end//\%/%%}"
+      else
+        res+="${clean}${branch//\%/%%}"
+      fi
+
     fi
 
     if [[ -n $VCS_STATUS_TAG
