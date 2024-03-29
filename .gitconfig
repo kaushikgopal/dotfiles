@@ -1,4 +1,25 @@
 [alias]
+    b     = branch
+;     ba    = branch -a
+;     bd    = branch -D
+;     bnc   = branch --no-color
+    c     = commit
+;     ca    = commit --amend # --no-edit
+    chp   = cherry-pick
+    cleaner = !git branch --merged master --no-color | grep -v '^[ *]*master$' | xargs git branch -d
+    co   = checkout
+    cob   = checkout -B   # switch to a branch, creating it if necessary
+    # format -> default/ original time zone (either committer’s or author’s)
+    # format-local -> user's local timezone instead
+    ll = log --decorate --date=short --pretty=format:'%C(magenta)%h%Creset %C(bold black)%ad%C(reset)%C(auto) %s %C(blue)%an%C(auto) %D%C(reset)'
+    l =  ll --topo-order -30         --pretty=format:'%C(magenta)%h%Creset %C(yellow)%ad%C(reset)%C(auto) %s %C(blue)%an%C(auto) %D%C(reset)'
+    #l =  ll --topo-order -30         --pretty=format:'%C(magenta)%h%Creset %C(yellow)%ad%C(reset)%C(auto) %s %C(blue)%an %C(bold black)%D%C(reset)'    pmr   = push -o merge_request.create -o merge_request.merge_when_pipeline_succeeds  # push MR
+    mt    = mergetool
+    reb   = !"r() { git rebase --autosquash -i HEAD~$1; }; r"       # Interactive rebase with the given number of latest commits
+    ss    = status --short
+    wip   =  !"wip()  { git add .; git commit -a -m '--wip-- [ci skip]' --no-verify; }; wip"     # basically an immediate commit that u want in you reflog
+    wipr  =  !"wipr() { git reset --soft HEAD~; git reset ; }; wipr"   # undo last commit (works well with gwip) - watch out though
+
     a = "!f() { \
         if [[ $# -eq 0 || \"$1\" == \".\" ]]; then \
             git add .; \
@@ -160,29 +181,7 @@
           fi; \
         fi; \
     }; f"
-    cleaner = !git branch --merged master --no-color | grep -v '^[ *]*master$' | xargs git branch -d
-    b     = branch
-    ba    = branch -a
-    bnc   = branch --no-color
-    c     = commit
-    ca    = commit --amend # --no-edit
-    chp   = cherry-pick
-    co   = checkout
-    cob   = checkout -B                          # switch to a branch, creating it if necessary
-    pmr   = push -o merge_request.create -o merge_request.merge_when_pipeline_succeeds  # push MR
-    mt    = mergetool
-    rc    = rebase --continue
-    reb   = !"r() { git rebase --autosquash -i HEAD~$1; }; r"       # Interactive rebase with the given number of latest commits
-    rv    = remote -v
-    ss    = status --short
-    wip   =  !"wip()  { git add .; git commit -a -m '--wip-- [ci skip]' --no-verify; }; wip"     # basically an immediate commit that u want in you reflog
-    wipr  =  !"wipr() { git reset --soft HEAD~; git reset ; }; wipr"   # undo last commit (works well with gwip) - watch out though
 
-    # format -> default/ original time zone (either committer’s or author’s)
-    # format-local -> user's local timezone instead
-    ll = log --decorate --date=short --pretty=format:'%C(magenta)%h%Creset %C(bold black)%ad%C(reset)%C(auto) %s %C(blue)%an%C(auto) %D%C(reset)'
-    l =  ll --topo-order -30         --pretty=format:'%C(magenta)%h%Creset %C(yellow)%ad%C(reset)%C(auto) %s %C(blue)%an%C(auto) %D%C(reset)'
-    #l =  ll --topo-order -30         --pretty=format:'%C(magenta)%h%Creset %C(yellow)%ad%C(reset)%C(auto) %s %C(blue)%an %C(bold black)%D%C(reset)'
 [core]
   editor = idea -e --wait
   excludesfile = ~/.gitignore_global
