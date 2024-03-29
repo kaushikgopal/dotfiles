@@ -22,20 +22,41 @@ alias cp='cp -v'
 # useful defaults for these specific commands
 alias hi='history -i'
 
-alias fdup='fd -u -p' # --unrestricted =  # hidden + ignored -HI # -p = match full path
-# sample commands
-#   fdu -e pdf
-#   fdu '^\.DS_Store$' -X rm -i
+# sharkdp/fd - simple and faster laternative to find
+alias fd='fd -u'
+  # --unrestricted # -HI = hidden + ignored
+alias fdup='fd -u -p'
+  # -p = match full path (vs just file name)
+  # command fd (to override)
+  # sample commands
+    # fd -e pdf
+    # fd -e .gitignore -x trash   # trash each file independently
+    # fd '^\.DS_Store$' -X rm -i  # rm all at once -X implies you execute in the same instance
 
-alias rgus='rg --no-ignore --hidden --smart-case'   # -uu = --no-ignore --hidden ; -S = --smart-case
-alias rgnc='rg --color=never'
+alias rg='rg -uuS'
+    # -uu = --no-ignore --hidden
+    # -S = --smart-case
+    # -I = --no-filename
+    # --no-line-number
+    # --color=never  # when you want to script
+    # -u    = '--no-ignore'.
+    # -uu   = '--no-ignore --hidden'.
+    # -uuu  = '--no-ignore --hidden --binary'.
+
+  # sample commands
+    # rg fast README.md               # search for literal "fast" in file README.md
+    # rg "com\.android\.application"  # search pattern
+    # rg 'fn run' -g '*.rs'           # search all rust files for "fun run"
+    #            --type rust
+    #             -trust
+    #            --type-not rust
+    # rg fast README.md -r FAST       # replace fast -> FAST
+
 
 alias b='bat'
 alias c='code'
 alias cat='bat'
 alias f='fleet'
-alias g='git'
-alias g-='git checkout -'
 alias gw='./gradlew'
 alias i='idea'
 alias ie='idea -e'  # -e light edit mode --wait terminal waits for IDE to exit
@@ -43,6 +64,22 @@ alias o='open'
 alias oo='open .'
 alias s='soulver'
 alias t='trash'
+
+
+
+alias g='git'
+alias g-='git checkout -'
+alias gb='git branch'
+alias gba='git branch -a'
+alias gbd='git branch -D'
+alias gc='git commit -m'
+alias gm='git checkout master'
+alias gl='git l'
+alias gll='git ll'
+alias grb='git rebase --continue'
+alias grv='git remote -v'
+alias gss='git status --short'
+
 
 #alias diff=/Applications/Xcode.app/Contents/Developer/usr/bin/opendiff
 
