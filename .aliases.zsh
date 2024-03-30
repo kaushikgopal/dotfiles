@@ -45,13 +45,14 @@ alias rg='rg -uuS'
 
   # sample commands
     # rg fast README.md               # search for literal "fast" in file README.md
-    # rg "com\.android\.application"  # search pattern
+    # rg "com\.android\.application"  # search "pattern"
+    # rg "com\.android\.application" --type gradle  -g '!experimental/*'
+
     # rg 'fn run' -g '*.rs'           # search all rust files for "fun run"
     #            --type rust
     #             -trust
     #            --type-not rust
     # rg fast README.md -r FAST       # replace fast -> FAST
-
 
 alias b='bat'
 alias c='code'
