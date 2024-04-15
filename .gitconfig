@@ -306,3 +306,5 @@
 	required = true
 [branch]
 	sort = -committerdate
+[fetch]
+	prune = true
