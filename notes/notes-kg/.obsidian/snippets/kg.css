@@ -1,47 +1,126 @@
+
+/* *******************
+ * General variables */
+
 body {
     --h1-size: 1rem;
     --h2-size: 0.91rem;
     --h3-size: 0.85rem;
+    --h4-size: 0.75rem;
+    /*  --h1-weight: 550;*/
+    /*  --h2-weight: 550;*/
+    /*  --h3-weight: 550;*/
+    /*  --h4-weight: 550;*/
+    /*  --h1-color: var(--color-red);*/
+    /*  --h2-color: var(--color-orange);*/
+    /*  --h3-color: var(--color-green);*/
+    /*  --h4-color: var(--color-blue);*/
+    /*  --h5-color: var(--color-purple);*/
 
-
-    --h1-weight: 550;
-    --h2-weight: 550;
-    --h3-weight: 550;
-    --h4-weight: 550;
-
-    --code-background: var(--ui1);
-    --code-size: var(--font-small); /* regular size */
-
-    --h1-color: var(--color-red);
-    --h2-color: var(--color-orange);
-    --h3-color: var(--color-green);
-    --h4-color: var(--color-blue);
-    --h5-color: var(--color-purple);
-
+    .theme-dark {
+        --background-primary: #1a1a1a;
+        /*--background-primary: #222222;*/
+        /*--background-primary: #1f1f1f;*/
+    }
 }
 
-/* internal & external link headings should respect colorful headings colors */
-.cm-header.cm-header-1.cm-link,
-.cm-header.cm-header-1.cm-hmd-internal-link {
-    color: var(--h1-color);
+/* *******************
+ * Headings */
+
+.cm-s-obsidian .HyperMD-header,
+.cm-s-obsidian span.cm-formatting-link {
+    /* make all headings the same size
+    font-size: var(--font-text-size); */
+    color: #569cd6;
 }
-.cm-header.cm-header-2.cm-link,
-.cm-header.cm-header-2.cm-hmd-internal-link {
-    color: var(--h2-color);
-}
-.cm-header.cm-header-3.cm-link,
-.cm-header.cm-header-3.cm-hmd-internal-link {
-    color: var(--h3-color);
-}
-.cm-header.cm-header-4.cm-link,
-.cm-header.cm-header-4.cm-hmd-internal-link {
-    color: var(--h4-color);
+/* remove padding from headers
+.cm-s-obsidian .cm-line.HyperMD-header {
+    padding-top: var(--size-2-1);
+} */
+
+/* display headings as in source mode */
+/* adapted from https://gist.github.com/pmbauer/7395acded3bf74d41fe70a2e70d7952a#file-pseudo_focus-css-L11-L40 */
+.is-live-preview {
+    :not(.cm-formatting).cm-header-1:before {content: '# ';}
+    :not(.cm-formatting).cm-header-2:before {content: '## ';}
+    :not(.cm-formatting).cm-header-3:before {content: '### ';}
+    :not(.cm-formatting).cm-header-4:before {content: '#### ';}
+    :not(.cm-formatting).cm-header-5:before {content: '##### ';}
+    :not(.cm-formatting).cm-header-6:before {content: '###### ';}
+
+    .cm-header:before { color: var(--text-faint); }
+
+    .cm-active.cm-line .cm-header-1:before,
+    .cm-active.cm-line .cm-header-2:before,
+    .cm-active.cm-line .cm-header-3:before,
+    .cm-active.cm-line .cm-header-4:before,
+    .cm-active.cm-line .cm-header-5:before,
+    .cm-active.cm-line .cm-header-6:before {
+        content: '';
+    }
 }
 
-/* add spacing between a header and a list that follows right after */
-.cm-s-obsidian .cm-line.HyperMD-header + .cm-line:not(.HyperMD-header):not(:has(>br:only-child)) {
-    padding-top: 6px;
+/* *******************
+ * Code blocks */
+
+/* don't indent code blocks */
+.markdown-source-view.mod-cm6 .cm-line.HyperMD-codeblock {
+    padding-left: 0;
 }
+/* don't hide backquotes */
+& span.cm-inline-code:not(.cm-formatting, :has(+ .cm-formatting))::before {
+    content: "`";
+}
+& span.cm-inline-code:not(.cm-formatting, :has(+ .cm-formatting))::after {
+    content: "`";
+    padding-left: 3px;
+}
+/* adjust margins to prevent relayout */
+.cm-inline-code:not(.cm-formatting) + .cm-inline-code.cm-formatting {
+    margin-right: 3px;
+    padding-left: 0px;
+}
+.cm-inline-code.cm-formatting:not(:has(.cm-formatting)) {
+    margin-left: 3px;
+}
+/*!* inline code snippets should be the same size *!*/
+/*.cm-s-obsidian .cm-templater-command {*/
+/*    font-size: 1em;*/
+/*}*/
+
+
+
+/* *******************
+ * Hashtags */
+
+/* display hashtags with normal font size */
+.cm-hashtag {
+    font-size: var(--font-text-size);
+}
+
+/* *******************
+ * URLs & links */
+
+/* display urls in with underline */
+& .cm-url {text-decoration-line: var(--link-external-decoration-hover);}
+& span.cm-url {text-decoration-line: var(--link-external-decoration-hover);}
+
+
+/* remove padding from start of task results list */
+.contains-task-list.plugin-tasks-query-result.tasks-layout-hide-createdDate.tasks-layout-hide-urgency.tasks-layout-hide-edit-button {
+    padding-inline-start: 0px;
+}
+
+
+
+
+
+
+
+/*!* add spacing between a header and a list that follows right after *!*/
+/*.cm-s-obsidian .cm-line.HyperMD-header + .cm-line:not(.HyperMD-header):not(:has(>br:only-child)) {*/
+/*    padding-top: 6px;*/
+/*}*/
 
 
 /*!* always show the filename in title-bar *!*/
@@ -49,28 +128,49 @@ body {
 /*    opacity: unset;*/
 /*}*/
 
+
 /*!* show edit-block button closer to the actual block *!*/
 /*.markdown-source-view.mod-cm6.is-live-preview.is-readable-line-width .cm-embed-block>.edit-block-button {*/
 /*    left: max(calc(50% + var(--folding-offset) - var(--line-width-adaptive)/ 2),calc(50% + var(--folding-offset) - var(--max-width)/ 2));*/
 /*}*/
+
 
 /*!* add top/bottom spacing to code snippets *!*/
 /*.cm-s-obsidian span.cm-inline-code {*/
 /*    padding: .25rem 0;*/
 /*}*/
 
-/*!* inline code snippets should be the same size *!*/
-/*.cm-s-obsidian .cm-templater-command {*/
-/*    font-size: 1em;*/
+
+
+
+
+/* COLORFUL HEADINGS */
+/*body {*/
+
+
+/*    --code-background: var(--ui1);*/
+/*    --code-size: var(--font-small); !* regular size *!*/
+
 /*}*/
 
-/*!**********************************/
-/*       DataView plugin*/
-/* *********************************!*/
-
-/*.dataview-inline {*/
-/*    background-color: var(--code-background);*/
+/*!* internal & external link headings should respect colorful headings colors *!*/
+/*.cm-header.cm-header-1.cm-link,*/
+/*.cm-header.cm-header-1.cm-hmd-internal-link {*/
+/*    color: var(--h1-color);*/
 /*}*/
+/*.cm-header.cm-header-2.cm-link,*/
+/*.cm-header.cm-header-2.cm-hmd-internal-link {*/
+/*    color: var(--h2-color);*/
+/*}*/
+/*.cm-header.cm-header-3.cm-link,*/
+/*.cm-header.cm-header-3.cm-hmd-internal-link {*/
+/*    color: var(--h3-color);*/
+/*}*/
+/*.cm-header.cm-header-4.cm-link,*/
+/*.cm-header.cm-header-4.cm-hmd-internal-link {*/
+/*    color: var(--h4-color);*/
+/*}*/
+
 
 
 /*!**********************************/
