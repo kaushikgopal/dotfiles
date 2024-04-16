@@ -30,6 +30,7 @@ alias fdup='fd -u -p'
   # command fd (to override)
   # sample commands
     # fd -e pdf
+    # fd -e pdf -E taxes          # E is short for --exclude <pattern>
     # fd -e .gitignore -x trash   # trash each file independently
     # fd '^\.DS_Store$' -X rm -i  # rm all at once -X implies you execute in the same instance
 
