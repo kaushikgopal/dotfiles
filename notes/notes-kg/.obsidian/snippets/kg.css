@@ -9,6 +9,19 @@ body .theme-dark {
 }
 
 /* *******************
+ * Scrollbars */
+
+::-webkit-scrollbar {
+    background-color: var(--bg-1); /* color of scrollbar area  */
+    border-radius: 0; /* roundedness of scrollbar area */
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--hl2); /* color of scrollbar (part that moves) */
+    border-radius: 20rem; /* roundedness of scrollbar */
+}
+
+/* *******************
  * Headings */
 body {
     --h1-size: 1.2rem;
@@ -17,7 +30,7 @@ body {
 
     /*  --h1-weight: 550;*/
     /*  --h2-weight: 550;*/
-      --h3-weight: bold;
+    --h3-weight: bold;
     /*  --h4-weight: 550;*/
     /*  --h1-color: var(--color-red);*/
     /*  --h2-color: var(--color-orange);*/
@@ -25,6 +38,7 @@ body {
     /*  --h4-color: var(--color-blue);*/
     /*  --h5-color: var(--color-purple);*/
 }
+
 /* make all headings look the same
 .cm-s-obsidian .HyperMD-header,
 .cm-s-obsidian span.cm-formatting-link {
@@ -40,14 +54,33 @@ color: #569cd6;
 /* display headings as in source mode
 adapted from https://gist.github.com/pmbauer/7395acded3bf74d41fe70a2e70d7952a#file-pseudo_focus-css-L11-L40 */
 .is-live-preview {
-    :not(.cm-formatting).cm-header-1:before {content: '# ';}
-    :not(.cm-formatting).cm-header-2:before {content: '## ';}
-    :not(.cm-formatting).cm-header-3:before {content: '### ';}
-    :not(.cm-formatting).cm-header-4:before {content: '#### ';}
-    :not(.cm-formatting).cm-header-5:before {content: '##### ';}
-    :not(.cm-formatting).cm-header-6:before {content: '###### ';}
+    :not(.cm-formatting).cm-header-1:before {
+        content: '# ';
+    }
 
-    .cm-header:before { color: var(--text-faint); }
+    :not(.cm-formatting).cm-header-2:before {
+        content: '## ';
+    }
+
+    :not(.cm-formatting).cm-header-3:before {
+        content: '### ';
+    }
+
+    :not(.cm-formatting).cm-header-4:before {
+        content: '#### ';
+    }
+
+    :not(.cm-formatting).cm-header-5:before {
+        content: '##### ';
+    }
+
+    :not(.cm-formatting).cm-header-6:before {
+        content: '###### ';
+    }
+
+    .cm-header:before {
+        color: var(--text-faint);
+    }
 
     .cm-active.cm-line .cm-header-1:before,
     .cm-active.cm-line .cm-header-2:before,
@@ -66,27 +99,31 @@ adapted from https://gist.github.com/pmbauer/7395acded3bf74d41fe70a2e70d7952a#fi
 .markdown-source-view.mod-cm6 .cm-line.HyperMD-codeblock {
     padding-left: 0;
 }
+
 /* don't hide backquotes */
 & span.cm-inline-code:not(.cm-formatting, :has(+ .cm-formatting))::before {
     content: "`";
 }
+
 & span.cm-inline-code:not(.cm-formatting, :has(+ .cm-formatting))::after {
     content: "`";
     padding-left: 3px;
 }
+
 /* adjust margins to prevent relayout */
 .cm-inline-code:not(.cm-formatting) + .cm-inline-code.cm-formatting {
     margin-right: 3px;
     padding-left: 0px;
 }
+
 .cm-inline-code.cm-formatting:not(:has(.cm-formatting)) {
     margin-left: 3px;
 }
+
 /* inline code snippets should be the same size
 .cm-s-obsidian .cm-templater-command {
     font-size: 1em;
 }*/
-
 
 
 /* *******************
@@ -111,19 +148,23 @@ adapted from https://gist.github.com/pmbauer/7395acded3bf74d41fe70a2e70d7952a#fi
 .contains-task-list.plugin-tasks-query-result.tasks-layout-hide-createdDate.tasks-layout-hide-urgency.tasks-layout-hide-edit-button {
     padding-inline-start: 0;
 }
+
 /*!* left padding on general tasks*!*/
 body {
     --list-edit-offset: 0em;
 }
+
 /* reduce padding for tasks inside query + checkbox */
 .markdown-rendered ul,
 .markdown-rendered ol {
     padding-inline-start: 0.5rem;
 }
-.is-mobile .markdown-rendered div>ul,
-.is-mobile .markdown-rendered div>ol {
+
+.is-mobile .markdown-rendered div > ul,
+.is-mobile .markdown-rendered div > ol {
     padding-inline-start: 0rem;
 }
+
 /* align the input checkbox insider query resultss*/
 .markdown-source-view.mod-cm6 .contains-task-list.plugin-tasks-query-result .task-list-item-checkbox,
 .contains-task-list.plugin-tasks-query-result ul > li.task-list-item .task-list-item-checkbox,
@@ -131,20 +172,28 @@ body {
 .is-mobile .contains-task-list.plugin-tasks-query-result ul > li.task-list-item .task-list-item-checkbox {
     right: 0.4rem;
 }
+
 .tasks-count {
     font-weight: bold;
     padding-inline-start: 0;
 }
+
 /* format the backlink in a task */
-.tasks-backlink {white-space: nowrap;}
+.tasks-backlink {
+    white-space: nowrap;
+}
+
 .task-extras .tasks-backlink,
-.task-extras .tasks-backlink a
-{
+.task-extras .tasks-backlink a {
     color: var(--text-faint) !important;
 }
+
 /* format the dates displayed in a task */
 .task-due, .task-scheduled {
     color: var(--text-faint);
 }
+
 /* remove edit icon for tasks */
-.tasks-edit { display: none }
+.tasks-edit {
+    display: none
+}
