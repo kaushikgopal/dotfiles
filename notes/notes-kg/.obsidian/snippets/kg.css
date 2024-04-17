@@ -1,45 +1,44 @@
-
 /* *******************
  * General variables */
-
 body {
-    --h1-size: 1rem;
-    --h2-size: 0.91rem;
+    .theme-light {
+    }
+    .theme-dark {
+        --background-primary: #1a1a1a;
+    }
+}
+
+/* *******************
+ * Headings */
+body {
+    --h1-size: 1.2rem;
+    --h2-size: 0.92rem;
     --h3-size: 0.85rem;
-    --h4-size: 0.75rem;
+
     /*  --h1-weight: 550;*/
     /*  --h2-weight: 550;*/
-    /*  --h3-weight: 550;*/
+      --h3-weight: bold;
     /*  --h4-weight: 550;*/
     /*  --h1-color: var(--color-red);*/
     /*  --h2-color: var(--color-orange);*/
     /*  --h3-color: var(--color-green);*/
     /*  --h4-color: var(--color-blue);*/
     /*  --h5-color: var(--color-purple);*/
-
-    .theme-dark {
-        --background-primary: #1a1a1a;
-        /*--background-primary: #222222;*/
-        /*--background-primary: #1f1f1f;*/
-    }
 }
-
-/* *******************
- * Headings */
-
+/* make all headings look the same
 .cm-s-obsidian .HyperMD-header,
 .cm-s-obsidian span.cm-formatting-link {
-    /* make all headings the same size
-    font-size: var(--font-text-size); */
-    color: #569cd6;
-}
+font-size: var(--font-text-size);
+color: #569cd6;
+}*/
+
 /* remove padding from headers
 .cm-s-obsidian .cm-line.HyperMD-header {
     padding-top: var(--size-2-1);
 } */
 
-/* display headings as in source mode */
-/* adapted from https://gist.github.com/pmbauer/7395acded3bf74d41fe70a2e70d7952a#file-pseudo_focus-css-L11-L40 */
+/* display headings as in source mode
+adapted from https://gist.github.com/pmbauer/7395acded3bf74d41fe70a2e70d7952a#file-pseudo_focus-css-L11-L40 */
 .is-live-preview {
     :not(.cm-formatting).cm-header-1:before {content: '# ';}
     :not(.cm-formatting).cm-header-2:before {content: '## ';}
@@ -83,142 +82,67 @@ body {
 .cm-inline-code.cm-formatting:not(:has(.cm-formatting)) {
     margin-left: 3px;
 }
-/*!* inline code snippets should be the same size *!*/
-/*.cm-s-obsidian .cm-templater-command {*/
-/*    font-size: 1em;*/
-/*}*/
+/* inline code snippets should be the same size
+.cm-s-obsidian .cm-templater-command {
+    font-size: 1em;
+}*/
 
 
 
 /* *******************
  * Hashtags */
-
 /* display hashtags with normal font size */
 .cm-hashtag {
     font-size: var(--font-text-size);
 }
 
 /* *******************
- * URLs & links */
-
-/* display urls in with underline */
+ * URLs & links
+ * display urls in with underline
 & .cm-url {text-decoration-line: var(--link-external-decoration-hover);}
 & span.cm-url {text-decoration-line: var(--link-external-decoration-hover);}
+*/
 
 
-/* remove padding from start of task results list */
+/* **********************************
+        TASKS plugin
+   ********************************* */
+/* remove padding from start of task results list*/
 .contains-task-list.plugin-tasks-query-result.tasks-layout-hide-createdDate.tasks-layout-hide-urgency.tasks-layout-hide-edit-button {
-    padding-inline-start: 0px;
+    padding-inline-start: 0;
 }
-
-
-
-
-
-
-
-/*!* add spacing between a header and a list that follows right after *!*/
-/*.cm-s-obsidian .cm-line.HyperMD-header + .cm-line:not(.HyperMD-header):not(:has(>br:only-child)) {*/
-/*    padding-top: 6px;*/
-/*}*/
-
-
-/*!* always show the filename in title-bar *!*/
-/*.view-header-title-container {*/
-/*    opacity: unset;*/
-/*}*/
-
-
-/*!* show edit-block button closer to the actual block *!*/
-/*.markdown-source-view.mod-cm6.is-live-preview.is-readable-line-width .cm-embed-block>.edit-block-button {*/
-/*    left: max(calc(50% + var(--folding-offset) - var(--line-width-adaptive)/ 2),calc(50% + var(--folding-offset) - var(--max-width)/ 2));*/
-/*}*/
-
-
-/*!* add top/bottom spacing to code snippets *!*/
-/*.cm-s-obsidian span.cm-inline-code {*/
-/*    padding: .25rem 0;*/
-/*}*/
-
-
-
-
-
-/* COLORFUL HEADINGS */
-/*body {*/
-
-
-/*    --code-background: var(--ui1);*/
-/*    --code-size: var(--font-small); !* regular size *!*/
-
-/*}*/
-
-/*!* internal & external link headings should respect colorful headings colors *!*/
-/*.cm-header.cm-header-1.cm-link,*/
-/*.cm-header.cm-header-1.cm-hmd-internal-link {*/
-/*    color: var(--h1-color);*/
-/*}*/
-/*.cm-header.cm-header-2.cm-link,*/
-/*.cm-header.cm-header-2.cm-hmd-internal-link {*/
-/*    color: var(--h2-color);*/
-/*}*/
-/*.cm-header.cm-header-3.cm-link,*/
-/*.cm-header.cm-header-3.cm-hmd-internal-link {*/
-/*    color: var(--h3-color);*/
-/*}*/
-/*.cm-header.cm-header-4.cm-link,*/
-/*.cm-header.cm-header-4.cm-hmd-internal-link {*/
-/*    color: var(--h4-color);*/
-/*}*/
-
-
-
-/*!**********************************/
-/*        TASKS plugin*/
-/* *********************************!*/
-
 /*!* left padding on general tasks*!*/
-/*body {*/
-/*    --list-edit-offset: 0em;*/
-/*}*/
-/*!* reduce padding for tasks inside query + checkbox *!*/
-/*.markdown-rendered ul,*/
-/*.markdown-rendered ol {*/
-/*    padding-inline-start: 0.5rem;*/
-/*}*/
-/*.is-mobile .markdown-rendered div>ul,*/
-/*.is-mobile .markdown-rendered div>ol {*/
-/*    padding-inline-start: 0rem;*/
-/*}*/
-
-/*!* align the input checkbox insider query resultss*!*/
-/*.markdown-source-view.mod-cm6 .contains-task-list.plugin-tasks-query-result .task-list-item-checkbox,*/
-/*.contains-task-list.plugin-tasks-query-result ul > li.task-list-item .task-list-item-checkbox,*/
-/*.is-mobile .markdown-source-view.mod-cm6 .contains-task-list.plugin-tasks-query-result .task-list-item-checkbox,*/
-/*.is-mobile .contains-task-list.plugin-tasks-query-result ul > li.task-list-item .task-list-item-checkbox {*/
-/*    right: 0.4rem;*/
-/*}*/
-
-/*.tasks-count {*/
-/*    font-weight: bold;*/
-/*    padding-inline-start: 0;*/
-/*}*/
-/*.markdown-source-view.mod-cm6 .task-list-item-checkbox,*/
-/*ul > li.task-list-item .task-list-item-checkbox {*/
-/*    !*margin-inline-start: calc(var(--checkbox-size) * -1.5);*!*/
-/*}*/
-
-/*!* format the backlink in a task *!*/
-/*.tasks-backlink {*/
-/*    white-space: nowrap;*/
-/*}*/
-/*.task-extras .tasks-backlink,*/
-/*.task-extras .tasks-backlink a*/
-/*{*/
-/*    color: var(--text-faint) !important;*/
-/*}*/
-
-/*!* format the dates displayed in a task *!*/
-/*.task-due, .task-scheduled {*/
-/*    color: var(--text-faint);*/
-/*}*/
+body {
+    --list-edit-offset: 0em;
+}
+/* reduce padding for tasks inside query + checkbox */
+.markdown-rendered ul,
+.markdown-rendered ol {
+    padding-inline-start: 0.5rem;
+}
+.is-mobile .markdown-rendered div>ul,
+.is-mobile .markdown-rendered div>ol {
+    padding-inline-start: 0rem;
+}
+/* align the input checkbox insider query resultss*/
+.markdown-source-view.mod-cm6 .contains-task-list.plugin-tasks-query-result .task-list-item-checkbox,
+.contains-task-list.plugin-tasks-query-result ul > li.task-list-item .task-list-item-checkbox,
+.is-mobile .markdown-source-view.mod-cm6 .contains-task-list.plugin-tasks-query-result .task-list-item-checkbox,
+.is-mobile .contains-task-list.plugin-tasks-query-result ul > li.task-list-item .task-list-item-checkbox {
+    right: 0.4rem;
+}
+.tasks-count {
+    font-weight: bold;
+    padding-inline-start: 0;
+}
+/* format the backlink in a task */
+.tasks-backlink {white-space: nowrap;}
+.task-extras .tasks-backlink,
+.task-extras .tasks-backlink a
+{
+    color: var(--text-faint) !important;
+}
+/* format the dates displayed in a task */
+.task-due, .task-scheduled {
+    color: var(--text-faint);
+}
