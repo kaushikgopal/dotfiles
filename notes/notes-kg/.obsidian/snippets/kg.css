@@ -146,3 +146,5 @@ body {
 .task-due, .task-scheduled {
     color: var(--text-faint);
 }
+/* remove edit icon for tasks */
+.tasks-edit { display: none }
