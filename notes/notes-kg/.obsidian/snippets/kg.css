@@ -52,7 +52,7 @@ color: #569cd6;
 } */
 
 /* display headings as in source mode
-adapted from https://gist.github.com/pmbauer/7395acded3bf74d41fe70a2e70d7952a#file-pseudo_focus-css-L11-L40 */
+adapted from https://gist.github.com/pmbauer/7395acded3bf74d41fe70a2e70d7952a#file-pseudo_focus-css-L11-L40
 .is-live-preview {
     :not(.cm-formatting).cm-header-1:before {
         content: '# ';
@@ -90,35 +90,38 @@ adapted from https://gist.github.com/pmbauer/7395acded3bf74d41fe70a2e70d7952a#fi
     .cm-active.cm-line .cm-header-6:before {
         content: '';
     }
-}
+}*/
 
 /* *******************
  * Code blocks */
 
-/* don't indent code blocks */
-.markdown-source-view.mod-cm6 .cm-line.HyperMD-codeblock {
-    padding-left: 0;
+body .cm-inline-code {
+    /*--code-background: var(--background-primary-alt);*/
+    --code-background: #ffdb9a;
 }
 
-/* don't hide backquotes */
+/* don't indent code blocks
+.markdown-source-view.mod-cm6 .cm-line.HyperMD-codeblock {
+    padding-left: 0;
+}*/
+
+/* don't hide backquotes
 & span.cm-inline-code:not(.cm-formatting, :has(+ .cm-formatting))::before {
     content: "`";
 }
-
 & span.cm-inline-code:not(.cm-formatting, :has(+ .cm-formatting))::after {
     content: "`";
     padding-left: 3px;
-}
+}*/
 
-/* adjust margins to prevent relayout */
+/* adjust margins to prevent relayout
 .cm-inline-code:not(.cm-formatting) + .cm-inline-code.cm-formatting {
     margin-right: 3px;
     padding-left: 0px;
 }
-
 .cm-inline-code.cm-formatting:not(:has(.cm-formatting)) {
     margin-left: 3px;
-}
+}*/
 
 /* inline code snippets should be the same size
 .cm-s-obsidian .cm-templater-command {
