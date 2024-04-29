@@ -272,7 +272,7 @@
           [:!WCOk :!COup_arrow  ]
           [:!WCOl :!COright_arrow]
 
-          ;; (W) left_shift + left_command + arrow keys
+          ;; (W) left_command + left_shift + arrow keys
           [:!WSCh :!SCleft_arrow]
           [:!WSCj :!SCdown_arrow]
           [:!WSCk :!SCup_arrow  ]
@@ -355,6 +355,10 @@
 
           ;; delete char | backspace
           [:f :delete_or_backspace]
+
+          ;; Command + {} move next/prev tag
+          [:l           :!CSopen_bracket ]
+          [:semicolon   :!CSclose_bracket]
       ]}
 
       ;; -----------------------------------------
@@ -368,18 +372,18 @@
             [:i    :!Sequal_sign   :f-mode]
             [:o    :equal_sign   :f-mode]
 
-            ;; []  -- special case we use tab
+            ;; []
 ;;             [:j     :open_bracket   :f-mode]
 ;;             [:k     :close_bracket  :f-mode]
             [:m     :open_bracket   :f-mode]
             [:comma     :close_bracket  :f-mode]
-            ;; ()  -- special case we use tab
+            ;; ()
 ;;             [:m       :!S9   :f-mode]
 ;;             [:comma   :!S0   :f-mode]
             [:j       :!S9   :f-mode]
             [:k   :!S0   :f-mode]
 
-            ;; {}  -- special case we use tab
+            ;; {}
             [:l           :!Sopen_bracket   :f-mode]
             [:semicolon   :!Sclose_bracket   :f-mode]
       ]}
