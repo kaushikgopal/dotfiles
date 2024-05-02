@@ -24,15 +24,25 @@ alias hi='history -i'
 
 # sharkdp/fd - simple and faster laternative to find
 alias fd='fd -u'
-  # --unrestricted # -HI = hidden + ignored
-alias fdup='fd -u -p'
-  # -p = match full path (vs just file name)
-  # command fd (to override)
+  # command fd (to override above)
+  # --unrestricted  = include hidden + ignored                # -HI
+  # -g              = provide glob pattern allowing to search with patterns
+  # -p              = by default it will only match the file/directory name
+  #                   this indicates matching full path (so across directories)
+  # -e              = extension type
+  # -t              = file or directory   # -t d is typical
+
   # sample commands
     # fd -e pdf
     # fd -e pdf -E taxes          # E is short for --exclude <pattern>
+    #
+    # fd -t d '^build$'   # search for directories named build
+    # fd -t d build       # substring build (so anywhere in the name)
+    #
     # fd -e .gitignore -x trash   # trash each file independently
     # fd '^\.DS_Store$' -X rm -i  # rm all at once -X implies you execute in the same instance
+    #
+    #
 
 alias rg='rg -uuS'
     # -uu = --no-ignore --hidden
