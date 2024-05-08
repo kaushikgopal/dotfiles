@@ -24,9 +24,9 @@ body .theme-dark {
 /* *******************
  * Headings */
 body {
-    --h1-size: 1.2rem;
-    --h2-size: 0.92rem;
-    --h3-size: 0.85rem;
+    --h1-size: 2.6rem;
+    --h2-size: 1.5rem;
+    --h3-size: 1rem;
 
     /*  --h1-weight: 550;*/
     /*  --h2-weight: 550;*/
@@ -95,10 +95,16 @@ adapted from https://gist.github.com/pmbauer/7395acded3bf74d41fe70a2e70d7952a#fi
 /* *******************
  * Code blocks */
 
-body .cm-inline-code {
+body .theme-light .cm-inline-code {
     /*--code-background: var(--background-primary-alt);*/
     --code-background: #ffdb9a;
 }
+
+body .theme-dark .cm-inline-code {
+    /*--code-background: var(--background-primary-alt);*/
+    --code-background: var(--hl1);
+}
+
 
 /* don't indent code blocks
 .markdown-source-view.mod-cm6 .cm-line.HyperMD-codeblock {
