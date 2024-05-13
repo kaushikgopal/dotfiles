@@ -156,7 +156,7 @@
   # probably want to set POWERLEVEL9K_PROMPT_ADD_NEWLINE=false above and
   # POWERLEVEL9K_MULTILINE_FIRST_PROMPT_GAP_CHAR=' ' below.
   typeset -g POWERLEVEL9K_SHOW_RULER=true
-  typeset -g POWERLEVEL9K_RULER_CHAR='-'        # reasonable alternative: '·' # unset for warp
+  typeset -g POWERLEVEL9K_RULER_CHAR=''         # reasonable alternative: '·' # unset for warp terminal
   typeset -g POWERLEVEL9K_RULER_FOREGROUND=242
 
   # Filler between left and right prompt on the first prompt line. You can set it to '·' or '-'
@@ -200,8 +200,8 @@
   typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VIOWR_CONTENT_EXPANSION='^'
   typeset -g POWERLEVEL9K_PROMPT_CHAR_OVERWRITE_STATE=true
   # No line terminator if prompt_char is the last segment.
-  # no \n for Warp
-  typeset -g POWERLEVEL9K_PROMPT_CHAR_LEFT_PROMPT_LAST_SEGMENT_END_SYMBOL='\n'
+  # no \n for warp terminal
+  typeset -g POWERLEVEL9K_PROMPT_CHAR_LEFT_PROMPT_LAST_SEGMENT_END_SYMBOL=''
   # No line introducer if prompt_char is the first segment.
   typeset -g POWERLEVEL9K_PROMPT_CHAR_LEFT_PROMPT_FIRST_SEGMENT_START_SYMBOL=
 
