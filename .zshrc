@@ -78,6 +78,11 @@ eval "$(zoxide init --cmd j zsh)"
 # .rb development
 . $(brew --prefix)/opt/asdf/libexec/asdf.sh
 
+# rbenv
+# Load rbenv automatically by appending
+eval "$(rbenv init - zsh)"
+
+
 # make zsh tab completion fix capitalization errors for directories and files
 # 0 -- vanilla completion (abc => abc)
 # 1 -- smart case completion (abc => Abc)
