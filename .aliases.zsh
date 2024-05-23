@@ -69,7 +69,6 @@ alias b='bat'
 alias c='code'
 alias cat='bat'
 alias f='fleet'
-alias gw='./gradlew'
 alias i='idea'
 alias ie='idea -e'  # -e light edit mode --wait terminal waits for IDE to exit
 alias o='open'
@@ -77,6 +76,9 @@ alias oo='open .'
 alias s='soulver'
 alias t='trash'
 
+
+alias ber='bundle exec rails'
+alias gw='./gradlew'
 
 
 alias g='git'
