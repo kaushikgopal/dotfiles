@@ -1,8 +1,3 @@
----
-travel-date: {{date:YYYY-MM}}
-place: 
-description: 
----
 
 [Travel Tips](https://www.schwab.com/learn/story/ways-to-save-money-when-traveling-abroad)
 
@@ -14,9 +9,7 @@ description:
 
 
 - [ ] → Check in onward
-	- [ ] Make sure TSA Precheck (Global Entry) enabled
 - [ ] Check in return ←
-	- [ ] Make sure TSA Precheck (Global Entry) enabled
 
 ----
 
@@ -36,22 +29,25 @@ description:
 - [ ] Book Rental Car
 - [ ] Book Lodging
 - Hotel, AirBnb, Hotel Tonight, Booking.com
-- [ ] Change Slack or Company Status
 - [ ] Download Google Offline Maps
 
 ## Before leaving
+- [ ] Change Slack or Company Status
 - [ ] Keep backup keys for homes with someone
 - [ ] Setup Home Security Automation
 	- [ ] Turn ON Hue Automation
 	- [ ] Turn OFF Lutron Automation
 	- [ ] Add Window locks
-- [ ] Turn overall water off (do it slowly in stages, not right away)
+	- [ ] Run RoboRock schedule once and turn off
+- [ ] Turn overall water off (do it slowly in stages, not right away) - 2302 slot 
 - [ ] Turn gas off for water heater
 - [ ] Turn gas stove lock off
 - [ ] Turn AC off
 
 
 # Packing
+
+## Carry on bag
 
 - [ ] Clothes
 - All of this is **apart from the clothes you wear during day you start travel**
@@ -65,7 +61,7 @@ description:
 		- [ ] Tshirts = n/2
 		- [ ] Shirts = n/2
 		- [ ] Pants = n/2
-	- [ ] PJs
+	-  PJs
 	- [ ] Winter Clothes (Sweaters/Patagonia jackets)
 	- [ ] Shoes
 	- [ ] Cap
@@ -84,12 +80,13 @@ description:
 	- [ ] (if > 7 days) Nail Clipper
 
 ## Backpack
+
 - [ ] Hand sanitizer
 - [ ] Wipes
 - [ ] Eye drops - Replenish
 - [ ] Water bottle
 - [ ] Neck Pillow (remember to keep it right away)
-
+- [ ] Sunglasses 😎
 ### Tech Electronics Kit
 - [ ] Cable: lightening → USB-A
 - [ ] Power Brick: USB-A
@@ -101,7 +98,7 @@ description:
 - [ ] California Drivers License - ID
 - [ ] Chase Reserve CC
 
-#### International
+### International
 - [ ] Travel documents
 	- [ ] Passport
 	- [ ] Green Card
@@ -110,7 +107,6 @@ description:
 - [ ] Download Local apps (FourSquare + Yelp + Gmaps + Airbnb experiences)
 - [ ] $100 emergency cash
 - [ ] Travel Adapter (for non US countries)
-
 
 ## Special Acessories
 - [ ] Camping gear
@@ -129,6 +125,7 @@ description:
 	- [ ] Turn OFF Hue Automation
 	- [ ] Turn ON Lutron Automation
 	- [ ] Remove Window locks
+	- [ ] Turn RoboRock back on
 - [ ] Consolidate pictures [photos](photos.google.com)
 - [ ] Email peeps topics/photos
 - [ ] [[ic/Expensify Reimbursement]]
@@ -137,29 +134,15 @@ description:
 
 
 
-## Hiking
 
+
+## Hiking
 
 [ ] camel waterpack
 [ ] cap/hat
 [ ] sunglasses
 [ ] sunscreen
 [ ] 1 bandana/scarf
-
-
-
-# Post trip
-
-
-[ ] add amounts to splitwise/square cash
-[ ] laundry used clothes
-[ ] consolidate al pictures ([photos.google.com](http://photos.google.com/))
-[ ] send email to peeps about conversation/interesting stuff
-
-
-
-
-
 
 ----
 
