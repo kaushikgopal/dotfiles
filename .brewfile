@@ -80,9 +80,9 @@ brew "gradle"
 brew "scrcpy"
 
 # development ## .rb
-brew "asdf"
+# brew "asdf"
 # brew "ruby-build"
-# brew "rbenv"
+brew "rbenv"
 # brew "ruby-install"
 
 # development ## heroku
