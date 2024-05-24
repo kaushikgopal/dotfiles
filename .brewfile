@@ -103,7 +103,7 @@ brew "bazel"
 brew "pipx"
 
 # development ## fly.io
-brew flyctl
+brew "flyctl"
 
 # Mac apps
 cask "1password"
