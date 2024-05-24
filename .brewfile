@@ -84,6 +84,7 @@ brew "scrcpy"
 # brew "ruby-build"
 brew "rbenv"
 # brew "ruby-install"
+brew "postgresql"
 
 # development ## heroku
 # brew tap heroku/brew
