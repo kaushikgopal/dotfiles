@@ -76,8 +76,8 @@ eval "$(zoxide init --cmd j zsh)"
 
 
 # .rb development
-. $(brew --prefix)/opt/asdf/libexec/asdf.sh
-
+# asdf
+# . $(brew --prefix)/opt/asdf/libexec/asdf.sh
 # rbenv
 # Load rbenv automatically by appending
 eval "$(rbenv init - zsh)"
