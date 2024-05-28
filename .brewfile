@@ -80,10 +80,11 @@ brew "gradle"
 brew "scrcpy"
 
 # development ## .rb
-brew "asdf"
+# brew "asdf"
 # brew "ruby-build"
-# brew "rbenv"
+brew "rbenv"
 # brew "ruby-install"
+brew "postgresql"
 
 # development ## heroku
 # brew tap heroku/brew
@@ -102,7 +103,7 @@ brew "bazel"
 brew "pipx"
 
 # development ## fly.io
-brew install flyctl
+brew "flyctl"
 
 # Mac apps
 cask "1password"
