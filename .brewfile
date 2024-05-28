@@ -2,6 +2,9 @@
 # brew bundle --file=".brewfile"
 
 
+##############################################################
+##### Settings
+
 # set arguments for all 'brew cask install' commands
 cask_args appdir: '/Applications', no_quarantine: true
 
@@ -15,7 +18,9 @@ tap "homebrew/cask-fonts"
 tap "kaushikgopal/tools"
 tap "buo/cask-upgrade"  # better cask upgrading (see `cu`)
 
-# CLI tools
+##############################################################
+##### CLI tools
+
 brew "bat"
 brew "coreutils" # for gnu date
 brew "curl"
@@ -59,7 +64,12 @@ brew "zsh-autosuggestions"          # fish like suggestions (from history + comp
 brew "zsh-syntax-highlighting"      # fish like syntax highlighting
 # brew "zsh-completions"              # autocomplete candidates (without tab) - DOESN'T WORK
 
-# development ## general
+##############################################################
+##### development
+
+#############
+##### general
+
 brew "glab"
 brew "grpcurl"  # caper
 brew "gh"
@@ -72,25 +82,30 @@ brew "github-keygen"
 # brew "docker-credential-helper-ecr"
 # cask "docker"
 
-# development ## android (zulu)
+######################
+##### android (zulu)
+
 tap "mdogan/zulu"
 cask "zulu-jdk17"
 brew "kotlin"
 brew "gradle"
 brew "scrcpy"
 
-# development ## .rb
+#########
+##### .rb
+
 # brew "asdf"
 # brew "ruby-build"
 brew "rbenv"
 # brew "ruby-install"
 brew "postgresql"
 
-# development ## heroku
-# brew tap heroku/brew
-# brew install heroku
+######################
+##### fly.io
+brew "flyctl"
 
-# development ## .py
+######################
+##### .py
 # brew "pyenv"
 # brew "pyenv-virtualenv"
 # brew "python-tabulate"
@@ -98,14 +113,14 @@ brew "postgresql"
 brew "python3"    # caper local mock server
 brew "python-yq"  # caper local mock server
 
-# development ## work
+######################
+##### work
 brew "bazel"
 brew "pipx"
+cask "orbstack"
 
-# development ## fly.io
-brew "flyctl"
-
-# Mac apps
+##############################################################
+##### Mac apps
 cask "1password"
 cask "1password-cli"    # required for Raycast/Alfred integration
 cask "arc"
@@ -153,26 +168,24 @@ cask "webpquicklook"
 # cask "zerotier-one"
 # cask "visual-studio-code"
 
-
-# goku
-tap "candid82/brew"
-tap "yqrashawn/goku"
-cask "karabiner-elements"
-brew "yqrashawn/goku/goku"
-
 # mas "iA Writer", id: 775737590
 mas "Xcode", id: 497799835
 # mas "Hand Mirror", id: 1502839586
 # mas "Things 3", id: 904280696
 
 
+##############################################################
+##### goku
+tap "candid82/brew"
+tap "yqrashawn/goku"
+cask "karabiner-elements"
+brew "yqrashawn/goku/goku"
 
 
 
 
-##################
-# Helpful commands
-##################
+##############################################################
+##### Helpful commands
 
 # https://gist.github.com/ChristopherA/a579274536aab36ea9966f301ff14f3f
 
