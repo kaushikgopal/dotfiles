@@ -1,12 +1,20 @@
 /* *******************
  * General variables */
-body .theme-dark {
+body.theme-dark {
     --background-primary: #1a1a1a;
+}
+
+body.theme-light.minimal-flexoki-light {
+    --tag-border-width: 0;
+    --tag-background: var(--ax1);
+    --tag-color: var(--background-primary);
 }
 
 /*.minimal-light.minimal-flexoki-light .view-content .cm-sizer {
     font-weight: 500;
 }*/
+
+
 
 /* *******************
  * Scrollbars */
