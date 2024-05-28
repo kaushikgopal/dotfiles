@@ -1,7 +1,7 @@
 <% moment(tp.file.title,'YYYY-MM-DD').format("dddd") %> || [[<% fileDate = moment(tp.file.title, 'YYYY-MM-DD').subtract(1, 'd').format('YYYY-MM-DD') %>|Yesterday]] | [[<% fileDate = moment(tp.file.title, 'YYYY-MM-DD').add(1, 'd').format('YYYY-MM-DD') %>|Tomorrow]]
 ```tasks
 not done
-(tags include #p0)
+(tags include #p0) OR (tags include #p1) OR (tags include #p2)
 (path includes todo)
 hide created date
 hide edit button
