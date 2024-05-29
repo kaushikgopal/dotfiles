@@ -24,9 +24,10 @@ path=(
     "$ANDROID_HOME/tools/bin"
     "$ANDROID_HOME/emulator"
 
-    "$HOME/Applications/Android Studio.app/Contents/plugins/Kotlin/kotlinc/bin" # same kotlin as AS
+    $HOME/Applications/Android\ Studio.app/Contents/plugins/Kotlin/kotlinc/bin # same kotlin as AS
+    $HOME/Applications/Android\ Studio.app/Contents/plugins/Kotlin/kotlinc/lib # same kotlin as AS
 
-    $path
+     $path
 )
 
 
