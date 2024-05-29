@@ -1,7 +1,13 @@
+# Used for setting user's environment variables. This file will always be sourced.
+
+# you may be tempted to set the path here. Avoid it!
+#   Prior to loading this file /etc/zprofile is read, which in a default macOS installation executes:
+#       eval `/usr/libexec/path_helper -s`
+#   This will screw with the ordering of any customizations to your path
+
 TZ="America/Los_Angeles"
 VISUAL="idea"
 EDITOR=$VISUAL
-
 
 GEM_HOME="$HOME/.gem"
 GITHUB_USERNAME="kaushikgopal"
