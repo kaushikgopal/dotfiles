@@ -244,5 +244,9 @@ $(brew --prefix)/opt/fzf/install
 #     #sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
 # fi
 
+# SDK man for .kt dev & kscript
+curl -s "https://get.sdkman.io" | bash
+sdk install kotlin 1.9.24
+
 unset delete_if_exists;
 unset clone_if_absent;

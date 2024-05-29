@@ -2,7 +2,7 @@
 # alias l='ls -G'        # -G = color
 alias lah='ls -lahG'    # -a = all, -h = human readable, -l = long format
 alias ld='tree -d -CFL 1'
-alias tr='tree --dirsfirst -CFL 3'
+alias tre='tree --dirsfirst -CFL 1'
 
 # use coreutils `ls` if possible…
 hash gls >/dev/null 2>&1 || alias gls="ls"
@@ -67,20 +67,13 @@ alias rg='rg -uuS'
 
 alias b='bat'
 alias c='code'
-alias cat='bat'
-alias f='fleet'
 alias i='idea'
 alias ie='idea -e'      # -e light edit mode
 alias iew='idea -e --wait'     # --wait terminal waits for IDE to exit
 alias it='idea --temp-project'  # --temp-project  # create a temporary project
 alias o='open'
 alias oo='open .'
-alias s='soulver'
 alias t='trash'
-
-
-alias ber='bundle exec rails'
-alias gw='./gradlew'
 
 
 alias g='git'
@@ -99,30 +92,24 @@ alias grc='git rebase --continue'
 alias grv='git remote -v'
 alias gss='git status --short'
 
-
-#alias diff=/Applications/Xcode.app/Contents/Developer/usr/bin/opendiff
-
-
-# scripts from specific directories that I like to run directly
-alias oncall='kotlin ~/_src/caper/caper-repo/caper/buildSrc/scripts/oncall.main.kts'
-alias tags='kotlin ~/_src/kotlin-scripts/5.pluck-tags-from-blog-posts.main.kts ~/_src/kau.sh/content/blog'
-alias ktfmt='java -jar /usr/local/bin/ktfmt-0.43-jar-with-dependencies.jar'
-
+alias ber='bundle exec rails'
+alias gw='./gradlew'
 
 # these were almost .functions.zsh
-
 alias battery='pmset -g batt'
 #alias battery='pmset -g batt # | grep -Eo "\d+%" | cut -d% -f1'
-
-
-# Recursively trash `.DS_Store` files
-alias tds="find . -name '*.DS_Store' -type f -ls -delete"
-
+alias trashds="find . -name '*.DS_Store' -type f -ls -delete"   # Recursively trash `.DS_Store` files
 # Empty the Trash on all mounted volumes and the main HDD. then clear the useless sleepimage
-alias emptytrash=" \
+alias trashempty=" \
     sudo rm -rfv /Volumes/*/.Trashes; \
     rm -rfv ~/.Trash/*; \
     sudo rm -v /private/var/vm/sleepimage; \
     rm -rv \"$HOME/Library/Application Support/stremio/Cache\";  \
     rm -rv \"$HOME/Library/Application Support/stremio/stremio-cache\" \
 "
+
+#alias diff=/Applications/Xcode.app/Contents/Developer/usr/bin/opendiff
+# scripts from specific directories that I like to run directly
+#alias oncall='kotlin ~/_src/caper/caper-repo/caper/buildSrc/scripts/oncall.main.kts'
+#alias tags='kotlin ~/_src/kotlin-scripts/5.pluck-tags-from-blog-posts.main.kts ~/_src/kau.sh/content/blog'
+#alias ktfmt='java -jar /usr/local/bin/ktfmt-0.43-jar-with-dependencies.jar'

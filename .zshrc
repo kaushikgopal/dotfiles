@@ -24,9 +24,6 @@ path=(
     "$ANDROID_HOME/tools/bin"
     "$ANDROID_HOME/emulator"
 
-    $HOME/Applications/Android\ Studio.app/Contents/plugins/Kotlin/kotlinc/bin # same kotlin as AS
-    $HOME/Applications/Android\ Studio.app/Contents/plugins/Kotlin/kotlinc/lib # same kotlin as AS
-
      $path
 )
 
@@ -114,3 +111,7 @@ eval "$(rbenv init - zsh)"
 source "$(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Must be at the end of file for SDKMAN to work.
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"

@@ -85,9 +85,9 @@ brew "github-keygen"
 ######################
 ##### android (zulu)
 
-tap "mdogan/zulu"
-cask "zulu-jdk17"
-brew "kotlin"
+# tap "mdogan/zulu"     # use sdk man
+# cask "zulu-jdk17"     # use sdk man
+# brew "kotlin"         # use sdk man
 brew "gradle"
 brew "scrcpy"
 
