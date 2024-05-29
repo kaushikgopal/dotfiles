@@ -1,13 +1,10 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
 
-# interactive shell configuration
-# zmodload zsh/zprof
+# ----------------------------------------------------------------------------------------------------------------------
+# Path
 
+# -U stands for unique and tells the shell that it should not add anything to $path if it's there already.
+#   it keeps only the left-most occurrence, so if you added something at the end it will disappear and
+#   if you added something at the beginning, the old one will disappear
 typeset -U path
 path=(
     ~/bin
@@ -20,33 +17,42 @@ path=(
     /usr/sbin
     /sbin
     ~/.local/bin                  # pipx
-    $ANDROID_HOME/platform-tools
-    $ANDROID_HOME/tools
-    $ANDROID_HOME/emulator
+
+    "$ANDROID_HOME/platform-tools"
+    "$ANDROID_HOME/cmdline-tools/latest/bin"
+    "$ANDROID_HOME/tools"
+    "$ANDROID_HOME/tools/bin"
+    "$ANDROID_HOME/emulator"
+
+    "$HOME/Applications/Android Studio.app/Contents/plugins/Kotlin/kotlinc/bin" # same kotlin as AS
+
+    $path
 )
-export PATH
-
-    # /Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home/bin
-    # $HOME/.local/bin
-    # $HOME/.fig/bin
-    # $HOME/.pyenv/shims
 
 
-# Prompt related configurations
-# eval "$(starship init zsh)"
-# autoload -U colors && colors
-# local NEWLINE=$'\n'
-# local HASH='#'
-# PS1="${NEWLINE}%{$fg[white]%}%n@%m %{$fg[magenta]%}%~ %{$reset_color%}${NEWLINE}%{$fg[yellow]%}${HASH}%{$reset_color%} "
+#     # /Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home/bin
+#     # $HOME/.local/bin
+#     # $HOME/.fig/bin
+#     # $HOME/.pyenv/shims
 
 
-# Get the brew prefix
-# /opt/homebrew/opt/
-# /usr/local/share/
-brew_prefix=$(brew --prefix)
+# Added by Jetbrains Toolbox App
+# export PATH="$PATH:/Users/kg/Library/Application Support/JetBrains/Toolbox/scripts"
 
 
-# history settings
+# ----------------------------------------------------------------------------------------------------------------------
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+
+# ----------------------------------------------------------------------------------------------------------------------
+# Zsh settings
+
 HISTFILE=$HOME/.zsh_history
 HISTSIZE=1000
 SAVEHIST=1000
@@ -55,33 +61,15 @@ setopt INC_APPEND_HISTORY SHARE_HISTORY  # adds history incrementally and share 
 setopt HIST_IGNORE_ALL_DUPS  # don't record dupes in history
 
 
-
 . $HOME/.functions.zsh
 . $HOME/.aliases.zsh
-. $HOME/.secrets.zsh
+. $HOME/.secrets.zsh  # company related configs
 source $HOME/.plugins.zsh/magic-enter.plugin.zsh
 source $HOME/.plugins.zsh/gitfast/gitfast.plugin.zsh
 # source $HOME/.plugins.zsh/almostontop/almostontop.plugin.zsh
 
-
-# required for homebrew on M1s
-if [[ $(uname -p) == 'arm' ]]; then
-  eval "$(/opt/homebrew/bin/brew shellenv)"
-fi
-
-
-
-# zoxide
-eval "$(zoxide init --cmd j zsh)"
-
-
-# .rb development
-# asdf
-# . $(brew --prefix)/opt/asdf/libexec/asdf.sh
-# rbenv
-# Load rbenv automatically by appending
-eval "$(rbenv init - zsh)"
-
+# ----------------------------------------------------------------------------------------------------------------------
+# Zsh autocomplete settings
 
 # make zsh tab completion fix capitalization errors for directories and files
 # 0 -- vanilla completion (abc => abc)
@@ -101,15 +89,27 @@ compdef g=git
 source $(brew --prefix)/share/zsh/site-functions
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh  # has to be at the very end
-## copilot shortcut
-# eval "$(github-copilot-cli alias -- "$0")"
 
 # zprof
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# ----------------------------------------------------------------------------------------------------------------------
+# 3rd party utils
 
-source "${brew_prefix}/share/powerlevel10k/powerlevel10k.zsh-theme"
+# Added by OrbStack: command-line tools and integration
+source ~/.orbstack/shell/init.zsh 2>/dev/null || :
 
+# zoxide
+eval "$(zoxide init --cmd j zsh)"
+
+# --- .rb development
+# Load rbenv automatically by appending
+# also adds to path
+eval "$(rbenv init - zsh)"
+
+
+# ----------------------------------------------------------------------------------------------------------------------
+# Powerlevel10k prompt for Zsh
+source "$(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
