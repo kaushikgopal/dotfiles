@@ -66,7 +66,6 @@ alias rg='rg -uuS'
     # rg fast README.md -r FAST       # replace fast -> FAST
 
 alias b='bat'
-alias c='code'
 alias i='idea'
 alias ie='idea -e'      # -e light edit mode
 alias iew='idea -e --wait'     # --wait terminal waits for IDE to exit

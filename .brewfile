@@ -88,8 +88,11 @@ brew "github-keygen"
 # tap "mdogan/zulu"     # use sdk man
 # cask "zulu-jdk17"     # use sdk man
 # brew "kotlin"         # use sdk man
-brew "gradle"
+# brew "gradle"         # use sdk man
 brew "scrcpy"
+
+tap "sdkman/tap"
+brew install sdkman-cli
 
 #########
 ##### .rb
