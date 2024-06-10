@@ -91,7 +91,9 @@ alias grc='git rebase --continue'
 alias grv='git remote -v'
 alias gss='git status --short'
 
-alias ber='bundle exec rails'
+# local development
+alias bid='./bin/dev'
+alias bir='./bin/rails'
 alias gw='./gradlew'
 
 # these were almost .functions.zsh
