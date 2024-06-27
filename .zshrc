@@ -1,3 +1,5 @@
+# zmodload zsh/zprof          # start profiling
+
 
 # ----------------------------------------------------------------------------------------------------------------------
 # Path
@@ -26,26 +28,26 @@ path=(
 
      $path
 )
-
-
 #     # /Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home/bin
 #     # $HOME/.local/bin
 #     # $HOME/.fig/bin
 #     # $HOME/.pyenv/shims
-
-
 # Added by Jetbrains Toolbox App
 # export PATH="$PATH:/Users/kg/Library/Application Support/JetBrains/Toolbox/scripts"
 
 
+
+
 # ----------------------------------------------------------------------------------------------------------------------
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Enable Powerlevel10k instant prompt.
+#   Should stay close to the top of ~/.zshrc.
 
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
+
 
 
 # ----------------------------------------------------------------------------------------------------------------------
@@ -59,12 +61,15 @@ setopt INC_APPEND_HISTORY SHARE_HISTORY  # adds history incrementally and share 
 setopt HIST_IGNORE_ALL_DUPS  # don't record dupes in history
 
 
-. $HOME/.functions.zsh
-. $HOME/.aliases.zsh
-. $HOME/.secrets.zsh  # company related configs
-source $HOME/.plugins.zsh/magic-enter.plugin.zsh
-source $HOME/.plugins.zsh/gitfast/gitfast.plugin.zsh
-# source $HOME/.plugins.zsh/almostontop/almostontop.plugin.zsh
+. $HOME/.functions.zsh                  # load functions first
+dot_if_exists "$HOME/.aliases.zsh"
+dot_if_exists "$HOME/.secrets.zsh"      # company related configs
+
+source_if_exists "$HOME/.plugins.zsh/magic-enter.plugin.zsh"
+source_if_exists "$HOME/.plugins.zsh/gitfast/gitfast.plugin.zsh"
+#source_if_exists  "$HOME/.plugins.zsh/almostontop/almostontop.plugin.zsh"
+
+
 
 # ----------------------------------------------------------------------------------------------------------------------
 # Zsh autocomplete settings
@@ -82,20 +87,21 @@ zstyle ':completion:*' matcher-list '' \
 autoload -Uz compinit
 compinit
 
-## my aliases
+
+# my aliases
 compdef g=git
 source $(brew --prefix)/share/zsh/site-functions
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh  # has to be at the very end
 
-# zprof
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+
 
 # ----------------------------------------------------------------------------------------------------------------------
 # 3rd party utils
 
-# Added by OrbStack: command-line tools and integration
-source ~/.orbstack/shell/init.zsh 2>/dev/null || :
+# # Added by OrbStack: command-line tools and integration
+# source ~/.orbstack/shell/init.zsh 2>/dev/null || :
 
 # zoxide
 eval "$(zoxide init --cmd j zsh)"
@@ -103,7 +109,11 @@ eval "$(zoxide init --cmd j zsh)"
 # --- .rb development
 # Load rbenv automatically by appending
 # also adds to path
-eval "$(rbenv init - zsh)"
+if which rbenv &> /dev/null; then eval "$(rbenv init - zsh)"; fi;
+
+# # Must be at the end of file for SDKMAN to work.
+# export SDKMAN_DIR=$(brew --prefix sdkman-cli)/libexec
+# [[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
 
 
 # ----------------------------------------------------------------------------------------------------------------------
@@ -112,6 +122,5 @@ source "$(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# Must be at the end of file for SDKMAN to work.
-export SDKMAN_DIR=$(brew --prefix sdkman-cli)/libexec
-[[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
+
+# zprof          # stop profiling
