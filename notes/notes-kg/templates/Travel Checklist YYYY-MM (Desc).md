@@ -60,14 +60,14 @@
 	- [ ] Packing Cube 2
 		- [ ] Tshirts = n/2
 		- [ ] Shirts = n/2
-		- [ ] Pants = n/2
+		- [ ] PJ pant = n/2
+		- [ ] Pants = ((n-n/2)/5)+1
 	-  PJs
 	- [ ] Winter Clothes (Sweaters/Patagonia jackets)
 	- [ ] Shoes
 	- [ ] Cap
 
 - [ ] Toiletry (Dopp kit)
-	- [ ] Basic Meds (Panadol/Aspirin + Zyrtec)
 	- [ ] Toothpaste
 	- [ ] Brush
 	- [ ] Wooden Comb
@@ -81,6 +81,7 @@
 
 ## Backpack
 
+- [ ] Basic Meds (Panadol/Aspirin + Zyrtec)
 - [ ] Hand sanitizer
 - [ ] Wipes
 - [ ] Eye drops - Replenish
