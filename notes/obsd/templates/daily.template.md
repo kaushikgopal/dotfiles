@@ -1,15 +1,4 @@
 <% moment(tp.file.title,'YYYY-MM-DD').format("dddd") %> || [[<% fileDate = moment(tp.file.title, 'YYYY-MM-DD').subtract(1, 'd').format('YYYY-MM-DD') %>|Yesterday]] | [[<% fileDate = moment(tp.file.title, 'YYYY-MM-DD').add(1, 'd').format('YYYY-MM-DD') %>|Tomorrow]]
-```tasks
-not done
-(tags include #p0) OR (tags include #p1) OR (tags include #p2)
-(path includes todo)
-hide created date
-hide edit button
-sort by tags
-```
-
-
-# Notes
 
 <% tp.file.cursor(1) %>
 
@@ -18,6 +7,14 @@ sort by tags
 
 - - -
 [[my.todo]] | [[work.todo]] | [[unsorted.todo|unsorted.todo]] | [[all.todo#Grocery|;grocery]] | [[blog.todo|blog]]
+- - -
+```tasks
+not done
+(tags include #p0) OR (tags include #p1) OR (tags include #p2)
+hide created date
+hide edit button
+sort by tags
+```
 - - -
 ![[due.todo#Priority High / upcoming 20 days]]
 ![[due.todo#(Over) Due]]

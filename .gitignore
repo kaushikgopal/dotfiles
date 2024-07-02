@@ -1,5 +1,7 @@
 *
 
-# include .warp/themes directory
-
+# *include* the following directories (i.e. don't .gitignore them)
 !.warp/themes
+
+!notes/obsd/templates
+!notes/obsd/.obsidian/snippets
