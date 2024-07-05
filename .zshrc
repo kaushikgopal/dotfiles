@@ -112,8 +112,8 @@ eval "$(zoxide init --cmd j zsh)"
 if which rbenv &> /dev/null; then eval "$(rbenv init - zsh)"; fi;
 
 # # Must be at the end of file for SDKMAN to work.
-# export SDKMAN_DIR=$(brew --prefix sdkman-cli)/libexec
-# [[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
+export SDKMAN_DIR=$(brew --prefix sdkman-cli)/libexec
+[[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
 
 
 # ----------------------------------------------------------------------------------------------------------------------
