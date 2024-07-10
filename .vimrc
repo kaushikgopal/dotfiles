@@ -11,23 +11,37 @@
 " that means all \x commands turn into ;x
 " the mapleader has to be set before plugin manager starts loading all
 " the plugins.
-let mapleader=";"
+" let mapleader=";"
 
-set mouse=a         " enable mouse support for vim
-set clipboard+=unnamedplus " copy all yanking/pasting operations to the system clipboard
-set ffs=unix,dos,mac    " use Unix for new files and autodetect the rest
-set nobackup            " turn backup off
-set noswapfile          " turn swap file off
-set title               " change the terminal's title
-set nocompatible        " stops odd issues: https://www.integralist.co.uk/posts/vim/
+set nobackup         " turn backup off
+set title            " change the terminal's title
+set directory=/tmp// " change location of swap files
 
-" remove all existing autocmds
-" autocmd!
+
+set ignorecase smartcase " ignore case letters when search
+                         " make searches case-sensitive only if they contain
+                         " upper-case characters
+" =========================================================
+" memory, cpu
+" =========================================================
+
+set history=100     " sets how many lines of history neovim has to remember
+set lazyredraw      " faster scrolling
+set synmaxcol=240   " syntax highlight only for N colums
+
+" =========================================================
+" Colorscheme Theme
+" =========================================================
+packadd! dracula_pro
+syntax enable
+let g:dracula_colorterm = 0
+colorscheme dracula_pro_van_helsing
 
 " =========================================================
 " UI
 " =========================================================
 
+set mouse=a         " enable mouse support for vim
 set nowrap          " wrap lines visually ; set wrap
 "set nowrapscan     " don't continue the search after the end of a buffer
 set visualbell      " stop vim from beeping at you when you make a mistake
@@ -35,7 +49,7 @@ syntax enable       " enable syntax highlighting
 set number rnu      " show relative line numbers
 set cursorline      " highlight current line
 set showmatch       " highlight matching parenthesis
-set scroll=10       " set the number of lines to scroll
+set scroll=20       " set the number of lines to scroll
 set colorcolumn=80,120 " line length marker at 80 columns
 
 "set splitright " open vertical split to the right
@@ -59,51 +73,10 @@ set foldlevelstart=10 " no folds closed when buffer opens
 
 " remove whitespace on save
 autocmd BufWritePre * :%s/\s\+$//e
-"     autocmd BufWritePre * :call TrimWhitespace()
-"     fun! TrimWhitespace()
-"         let l:save = winsaveview()
-"         keeppatterns %s/\s\+$//e
-"         call winrestview(l:save)
-"     endfun
-
-" ignore case letters when search
-" make searches case-sensitive only if they contain upper-case characters
-set ignorecase smartcase
-
-" =========================================================
-" Colorscheme Theme
-" =========================================================
-
-augroup MyColors
-    autocmd!
-    autocmd ColorScheme * highlight LineNr ctermfg=246 ctermbg=236 cterm=NONE guifg=#959394 guibg=#2d2a2e gui=NONE
-                      "\ | highlight Cursor ctermfg=236 ctermbg=246 cterm=NONE guifg=#2d2a2e guibg=#959394 gui=NONE
-augroup END
-"colorscheme monokai_pro
-"colorscheme xcodedarkhc
-
-" Vimwiki/Taskwiki
-" hi link TaskWikiHeaderDef    TaskWikiTaskUuid
-" hi VimwikiHeaderChar    ctermfg=211 cterm=bold
-" hi VimwikiHeader1       ctermfg=211 cterm=underline
-" hi Vimwikiheader2       ctermfg=211
-" hi Vimwikiheader3       ctermfg=225
-" hi Vimwikiheader4       ctermfg=211
-" hi VimwikiListTodo      ctermfg=102
-
-" =========================================================
-" memory, cpu
-" =========================================================
-
-"set hidden          " allows editing multiple buffers without saving
-set history=100     " sets how many lines of history neovim has to remember
-set lazyredraw      " faster scrolling
-set synmaxcol=240   " syntax highlight only for N colums
 
 " =========================================================
 " Tabs, indent
 " =========================================================
-
 set smartindent " autoindent new lines
 set expandtab   " use spaces instead of tabs
 
@@ -111,36 +84,16 @@ set expandtab   " use spaces instead of tabs
 set shiftwidth=4
 set tabstop=4
 
-" don't auto commenting new lines
-au BufEnter * set fo-=c fo-=r fo-=o
-
-" remove line length marker for selected filetypes
-autocmd FileType text,markdown,xml,html,xhtml,javascript setlocal colorcolumn=0
-" 2 spaces for selected filetypes
-autocmd FileType xml,html,xhtml,css,scss,javascript setlocal shiftwidth=2 tabstop=2
-" 8 spaces for `go` filetypes
-autocmd FileType go setlocal shiftwidth=8 tabstop=8
-
-" indentLine
-" change indent char
-let g:indentLine_char = '│'
-
-" background color
-"let g:indentLine_setColors = 0
-
-" disable concealing in markdown files
-let g:indentLine_fileTypeExclude = ['markdown']
-
 " =========================================================
 " Statusline
 " =========================================================
-
 " lightline
 " disable mode information under status line
 " set noshowmode
 
 " disable tmux on vim
 "autocmd VimEnter,VimLeave * silent !tmux set status
+
 " =========================================================
 " Netrw : Vim's file browser
 " =========================================================
@@ -207,57 +160,6 @@ augroup vimrcEx
 
 augroup END
 
-""=========================
-"" Vimwiki/Taskwiki
-""=========================
-"let g:vimwiki_list = [{'path': '~/Dropbox/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
-"let g:vimwiki_ext2syntax = {'.md': 'markdown', '.markdown': 'markdown', 'mdown': 'markdown'}
-"let g:markdown_folding = 1
-"
-""make vimwiki markdown links as [text](text.md) instead of [text](text)
-"let g:vimwiki_markdown_link_ext = 1
-"
-"let g:taskwiki_markup_syntax = "markdown"
-"" reveal conceals on current line without going to insert mode
-"let g:taskwiki_disable_concealcursor = 1
-"nnoremap <leader>v <cmd>cd ~/Dropbox/vimwiki<cr>
-
-"let g:vimwiki_table_mappings=0
-"let g:vimwiki_table_auto_fmt=0
-
-let g:table_mode_corner='|'
-let g:table_mode_header_fillchar='='
-
-function! s:isAtStartOfLine(mapping)
-  let text_before_cursor = getline('.')[0 : col('.')-1]
-  let mapping_pattern = '\V' . escape(a:mapping, '\')
-  let comment_pattern = '\V' . escape(substitute(&l:commentstring, '%s.*$', '', ''), '\')
-  return (text_before_cursor =~? '^' . ('\v(' . comment_pattern . '\v)?') . '\s*\v' . mapping_pattern . '\v$')
-endfunction
-
-inoreabbrev <expr> <bar><bar>
-          \ <SID>isAtStartOfLine('\|\|') ?
-          \ '<c-o>:TableModeEnable<cr><bar><space><bar><left><left>' : '<bar><bar>'
-inoreabbrev <expr> __
-          \ <SID>isAtStartOfLine('__') ?
-          \ '<c-o>:silent! TableModeDisable<cr>' : '__'
-
-" ==========================
-" Get the current syntax config
-" ==========================
-
-function! GetSyntaxID()
-    return synID(line('.'), col('.'), 1)
-endfunction
-
-function! GetSyntaxParentID()
-    return synIDtrans(GetSyntaxID())
-endfunction
-
-function! GetSyntax()
-    echo synIDattr(GetSyntaxID(), 'name')
-    exec "hi ".synIDattr(GetSyntaxParentID(), 'name')
-endfunction
 
 " =======================================================================
 " TwiddleCase : Visually select the desired text
@@ -294,31 +196,28 @@ noremap + <c-a>
 " - instead of control + x to decrease a number
 noremap - <c-x>
 " 0 toggles between acting like ^ and 0 on second press
-"nnoremap <expr> <silent> 0 col('.') == match(getline('.'),'\S')+0 ? '0' : '^'
+nnoremap <expr> <silent> 0 col('.') == match(getline('.'),'\S')+0 ? '0' : '^'
 
 " Replace L -> $ (end of line)
 "noremap L $
 " toggle spell check
 nnoremap <leader>s :set spell!<cr>
-" reload neovim config with without restart
-map <leader>r :source ~/.config/nvim/init.vim<CR>
 
 " clipboard adjustments
-xnoremap <leader>p "_dP
+"xnoremap <leader>p "_dP
 "nnoremap <leader>y "+y
 "vnoremap <leader>y "+y
-nnoremap <leader>Y gg"+yG
-nnoremap <leader>d "_d
-vnoremap <leader>d "_d
+"nnoremap <leader>Y gg"+yG
+"nnoremap <leader>d "_d
+"vnoremap <leader>d "_d
 
 " pad current line with empty line above/below/around
-inoremap <silent> <leader>o <C-\><C-O>:call append(line('.')-1, '')<CR><Esc>
-nnoremap <silent> <leader>o :call append(line('.')-1, '')<CR><Esc>
-inoremap <silent> <leader>O <C-\><C-O>:call append('.', '')<CR><Esc>
-nnoremap <silent> <leader>O :call append('.', '')<CR><Esc>
-inoremap <silent> <leader><CR> <C-\><C-O>:call append(line('.')-1, '')<CR><C-\><C-O>:call append('.', '')<CR><Esc>
-nnoremap <silent> <leader><CR> :call append(line('.')-1, '')<CR>:call append('.', '')<CR><Esc>
-
+"inoremap <silent> <leader>o <C-\><C-O>:call append(line('.')-1, '')<CR><Esc>
+"nnoremap <silent> <leader>o :call append(line('.')-1, '')<CR><Esc>
+"inoremap <silent> <leader>O <C-\><C-O>:call append('.', '')<CR><Esc>
+"nnoremap <silent> <leader>O :call append('.', '')<CR><Esc>
+"inoremap <silent> <leader><CR> <C-\><C-O>:call append(line('.')-1, '')<CR><C-\><C-O>:call append('.', '')<CR><Esc>
+"nnoremap <silent> <leader><CR> :call append(line('.')-1, '')<CR>:call append('.', '')<CR><Esc>
 
 "========================
 " Telescope related mappings
@@ -452,7 +351,9 @@ inoremap <expr> <tab> InsertTabWrapper()
 inoremap <s-tab> <c-n>
 
 " ==========================
-" Plugin disable (temporary)
+" Plugins
 " ==========================
-" let g:loaded_SimpleSmoothScroll_plugin=0
+
+"let g:g:smoothie_enabled=0
+set rtp+=~/.vim/plugins/vim-smoothie
 
