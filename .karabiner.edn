@@ -211,7 +211,7 @@
 
     {:des "Right Cmd (alone) -> Enter"
      :rules [ :apple
-        [:##right_command :right_command nil {:alone [:return_or_enter]}]
+        [:##right_command :right_control nil {:alone [:return_or_enter]}]
     ]}
 
 

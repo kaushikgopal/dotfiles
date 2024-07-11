@@ -96,7 +96,7 @@
             }
           },
           "to" : [ {
-            "key_code" : "right_command"
+            "key_code" : "right_control"
           } ],
           "conditions" : [ {
             "identifiers" : [ {
