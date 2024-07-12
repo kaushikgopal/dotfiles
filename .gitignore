@@ -2,7 +2,8 @@
 
 # *include* the following directories (i.e. don't .gitignore them)
 !.warp/themes
-!.vim
+!.vim/
+!.vim/pack/**
 
 
 !notes/obsd/templates

@@ -1,0 +1,146 @@
+*dracula_pro.txt*           For Vim version 8           Last change: 2020 Apr 27
+*dracula-pro* *vim-dracula-pro*
+
+
+           |\                          ,,                               ~
+            \\          _              ||   _                           ~
+           / \\ ,._-_  < \,  _-_ \\ \\ ||  < \,       -_-_  ,._-_  /'\\ ~
+          || ||  ||    /-|| ||   || || ||  /-||       || \\  ||   || || ~
+          || ||  ||   (( || ||   || || || (( ||       || ||  ||   || || ~
+           \\/   \\,   \/\\ \\,/ \\/\\ \\  \/\\       ||-'   \\,  \\,/  ~
+                                                      |/                ~
+                                                      '                 ~
+
+                        A premium dark theme for vim
+
+================================================================================
+CONTENTS                                                  *dracula-pro-contents*
+
+    1. Intro .............................................. |dracula-pro-intro|
+    2. Usage .............................................. |dracula-pro-usage|
+    3. Configuration .............................. |dracula-pro-configuration|
+    4. Personal Customization ..................... |dracula-pro-customization|
+    5. License .......................................... |dracula-pro-license|
+    6. Bugs ................................................ |dracula-pro-bugs|
+    7. Contributing ................................ |dracula-pro-contributing|
+    8. Credits .......................................... |dracula-pro-credits|
+
+================================================================================
+INTRO                                                        *dracula-pro-intro*
+
+Dracula PRO is a vim plugin that contains
+
+    - a dark colorscheme for vim
+    - a similarly-themed colorscheme for the vim plugin airline
+
+================================================================================
+USAGE                                                        *dracula-pro-usage*
+
+Install it with your favorite plugin manager, and then >
+    colorscheme dracula_pro
+    " or
+    colorscheme dracula_pro_variation
+in your vimrc! See also |dracula-pro-runtimepath|.
+
+If you are an airline user, you can also do >
+    let g:airline_theme='dracula_pro'
+to have airline use Dracula.
+
+                                                       *dracula-pro-runtimepath*
+
+Note that dracula must be in your 'runtimepath' for this command to work
+properly: Version 2.0 introduced autoload functionality for part of the
+plugin, which doesn't work without 'runtimepath' properly set.
+
+For users of Vim 8's |packages| feature, it suffices to put this in your vimrc:
+    packadd! dracula_pro
+    colorscheme dracula_pro
+
+================================================================================
+CONFIGURATION                                        *dracula-pro-configuration*
+
+There are a couple of variables used by Dracula that you might want to adjust
+depending on your terminal's capabilities.
+
+Default values are shown.
+
+--------------------------------------------------------------------------------
+In the following section, `1` signifies `on` and `0` signifies `off`.
+
+* *g:dracula_bold*
+Include bold attributes in highlighting >
+    let g:dracula_bold = 1
+
+* *g:dracula_italic*
+Include italic attributes in highlighting >
+    let g:dracula_italic = 1
+
+* *g:dracula_underline*
+Include underline attributes in highlighting >
+    let g:dracula_underline = 1
+
+* *g:dracula_undercurl*
+Include undercurl attributes in highlighting (only if underline enabled) >
+    let g:dracula_undercurl = 1
+
+* *g:dracula_inverse*
+Include inverse attributes in highlighting >
+    let g:dracula_inverse = 1
+
+* *g:dracula_colorterm*
+Include background fill colors >
+   let g:dracula_colorterm = 1
+
+================================================================================
+CUSTOMIZATION                                        *dracula-pro-customization*
+
+Like all colorschemes, Dracula PRO is easy to customize with |autocmd|. Make use
+of the |ColorScheme| event as in the following examples.
+
+It would be a good idea to put all of your personal changes in an |augroup|,
+which you can do with the following code: >
+    augroup dracula_customization
+      au!
+      " autocmds...
+    augroup END
+>
+
+- To add underline styling to |hl-CursorLine|, you can use the following: >
+    autocmd ColorScheme dracula_pro* hi CursorLine cterm=underline term=underline
+<
+================================================================================
+LICENSE                                                    *dracula-pro-license*
+
+Copyright © 2020 Dracula Theme
+EULA available at https://gum.co/dracula-pro
+
+================================================================================
+BUGS                                                          *dracula-pro-bugs*
+
+At the time of this writing, no major bugs have been found.
+
+If you find one and wish to report it, send an email to zeno@draculatheme.com
+
+================================================================================
+CONTRIBUTING                                          *dracula-pro-contributing*
+
+Want to submit a new feature, bugfix, or hack on Dracula PRO?
+Send an email to zeno@draculatheme.com
+
+Existing code determines style guidelines.
+
+================================================================================
+CREDITS                                                    *dracula-pro-credits*
+
+Originally Created by:
+- Derek S. (https://github.com/dsifford)
+- D. Ben Knoble (https://github.com/benknoble)
+
+Modified by:
+- D. Ben Knoble (https://github.com/benknoble)
+- Zeno Rocha (https://github.com/zenorocha)
+
+Further information available at
+https://draculatheme.com/pro
+
+ vim:tw=78:ts=8:ft=help:norl:
