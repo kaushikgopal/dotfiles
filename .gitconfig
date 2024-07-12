@@ -278,6 +278,7 @@
 
 [push]
   default = tracking
+  autoSetupRemote = true
 
 [status]
   submoduleSummary = true
