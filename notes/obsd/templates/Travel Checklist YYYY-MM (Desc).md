@@ -17,8 +17,11 @@
 
 - [ ] Do you need a Visa?
 - transit countries might require a visa, make sure you don't need a visa or if you do, get them soon
+
+
 - [ ] Check places of Interest
 - Atlas Obscura
+- [List of UNESCO heritage sites](https://en.wikipedia.org/wiki/Lists_of_World_Heritage_Sites)
 - AirBnb Experiences
 - Online Googling
 
