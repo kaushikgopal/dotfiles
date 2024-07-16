@@ -6,7 +6,7 @@
 #   This will screw with the ordering of any customizations to your path
 
 TZ="America/Los_Angeles"
-VISUAL="idea"
+VISUAL="vim"
 EDITOR=$VISUAL
 
 GEM_HOME="$HOME/.gem"
