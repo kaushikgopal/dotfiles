@@ -183,7 +183,8 @@
     }; f"
 
 [core]
-  editor = idea -e --wait
+  editor = vim
+  #editor = idea -e --wait
   excludesfile = ~/.gitignore_global
   attributesfile = ~/.gitattributes
   whitespace = trailing-space,space-before-tab
