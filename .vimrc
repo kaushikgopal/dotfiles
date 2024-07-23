@@ -50,7 +50,7 @@ set number rnu      " show relative line numbers
 set cursorline      " highlight current line
 set showmatch       " highlight matching parenthesis
 set scroll=20       " set the number of lines to scroll
-set colorcolumn=80,120 " line length marker at 80 columns
+set colorcolumn=100 " line length marker at 80 columns
 
 "set splitright " open vertical split to the right
 "set splitbelow " open horizontal split to the bottom
