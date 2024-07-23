@@ -126,6 +126,7 @@ cask "orbstack"
 
 ##############################################################
 ##### Mac apps
+brew "loop"           # open source window arrangement
 cask "1password"
 cask "1password-cli"    # required for Raycast/Alfred integration
 cask "arc"
