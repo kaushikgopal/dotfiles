@@ -200,8 +200,7 @@
   typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VIOWR_CONTENT_EXPANSION='^'
   typeset -g POWERLEVEL9K_PROMPT_CHAR_OVERWRITE_STATE=true
   # No line terminator if prompt_char is the last segment.
-  # no \n for warp terminal
-  typeset -g POWERLEVEL9K_PROMPT_CHAR_LEFT_PROMPT_LAST_SEGMENT_END_SYMBOL=''
+  typeset -g POWERLEVEL9K_PROMPT_CHAR_LEFT_PROMPT_LAST_SEGMENT_END_SYMBOL="\n"
   # No line introducer if prompt_char is the first segment.
   typeset -g POWERLEVEL9K_PROMPT_CHAR_LEFT_PROMPT_FIRST_SEGMENT_START_SYMBOL=
 
