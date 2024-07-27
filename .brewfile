@@ -94,7 +94,7 @@ brew "foreman"       # starting multiple processes concurrently
 brew "scrcpy"
 
 tap "sdkman/tap"
-brew install sdkman-cli
+brew "sdkman-cli"
 
 #########
 ##### .rb
