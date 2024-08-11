@@ -36,8 +36,11 @@ alias fd='fd -u'
     # fd -e pdf
     # fd -e pdf -E taxes          # E is short for --exclude <pattern>
     #
-    # fd -t d '^build$'   # search for directories named build
-    # fd -t d build       # substring build (so anywhere in the name)
+    # fd -td '^build$'   # search for directories named build
+    # fd -td build       # substring build (so anywhere in the name)
+    #
+    # fd -te -td     # --type empty --type directory
+    #
     #
     # fd -e .gitignore -x trash   # trash each file independently
     # fd '^\.DS_Store$' -X rm -i  # rm all at once -X implies you execute in the same instance
@@ -63,7 +66,10 @@ alias rg='rg -uuS'
     #            --type rust
     #             -trust
     #            --type-not rust
+    #
     # rg fast README.md -r FAST       # replace fast -> FAST
+    #
+    #  lah .git/hooks | rg -v '\.sample'   # invert the match with -v
 
 alias b='bat'
 alias i='idea'
@@ -83,6 +89,7 @@ alias gd='git d'    # diff with number support
 alias gdc='git dc'  # diff --cached with number support
 alias gl='git l'
 alias gll='git ll'
+alias gch='git ch'  # special checkout git alias
 alias g.='git checkout .'
 alias g-='git checkout -'
 alias gm='git checkout master'
