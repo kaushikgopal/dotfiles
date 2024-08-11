@@ -85,19 +85,26 @@ alias g='git'
 
 alias ga='git a'
 alias gcm='git commit -m'
+
 alias gd='git d'    # diff with number support
 alias gdc='git dc'  # diff --cached with number support
+
 alias gl='git l'
 alias gll='git ll'
+
 alias gch='git ch'  # special checkout git alias
 alias g.='git checkout .'
 alias g-='git checkout -'
 alias gm='git checkout master'
 alias gma='git checkout main'
+
 alias gp='git pull'
+
 alias grc='git rebase --continue'
 alias grv='git remote -v'
 alias gss='git status --short'
+
+
 
 # local development
 alias bid='./bin/dev'
