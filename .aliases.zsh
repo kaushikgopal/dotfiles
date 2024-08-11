@@ -84,6 +84,7 @@ alias t='trash'
 alias g='git'
 
 alias ga='git a'
+alias g.='git add .'
 alias gcm='git commit -m'
 
 alias gd='git d'    # diff with number support
@@ -93,7 +94,6 @@ alias gl='git l'
 alias gll='git ll'
 
 alias gch='git ch'  # special checkout git alias
-alias g.='git checkout .'
 alias g-='git checkout -'
 alias gm='git checkout master'
 alias gma='git checkout main'
