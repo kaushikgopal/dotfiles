@@ -147,11 +147,12 @@ cask "the-unarchiver"
 cask "warp"
 cask "webpquicklook"
 
-# cask "font-geist"
+cask "font-inter"
+cask "font-geist"
+
 # cask "font-geist-mono"
 # cask "font-ia-writer-duo"
 # cask "font-ibm-plex-mono-kg"
-# cask "font-inter"
 # cask "font-recursive-kg"
 # cask "font-roboto-mono"
 # cask "font-sf-mono"
@@ -168,9 +169,6 @@ cask "webpquicklook"
 # cask "font-ibm-plex-serif"
 # cask "font-new-york"
 
-# cask "brave-browser"
-# cask "proxyman"
-# cask "zerotier-one"
 # cask "visual-studio-code"
 
 # mas "iA Writer", id: 775737590
