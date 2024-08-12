@@ -111,7 +111,7 @@ let g:airline#themes#dracula_pro#palette = {
 \       },
 \     ),
 \   'terminal': s:color_map(
-\       ['bg', 'purple'],
+\       ['bg', 'green'],
 \       ['fg', 'comment'],
 \       ['fg', 'selection'],
 \       {

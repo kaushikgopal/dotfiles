@@ -75,6 +75,10 @@ Include bold attributes in highlighting >
 Include italic attributes in highlighting >
     let g:dracula_italic = 1
 
+* *g:dracula_strikethrough*
+Include strikethrough attributes in highlighting >
+    let g:dracula_strikethrough = 1
+
 * *g:dracula_underline*
 Include underline attributes in highlighting >
     let g:dracula_underline = 1
@@ -82,6 +86,18 @@ Include underline attributes in highlighting >
 * *g:dracula_undercurl*
 Include undercurl attributes in highlighting (only if underline enabled) >
     let g:dracula_undercurl = 1
+
+* *g:dracula_full_special_attrs_support*
+Explicitly declare full support for special attributes. By default it is 1
+for graphical applications and 0 for terminals and terminal emulators.  On
+terminal emulators, set to 1 to allow underline/undercurl highlights without
+changing the foreground color. >
+    let g:dracula_full_special_attrs_support = 1
+
+* *g:dracula_high_contrast_diff*
+Use high-contrast color when in diff mode. By default it is disabled, set to
+1 to enable it.
+   let g:dracula_high_contrast_diff = 1
 
 * *g:dracula_inverse*
 Include inverse attributes in highlighting >
@@ -94,20 +110,46 @@ Include background fill colors >
 ================================================================================
 CUSTOMIZATION                                        *dracula-pro-customization*
 
+
 Like all colorschemes, Dracula PRO is easy to customize with |autocmd|. Make use
-of the |ColorScheme| event as in the following examples.
+of the |ColorScheme| event as in the following examples. Like all autocommands,
+it's best to put all of your personal changes in an |augroup|: >
 
-It would be a good idea to put all of your personal changes in an |augroup|,
-which you can do with the following code: >
-    augroup dracula_customization
-      au!
-      " autocmds...
+    augroup DraculaCustomization
+      autocmd!
+      " Change the highlight group used with vim-gitgutter.
+      autocmd ColorScheme dracula highlight! link GitGutterDelete DraculaRed
     augroup END
->
 
-- To add underline styling to |hl-CursorLine|, you can use the following: >
-    autocmd ColorScheme dracula_pro* hi CursorLine cterm=underline term=underline
+    colorscheme dracula
 <
+
+The autocommand must be defined before the colorscheme is set. To overwrite
+any highlight link that is already established in `colors/dracula.vim`, you
+will need to use the bang (!) modifier on the |hi-link| command.
+
+For more than one customization, it will be easier to define a function that
+can be called from the autocommand: >
+
+    function! s:customize_dracula() abort
+      " Link a highlight group to a predefined highlight group.
+      " See `colors/dracula.vim` for all predefined highlight groups.
+      " To overwrite a highlight link created in `colors/dracula.vim`, you
+      " will need to use the bang (!) modifier
+      highlight! link GitGutterDelete DraculaRed
+
+      " Customize existing highlight groups, for example adding underline.
+      highlight CursorLine cterm=underline term=underline
+    endfunction
+
+    augroup DraculaCustomization
+      autocmd!
+      autocmd ColorScheme dracula call s:customize_dracula()
+    augroup END
+
+    colorscheme dracula
+<
+
 ================================================================================
 LICENSE                                                    *dracula-pro-license*
 
