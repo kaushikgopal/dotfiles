@@ -35,8 +35,8 @@ set synmaxcol=240   " syntax highlight only for N colums
 packadd! dracula_pro
 syntax enable
 let g:dracula_colorterm = 0
-"colorscheme dracula_pro_van_helsing
-colorscheme alucard
+colorscheme dracula_pro_van_helsing
+"colorscheme alucard
 
 " =========================================================
 " UI
