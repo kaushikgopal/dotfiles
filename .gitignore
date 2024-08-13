@@ -1,6 +1,7 @@
 *
 
 # *include* the following directories (i.e. don't .gitignore them)
+!.warp/
 !.warp/themes
 !.vim/
 !.vim/pack/**
