@@ -70,7 +70,6 @@ brew "zsh-syntax-highlighting"      # fish like syntax highlighting
 #############
 ##### general
 
-brew "glab"
 brew "grpcurl"  # caper
 brew "gh"
 brew "git-delta"
