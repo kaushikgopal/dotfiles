@@ -150,6 +150,7 @@ cask "font-geist"
 cask "font-inter"
 cask "font-sf-mono"
 cask "font-source-code-pro"
+cask "font-source-sans-3"
 
 # cask "font-geist-mono"
 # cask "font-ia-writer-duo"
