@@ -132,7 +132,6 @@ cask "google-drive"
 cask "imageoptim"
 cask "jetbrains-toolbox"
 cask "keyboard-maestro"
-cask "loop"           # open source window arrangement
 cask "loopback"
 cask "netnewswire"
 cask "notunes"
