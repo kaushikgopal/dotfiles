@@ -109,6 +109,7 @@ alias gss='git status --short'
 # local development
 alias bid='./bin/dev'
 alias bir='./bin/rails'
+alias gr='gradle'
 alias gw='./gradlew'
 
 # these were almost .functions.zsh
