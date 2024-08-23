@@ -1,5 +1,6 @@
 # Default commands
-: ${MAGIC_ENTER_GIT_COMMAND:="git diff; echo ""; git status --short"}  # run when in a git repository
+#: ${MAGIC_ENTER_GIT_COMMAND:="git diff; echo ""; git status --short"}  # run when in a git repository
+: ${MAGIC_ENTER_GIT_COMMAND:="git status --short"}  # run when in a git repository
 : ${MAGIC_ENTER_OTHER_COMMAND:="lah"}        # run anywhere else
 
 magic-enter() {
