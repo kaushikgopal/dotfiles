@@ -121,7 +121,7 @@ brew "python-yq"  # caper local mock server
 ##### work
 brew "bazel"
 brew "pipx"
-cask "orbstack"
+#cask "orbstack"
 
 ##############################################################
 ##### Mac apps
