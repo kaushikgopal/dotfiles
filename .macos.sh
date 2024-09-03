@@ -609,6 +609,17 @@ defaults write com.apple.dock autohide-delay -int 60
 ##     echo "auth       sufficient     pam_tid.so" | sudo tee -a /etc/pam.d/sudo
 ## fi
 ###############################################################################
+# VS Code (VIM mode)
+###############################################################################
+mkdir -p ~/Library/Application\ Support/Code/User
+ln -s .vscode/settings.json ~/Library/Application\ Support/Code/User/
+
+defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false              # For VS Code
+defaults write com.microsoft.VSCodeInsiders ApplePressAndHoldEnabled -bool false      # For VS Code Insider
+defaults write com.vscodium ApplePressAndHoldEnabled -bool false                      # For VS Codium
+defaults write com.microsoft.VSCodeExploration ApplePressAndHoldEnabled -bool false   # For VS Codium Exploration users
+defaults delete -g ApplePressAndHoldEnabled                                           # If necessary, reset global default
+###############################################################################
 # Kill affected applications                                                  #
 ###############################################################################
 #  "Activity Monitor" \
