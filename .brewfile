@@ -142,6 +142,7 @@ cask "soundsource"
 cask "superduper"
 cask "tailscale"
 cask "the-unarchiver"
+cask "visual-studio-code"
 cask "warp"
 cask "webpquicklook"
 
