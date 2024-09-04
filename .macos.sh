@@ -611,9 +611,6 @@ defaults write com.apple.dock autohide-delay -int 60
 ###############################################################################
 # VS Code (VIM mode)
 ###############################################################################
-mkdir -p ~/Library/Application\ Support/Code/User
-ln -s .vscode/settings.json ~/Library/Application\ Support/Code/User/
-
 defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false              # For VS Code
 defaults write com.microsoft.VSCodeInsiders ApplePressAndHoldEnabled -bool false      # For VS Code Insider
 defaults write com.vscodium ApplePressAndHoldEnabled -bool false                      # For VS Codium
