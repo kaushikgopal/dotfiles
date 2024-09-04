@@ -5,7 +5,6 @@
 !.warp/themes
 !.vim/
 !.vim/pack/**
-!.vscode/settings.json
 
 
 !notes/obsd/templates
