@@ -200,7 +200,7 @@
   typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VIOWR_CONTENT_EXPANSION='^'
   typeset -g POWERLEVEL9K_PROMPT_CHAR_OVERWRITE_STATE=true
   # No line terminator if prompt_char is the last segment.
-  typeset -g POWERLEVEL9K_PROMPT_CHAR_LEFT_PROMPT_LAST_SEGMENT_END_SYMBOL= #"\n"
+  typeset -g POWERLEVEL9K_PROMPT_CHAR_LEFT_PROMPT_LAST_SEGMENT_END_SYMBOL="\n" # @KG
   # No line introducer if prompt_char is the first segment.
   typeset -g POWERLEVEL9K_PROMPT_CHAR_LEFT_PROMPT_FIRST_SEGMENT_START_SYMBOL=
 
@@ -209,9 +209,10 @@
   typeset -g POWERLEVEL9K_DIR_FOREGROUND=008
   # If directory is too long, shorten some of its segments to the shortest possible unique
   # prefix. The shortened directory can be tab-completed to the original.
-  typeset -g POWERLEVEL9K_SHORTEN_STRATEGY=truncate_to_last  #truncate_to_last truncate_middle #truncate_with_package_name #truncate_to_unique
+  typeset -g POWERLEVEL9K_DIR_TRUNCATE_TO_SHORTENED_DIR=false
+  typeset -g POWERLEVEL9K_SHORTEN_STRATEGY=truncate_to_unique #truncate_to_last truncate_middle #truncate_with_package_name #truncate_to_unique
   # Replace removed segment suffixes with this symbol.
-  typeset -g POWERLEVEL9K_SHORTEN_DELIMITER= #'…'
+  typeset -g POWERLEVEL9K_SHORTEN_DELIMITER='…'
   # Color of the shortened directory segments.
   typeset -g POWERLEVEL9K_DIR_SHORTENED_FOREGROUND=003
   # Color of the anchor directory segments. Anchor segments are never shortened. The first
