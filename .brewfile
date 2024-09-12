@@ -119,7 +119,7 @@ brew "python-yq"  # caper local mock server
 
 ######################
 ##### work
-brew "bazel"
+brew "bazelisk"
 brew "pipx"
 #cask "orbstack"
 
