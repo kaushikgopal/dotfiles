@@ -121,7 +121,7 @@
 ;; layers are basically "hyper" keys
 ;; press this in combination with something else and depending on your rule, make things happen
 :layers {
-    :tab-mode   {:key :tab}
+;;    :tab-mode   {:key :tab}
 ;;     :caps-mode {:key :caps_lock :alone {:key :escape}}
 } ;; layers
 
@@ -387,42 +387,6 @@
             [:l           :!Sopen_bracket   :f-mode]
             [:semicolon   :!Sclose_bracket   :f-mode]
       ]}
-
-      ;; -----------------------------------------
-      ;; tab-mode (window management)
-      ;; -----------------------------------------
-
-      {:des "tab-mode: window management"
-       :rules [:tab-mode
-
-          [:##i [:km "wm: toggle left"] ]
-          [:##o [:km "wm: toggle right"] ]
-
-          [:##f [:km "wm: toggle full"] ]
-          [:##c [:km "wm: toggle center"] ]
-          [:##v [:km "wm: toggle vertical"] ]
-
-          ;; m    <->   ,     |||   cmd shift [      <->     cmd shift ]
-          [:##m     :!CSopen_bracket   ]   ;; switch tabs in most apps  ;; Cmd Shift [
-          [:##comma :!CSclose_bracket  ]  ;; switch tabs in most apps  ;; Cmd Shift ]
-
-      ]}
-
-
-          ;;[:t [:km "wm: minor left"] ] ;; Window move
-          ;;[:y [:km "wm: major left"] ] ;; Window move
-          ;;[:u [:km "wm: half left"] ] ;; Window move
-          ;;[:p [:km "wm: major right"] ] ;; Window move
-          ;;[:open_bracket [:km "wm: minor right"] ] ;; Window move
-
-          ;;[:j [:km "wm: split 3 left"] ] ;; Window move
-          ;;[:k [:km "wm: split 3 center"] ] ;; Window move
-          ;;[:l [:km "wm: split 3 right"] ] ;; Window move
-
-          ;;[:c [:km "wm: center"] ] ;; Window move
-          ;;[:v [:km "wm: vertical fill"] ] ;; Window move
-          ;;[:f [:km "wm: full"] ] ;; Window move
-
 
 
 ;    {:des "testing"
