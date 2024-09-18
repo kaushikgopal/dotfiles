@@ -148,10 +148,10 @@ cask "visual-studio-code"
 cask "warp"
 cask "webpquicklook"
 
-cask "font-geist"
+cask "font-source-code-pro"
 cask "font-inter"
 cask "font-sf-mono"
-cask "font-source-code-pro"
+cask "font-geist"
 cask "font-source-sans-3"
 
 # cask "font-geist-mono"
