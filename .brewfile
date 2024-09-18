@@ -148,12 +148,12 @@ cask "visual-studio-code"
 cask "warp"
 cask "webpquicklook"
 
-cask "font-source-code-pro"
 cask "font-inter"
-cask "font-sf-mono"
 cask "font-geist"
-cask "font-source-sans-3"
 
+# cask "font-source-code-pro" # install otf directly from Adobe
+# cask "font-source-sans-3"   # install otf directly from Adobe
+# cask "font-sf-mono"
 # cask "font-geist-mono"
 # cask "font-ia-writer-duo"
 # cask "font-ibm-plex-mono-kg"
