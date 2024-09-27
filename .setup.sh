@@ -248,5 +248,10 @@ $(brew --prefix)/opt/fzf/install
 curl -s "https://get.sdkman.io" | bash
 sdk install kotlin 1.9.24
 
+mkdir -p ~/.warp/themes
+pushd ~/.warp/themes
+git clone https://github.com/juliabresolin/warp-theme-dark-modern
+popd
+
 unset delete_if_exists;
 unset clone_if_absent;
