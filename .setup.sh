@@ -240,8 +240,9 @@ $(brew --prefix)/opt/fzf/install
 #     touch /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress;
 #     softwareupdate --install -a --verbose
 #     rm /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress
-#     #xcode-select --install
-#     #sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
+     xcode-select --install
+     #sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer
+     sudo xcode-select --switch /Library/Developer/CommandLineTools/
 # fi
 
 # SDK man for .kt dev & kscript
