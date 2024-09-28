@@ -24,8 +24,6 @@ tap "buo/cask-upgrade"  # better cask upgrading (see `cu`)
 brew "bat"
 brew "coreutils" # for gnu date
 brew "curl"
-brew "exiftool"
-brew "eye-d3"
 brew "fd"
 brew "ffmpeg"
 brew "fzf"
@@ -34,7 +32,6 @@ brew "gnupg" # "openssl"
 brew "gum"
 brew "htmltest"
 brew "httpie"
-brew "htop"
 brew "hugo"
 brew "imagemagick"
 brew "mas"
@@ -53,8 +50,10 @@ brew "xmlstarlet"   # fine-grain xml manipulation
 # brew "neovim"
 # brew "briss" # pdf cropping tool
 # brew "exa"
+# brew "tmux"
+# brew "exiftool"
+# brew "eye-d3"
 
-brew "tmux"
 brew "trash"
 brew "tree"
 brew "wget"
@@ -70,7 +69,6 @@ brew "zsh-syntax-highlighting"      # fish like syntax highlighting
 #############
 ##### general
 
-brew "grpcurl"  # caper
 brew "gh"
 brew "git-delta"
 brew "git-lfs"
@@ -122,6 +120,7 @@ brew "python-yq"  # caper local mock server
 brew "bazelisk"
 brew "pipx"
 #cask "orbstack"
+brew "grpcurl"  # caper
 
 ##############################################################
 ##### Mac apps
@@ -140,14 +139,14 @@ cask "notunes"
 cask "obsidian"
 cask "raycast"
 cask "slack"
-cask "soulver"
 cask "soundsource"
-cask "superduper"
 cask "tailscale"
 cask "the-unarchiver"
 cask "visual-studio-code"
 cask "warp"
 cask "webpquicklook"
+#cask "superduper"
+#cask "soulver"
 
 cask "font-inter"
 cask "font-geist"
@@ -175,7 +174,7 @@ cask "font-geist"
 # cask "visual-studio-code"
 
 # mas "iA Writer", id: 775737590
-mas "Xcode", id: 497799835
+# mas "Xcode", id: 497799835
 # mas "Hand Mirror", id: 1502839586
 # mas "Things 3", id: 904280696
 
