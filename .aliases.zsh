@@ -44,14 +44,13 @@ alias fd='fd -u'
 #
 
 alias rg='rg -uuS'
-# -uu = --no-ignore --hidden
+# -u    = '--no-ignore'                     # also search .ignore
+# -uu   = '--no-ignore --hidden'.           # also search hidden dirs/files
+# -uuu  = '--no-ignore --hidden --binary'.
 # -S = --smart-case
 # -I = --no-filename
 # --no-line-number
 # --color=never  # when you want to script
-# -u    = '--no-ignore'.
-# -uu   = '--no-ignore --hidden'.
-# -uuu  = '--no-ignore --hidden --binary'.
 
 # sample commands
 # rg fast README.md               # search for literal "fast" in file README.md
