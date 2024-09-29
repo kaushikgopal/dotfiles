@@ -1,5 +1,9 @@
 # Used for setting user's environment variables. This file will always be sourced.
 
+# load order
+# .zshenv > .zprofile > .zshrc
+
+
 # you may be tempted to set the path here. Avoid it!
 #   Prior to loading this file /etc/zprofile is read, which in a default macOS installation executes:
 #       eval `/usr/libexec/path_helper -s`
@@ -9,28 +13,31 @@ TZ="America/Los_Angeles"
 VISUAL="vim"
 EDITOR=$VISUAL
 
-GEM_HOME="$HOME/.gem"
-GITHUB_USERNAME="kaushikgopal"
-HOMEBREW_CACHE="/Library/Caches/Homebrew"
-HOMEBREW_CASK_OPTS="--appdir=/Applications --fontdir=/Library/Fonts"
-HOMEBREW_NO_AUTO_UPDATE=1
-HOMEBREW_NO_INSTALL_UPGRADE=1
-
-# export JAVA_HOME=$(/usr/libexec/java_home -v"17")
-export JAVA_HOME=$HOME/Applications/Android\ Studio.app/Contents/jbr/Contents/Home
-export ANDROID_HOME=$HOME/Library/Android/sdk
 
 export FZF_DEFAULT_COMMAND='fd --type file --no-ignore-vcs --color=always'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_DEFAULT_OPTS="--ansi"
 
-export GOKU_EDN_CONFIG_FILE=~/.karabiner.edn
-export STARSHIP_CONFIG=~/.starship.toml
-export BAT_CONFIG_PATH=~/.bat.conf
+GITHUB_USERNAME="kaushikgopal"
+
+HOMEBREW_CACHE="/Library/Caches/Homebrew"
+HOMEBREW_CASK_OPTS="--appdir=/Applications --fontdir=/Library/Fonts"
+HOMEBREW_NO_AUTO_UPDATE=1
+HOMEBREW_NO_INSTALL_UPGRADE=1
+
+# Ruby development
+GEM_HOME="$HOME/.gem"
 
 # XDG_CONFIG_HOME="$HOME/.config"
 # XDG_DATA_HOME="$HOME/.data"
 # XDG_CACHE_HOME="$HOME/.cache"
+
+HISTFILE=$HOME/.zsh_history
+HISTSIZE=1000
+SAVEHIST=1000
+setopt APPEND_HISTORY # adds history
+setopt INC_APPEND_HISTORY SHARE_HISTORY  # adds history incrementally and share it across sessions
+setopt HIST_IGNORE_ALL_DUPS  # don't record dupes in history
 
 
 ####################

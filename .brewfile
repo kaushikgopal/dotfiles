@@ -103,10 +103,6 @@ brew "rbenv"
 brew "postgresql"
 
 ######################
-##### fly.io
-brew "flyctl"
-
-######################
 ##### .py
 # brew "pyenv"
 # brew "pyenv-virtualenv"
@@ -114,6 +110,14 @@ brew "flyctl"
 # brew "python@3.10"
 brew "python3"    # caper local mock server
 brew "python-yq"  # caper local mock server
+
+######################
+##### go
+brew "go"
+
+######################
+##### fly.io
+brew "flyctl"
 
 ######################
 ##### work

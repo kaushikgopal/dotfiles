@@ -1,41 +1,9 @@
 # zmodload zsh/zprof          # start profiling
 
 
-# ----------------------------------------------------------------------------------------------------------------------
-# Path
-
-# -U stands for unique and tells the shell that it should not add anything to $path if it's there already.
-#   it keeps only the left-most occurrence, so if you added something at the end it will disappear and
-#   if you added something at the beginning, the old one will disappear
-typeset -U path
-path=(
-    ~/bin
-    /opt/homebrew/bin
-    /opt/homebrew/sbin
-    /usr/local/bin
-    /usr/bin
-    /bin
-    /usr/local/sbin
-    /usr/sbin
-    /sbin
-    ~/.local/bin                  # pipx
-
-    "$ANDROID_HOME/platform-tools"
-    "$ANDROID_HOME/cmdline-tools/latest/bin"
-    "$ANDROID_HOME/tools"
-    "$ANDROID_HOME/tools/bin"
-    "$ANDROID_HOME/emulator"
-
-     $path
-)
-#     # /Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home/bin
-#     # $HOME/.local/bin
-#     # $HOME/.fig/bin
-#     # $HOME/.pyenv/shims
-# Added by Jetbrains Toolbox App
-# export PATH="$PATH:/Users/kg/Library/Application Support/JetBrains/Toolbox/scripts"
-
-
+# load order
+# .zshenv > .zprofile > .zshrc
+# .zshrc (if interactive)
 
 
 # ----------------------------------------------------------------------------------------------------------------------
@@ -49,16 +17,9 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 
-
 # ----------------------------------------------------------------------------------------------------------------------
 # Zsh settings
 
-HISTFILE=$HOME/.zsh_history
-HISTSIZE=1000
-SAVEHIST=1000
-setopt APPEND_HISTORY # adds history
-setopt INC_APPEND_HISTORY SHARE_HISTORY  # adds history incrementally and share it across sessions
-setopt HIST_IGNORE_ALL_DUPS  # don't record dupes in history
 
 
 . $HOME/.functions.zsh                  # load functions first
