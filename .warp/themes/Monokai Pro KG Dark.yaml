@@ -1,7 +1,7 @@
 # Terminal background color
 background:
   top: "#2A2A2A"
-  bottom: "#2222222
+  bottom: "#222222"
 # Accent color for UI elements
 accent:
   left: "#007972"
