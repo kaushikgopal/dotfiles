@@ -68,6 +68,8 @@ alias rg='rg -uuS'
 
 alias b='bat'
 alias c='code'
+alias cn='code -n'  # -n = --new-window
+alias cr='code -r'  # -r = --reuse-window
 alias cu='cursor'
 alias i='idea'
 alias ie='idea -e'             # -e light edit mode
