@@ -154,6 +154,8 @@ cask "webpquicklook"
 
 cask "font-inter"
 cask "font-geist"
+cask "font-sf-pro"      # obsidian notes
+cask "font-sf-compact"
 
 # cask "font-source-code-pro" # install otf directly from Adobe
 # cask "font-source-sans-3"   # install otf directly from Adobe
@@ -163,8 +165,6 @@ cask "font-geist"
 # cask "font-ibm-plex-mono-kg"
 # cask "font-recursive-kg"
 # cask "font-roboto-mono"
-# cask "font-sf-pro"
-# cask "font-sf-compact"
 # cask "font-cascadia-code"
 # cask "font-cascadia-code-pl"
 # cask "font-ia-writer-mono"

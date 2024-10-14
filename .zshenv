@@ -10,8 +10,9 @@
 #   This will screw with the ordering of any customizations to your path
 
 TZ="America/Los_Angeles"
-VISUAL="vim"
-EDITOR=$VISUAL
+TERM='xterm-256color'
+EDITOR='nvim'
+VISUAL='nvim'
 
 
 export FZF_DEFAULT_COMMAND='fd --type file --no-ignore-vcs --color=always'

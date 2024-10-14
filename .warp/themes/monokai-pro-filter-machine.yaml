@@ -28,3 +28,4 @@ terminal_colors:
     magenta: '#BAA0F8'
     cyan:    '#7CD5F1'
     white:   '#798384'
+cursor: '#D100D1'

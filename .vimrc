@@ -7,6 +7,7 @@
 " General settings
 " =========================================================
 
+
 " change leader to a comma because the backslash is too far away
 " that means all \x commands turn into ;x
 " the mapleader has to be set before plugin manager starts loading all
@@ -35,8 +36,9 @@ set synmaxcol=240   " syntax highlight only for N colums
 packadd! dracula_pro
 syntax enable
 let g:dracula_colorterm = 0
-colorscheme dracula_pro_van_helsing
+colorscheme dracula_pro
 "colorscheme alucard
+
 
 " =========================================================
 " UI
