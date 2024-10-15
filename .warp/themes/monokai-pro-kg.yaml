@@ -1,9 +1,7 @@
 # Terminal background color
 background: "#2D2A2E"
 # Accent color for UI elements
-accent:
-  left: "#007972"
-  right: "#7b008f"
+accent: "#FF6B68"
 # The foreground color.
 foreground: '#FCFCFA'
 # Whether the theme is lighter or darker.
