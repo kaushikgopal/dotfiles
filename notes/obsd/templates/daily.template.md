@@ -6,7 +6,7 @@
 
 
 - - -
-[[my.todo]] | [[work.todo]] | [[unsorted.todo|unsorted.todo]] | [[location.todo#Grocery|;grocery]] | [[blog.todo|blog]]
+[[✱ Home]] | [[✱ Work]] | [[unsorted.todo|unsorted.todo]] | [[✱ Locations#Grocery|;grocery]] | [[blog.todo|blog]]
 - - -
 ```tasks
 not done
