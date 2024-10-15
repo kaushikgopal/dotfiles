@@ -156,10 +156,10 @@ cask "font-inter"
 cask "font-geist"
 cask "font-sf-pro"      # obsidian notes
 cask "font-sf-compact"
+cask "font-sf-mono"
 
 # cask "font-source-code-pro" # install otf directly from Adobe
 # cask "font-source-sans-3"   # install otf directly from Adobe
-# cask "font-sf-mono"
 # cask "font-geist-mono"
 # cask "font-ia-writer-duo"
 # cask "font-ibm-plex-mono-kg"
