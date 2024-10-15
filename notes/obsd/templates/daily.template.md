@@ -5,8 +5,12 @@
 
 
 
+
+
+
+
 - - -
-[[✱ Home]] | [[✱ Work]] | [[unsorted.todo|unsorted.todo]] | [[✱ Locations#Grocery|;grocery]] | [[blog.todo|blog]]
+[[✱ Home]] - [[✱ Work]] | [[✱ grocery]] | [[todo]] - [[todo.due]] - [[unsorted.todo|unsorted.todo]] | 
 - - -
 ```tasks
 not done
@@ -16,6 +20,6 @@ hide edit button
 sort by tags
 ```
 - - -
-![[due.todo#Priority High / upcoming 20 days]]
-![[due.todo#(Over) Due]]
-![[due.todo#Priority Medium / upcoming 10 days]]
+![[todo.due#Priority High / upcoming 20 days]]
+![[todo.due#(Over) Due]]
+![[todo.due#Priority Medium / upcoming 10 days]]
