@@ -131,7 +131,6 @@ brew "grpcurl"  # caper
 cask "1password"
 cask "1password-cli"    # required for Raycast/Alfred integration
 cask "arc"
-cask "asana"
 cask "cursor"
 cask "google-drive"
 cask "imageoptim"
