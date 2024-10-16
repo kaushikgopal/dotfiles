@@ -4,18 +4,10 @@
 
 
 
+- - -
+[[✱ Home]] - [[✱ Work]] |  [[todo]]   |   [[unsorted.todo|unsorted.todo]] |  [[✱ grocery]] 
+- - -
 
-- - -
-[[✱ Home]] | [[✱ Work]] | [[unsorted.todo|unsorted.todo]] | [[✱ Locations#Grocery|;grocery]] | [[blog.todo|blog]]
-- - -
-```tasks
-not done
-(tags include #p0) OR (tags include #p1) OR (tags include #p2)
-hide created date
-hide edit button
-sort by tags
-```
-- - -
-![[due.todo#Priority High / upcoming 20 days]]
-![[due.todo#(Over) Due]]
-![[due.todo#Priority Medium / upcoming 10 days]]
+
+
+![[todo#Due]]
