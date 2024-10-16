@@ -5,9 +5,8 @@
 
 
 - - -
-[[✱ Home]] - [[✱ Work]] |  [[todo]]   |   [[unsorted.todo|unsorted.todo]] |  [[✱ grocery]] 
+[[✱ Home]] - [[✱ Work]] |  [[todo]] |   [[unsorted.todo]] |  [[✱ grocery]]
 - - -
-
 
 
 ![[todo#Due]]
