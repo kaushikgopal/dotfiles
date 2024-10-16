@@ -367,10 +367,10 @@
       {:des "f-mode (special characters) ... mostly"
           :rules [
 
-            ;;  u i o  ||| - + =
-            [:u    :hyphen   :f-mode]
-            [:i    :!Sequal_sign   :f-mode]
-            [:o    :equal_sign   :f-mode]
+            ;;  u i o p  ||| - + =
+            [:i    :!S8 :f-mode]
+            [:o    :hyphen   :f-mode]
+            [:p    :!Sequal_sign   :f-mode]
 
             ;; []
 ;;             [:j     :open_bracket   :f-mode]
