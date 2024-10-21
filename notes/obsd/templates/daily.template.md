@@ -5,7 +5,7 @@
 
 
 - - -
-[[✱ Home]] - [[✱ Work]] |  [[todo]] |   [[unsorted.todo]] |  [[✱ grocery]]
+[[✱ Dashboard]] - [[✱ Work]] |  [[todo]] |   [[unsorted.todo]] |  [[✱ grocery]]
 - - -
 
 
