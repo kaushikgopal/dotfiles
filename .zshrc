@@ -20,8 +20,6 @@ fi
 # ----------------------------------------------------------------------------------------------------------------------
 # Zsh settings
 
-
-
 . $HOME/.functions.zsh                  # load functions first
 dot_if_exists "$HOME/.aliases.zsh"
 dot_if_exists "$HOME/.secrets.zsh"      # company related configs
@@ -29,7 +27,6 @@ dot_if_exists "$HOME/.secrets.zsh"      # company related configs
 source_if_exists "$HOME/.plugins.zsh/magic-enter.plugin.zsh"
 source_if_exists "$HOME/.plugins.zsh/gitfast/gitfast.plugin.zsh"
 #source_if_exists  "$HOME/.plugins.zsh/almostontop/almostontop.plugin.zsh"
-
 
 
 # ----------------------------------------------------------------------------------------------------------------------
@@ -54,8 +51,6 @@ compdef g=git
 source $(brew --prefix)/share/zsh/site-functions
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh  # has to be at the very end
-
-
 
 
 # ----------------------------------------------------------------------------------------------------------------------

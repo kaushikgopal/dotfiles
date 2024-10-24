@@ -5,6 +5,14 @@
 # .zshenv > .zprofile > .zshrc
 # .zprofile loaded (if login)
 
+# Java/Android development
+# export JAVA_HOME=$(/usr/libexec/java_home -v"17")
+export JAVA_HOME=$HOME/Applications/Android\ Studio.app/Contents/jbr/Contents/Home
+export ANDROID_HOME=$HOME/Library/Android/sdk
+
+export GOKU_EDN_CONFIG_FILE=~/.karabiner.edn
+export STARSHIP_CONFIG=~/.starship.toml
+export BAT_CONFIG_PATH=~/.bat.conf
 
 # ----------------------------------------------------------------------------------------------------------------------
 # Path
@@ -31,31 +39,18 @@ path=(
     "$ANDROID_HOME/tools/bin"
     "$ANDROID_HOME/emulator"
 
-    $GOPATH/bin
-    $GOROOT/bin
-
     $path
 )
-#     # /Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home/bin
-#     # $HOME/.local/bin
-#     # $HOME/.fig/bin
-#     # $HOME/.pyenv/shims
+    # /Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home/bin
+    # $HOME/.local/bin
+    # $HOME/.fig/bin
+    # $HOME/.pyenv/shims
+    # $GOPATH/bin
+    # $GOROOT/bin
+
+# export GOPATH="${HOME}/.go"
+# export GOROOT="$(brew --prefix golang)/libexec"
+
 # Added by Jetbrains Toolbox App
 # export PATH="$PATH:/Users/kg/Library/Application Support/JetBrains/Toolbox/scripts"
-
-
-
-export GOPATH="${HOME}/.go"
-export GOROOT="$(brew --prefix golang)/libexec"
-
-
-# Java/Android development
-# export JAVA_HOME=$(/usr/libexec/java_home -v"17")
-export JAVA_HOME=$HOME/Applications/Android\ Studio.app/Contents/jbr/Contents/Home
-export ANDROID_HOME=$HOME/Library/Android/sdk
-
-export GOKU_EDN_CONFIG_FILE=~/.karabiner.edn
-export STARSHIP_CONFIG=~/.starship.toml
-export BAT_CONFIG_PATH=~/.bat.conf
-
 
