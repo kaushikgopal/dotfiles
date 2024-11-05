@@ -198,6 +198,8 @@
 
 [includeIf "gitdir:~/src/off/"]
     path = ~/.gitconfig-off
+[includeIf "gitdir:~/caper-configs-mirror/"]
+    path = ~/.gitconfig-off
 [includeIf "gitdir:~/src/oss/"]
     path = ~/.gitconfig-oss
 [includeIf "gitdir:~/src/per/"]
