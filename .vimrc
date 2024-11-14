@@ -22,6 +22,38 @@ set directory=/tmp// " change location of swap files
 set ignorecase smartcase " ignore case letters when search
                          " make searches case-sensitive only if they contain
                          " upper-case characters
+
+set incsearch   "find the next match as we type the search
+set hlsearch    "highlight searches by default
+
+"===============================
+" BASIC EDITING CONFIGURATION
+"===============================
+
+"set wildignore=*.swp,*.bak,*.pyc,*.class,*.jar,*.gif,*.png,*.jpg,*/build/* " ignore following files
+"set smartcase
+"set complete+=kspell  	    " turn on word completion dictionary https://robots.thoughtbot.com/vim-spell-checking
+"set matchpairs+=<:>         " enable % matching for angle brackets
+
+"set backspace=indent,eol,start  " allow backspacing over everything in insert mode
+"set smartindent     " indent when starting new lines etc.
+"set nowrap            " wrap lines visually ; set wrap
+"set nowrapscan      " don't  continue the search after the end of a buffer
+"set undolevels=1000      " use many muchos levels of undo
+
+"set list "display tabs and trailing spaces
+"if &listchars ==# 'eol:$' "Makes :set list (visible whitespace) prettier.
+"  set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
+"endif
+
+
+" Jump to last cursor position unless it's invalid or in an event handler
+autocmd BufReadPost *
+   \ if line("'\"") > 0 && line("'\"") <= line("$") && &filetype != "gitcommit" |
+   \   exe "normal g`\"" |
+   \ endif
+
+
 " =========================================================
 " memory, cpu
 " =========================================================
@@ -107,35 +139,6 @@ let g:netrw_banner = 0
 let g:netrw_list_hide= '.*\.swp$' " don't display .swp files
 let g:netrw_liststyle = 3 " use tree style by default
 "let g:netrw_winsize = 25 " set width to 25% of page
-
-"===============================
-" BASIC EDITING CONFIGURATION
-"===============================
-
-"set wildignore=*.swp,*.bak,*.pyc,*.class,*.jar,*.gif,*.png,*.jpg,*/build/* " ignore following files
-"set smartcase
-"set complete+=kspell  	    " turn on word completion dictionary https://robots.thoughtbot.com/vim-spell-checking
-"set matchpairs+=<:>         " enable % matching for angle brackets
-
-"set backspace=indent,eol,start  " allow backspacing over everything in insert mode
-"set smartindent     " indent when starting new lines etc.
-"set nowrap            " wrap lines visually ; set wrap
-"set nowrapscan      " don't  continue the search after the end of a buffer
-"set undolevels=1000      " use many muchos levels of undo
-
-"set list "display tabs and trailing spaces
-"if &listchars ==# 'eol:$' "Makes :set list (visible whitespace) prettier.
-"  set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
-"endif
-
-"set incsearch   "find the next match as we type the search
-"set hlsearch    "highlight searches by default
-
-" Jump to last cursor position unless it's invalid or in an event handler
-autocmd BufReadPost *
-   \ if line("'\"") > 0 && line("'\"") <= line("$") && &filetype != "gitcommit" |
-   \   exe "normal g`\"" |
-   \ endif
 
 " ===================================
 " autocmd (file settings/defaults)
