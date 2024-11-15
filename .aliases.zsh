@@ -84,6 +84,7 @@ alias g='git'
 alias ga='git a'
 alias g.='git add .'
 alias gcm='git commit -m'
+alias gano='git commit --amend --no-edit'
 
 alias gd='git d'   # diff with number support
 alias gdc='git dc' # diff --cached with number support
