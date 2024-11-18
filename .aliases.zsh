@@ -95,6 +95,7 @@ alias gll='git ll'
 alias gch='git ch' # special checkout git alias
 alias g-='git checkout -'
 alias gm='git checkout master'
+alias gmm='git merge master'
 alias gmp='git checkout master; git pull'
 alias gma='git checkout main'
 
