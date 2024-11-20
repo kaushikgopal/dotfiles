@@ -57,7 +57,8 @@ brew "xmlstarlet"   # fine-grain xml manipulation
 brew "trash"
 brew "tree"
 brew "wget"
-brew "youtube-dl"
+#brew "youtube-dl"
+brew "yt-dlp"
 brew "zoxide"
 brew "zsh-autosuggestions"          # fish like suggestions (from history + completions)
 brew "zsh-syntax-highlighting"      # fish like syntax highlighting
