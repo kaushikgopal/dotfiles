@@ -131,6 +131,7 @@ brew "grpcurl"  # caper
 ##### Mac apps
 cask "1password"
 cask "1password-cli"    # required for Raycast/Alfred integration
+cask "arc"
 cask "cursor"
 cask "google-drive"
 cask "imageoptim"
@@ -145,7 +146,6 @@ cask "the-unarchiver"
 cask "warp"
 cask "webpquicklook"
 #cask "keyboard-maestro"
-#cask "arc"
 #cask "loopback"
 #cask "soundsource"
 #cask "superduper"
