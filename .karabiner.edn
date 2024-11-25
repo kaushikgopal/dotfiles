@@ -388,10 +388,10 @@
             [:j       :!S9   :f-mode]
             [:k   :!S0   :f-mode]
 
-            ;; l ;
+            ;; . /
             ;; { }
-            [:l           :!Sopen_bracket   :f-mode]
-            [:semicolon   :!Sclose_bracket   :f-mode]
+            [:period  :!Sopen_bracket   :f-mode]
+            [:slash   :!Sclose_bracket   :f-mode]
 
       ]}
 

@@ -1175,7 +1175,7 @@
           }
         }, {
           "from" : {
-            "key_code" : "l"
+            "key_code" : "period"
           },
           "to" : [ {
             "key_code" : "open_bracket",
@@ -1205,7 +1205,7 @@
             "simultaneous" : [ {
               "key_code" : "f"
             }, {
-              "key_code" : "l"
+              "key_code" : "period"
             } ],
             "simultaneous_options" : {
               "detect_key_down_uninterruptedly" : true,
@@ -1222,7 +1222,7 @@
           }
         }, {
           "from" : {
-            "key_code" : "semicolon"
+            "key_code" : "slash"
           },
           "to" : [ {
             "key_code" : "close_bracket",
@@ -1252,7 +1252,7 @@
             "simultaneous" : [ {
               "key_code" : "f"
             }, {
-              "key_code" : "semicolon"
+              "key_code" : "slash"
             } ],
             "simultaneous_options" : {
               "detect_key_down_uninterruptedly" : true,
