@@ -367,25 +367,32 @@
       {:des "f-mode (special characters) ... mostly"
           :rules [
 
-            ;;  u i o p  ||| - + =
+            ;;  u i o p
+            ;;    - + -
             [:i    :!S8 :f-mode]
             [:o    :hyphen   :f-mode]
             [:p    :!Sequal_sign   :f-mode]
 
-            ;; []
-;;             [:j     :open_bracket   :f-mode]
-;;             [:k     :close_bracket  :f-mode]
+
+            ;; m ,
+            ;; [ ]
             [:m     :open_bracket   :f-mode]
             [:comma     :close_bracket  :f-mode]
-            ;; ()
+;;             [:j     :open_bracket   :f-mode]
+;;             [:k     :close_bracket  :f-mode]
+
+            ;; j k
+            ;; ( )
 ;;             [:m       :!S9   :f-mode]
 ;;             [:comma   :!S0   :f-mode]
             [:j       :!S9   :f-mode]
             [:k   :!S0   :f-mode]
 
-            ;; {}
+            ;; l ;
+            ;; { }
             [:l           :!Sopen_bracket   :f-mode]
             [:semicolon   :!Sclose_bracket   :f-mode]
+
       ]}
 
 
