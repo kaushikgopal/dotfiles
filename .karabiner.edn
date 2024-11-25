@@ -393,6 +393,13 @@
             [:period  :!Sopen_bracket   :f-mode]
             [:slash   :!Sclose_bracket   :f-mode]
 
+
+            ; ;
+            ; ,
+            ; this is helpful in vim (find forward / find backward)
+            [:semicolon  :comma   :f-mode]
+
+
       ]}
 
 
