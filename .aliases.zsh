@@ -103,7 +103,9 @@ alias gp='git pull'
 
 alias grc='git rebase --continue'
 alias grv='git remote -v'
-alias gss='git status --short'
+
+alias gss='git stash save'
+alias gsp='git stash pop'
 
 # local development
 alias bid='./bin/dev'
