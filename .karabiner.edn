@@ -368,10 +368,11 @@
           :rules [
 
             ;;  u i o p
-            ;;    - + -
-            [:i    :!S8 :f-mode]
-            [:o    :hyphen   :f-mode]
-            [:p    :!Sequal_sign   :f-mode]
+            ;;  - + = *
+            [:u    :hyphen          :f-mode]
+            [:i    :!Sequal_sign    :f-mode]
+            [:o    :equal_sign      :f-mode]
+            [:p    :!S8             :f-mode]
 
 
             ;; m ,
