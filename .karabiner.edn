@@ -395,6 +395,11 @@
             [:slash   :!Sclose_bracket   :f-mode]
 
 
+            ; l
+            ; .
+            ; this is helpful in vim (find forward / find backward)
+            [:l  :period   :f-mode]
+
             ; ;
             ; ,
             ; this is helpful in vim (find forward / find backward)
