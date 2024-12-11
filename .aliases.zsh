@@ -79,31 +79,45 @@ alias o='open'
 alias oo='open .'
 alias t='trash'
 
+
+
+
 alias g='git'
 
-alias ga='git a'
+alias ga='git a'      # add     with number support
 alias g.='git add .'
+
+
+alias gb='git branch'
+
+
+alias gco='git checkout'        # checkout
+alias gch='git ch'              # checkout - with number support
+alias g-='git checkout -'
+alias gm='git checkout master'
+alias gcob='git checkout -B'    # switch to branch creating if necessary
+
+
+alias gchp='git cherry-pick'
+
+
 alias gcm='git commit -m'
 alias gano='git commit --amend --no-edit'
+
 
 alias gd='git d'   # diff           with number support
 alias gdc='git dc' # diff --cached  with number support
 
+
 alias gl='git l'
 alias gll='git ll'
 
-alias gco='git checkout'        # checkout
-alias gch='git ch'              # checkout - with number support
 
-alias gcob='git checkout -B'    # switch to branch creating if necessary
 
-alias gchp='git cherry-pick'
-
-alias g-='git checkout -'
-alias gm='git checkout master'
 alias gmm='git merge master'
 alias gmp='git checkout master; git pull'
 alias gma='git checkout main'
+
 
 alias gp='git pull'
 alias gpu='git push'
