@@ -17,8 +17,6 @@
     mt    = mergetool
     reb   = !"r() { git rebase --autosquash -i HEAD~$1; }; r"       # Interactive rebase with the given number of latest commits
     ss    = status --short
-    wip   =  !"wip()  { git add .; git commit -a -m '--wip-- [ci skip]' --no-verify; }; wip"     # basically an immediate commit that u want in you reflog
-    wipr  =  !"wipr() { git reset --soft HEAD~; git reset ; }; wipr"   # undo last commit (works well with gwip) - watch out though
 
     a = "!f() { \
         if [[ $# -eq 0 || \"$1\" == \".\" ]]; then \
