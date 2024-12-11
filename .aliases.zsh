@@ -122,11 +122,18 @@ alias gma='git checkout main'
 alias gp='git pull'
 alias gpu='git push'
 
+
+
 alias grc='git rebase --continue'
 alias grv='git remote -v'
 
+
+alias gsh='function _gsh() { git show HEAD~${1:-0}; }; _gsh'  # git show HEAD~X
+
 alias gss='git stash save'
 alias gsp='git stash pop'
+
+
 
 alias gwip='git add .; git commit -a -m "--wip-- [ci skip] --no-verify' # quick commit (get in the reflog)
 alias gwipr='git reset --soft HEAD~; git reset'  # undo last commit (works well with gwip)
