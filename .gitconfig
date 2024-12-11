@@ -1,14 +1,5 @@
 [alias]
-    b     = branch
-;     ba    = branch -a
-;     bd    = branch -D
-;     bnc   = branch --no-color
-    c     = commit
-;     ca    = commit --amend # --no-edit
-    chp   = cherry-pick
     cleaner = !git branch --merged master --no-color | grep -v '^[ *]*master$' | xargs git branch -d
-    co   = checkout
-    cob   = checkout -B   # switch to a branch, creating it if necessary
     # format -> default/ original time zone (either committer’s or author’s)
     # format-local -> user's local timezone instead
     ll = log --decorate --date=short --pretty=format:'%C(magenta)%h%Creset %C(bold black)%ad%C(reset)%C(auto) %s %C(blue)%an%C(auto) %D%C(reset)'

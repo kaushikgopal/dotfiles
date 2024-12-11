@@ -86,13 +86,19 @@ alias g.='git add .'
 alias gcm='git commit -m'
 alias gano='git commit --amend --no-edit'
 
-alias gd='git d'   # diff with number support
-alias gdc='git dc' # diff --cached with number support
+alias gd='git d'   # diff           with number support
+alias gdc='git dc' # diff --cached  with number support
 
 alias gl='git l'
 alias gll='git ll'
 
-alias gch='git ch' # special checkout git alias
+alias gco='git checkout'        # checkout
+alias gch='git ch'              # checkout - with number support
+
+alias gcob='git checkout -B'    # switch to branch creating if necessary
+
+alias gchp='git cherry-pick'
+
 alias g-='git checkout -'
 alias gm='git checkout master'
 alias gmm='git merge master'
@@ -100,6 +106,7 @@ alias gmp='git checkout master; git pull'
 alias gma='git checkout main'
 
 alias gp='git pull'
+alias gpu='git push'
 
 alias grc='git rebase --continue'
 alias grv='git remote -v'
