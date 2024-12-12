@@ -135,7 +135,7 @@ alias gsp='git stash pop'
 
 
 
-alias gwip='git add .; git commit -a -m "--wip-- [ci skip] --no-verify' # quick commit (get in the reflog)
+alias gwip='git add .; git commit -a -m "--wip-- [ci skip]" --no-verify' # quick commit (get in the reflog)
 alias gwipr='git reset --soft HEAD~; git reset'  # undo last commit (works well with gwip)
 
 # local development
