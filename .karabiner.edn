@@ -356,9 +356,9 @@
           ;; delete char | backspace
           [:f :delete_or_backspace]
 
-          ;; Command + {} move next/prev tag
-          [:l           :!CSopen_bracket ]
-          [:semicolon   :!CSclose_bracket]
+          ;; Command + {} move next/prev tab
+          [:x       :!CSopen_bracket ]
+          [:c       :!CSclose_bracket]
       ]}
 
       ;; -----------------------------------------
