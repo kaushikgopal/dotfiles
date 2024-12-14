@@ -171,6 +171,12 @@ sudo systemsetup -setrestartfreeze on
 ## # Enable HiDPI display modes (requires restart)
 ## sudo defaults write /Library/Preferences/com.apple.windowserver DisplayResolutionEnabled -bool true
 ################################################################################
+## Windows
+################################################################################
+## Close windows when quitting an app (if enabled, won't restore on restart)jA
+defaults write NSGlobalDomain NSQuitAlwaysKeepsWindows -bool false
+
+################################################################################
 ## Finder                                                                      #
 ################################################################################
 ## Finder: allow quitting via ⌘ + Q; doing so will also hide desktop icons
@@ -646,4 +652,6 @@ for app in \
   killall "${app}" &> /dev/null
 done
 
-echo -e "${GRAY}---- MacOS related changes done. Note that some of these changes require a logout/restart to take effect.${NC}\n\n\n\n\n\n"
+echo -e "${YELLOW}---- macOS go to Window Tiling and disable it all  ${NC}\n\n\n\n\n\n"
+
+echo -e "${GRAY}---- macOS related changes done. Note that some of these changes require a logout/restart to take effect.${NC}\n\n\n\n\n\n"
