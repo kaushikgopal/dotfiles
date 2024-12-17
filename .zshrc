@@ -56,6 +56,12 @@ source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 # ----------------------------------------------------------------------------------------------------------------------
 # 3rd party utils
 
+# FZF
+# Set up fzf key bindings and fuzzy completion
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# use fzf extended regex matchers
+export FZF_DEFAULT_OPS="--extended"
+
 # # Added by OrbStack: command-line tools and integration
 # source ~/.orbstack/shell/init.zsh 2>/dev/null || :
 

@@ -285,6 +285,15 @@ nmap N <SID>(search-backward)zzzv
 xmap N <SID>(search-backward)zzzv
 
 "=========================
+" FZF quick flie search
+"=========================
+" If installed using Homebrew
+" set rtp+=/usr/local/opt/fzf
+set rtp+=/opt/homebrew/opt/fzf  " Apple Silicon
+let $FZF_DEFAULT_COMMAND='fd -u --color=always'
+nnoremap <silent> <leader>f :FZF<CR>
+
+"=========================
 " Quick renaming of a file
 "=========================
 ""
