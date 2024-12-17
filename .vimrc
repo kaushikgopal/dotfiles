@@ -193,10 +193,8 @@ vnoremap ~ y:call setreg('', TwiddleCase(@"), getregtype(''))<CR>gv""Pgv
 noremap <Space> :
 " clear search highlighting
 nnoremap <silent> <CR> :nohl<CR><CR>
-" in terminal mode (escape takes you back to normal mode)
-:tnoremap <Esc> <C-\><C-n>
 " U instead of control + r to redo a change
-" nnoremap U <c-r>
+nnoremap U <c-r>
 " + instead of control + a to increase a number
 noremap + <c-a>
 " - instead of control + x to decrease a number
@@ -225,6 +223,16 @@ nnoremap <leader>s :set spell!<cr>
 "nnoremap <silent> <leader>O :call append('.', '')<CR><Esc>
 "inoremap <silent> <leader><CR> <C-\><C-O>:call append(line('.')-1, '')<CR><C-\><C-O>:call append('.', '')<CR><Esc>
 "nnoremap <silent> <leader><CR> :call append(line('.')-1, '')<CR>:call append('.', '')<CR><Esc>
+
+"=========================
+" FZF quick flie search
+"=========================
+" If installed using Homebrew
+" set rtp+=/usr/local/opt/fzf
+set rtp+=/opt/homebrew/opt/fzf  " Apple Silicon
+let $FZF_DEFAULT_COMMAND='fd -u --color=always'
+nnoremap <silent> <leader>f :FZF<CR>
+
 
 "========================
 " Telescope related mappings
@@ -283,15 +291,6 @@ nmap n <SID>(search-forward)zzzv
 xmap n <SID>(search-forward)zzzv
 nmap N <SID>(search-backward)zzzv
 xmap N <SID>(search-backward)zzzv
-
-"=========================
-" FZF quick flie search
-"=========================
-" If installed using Homebrew
-" set rtp+=/usr/local/opt/fzf
-set rtp+=/opt/homebrew/opt/fzf  " Apple Silicon
-let $FZF_DEFAULT_COMMAND='fd -u --color=always'
-nnoremap <silent> <leader>f :FZF<CR>
 
 "=========================
 " Quick renaming of a file
