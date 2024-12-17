@@ -89,6 +89,7 @@ alias g.='git add .'
 
 
 alias gb='git branch'
+alias gbd='git branch -D'
 
 
 alias gco='git checkout'        # checkout
