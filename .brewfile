@@ -26,6 +26,7 @@ brew "coreutils" # for gnu date
 brew "curl"
 brew "fd"
 brew "ffmpeg"
+brew "fzf"
 brew "gawk"
 brew "gnupg" # "openssl"
 brew "gum"
@@ -49,7 +50,6 @@ brew "xmlstarlet"   # fine-grain xml manipulation
 # brew "neovim"
 # brew "briss" # pdf cropping tool
 # brew "exa"
-#brew "fzf"
 # brew "tmux"
 # brew "exiftool"
 # brew "eye-d3"
