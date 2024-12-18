@@ -110,8 +110,9 @@ alias gd='git d'   # diff           with number support
 alias gdc='git dc' # diff --cached  with number support
 
 
-alias gl='git l'
-alias gll='git ll'
+alias gll='git log --graph --decorate --date=short --pretty=format:"%C(magenta)%h%Creset %C(bold black)%ad%C(reset)%C(auto) %s %C(blue)%an%C(auto) %D%C(reset)"'
+alias gl=' git log --graph --decorate --date=short --topo-order -30 --pretty=format:"%C(magenta)%h%Creset %C(bold black)%ad%C(reset)%C(auto) %s %C(blue)%an%C(auto) %D%C(reset)"'
+
 
 
 

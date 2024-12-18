@@ -2,9 +2,6 @@
     cleaner = !git branch --merged master --no-color | grep -v '^[ *]*master$' | xargs git branch -d
     # format -> default/ original time zone (either committer’s or author’s)
     # format-local -> user's local timezone instead
-    ll = log --decorate --date=short --pretty=format:'%C(magenta)%h%Creset %C(bold black)%ad%C(reset)%C(auto) %s %C(blue)%an%C(auto) %D%C(reset)'
-    l =  ll --topo-order -30         --pretty=format:'%C(magenta)%h%Creset %C(yellow)%ad%C(reset)%C(auto) %s %C(blue)%an%C(auto) %D%C(reset)'
-    #l =  ll --topo-order -30         --pretty=format:'%C(magenta)%h%Creset %C(yellow)%ad%C(reset)%C(auto) %s %C(blue)%an %C(bold black)%D%C(reset)'    pmr   = push -o merge_request.create -o merge_request.merge_when_pipeline_succeeds  # push MR
     mt    = mergetool
     ss    = status --short
 
