@@ -6,7 +6,6 @@
     l =  ll --topo-order -30         --pretty=format:'%C(magenta)%h%Creset %C(yellow)%ad%C(reset)%C(auto) %s %C(blue)%an%C(auto) %D%C(reset)'
     #l =  ll --topo-order -30         --pretty=format:'%C(magenta)%h%Creset %C(yellow)%ad%C(reset)%C(auto) %s %C(blue)%an %C(bold black)%D%C(reset)'    pmr   = push -o merge_request.create -o merge_request.merge_when_pipeline_succeeds  # push MR
     mt    = mergetool
-    reb   = !"r() { git rebase --autosquash -i HEAD~$1; }; r"       # Interactive rebase with the given number of latest commits
     ss    = status --short
 
     a = "!f() { \
@@ -301,3 +300,5 @@
 	sort = -committerdate
 [fetch]
 	prune = true
+[rebase]
+	updateRefs = true

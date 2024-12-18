@@ -125,7 +125,8 @@ alias gpu='git push'
 
 
 
-alias grc='git rebase --continue'
+alias greb='function _greb() { git rebase -i HEAD~${1:-0}; }; _greb' # interactive rebase with number
+alias grebc='git rebase --continue'
 alias grv='git remote -v'
 
 
