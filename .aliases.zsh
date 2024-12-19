@@ -67,9 +67,9 @@ alias rg='rg -uuS'
 #  lah .git/hooks | rg -v '\.sample'   # invert the match with -v
 
 alias b='bat'
-alias c='code'
-alias cn='code -n'  # -n = --new-window
-alias cr='code -r'  # -r = --reuse-window
+alias co='code'
+alias con='code -n'  # -n = --new-window
+alias cor='code -r'  # -r = --reuse-window
 alias cu='cursor'
 alias i='idea'
 alias ie='idea -e'             # -e light edit mode
