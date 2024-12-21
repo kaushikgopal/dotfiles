@@ -623,6 +623,12 @@ defaults write com.vscodium ApplePressAndHoldEnabled -bool false                
 defaults write com.microsoft.VSCodeExploration ApplePressAndHoldEnabled -bool false   # For VS Codium Exploration users
 defaults delete -g ApplePressAndHoldEnabled                                           # If necessary, reset global default
 ###############################################################################
+# NetNewsWire
+###############################################################################
+# force light mode always
+osascript -e 'id of app "NetNewsWire"' com.ranchero.NetNewsWire-Evergreen
+defaults write com.ranchero.NetNewsWire-Evergreen NSRequiresAquaSystemAppearance -bool yes
+###############################################################################
 # Kill affected applications                                                  #
 ###############################################################################
 #  "Activity Monitor" \
