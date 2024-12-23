@@ -403,7 +403,7 @@
             ; ;
             ; ,
             ; this is helpful in vim (find forward / find backward)
-            [:semicolon  :comma   :f-mode]
+            ;[:semicolon  :comma   :f-mode]
 
 
       ]}

@@ -12,6 +12,7 @@
 ```tasks
 not done
 tags include 3t
+sort by priority
 hide created date
 hide edit button
 hide task count
