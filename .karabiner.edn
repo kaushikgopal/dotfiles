@@ -398,7 +398,7 @@
             ; l
             ; .
             ; this is helpful in vim (find forward / find backward)
-            [:l  :period   :f-mode]
+            ; [:l  :period   :f-mode]
 
             ; ;
             ; ,
