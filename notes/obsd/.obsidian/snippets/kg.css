@@ -16,6 +16,17 @@ body.theme-light.minimal-flexoki-light {
 
 
 
+
+/* *******************************
+ * Window separator divider handle */
+
+/* typically only shown on hover - i like having them always on */
+.workspace-leaf-resize-handle {
+    background-color: var(--divider-color-hover);
+    border-color: var(--divider-color-hover);
+}
+
+
 /* *******************
  * Scrollbars */
 
