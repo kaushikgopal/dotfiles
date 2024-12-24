@@ -79,6 +79,8 @@ osascript -e 'tell application "System Preferences" to quit'
 ################################################################################
 ## Trackpad, mouse, keyboard, Bluetooth accessories, and input                 #
 ################################################################################
+## Trackpad: disable notification center - swipe left from the right edge with two fingers
+defaults write com.apple.dock wvous-two-finger-swipe-down -bool false
 ## Trackpad: enable tap to click for this user and for the login screen
 #defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
 #defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
