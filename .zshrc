@@ -47,12 +47,20 @@ autoload -Uz compinit
 compinit
 
 
-# my aliases
+# Zsh theme + autocompletion
 compdef g=git
 source $(brew --prefix)/share/zsh/site-functions
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh  # has to be at the very end
 
+# -------------------
+# Monokai Pro for ZSH
+source ~/.z-monokai
+
+# override zsh-syntax-highlighting defaults
+ZSH_HIGHLIGHT_STYLES[path]=
+ZSH_HIGHLIGHT_STYLES[path_pathseparator]=fg=black,bold
+ZSH_HIGHLIGHT_STYLES[path_prefix]=
 
 # ----------------------------------------------------------------------------------------------------------------------
 # 3rd party utils
@@ -79,15 +87,6 @@ export SDKMAN_DIR=$(brew --prefix sdkman-cli)/libexec
 [[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
 
 
-# ----------------------------------------------------------------------------------------------------------------------
-# Monokai Pro for ZSH
-source ~/.z-monokai
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-# override zsh-syntax-highlighting defaults
-ZSH_HIGHLIGHT_STYLES[path]=
-ZSH_HIGHLIGHT_STYLES[path_pathseparator]=fg=black,bold
-ZSH_HIGHLIGHT_STYLES[path_prefix]=
 
 # ----------------------------------------------------------------------------------------------------------------------
 # Powerlevel10k prompt for Zsh
