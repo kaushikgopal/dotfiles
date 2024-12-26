@@ -1,0 +1,150 @@
+# ls colors
+export CLICOLOR=1
+export LSCOLORS=gxfxexdxcxegedabagacad
+
+# grep colors
+export GREP_OPTIONS='--color=auto'
+
+# man colors
+export LESS_TERMCAP_mb=$'e[1;35m'
+export LESS_TERMCAP_md=$'e[1;36m'
+export LESS_TERMCAP_me=$'e[0m'
+export LESS_TERMCAP_se=$'e[0m'
+export LESS_TERMCAP_so=$'e[1;44;33m'
+export LESS_TERMCAP_ue=$'e[0m'
+export LESS_TERMCAP_us=$'e[1;32m'
+
+# up / down arrow history navigation
+zmodload zsh/zle
+autoload -Uz +X add-zle-hook-widget
+autoload -U up-line-or-beginning-search
+autoload -U down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+bindkey "$terminfo[kcuu1]" up-line-or-beginning-search
+bindkey "$terminfo[kcud1]" down-line-or-beginning-search
+
+# colors
+autoload -U colors
+colors
+
+# prompt
+setopt prompt_subst
+
+# define colors
+for COLOR in RED GREEN BLUE YELLOW MAGENTA WHITE BLACK CYAN; do
+	eval PR_$COLOR='%{$fg[${(L)COLOR}]%}'
+	eval PR_BRIGHT_$COLOR='%{$fg_bold[${(L)COLOR}]%}'
+	eval TIME_$COLOR='$fg[${(L)COLOR}]'
+	eval TIME_BRIGHT_$COLOR='$fg_bold[${(L)COLOR}]'
+done
+
+PR_RST="%{${reset_color}%}"
+PR_RESET="%{%b%s%u$reset_color%}"
+TIME_RESET="$reset_color"
+
+# report command running time if it's more than 3 seconds
+export REPORTTIME=3
+export TIMEFMT="
+${TIME_BRIGHT_BLACK}elapsed: ${TIME_WHITE}%*Es ${TIME_BRIGHT_BLACK}(user: ${TIME_WHITE}%*Us ${TIME_BRIGHT_BLACK}system: ${TIME_WHITE}%*Ss${TIME_BRIGHT_BLACK}) cpu: ${TIME_WHITE}%P ${TIME_BRIGHT_BLACK}memory: ${TIME_WHITE}%MK"
+
+# completion
+autoload -U compinit && compinit
+
+setopt auto_list
+setopt auto_menu
+setopt always_to_end
+
+zstyle ':completion:*' verbose yes
+zstyle ':completion:*' menu select
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*' special-dirs true
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z-_}={A-Za-z_-}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+bindkey '^[[Z' reverse-menu-complete
+
+# git regular status
+autoload -Uz vcs_info
+
+zstyle ':vcs_info:*' check-for-changes true
+zstyle ':vcs_info:*' unstagedstr "${PR_YELLOW}● "
+zstyle ':vcs_info:*' stagedstr "${PR_GREEN}● "
+zstyle ':vcs_info:*' formats "${PR_MAGENTA}%b %u%c${PR_RST}"
+zstyle ':vcs_info:*' actionformats "${PR_MAGENTA}%b${PR_BRIGHT_BLACK} (${PR_CYAN}%a${PR_BRIGHT_BLACK}) %u%c${PR_RST}"
+
+# git untracked files
+zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
+zstyle ':vcs_info:*' enable git
+
+# calculate prompt width on window resize
+function prompt_width() {
+	echo $(( ${COLUMNS:-80} * 50 / 100 ))
+}
+
+# left prompt
+function lprompt {
+	# git info
+	local git='$vcs_info_msg_0_'
+	# reevaluate prompt width
+	local width='$(prompt_width)'
+	# truncate prompt
+	local cwd="${color2}%B%${width}<…<${${(%):-%~}////${PR_BRIGHT_BLACK}/${PR_WHITE}}%b"
+	# jobs are running in the background
+	local jobs="%(1j.${PR_YELLOW}✽ .)"
+	# shell is more than 1 level deeper than the initial shell level
+	local level=$(( $INIT_SHELL_LEVEL + 1 ))
+	local shell="%(${level}L.${PR_BLUE}❖ .)"
+	# privileged or normal prompt
+	# local cursor="${PR_RED}ツ"
+	local cursor=""
+	local p="%(!.${PR_MAGENTA}★ .${cursor})"
+
+	PROMPT="${cwd} ${git}${jobs}${shell}${p}${PR_RESET}"
+}
+
+# new tab opens at current folder when corresponding terminal config is set
+if [[ "$TERM_PROGRAM" == "Apple_Terminal" ]] && [[ -z "$INSIDE_EMACS" ]]; then
+	function update_terminal_cwd() {
+		local url_path=''
+
+		{
+			local i ch hexch LC_CTYPE=C LC_ALL=
+
+			for ((i = 1; i <= ${#PWD}; ++i)); do
+				ch="$PWD[i]"
+				if [[ "$ch" =~ [/._~A-Za-z0-9-] ]]; then
+					url_path+="$ch"
+				else
+					printf -v hexch "%02X" "'$ch"
+					url_path+="%$hexch"
+				fi
+			done
+		}
+
+		printf 'e]7;%sa' "file://$HOST$url_path"
+	}
+
+	autoload add-zsh-hook
+	add-zsh-hook precmd update_terminal_cwd
+fi
+
+# right prompt
+function rprompt {
+	# 24 hour time
+	local time="${PR_BRIGHT_BLACK}%D{%H:%M:%S}"
+	# only show user when privileged
+	local user="%(!.${PR_MAGENTA}%n .)"
+	# show when command returned non-zero exit code
+	local exit_status="%(1?.${PR_RED}● .)"
+
+	RPROMPT="${PR_RESET}${exit_status}${user}${time}${PR_RESET}"
+}
+
+rprompt
+
+# run before every command
+function precmd() {
+	vcs_info
+	lprompt
+	print ""
+}
+

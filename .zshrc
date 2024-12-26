@@ -1,3 +1,4 @@
+# this file is read when starting new interactive shell
 # zmodload zsh/zprof          # start profiling
 
 
@@ -77,6 +78,16 @@ if which rbenv &> /dev/null; then eval "$(rbenv init - zsh)"; fi;
 export SDKMAN_DIR=$(brew --prefix sdkman-cli)/libexec
 [[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
 
+
+# ----------------------------------------------------------------------------------------------------------------------
+# Monokai Pro for ZSH
+source ~/.z-monokai
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# override zsh-syntax-highlighting defaults
+ZSH_HIGHLIGHT_STYLES[path]=
+ZSH_HIGHLIGHT_STYLES[path_pathseparator]=fg=black,bold
+ZSH_HIGHLIGHT_STYLES[path_prefix]=
 
 # ----------------------------------------------------------------------------------------------------------------------
 # Powerlevel10k prompt for Zsh

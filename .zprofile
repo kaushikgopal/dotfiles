@@ -5,6 +5,13 @@
 # .zshenv > .zprofile > .zshrc
 # .zprofile loaded (if login)
 
+
+# set initial shell level
+export INIT_SHELL_LEVEL=$SHLVL
+# encoding
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
 # Java/Android development
 # export JAVA_HOME=$(/usr/libexec/java_home -v"17")
 export JAVA_HOME=$HOME/Applications/Android\ Studio.app/Contents/jbr/Contents/Home
