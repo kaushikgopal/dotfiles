@@ -54,7 +54,7 @@
     :Default {
         :default true
 
-        :sim     25     ;; simultaneous key press threshold (def: 50)
+        :sim     80     ;; simultaneous key press threshold (def: 50)
                         ;; simlayer is implemented with to_if_alone and simultaneous key press feature
                         ;; if keydown event for two different keys are pressed within :sim ms, the keypresses are considered simultaneous
         :delay   10    ;; to_delayed_action_delay_milliseconds (def: 500)
@@ -78,10 +78,18 @@
 ; the default value is 250
 :simlayer-threshold 250
 
-:templates {
-    :km "osascript -e 'tell application \"Keyboard Maestro Engine\" to do script \"%s\"'"
-    :open "open \"%s\""
-} ;; templates
+;; simlayers are basically "hyper" keys
+;; layers works too, but only recommended for non-typing keys like . or tab
+;; to use more regular typing keys, use simlayers
+:simlayers {
+  :j-mode {:key :j}
+  :f-mode {:key :f}
+}
+
+;; :templates {
+;;     :km "osascript -e 'tell application \"Keyboard Maestro Engine\" to do script \"%s\"'"
+;;     :open "open \"%s\""
+;; } ;; templates
 
 ;; Define different kinds of keyboards
 ;; https://karabiner-elements.pqrs.org/docs/json/complex-modifications-manipulator-definition/conditions/device/
@@ -118,20 +126,6 @@
 
 } ;; devices
 
-;; layers are basically "hyper" keys
-;; press this in combination with something else and depending on your rule, make things happen
-:layers {
-;;    :tab-mode   {:key :tab}
-;;     :caps-mode {:key :caps_lock :alone {:key :escape}}
-} ;; layers
-
-;; simlayers are basically "hyper" keys
-;; layers works too, but only recommended for non-typing keys like . or tab
-;; to use more regular typing keys, use simlayers
-:simlayers {
-  :j-mode {:key :j}
-  :f-mode {:key :f}
-} ;; simlayers
 
 :applications {
     :terminals  [ "^com\\.apple\\.Terminal$",
@@ -166,35 +160,6 @@
     ;; Hardware keyboard mappings
     ;; ----------------------------------
 
-;;    {:des "Anne Pro 2"
-;;     :rules [:ap2
-;;       [:left_option :left_command]
-;;       [:left_command :left_option]
-;;       [:right_option :right_control]
-;;    ]}
-;;    {:des "Tada68 specific mappings"
-;;     :rules [:tada68
-;;       [:delete_forward :end]
-;;       [:escape :grave_accent_and_tilde]
-;;       [:grave_accent_and_tilde :home]
-;;       [:left_gui :left_alt]
-;;    ]}
-;;
-;;    {:des "Microsoft Ergonomic Sculpt Keyboard"
-;;     :rules [:msft
-;;       [:delete_forward :end]
-;;       [:escape :grave_accent_and_tilde]
-;;       [:grave_accent_and_tilde :home]
-;;       [:left_gui :left_alt]
-;;    ]}
-;;
-;;    {:des "Logitech G915 remap"
-;;     :rules [:g915
-;;       [:##right_option :right_control]
-;;       [:##left_option :left_command]
-;;       [:##left_command :left_option]
-;;    ]}
-
     {:des "Kinesis Advantage2 specific mappings"
      :rules [:kinesis
        [:non_us_backslash :!QWspacebar] ;; § -> emoji viewer
@@ -215,9 +180,9 @@
     ]}
 
 
-       ;; -----------------------------------------
-       ;; caps-mode
-       ;; -----------------------------------------
+    ;; -----------------------------------------
+    ;; caps-mode
+    ;; -----------------------------------------
 
 
      {:des "Caps Lock -> Escape (alone) | Ctrl (simple)"
@@ -288,55 +253,40 @@
           [:!CWreturn_or_enter {:pkey :button2}]
       ]}
 
-     ;;     {:des "Caps Lock -> Escape | Ctrl | Vim movements | Mouse movement"
-     ;;         :rules [ :caps-mode
-     ;;
-     ;;           ;[:caps_lock ["caps-mode" 1] nil {:afterup ["caps-mode" 0] :alone :escape}]
-     ;;           ; [:h :left_arrow ["caps-mode" 1]]
-     ;;
-     ;;           ;; caps lock : arrow mode
-     ;;           [:h :left_arrow]
-     ;;           [:j :down_arrow]
-     ;;           [:k :up_arrow  ]
-     ;;           [:l :right_arrow]
-     ;;
-     ;;           ;; Quick Mouse handles
-     ;;           [:down_arrow {:mkey {:y 1536}}     ]
-     ;;           [:up_arrow {:mkey {:y -1536}}      ]
-     ;;           [:left_arrow {:mkey {:x -1536}}    ]
-     ;;           [:right_arrow {:mkey {:x 1536}}    ]
-     ;;           [:return_or_enter {:pkey :button1} ]
-     ;;           [:!Creturn_or_enter {:pkey :button2}]
-     ;;
-     ;;           ;; Ctrl handles
-     ;;           [:!Sj [:!TSj]]                                    ;; Ctrl Shift J
-     ;;
-     ;;           [:a [:!Ta]]                                      ;; Ctrl a
-     ;;           [:b [:!Tb]]                                      ;; Ctrl b
-     ;;           [:c [:!Tc]]                                      ;; Ctrl c
-     ;;           [:d [:!Td]]                                      ;; Ctrl d
-     ;;           [:e [:!Te]]                                      ;; Ctrl e
-     ;;           [:f [:!Tf]]                                      ;; Ctrl f
-     ;;           [:g [:!Tg]]                                      ;; Ctrl g
-     ;;           [:i [:!Ti]]                                      ;; Ctrl i
-     ;;           [:m [:!Tm]]                                      ;; Ctrl m
-     ;;           [:n [:!Tn]]                                      ;; Ctrl n
-     ;;           [:o [:!To]]                                      ;; Ctrl o
-     ;;           [:p [:!Tp]]                                      ;; Ctrl p
-     ;;           [:q [:!Tq]]                                      ;; Ctrl q
-     ;;           [:r [:!Tr]]                                      ;; Ctrl r
-     ;;           [:s [:!Ts]]                                      ;; Ctrl s
-     ;;           [:t [:!Tt]]                                      ;; Ctrl t
-     ;;           [:u [:!Tu]]                                      ;; Ctrl u
-     ;;           [:v [:!Tv]]                                      ;; Ctrl v
-     ;;           [:w [:!Tw]]                                      ;; Ctrl w
-     ;;           [:x [:!Tx]]                                      ;; Ctrl x
-     ;;           [:y [:!Ty]]                                      ;; Ctrl y
-     ;;           [:z [:!Tz]]                                      ;; Ctrl z
-     ;;   ]}
 
+      ;; -----------------------------------------
+      ;; f-mode (special characters)
+      ;; -----------------------------------------
+      {:des "f-mode"
+          :rules [
 
-       ;; -----------------------------------------
+            ;;  u i o p
+            ;;  & * - +
+            ;;        =  ← shift modifier
+            [:u    :!S7          :f-mode]
+            [:i    :!S8          :f-mode]
+            [:o    :hyphen       :f-mode]
+            [:p    :equal_sign   :f-mode]
+
+            [:!Sp :!Sequal_sign :f-mode]  ;; ⚠️ works only on second press
+
+            ;; BRACKET combinations (special)
+
+            ;; jk   l;
+            ;;    m,  ./
+            ;; ()
+            ;;    []  {}
+
+            [:m         :open_bracket   :f-mode]
+            [:comma     :close_bracket  :f-mode]
+            [:j         :!S9   :f-mode]
+            [:k         :!S0   :f-mode]
+            [:period    :!Sopen_bracket   :f-mode]
+            [:slash     :!Sclose_bracket   :f-mode]
+
+      ]}
+
+      ;; -----------------------------------------
       ;; j-mode (deletion related shortcuts)
       ;; -----------------------------------------
 
@@ -359,39 +309,6 @@
           ;; Command + {} move next/prev tab
           [:x       :!CSopen_bracket ]
           [:c       :!CSclose_bracket]
-      ]}
-
-      ;; -----------------------------------------
-      ;; f-mode (special characters)
-      ;; -----------------------------------------
-      {:des "f-mode (special characters) ... mostly"
-          :rules [
-
-            ;;  u i o p
-            ;;  & * - +
-            ;;        =  ← shift modifier
-            [:u    :hyphen          :f-mode]
-            [:i    :!Sequal_sign    :f-mode]
-            [:o    :equal_sign      :f-mode]
-            [:p    :!S8             :f-mode]
-
-
-
-            ;; BRACKET combinations (special)
-
-            ;; jk   l;
-            ;;    m,  ./
-            ;; ()
-            ;;    []  {}
-
-            [:m     :open_bracket   :f-mode]
-            [:comma     :close_bracket  :f-mode]
-            [:j       :!S9   :f-mode]
-            [:k   :!S0   :f-mode]
-            [:period  :!Sopen_bracket   :f-mode]
-            [:slash   :!Sclose_bracket   :f-mode]
-
-
       ]}
 
 
@@ -503,6 +420,55 @@
     ;;       }
     ;;     ]
     ;; ]}
+
+
+
+     ;;     {:des "Caps Lock -> Escape | Ctrl | Vim movements | Mouse movement"
+     ;;         :rules [ :caps-mode
+     ;;
+     ;;           ;[:caps_lock ["caps-mode" 1] nil {:afterup ["caps-mode" 0] :alone :escape}]
+     ;;           ; [:h :left_arrow ["caps-mode" 1]]
+     ;;
+     ;;           ;; caps lock : arrow mode
+     ;;           [:h :left_arrow]
+     ;;           [:j :down_arrow]
+     ;;           [:k :up_arrow  ]
+     ;;           [:l :right_arrow]
+     ;;
+     ;;           ;; Quick Mouse handles
+     ;;           [:down_arrow {:mkey {:y 1536}}     ]
+     ;;           [:up_arrow {:mkey {:y -1536}}      ]
+     ;;           [:left_arrow {:mkey {:x -1536}}    ]
+     ;;           [:right_arrow {:mkey {:x 1536}}    ]
+     ;;           [:return_or_enter {:pkey :button1} ]
+     ;;           [:!Creturn_or_enter {:pkey :button2}]
+     ;;
+     ;;           ;; Ctrl handles
+     ;;           [:!Sj [:!TSj]]                                    ;; Ctrl Shift J
+     ;;
+     ;;           [:a [:!Ta]]                                      ;; Ctrl a
+     ;;           [:b [:!Tb]]                                      ;; Ctrl b
+     ;;           [:c [:!Tc]]                                      ;; Ctrl c
+     ;;           [:d [:!Td]]                                      ;; Ctrl d
+     ;;           [:e [:!Te]]                                      ;; Ctrl e
+     ;;           [:f [:!Tf]]                                      ;; Ctrl f
+     ;;           [:g [:!Tg]]                                      ;; Ctrl g
+     ;;           [:i [:!Ti]]                                      ;; Ctrl i
+     ;;           [:m [:!Tm]]                                      ;; Ctrl m
+     ;;           [:n [:!Tn]]                                      ;; Ctrl n
+     ;;           [:o [:!To]]                                      ;; Ctrl o
+     ;;           [:p [:!Tp]]                                      ;; Ctrl p
+     ;;           [:q [:!Tq]]                                      ;; Ctrl q
+     ;;           [:r [:!Tr]]                                      ;; Ctrl r
+     ;;           [:s [:!Ts]]                                      ;; Ctrl s
+     ;;           [:t [:!Tt]]                                      ;; Ctrl t
+     ;;           [:u [:!Tu]]                                      ;; Ctrl u
+     ;;           [:v [:!Tv]]                                      ;; Ctrl v
+     ;;           [:w [:!Tw]]                                      ;; Ctrl w
+     ;;           [:x [:!Tx]]                                      ;; Ctrl x
+     ;;           [:y [:!Ty]]                                      ;; Ctrl y
+     ;;           [:z [:!Tz]]                                      ;; Ctrl z
+     ;;   ]}
 
 
 ] ;; main list
