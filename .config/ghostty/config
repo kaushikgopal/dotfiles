@@ -1,0 +1,22 @@
+theme = monokai-pro
+
+
+#adjust-cursor-height =
+adjust-cursor-thickness = 1
+cursor-style-blink = false
+
+
+# Fonts
+font-family = TX-02
+font-size = 11
+font-thicken = true
+adjust-cell-height = 9%
+#adjust-underline-thickness = -1
+
+window-padding-x = 10
+window-padding-y = 8
+window-padding-balance = true
+
+
+mouse-hide-while-typing = true
+
