@@ -108,6 +108,7 @@ alias gano='git commit --amend --no-edit'
 
 alias gd='git d'   # diff           with number support
 alias gdc='git dc' # diff --cached  with number support
+alias gdi='git diff'   # diff           with number support
 
 
 alias gll='git log --graph --decorate --date=short --pretty=format:"%C(magenta)%h%Creset %C(bold black)%ad%C(reset)%C(auto) %s %C(blue)%an%C(auto) %D%C(reset)"'
