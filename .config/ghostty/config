@@ -3,6 +3,7 @@ theme = monokai-pro
 
 adjust-cursor-thickness = 1
 cursor-style-blink = false
+mouse-hide-while-typing = true
 
 
 # Fonts
@@ -15,10 +16,3 @@ adjust-cell-height = 9%
 window-padding-x = 10
 window-padding-y = 8
 window-padding-balance = true
-
-
-mouse-hide-while-typing = true
-
-theme = monokai-pro
-
-cursor-style-blink = false
