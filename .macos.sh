@@ -8,29 +8,29 @@ cp ~/_sync/apps/US\ Plain\ Keyboard.keylayout ~/Library/Keyboard Layouts/
 
 # ~/.macos — https://mths.be/macos
 
-YELLOW='\033[1;33m'     # switching section
-GRAY='\033[1;30m'       # info
-PURPLE='\033[1;35m'     # making change
-NC='\033[0m' # No Color
-
+YELLOW='\033[1;33m' # switching section
+GRAY='\033[1;30m'   # info
+PURPLE='\033[1;35m' # making change
+NC='\033[0m'        # No Color
 
 echo -e "\n\n\n${YELLOW}---- Do these settings manually${NC}"
 echo -e "${PURPLE}---- Keyboard > Keyboard Shortcuts > Spotlight${NC}"
 echo -e "${PURPLE}----      disable \"show spotlight search\"${NC}"
 echo -e "${PURPLE}----      disable \"show finder search window\"${NC}"
 
-
 echo -e "\n\n\n${YELLOW}---- MacOS related changes${NC}"
 
 # Keep-alive: update existing `sudo` time stamp until `macos` has finished
-while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+while true; do
+  sudo -n true
+  sleep 60
+  kill -0 "$$" || exit
+done 2>/dev/null &
 
 # Closing System Preferences panes
 # prevent them from overriding settings
 # we’re about to change
 osascript -e 'tell application "System Preferences" to quit'
-
-
 
 ################################################################################
 ## General UI/UX                                                               #
@@ -111,8 +111,8 @@ defaults write com.apple.dock wvous-two-finger-swipe-down -bool false
 ##    so it won't show special characters etc.
 defaults write -g ApplePressAndHoldEnabled -bool false
 ## Set a blazingly fast keyboard repeat rate
-defaults write -g InitialKeyRepeat -int 10 # normal minimum is 15 (225 ms)
-defaults write -g KeyRepeat -int 1 # normal minimum is 2 (30 ms)
+defaults write -g InitialKeyRepeat -int 25 # normal minimum is 15 (225 ms)
+defaults write -g KeyRepeat -int 1         # normal minimum is 2 (30 ms)
 
 # Double-tap Fn key to enable dictation (and not emoji picker)
 defaults write com.apple.HIToolbox AppleDictationAutoEnable -bool true
@@ -619,11 +619,11 @@ defaults write com.apple.dock autohide-delay -int 60
 ###############################################################################
 # VS Code (VIM mode)
 ###############################################################################
-defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false              # For VS Code
-defaults write com.microsoft.VSCodeInsiders ApplePressAndHoldEnabled -bool false      # For VS Code Insider
-defaults write com.vscodium ApplePressAndHoldEnabled -bool false                      # For VS Codium
-defaults write com.microsoft.VSCodeExploration ApplePressAndHoldEnabled -bool false   # For VS Codium Exploration users
-defaults delete -g ApplePressAndHoldEnabled                                           # If necessary, reset global default
+defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false            # For VS Code
+defaults write com.microsoft.VSCodeInsiders ApplePressAndHoldEnabled -bool false    # For VS Code Insider
+defaults write com.vscodium ApplePressAndHoldEnabled -bool false                    # For VS Codium
+defaults write com.microsoft.VSCodeExploration ApplePressAndHoldEnabled -bool false # For VS Codium Exploration users
+defaults delete -g ApplePressAndHoldEnabled                                         # If necessary, reset global default
 ###############################################################################
 # NetNewsWire
 ###############################################################################
@@ -656,8 +656,8 @@ defaults write com.ranchero.NetNewsWire-Evergreen NSRequiresAquaSystemAppearance
 # "Terminal" \
 
 for app in \
-    "Dock"; do
-  killall "${app}" &> /dev/null
+  "Dock"; do
+  killall "${app}" &>/dev/null
 done
 
 echo -e "${YELLOW}---- macOS go to Window Tiling and disable it all  ${NC}\n\n\n\n\n\n"

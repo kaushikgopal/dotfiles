@@ -257,18 +257,33 @@
       ;; -----------------------------------------
       ;; f-mode (special characters)
       ;; -----------------------------------------
-      {:des "f-mode"
+      {:des "F => f alone, else f-mode"
           :rules [
+
+            ;; 1) Pressing f alone => types 'f'
+            ;;    Holding f => set f-mode = 1 while down
+            ;;    Releasing f => set f-mode = 0
+            [:f ["f-mode" 1] nil
+                {:afterup ["f-mode" 0]
+                    :alone :f}]
+
+            ;; 2) Now define combos that only work when f-mode == 1
+            ;;    (i.e. while f is held)
+
+            ;; p => '='
+            ;; Shift + p => '+'
+            ;; Just like your old simlayer code, but with condition ["f-mode" 1]
+            [:p          :equal_sign       ["f-mode" 1]]
+            [:#Sp        :#Sequal_sign     ["f-mode" 1]]
+
 
             ;;  u i o p
             ;;  & * - +
             ;;        =  ← shift modifier
-            [:u    :!S7          :f-mode]
-            [:i    :!S8          :f-mode]
-            [:o    :hyphen       :f-mode]
-            [:p    :equal_sign   :f-mode]
+            [:u   :!S7      ["f-mode" 1]]
+            [:i   :!S8      ["f-mode" 1]]
+            [:o   :hyphen   ["f-mode" 1]]
 
-            [:!Sp :!Sequal_sign :f-mode]  ;; ⚠️ works only on second press
 
             ;; BRACKET combinations (special)
 
@@ -277,12 +292,12 @@
             ;; ()
             ;;    []  {}
 
-            [:m         :open_bracket   :f-mode]
-            [:comma     :close_bracket  :f-mode]
-            [:j         :!S9   :f-mode]
-            [:k         :!S0   :f-mode]
-            [:period    :!Sopen_bracket   :f-mode]
-            [:slash     :!Sclose_bracket   :f-mode]
+            [:m         :open_bracket   ["f-mode" 1]]
+            [:comma     :close_bracket  ["f-mode" 1]]
+            [:j         :!S9   ["f-mode" 1]]
+            [:k         :!S0   ["f-mode" 1]]
+            [:period    :!Sopen_bracket   ["f-mode" 1]]
+            [:slash     :!Sclose_bracket   ["f-mode" 1]]
 
       ]}
 

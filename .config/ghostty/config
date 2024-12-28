@@ -1,21 +1,24 @@
 theme = monokai-pro
 
+
+adjust-cursor-thickness = 1
 cursor-style-blink = false
+
 
 # Fonts
 font-family = TX-02
 font-size = 10.5
 font-thicken = true
-adjust-cell-height = 5%
+adjust-cell-height = 9%
 
-# for Berkeley Mono
-adjust-cursor-thickness = 1
-adjust-underline-thickness = -1
 
 window-padding-x = 10
-window-padding-y = 5
+window-padding-y = 8
 window-padding-balance = true
 
 
+mouse-hide-while-typing = true
 
+theme = monokai-pro
 
+cursor-style-blink = false
