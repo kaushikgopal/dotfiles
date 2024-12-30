@@ -92,11 +92,11 @@ alias gb='git branch'
 alias gbd='git branch -D'
 
 
-alias gco='git checkout'        # checkout
-alias gch='git ch'              # checkout - with number support
-alias g-='git checkout -'
-alias gm='git checkout master'
-alias gcob='git checkout -B'    # switch to branch creating if necessary
+alias gc='git ch'               # checkout - with number support
+alias gch='git checkout'        # checkout - regular
+alias gc-='git checkout -'
+alias gcm='git checkout master'
+alias gcb='git checkout -B'     # switch to branch creating if necessary
 
 
 alias gchp='git cherry-pick'
@@ -106,9 +106,10 @@ alias gcm='git commit -m'
 alias gano='git commit --amend --no-edit'
 
 
-alias gd='git d'   # diff           with number support
-alias gdc='git dc' # diff --cached  with number support
-alias gdi='git diff'   # diff           with number support
+alias gd='git d'                # diff with number support
+alias gdi='git diff'            # diff regular
+alias gdc='git dc'              # diff --cached  with number support
+alias gdic='git diff --cached'   # diff --cached  regular
 
 
 alias gll='git log --graph --decorate --date=short --pretty=format:"%C(magenta)%h%Creset %C(bold black)%ad%C(reset)%C(auto) %s %C(blue)%an%C(auto) %D%C(reset)"'
