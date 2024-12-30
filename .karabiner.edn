@@ -54,13 +54,13 @@
     :Default {
         :default true
 
-        :sim     80     ;; simultaneous key press threshold (def: 50)
+        :sim     25     ;; simultaneous key press threshold (def: 50)
                         ;; simlayer is implemented with to_if_alone and simultaneous key press feature
                         ;; if keydown event for two different keys are pressed within :sim ms, the keypresses are considered simultaneous
-        :delay   10    ;; to_delayed_action_delay_milliseconds (def: 500)
-                       ;; checkout karabiner's documentation
-                       ;; https://pqrs.org/osx/karabiner/json.html
-                       ;; basically it means time after which the key press is count delayed
+        :delay   10     ;; to_delayed_action_delay_milliseconds (def: 500)
+                        ;; checkout karabiner's documentation
+                        ;; https://pqrs.org/osx/karabiner/json.html
+                        ;; basically it means time after which the key press is count delayed
 
                         ;; after :delay ms, the key press is considered to be delayed
                         ;; (used for double-press macros)
@@ -260,30 +260,14 @@
       {:des "F => f alone, else f-mode"
           :rules [
 
-            ;; 1) Pressing f alone => types 'f'
-            ;;    Holding f => set f-mode = 1 while down
-            ;;    Releasing f => set f-mode = 0
-            [:f ["f-mode" 1] nil
-                {:afterup ["f-mode" 0]
-                    :alone :f}]
-
-            ;; 2) Now define combos that only work when f-mode == 1
-            ;;    (i.e. while f is held)
-
-            ;; p => '='
-            ;; Shift + p => '+'
-            ;; Just like your old simlayer code, but with condition ["f-mode" 1]
-            [:p          :equal_sign       ["f-mode" 1]]
-            [:#Sp        :#Sequal_sign     ["f-mode" 1]]
-
-
             ;;  u i o p
             ;;  & * - +
-            ;;        =  ← shift modifier
-            [:u   :!S7      ["f-mode" 1]]
-            [:i   :!S8      ["f-mode" 1]]
-            [:o   :hyphen   ["f-mode" 1]]
-
+            ;;        =  <- shift modifier (doesn't work on first press atm)
+            [:u   :!S7      :f-mode]
+            [:i   :!S8      :f-mode]
+            [:o   :hyphen   :f-mode]
+            [:p          :equal_sign       :f-mode]
+            [:#Sp        :#Sequal_sign     :f-mode]
 
             ;; BRACKET combinations (special)
 
@@ -292,12 +276,12 @@
             ;; ()
             ;;    []  {}
 
-            [:m         :open_bracket   ["f-mode" 1]]
-            [:comma     :close_bracket  ["f-mode" 1]]
-            [:j         :!S9   ["f-mode" 1]]
-            [:k         :!S0   ["f-mode" 1]]
-            [:period    :!Sopen_bracket   ["f-mode" 1]]
-            [:slash     :!Sclose_bracket   ["f-mode" 1]]
+            [:m         :open_bracket   :f-mode]
+            [:comma     :close_bracket  :f-mode]
+            [:j         :!S9   :f-mode]
+            [:k         :!S0   :f-mode]
+            [:period    :!Sopen_bracket   :f-mode]
+            [:slash     :!Sclose_bracket   :f-mode]
 
       ]}
 
