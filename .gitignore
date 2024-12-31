@@ -1,11 +1,13 @@
 *
 
+# ignore
+.config/fish/fish_variables
+
 # *include* the following directories (i.e. don't .gitignore them)
 !.warp/
 !.warp/themes
 !.vim/
 !.vim/pack/**
-
 
 !notes/obsd/templates
 !notes/obsd/.obsidian/snippets
