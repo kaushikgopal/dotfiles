@@ -36,4 +36,15 @@ if status is-interactive
 end
 
 
-#source ~/.config/fish/functions/post-exec.fish
+# ----------------------------------------------------------------------------------------------------------------------
+# Path   # https://fishshell.com/docs/current/cmds/fish_add_path.html
+
+fish_add_path /opt/homebrew/bin # so homebrew is available
+fish_add_path ~/bin
+# fish_add_path --append  # so we maintain the order as declared
+fish_add_path --append (brew --prefix)/sbin
+fish_add_path --append /usr/local/bin /usr/bin /bin /usr/local/sbin /usr/sbin /sbin
+fish_add_path --append ~/.local/bin # pipx
+
+export ANDROID_HOME=$HOME/Library/Android/sdk
+fish_add_path --append "$ANDROID_HOME/platform-tools" "$ANDROID_HOME/cmdline-tools/latest/bin" "$ANDROID_HOME/tools" "$ANDROID_HOME/tools/bin" "$ANDROID_HOME/emulator"
