@@ -7,7 +7,7 @@ function magic-enter-cmd --description "Issue git status or ls on hitting enter 
     if test -n "$is_git_repository"
         if test -n "$in_root_folder"
             if test -n "$repo_has_changes"
-                set cmd git-number
+                set cmd "git status -s"
             end
         end
     end
