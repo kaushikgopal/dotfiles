@@ -15,19 +15,23 @@ if status is-interactive
     # abbr --list   # just show the abbreviations
     ################################
 
-    abbr --add -- ppath "echo '$PATH' | tr ':' '\n'" # print path
+    # https://fishshell.com/docs/3.2/cmds/abbr.html#internals
 
-    # abbr --add -- g     "git" # using a git function which is better
-    abbr --add -- ga 'git a' # add     with number support
-    abbr --add -- g. 'git add .'
-    abbr --add -- gdc "git dc" # diff --cached  with number support
-    abbr --add -- gss "git status -s"
-    abbr --add -- gcm 'git commit -m'
-    abbr --add -- gano 'git commit --amend --no-edit'
-    abbr --add -- gd 'git d' # diff with number support
-    abbr --add -- gdi 'git diff' # diff regular
-    abbr --add -- gdc 'git dc' # diff --cached  with number support
-    abbr --add -- gdic 'git diff --cached' # diff --cached  regular
+    abbr --add --global ppath 'echo "\n$PATH\n\n" | tr ":" "\n"' # print path
+
+    # abbr --add --global g     "git" # using a git function which is better
+    abbr --add --global ga 'git a' # add     with number support
+    abbr --add --global g. 'git add .'
+    abbr --add --global gdc "git dc" # diff --cached  with number support
+    abbr --add --global gss "git status -s"
+    abbr --add --global gcm 'git commit -m'
+    abbr --add --global gano 'git commit --amend --no-edit'
+    abbr --add --global gd 'git d' # diff with number support
+    abbr --add --global gdi 'git diff' # diff regular
+    abbr --add --global gdc 'git dc' # diff --cached  with number support
+    abbr --add --global gdic 'git diff --cached' # diff --cached  regular
+
+    abbr --add --global co code
 
 end
 
