@@ -1,7 +1,6 @@
 # file location: ~/.brewfile
 # brew bundle --file=".brewfile"
 
-
 ##############################################################
 ##### Settings
 
@@ -9,14 +8,13 @@
 cask_args appdir: '/Applications', no_quarantine: true
 
 # java_present = system('/usr/libexec/java_home --failfast')
-is_arm = Hardware::CPU.arm?   # TODO: All lines that are based on this condition are currently not working for ARM architecture - and thus this check
-
+is_arm = Hardware::CPU.arm? # TODO: All lines that are based on this condition are currently not working for ARM architecture - and thus this check
 
 tap "homebrew/bundle"
 tap "homebrew/cask-fonts"
 
 tap "kaushikgopal/tools"
-tap "buo/cask-upgrade"  # better cask upgrading (see `cu`)
+tap "buo/cask-upgrade" # better cask upgrading (see `cu`)
 
 ##############################################################
 ##### CLI tools
@@ -41,11 +39,11 @@ brew "openssl"
 brew "pgcli"
 brew "poppler"
 brew "powerlevel10k"
-brew "renameutils"  # bulk renaming / copying
+brew "renameutils" # bulk renaming / copying
 brew "ripgrep"
 brew "rsync"
 brew "sox"
-brew "xmlstarlet"   # fine-grain xml manipulation
+brew "xmlstarlet" # fine-grain xml manipulation
 
 # brew "neovim"
 # brew "briss" # pdf cropping tool
@@ -60,8 +58,10 @@ brew "wget"
 #brew "youtube-dl"
 brew "yt-dlp"
 brew "zoxide"
-brew "zsh-autosuggestions"          # fish like suggestions (from history + completions)
-brew "zsh-syntax-highlighting"      # fish like syntax highlighting
+
+brew "fish"
+# brew "zsh-autosuggestions"          # fish like suggestions (from history + completions)
+# brew "zsh-syntax-highlighting"      # fish like syntax highlighting
 # brew "zsh-completions"              # autocomplete candidates (without tab) - DOESN'T WORK
 
 ##############################################################
@@ -76,7 +76,7 @@ brew "git-lfs"
 brew "git"
 brew "github-keygen"
 
-brew "foreman"       # starting multiple processes concurrently
+brew "foreman" # starting multiple processes concurrently
 
 # brew "docker-compose"
 # brew "docker-credential-helper-ecr"
@@ -109,8 +109,8 @@ brew "postgresql"
 # brew "pyenv-virtualenv"
 # brew "python-tabulate"
 # brew "python@3.10"
-brew "python3"    # caper local mock server
-brew "python-yq"  # caper local mock server
+brew "python3"   # caper local mock server
+brew "python-yq" # caper local mock server
 
 ######################
 ##### go
@@ -125,12 +125,12 @@ brew "flyctl"
 brew "bazelisk"
 brew "pipx"
 #cask "orbstack"
-brew "grpcurl"  # caper
+brew "grpcurl" # caper
 
 ##############################################################
 ##### Mac apps
 cask "1password"
-cask "1password-cli"    # required for Raycast/Alfred integration
+cask "1password-cli" # required for Raycast/Alfred integration
 cask "ghostty"
 cask "google-chrome"
 cask "google-drive"
@@ -156,7 +156,7 @@ cask "webpquicklook"
 
 cask "font-inter"
 cask "font-geist"
-cask "font-sf-pro"      # obsidian notes
+cask "font-sf-pro" # obsidian notes
 cask "font-sf-compact"
 cask "font-sf-mono"
 
@@ -184,16 +184,12 @@ cask "font-sf-mono"
 # mas "Hand Mirror", id: 1502839586
 # mas "Things 3", id: 904280696
 
-
 ##############################################################
 ##### goku
 tap "candid82/brew"
 tap "yqrashawn/goku"
 cask "karabiner-elements"
 brew "yqrashawn/goku/goku"
-
-
-
 
 ##############################################################
 ##### Helpful commands

@@ -16,7 +16,7 @@ NC='\033[0m'
 echo -e "\n\n\n${PURPLE}---- Check for Apple Software Updates then restart your computer. \n Have you done this (no seriously!)${NC}"
 
 echo -e "\n\n\n${YELLOW}---- installing Xcode command tools (without all of Xcode)${NC}"
-touch /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress;
+touch /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress
 softwareupdate --install -a --verbose
 rm -f /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress
 # install xcode
@@ -25,10 +25,10 @@ rm -f /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress
 echo -e "${YELLOW}---- setting up homebrew${NC}"
 
 if ! command -v brew &>/dev/null; then
-  echo -e "\n\n\n${YELLOW}---- Homebrew not found. Installing...${NC}"
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    echo -e "\n\n\n${YELLOW}---- Homebrew not found. Installing...${NC}"
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 else
-  echo -e "${GRAY}---- Homebrew is already installed.${NC}"
+    echo -e "${GRAY}---- Homebrew is already installed.${NC}"
 fi
 
 echo -e "${GRAY}---- Turning homebrew analytics off.${NC}"
@@ -39,7 +39,7 @@ brew install git
 brew install gh
 
 echo -e "\n\n\n${YELLOW}---- Setting up git${NC}"
-gh auth status &> tmp_gh_login.txt
+gh auth status &>tmp_gh_login.txt
 if grep -om1 "Logged in" tmp_gh_login.txt; then
     rm -f tmp_gh_login.txt
     echo -e "${GRAY}---- logged in to github${NC}"
@@ -52,7 +52,7 @@ fi
 echo -e "${YELLOW}---- setting up dotfiles${NC}"
 cd $HOME
 
-if git rev-parse --git-dir > /dev/null 2>&1; then
+if git rev-parse --git-dir >/dev/null 2>&1; then
     echo -e "${GRAY}---- looks like dotfile repo is setup${NC}"
 else
     echo -e "${PURPLE}---- setting up home to point to dotfiles${NC}"
@@ -72,7 +72,7 @@ function delete_if_exists {
         # echo -e "$1 exists."
         echo -e "${PURPLE}---- $1 present, so deleting${NC}"
         sudo rm "$1"
-    # else
+        # else
         # echo -e "$1 does not exist."
     fi
 }
@@ -101,42 +101,30 @@ function clone_if_absent {
 #echo -e "\n\n\n${YELLOW}---- Setting up zsh shell through brew${NC}"
 #brew install zsh
 
-curl https://lab.al0.de/a0n/oh-my-zsh/-/raw/master/plugins/adb/_adb > $(brew --prefix)/share/zsh/site-functions/_adb
+curl https://lab.al0.de/a0n/oh-my-zsh/-/raw/master/plugins/adb/_adb >$(brew --prefix)/share/zsh/site-functions/_adb
 chmod +x $(brew --prefix)/share/zsh/site-functions/_adb
 
 ##############################################################
 # Fish shell
 ##############################################################
 
-# echo -e "\n\n\n${YELLOW}---- Setting up Fish${NC}"
-# if [[ $(uname -p) == 'arm' ]]; then
-#     if grep -Fxq "/opt/homebrew/bin/fish" /etc/shells; then
-#         echo -e "${GRAY}---- fish declaration present${NC}"
-#     else
-#         echo "/opt/homebrew/bin/fish" | sudo tee -a /etc/shells
-#     fi
-# else
-#     if grep -Fxq "/usr/local/bin/fish" /etc/shells; then
-#         echo -e "${GRAY}---- fish declaration present${NC}"
-#     else
-#         echo "/usr/local/bin/fish" | sudo tee -a /etc/shells
-#     fi
-# fi
+echo -e "\n\n\n${YELLOW}---- Setting up Fish${NC}"
+if grep -Fxq "$(brew --prefix)/bin/fish" /etc/shells; then
+    echo -e "${GRAY}---- fish declaration present${NC}"
+else
+    echo "$(brew --prefix)/bin/fish" | sudo tee -a /etc/shells
+fi
 
-# if [[ "fish" == $(basename "${SHELL}") ]]; then
-#     echo -e "${GRAY}---- default shell is fish${NC}"
-# else
-#     echo -e "${GRAY}---- default shell is NOT fish${NC}"
-#     if [[ $(uname -p) == 'arm' ]]; then
-#         chsh -s /opt/homebrew/bin/fish
-#     else
-#         chsh -s /usr/local/bin/fish
-#     fi
-# fi
+if [[ "fish" == $(basename "${SHELL}") ]]; then
+    echo -e "${GRAY}---- default shell is fish${NC}"
+else
+    echo -e "${GRAY}---- default shell is NOT fish${NC}"
+    sudo chsh -s $(brew --prefix)/bin/fish $(whoami)
+fi
 
-# echo -e "${GRAY}---- symlink fish_history ${NC}"
-# trash ~/.local/share/fish/fish_history
-# ln -s $XDG_DATA_HOME/fish/fish_history ~/.local/share/fish/
+echo -e "${GRAY}---- symlink fish_history ${NC}"
+trash ~/.local/share/fish/fish_history
+ln -s $XDG_DATA_HOME/fish/fish_history ~/.local/share/fish/
 
 ##############################################################
 # DEV
@@ -176,7 +164,6 @@ chmod +x $(brew --prefix)/share/zsh/site-functions/_adb
 # # clone_if_absent limelight https://github.com/junegunn/limelight.vim.git
 # # clone_if_absent goyo https://github.com/junegunn/goyo.vim.git
 
-
 # mkdir -p $HOME/_src
 # cd $HOME/_src
 #clone_if_absent gruvbox-idea https://github.com/kaushikgopal/gruvbox-idea.git
@@ -215,13 +202,12 @@ cd ~
 
 if [ ! -f /usr/local/bin/pdflatex ]; then
     echo -e "\n\n\n${PURPLE}---- enable quick look plugins${NC}"
-    sudo ln -s /Library/Tex/Distributions/.DefaultTeX/Contents/Programs/x86_64/pdflatex  /usr/local/bin/
+    sudo ln -s /Library/Tex/Distributions/.DefaultTeX/Contents/Programs/x86_64/pdflatex /usr/local/bin/
 fi
 
 # echo -e "\n\n\n${YELLOW}---- Install TaskWarrior dependencies${NC}"
 # needed for shift-recurrence pirate
 # pip3 install --user git+git://github.com/GothenburgBitFactory/tasklib@develop
-
 
 source $HOME/.brew.sh
 $(brew --prefix)/opt/fzf/install
@@ -240,9 +226,9 @@ $(brew --prefix)/opt/fzf/install
 #     touch /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress;
 #     softwareupdate --install -a --verbose
 #     rm /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress
-     xcode-select --install
-     #sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer
-     sudo xcode-select --switch /Library/Developer/CommandLineTools/
+xcode-select --install
+#sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer
+sudo xcode-select --switch /Library/Developer/CommandLineTools/
 # fi
 
 # SDK man for .kt dev & kscript
@@ -254,5 +240,5 @@ pushd ~/.warp/themes
 git clone https://github.com/juliabresolin/warp-theme-dark-modern
 popd
 
-unset delete_if_exists;
-unset clone_if_absent;
+unset delete_if_exists
+unset clone_if_absent
