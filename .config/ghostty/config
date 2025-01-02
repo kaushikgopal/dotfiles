@@ -7,14 +7,21 @@ theme = monokai-pro
 adjust-cursor-thickness = 1
 cursor-style-blink = false
 mouse-hide-while-typing = true
+#adjust-cell-height = 7
+#adjust-cursor-height = 7
 
-
-# Fonts
-font-family = TX-02
-font-size = 10.5
 font-thicken = true
-adjust-cell-height = 20%
 
+# Theme config
+font-family = TX-02
+font-size = 12
+adjust-cell-height = 12%
+font-thicken = true
+
+#font-family = CommitMono-KG-SF-2
+#font-style = 375Regular
+#font-size = 12
+#adjust-cell-height = 25%
 
 window-padding-x = 10
 window-padding-y = 8
