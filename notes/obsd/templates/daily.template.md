@@ -1,5 +1,5 @@
 <% moment(tp.file.title,'YYYY-MM-DD').format("dddd") %> || [[<% fileDate = moment(tp.file.title, 'YYYY-MM-DD').subtract(1, 'd').format('YYYY-MM-DD') %>|Yesterday]] | [[<% fileDate = moment(tp.file.title, 'YYYY-MM-DD').add(1, 'd').format('YYYY-MM-DD') %>|Tomorrow]]
-[[✱ Dashboard]] - [[✱ Work]] |  [[todo]] |   [[unsorted.todo]] |  [[✱ grocery]]
+[[✱ Dashboard]] - [[✱ Work]] |  [[✱ todo]] |   [[unsorted.todo]] |  [[✱ grocery]]
 
 
 <% tp.file.cursor(1) %>
@@ -34,6 +34,6 @@ hide task count
 
 # Due
 
-![[todo#Priority / upcoming 20 days]]
+![[✱ todo#Priority / upcoming 20 days]]
 
-![[todo#(Over)Due]]
+![[✱ todo#(Over)Due]]
