@@ -111,7 +111,7 @@ defaults write com.apple.dock wvous-two-finger-swipe-down -bool false
 ##    so it won't show special characters etc.
 defaults write -g ApplePressAndHoldEnabled -bool false
 ## Set a blazingly fast keyboard repeat rate
-defaults write -g InitialKeyRepeat -int 25 # normal minimum is 15 (225 ms)
+defaults write -g InitialKeyRepeat -int 10 # normal minimum is 15 (225 ms)
 defaults write -g KeyRepeat -int 1         # normal minimum is 2 (30 ms)
 
 # Double-tap Fn key to enable dictation (and not emoji picker)
