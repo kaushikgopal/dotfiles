@@ -30,6 +30,7 @@ if status is-interactive
     abbr --add --global g git # using a git function which is better
     # ---
     abbr --add --global ga 'git a' # add     with number support
+    abbr --add --global gaf 'git add --force' # add     with number support
     abbr --add --global g. 'git add .'
     # ---
     abbr --add --global gb 'git branch'
@@ -87,3 +88,9 @@ fish_add_path --append ~/.local/bin # pipx
 
 export ANDROID_HOME=$HOME/Library/Android/sdk
 fish_add_path --append "$ANDROID_HOME/platform-tools" "$ANDROID_HOME/cmdline-tools/latest/bin" "$ANDROID_HOME/tools" "$ANDROID_HOME/tools/bin" "$ANDROID_HOME/emulator"
+
+
+# ---------------------------------------------------------
+# Zoxide
+
+zoxide init --cmd j fish | source
