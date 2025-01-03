@@ -31,41 +31,31 @@ if status is-interactive
 
 
     abbr --add --global g git # using a git function which is better
-    # ---
     abbr --add --global ga 'git a' # add     with number support
     abbr --add --global gaf 'git add --force' # add     with number support
     abbr --add --global g. 'git add .'
-    # ---
     abbr --add --global gb 'git branch'
     abbr --add --global gbd 'git branch -D'
-    # ---
     abbr --add --global gc 'git ch' # checkout - with number support
     abbr --add --global gch 'git checkout' # checkout - regular
     abbr --add --global gc- 'git checkout -'
     abbr --add --global gcm 'git checkout master'
     abbr --add --global gcb 'git checkout -B'
-    # ---
     abbr --add --global gchp 'git cherry-pick'
-    # ---
     abbr --add --global gcm 'git commit -m'
     abbr --add --global gano 'git commit --amend --no-edit'
-    # ---
     abbr --add --global gd 'git d' # diff with number support
     abbr --add --global gss "git status -s"
     abbr --add --global gdi 'git diff' # diff regular
     abbr --add --global gdc "git dc" # diff --cached with number support
     abbr --add --global gdic 'git diff --cached' # diff --cached regular
-    # ---
     abbr --add --global gll 'git log --graph --decorate --date=short --pretty=format:"%C(magenta)%h%Creset %C(italic black)%ad%C(reset)%C(auto) %s %C(blue)%an%C(auto) %D%C(reset)"'
     abbr --add --global gl 'git log --graph --decorate --date=short --topo-order -30 --pretty=format:"%C(magenta)%h%Creset %C(italic black)%ad%C(reset)%C(auto) %s %C(blue)%an%C(auto) %D%C(reset)"'
-    # ---
     abbr --add --global gmm 'git merge master'
     abbr --add --global gmp 'git checkout master; git pull'
     abbr --add --global gma 'git checkout main'
-    # ---
     abbr --add --global gp 'git pull'
     abbr --add --global gpu 'git push'
-    # ---
     abbr --add --global gwip 'git add .; git commit -a -m "--wip-- [ci skip]" --no-verify' # quick commit (get in the reflog)
     abbr --add --global gwipr 'git reset --soft HEAD~; git reset' # undo last commit (works well with gwip)
 
@@ -75,6 +65,13 @@ if status is-interactive
     abbr --add --global con 'code --new-window'
     abbr --add --global cor 'code --reuse-window'
     abbr --add --global cu cursor
+
+
+
+    abbr --add --global bid './bin/dev'
+    abbr --add --global bir './bin/rails'
+    abbr --add --global gr gradle
+    abbr --add --global gw './gradlew'
 
 end
 
