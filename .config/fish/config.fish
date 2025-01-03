@@ -56,8 +56,8 @@ if status is-interactive
     abbr --add --global gdc "git dc" # diff --cached with number support
     abbr --add --global gdic 'git diff --cached' # diff --cached regular
     # ---
-    abbr --add --global gll 'git log --graph --decorate --date=short --pretty=format:"%C(magenta)%h%Creset %C(bold black)%ad%C(reset)%C(auto) %s %C(blue)%an%C(auto) %D%C(reset)"'
-    abbr --add --global gl 'git log --graph --decorate --date=short --topo-order -30 --pretty=format:"%C(magenta)%h%Creset %C(bold black)%ad%C(reset)%C(auto) %s %C(blue)%an%C(auto) %D%C(reset)"'
+    abbr --add --global gll 'git log --graph --decorate --date=short --pretty=format:"%C(magenta)%h%Creset %C(italic black)%ad%C(reset)%C(auto) %s %C(blue)%an%C(auto) %D%C(reset)"'
+    abbr --add --global gl 'git log --graph --decorate --date=short --topo-order -30 --pretty=format:"%C(magenta)%h%Creset %C(italic black)%ad%C(reset)%C(auto) %s %C(blue)%an%C(auto) %D%C(reset)"'
     # ---
     abbr --add --global gmm 'git merge master'
     abbr --add --global gmp 'git checkout master; git pull'
