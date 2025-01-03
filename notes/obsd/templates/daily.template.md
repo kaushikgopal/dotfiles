@@ -17,9 +17,8 @@ not done
 tags include now
 path does not include ✱ Work
 sort by priority
-hide created date
-hide edit button
-hide task count
+short mode
+
 ```
 ### Work
 ```tasks
@@ -27,9 +26,7 @@ not done
 tags include now
 path includes ✱ Work
 sort by priority
-hide created date
-hide edit button
-hide task count
+short mode
 ```
 
 # Due
