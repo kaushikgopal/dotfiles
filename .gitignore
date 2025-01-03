@@ -1,8 +1,18 @@
+# # Ignore everything by default
 *
 
-# *include* the following directories (i.e. don't .gitignore them)
-!.config/fish/**
+# Include .config so we can reach subdirectories
+!.config/
+
+
+# Include only specific directories & contents
+
+!.config/ghostty/
 !.config/ghostty/**
+
+!.config/fish/
+!.config/fish/**
+.config/fish/fish_variables
 
 !.warp/
 !.warp/themes
@@ -12,6 +22,3 @@
 
 !.vim/
 !.vim/pack/**
-
-# ignore (again) if included prev
-.config/fish/fish_variables
