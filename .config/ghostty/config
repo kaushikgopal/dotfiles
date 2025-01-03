@@ -4,18 +4,24 @@
 # ghostty +show-config --default --docs
 # ghostty +list-themes
 
-# Font combos
-font-thicken = true
+font-thicken                    = true
+font-size                       = 11.5
 
-# font-family = TX-02
-# font-style = Regular
-# font-size = 11.5
-# adjust-cell-height = 12%
 ##############################################
-font-family = CommitMono-KG-SF-2
-font-style = 375Regular
-font-size = 11.5
-adjust-cell-height = 25%
+# Font combos
+# ghostty +list-fonts
+
+font-family                     = TX-02
+font-family-bold                = TX-02 SemiBold
+font-family-italic              = TX-02 Oblique
+font-family-bold-italic         = TX-02 SemiBold Oblique
+adjust-cell-height              = 15%
+##############################################
+# font-family                     = CommitMono-KG-SF-2
+# font-family-italic              = 375Italic
+# adjust-cell-height              = 25%
+
+
 
 # Look and Feel
 adjust-cursor-thickness         = 3
