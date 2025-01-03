@@ -1,13 +1,17 @@
 *
 
-# ignore
-.config/fish/fish_variables
-
 # *include* the following directories (i.e. don't .gitignore them)
+!.config/fish/**
+!.config/ghostty/**
+
 !.warp/
 !.warp/themes
-!.vim/
-!.vim/pack/**
 
 !notes/obsd/templates
 !notes/obsd/.obsidian/snippets
+
+!.vim/
+!.vim/pack/**
+
+# ignore (again) if included prev
+.config/fish/fish_variables
