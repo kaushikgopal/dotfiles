@@ -56,6 +56,7 @@ if status is-interactive
     abbr --add --global gma 'git checkout main'
     abbr --add --global gp 'git pull'
     abbr --add --global gpu 'git push'
+    abbr --add --global grb 'git rebase --interactive HEAD~'
     abbr --add --global gwip 'git add .; git commit -a -m "--wip-- [ci skip]" --no-verify' # quick commit (get in the reflog)
     abbr --add --global gwipr 'git reset --soft HEAD~; git reset' # undo last commit (works well with gwip)
 
