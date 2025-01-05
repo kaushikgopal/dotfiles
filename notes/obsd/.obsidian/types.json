@@ -3,6 +3,18 @@
     "aliases": "aliases",
     "cssclasses": "multitext",
     "tags": "tags",
-    "travel-date": "text"
+
+    "category": "multitext",
+    "loc": "multitext",
+
+    "created": "date",
+    "date": "date",
+    "start": "date",
+    "end": "date",
+    "travel-date": "date",
+    "bday": "date",
+
+    "year": "number",
+    "rating": "number"
   }
 }
