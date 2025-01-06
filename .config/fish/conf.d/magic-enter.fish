@@ -26,5 +26,5 @@ function magic-enter
     commandline -f execute
 end
 
-# bind \r magic-enter
+bind \r magic-enter
 bind -M insert \r magic-enter
