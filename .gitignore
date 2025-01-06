@@ -4,7 +4,6 @@
 # Include .config so we can reach subdirectories
 !.config/
 
-
 # Include only specific directories & contents
 
 !.config/ghostty/
@@ -17,8 +16,12 @@
 !.warp/
 !.warp/themes
 
-!notes/obsd/templates
+!notes/
+!notes/obsd
+!notes/obsd/templates/
+!notes/obsd/.obsidian/
 !notes/obsd/.obsidian/snippets
+!notes/obsd/.obsidian/types.json
 
 !.vim/
 !.vim/pack/**
