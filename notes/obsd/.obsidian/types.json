@@ -4,7 +4,7 @@
     "cssclasses": "multitext",
     "tags": "tags",
 
-    "category": "multitext",
+    "refs": "multitext",
     "loc": "multitext",
 
     "created": "date",
@@ -17,6 +17,7 @@
     "travel-date": "date",
 
     "year": "number",
+    "week": "number",
     "rating": "number"
   }
 }

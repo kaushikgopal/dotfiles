@@ -1,6 +1,8 @@
 ---
 tags:
   - daily
+refs:
+  - '[[<% moment().year() + "-w" + moment().week() + ".todo"%>]]'
 ---
 [[<% fileDate = moment(tp.file.title, 'YYYY-MM-DD').subtract(1, 'd').format('YYYY-MM-DD') %>|⇤]]  | **<% moment(tp.file.title,'YYYY-MM-DD').format("dddd") %>** | [[<% fileDate = moment(tp.file.title, 'YYYY-MM-DD').add(1, 'd').format('YYYY-MM-DD') %>|⇥]]
 
@@ -11,25 +13,8 @@ tags:
 
 ***
 [[✱ todo]] | [[✱ Work]] | [[✱ Dashboard]]
-# 3 tasks for the day
-### Personal
-```tasks
-not done
-tags include now
-path does not include ✱ Work
-sort by priority
-short mode
 
-```
-### Work
-```tasks
-not done
-tags include now
-path includes ✱ Work
-sort by priority
-short mode
-```
-
+![[<% moment().year() + "-w" + moment().week() + ".todo"%>#Tasks|This week's tasks]]
 # Due
 
 ![[✱ todo#Priority / upcoming 20 days]]
