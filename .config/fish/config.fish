@@ -31,8 +31,9 @@ if status is-interactive
 
 
     abbr --add --global g git # using a git function which is better
-    abbr --add --global ga 'git a' # add     with number support
-    abbr --add --global gaf 'git add --force' # add     with number support
+    abbr --add --global ga 'git a'              # add with number support
+    abbr --add --global gad 'git add'           # add basic
+    abbr --add --global gaf 'git add --force'
     abbr --add --global g. 'git add .'
     abbr --add --global gb 'git branch'
     abbr --add --global gbd 'git branch -D'
