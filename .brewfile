@@ -131,8 +131,6 @@ brew "grpcurl" # caper
 ##### Mac apps
 cask "1password"
 cask "1password-cli" # required for Raycast/Alfred integration
-cask "ghostty"
-cask "google-chrome"
 cask "google-drive"
 cask "imageoptim"
 cask "jetbrains-toolbox"
@@ -146,13 +144,18 @@ cask "the-unarchiver"
 cask "visual-studio-code"
 cask "webpquicklook"
 
+cask "ghostty"
+cask "warp"
+
+cask "brave-browser"
+cask "google-chrome"
+
 #cask "cursor"
 #cask "keyboard-maestro"
 #cask "loopback"
 #cask "soundsource"
 #cask "superduper"
 #cask "soulver"
-#cask "warp"
 
 cask "font-inter"
 cask "font-geist"
