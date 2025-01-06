@@ -45,6 +45,7 @@ if status is-interactive
     abbr --add --global gcm 'git commit -m'
     abbr --add --global gano 'git commit --amend --no-edit'
     abbr --add --global gd 'git d' # diff with number support
+    abbr --add --global gsh "git show HEAD~"
     abbr --add --global gss "git status -s"
     abbr --add --global gdi 'git diff' # diff regular
     abbr --add --global gdc "git dc" # diff --cached with number support
