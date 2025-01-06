@@ -11,8 +11,10 @@
     "date": "date",
     "start": "date",
     "end": "date",
-    "travel-date": "date",
+
     "bday": "date",
+    "published": "date",
+    "travel-date": "date",
 
     "year": "number",
     "rating": "number"

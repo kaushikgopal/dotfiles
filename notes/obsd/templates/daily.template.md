@@ -2,16 +2,15 @@
 tags:
   - daily
 ---
+[[<% fileDate = moment(tp.file.title, 'YYYY-MM-DD').subtract(1, 'd').format('YYYY-MM-DD') %>|⇤]]  | **<% moment(tp.file.title,'YYYY-MM-DD').format("dddd") %>** | [[<% fileDate = moment(tp.file.title, 'YYYY-MM-DD').add(1, 'd').format('YYYY-MM-DD') %>|⇥]]
 
-| [[<% fileDate = moment(tp.file.title, 'YYYY-MM-DD').subtract(1, 'd').format('YYYY-MM-DD') %>\|Yesterday]] | Today is **<% moment(tp.file.title,'YYYY-MM-DD').format("dddd") %>** | [[<% fileDate = moment(tp.file.title, 'YYYY-MM-DD').add(1, 'd').format('YYYY-MM-DD') %>\|Tomorrow]] |
-| --------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
-| [[✱ Dashboard]]                                                                                           | [[✱ todo]]                                                           | [[✱ Work]]                                                                                          |
 
 <% tp.file.cursor(1) %>
 
 
 
 ***
+[[✱ todo]] | [[✱ Work]] | [[✱ Dashboard]]
 # 3 tasks for the day
 ### Personal
 ```tasks
