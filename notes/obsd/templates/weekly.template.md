@@ -4,26 +4,27 @@ tags:
 week: <% moment().week() %>
 year: <% moment().year() %>
 ---
-_First rename this file to:_  <%*
+_First rename this file to:_ <%*
 tR += moment().year() + "-w" + moment().week() + ".todo"
 %>
 
 
-***
 # Tasks
+10 small tasks or 5 medium tasks
 ### Personal
-- [ ] [[Switch to Weekly Todo lists]] vs #now
+- [ ] 
 ### Work
-
+- [ ] 
 
 
 
 # Inspiration
-
-See global [[todo]]
+1. Check [[todo]] tasks first
+2. Pick a variety so you're doing damage across all [[✱ Years#2025|2025]] goals
+3. What are the [[✱ Work]] tasks you want to do
+5. Pick a few [[✱ Skyview]] tasks
 
 ## now?
-### Personal
 ```tasks
 not done
 tags include now
@@ -31,7 +32,6 @@ path does not include ✱ Work
 sort by priority
 short mode
 ```
-### Work
 ```tasks
 not done
 tags include now
