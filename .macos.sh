@@ -111,7 +111,7 @@ defaults write com.apple.dock wvous-two-finger-swipe-down -bool false
 ##    so it won't show special characters etc.
 defaults write -g ApplePressAndHoldEnabled -bool false
 ## Set a blazingly fast keyboard repeat rate
-defaults write -g InitialKeyRepeat -int 10 # normal minimum is 15 (225 ms)
+defaults write -g InitialKeyRepeat -int 12 # normal minimum is 15 (225 ms)
 defaults write -g KeyRepeat -int 1         # normal minimum is 2 (30 ms)
 
 # Double-tap Fn key to enable dictation (and not emoji picker)
@@ -304,8 +304,8 @@ defaults write NSGlobalDomain NSQuitAlwaysKeepsWindows -bool false
 ## defaults write com.apple.dock mru-spaces -bool false
 ## Remove the auto-hiding Dock delay
 ## defaults write com.apple.dock autohide-delay -float 0 # Intel based macs
-# defaults write com.apple.dock autohide-delay -float 0 && defaults write com.apple.dock autohide-time-modifier -float 0.4 && killall Dock # Arm based macs
-defaults write com.apple.dock autohide-delay -int 60
+# -> (hack for disabling Dock) defaults write com.apple.dock autohide-delay -int 60
+defaults write com.apple.dock autohide-delay -float 0 && defaults write com.apple.dock autohide-time-modifier -float 0.4 && killall Dock # Arm based macs
 ## Remove the animation when hiding/showing the Dock
 #defaults write com.apple.dock autohide-time-modifier -float 0
 ## Automatically hide and show the Dock
