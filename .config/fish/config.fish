@@ -63,19 +63,15 @@ if status is-interactive
     abbr --add --global gwipr 'git reset --soft HEAD~; git reset' # undo last commit (works well with gwip)
 
 
-
     abbr --add --global co code
     abbr --add --global con 'code --new-window'
     abbr --add --global cor 'code --reuse-window'
     abbr --add --global cu cursor
 
-
-
     abbr --add --global bid './bin/dev'
     abbr --add --global bir './bin/rails'
     abbr --add --global gr gradle
     abbr --add --global gw './gradlew'
-
 end
 
 
@@ -97,3 +93,6 @@ fish_add_path --append "$ANDROID_HOME/platform-tools" "$ANDROID_HOME/cmdline-too
 # Zoxide
 
 zoxide init --cmd j fish | source
+
+
+source ~/.secrets.fish
