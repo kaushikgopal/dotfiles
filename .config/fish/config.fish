@@ -31,17 +31,17 @@ if status is-interactive
 
 
     abbr --add --global g git # using a git function which is better
-    abbr --add --global ga 'git a'              # add with number support
-    abbr --add --global gad 'git add'           # add basic
+    abbr --add --global ga 'git a' # add with number support
+    abbr --add --global gad 'git add' # add basic
     abbr --add --global gaf 'git add --force'
     abbr --add --global g. 'git add .'
     abbr --add --global gb 'git branch'
     abbr --add --global gbd 'git branch -D'
-    abbr --add --global gc 'git ch' # checkout - with number support
-    abbr --add --global gch 'git checkout' # checkout - regular
-    abbr --add --global gc- 'git checkout -'
-    abbr --add --global gcm 'git checkout master'
-    abbr --add --global gcb 'git checkout -B'
+    abbr --add --global gch 'git ch' # checkout - with number support
+    abbr --add --global gco 'git checkout' # checkout - regular
+    abbr --add --global gcom 'git checkout master'
+    abbr --add --global gcob 'git checkout -B'
+    abbr --add --global gco- 'git checkout -'
     abbr --add --global gchp 'git cherry-pick'
     abbr --add --global gcm 'git commit -m'
     abbr --add --global gano 'git commit --amend --no-edit'
