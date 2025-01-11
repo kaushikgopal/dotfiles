@@ -2,11 +2,13 @@
 tags:
   - weekly
 week: <% moment().week() %>
-year: <% moment().year() %>
+year:
+  - "[[✱ Years#<% moment().year() %>|<% moment().year() %>]]"
 ---
 _First rename this file to:_ <%*
 tR += moment().year() + "-w" + moment().week() + ".todo"
 %>
+
 
 
 # Tasks
@@ -23,6 +25,7 @@ tR += moment().year() + "-w" + moment().week() + ".todo"
 2. Pick a variety so you're doing damage across all [[✱ Years#2025|2025]] goals
 3. What are the [[✱ Work]] tasks you want to do
 5. Pick a few [[✱ Skyview]] tasks
+6. Pick one item to put up for sale
 
 ## now?
 ```tasks

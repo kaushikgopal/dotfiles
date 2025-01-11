@@ -7,6 +7,7 @@
     "refs": "multitext",
     "loc": "multitext",
 
+
     "created": "date",
     "date": "date",
     "start": "date",
@@ -16,7 +17,7 @@
     "published": "date",
     "travel-date": "date",
 
-    "year": "number",
+    "year": "multitext",
     "week": "number",
     "rating": "number"
   }
