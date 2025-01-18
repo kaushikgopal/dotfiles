@@ -88,6 +88,8 @@ fish_add_path --append ~/.local/bin # pipx
 export ANDROID_HOME=$HOME/Library/Android/sdk
 fish_add_path --append "$ANDROID_HOME/platform-tools" "$ANDROID_HOME/cmdline-tools/latest/bin" "$ANDROID_HOME/tools" "$ANDROID_HOME/tools/bin" "$ANDROID_HOME/emulator"
 
+export JAVA_HOME=$HOME/Applications/Android\ Studio.app/Contents/jbr/Contents/Home
+# export JAVA_HOME=(/usr/libexec/java_home -v"17")
 
 # ---------------------------------------------------------
 # Zoxide
