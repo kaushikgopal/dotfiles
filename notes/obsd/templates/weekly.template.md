@@ -5,9 +5,11 @@ week: <% moment().week() %>
 year:
   - "[[✱ Years#<% moment().year() %>|<% moment().year() %>]]"
 ---
-_First rename this file to:_ <%*
-tR += moment().year() + "-w" + moment().week() + ".todo"
-%>
+[Last week](<%*
+tR += moment().year() + "-w" +  moment().subtract(1, 'weeks').week() + ".todo"
+%>) | [Next week](<%*
+tR += moment().year() + "-w" +  moment().add(1, 'weeks').week() + ".todo"
+%>)
 
 
 
@@ -21,9 +23,11 @@ tR += moment().year() + "-w" + moment().week() + ".todo"
 
 
 # Inspiration
-1. Check [[todo]] tasks first
-2. Pick a variety so you're doing damage across all [[✱ Years#2025|2025]] goals
-3. What are the [[✱ Work]] tasks you want to do
+0. Start off first [from scratch](https://stephango.com/todos)
+1. Are you making progress towards[[✱ Years#<% moment().year() %>|<% moment().year() %>]] ?
+2. Anything to carry over from last week?
+3. Check [[✱ todo]] tasks
+4. What are the [[✱ Work]] tasks you want to do
 5. Pick a few [[✱ Skyview]] tasks
 6. Pick one item to put up for sale
 
