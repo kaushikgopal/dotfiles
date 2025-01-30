@@ -148,7 +148,7 @@ cask "ghostty"
 cask "warp"
 
 cask "brave-browser"
-cask "google-chrome"
+#cask "google-chrome"
 
 #cask "cursor"
 #cask "keyboard-maestro"
