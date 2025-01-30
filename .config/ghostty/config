@@ -28,9 +28,9 @@ font-size                       = 11.5
 # Font combos
 # ghostty +list-fonts
 font-family                     = TX-02
-font-family-bold                = TX-02 SemiBold
+font-family-bold                = TX-02 Black
 font-family-italic              = TX-02 Oblique
-font-family-bold-italic         = TX-02 SemiBold Oblique
+font-family-bold-italic         = TX-02 Black Oblique
 adjust-cell-height              = 15%
 ###
 # font-family                     = CommitMono-KG-SF-2
