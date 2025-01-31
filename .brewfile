@@ -158,28 +158,30 @@ cask "brave-browser"
 
 cask "font-inter"
 cask "font-geist"
-cask "font-sf-pro" # obsidian notes
-cask "font-sf-compact"
-cask "font-sf-mono"
+cask "font-geist-mono"
+
+#cask "font-sf-pro"
+#cask "font-sf-compact"
+#cask "font-sf-mono"
 
 # cask "font-source-code-pro" # install otf directly from Adobe
 # cask "font-source-sans-3"   # install otf directly from Adobe
-# cask "font-geist-mono"
+
 # cask "font-ia-writer-duo"
-# cask "font-ibm-plex-mono-kg"
-# cask "font-recursive-kg"
-# cask "font-roboto-mono"
-# cask "font-cascadia-code"
-# cask "font-cascadia-code-pl"
 # cask "font-ia-writer-mono"
 # cask "font-ia-writer-quattro"
 # cask "font-ibm-plex"
 # cask "font-ibm-plex-mono"
 # cask "font-ibm-plex-sans"
 # cask "font-ibm-plex-serif"
+# cask "font-ibm-plex-mono-kg"
+
+# cask "font-recursive-kg"
+# cask "font-roboto-mono"
+# cask "font-cascadia-code"
+# cask "font-cascadia-code-pl"
 # cask "font-new-york"
 
-# cask "visual-studio-code"
 
 # mas "iA Writer", id: 775737590
 # mas "Xcode", id: 497799835
