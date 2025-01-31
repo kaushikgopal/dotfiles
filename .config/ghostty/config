@@ -28,8 +28,8 @@ font-thicken                    = true
 # ghostty +list-fonts
 ###
 font-family                     = TX-02-Variable
-font-size                       = 11.5
-adjust-cell-height              = 15%
+font-size                       = 12
+adjust-cell-height              = 17%
 font-variation          = wght=410
 font-variation-bold     = wght=800
 ###
