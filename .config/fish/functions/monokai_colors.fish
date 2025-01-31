@@ -1,8 +1,8 @@
 # Monokai Pro Light Colors
 set fish_color_normal 222222 # default color - dark gray
-set fish_color_command 594698 # commands - purple
+set fish_color_command 887dc1 # commands - purple
 set fish_color_quote D4572A # quoted text - yellow
-set fish_color_redirection 887dc1 # IO redirections - purple
+set fish_color_redirection AB9DF2 # IO redirections - purple
 set fish_color_end 939293 # separators - medium gray
 set fish_color_error 939293 --background=FF6188 # errors - white on pink/red
 set fish_color_param 218871 # parameters - green

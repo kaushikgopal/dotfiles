@@ -11,7 +11,6 @@ cask_args appdir: '/Applications', no_quarantine: true
 is_arm = Hardware::CPU.arm? # TODO: All lines that are based on this condition are currently not working for ARM architecture - and thus this check
 
 tap "homebrew/bundle"
-tap "homebrew/cask-fonts"
 
 tap "kaushikgopal/tools"
 tap "buo/cask-upgrade" # better cask upgrading (see `cu`)

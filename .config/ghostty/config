@@ -7,7 +7,7 @@
 ##############################################
 # Look and Feel
 # ghostty +list-themes
-theme                           = dark:monokai-pro-dark,light:monokai-pro-light
+theme                           = monokai-pro-dark
 adjust-cursor-thickness         = 3
 adjust-underline-position       = 3
 
