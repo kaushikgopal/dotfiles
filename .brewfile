@@ -159,6 +159,7 @@ cask "brave-browser"
 cask "font-inter"
 cask "font-geist"
 cask "font-geist-mono"
+cask "font-sn-pro"
 
 #cask "font-sf-pro"
 #cask "font-sf-compact"
