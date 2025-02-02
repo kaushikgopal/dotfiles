@@ -29,9 +29,9 @@ font-thicken                    = true
 ###
 font-family                     = TX-02-Variable
 font-size                       = 12
-adjust-cell-height              = 17%
-font-variation          = wght=410
-font-variation-bold     = wght=800
+adjust-cell-height              = 15%
+font-variation          = wght=400
+font-variation-bold     = wght=740
 ###
 font-family                     = Input Mono
 font-size                       = 11
