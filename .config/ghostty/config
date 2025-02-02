@@ -45,7 +45,10 @@ font-family-italic              = 375Italic
 ##############################################
 # Misc
 
+#window-save-state               = always
+#quit-after-last-window-closed   = true
 clipboard-trim-trailing-spaces  = true
 
-#shell-integration               = fish
-#shell-integration-features      = cursor,sudo,title
+# because i have both zsh and fish (mark this explicitly)
+shell-integration               = fish
+shell-integration-features      = cursor,sudo,title
