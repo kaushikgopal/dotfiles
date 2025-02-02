@@ -156,10 +156,14 @@ cask "brave-browser"
 #cask "superduper"
 #cask "soulver"
 
+cask "font-figtree"             # closest to Circular
+cask "font-plus-jakarta-sans"
+
+cask "font-sn-pro"
+
 cask "font-inter"
 cask "font-geist"
 cask "font-geist-mono"
-cask "font-sn-pro"
 
 #cask "font-sf-pro"
 #cask "font-sf-compact"
