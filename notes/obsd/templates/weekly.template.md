@@ -28,7 +28,7 @@ tR += moment().year() + "-w" +  moment().add(1, 'weeks').week() + ".todo"
 2. Anything to carry over from last week?
 3. Check [[✱ todo]] tasks
 4. What are the [[✱ Work]] tasks you want to do
-5. Pick a few [[✱ Skyview]] tasks
+5. Pick a few [[✱ Skyview maintenance]] tasks
 6. Pick one item to put up for sale
 
 ## now?
