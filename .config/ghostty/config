@@ -38,8 +38,8 @@ window-padding-balance          = true
 # ghostty +list-fonts
 
 font-thicken                    = true
-font-family                     = TX-02-Variable
-font-size                       = 12.5
-adjust-cell-height              = 15%
+font-family                     = "Source Code Pro"
+font-size                       = 12
+adjust-cell-height              = 14%
 font-variation          = wght=400
 font-variation-bold     = wght=740
