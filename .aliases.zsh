@@ -145,6 +145,7 @@ alias gwipr='git reset --soft HEAD~; git reset'  # undo last commit (works well 
 
 # local development
 alias bid='./bin/dev'
+alias bis='./bin/staging'
 alias bir='./bin/rails'
 alias gr='gradle'
 alias gw='./gradlew'
