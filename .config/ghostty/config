@@ -3,6 +3,16 @@
 
 # ghostty +show-config --default --docs
 
+##############################################
+# Misc
+
+window-save-state               = always
+quit-after-last-window-closed   = true
+clipboard-trim-trailing-spaces  = true
+
+# because i have both zsh and fish (mark this explicitly)
+shell-integration               = fish
+#shell-integration-features      = cursor,sudo,title
 
 ##############################################
 # Look and Feel
@@ -22,25 +32,14 @@ window-padding-x                = 10
 window-padding-y                = 8
 window-padding-balance          = true
 
-font-thicken                    = true
 
+##############################################
 # Font combos
 # ghostty +list-fonts
-###
+
+font-thicken                    = true
 font-family                     = TX-02-Variable
 font-size                       = 12.5
 adjust-cell-height              = 15%
 font-variation          = wght=400
 font-variation-bold     = wght=740
-
-
-##############################################
-# Misc
-
-#window-save-state               = always
-#quit-after-last-window-closed   = true
-clipboard-trim-trailing-spaces  = true
-
-# because i have both zsh and fish (mark this explicitly)
-shell-integration               = fish
-shell-integration-features      = cursor,sudo,title
