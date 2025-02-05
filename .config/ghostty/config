@@ -64,5 +64,5 @@ font-family                              = TX-02-Variable
 adjust-cell-height                       = 15%
 font-size                                = 11.5
 font-feature            = ""
-font-variation          = wght=300
+font-variation          = wght=350
 font-variation-bold     = wght=750
