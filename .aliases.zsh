@@ -67,10 +67,14 @@ alias rg='rg -uuS'
 #  lah .git/hooks | rg -v '\.sample'   # invert the match with -v
 
 alias b='bat'
+
 alias co='code'
 alias con='code -n'  # -n = --new-window
 alias cor='code -r'  # -r = --reuse-window
 alias cu='cursor'
+alias cun='cursor -n'  # -n = --new-window
+alias cur='cursor -r'  # -r = --reuse-window
+
 alias i='idea'
 alias ie='idea -e'             # -e light edit mode
 alias iew='idea -e --wait'     # --wait terminal waits for IDE to exit
