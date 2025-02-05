@@ -28,6 +28,7 @@ if status is-interactive
     abbr --add --global oo 'open .'
     abbr --add --global t trash
 
+    abbr --add --global b bat
 
 
     abbr --add --global g git # using a git function which is better
