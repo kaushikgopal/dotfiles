@@ -140,16 +140,16 @@ cask "raycast"
 cask "slack"
 cask "tailscale"
 cask "the-unarchiver"
-cask "visual-studio-code"
 cask "webpquicklook"
 
+cask "cursor"
+cask "visual-studio-code"
+
 cask "ghostty"
-cask "warp"
 
 cask "brave-browser"
 #cask "google-chrome"
 
-#cask "cursor"
 #cask "keyboard-maestro"
 #cask "loopback"
 #cask "soundsource"
