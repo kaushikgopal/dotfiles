@@ -26,7 +26,9 @@ cursor-style-blink              = false
 cursor-invert-fg-bg             = true
 cursor-opacity                  = 0.7
 link-url                        = true
+
 mouse-hide-while-typing         = true
+focus-follows-mouse             = true
 
 window-padding-x                = 10
 window-padding-y                = 8
