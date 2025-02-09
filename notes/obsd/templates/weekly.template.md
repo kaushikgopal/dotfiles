@@ -15,11 +15,17 @@ tR += moment().year() + "-w" +  moment().add(1, 'weeks').week() + ".todo"
 
 # Tasks
 10 small tasks or 5 medium tasks
-### Personal
+### Sun
+### Mon
 - [ ] 
-### Work
+### Tue
 - [ ] 
-
+### Wed
+- [ ] 
+### Thu
+- [ ] 
+### Fri
+- [ ] 
 
 
 # Inspiration
