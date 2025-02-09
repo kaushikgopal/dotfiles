@@ -20,7 +20,11 @@
 !notes/obsd
 !notes/obsd/templates/
 !notes/obsd/.obsidian/
-!notes/obsd/.obsidian/snippets
+
+!notes/obsd/.obsidian/snippets/
+!notes/obsd/.obsidian/snippets/**
+
+
 !notes/obsd/.obsidian/types.json
 
 !.vim/

@@ -16,8 +16,7 @@
 }
 
 /* *******************
- * General variables */
-
+ * General theme */
 
 body.theme-dark {
     --background-primary: #1a1a1a;
@@ -29,7 +28,6 @@ body.theme-light.minimal-flexoki-light {
     --tag-color: var(--background-primary);
 }
 
-
 /* *******************************
  * Window separator divider handle */
 
@@ -38,7 +36,6 @@ body.theme-light.minimal-flexoki-light {
     background-color: #20242B;
     border-color: #20242B;
 }
-
 
 /* *******************
  * Scrollbars */
@@ -88,36 +85,6 @@ body .theme-dark .cm-inline-code {
     --code-background: var(--hl1);
 }
 
-
-/* don't indent code blocks
-.markdown-source-view.mod-cm6 .cm-line.HyperMD-codeblock {
-    padding-left: 0;
-}*/
-
-/* don't hide backquotes
-& span.cm-inline-code:not(.cm-formatting, :has(+ .cm-formatting))::before {
-    content: "`";
-}
-& span.cm-inline-code:not(.cm-formatting, :has(+ .cm-formatting))::after {
-    content: "`";
-    padding-left: 3px;
-}*/
-
-/* adjust margins to prevent relayout
-.cm-inline-code:not(.cm-formatting) + .cm-inline-code.cm-formatting {
-    margin-right: 3px;
-    padding-left: 0px;
-}
-.cm-inline-code.cm-formatting:not(:has(.cm-formatting)) {
-    margin-left: 3px;
-}*/
-
-/* inline code snippets should be the same size
-.cm-s-obsidian .cm-templater-command {
-    font-size: 1em;
-}*/
-
-
 /* *******************
  * Hashtags */
 /* display hashtags with normal font size */
@@ -131,81 +98,3 @@ body .theme-dark .cm-inline-code {
 & .cm-url {text-decoration-line: var(--link-external-decoration-hover);}
 & span.cm-url {text-decoration-line: var(--link-external-decoration-hover);}
 */
-
-
-/* **********************************
-        TASKS plugin
-   ********************************* */
-/* remove padding from start of task results list*/
-.contains-task-list.plugin-tasks-query-result.tasks-layout-hide-createdDate.tasks-layout-hide-urgency.tasks-layout-hide-edit-button {
-    padding-inline-start: 0;
-}
-
-/*!* left padding on general tasks*!*/
-body {
-    --list-edit-offset: 0em;
-}
-
-/* reduce padding for tasks inside query + checkbox */
-.markdown-rendered ul,
-.markdown-rendered ol {
-    padding-inline-start: 0.5rem;
-}
-
-.is-mobile .markdown-rendered div>ul,
-.is-mobile .markdown-rendered div>ol {
-    padding-inline-start: 0rem;
-}
-
-/* align the input checkbox insider query resultss*/
-.markdown-source-view.mod-cm6 .contains-task-list.plugin-tasks-query-result .task-list-item-checkbox,
-.contains-task-list.plugin-tasks-query-result ul>li.task-list-item .task-list-item-checkbox,
-.is-mobile .markdown-source-view.mod-cm6 .contains-task-list.plugin-tasks-query-result .task-list-item-checkbox,
-.is-mobile .contains-task-list.plugin-tasks-query-result ul>li.task-list-item .task-list-item-checkbox {
-    right: 0.4rem;
-}
-
-.tasks-count {
-    font-weight: bold;
-    padding-inline-start: 0;
-}
-
-/* format the backlink in a task */
-.tasks-backlink {
-    white-space: nowrap;
-}
-
-.task-extras .tasks-backlink,
-.task-extras .tasks-backlink a {
-    color: var(--text-faint) !important;
-}
-
-/* format the dates displayed in a task */
-.task-due,
-.task-scheduled {
-    color: var(--text-faint);
-}
-
-/* remove edit icon for tasks */
-.tasks-edit {
-    display: none
-}
-
-
-/* *******************
- * Search Results in Forever Obsidian */
-
-.internal-query .internal-query-header {
-    color: var(--text-faint);
-    display: none;
-}
-
-.internal-query .search-result {
-    float: left;
-    width: 120px;
-    height: 40px;
-}
-
-.internal-query .search-result .search-result-file-matches {
-    display: none;
-}
