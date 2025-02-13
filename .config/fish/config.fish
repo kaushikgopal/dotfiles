@@ -34,32 +34,7 @@ if status is-interactive
     abbr --add --global gr gradle
     abbr --add --global gw './gradlew'
 
-
-    # sharkdp/fd - simple and faster laternative to find
     abbr --add --global fd 'fd -u'
-    # command fd (to override above)
-    # --unrestricted  = include hidden + ignored                # -HI
-    # -g              = provide glob pattern allowing to search with patterns
-    # -p              = by default it will only match the file/directory name
-    #                   this indicates matching full path (so across directories)
-    # -e              = extension type
-    # -t              = file or directory   # -t d is typical
-
-    # sample commands
-    # fd -e pdf
-    # fd -e pdf -E taxes          # E is short for --exclude <pattern>
-    #
-    # fd -td '^build$'   # search for directories named build
-    # fd -td build       # substring build (so anywhere in the name)
-    #
-    # fd -te -td     # --type empty --type directory
-    #
-    #
-    # fd -e .gitignore -x trash   # trash each file independently
-    # fd '^\.DS_Store$' -X rm -i  # rm all at once -X implies you execute in the same instance
-    #
-    #
-
     abbr --add --global rg 'rg -uuS'
     # -u    = '--no-ignore'                     # also search .ignore
     # -uu   = '--no-ignore --hidden'.           # also search hidden dirs/files
