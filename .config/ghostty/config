@@ -50,21 +50,20 @@ font-feature            = ""
 
 font-family             = ""
 font-family                              = Recursive
-adjust-cell-height                       = 20%
-font-size                                = 11.5
+adjust-cell-height                       = 14%
+font-size                                = 11
 font-variation          = wght=370
 font-variation          = CASL=0.4
 font-variation-bold     = wght=740
 font-variation-bold     = CASL=0.1
-font-feature            = dlig,ss03,ss04,ss05,ss06,ss07,ss08,ss09,ss10,ss11,ss12
+# open-type features
+# https://github.com/arrowtype/recursive?tab=readme-ov-file#opentype-features
+font-feature            = dlig,ss03,ss04,ss05,ss06,ss07,ss08,ss09,ss10,ss11,ss12 
 
-
-
-
-font-family             = ""
-font-family                              = TX-02-Variable
-adjust-cell-height                       = 15%
-font-size                                = 11
-font-feature            = ""
-font-variation          = wght=350
-font-variation-bold     = wght=750
+# font-family             = ""
+# font-family                              = Spline Sans Mono
+# adjust-cell-height                       = 15%
+# font-size                                = 11
+# font-feature            = ""
+# font-variation          = wght=350
+# font-variation-bold     = wght=750
