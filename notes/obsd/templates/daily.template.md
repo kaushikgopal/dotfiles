@@ -13,8 +13,6 @@ refs:
 
 ***
 [[✱ todo]] | [[✱ Work]] | [[✱ Dashboard]]
-
-![[<% moment().year() + "-w" + moment().week() + ".todo"%>#Tasks|This week's tasks]]
 # Due
 
 ![[✱ todo#Priority / upcoming 20 days]]
