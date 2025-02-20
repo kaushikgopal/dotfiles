@@ -27,6 +27,17 @@ tR += moment().year() + "-w" +  moment().add(1, 'weeks').week() + ".todo"
 ### Sat
 - [ ] 
 
+
+
+## Forwarded
+```tasks
+filter by function task.status.symbol === '>'
+path includes <% moment().year() + "-w" + moment().week() + ".todo"%>
+short mode
+```
+
+
+
 ***
 ## now?
 ```tasks
