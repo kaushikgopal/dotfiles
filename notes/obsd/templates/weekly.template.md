@@ -56,9 +56,9 @@ short mode
 ```
 ## Due
 
-![[✱ todo#Priority / upcoming 20 days]]
+![[✱ Backlog#Priority / upcoming 20 days]]
 
-![[✱ todo#(Over)Due]]
+![[✱ Backlog#(Over)Due]]
 ***
 # Goals
 I want to accomplish the following this week:
@@ -69,7 +69,7 @@ To accomplish the above ↑ I'm breaking tasks over the week
 1. Start off first [from scratch](https://stephango.com/todos)
 2. Are you making progress towards[[✱ Years#<% moment().year() %>|<% moment().year() %>]] ?
 3. Anything to carry over from last week?
-4. Check [[✱ todo]] tasks
-5. What are the [[✱ Work]] tasks you want to do
+4. Check [[✱ Backlog]] tasks
+5. What are the [[✱ Work Backlog]] tasks you want to do
 6. Pick a few [[✱ Skyview maintenance]] tasks
 7. Pick one item to put up for sale

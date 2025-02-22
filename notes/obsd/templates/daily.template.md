@@ -13,9 +13,9 @@ refs:
 ***
 [[<% fileDate = moment(tp.file.title, 'YYYY-MM-DD').subtract(1, 'd').format('YYYY-MM-DD') %>|⇤]]  | **<% moment(tp.file.title,'YYYY-MM-DD').format("dddd") %>** | [[<% fileDate = moment(tp.file.title, 'YYYY-MM-DD').add(1, 'd').format('YYYY-MM-DD') %>|⇥]]
 
-[[✱ todo]] | [[✱ Work]] | [[✱ Dashboard]]
+[[✱ Backlog]] | [[✱ Work Backlog]] | [[✱ Dashboard]]
 # Due
 
-![[✱ todo#Priority / upcoming 20 days]]
+![[✱ Backlog#Priority / upcoming 20 days]]
 
-![[✱ todo#(Over)Due]]
+![[✱ Backlog#(Over)Due]]
