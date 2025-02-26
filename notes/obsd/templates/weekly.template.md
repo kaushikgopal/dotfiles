@@ -13,18 +13,45 @@ tR += moment().year() + "-w" +  moment().add(1, 'weeks').week() + ".todo"
 
 # Tasks
 ### Sun
+#### Personal
 - [ ] 
+#### Work
+- [ ] 
+
 ### Mon
+#### Personal
 - [ ] 
+#### Work
+- [ ] 
+
 ### Tue
+#### Personal
 - [ ] 
+#### Work
+- [ ] 
+
 ### Wed
+#### Personal
 - [ ] 
+#### Work
+- [ ] 
+
 ### Thu
+#### Personal
 - [ ] 
+#### Work
+- [ ] 
+
 ### Fri
+#### Personal
 - [ ] 
+#### Work
+- [ ] 
+
 ### Sat
+#### Personal
+- [ ] 
+#### Work
 - [ ] 
 
 
