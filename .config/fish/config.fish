@@ -121,7 +121,7 @@ fish_add_path --append "$ANDROID_HOME/platform-tools" "$ANDROID_HOME/cmdline-too
 
 export JAVA_HOME=$HOME/Applications/Android\ Studio.app/Contents/jbr/Contents/Home
 # export JAVA_HOME=(/usr/libexec/java_home -v"17")
-export GOKU_EDN_CONFIG_FILE=$HOME/.karabiner.edn
+export GOKU_EDN_CONFIG_FILE=$HOME/.config/.karabiner.edn
 export BAT_CONFIG_PATH=$HOME/.config/.bat.conf
 
 # ---------------------------------------------------------
