@@ -20,7 +20,7 @@ if status is-interactive
 
     # https://fishshell.com/docs/3.2/cmds/abbr.html#internals
 
-    abbr --add --global ppath 'echo "\n$PATH\n\n" | tr ":" "\n"' # print path
+    abbr --add --global ppath 'echo "$PATH\n\n" | tr ":" "\n"' # print path
 
 
     abbr --add --global o open
@@ -121,6 +121,8 @@ fish_add_path --append "$ANDROID_HOME/platform-tools" "$ANDROID_HOME/cmdline-too
 
 export JAVA_HOME=$HOME/Applications/Android\ Studio.app/Contents/jbr/Contents/Home
 # export JAVA_HOME=(/usr/libexec/java_home -v"17")
+export GOKU_EDN_CONFIG_FILE=$HOME/.karabiner.edn
+export BAT_CONFIG_PATH=$HOME/.config/.bat.conf
 
 # ---------------------------------------------------------
 # Zoxide

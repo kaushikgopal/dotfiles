@@ -305,6 +305,12 @@
           ;; delete char | backspace
           [:f :delete_or_backspace]
 
+          ;; special characters
+          [:r :!S5]  ;; % sign (Shift + 5)
+          [:e :!S4]  ;; $ sign (Shift + 4)
+          [:w :!S3]  ;; # sign (Shift + 3)
+          [:q :!S2]  ;; @ sign (Shift + 2)
+
           ;; Command + {} move next/prev tab
           [:x       :!CSopen_bracket ]
           [:c       :!CSclose_bracket]
