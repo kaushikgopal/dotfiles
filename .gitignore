@@ -16,6 +16,16 @@
 !.warp/
 !.warp/themes
 
+!.config/karabiner/
+!.config/karabiner/**
+
+!.vim/
+!.vim/pack/**
+
+# -------------
+# Obsidian
+# -------------
+
 !notes/
 !notes/obsd
 !notes/obsd/templates/
@@ -26,6 +36,3 @@
 
 
 !notes/obsd/.obsidian/types.json
-
-!.vim/
-!.vim/pack/**
