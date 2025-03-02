@@ -260,14 +260,21 @@
       {:des "F => f alone, else f-mode"
           :rules [
 
-            ;;  u i o p
-            ;;  & * - +
-            ;;        =  <- shift modifier (doesn't work on first press atm)
+            ;;  u i o
+            ;;  ^ & *
+            [:y   :!S6      :f-mode]
             [:u   :!S7      :f-mode]
             [:i   :!S8      :f-mode]
-            [:o   :hyphen   :f-mode]
-            [:p          :equal_sign       :f-mode]
-            [:#Sp        :#Sequal_sign     :f-mode]
+
+            ;; [:#Sp        :#Sequal_sign     :f-mode] ;; doesn't work well
+
+
+            ;; jk  l;
+            ;; ()  -+
+            [:j         :!S9   :f-mode]
+            [:k         :!S0   :f-mode]
+            [:l         :hyphen   :f-mode]
+            [:semicolon :!Sequal_sign   :f-mode]
 
             ;; BRACKET combinations (special)
 
@@ -278,8 +285,6 @@
 
             [:m         :open_bracket   :f-mode]
             [:comma     :close_bracket  :f-mode]
-            [:j         :!S9   :f-mode]
-            [:k         :!S0   :f-mode]
             [:period    :!Sopen_bracket   :f-mode]
             [:slash     :!Sclose_bracket   :f-mode]
 
