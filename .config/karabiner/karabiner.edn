@@ -262,7 +262,7 @@
 
             ;;  u i o
             ;;  ^ & *
-            [:y   :!S6      :f-mode]
+
             [:u   :!S7      :f-mode]
             [:i   :!S8      :f-mode]
 
@@ -294,9 +294,10 @@
       ;; j-mode (deletion related shortcuts)
       ;; -----------------------------------------
 
-      {:des "j-mode (deletion related shortcuts)"
+      {:des "j-mode"
        :rules [:j-mode
 
+          ;; deletion related shortcuts
           ;;  s d f  ||| line word char
 
           ;; delete line
@@ -311,6 +312,7 @@
           [:f :delete_or_backspace]
 
           ;; special characters
+          [:t :!S6]  ;; ^ sign (Shift + 5)
           [:r :!S5]  ;; % sign (Shift + 5)
           [:e :!S4]  ;; $ sign (Shift + 4)
           [:w :!S3]  ;; # sign (Shift + 3)
