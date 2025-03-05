@@ -96,3 +96,11 @@ source "$(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme"
 
 
 # zprof          # stop profiling
+
+
+### BEGIN--Caper Configurations. (Updated: Tue Mar  4 18:30:32 PST 2025.)
+# This Line Added Automatically by Caper Setup Script
+# The sourced file contains all of the caper utilities and shell settings
+# To remove this functionality, leave the block, and enter "NO-TOUCH" in the BEGIN line, and comment the line below:
+source /Users/kg/.caper_configurations
+### END--Caper Configurations.
