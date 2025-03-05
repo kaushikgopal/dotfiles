@@ -1,0 +1,50 @@
+# Don't let ripgrep vomit really long lines to my terminal, and show a preview.
+--max-columns=150
+--max-columns-preview
+
+# Add my 'web' type.
+--type-add
+web:*.{html,css,js}*
+
+# Using glob patterns to include/exclude files or folders
+--glob=!.git/*
+
+# or
+--glob
+!.git/*
+
+# Set the colors.
+--colors=line:none
+--colors=line:style:bold
+
+# Because who cares about case!?
+--smart-case
+
+
+# Search hidden files / directories (e.g. dotfiles) by default
+#--hidden
+
+# -u    = '--no-ignore'                     # don't respect .ignore files
+# -uu   = '--no-ignore --hidden'.           # don't respect .gitignore either
+# -uuu  = '--no-ignore --hidden --binary'   # don't even ignore hidden files/directories
+
+# -S = --smart-case
+# -I = --no-filename
+
+# --no-line-number
+# --color=never  # when you want to script
+
+# sample commands
+# rg fast README.md               # search for literal "fast" in file README.md
+# rg "com\.android\.application"  # search "pattern"
+# rg "com\.android\.application" --type gradle  -g '!experimental/*'
+
+# rg 'fn run' -g '*.rs'           # search all rust files for "fun run"
+#            --type rust
+#             -trust
+#            --type-not rust
+#
+# rg fast README.md -r FAST       # replace fast -> FAST
+#
+#  lah .git/hooks | rg -v '\.sample'   # invert the match with -v
+

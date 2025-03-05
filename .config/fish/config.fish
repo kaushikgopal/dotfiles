@@ -35,29 +35,7 @@ if status is-interactive
     abbr --add --global gw './gradlew'
 
     abbr --add --global fd 'fd -u'
-    abbr --add --global rg 'rg -uuS'
-    # -u    = '--no-ignore'                     # also search .ignore
-    # -uu   = '--no-ignore --hidden'.           # also search hidden dirs/files
-    # -uuu  = '--no-ignore --hidden --binary'.
-    # -S = --smart-case
-    # -I = --no-filename
-    # --no-line-number
-    # --color=never  # when you want to script
-
-    # sample commands
-    # rg fast README.md               # search for literal "fast" in file README.md
-    # rg "com\.android\.application"  # search "pattern"
-    # rg "com\.android\.application" --type gradle  -g '!experimental/*'
-
-    # rg 'fn run' -g '*.rs'           # search all rust files for "fun run"
-    #            --type rust
-    #             -trust
-    #            --type-not rust
-    #
-    # rg fast README.md -r FAST       # replace fast -> FAST
-    #
-    #  lah .git/hooks | rg -v '\.sample'   # invert the match with -v
-
+    #abbr --add --global rg 'rg -uuS' # see .ripgreprc
 
     # git commands
     abbr --add --global g git # using a git function which is better
@@ -124,6 +102,8 @@ export JAVA_HOME=$HOME/Applications/Android\ Studio.app/Contents/jbr/Contents/Ho
 # export JAVA_HOME=(/usr/libexec/java_home -v"17")
 export GOKU_EDN_CONFIG_FILE=$HOME/.config/karabiner/karabiner.edn
 export BAT_CONFIG_PATH=$HOME/.config/.bat.conf
+
+export RIPGREP_CONFIG_PATH=$HOME/.config/.ripgreprc
 
 # ---------------------------------------------------------
 # Zoxide
