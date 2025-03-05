@@ -1,0 +1,294 @@
+[core]
+  editor = vim
+  #editor = idea -e --wait
+  excludesfile   = ~/.config/git/ignore
+  attributesfile = ~/.config/git/attributes
+  whitespace = trailing-space,space-before-tab
+  pager = "delta"
+
+[alias]
+    cleaner = !git branch --merged master --no-color | grep -v '^[ *]*master$' | xargs git branch -d
+    # format -> default/ original time zone (either committer’s or author’s)
+    # format-local -> user's local timezone instead
+    mt    = mergetool
+    ss    = status --short
+
+    a = "!f() { \
+        if [[ $# -eq 0 || \"$1\" == \".\" ]]; then \
+            git add .; \
+        else \
+          files_to_add=(); \
+          for arg in $(seq $(git status --porcelain | wc -l)); do \
+              files_to_add+=($(git status --porcelain | sed -n ${arg}p | awk '{print $2}')); \
+          done; \
+          if [[ $1 == *'-'* ]]; then \
+              IFS='-' read -ra RANGE <<< \"$1\"; \
+              for i in $(seq ${RANGE[0]} ${RANGE[1]}); do \
+                  git add \"${files_to_add[$i-1]}\"; \
+              done; \
+          elif [[ $1 == *','* ]]; then \
+              IFS=',' read -ra NUMS <<< \"$1\"; \
+              for i in \"${NUMS[@]}\"; do \
+                  git add \"${files_to_add[$i-1]}\"; \
+              done; \
+          else \
+              git add \"${files_to_add[$1-1]}\"; \
+          fi; \
+        fi; \
+    }; f"
+    ap = "!f() { \
+        if [[ $# -eq 0 || \"$1\" == \".\" ]]; then \
+            git add -p .; \
+        else \
+          files_to_add=(); \
+          for arg in $(seq $(git status --porcelain | wc -l)); do \
+              files_to_add+=($(git status --porcelain | sed -n ${arg}p | awk '{print $2}')); \
+          done; \
+          if [[ $1 == *'-'* ]]; then \
+              IFS='-' read -ra RANGE <<< \"$1\"; \
+              for i in $(seq ${RANGE[0]} ${RANGE[1]}); do \
+                  git add -p \"${files_to_add[$i-1]}\"; \
+              done; \
+          elif [[ $1 == *','* ]]; then \
+              IFS=',' read -ra NUMS <<< \"$1\"; \
+              for i in \"${NUMS[@]}\"; do \
+                  git add -p \"${files_to_add[$i-1]}\"; \
+              done; \
+          else \
+              git add -p \"${files_to_add[$1-1]}\"; \
+          fi; \
+        fi; \
+    }; f"
+    r = "!f() { \
+        if [[ $# -eq 0 || \"$1\" == \".\" ]]; then \
+            git reset .; \
+        else \
+          files_to_add=(); \
+          for arg in $(seq $(git status --porcelain | wc -l)); do \
+              files_to_add+=($(git status --porcelain | sed -n ${arg}p | awk '{print $2}')); \
+          done; \
+          if [[ $1 == *'-'* ]]; then \
+              IFS='-' read -ra RANGE <<< \"$1\"; \
+              for i in $(seq ${RANGE[0]} ${RANGE[1]}); do \
+                  git reset \"${files_to_add[$i-1]}\"; \
+              done; \
+          elif [[ $1 == *','* ]]; then \
+              IFS=',' read -ra NUMS <<< \"$1\"; \
+              for i in \"${NUMS[@]}\"; do \
+                  git reset \"${files_to_add[$i-1]}\"; \
+              done; \
+          else \
+              git reset \"${files_to_add[$1-1]}\"; \
+          fi; \
+        fi; \
+    }; f"
+    ch = "!f() { \
+        if [[ $# -eq 0 || \"$1\" == \".\" ]]; then \
+            git checkout .; \
+        else \
+          files_to_add=(); \
+          for arg in $(seq $(git status --porcelain | wc -l)); do \
+              files_to_add+=($(git status --porcelain | sed -n ${arg}p | awk '{print $2}')); \
+          done; \
+          if [[ $1 == *'-'* ]]; then \
+              IFS='-' read -ra RANGE <<< \"$1\"; \
+              for i in $(seq ${RANGE[0]} ${RANGE[1]}); do \
+                  git checkout \"${files_to_add[$i-1]}\"; \
+              done; \
+          elif [[ $1 == *','* ]]; then \
+              IFS=',' read -ra NUMS <<< \"$1\"; \
+              for i in \"${NUMS[@]}\"; do \
+                  git checkout \"${files_to_add[$i-1]}\"; \
+              done; \
+          else \
+              git checkout \"${files_to_add[$1-1]}\"; \
+          fi; \
+        fi; \
+    }; f"
+    d = "!f() { \
+        if [[ $# -eq 0 || \"$1\" == \".\" ]]; then \
+            git diff .; \
+        else \
+          files_to_add=(); \
+          for arg in $(seq $(git status --porcelain | wc -l)); do \
+              files_to_add+=($(git status --porcelain | sed -n ${arg}p | awk '{print $2}')); \
+          done; \
+          if [[ $1 == *'-'* ]]; then \
+              IFS='-' read -ra RANGE <<< \"$1\"; \
+              for i in $(seq ${RANGE[0]} ${RANGE[1]}); do \
+                  git diff \"${files_to_add[$i-1]}\"; \
+              done; \
+          elif [[ $1 == *','* ]]; then \
+              IFS=',' read -ra NUMS <<< \"$1\"; \
+              for i in \"${NUMS[@]}\"; do \
+                  git diff \"${files_to_add[$i-1]}\"; \
+              done; \
+          else \
+              git diff \"${files_to_add[$1-1]}\"; \
+          fi; \
+        fi; \
+    }; f"
+    dc = "!f() { \
+        if [[ $# -eq 0 || \"$1\" == \".\" ]]; then \
+            git diff --cached .; \
+        else \
+          files_to_add=(); \
+          for arg in $(seq $(git status --porcelain | wc -l)); do \
+              files_to_add+=($(git status --porcelain | sed -n ${arg}p | awk '{print $2}')); \
+          done; \
+          if [[ $1 == *'-'* ]]; then \
+              IFS='-' read -ra RANGE <<< \"$1\"; \
+              for i in $(seq ${RANGE[0]} ${RANGE[1]}); do \
+                  git diff --cached \"${files_to_add[$i-1]}\"; \
+              done; \
+          elif [[ $1 == *','* ]]; then \
+              IFS=',' read -ra NUMS <<< \"$1\"; \
+              for i in \"${NUMS[@]}\"; do \
+                  git diff --cached \"${files_to_add[$i-1]}\"; \
+              done; \
+          else \
+              git diff --cached \"${files_to_add[$1-1]}\"; \
+          fi; \
+        fi; \
+    }; f"
+    ds = "!f() { \
+        if [[ $# -eq 0 || \"$1\" == \".\" ]]; then \
+            git diff --staged .; \
+        else \
+          files_to_add=(); \
+          for arg in $(seq $(git status --porcelain | wc -l)); do \
+              files_to_add+=($(git status --porcelain | sed -n ${arg}p | awk '{print $2}')); \
+          done; \
+          if [[ $1 == *'-'* ]]; then \
+              IFS='-' read -ra RANGE <<< \"$1\"; \
+              for i in $(seq ${RANGE[0]} ${RANGE[1]}); do \
+                  git diff --staged \"${files_to_add[$i-1]}\"; \
+              done; \
+          elif [[ $1 == *','* ]]; then \
+              IFS=',' read -ra NUMS <<< \"$1\"; \
+              for i in \"${NUMS[@]}\"; do \
+                  git diff --staged \"${files_to_add[$i-1]}\"; \
+              done; \
+          else \
+              git diff --staged \"${files_to_add[$1-1]}\"; \
+          fi; \
+        fi; \
+    }; f"
+
+
+[credential]
+	helper = osxkeychain
+
+[feature]
+    manyFiles = 1
+
+[color]
+  ui = always           # Use colors in Git commands that are capable of colored output when outputting to the terminal
+[color "branch"]
+  current = yellow reverse
+  local = yellow
+  remote = green
+[color "diff"]
+#  meta = magenta bold
+#  frag = cyan bold
+#  old = red reverse
+#  new = green reverse
+#  whitespace = red reverse
+[color "status"]
+  header = white normal dim
+  added = red
+  changed = green
+  untracked = blue
+  branch = yellow
+
+[diff]
+    colorMoved = default
+    mnemonicprefix = true
+    compactionHeuristic = true
+    show = delta
+[delta]
+    file-decoration-style = black ul
+    file-style = box gray
+    hunk-header-decoration-style = black ul
+    hunk-header-style = omit
+    line-numbers = true
+    line-numbers-left-format = {nm:>3}│
+    line-numbers-left-style = black
+    line-numbers-minus-style = black
+    line-numbers-plus-style = black
+    line-numbers-right-format = {np:>3}│
+    line-numbers-right-style = black
+    line-numbers-zero-style = black
+    minus-emph-style = red bold
+    minus-empty-line-marker-style = omit
+    minus-style = red
+    navigate = false
+    plus-emph-style = green bold
+    plus-empty-line-marker-style = omit
+    plus-style = green
+    side-by-side = false
+    syntax-theme = base16
+    true-color = auto
+    whitespace-error-style = red reverse
+    zero-style = black
+
+[pager]
+  show = delta
+
+[merge]
+  tool = idea
+;   log = true
+;   stat = true
+;   conflictStyle = diff3
+[mergetool]
+  keepBackup = false
+[mergetool "idea"]
+  cmd = idea merge $LOCAL $REMOTE $BASE $MERGED
+  trustExitCode = true
+[mergetool "meld"]
+  cmd = meld "$LOCAL" "$MERGED" "$REMOTE" --output "$MERGED"
+;   cmd = meld "$LOCAL" "$BASE" "$REMOTE" --output "$MERGED"
+[mergetool "vscode"]
+  cmd = code --wait $MERGED
+
+[interactive]
+  diffFilter = delta
+
+[pull]
+  rebase = false
+
+[push]
+  default = tracking
+  autoSetupRemote = true
+
+[status]
+  submoduleSummary = true
+
+[url "git@github.com:"]                   # URL shorthands
+  insteadOf = "gh:"
+  pushInsteadOf = "github:"
+  pushInsteadOf = "git://github.com/"
+[url "git://github.com/"]
+  insteadOf = "github:"
+[url "git@gist.github.com:"]
+  insteadOf = "gst:"
+  pushInsteadOf = "gist:"
+  pushInsteadOf = "git://gist.github.com/"
+[url "git://gist.github.com/"]
+  insteadOf = "gist:"
+[index]
+	skipHash = false
+[log]
+	follow = true
+
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[branch]
+	sort = -committerdate
+[fetch]
+	prune = true
+[rebase]
+	updateRefs = true

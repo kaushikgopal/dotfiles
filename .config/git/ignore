@@ -7,6 +7,7 @@
 # Include only specific directories & contents
 !.config/git/
 !.config/git/**
+.config/git/config-*
 
 !.config/.ripgreprc
 
