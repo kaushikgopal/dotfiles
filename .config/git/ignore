@@ -5,6 +5,9 @@
 !.config/
 
 # Include only specific directories & contents
+!.config/git/
+!.config/git/**
+
 !.config/.ripgreprc
 
 !.config/ghostty/
