@@ -1,7 +1,7 @@
 [core]
   editor = vim
   #editor = idea -e --wait
-  excludesfile   = ~/.config/git/ignore
+  #excludesfile   = ~/.config/git/ignore
   attributesfile = ~/.config/git/attributes
   whitespace = trailing-space,space-before-tab
   pager = "delta"
