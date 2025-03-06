@@ -269,12 +269,13 @@
             ;; [:#Sp        :#Sequal_sign     :f-mode] ;; doesn't work well
 
 
-            ;; jk  l;
-            ;; ()  -+
+            ;; jk  l; '
+            ;; ()  -+ =
             [:j         :!S9   :f-mode]
             [:k         :!S0   :f-mode]
             [:l         :hyphen   :f-mode]
-            [:semicolon :!Sequal_sign   :f-mode]
+            [:semicolon :!Sequal_sign  :f-mode]
+            [:quote     :equal_sign   :f-mode]
 
             ;; BRACKET combinations (special)
 
