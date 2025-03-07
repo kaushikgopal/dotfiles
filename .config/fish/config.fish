@@ -72,6 +72,9 @@ if status is-interactive
     abbr --add --global gwip 'git add .; git commit -a -m "--wip-- [ci skip]" --no-verify' # quick commit (get in the reflog)
     abbr --add --global gwipr 'git reset --soft HEAD~; git reset' # undo last commit (works well with gwip)
 
+    abbr --add --global gwt 'git worktree'
+
+
     # programs
     abbr --add --global hu hugo
 
