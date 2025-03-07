@@ -1,0 +1,26 @@
+name: "In Bed By 7pm"
+accent: "#7e57c2"
+cursor: "#7e57c2"
+background: "#292c3d"
+details: darker
+foreground: '#ebecf1'
+
+terminal_colors:
+  bright:
+    black:   '#575656'
+    red:     '#f88070'
+    green:   '#a5ffbd'
+    yellow:  '#ffeb95'
+    blue:    '#9dd2e8'
+    magenta: '#be8fda'
+    cyan:    '#7fdbca'
+    white:   '#ffffff'
+  normal:
+    black:   '#292c3d'
+    red:     '#f88070'
+    green:   '#a5ffbd'
+    yellow:  '#f7e9b4'
+    blue:    '#9dd2e8'
+    magenta: '#be8fda'
+    cyan:    '#21c7a8'
+    white:   '#ebecf1'
