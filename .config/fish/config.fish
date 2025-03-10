@@ -34,7 +34,7 @@ if status is-interactive
     abbr --add --global gr gradle
     abbr --add --global gw './gradlew'
 
-    abbr --add --global fd 'fd -u'
+    abbr --add --global fdu 'fd -u'
     #abbr --add --global rg 'rg -uuS' # see .ripgreprc
 
     # git commands
