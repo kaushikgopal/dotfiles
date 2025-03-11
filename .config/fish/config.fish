@@ -53,7 +53,7 @@ if status is-interactive
     abbr --add --global gch-    'git checkout -'
     abbr --add --global gch.    'git checkout .'
 
-    abbr --add --global gcom 'git commit -m'
+    abbr --add --global gcm 'git commit -m'
 
     abbr --add --global gchp 'git cherry-pick'
     abbr --add --global gano 'git commit --amend --no-edit'
