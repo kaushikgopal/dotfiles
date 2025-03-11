@@ -47,19 +47,19 @@ if status is-interactive
     abbr --add --global gbd 'git branch -D'
 
     abbr --add --global gc      'git ch'        # checkout - with number support
-    abbr --add --global gch     'git checkout'  # checkout - regular
-    abbr --add --global gchm    'git checkout master'
-    abbr --add --global gchb    'git checkout -B'
-    abbr --add --global gch-    'git checkout -'
-    abbr --add --global gch.    'git checkout .'
+    abbr --add --global gco     'git checkout'  # checkout - regular
+    abbr --add --global gcom    'git checkout master'
+    abbr --add --global gcob    'git checkout -B'
+    abbr --add --global gco-    'git checkout -'
+    abbr --add --global gco.    'git checkout .'
 
-    abbr --add --global gcm 'git commit -m'
+    abbr --add --global gcm     'git commit -m'
+    abbr --add --global gano    'git commit --amend --no-edit'
 
-    abbr --add --global gchp 'git cherry-pick'
-    abbr --add --global gano 'git commit --amend --no-edit'
-    abbr --add --global gss "git status -s"
-    abbr --add --global gs  "git status -s"
-    abbr --add --global gsh "git show HEAD~"
+    abbr --add --global gchp    'git cherry-pick'
+    abbr --add --global gss     "git status -s"
+    abbr --add --global gs      "git status -s"
+    abbr --add --global gsh     "git show HEAD~"
 
     abbr --add --global gd      'git d' # diff with number support
     abbr --add --global gdc     "git dc" # diff --cached with number support
