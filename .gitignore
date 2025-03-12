@@ -18,6 +18,10 @@
 !.config/fish/**
 .config/fish/fish_variables
 
+!.config/fish/functions/
+!.config/fish/functions/**
+.config/fish/functions/caperwt.fish
+
 !.warp/
 !.warp/themes/
 !.warp/themes/**

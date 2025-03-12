@@ -23,6 +23,9 @@ if status is-interactive
     abbr --add --global ppath 'echo "$PATH\n\n" | tr ":" "\n"' # print path
 
 
+    abbr --add --global lsd 'tree -d -CFL 1'
+    abbr --add --global tre 'tree --dirsfirst -CFL 1'
+
     abbr --add --global o open
     abbr --add --global oo 'open .'
     abbr --add --global t trash
