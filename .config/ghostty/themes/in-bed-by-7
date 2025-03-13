@@ -1,4 +1,15 @@
-palette = 0=#4a4e6a
+# In Bed by 7 - Ghostty Terminal Theme
+# Normal Colors (0-7)
+# 0 - Black
+# 1 - Red
+# 2 - Green
+# 3 - Yellow
+# 4 - Blue
+# 5 - Magenta
+# 6 - Cyan
+# 7 - White
+
+palette = 0=#5a5e7a
 palette = 1=#f88070
 palette = 2=#a5ffbd
 palette = 3=#f7e9b4
@@ -6,7 +17,9 @@ palette = 4=#9dd2e8
 palette = 5=#be8fda
 palette = 6=#21c7a8
 palette = 7=#ebecf1
-palette = 8=#7a7c98
+
+# Bright Colors (8-15)
+palette = 8=#8a8cb8
 palette = 9=#f88070
 palette = 10=#a5ffbd
 palette = 11=#ffeb95
@@ -14,6 +27,7 @@ palette = 12=#9dd2e8
 palette = 13=#be8fda
 palette = 14=#7fdbca
 palette = 15=#ffffff
+
 background = 292c3d
 foreground = ebecf1
 cursor-color = 7e57c2
