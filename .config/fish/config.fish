@@ -60,9 +60,11 @@ if status is-interactive
     abbr --add --global gano    'git commit --amend --no-edit'
 
     abbr --add --global gchp    'git cherry-pick'
-    abbr --add --global gss     "git status -s"
     abbr --add --global gs      "git status -s"
     abbr --add --global gsh     "git show HEAD~"
+
+    abbr --add --global gss     "git stash save"
+    abbr --add --global gsp     "git stash pop"
 
     abbr --add --global gd      'git d' # diff with number support
     abbr --add --global gdc     "git dc" # diff --cached with number support
