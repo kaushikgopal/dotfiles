@@ -149,7 +149,7 @@ cask "ghostty"
 cask "warp"
 
 cask "brave-browser"
-#cask "google-chrome"
+cask "arc"
 
 #cask "keyboard-maestro"
 #cask "loopback"
