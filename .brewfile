@@ -143,9 +143,9 @@ cask "the-unarchiver"
 cask "webpquicklook"
 
 cask "cursor"
-cask "visual-studio-code"
+# cask "visual-studio-code"
 
-cask "ghostty"
+# cask "ghostty"
 cask "warp"
 
 cask "brave-browser"
