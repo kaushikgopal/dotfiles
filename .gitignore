@@ -22,6 +22,12 @@
 !.config/fish/functions/**
 .config/fish/functions/caperwt.fish
 
+
+# more as a backup
+!.config/zsh/
+!.config/zsh/**
+.config/zsh/.zsh_sessions
+
 !.warp/
 !.warp/themes/
 !.warp/themes/**
