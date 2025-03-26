@@ -201,7 +201,7 @@ noremap + <c-a>
 noremap - <c-x>
 " 0 toggles between acting like ^ and 0 on second press
 "nnoremap <expr> <silent> 0 col('.') == match(getline('.'),'\S')+0 ? '0' : '^'
-nnoremap 0 ^
+"nnoremap 0 ^
 
 " Replace L -> $ (end of line)
 "noremap L $
