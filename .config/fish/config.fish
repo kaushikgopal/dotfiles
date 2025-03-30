@@ -41,6 +41,16 @@ if status is-interactive
     #abbr --add --global rg 'rg -uuS' # see .ripgreprc
 
     # git commands
+
+    ## Frequently used
+    abbr --add --global gm  'git checkout master'
+    abbr --add --global gma 'git checkout main'
+    abbr --add --global gp  'git pull'
+    abbr --add --global gpu 'git push'
+    abbr --add --global gmp 'git checkout master; git pull'
+    abbr --add --global g-  'git checkout -'
+    abbr --add --global g.  'git checkout .'
+
     abbr --add --global g git # using a git function which is better
     abbr --add --global ga 'git a' # add with number support
     abbr --add --global gaf 'git add --force'
@@ -51,10 +61,7 @@ if status is-interactive
 
     abbr --add --global gc      'git ch'        # checkout - with number support
     abbr --add --global gco     'git checkout'  # checkout - regular
-    abbr --add --global gcom    'git checkout master'
     abbr --add --global gcob    'git checkout -B'
-    abbr --add --global gco-    'git checkout -'
-    abbr --add --global gco.    'git checkout .'
 
     abbr --add --global gcm     'git commit -m'
     abbr --add --global gano    'git commit --amend --no-edit'
@@ -76,10 +83,6 @@ if status is-interactive
     abbr --add --global gll 'git log --graph --decorate --date=short --pretty=format:"%C(magenta)%h%Creset %C(italic black)%ad%C(reset)%C(auto) %s %C(blue)%an%C(auto) %D%C(reset)"'
     abbr --add --global gl 'git log --graph --decorate --date=short --topo-order -30 --pretty=format:"%C(magenta)%h%Creset %C(italic black)%ad%C(reset)%C(auto) %s %C(blue)%an%C(auto) %D%C(reset)"'
     abbr --add --global gmm 'git merge master'
-    abbr --add --global gmp 'git checkout master; git pull'
-    abbr --add --global gma 'git checkout main'
-    abbr --add --global gp 'git pull'
-    abbr --add --global gpu 'git push'
 
     abbr --add --global greb 'git rebase --interactive HEAD~'
 
