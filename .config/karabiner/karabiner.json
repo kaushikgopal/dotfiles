@@ -11,52 +11,6 @@
         "basic.to_if_held_down_threshold_milliseconds" : 500
       },
       "rules" : [ {
-        "description" : "Kinesis Advantage2 specific mappings",
-        "manipulators" : [ {
-          "from" : {
-            "key_code" : "non_us_backslash"
-          },
-          "to" : [ {
-            "key_code" : "spacebar",
-            "modifiers" : [ "right_command", "right_control" ]
-          } ],
-          "conditions" : [ {
-            "identifiers" : [ {
-              "vendor_id" : 10730
-            } ],
-            "type" : "device_if"
-          } ],
-          "type" : "basic"
-        }, {
-          "from" : {
-            "key_code" : "open_bracket"
-          },
-          "to" : [ {
-            "key_code" : "backslash"
-          } ],
-          "conditions" : [ {
-            "identifiers" : [ {
-              "vendor_id" : 10730
-            } ],
-            "type" : "device_if"
-          } ],
-          "type" : "basic"
-        }, {
-          "from" : {
-            "key_code" : "close_bracket"
-          },
-          "to" : [ {
-            "key_code" : "slash"
-          } ],
-          "conditions" : [ {
-            "identifiers" : [ {
-              "vendor_id" : 10730
-            } ],
-            "type" : "device_if"
-          } ],
-          "type" : "basic"
-        } ]
-      }, {
         "description" : "Right Cmd (alone) -> Enter",
         "manipulators" : [ {
           "to_if_alone" : [ {

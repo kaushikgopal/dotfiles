@@ -162,9 +162,6 @@
 
     {:des "Kinesis Advantage2 specific mappings"
      :rules [:kinesis
-       [:non_us_backslash :!QWspacebar] ;; § -> emoji viewer
-       [:open_bracket :backslash] ;; [ -> \
-       [:close_bracket :slash] ;; ] -> /
     ]}
 
 
