@@ -251,29 +251,34 @@
       ]}
 
 
-      ;; -----------------------------------------
-      ;; f-mode (special characters)
-      ;; -----------------------------------------
-      {:des "F => f alone, else f-mode"
-          :rules [
+      {:des "special characters enabled with shift + numkey"
+       :rules [
 
-            ;;  u i o
-            ;;  ^ & *
+            [:i   :!S8      :f-mode]  ;; * sign (Shift + 8)
+            [:u   :!S7      :f-mode]  ;; & sign (Shift + 7)
+            [:y   :!S6      :f-mode]  ;; ^ sign (Shift + 6)
 
-            [:u   :!S7      :f-mode]
-            [:i   :!S8      :f-mode]
+            [:t :!S5  :j-mode]  ;; % sign (Shift + 5)
+            [:r :!S4  :j-mode]  ;; $ sign (Shift + 4)
+            [:e :!S3  :j-mode]  ;; # sign (Shift + 3)
+            [:w :!S2  :j-mode]  ;; @ sign (Shift + 2)
+            [:q :!S1  :j-mode]  ;; ! sign (Shift + 1)
+
+            ;;  l; '
+            ;;  -+ =
+            [:l         :hyphen         :f-mode]
+            [:semicolon :!Sequal_sign   :f-mode]
+            [:quote     :equal_sign     :f-mode]
+
 
             ;; [:#Sp        :#Sequal_sign     :f-mode] ;; doesn't work well
 
+      ]}
 
-            ;; jk  l; '
-            ;; ()  -+ =
-            [:j         :!S9   :f-mode]
-            [:k         :!S0   :f-mode]
-            [:l         :hyphen   :f-mode]
-            [:semicolon :!Sequal_sign  :f-mode]
-            [:quote     :equal_sign   :f-mode]
 
+
+      {:des "bracket combos"
+          :rules [
             ;; BRACKET combinations (special)
 
             ;; jk   l;
@@ -281,18 +286,19 @@
             ;; ()
             ;;    []  {}
 
+            [:j         :!S9   :f-mode]
+            [:k         :!S0   :f-mode]
+
             [:m         :open_bracket   :f-mode]
             [:comma     :close_bracket  :f-mode]
+
             [:period    :!Sopen_bracket   :f-mode]
             [:slash     :!Sclose_bracket   :f-mode]
 
       ]}
 
-      ;; -----------------------------------------
-      ;; j-mode (deletion related shortcuts)
-      ;; -----------------------------------------
 
-      {:des "j-mode"
+      {:des "delete sequences"
        :rules [:j-mode
 
           ;; deletion related shortcuts
@@ -308,14 +314,11 @@
 
           ;; delete char | backspace
           [:f :delete_or_backspace]
+      ]}
 
-          ;; special characters
-          [:t :!S6]  ;; ^ sign (Shift + 5)
-          [:r :!S5]  ;; % sign (Shift + 5)
-          [:e :!S4]  ;; $ sign (Shift + 4)
-          [:w :!S3]  ;; # sign (Shift + 3)
-          [:q :!S2]  ;; @ sign (Shift + 2)
 
+      {:des "cmd next/prev tab"
+       :rules [:j-mode
           ;; Command + {} move next/prev tab
           [:x       :!CSopen_bracket ]
           [:c       :!CSclose_bracket]
