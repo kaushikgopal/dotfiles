@@ -80,6 +80,11 @@ brew "github-keygen"
 # cask "docker"
 
 ######################
+##### Web dev
+brew "caddy"            # for remapping localhost
+
+
+######################
 ##### android (zulu)
 
 # tap "mdogan/zulu"     # use sdk man
