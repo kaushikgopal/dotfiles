@@ -4,7 +4,7 @@
 
 # fish_vi_key_bindings # start vi mode
 # fish_default_key_binding # go back to default bindings
-
+set -g fish_prompt_pwd_dir_length 80  # don't shorten pwd
 
 if status is-interactive
     # Commands to run in interactive sessions can go here
