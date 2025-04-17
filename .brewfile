@@ -92,6 +92,7 @@ brew "caddy"            # for remapping localhost
 # brew "kotlin"         # use sdk man
 # brew "gradle"         # use sdk man
 brew "scrcpy"
+brew "ktfmt"
 
 tap "sdkman/tap"
 brew "sdkman-cli"
