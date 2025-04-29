@@ -132,8 +132,9 @@ brew "grpcurl" # caper
 
 ##############################################################
 ##### Mac apps
-cask "1password"
-cask "1password-cli" # required for Raycast/Alfred integration
+# install 1password manually
+#cask "1password"
+#cask "1password-cli" # required for Raycast/Alfred integration
 cask "google-drive"
 cask "imageoptim"
 cask "jetbrains-toolbox"
