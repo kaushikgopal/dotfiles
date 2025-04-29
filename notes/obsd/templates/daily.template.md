@@ -7,15 +7,30 @@ refs:
 <% tp.file.cursor(1) %>
 
 
+### Work
+- [ ] 
+- [ ] 
+- [ ] 
 
+### Personal
+- [ ] 
+- [ ] 
+- [ ] 
+- [ ] 
 
 
 ***
 [[<% fileDate = moment(tp.file.title, 'YYYY-MM-DD').subtract(1, 'd').format('YYYY-MM-DD') %>|⇤]]  | **<% moment(tp.file.title,'YYYY-MM-DD').format("dddd") %>** | [[<% fileDate = moment(tp.file.title, 'YYYY-MM-DD').add(1, 'd').format('YYYY-MM-DD') %>|⇥]]
 
-[[✱ Personal Backlog]] | [[✱ Work Backlog]] | [[✱ Dashboard]]
+| [[✱ Personal]] | [[✱ Writing\|✱ Writing]] |
+| -------------- | ------------------------ |
+| [[✱ Work]]     | [[✱ Fragmented]]         |
+| [[✱ grocery]]  | [[Henry 3.0]]            |
+| [[✱ Skyview]]  | [[unsorted.todo]]        |
+
+
 # Due
 
-![[✱ Personal Backlog#Priority / upcoming 20 days]]
+![[✱ Personal#Priority / upcoming 20 days]]
 
-![[✱ Personal Backlog#(Over)Due]]
+![[✱ Personal#(Over)Due]]
