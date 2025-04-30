@@ -7,12 +7,11 @@ refs:
 <% tp.file.cursor(1) %>
 
 
-### Work
+# Tasks Today
 - [ ] 
 - [ ] 
 - [ ] 
 
-### Personal
 - [ ] 
 - [ ] 
 - [ ] 
@@ -27,6 +26,18 @@ refs:
 | [[✱ Work]]     | [[✱ Fragmented]]         |
 | [[✱ grocery]]  | [[Henry 3.0]]            |
 | [[✱ Skyview]]  | [[unsorted.todo]]        |
+### Accomplish this week
+```tasks
+not done
+path includes <%*
+tR += moment().year() + "-w" +  moment().week() + ".todo"
+%>
+heading includes Accomplish
+short mode
+hide created date
+hide edit button
+hide task count
+```
 
 
 # Due
