@@ -7,32 +7,44 @@ refs:
 <% tp.file.cursor(1) %>
 
 
-# Tasks Today
-- [ ] 
-- [ ] 
-- [ ] 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Tasks
 
 - [ ] 
 - [ ] 
 - [ ] 
-- [ ] 
 
 
-***
-[[<% fileDate = moment(tp.file.title, 'YYYY-MM-DD').subtract(1, 'd').format('YYYY-MM-DD') %>|⇤]]  | **<% moment(tp.file.title,'YYYY-MM-DD').format("dddd") %>** | [[<% fileDate = moment(tp.file.title, 'YYYY-MM-DD').add(1, 'd').format('YYYY-MM-DD') %>|⇥]]
 
-| [[✱ Personal]] | [[✱ Writing\|✱ Writing]] |
-| -------------- | ------------------------ |
-| [[✱ Work]]     | [[✱ Fragmented]]         |
-| [[✱ grocery]]  | [[Henry 3.0]]            |
-| [[✱ Skyview]]  | [[unsorted.todo]]        |
-### Accomplish this week
+
+### Added this week
 ```tasks
 not done
-path includes <%*
-tR += moment().year() + "-w" +  moment().week() + ".todo"
+<%*
+  let days = [];
+  let today = moment().format('YYYY-MM-DD');
+  for(let i=0; i<7; i++) {
+    let theDate = moment().startOf('week').add(i, 'day').format('YYYY-MM-DD');
+    if (theDate !== today) {
+      days.push(`(path includes ${theDate})`);
+    }
+  }
+  let weekPath = `(path includes ${moment().year()}-w${moment().week()}.todo) AND (heading includes Accomplish this week)`;
+  tR += days.join(' OR ') + ' OR ' + weekPath;
 %>
-heading includes Accomplish
 short mode
 hide created date
 hide edit button
@@ -40,8 +52,15 @@ hide task count
 ```
 
 
-# Due
-
 ![[✱ Personal#Priority / upcoming 20 days]]
 
 ![[✱ Personal#(Over)Due]]
+
+
+| [[✱ Personal]] | [[✱ Writing\|✱ Writing]] |
+| -------------- | ------------------------ |
+| [[✱ Work]]     | [[✱ Fragmented]]         |
+| [[✱ grocery]]  | [[Henry 3.0]]            |
+| [[✱ Skyview]]  | [[unsorted.todo]]        |
+***
+[[<% fileDate = moment(tp.file.title, 'YYYY-MM-DD').subtract(1, 'd').format('YYYY-MM-DD') %>|⇤]]  | **<% moment(tp.file.title,'YYYY-MM-DD').format("dddd") %>** | [[<% fileDate = moment(tp.file.title, 'YYYY-MM-DD').add(1, 'd').format('YYYY-MM-DD') %>|⇥]]
