@@ -23,17 +23,17 @@ refs:
 
 # Tasks
 
-- [ ] 
-- [ ] 
-- [ ] 
+- [ ]
+- [ ]
+- [ ]
 
 
 
 
-### Added this week
-```tasks
-not done
-<%*
+> [!info] Added this week
+> ```tasks
+> not done
+> <%*
   let days = [];
   let today = moment().format('YYYY-MM-DD');
   for(let i=0; i<7; i++) {
@@ -45,16 +45,14 @@ not done
   let weekPath = `(path includes ${moment().year()}-w${moment().week()}.todo) AND (heading includes Accomplish this week)`;
   tR += days.join(' OR ') + ' OR ' + weekPath;
 %>
-short mode
-hide created date
-hide edit button
-hide task count
-```
+> short mode
+> hide created date
+> hide edit button
+> hide task count
+> ```
 
+![[✱ Personal#Due]]
 
-![[✱ Personal#Priority / upcoming 20 days]]
-
-![[✱ Personal#(Over)Due]]
 
 
 | [[✱ Personal]] | [[✱ Writing\|✱ Writing]] |
