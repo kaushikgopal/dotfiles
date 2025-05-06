@@ -108,7 +108,7 @@ brew "postgresql"
 
 ######################
 ##### .py
-# brew "pyenv"
+brew "pyenv"
 # brew "pyenv-virtualenv"
 # brew "python-tabulate"
 # brew "python@3.10"

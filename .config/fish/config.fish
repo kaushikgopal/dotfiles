@@ -127,6 +127,10 @@ export BAT_CONFIG_PATH=$HOME/.config/.bat.conf
 export RIPGREP_CONFIG_PATH=$HOME/.config/.ripgreprc
 
 # ---------------------------------------------------------
+# pyenv for python development setup
+pyenv init - fish | source
+
+# ---------------------------------------------------------
 # Zoxide
 
 zoxide init --cmd j fish | source
