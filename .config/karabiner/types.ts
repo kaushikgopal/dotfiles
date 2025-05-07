@@ -39,7 +39,7 @@ type DeviceCondition = {
     | "device_unless"
     | "device_exists_if"
     | "device_exists_unless";
-  identifiers: Identifiers;
+  identifiers: Identifiers | Identifiers[];
   description?: string;
 };
 
@@ -91,6 +91,9 @@ export interface SimultaneousFrom {
 export interface SimultaneousOptions {
   key_down_order?: "insensitive" | "strict" | "strict_inverse";
   detect_key_down_uninterruptedly?: boolean;
+  key_up_order?: "insensitive" | "strict" | "strict_inverse";
+  key_up_when?: "any" | "all";
+  to_after_key_up?: To[];
 }
 
 type ModifiersKeys =

@@ -33,7 +33,6 @@ brew "httpie"
 brew "hugo"
 brew "imagemagick"
 brew "mas"
-brew "node"
 brew "openssl"
 brew "pgcli"
 brew "poppler"
@@ -107,6 +106,13 @@ brew "rbenv"
 brew "postgresql"
 
 ######################
+##### Javascript and TypeScript
+brew "ts-node"
+brew "typescript"
+brew "node"
+
+
+######################
 ##### .py
 brew "pyenv"
 # brew "pyenv-virtualenv"
@@ -129,6 +135,13 @@ brew "bazelisk"
 brew "pipx"
 #cask "orbstack"
 brew "grpcurl" # caper
+
+
+##############################################################
+##### Karabiner
+#tap "candid82/brew"
+cask "karabiner-elements"
+
 
 ##############################################################
 ##### Mac apps
@@ -153,7 +166,7 @@ cask "cursor"
 # cask "ghostty"
 cask "warp"
 
-#cask "brave-browser"
+cask "brave-browser"
 cask "google-chrome"
 #cask "arc"
 
@@ -201,13 +214,6 @@ cask "font-geist-mono"
 # mas "Xcode", id: 497799835
 # mas "Hand Mirror", id: 1502839586
 # mas "Things 3", id: 904280696
-
-##############################################################
-##### goku
-tap "candid82/brew"
-tap "yqrashawn/goku"
-cask "karabiner-elements"
-brew "yqrashawn/goku/goku"
 
 ##############################################################
 ##### Helpful commands
