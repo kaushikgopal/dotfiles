@@ -16,9 +16,10 @@ export interface Manipulator {
 
 export interface Parameters {
   "basic.simultaneous_threshold_milliseconds"?: number;
+  [key: string]: number | undefined;
 }
 
-type Conditions =
+export type Conditions =
   | FrontMostApplicationCondition
   | DeviceCondition
   | KeybaordTypeCondition

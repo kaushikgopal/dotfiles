@@ -1,1141 +1,233 @@
+// @ts-ignore
 import fs from "fs";
-import { KarabinerRules } from "./types";
+import { KarabinerRules, KeyCode } from "./types";
 import { createHyperSubLayers, app, open, rectangle, shell } from "./utils";
+import { manipulator, createRule, createFKeyCombo, createJKeyCombo, key, createAppSpecificJKeyCombo, withOptionalModifiers, withMandatoryModifiers, forApp, unlessApp } from "./builders";
 
 // Only the rules array is defined at the top level
 const rules: KarabinerRules[] = [
   // --- Right Cmd (alone) -> Enter ---
-  {
-    description: "Right Cmd (alone) -> Enter",
-    manipulators: [
-      {
-        from: {
-          key_code: "right_command",
-          modifiers: { optional: ["any"] },
-        },
-        to: [
-          { key_code: "right_control" },
-        ],
-        to_if_alone: [
-          { key_code: "return_or_enter" },
-        ],
-        conditions: [
-          {
-            type: "device_if",
-            identifiers: [
-              { vendor_id: 1452 },
-              { vendor_id: 76 },
-              { is_built_in_keyboard: true },
-            ],
-          },
-        ],
-        type: "basic",
-      },
-    ],
-  },
+  createRule(
+    "Right Cmd (alone) -> Enter",
+    [
+      manipulator()
+        .fromKey("right_command", { optional: ["any"] })
+        .to([{ key_code: "right_control" }])
+        .toIfAlone([{ key_code: "return_or_enter" }])
+        .forDevices([
+          { vendor_id: 1452 },
+          { vendor_id: 76 },
+          { is_built_in_keyboard: true }
+        ])
+        .build()
+    ]
+  ),
   // --- Caps Lock -> Escape (alone) | Ctrl (simple) + Vim/Arrow/Mouse ---
-  {
-    description: "Caps Lock -> Escape (alone) | Ctrl (simple)",
-    manipulators: [
-      // Caps Lock alone -> Escape, held -> right_control
-      {
-        from: {
-          key_code: "caps_lock",
-          modifiers: { optional: ["any"] },
-        },
-        to: [ { key_code: "right_control" } ],
-        to_if_alone: [ { key_code: "escape" } ],
-        type: "basic",
-      },
-      // Vim-like arrow keys with Control
-      {
-        from: {
-          key_code: "h",
-          modifiers: { mandatory: ["right_control"] },
-        },
-        to: [ { key_code: "left_arrow" } ],
-        type: "basic",
-      },
-      {
-        from: {
-          key_code: "j",
-          modifiers: { mandatory: ["right_control"] },
-        },
-        to: [ { key_code: "down_arrow" } ],
-        type: "basic",
-      },
-      {
-        from: {
-          key_code: "k",
-          modifiers: { mandatory: ["right_control"] },
-        },
-        to: [ { key_code: "up_arrow" } ],
-        type: "basic",
-      },
-      {
-        from: {
-          key_code: "l",
-          modifiers: { mandatory: ["right_control"] },
-        },
-        to: [ { key_code: "right_arrow" } ],
-        type: "basic",
-      },
+  (() => {
+    const vimKeys: KeyCode[] = ["h", "j", "k", "l"];
+    const arrowKeys: KeyCode[] = ["left_arrow", "down_arrow", "up_arrow", "right_arrow"];
+    const shiftVimKeys: KeyCode[] = ["h", "k", "l"];
+    const shiftArrowKeys: KeyCode[] = ["left_arrow", "up_arrow", "right_arrow"];
+    return createRule(
+      "Caps Lock -> Escape (alone) | Ctrl (simple)",
+      [
+        // Caps Lock alone -> Escape, held -> right_control
+        manipulator()
+          .fromKey("caps_lock", withOptionalModifiers("any"))
+          .to(key("right_control"))
+          .toIfAlone(key("escape"))
+          .build(),
 
-      // Command + Vim keys to Command + Arrow
-      {
-        from: {
-          key_code: "h",
-          modifiers: { mandatory: ["left_command", "right_control"] },
-        },
-        to: [ { key_code: "left_arrow", modifiers: ["left_command"] } ],
-        type: "basic",
-      },
-      {
-        from: {
-          key_code: "j",
-          modifiers: { mandatory: ["left_command", "right_control"] },
-        },
-        to: [ { key_code: "down_arrow", modifiers: ["left_command"] } ],
-        type: "basic",
-      },
-      {
-        from: {
-          key_code: "k",
-          modifiers: { mandatory: ["left_command", "right_control"] },
-        },
-        to: [ { key_code: "up_arrow", modifiers: ["left_command"] } ],
-        type: "basic",
-      },
-      {
-        from: {
-          key_code: "l",
-          modifiers: { mandatory: ["left_command", "right_control"] },
-        },
-        to: [ { key_code: "right_arrow", modifiers: ["left_command"] } ],
-        type: "basic",
-      },
+        // Vim-like arrow keys with Control
+        ...vimKeys.map((keyChar, idx) =>
+          manipulator()
+            .fromKey(keyChar, withMandatoryModifiers("right_control"))
+            .to(key(arrowKeys[idx]))
+            .build()
+        ),
 
-      // Shift + Vim keys to Shift + Arrow
-      {
-        from: {
-          key_code: "h",
-          modifiers: { mandatory: ["left_shift", "right_control"] },
-        },
-        to: [ { key_code: "left_arrow", modifiers: ["left_shift"] } ],
-        type: "basic",
-      },
-      {
-        from: {
-          key_code: "l",
-          modifiers: { mandatory: ["left_shift", "right_control"] },
-        },
-        to: [ { key_code: "right_arrow", modifiers: ["left_shift"] } ],
-        type: "basic",
-      },
-      {
-        from: {
-          key_code: "k",
-          modifiers: { mandatory: ["left_shift", "right_control"] },
-        },
-        to: [ { key_code: "up_arrow", modifiers: ["left_shift"] } ],
-        type: "basic",
-      },
-      {
-        from: {
-          key_code: "j",
-          modifiers: { mandatory: ["left_shift", "right_control"] },
-        },
-        to: [ { key_code: "down_arrow", modifiers: ["left_shift"] } ],
-        conditions: [
-          {
-            type: "frontmost_application_unless",
-            bundle_identifiers: ["com.google.android.studio", "^com\\.jetbrains\\..*$"]
-          }
-        ],
-        type: "basic",
-      },
-      {
-        from: {
-          key_code: "j",
-          modifiers: { mandatory: ["left_shift", "right_control"] },
-        },
-        to: [ { key_code: "j", modifiers: ["left_control", "left_shift"] } ],
-        conditions: [
-          {
-            type: "frontmost_application_if",
-            bundle_identifiers: ["com.google.android.studio", "^com\\.jetbrains\\..*$"]
-          }
-        ],
-        type: "basic",
-      },
+        // Command + Vim keys to Command + Arrow
+        ...vimKeys.map((keyChar, idx) =>
+          manipulator()
+            .fromKey(keyChar, withMandatoryModifiers("left_command", "right_control"))
+            .to(key(arrowKeys[idx], ["left_command"]))
+            .build()
+        ),
 
-      // Option + Vim keys to Option + Arrow
-      {
-        from: {
-          key_code: "h",
-          modifiers: { mandatory: ["left_option", "right_control"] },
-        },
-        to: [ { key_code: "left_arrow", modifiers: ["left_option"] } ],
-        type: "basic",
-      },
-      {
-        from: {
-          key_code: "j",
-          modifiers: { mandatory: ["left_option", "right_control"] },
-        },
-        to: [ { key_code: "down_arrow", modifiers: ["left_option"] } ],
-        type: "basic",
-      },
-      {
-        from: {
-          key_code: "k",
-          modifiers: { mandatory: ["left_option", "right_control"] },
-        },
-        to: [ { key_code: "up_arrow", modifiers: ["left_option"] } ],
-        type: "basic",
-      },
-      {
-        from: {
-          key_code: "l",
-          modifiers: { mandatory: ["left_option", "right_control"] },
-        },
-        to: [ { key_code: "right_arrow", modifiers: ["left_option"] } ],
-        type: "basic",
-      },
+        // Shift + Vim keys to Shift + Arrow (with JetBrains/Android Studio exception for j)
+        ...shiftVimKeys.map((keyChar, idx) =>
+          manipulator()
+            .fromKey(keyChar, withMandatoryModifiers("left_shift", "right_control"))
+            .to(key(shiftArrowKeys[idx], ["left_shift"]))
+            .build()
+        ),
+        // j with Shift+Ctrl, with app-specific conditions
+        manipulator()
+          .fromKey("j", withMandatoryModifiers("left_shift", "right_control"))
+          .to(key("down_arrow", ["left_shift"]))
+          .withCondition(unlessApp(["com.google.android.studio", "^com\\.jetbrains\\..*$"]))
+          .build(),
+        manipulator()
+          .fromKey("j", withMandatoryModifiers("left_shift", "right_control"))
+          .to(key("j", ["left_control", "left_shift"]))
+          .withCondition(forApp(["com.google.android.studio", "^com\\.jetbrains\\..*$"]))
+          .build(),
 
-      // Command + Option + Vim keys to Command + Option + Arrow
-      {
-        from: {
-          key_code: "h",
-          modifiers: { mandatory: ["left_command", "left_option", "right_control"] },
-        },
-        to: [ { key_code: "left_arrow", modifiers: ["left_command", "left_option"] } ],
-        type: "basic",
-      },
-      {
-        from: {
-          key_code: "j",
-          modifiers: { mandatory: ["left_command", "left_option", "right_control"] },
-        },
-        to: [ { key_code: "down_arrow", modifiers: ["left_command", "left_option"] } ],
-        type: "basic",
-      },
-      {
-        from: {
-          key_code: "k",
-          modifiers: { mandatory: ["left_command", "left_option", "right_control"] },
-        },
-        to: [ { key_code: "up_arrow", modifiers: ["left_command", "left_option"] } ],
-        type: "basic",
-      },
-      {
-        from: {
-          key_code: "l",
-          modifiers: { mandatory: ["left_command", "left_option", "right_control"] },
-        },
-        to: [ { key_code: "right_arrow", modifiers: ["left_command", "left_option"] } ],
-        type: "basic",
-      },
+        // Option + Vim keys to Option + Arrow
+        ...vimKeys.map((keyChar, idx) =>
+          manipulator()
+            .fromKey(keyChar, withMandatoryModifiers("left_option", "right_control"))
+            .to(key(arrowKeys[idx], ["left_option"]))
+            .build()
+        ),
 
-      // Command + Shift + Vim keys to Command + Shift + Arrow
-      {
-        from: {
-          key_code: "h",
-          modifiers: { mandatory: ["left_command", "left_shift", "right_control"] },
-        },
-        to: [ { key_code: "left_arrow", modifiers: ["left_command", "left_shift"] } ],
-        type: "basic",
-      },
-      {
-        from: {
-          key_code: "j",
-          modifiers: { mandatory: ["left_command", "left_shift", "right_control"] },
-        },
-        to: [ { key_code: "down_arrow", modifiers: ["left_command", "left_shift"] } ],
-        type: "basic",
-      },
-      {
-        from: {
-          key_code: "k",
-          modifiers: { mandatory: ["left_command", "left_shift", "right_control"] },
-        },
-        to: [ { key_code: "up_arrow", modifiers: ["left_command", "left_shift"] } ],
-        type: "basic",
-      },
-      {
-        from: {
-          key_code: "l",
-          modifiers: { mandatory: ["left_command", "left_shift", "right_control"] },
-        },
-        to: [ { key_code: "right_arrow", modifiers: ["left_command", "left_shift"] } ],
-        type: "basic",
-      },
+        // Command + Option + Vim keys to Command + Option + Arrow
+        ...vimKeys.map((keyChar, idx) =>
+          manipulator()
+            .fromKey(keyChar, withMandatoryModifiers("left_command", "left_option", "right_control"))
+            .to(key(arrowKeys[idx], ["left_command", "left_option"]))
+            .build()
+        ),
 
-      // Mouse control with arrow keys
-      {
-        from: {
-          key_code: "down_arrow",
-          modifiers: { mandatory: ["right_control"] },
-        },
-        to: [ { mouse_key: { y: 1536 } } ],
-        type: "basic",
-      },
-      {
-        from: {
-          key_code: "up_arrow",
-          modifiers: { mandatory: ["right_control"] },
-        },
-        to: [ { mouse_key: { y: -1536 } } ],
-        type: "basic",
-      },
-      {
-        from: {
-          key_code: "left_arrow",
-          modifiers: { mandatory: ["right_control"] },
-        },
-        to: [ { mouse_key: { x: -1536 } } ],
-        type: "basic",
-      },
-      {
-        from: {
-          key_code: "right_arrow",
-          modifiers: { mandatory: ["right_control"] },
-        },
-        to: [ { mouse_key: { x: 1536 } } ],
-        type: "basic",
-      },
+        // Command + Shift + Vim keys to Command + Shift + Arrow
+        ...vimKeys.map((keyChar, idx) =>
+          manipulator()
+            .fromKey(keyChar, withMandatoryModifiers("left_command", "left_shift", "right_control"))
+            .to(key(arrowKeys[idx], ["left_command", "left_shift"]))
+            .build()
+        ),
 
-      // Mouse clicks
-      {
-        from: {
-          key_code: "return_or_enter",
-          modifiers: { mandatory: ["right_control"] },
-        },
-        to: [ { pointing_button: "button1" } ],
-        type: "basic",
-      },
-      {
-        from: {
-          key_code: "return_or_enter",
-          modifiers: { mandatory: ["left_command", "right_control"] },
-        },
-        to: [ { pointing_button: "button2" } ],
-        type: "basic",
-      },
-    ],
-  },
+        // Mouse control with arrow keys
+        ...[
+          { key: "down_arrow" as KeyCode, mouse: { y: 1536 } },
+          { key: "up_arrow" as KeyCode, mouse: { y: -1536 } },
+          { key: "left_arrow" as KeyCode, mouse: { x: -1536 } },
+          { key: "right_arrow" as KeyCode, mouse: { x: 1536 } },
+        ].map(({ key, mouse }) =>
+          manipulator()
+            .fromKey(key, withMandatoryModifiers("right_control"))
+            .to({ mouse_key: mouse })
+            .build()
+        ),
+
+        // Mouse clicks
+        manipulator()
+          .fromKey("return_or_enter", withMandatoryModifiers("right_control"))
+          .to({ pointing_button: "button1" })
+          .build(),
+        manipulator()
+          .fromKey("return_or_enter", withMandatoryModifiers("left_command", "right_control"))
+          .to({ pointing_button: "button2" })
+          .build(),
+      ]
+    );
+  })(),
   // --- Special characters enabled with shift + numkey ---
-  {
-    description: "special characters enabled with shift + numkey",
-    manipulators: [
+  createRule(
+    "special characters enabled with shift + numkey",
+    [
       // F + I -> * (shift + 8)
-      {
-        from: { key_code: "i" },
-        to: [{ key_code: "8", modifiers: ["left_shift"] }],
-        conditions: [{ name: "f-mode", value: 1, type: "variable_if" }],
-        type: "basic",
-      },
-      {
-        type: "basic",
-        parameters: { "basic.simultaneous_threshold_milliseconds": 250 },
-        to: [
-          { set_variable: { name: "f-mode", value: 1 } },
-          { key_code: "8", modifiers: ["left_shift"] }
-        ],
-        from: {
-          simultaneous: [
-            { key_code: "f" },
-            { key_code: "i" }
-          ],
-          simultaneous_options: {
-            detect_key_down_uninterruptedly: true,
-            key_down_order: "strict",
-            key_up_order: "strict_inverse",
-            key_up_when: "any",
-            to_after_key_up: [
-              { set_variable: { name: "f-mode", value: 0 } }
-            ]
-          }
-        }
-      },
+      ...createFKeyCombo("i", { key_code: "8", modifiers: ["left_shift"] }),
 
       // F + U -> & (shift + 7)
-      {
-        from: { key_code: "u" },
-        to: [{ key_code: "7", modifiers: ["left_shift"] }],
-        conditions: [{ name: "f-mode", value: 1, type: "variable_if" }],
-        type: "basic",
-      },
-      {
-        type: "basic",
-        parameters: { "basic.simultaneous_threshold_milliseconds": 250 },
-        to: [
-          { set_variable: { name: "f-mode", value: 1 } },
-          { key_code: "7", modifiers: ["left_shift"] }
-        ],
-        from: {
-          simultaneous: [
-            { key_code: "f" },
-            { key_code: "u" }
-          ],
-          simultaneous_options: {
-            detect_key_down_uninterruptedly: true,
-            key_down_order: "strict",
-            key_up_order: "strict_inverse",
-            key_up_when: "any",
-            to_after_key_up: [
-              { set_variable: { name: "f-mode", value: 0 } }
-            ]
-          }
-        }
-      },
+      ...createFKeyCombo("u", { key_code: "7", modifiers: ["left_shift"] }),
 
       // F + Y -> ^ (shift + 6)
-      {
-        from: { key_code: "y" },
-        to: [{ key_code: "6", modifiers: ["left_shift"] }],
-        conditions: [{ name: "f-mode", value: 1, type: "variable_if" }],
-        type: "basic",
-      },
-      {
-        type: "basic",
-        parameters: { "basic.simultaneous_threshold_milliseconds": 250 },
-        to: [
-          { set_variable: { name: "f-mode", value: 1 } },
-          { key_code: "6", modifiers: ["left_shift"] }
-        ],
-        from: {
-          simultaneous: [
-            { key_code: "f" },
-            { key_code: "y" }
-          ],
-          simultaneous_options: {
-            detect_key_down_uninterruptedly: true,
-            key_down_order: "strict",
-            key_up_order: "strict_inverse",
-            key_up_when: "any",
-            to_after_key_up: [
-              { set_variable: { name: "f-mode", value: 0 } }
-            ]
-          }
-        }
-      },
+      ...createFKeyCombo("y", { key_code: "6", modifiers: ["left_shift"] }),
 
-      // J + T -> % (shift + 5)
-      {
-        from: { key_code: "t" },
-        to: [{ key_code: "5", modifiers: ["left_shift"] }],
-        conditions: [{ name: "j-mode", value: 1, type: "variable_if" }],
-        type: "basic",
-      },
-      {
-        type: "basic",
-        parameters: { "basic.simultaneous_threshold_milliseconds": 250 },
-        to: [
-          { set_variable: { name: "j-mode", value: 1 } },
-          { key_code: "5", modifiers: ["left_shift"] }
-        ],
-        from: {
-          simultaneous: [
-            { key_code: "j" },
-            { key_code: "t" }
-          ],
-          simultaneous_options: {
-            detect_key_down_uninterruptedly: true,
-            key_down_order: "strict",
-            key_up_order: "strict_inverse",
-            key_up_when: "any",
-            to_after_key_up: [
-              { set_variable: { name: "j-mode", value: 0 } }
-            ]
-          }
-        }
-      },
-
-      // J + R -> $ (shift + 4)
-      {
-        from: { key_code: "r" },
-        to: [{ key_code: "4", modifiers: ["left_shift"] }],
-        conditions: [{ name: "j-mode", value: 1, type: "variable_if" }],
-        type: "basic",
-      },
-      {
-        type: "basic",
-        parameters: { "basic.simultaneous_threshold_milliseconds": 250 },
-        to: [
-          { set_variable: { name: "j-mode", value: 1 } },
-          { key_code: "4", modifiers: ["left_shift"] }
-        ],
-        from: {
-          simultaneous: [
-            { key_code: "j" },
-            { key_code: "r" }
-          ],
-          simultaneous_options: {
-            detect_key_down_uninterruptedly: true,
-            key_down_order: "strict",
-            key_up_order: "strict_inverse",
-            key_up_when: "any",
-            to_after_key_up: [
-              { set_variable: { name: "j-mode", value: 0 } }
-            ]
-          }
-        }
-      },
-
-      // J + E -> # (shift + 3)
-      {
-        from: { key_code: "e" },
-        to: [{ key_code: "3", modifiers: ["left_shift"] }],
-        conditions: [{ name: "j-mode", value: 1, type: "variable_if" }],
-        type: "basic",
-      },
-      {
-        type: "basic",
-        parameters: { "basic.simultaneous_threshold_milliseconds": 250 },
-        to: [
-          { set_variable: { name: "j-mode", value: 1 } },
-          { key_code: "3", modifiers: ["left_shift"] }
-        ],
-        from: {
-          simultaneous: [
-            { key_code: "j" },
-            { key_code: "e" }
-          ],
-          simultaneous_options: {
-            detect_key_down_uninterruptedly: true,
-            key_down_order: "strict",
-            key_up_order: "strict_inverse",
-            key_up_when: "any",
-            to_after_key_up: [
-              { set_variable: { name: "j-mode", value: 0 } }
-            ]
-          }
-        }
-      },
-
-      // J + W -> @ (shift + 2)
-      {
-        from: { key_code: "w" },
-        to: [{ key_code: "2", modifiers: ["left_shift"] }],
-        conditions: [{ name: "j-mode", value: 1, type: "variable_if" }],
-        type: "basic",
-      },
-      {
-        type: "basic",
-        parameters: { "basic.simultaneous_threshold_milliseconds": 250 },
-        to: [
-          { set_variable: { name: "j-mode", value: 1 } },
-          { key_code: "2", modifiers: ["left_shift"] }
-        ],
-        from: {
-          simultaneous: [
-            { key_code: "j" },
-            { key_code: "w" }
-          ],
-          simultaneous_options: {
-            detect_key_down_uninterruptedly: true,
-            key_down_order: "strict",
-            key_up_order: "strict_inverse",
-            key_up_when: "any",
-            to_after_key_up: [
-              { set_variable: { name: "j-mode", value: 0 } }
-            ]
-          }
-        }
-      },
-
-      // J + Q -> ! (shift + 1)
-      {
-        from: { key_code: "q" },
-        to: [{ key_code: "1", modifiers: ["left_shift"] }],
-        conditions: [{ name: "j-mode", value: 1, type: "variable_if" }],
-        type: "basic",
-      },
-      {
-        type: "basic",
-        parameters: { "basic.simultaneous_threshold_milliseconds": 250 },
-        to: [
-          { set_variable: { name: "j-mode", value: 1 } },
-          { key_code: "1", modifiers: ["left_shift"] }
-        ],
-        from: {
-          simultaneous: [
-            { key_code: "j" },
-            { key_code: "q" }
-          ],
-          simultaneous_options: {
-            detect_key_down_uninterruptedly: true,
-            key_down_order: "strict",
-            key_up_order: "strict_inverse",
-            key_up_when: "any",
-            to_after_key_up: [
-              { set_variable: { name: "j-mode", value: 0 } }
-            ]
-          }
-        }
-      },
+      // F + O -> \ (backslash)
+      ...createFKeyCombo("o", { key_code: "backslash" }),
 
       // F + L -> - (hyphen)
-      {
-        from: { key_code: "l" },
-        to: [{ key_code: "hyphen" }],
-        conditions: [{ name: "f-mode", value: 1, type: "variable_if" }],
-        type: "basic",
-      },
-      {
-        type: "basic",
-        parameters: { "basic.simultaneous_threshold_milliseconds": 250 },
-        to: [
-          { set_variable: { name: "f-mode", value: 1 } },
-          { key_code: "hyphen" }
-        ],
-        from: {
-          simultaneous: [
-            { key_code: "f" },
-            { key_code: "l" }
-          ],
-          simultaneous_options: {
-            detect_key_down_uninterruptedly: true,
-            key_down_order: "strict",
-            key_up_order: "strict_inverse",
-            key_up_when: "any",
-            to_after_key_up: [
-              { set_variable: { name: "f-mode", value: 0 } }
-            ]
-          }
-        }
-      },
+      ...createFKeyCombo("l", { key_code: "hyphen" }),
 
       // F + Semicolon -> + (shift + equals)
-      {
-        from: { key_code: "semicolon" },
-        to: [{ key_code: "equal_sign", modifiers: ["left_shift"] }],
-        conditions: [{ name: "f-mode", value: 1, type: "variable_if" }],
-        type: "basic",
-      },
-      {
-        type: "basic",
-        parameters: { "basic.simultaneous_threshold_milliseconds": 250 },
-        to: [
-          { set_variable: { name: "f-mode", value: 1 } },
-          { key_code: "equal_sign", modifiers: ["left_shift"] }
-        ],
-        from: {
-          simultaneous: [
-            { key_code: "f" },
-            { key_code: "semicolon" }
-          ],
-          simultaneous_options: {
-            detect_key_down_uninterruptedly: true,
-            key_down_order: "strict",
-            key_up_order: "strict_inverse",
-            key_up_when: "any",
-            to_after_key_up: [
-              { set_variable: { name: "f-mode", value: 0 } }
-            ]
-          }
-        }
-      },
+      ...createFKeyCombo("semicolon", { key_code: "equal_sign", modifiers: ["left_shift"] }),
 
       // F + Quote -> = (equals)
-      {
-        from: { key_code: "quote" },
-        to: [{ key_code: "equal_sign" }],
-        conditions: [{ name: "f-mode", value: 1, type: "variable_if" }],
-        type: "basic",
-      },
-      {
-        type: "basic",
-        parameters: { "basic.simultaneous_threshold_milliseconds": 250 },
-        to: [
-          { set_variable: { name: "f-mode", value: 1 } },
-          { key_code: "equal_sign" }
-        ],
-        from: {
-          simultaneous: [
-            { key_code: "f" },
-            { key_code: "quote" }
-          ],
-          simultaneous_options: {
-            detect_key_down_uninterruptedly: true,
-            key_down_order: "strict",
-            key_up_order: "strict_inverse",
-            key_up_when: "any",
-            to_after_key_up: [
-              { set_variable: { name: "f-mode", value: 0 } }
-            ]
-          }
-        }
-      },
-    ],
-  },
+      ...createFKeyCombo("quote", { key_code: "equal_sign" }),
+    ]
+  ),
+  // --- J-key special characters ---
+  createRule(
+    "J-key special character combinations",
+    [
+      // J + T -> % (shift + 5)
+      ...createJKeyCombo("t", { key_code: "5", modifiers: ["left_shift"] }),
+
+      // J + R -> $ (shift + 4)
+      ...createJKeyCombo("r", { key_code: "4", modifiers: ["left_shift"] }),
+
+      // J + E -> # (shift + 3)
+      ...createJKeyCombo("e", { key_code: "3", modifiers: ["left_shift"] }),
+
+      // J + W -> @ (shift + 2)
+      ...createJKeyCombo("w", { key_code: "2", modifiers: ["left_shift"] }),
+
+      // J + Q -> ! (shift + 1)
+      ...createJKeyCombo("q", { key_code: "1", modifiers: ["left_shift"] }),
+    ]
+  ),
   // --- Bracket combinations ---
-  {
-    description: "bracket combos",
-    manipulators: [
+  createRule(
+    "bracket combos",
+    [
       // F + J -> ( (shift + 9)
-      {
-        from: { key_code: "j" },
-        to: [{ key_code: "9", modifiers: ["left_shift"] }],
-        conditions: [{ name: "f-mode", value: 1, type: "variable_if" }],
-        type: "basic",
-      },
-      {
-        type: "basic",
-        parameters: { "basic.simultaneous_threshold_milliseconds": 250 },
-        to: [
-          { set_variable: { name: "f-mode", value: 1 } },
-          { key_code: "9", modifiers: ["left_shift"] }
-        ],
-        from: {
-          simultaneous: [
-            { key_code: "f" },
-            { key_code: "j" }
-          ],
-          simultaneous_options: {
-            detect_key_down_uninterruptedly: true,
-            key_down_order: "strict",
-            key_up_order: "strict_inverse",
-            key_up_when: "any",
-            to_after_key_up: [
-              { set_variable: { name: "f-mode", value: 0 } }
-            ]
-          }
-        }
-      },
+      ...createFKeyCombo("j", { key_code: "9", modifiers: ["left_shift"] }),
 
       // F + K -> ) (shift + 0)
-      {
-        from: { key_code: "k" },
-        to: [{ key_code: "0", modifiers: ["left_shift"] }],
-        conditions: [{ name: "f-mode", value: 1, type: "variable_if" }],
-        type: "basic",
-      },
-      {
-        type: "basic",
-        parameters: { "basic.simultaneous_threshold_milliseconds": 250 },
-        to: [
-          { set_variable: { name: "f-mode", value: 1 } },
-          { key_code: "0", modifiers: ["left_shift"] }
-        ],
-        from: {
-          simultaneous: [
-            { key_code: "f" },
-            { key_code: "k" }
-          ],
-          simultaneous_options: {
-            detect_key_down_uninterruptedly: true,
-            key_down_order: "strict",
-            key_up_order: "strict_inverse",
-            key_up_when: "any",
-            to_after_key_up: [
-              { set_variable: { name: "f-mode", value: 0 } }
-            ]
-          }
-        }
-      },
+      ...createFKeyCombo("k", { key_code: "0", modifiers: ["left_shift"] }),
 
       // F + M -> [ (open_bracket)
-      {
-        from: { key_code: "m" },
-        to: [{ key_code: "open_bracket" }],
-        conditions: [{ name: "f-mode", value: 1, type: "variable_if" }],
-        type: "basic",
-      },
-      {
-        type: "basic",
-        parameters: { "basic.simultaneous_threshold_milliseconds": 250 },
-        to: [
-          { set_variable: { name: "f-mode", value: 1 } },
-          { key_code: "open_bracket" }
-        ],
-        from: {
-          simultaneous: [
-            { key_code: "f" },
-            { key_code: "m" }
-          ],
-          simultaneous_options: {
-            detect_key_down_uninterruptedly: true,
-            key_down_order: "strict",
-            key_up_order: "strict_inverse",
-            key_up_when: "any",
-            to_after_key_up: [
-              { set_variable: { name: "f-mode", value: 0 } }
-            ]
-          }
-        }
-      },
+      ...createFKeyCombo("m", { key_code: "open_bracket" }),
 
       // F + Comma -> ] (close_bracket)
-      {
-        from: { key_code: "comma" },
-        to: [{ key_code: "close_bracket" }],
-        conditions: [{ name: "f-mode", value: 1, type: "variable_if" }],
-        type: "basic",
-      },
-      {
-        type: "basic",
-        parameters: { "basic.simultaneous_threshold_milliseconds": 250 },
-        to: [
-          { set_variable: { name: "f-mode", value: 1 } },
-          { key_code: "close_bracket" }
-        ],
-        from: {
-          simultaneous: [
-            { key_code: "f" },
-            { key_code: "comma" }
-          ],
-          simultaneous_options: {
-            detect_key_down_uninterruptedly: true,
-            key_down_order: "strict",
-            key_up_order: "strict_inverse",
-            key_up_when: "any",
-            to_after_key_up: [
-              { set_variable: { name: "f-mode", value: 0 } }
-            ]
-          }
-        }
-      },
+      ...createFKeyCombo("comma", { key_code: "close_bracket" }),
 
       // F + Period -> { (shift + open_bracket)
-      {
-        from: { key_code: "period" },
-        to: [{ key_code: "open_bracket", modifiers: ["left_shift"] }],
-        conditions: [{ name: "f-mode", value: 1, type: "variable_if" }],
-        type: "basic",
-      },
-      {
-        type: "basic",
-        parameters: { "basic.simultaneous_threshold_milliseconds": 250 },
-        to: [
-          { set_variable: { name: "f-mode", value: 1 } },
-          { key_code: "open_bracket", modifiers: ["left_shift"] }
-        ],
-        from: {
-          simultaneous: [
-            { key_code: "f" },
-            { key_code: "period" }
-          ],
-          simultaneous_options: {
-            detect_key_down_uninterruptedly: true,
-            key_down_order: "strict",
-            key_up_order: "strict_inverse",
-            key_up_when: "any",
-            to_after_key_up: [
-              { set_variable: { name: "f-mode", value: 0 } }
-            ]
-          }
-        }
-      },
+      ...createFKeyCombo("period", { key_code: "open_bracket", modifiers: ["left_shift"] }),
 
       // F + Slash -> } (shift + close_bracket)
-      {
-        from: { key_code: "slash" },
-        to: [{ key_code: "close_bracket", modifiers: ["left_shift"] }],
-        conditions: [{ name: "f-mode", value: 1, type: "variable_if" }],
-        type: "basic",
-      },
-      {
-        type: "basic",
-        parameters: { "basic.simultaneous_threshold_milliseconds": 250 },
-        to: [
-          { set_variable: { name: "f-mode", value: 1 } },
-          { key_code: "close_bracket", modifiers: ["left_shift"] }
-        ],
-        from: {
-          simultaneous: [
-            { key_code: "f" },
-            { key_code: "slash" }
-          ],
-          simultaneous_options: {
-            detect_key_down_uninterruptedly: true,
-            key_down_order: "strict",
-            key_up_order: "strict_inverse",
-            key_up_when: "any",
-            to_after_key_up: [
-              { set_variable: { name: "f-mode", value: 0 } }
-            ]
-          }
-        }
-      },
-    ],
-  },
+      ...createFKeyCombo("slash", { key_code: "close_bracket", modifiers: ["left_shift"] }),
+    ]
+  ),
   // --- Delete sequences ---
-  {
-    description: "delete sequences",
-    manipulators: [
-      // J + S -> Control + U (clear line) in Terminal
-      {
-        from: { key_code: "s" },
-        to: [{ key_code: "u", modifiers: ["left_control"] }],
-        conditions: [
-          { name: "j-mode", value: 1, type: "variable_if" },
-          {
-            type: "frontmost_application_if",
-            bundle_identifiers: ["^com\\.apple\\.Terminal$", "^com\\.googlecode\\.iterm2$"]
-          }
-        ],
-        type: "basic",
-      },
-      {
-        type: "basic",
-        parameters: { "basic.simultaneous_threshold_milliseconds": 250 },
-        to: [
-          { set_variable: { name: "j-mode", value: 1 } },
-          { key_code: "u", modifiers: ["left_control"] }
-        ],
-        from: {
-          simultaneous: [
-            { key_code: "j" },
-            { key_code: "s" }
-          ],
-          simultaneous_options: {
-            detect_key_down_uninterruptedly: true,
-            key_down_order: "strict",
-            key_up_order: "strict_inverse",
-            key_up_when: "any",
-            to_after_key_up: [
-              { set_variable: { name: "j-mode", value: 0 } }
-            ]
-          }
-        },
-        conditions: [
-          {
-            type: "frontmost_application_if",
-            bundle_identifiers: ["^com\\.apple\\.Terminal$", "^com\\.googlecode\\.iterm2$"]
-          }
-        ]
-      },
+  createRule(
+    "delete sequences",
+    [
+      // J + S -> Control + U (clear line) in Terminal / Command + Backspace (delete to start of line) in other apps
+      ...createAppSpecificJKeyCombo(
+        "s",
+        { key_code: "u", modifiers: ["left_control"] },
+        { key_code: "delete_or_backspace", modifiers: ["left_command"] }
+      ),
 
-      // J + S -> Command + Backspace (delete to start of line) in other apps
-      {
-        from: { key_code: "s" },
-        to: [{ key_code: "delete_or_backspace", modifiers: ["left_command"] }],
-        conditions: [
-          { name: "j-mode", value: 1, type: "variable_if" },
-          {
-            type: "frontmost_application_unless",
-            bundle_identifiers: ["^com\\.apple\\.Terminal$", "^com\\.googlecode\\.iterm2$"]
-          }
-        ],
-        type: "basic",
-      },
-      {
-        type: "basic",
-        parameters: { "basic.simultaneous_threshold_milliseconds": 250 },
-        to: [
-          { set_variable: { name: "j-mode", value: 1 } },
-          { key_code: "delete_or_backspace", modifiers: ["left_command"] }
-        ],
-        from: {
-          simultaneous: [
-            { key_code: "j" },
-            { key_code: "s" }
-          ],
-          simultaneous_options: {
-            detect_key_down_uninterruptedly: true,
-            key_down_order: "strict",
-            key_up_order: "strict_inverse",
-            key_up_when: "any",
-            to_after_key_up: [
-              { set_variable: { name: "j-mode", value: 0 } }
-            ]
-          }
-        },
-        conditions: [
-          {
-            type: "frontmost_application_unless",
-            bundle_identifiers: ["^com\\.apple\\.Terminal$", "^com\\.googlecode\\.iterm2$"]
-          }
-        ]
-      },
-
-      // J + D -> Control + W (delete word) in Terminal
-      {
-        from: { key_code: "d" },
-        to: [{ key_code: "w", modifiers: ["left_control"] }],
-        conditions: [
-          { name: "j-mode", value: 1, type: "variable_if" },
-          {
-            type: "frontmost_application_if",
-            bundle_identifiers: ["^com\\.apple\\.Terminal$", "^com\\.googlecode\\.iterm2$"]
-          }
-        ],
-        type: "basic",
-      },
-      {
-        type: "basic",
-        parameters: { "basic.simultaneous_threshold_milliseconds": 250 },
-        to: [
-          { set_variable: { name: "j-mode", value: 1 } },
-          { key_code: "w", modifiers: ["left_control"] }
-        ],
-        from: {
-          simultaneous: [
-            { key_code: "j" },
-            { key_code: "d" }
-          ],
-          simultaneous_options: {
-            detect_key_down_uninterruptedly: true,
-            key_down_order: "strict",
-            key_up_order: "strict_inverse",
-            key_up_when: "any",
-            to_after_key_up: [
-              { set_variable: { name: "j-mode", value: 0 } }
-            ]
-          }
-        },
-        conditions: [
-          {
-            type: "frontmost_application_if",
-            bundle_identifiers: ["^com\\.apple\\.Terminal$", "^com\\.googlecode\\.iterm2$"]
-          }
-        ]
-      },
-
-      // J + D -> Option + Backspace (delete word) in other apps
-      {
-        from: { key_code: "d" },
-        to: [{ key_code: "delete_or_backspace", modifiers: ["left_option"] }],
-        conditions: [
-          { name: "j-mode", value: 1, type: "variable_if" },
-          {
-            type: "frontmost_application_unless",
-            bundle_identifiers: ["^com\\.apple\\.Terminal$", "^com\\.googlecode\\.iterm2$"]
-          }
-        ],
-        type: "basic",
-      },
-      {
-        type: "basic",
-        parameters: { "basic.simultaneous_threshold_milliseconds": 250 },
-        to: [
-          { set_variable: { name: "j-mode", value: 1 } },
-          { key_code: "delete_or_backspace", modifiers: ["left_option"] }
-        ],
-        from: {
-          simultaneous: [
-            { key_code: "j" },
-            { key_code: "d" }
-          ],
-          simultaneous_options: {
-            detect_key_down_uninterruptedly: true,
-            key_down_order: "strict",
-            key_up_order: "strict_inverse",
-            key_up_when: "any",
-            to_after_key_up: [
-              { set_variable: { name: "j-mode", value: 0 } }
-            ]
-          }
-        },
-        conditions: [
-          {
-            type: "frontmost_application_unless",
-            bundle_identifiers: ["^com\\.apple\\.Terminal$", "^com\\.googlecode\\.iterm2$"]
-          }
-        ]
-      },
+      // J + D -> Control + W (delete word) in Terminal / Option + Backspace (delete word) in other apps
+      ...createAppSpecificJKeyCombo(
+        "d",
+        { key_code: "w", modifiers: ["left_control"] },
+        { key_code: "delete_or_backspace", modifiers: ["left_option"] }
+      ),
 
       // J + F -> Backspace (delete character)
-      {
-        from: { key_code: "f" },
-        to: [{ key_code: "delete_or_backspace" }],
-        conditions: [{ name: "j-mode", value: 1, type: "variable_if" }],
-        type: "basic",
-      },
-      {
-        type: "basic",
-        parameters: { "basic.simultaneous_threshold_milliseconds": 250 },
-        to: [
-          { set_variable: { name: "j-mode", value: 1 } },
-          { key_code: "delete_or_backspace" }
-        ],
-        from: {
-          simultaneous: [
-            { key_code: "j" },
-            { key_code: "f" }
-          ],
-          simultaneous_options: {
-            detect_key_down_uninterruptedly: true,
-            key_down_order: "strict",
-            key_up_order: "strict_inverse",
-            key_up_when: "any",
-            to_after_key_up: [
-              { set_variable: { name: "j-mode", value: 0 } }
-            ]
-          }
-        }
-      },
-    ],
-  },
+      ...createJKeyCombo("f", { key_code: "delete_or_backspace" }),
+    ]
+  ),
   // --- Command next/prev tab ---
-  {
-    description: "cmd next/prev tab",
-    manipulators: [
+  createRule(
+    "cmd next/prev tab",
+    [
       // J + X -> Command + Shift + [ (previous tab)
-      {
-        from: { key_code: "x" },
-        to: [{ key_code: "open_bracket", modifiers: ["left_command", "left_shift"] }],
-        conditions: [{ name: "j-mode", value: 1, type: "variable_if" }],
-        type: "basic",
-      },
-      {
-        type: "basic",
-        parameters: { "basic.simultaneous_threshold_milliseconds": 250 },
-        to: [
-          { set_variable: { name: "j-mode", value: 1 } },
-          { key_code: "open_bracket", modifiers: ["left_command", "left_shift"] }
-        ],
-        from: {
-          simultaneous: [
-            { key_code: "j" },
-            { key_code: "x" }
-          ],
-          simultaneous_options: {
-            detect_key_down_uninterruptedly: true,
-            key_down_order: "strict",
-            key_up_order: "strict_inverse",
-            key_up_when: "any",
-            to_after_key_up: [
-              { set_variable: { name: "j-mode", value: 0 } }
-            ]
-          }
-        }
-      },
+      ...createJKeyCombo("x", { key_code: "open_bracket", modifiers: ["left_command", "left_shift"] }),
 
       // J + C -> Command + Shift + ] (next tab)
-      {
-        from: { key_code: "c" },
-        to: [{ key_code: "close_bracket", modifiers: ["left_command", "left_shift"] }],
-        conditions: [{ name: "j-mode", value: 1, type: "variable_if" }],
-        type: "basic",
-      },
-      {
-        type: "basic",
-        parameters: { "basic.simultaneous_threshold_milliseconds": 250 },
-        to: [
-          { set_variable: { name: "j-mode", value: 1 } },
-          { key_code: "close_bracket", modifiers: ["left_command", "left_shift"] }
-        ],
-        from: {
-          simultaneous: [
-            { key_code: "j" },
-            { key_code: "c" }
-          ],
-          simultaneous_options: {
-            detect_key_down_uninterruptedly: true,
-            key_down_order: "strict",
-            key_up_order: "strict_inverse",
-            key_up_when: "any",
-            to_after_key_up: [
-              { set_variable: { name: "j-mode", value: 0 } }
-            ]
-          }
-        }
-      },
-    ],
-  },
+      ...createJKeyCombo("c", { key_code: "close_bracket", modifiers: ["left_command", "left_shift"] }),
+    ]
+  ),
+
+  // Example of adding a new F-key combo:
+  // To add F+O -> \ (backslash), simply add this to the "special characters" section:
+  // ...createFKeyCombo("o", { key_code: "backslash" }),
 ];
 
 // Define the devices configuration
@@ -1195,37 +287,36 @@ const fn_function_keys = [
   },
 ];
 
+// Create the complete configuration object
+const karabinerConfig = {
+  global: {
+    show_in_menu_bar: false,
+  },
+  profiles: [
+    {
+      name: "Default",
+      complex_modifications: {
+        parameters: {
+          "basic.simultaneous_threshold_milliseconds": 25,
+          "basic.to_delayed_action_delay_milliseconds": 10,
+          "basic.to_if_alone_timeout_milliseconds": 250,
+          "basic.to_if_held_down_threshold_milliseconds": 500,
+        },
+        rules,
+      },
+      devices,
+      fn_function_keys,
+      selected: true,
+      virtual_hid_keyboard: {
+        country_code: 0,
+        keyboard_type_v2: "ansi",
+      },
+    },
+  ],
+};
+
 // Write the complete configuration to karabiner.json
 fs.writeFileSync(
   "karabiner.json",
-  JSON.stringify(
-    {
-      global: {
-        show_in_menu_bar: false,
-      },
-      profiles: [
-        {
-          name: "Default",
-          complex_modifications: {
-            parameters: {
-              "basic.simultaneous_threshold_milliseconds": 25,
-              "basic.to_delayed_action_delay_milliseconds": 10,
-              "basic.to_if_alone_timeout_milliseconds": 250,
-              "basic.to_if_held_down_threshold_milliseconds": 500,
-            },
-            rules,
-          },
-          devices,
-          fn_function_keys,
-          selected: true,
-          virtual_hid_keyboard: {
-            country_code: 0,
-            keyboard_type_v2: "ansi",
-          },
-        },
-      ],
-    },
-    null,
-    2
-  )
+  JSON.stringify(karabinerConfig, null, 2)
 );
