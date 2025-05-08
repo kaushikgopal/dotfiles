@@ -212,56 +212,9 @@ export function app(name: string): LayerCommand {
   return open(`-a '${name}.app'`);
 }
 
-/**
- * Creates a key combination layer with a more elegant syntax
- * @param trigger The trigger key that starts the combo
- * @param combos Object mapping target keys to their outputs
- */
 export type ModifierKey =
   | "left_command" | "left_control" | "left_option" | "left_shift"
   | "right_command" | "right_control" | "right_option" | "right_shift";
-
-export type KeyComboDefinition = {
-  [key: string]: {
-    output: KeyCode | number;
-    modifiers?: ModifierKey[];
-  } | [KeyCode | number, ModifierKey[]?];
-};
-
-export function createKeyLayerCombo(trigger: KeyCode, combos: KeyComboDefinition): Manipulator[] {
-  return Object.entries(combos).map(([key, value]) => {
-    // Handle both object and array formats
-    let output: { key_code: KeyCode; modifiers?: ModifierKey[] };
-
-    if (Array.isArray(value)) {
-      // Array format: [output, modifiers?]
-      const [outputValue, modifiers] = value;
-      output = {
-        key_code: String(outputValue) as KeyCode,
-        ...(modifiers && { modifiers }),
-      };
-    } else if (typeof value === 'object') {
-      // Object format: { output, modifiers? }
-      output = {
-        key_code: String(value.output) as KeyCode,
-        ...(value.modifiers && { modifiers: value.modifiers }),
-      };
-    } else {
-      throw new Error('Invalid combo definition');
-    }
-
-    return {
-      type: "basic" as const,
-      from: {
-        key_code: trigger,
-        modifiers: {
-          mandatory: [key] as ModifierKey[],
-        },
-      },
-      to: [output],
-    };
-  });
-}
 
 /**
  * Base type for key combination output

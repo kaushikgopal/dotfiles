@@ -1,9 +1,9 @@
 // @ts-ignore
 import fs from "fs";
 import { KarabinerRules, KeyCode } from "./types";
-import { createHyperSubLayers, app, open, rectangle, shell, createKeyLayerCombo, createKeyCombo } from "./utils";
+import { createKeyCombo } from "./utils";
 import { manipulator, createRule, createAppSpecificKeyCombo, key, withOptionalModifiers, withMandatoryModifiers, forApp, unlessApp } from "./builders";
-import { DEVICE_CONFIGS, DEVICE, DEVICE_COMBO } from "./devices";
+import { DEVICE_COMBO } from "./devices";
 
 // Only the rules array is defined at the top level
 const rules: KarabinerRules[] = [
