@@ -272,10 +272,10 @@ const karabinerConfig = {
       // DEVICE_CONFIGS,
       // fn_function_keys,
       // selected: true,
-      // virtual_hid_keyboard: {
-      //   country_code: 0,
-      //   keyboard_type_v2: "ansi",
-      // },
+      virtual_hid_keyboard: {
+        country_code: 0,
+        keyboard_type_v2: "ansi",
+      },
     },
   ],
 };
