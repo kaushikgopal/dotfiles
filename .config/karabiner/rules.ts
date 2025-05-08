@@ -205,30 +205,6 @@ const rules: KarabinerRules[] = [
   // ...createKeyCombo("f", "o", { key_code: "backslash" }),
 ];
 
-// Define function keys mapping
-const fn_function_keys = [
-  {
-    from: { key_code: "f3" },
-    to: [{ key_code: "mission_control" }],
-  },
-  {
-    from: { key_code: "f4" },
-    to: [{ key_code: "launchpad" }],
-  },
-  {
-    from: { key_code: "f5" },
-    to: [{ key_code: "illumination_decrement" }],
-  },
-  {
-    from: { key_code: "f6" },
-    to: [{ key_code: "illumination_increment" }],
-  },
-  {
-    from: { key_code: "f9" },
-    to: [{ consumer_key_code: "fastforward" }],
-  },
-];
-
 // Create the complete configuration object
 const karabinerConfig = {
   global: {
