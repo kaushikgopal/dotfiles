@@ -202,7 +202,7 @@ export function app(name: string): LayerCommand {
  * @param options Optional configuration:
  *   - conditions: Additional conditions to apply
  */
-export function createKeyCombo(
+export function createKeyLayer(
   trigger: KeyCode,
   combos: { [key: string]: { key_code: KeyCode; modifiers?: ModifiersKeys[] } },
   options: {
