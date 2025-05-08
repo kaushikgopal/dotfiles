@@ -51,13 +51,13 @@ const rules: KarabinerRules[] = [
         // CapLock + Vim keys -> quick arrow keys (along with modifier combinations)
         ...(
           [
-            { from: ["right_control" as ModifiersKeys], to: [] as ModifiersKeys[] },
-            { from: ["right_control" as ModifiersKeys, "left_command" as ModifiersKeys], to: ["left_command" as ModifiersKeys] },
-            { from: ["right_control" as ModifiersKeys, "left_option" as ModifiersKeys], to: ["left_option" as ModifiersKeys] },
-            { from: ["right_control" as ModifiersKeys, "left_shift" as ModifiersKeys], to: ["left_shift" as ModifiersKeys] },
-            { from: ["right_control" as ModifiersKeys, "left_command" as ModifiersKeys, "left_option" as ModifiersKeys], to: ["left_command" as ModifiersKeys, "left_option" as ModifiersKeys] },
-            { from: ["right_control" as ModifiersKeys, "left_command" as ModifiersKeys, "left_shift" as ModifiersKeys], to: ["left_command" as ModifiersKeys, "left_shift" as ModifiersKeys] },
-          ] as { from: ModifiersKeys[], to: ModifiersKeys[] }[]
+            { from: ["right_control"], to: [] },
+            { from: ["right_control", "left_command"], to: ["left_command"] },
+            { from: ["right_control", "left_option"], to: ["left_option"] },
+            { from: ["right_control", "left_shift"], to: ["left_shift"] },
+            { from: ["right_control", "left_command", "left_option"], to: ["left_command", "left_option"] },
+            { from: ["right_control", "left_command", "left_shift"], to: ["left_command", "left_shift"] },
+          ] as Array<{ from: ModifiersKeys[], to: ModifiersKeys[] }>
         ).flatMap(combo =>
           vimKeys.map((keyChar, idx) =>
             manipulator()
