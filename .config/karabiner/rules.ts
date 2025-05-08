@@ -1,9 +1,8 @@
 // @ts-ignore
 import fs from "fs";
-import { KarabinerRules, KeyCode, ModifiersKeys } from "./types";
-import { createKeyLayer } from "./utils";
-import { manipulator, createRule, createAppSpecificKeyCombo, key, withOptionalModifiers, withMandatoryModifiers, forApp, unlessApp } from "./builders";
 import { DEVICE_COMBO } from "./devices";
+import { KarabinerRules, KeyCode, ModifiersKeys } from "./types";
+import { manipulator, createRule, createAppSpecificKeyCombo, forApp, unlessApp, createKeyLayer } from "./builders";
 
 // Only the rules array is defined at the top level
 const rules: KarabinerRules[] = [
@@ -13,8 +12,8 @@ const rules: KarabinerRules[] = [
     [
       manipulator()
         .from("right_command", { optional: ["any"] })
-        .toKey("right_control")
-        .toIfAloneKey("return_or_enter")
+        .to("right_control")
+        .to("return_or_enter", { if_alone: true })
         .forDevices(DEVICE_COMBO.APPLE_ALL)
         .build()
     ]
@@ -32,19 +31,19 @@ const rules: KarabinerRules[] = [
         // Caps Lock alone -> Escape, held -> right_control
         manipulator()
           .from("caps_lock", { optional: ["any"] })
-          .toKey("right_control")
-          .toIfAloneKey("escape")
+          .to("right_control")
+          .to("escape", { if_alone: true })
           .build(),
 
         // j with Shift+Ctrl, with app-specific conditions
         manipulator()
           .from("j", { mandatory: ["left_shift", "right_control"] })
-          .toKey("down_arrow", ["left_shift"])
+          .to("down_arrow", { modifiers: ["left_shift"] })
           .withCondition(unlessApp(["com.google.android.studio", "^com\\.jetbrains\\..*$"]))
           .build(),
         manipulator()
           .from("j", { mandatory: ["left_shift", "right_control"] })
-          .toKey("j", ["left_control", "left_shift"])
+          .to("j", { modifiers: ["left_control", "left_shift"] })
           .withCondition(forApp(["com.google.android.studio", "^com\\.jetbrains\\..*$"]))
           .build(),
 
@@ -62,7 +61,7 @@ const rules: KarabinerRules[] = [
           vimKeys.map((keyChar, idx) =>
             manipulator()
               .from(keyChar, { mandatory: combo.from })
-              .toKey(arrowKeys[idx], combo.to)
+              .to(arrowKeys[idx], { modifiers: combo.to })
               .build()
           )
         ),

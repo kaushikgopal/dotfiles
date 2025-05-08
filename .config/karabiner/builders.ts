@@ -1,4 +1,4 @@
-import { KarabinerRules, Manipulator, From, To, KeyCode, Modifiers, Conditions, Parameters, SimultaneousOptions, SimultaneousFrom, ModifiersKeys } from "./types";
+import { KarabinerRules, Manipulator, To, KeyCode, Modifiers, Conditions, SimultaneousOptions, ModifiersKeys } from "./types";
 import { DEVICE, DEVICE_COMBO } from "./devices";
 
 /**
@@ -8,30 +8,51 @@ export class ManipulatorBuilder {
   private manipulator: Partial<Manipulator> = { type: "basic" };
 
   /**
-   * Specify the source key and optional modifiers
+   * Unified method to specify source key with modifiers or simultaneous keys
+   *
+   * @example
+   * // Simple key
+   * .from("a")
+   *
+   * // Key with optional modifiers
+   * .from("a", { optional: ["any"] })
+   *
+   * // Key with mandatory modifiers
+   * .from("a", { mandatory: ["left_shift", "right_control"] })
+   *
+   * // Simultaneous keys
+   * .from(["a", "b"], {
+   *   detect_key_down_uninterruptedly: true,
+   *   key_down_order: "strict"
+   * })
    */
-  fromKey(key: KeyCode, modifiers?: Partial<Modifiers>): ManipulatorBuilder {
-    this.manipulator.from = { key_code: key };
-    if (modifiers) this.manipulator.from.modifiers = modifiers;
-    return this;
-  }
+  from(
+    key: KeyCode | KeyCode[],
+    options?: {
+      optional?: ModifiersKeys[],
+      mandatory?: ModifiersKeys[],
+      simultaneousOptions?: SimultaneousOptions
+    }
+  ): ManipulatorBuilder {
+    if (Array.isArray(key)) {
+      // Handle simultaneous keys
+      this.manipulator.from = {
+        simultaneous: key.map(k => ({ key_code: k })),
+      };
+      if (options?.simultaneousOptions) {
+        this.manipulator.from.simultaneous_options = options.simultaneousOptions;
+      }
+    } else {
+      // Handle single key with modifiers
+      this.manipulator.from = { key_code: key };
+      if (options) {
+        let modifiers: Partial<Modifiers> = {};
+        if (options.optional) modifiers.optional = options.optional;
+        if (options.mandatory) modifiers.mandatory = options.mandatory;
 
-  /**
-   * Unified method to specify source key with modifiers
-   */
-  from(key: KeyCode, options?: {
-    optional?: ModifiersKeys[],
-    mandatory?: ModifiersKeys[]
-  }): ManipulatorBuilder {
-    this.manipulator.from = { key_code: key };
-
-    if (options) {
-      let modifiers: Partial<Modifiers> = {};
-      if (options.optional) modifiers.optional = options.optional;
-      if (options.mandatory) modifiers.mandatory = options.mandatory;
-
-      if (Object.keys(modifiers).length > 0) {
-        this.manipulator.from.modifiers = modifiers;
+        if (Object.keys(modifiers).length > 0) {
+          this.manipulator.from.modifiers = modifiers;
+        }
       }
     }
 
@@ -39,74 +60,62 @@ export class ManipulatorBuilder {
   }
 
   /**
-   * Specify simultaneous key combination
+   * Unified method to specify target outputs for different scenarios
+   *
+   * @example
+   * // Simple key output
+   * .to("a")
+   *
+   * // Key with modifiers
+   * .to("a", { modifiers: ["left_shift"] })
+   *
+   * // Multiple outputs
+   * .to([{ key_code: "a" }, { key_code: "b" }])
+   *
+   * // Specify if_alone behavior
+   * .to("escape", { if_alone: true })
+   *
+   * // Mouse key
+   * .to({ mouse_key: { x: 1536 } })
+   *
+   * // Set variable
+   * .to({ set_variable: { name: "mode", value: 1 } })
    */
-  fromSimultaneous(
-    keys: KeyCode[],
-    options?: SimultaneousOptions
+  to(
+    keyOrCommands: KeyCode | To | To[],
+    options?: {
+      modifiers?: ModifiersKeys[],
+      if_alone?: boolean,
+      after_key_up?: boolean
+    }
   ): ManipulatorBuilder {
-    this.manipulator.from = {
-      simultaneous: keys.map(key => ({ key_code: key })),
-    };
-    if (options) {
-      this.manipulator.from.simultaneous_options = options;
-    }
-    return this;
-  }
+    let commands: To[];
 
-  /**
-   * Set the target key or commands when the key is pressed
-   */
-  to(keyOrCommands: KeyCode | To | To[]): ManipulatorBuilder {
+    // Convert the input to an array of commands
     if (typeof keyOrCommands === 'string') {
-      this.manipulator.to = [{ key_code: keyOrCommands as KeyCode }];
+      // It's a simple key code
+      const keyCommand: To = {
+        key_code: keyOrCommands as KeyCode,
+        ...(options?.modifiers ? { modifiers: options.modifiers } : {})
+      };
+      commands = [keyCommand];
     } else if (!Array.isArray(keyOrCommands)) {
-      this.manipulator.to = [keyOrCommands];
+      // It's a single To object
+      commands = [keyOrCommands];
     } else {
-      this.manipulator.to = keyOrCommands;
+      // It's already an array of To objects
+      commands = keyOrCommands;
     }
-    return this;
-  }
 
-  /**
-   * Unified method to specify target key with modifiers
-   */
-  toKey(key: KeyCode, modifiers?: ModifiersKeys[]): ManipulatorBuilder {
-    this.manipulator.to = [{ key_code: key, ...(modifiers ? { modifiers } : {}) }];
-    return this;
-  }
-
-  /**
-   * Set the target key or commands when the key is pressed alone
-   */
-  toIfAlone(keyOrCommands: KeyCode | To | To[]): ManipulatorBuilder {
-    if (typeof keyOrCommands === 'string') {
-      this.manipulator.to_if_alone = [{ key_code: keyOrCommands as KeyCode }];
-    } else if (!Array.isArray(keyOrCommands)) {
-      this.manipulator.to_if_alone = [keyOrCommands];
+    // Determine which property to set based on options
+    if (options?.if_alone) {
+      this.manipulator.to_if_alone = commands;
+    } else if (options?.after_key_up) {
+      this.manipulator.to_after_key_up = commands;
     } else {
-      this.manipulator.to_if_alone = keyOrCommands;
+      this.manipulator.to = commands;
     }
-    return this;
-  }
 
-  /**
-   * Unified method to specify target key with modifiers when pressed alone
-   */
-  toIfAloneKey(key: KeyCode, modifiers?: ModifiersKeys[]): ManipulatorBuilder {
-    this.manipulator.to_if_alone = [{ key_code: key, ...(modifiers ? { modifiers } : {}) }];
-    return this;
-  }
-
-  /**
-   * Set actions to execute after key up
-   */
-  toAfterKeyUp(actions: To | To[]): ManipulatorBuilder {
-    if (!Array.isArray(actions)) {
-      this.manipulator.to_after_key_up = [actions];
-    } else {
-      this.manipulator.to_after_key_up = actions;
-    }
     return this;
   }
 
@@ -124,10 +133,6 @@ export class ManipulatorBuilder {
 
   /**
    * Add a device condition to limit the rule to specific devices
-   * Can accept:
-   * - A predefined device group from DEVICE_COMBO
-   * - A single device identifier from DEVICE
-   * - A raw array of device identifiers
    */
   forDevices(identifiersOrDevice: object[] | keyof typeof DEVICE_COMBO | keyof typeof DEVICE): ManipulatorBuilder {
     let identifiers: object[];
@@ -255,12 +260,14 @@ export function createKeyCombo(
 
     // Simultaneous press
     manipulator()
-      .fromSimultaneous([layer_key, targetKey], {
-        detect_key_down_uninterruptedly: true,
-        key_down_order: "strict",
-        key_up_order: "strict_inverse",
-        key_up_when: "any",
-        to_after_key_up: [{ set_variable: { name: modalVar, value: 0 } }]
+      .from([layer_key, targetKey], {
+        simultaneousOptions: {
+          detect_key_down_uninterruptedly: true,
+          key_down_order: "strict",
+          key_up_order: "strict_inverse",
+          key_up_when: "any",
+          to_after_key_up: [{ set_variable: { name: modalVar, value: 0 } }]
+        }
       })
       .to([
         { set_variable: { name: modalVar, value: 1 } },
@@ -340,4 +347,91 @@ export function unlessTerminal(): Conditions {
     type: "frontmost_application_unless",
     bundle_identifiers: ["^com\\.apple\\.Terminal$", "^com\\.googlecode\\.iterm2$"]
   } as Conditions;
+}
+
+/**
+ * Creates a key combination layer with configurable behavior.
+ * When a trigger key is held and another key is pressed, the output is triggered.
+ * Supports both simultaneous press and mode-based activation.
+ *
+ * @param trigger The trigger key that activates the layer
+ * @param combos The key combinations to create with their outputs
+ * @param options Optional configuration for conditions
+ * @returns Array of manipulators for the key layer
+ *
+ * @example
+ * createKeyLayer("f", {
+ *   j: { key_code: "9", modifiers: ["left_shift"] }, // f+j -> (
+ *   k: { key_code: "0", modifiers: ["left_shift"] }, // f+k -> )
+ * })
+ */
+export function createKeyLayer(
+  trigger: KeyCode,
+  combos: { [key: string]: { key_code: KeyCode; modifiers?: ModifiersKeys[] } },
+  options: {
+    conditions?: Conditions[];
+  } = {}
+): Manipulator[] {
+  const { conditions = [] } = options;
+  const variableName = `${trigger}-mode`;
+  const manipulators: Manipulator[] = [];
+
+  Object.entries(combos).forEach(([key, output]) => {
+    // Add mode-based handler
+    manipulators.push(
+      manipulator()
+        .from(key as KeyCode)
+        .to(output)
+        .ifVariable(variableName, 1)
+        .build()
+    );
+
+    // Add any additional conditions
+    if (conditions.length > 0) {
+      conditions.forEach(condition => {
+        manipulators[manipulators.length - 1].conditions!.push(condition);
+      });
+    }
+
+    // Add simultaneous handler
+    manipulators.push(
+      manipulator()
+        .from([trigger, key as KeyCode], {
+          simultaneousOptions: {
+            detect_key_down_uninterruptedly: true,
+            key_down_order: "strict",
+            key_up_order: "strict_inverse",
+            key_up_when: "any",
+            to_after_key_up: [
+              {
+                set_variable: {
+                  name: variableName,
+                  value: 0,
+                },
+              },
+            ],
+          }
+        })
+        .to([
+          {
+            set_variable: {
+              name: variableName,
+              value: 1,
+            },
+          },
+          output
+        ])
+        .withParameter("basic.simultaneous_threshold_milliseconds", 250)
+        .build()
+    );
+
+    // Add any additional conditions to the simultaneous handler
+    if (conditions.length > 0) {
+      conditions.forEach(condition => {
+        manipulators[manipulators.length - 1].conditions!.push(condition);
+      });
+    }
+  });
+
+  return manipulators;
 }
