@@ -122,45 +122,38 @@ const rules: KarabinerRules[] = [
   // --- Special characters enabled with shift + numkey ---
   createRule(
     "special characters enabled with shift + numkey",
-    [
-      // F key combinations for special characters
-      ...createSimultaneousKeyCombo("f", {
-        i: { key_code: "8", modifiers: ["left_shift"] },  // *
-        u: { key_code: "7", modifiers: ["left_shift"] },  // &
-        y: { key_code: "6", modifiers: ["left_shift"] },  // ^
-        o: { key_code: "backslash" },                     // \
-        l: { key_code: "hyphen" },                        // -
-        semicolon: { key_code: "equal_sign", modifiers: ["left_shift"] },  // +
-        quote: { key_code: "equal_sign" },                // =
-      }),
-    ]
+    createSimultaneousKeyCombo("f", {
+      i: { key_code: "8", modifiers: ["left_shift"] },  // *
+      u: { key_code: "7", modifiers: ["left_shift"] },  // &
+      y: { key_code: "6", modifiers: ["left_shift"] },  // ^
+      o: { key_code: "backslash" },                     // \
+      l: { key_code: "hyphen" },                        // -
+      semicolon: { key_code: "equal_sign", modifiers: ["left_shift"] },  // +
+      quote: { key_code: "equal_sign" },                // =
+    })
   ),
   // --- J-key special characters ---
   createRule(
     "J-key special character combinations",
-    [
-      ...createSimultaneousKeyCombo("j", {
-        t: { key_code: "5", modifiers: ["left_shift"] },  // % (shift + 5)
-        r: { key_code: "4", modifiers: ["left_shift"] },  // $ (shift + 4)
-        e: { key_code: "3", modifiers: ["left_shift"] },  // # (shift + 3)
-        w: { key_code: "2", modifiers: ["left_shift"] },  // @ (shift + 2)
-        q: { key_code: "1", modifiers: ["left_shift"] },  // ! (shift + 1)
-      }),
-    ]
+    createSimultaneousKeyCombo("j", {
+      t: { key_code: "5", modifiers: ["left_shift"] },  // % (shift + 5)
+      r: { key_code: "4", modifiers: ["left_shift"] },  // $ (shift + 4)
+      e: { key_code: "3", modifiers: ["left_shift"] },  // # (shift + 3)
+      w: { key_code: "2", modifiers: ["left_shift"] },  // @ (shift + 2)
+      q: { key_code: "1", modifiers: ["left_shift"] },  // ! (shift + 1)
+    })
   ),
   // --- Bracket combinations ---
   createRule(
     "bracket combos",
-    [
-      ...createSimultaneousKeyCombo("f", {
-        j: { key_code: "9", modifiers: ["left_shift"] },   // (
-        k: { key_code: "0", modifiers: ["left_shift"] },   // )
-        m: { key_code: "open_bracket" },                   // [
-        comma: { key_code: "close_bracket" },              // ]
-        period: { key_code: "open_bracket", modifiers: ["left_shift"] },   // {
-        slash: { key_code: "close_bracket", modifiers: ["left_shift"] },   // }
-      }),
-    ]
+    createSimultaneousKeyCombo("f", {
+      j: { key_code: "9", modifiers: ["left_shift"] },   // (
+      k: { key_code: "0", modifiers: ["left_shift"] },   // )
+      m: { key_code: "open_bracket" },                   // [
+      comma: { key_code: "close_bracket" },              // ]
+      period: { key_code: "open_bracket", modifiers: ["left_shift"] },   // {
+      slash: { key_code: "close_bracket", modifiers: ["left_shift"] },   // }
+    })
   ),
   // --- Delete sequences ---
   createRule(
@@ -192,12 +185,10 @@ const rules: KarabinerRules[] = [
   // --- Command next/prev tab ---
   createRule(
     "cmd next/prev tab",
-    [
-      ...createSimultaneousKeyCombo("j", {
-        x: { key_code: "open_bracket", modifiers: ["left_command", "left_shift"] },   // previous tab
-        c: { key_code: "close_bracket", modifiers: ["left_command", "left_shift"] },  // next tab
-      }),
-    ]
+    createSimultaneousKeyCombo("j", {
+      x: { key_code: "open_bracket", modifiers: ["left_command", "left_shift"] },   // previous tab
+      c: { key_code: "close_bracket", modifiers: ["left_command", "left_shift"] },  // next tab
+    })
   ),
 
   // Example of adding a new F-key combo:
