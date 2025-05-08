@@ -1,7 +1,7 @@
 // @ts-ignore
 import fs from "fs";
 import { KarabinerRules, KeyCode } from "./types";
-import { createHyperSubLayers, app, open, rectangle, shell } from "./utils";
+import { createHyperSubLayers, app, open, rectangle, shell, createKeyLayerCombo, createSimultaneousKeyCombo } from "./utils";
 import { manipulator, createRule, createKeyCombo, createAppSpecificKeyCombo, key, withOptionalModifiers, withMandatoryModifiers, forApp, unlessApp } from "./builders";
 import { DEVICE_CONFIGS, DEVICE, DEVICE_COMBO } from "./devices";
 
@@ -146,19 +146,14 @@ const rules: KarabinerRules[] = [
   createRule(
     "J-key special character combinations",
     [
-      // J key combinations for special characters
-      ...createKeyCombo("j", [
-        // J + T -> % (shift + 5)
-        { key: "t", output: { key_code: "5", modifiers: ["left_shift"] } },
-        // J + R -> $ (shift + 4)
-        { key: "r", output: { key_code: "4", modifiers: ["left_shift"] } },
-        // J + E -> # (shift + 3)
-        { key: "e", output: { key_code: "3", modifiers: ["left_shift"] } },
-        // J + W -> @ (shift + 2)
-        { key: "w", output: { key_code: "2", modifiers: ["left_shift"] } },
-        // J + Q -> ! (shift + 1)
-        { key: "q", output: { key_code: "1", modifiers: ["left_shift"] } },
-      ]),
+      // Using the new simultaneous key combo implementation
+      ...createSimultaneousKeyCombo("j", {
+        t: { key_code: "5", modifiers: ["left_shift"] },  // % (shift + 5)
+        r: { key_code: "4", modifiers: ["left_shift"] },  // $ (shift + 4)
+        e: { key_code: "3", modifiers: ["left_shift"] },  // # (shift + 3)
+        w: { key_code: "2", modifiers: ["left_shift"] },  // @ (shift + 2)
+        q: { key_code: "1", modifiers: ["left_shift"] },  // ! (shift + 1)
+      }),
     ]
   ),
   // --- Bracket combinations ---

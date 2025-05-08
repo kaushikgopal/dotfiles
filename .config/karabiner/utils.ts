@@ -211,3 +211,128 @@ export function rectangle(name: string): LayerCommand {
 export function app(name: string): LayerCommand {
   return open(`-a '${name}.app'`);
 }
+
+/**
+ * Creates a key combination layer with a more elegant syntax
+ * @param trigger The trigger key that starts the combo
+ * @param combos Object mapping target keys to their outputs
+ */
+export type ModifierKey =
+  | "left_command" | "left_control" | "left_option" | "left_shift"
+  | "right_command" | "right_control" | "right_option" | "right_shift";
+
+export type KeyComboDefinition = {
+  [key: string]: {
+    output: KeyCode | number;
+    modifiers?: ModifierKey[];
+  } | [KeyCode | number, ModifierKey[]?];
+};
+
+export function createKeyLayerCombo(trigger: KeyCode, combos: KeyComboDefinition): Manipulator[] {
+  return Object.entries(combos).map(([key, value]) => {
+    // Handle both object and array formats
+    let output: { key_code: KeyCode; modifiers?: ModifierKey[] };
+
+    if (Array.isArray(value)) {
+      // Array format: [output, modifiers?]
+      const [outputValue, modifiers] = value;
+      output = {
+        key_code: String(outputValue) as KeyCode,
+        ...(modifiers && { modifiers }),
+      };
+    } else if (typeof value === 'object') {
+      // Object format: { output, modifiers? }
+      output = {
+        key_code: String(value.output) as KeyCode,
+        ...(value.modifiers && { modifiers: value.modifiers }),
+      };
+    } else {
+      throw new Error('Invalid combo definition');
+    }
+
+    return {
+      type: "basic" as const,
+      from: {
+        key_code: trigger,
+        modifiers: {
+          mandatory: [key] as ModifierKey[],
+        },
+      },
+      to: [output],
+    };
+  });
+}
+
+/**
+ * Creates a key combination layer using simultaneous key presses and variable mode
+ * @param trigger The trigger key that starts the combo
+ * @param combos Object mapping target keys to their outputs
+ */
+export type SimultaneousKeyComboDefinition = {
+  [key: string]: {
+    key_code: KeyCode;
+    modifiers?: ModifierKey[];
+  };
+};
+
+export function createSimultaneousKeyCombo(trigger: KeyCode, combos: SimultaneousKeyComboDefinition): Manipulator[] {
+  const variableName = `${trigger}-mode`;
+  const manipulators: Manipulator[] = [];
+
+  // Add individual key handlers when in the mode
+  Object.entries(combos).forEach(([key, output]) => {
+    manipulators.push({
+      type: "basic",
+      from: {
+        key_code: key as KeyCode,
+      },
+      to: [output],
+      conditions: [
+        {
+          type: "variable_if",
+          name: variableName,
+          value: 1,
+        },
+      ],
+    });
+
+    // Add simultaneous key press handlers
+    manipulators.push({
+      type: "basic",
+      from: {
+        simultaneous: [
+          { key_code: trigger },
+          { key_code: key as KeyCode },
+        ],
+        simultaneous_options: {
+          detect_key_down_uninterruptedly: true,
+          key_down_order: "strict",
+          key_up_order: "strict_inverse",
+          key_up_when: "any",
+          to_after_key_up: [
+            {
+              set_variable: {
+                name: variableName,
+                value: 0,
+              },
+            },
+          ],
+        },
+      },
+      to: [
+        {
+          set_variable: {
+            name: variableName,
+            value: 1,
+          },
+        },
+        output,
+      ],
+      parameters: {
+        "basic.simultaneous_threshold_milliseconds": 250,
+      },
+    });
+  });
+
+  return manipulators;
+}
