@@ -316,122 +316,6 @@ export function createRule(description: string, manipulators: Manipulator[]): Ka
 }
 
 /**
- * Helper to create key that outputs another key with modifiers
- */
-export function key(keyCode: KeyCode, modifiers?: ModifiersKeys[]): To {
-  return modifiers ? { key_code: keyCode, modifiers } : { key_code: keyCode };
-}
-
-/**
- * Helper for creating optional modifiers in 'from' key definition
- */
-export function withOptionalModifiers(...modifiers: ModifiersKeys[]): Partial<Modifiers> {
-  return { optional: modifiers };
-}
-
-/**
- * Helper for creating mandatory modifiers in 'from' key definition
- */
-export function withMandatoryModifiers(...modifiers: ModifiersKeys[]): Partial<Modifiers> {
-  return { mandatory: modifiers };
-}
-
-/**
- * Configuration for a key combination or mapping
- */
-export interface KeyComboConfig {
-  key: KeyCode;
-  output: To | To[];
-}
-
-/**
- * Configuration for app-specific key combinations
- */
-export interface AppSpecificKeyComboConfig {
-  key: KeyCode;
-  terminalOutput: To | To[];
-  otherAppsOutput: To | To[];
-}
-
-/**
- * Helper function to create key layer combinations
- */
-export function createKeyCombo(
-  layer_key: KeyCode,
-  targetKey: KeyCode | KeyComboConfig[],
-  output?: To | To[]
-): Manipulator[] {
-  // If targetKey is an array, we're using the bulk version
-  if (Array.isArray(targetKey)) {
-    return targetKey.flatMap(combo =>
-      createKeyCombo(layer_key, combo.key, combo.output)
-    );
-  }
-
-  // Regular single combo version
-  const outputs = Array.isArray(output) ? output : [output!];
-  const modalVar = `${layer_key}-mode`;
-
-  return [
-    // When mode is active
-    manipulator()
-      .from(targetKey)
-      .to(outputs)
-      .ifVariable(modalVar, 1)
-      .build(),
-
-    // Simultaneous press
-    manipulator()
-      .from([layer_key, targetKey], {
-        simultaneousOptions: {
-          detect_key_down_uninterruptedly: true,
-          key_down_order: "strict",
-          key_up_order: "strict_inverse",
-          key_up_when: "any",
-          to_after_key_up: [{ set_variable: { name: modalVar, value: 0 } }]
-        }
-      })
-      .to([
-        { set_variable: { name: modalVar, value: 1 } },
-        ...outputs
-      ])
-      .withParameter("basic.simultaneous_threshold_milliseconds", 250)
-      .build()
-  ];
-}
-
-/**
- * Helper for creating app-specific key layer combinations
- */
-export function createAppSpecificKeyCombo(
-  layer_key: KeyCode,
-  targetKey: KeyCode | AppSpecificKeyComboConfig[],
-  terminalOutput?: To | To[],
-  otherAppsOutput?: To | To[]
-): Manipulator[] {
-  // If targetKey is an array, we're using the bulk version
-  if (Array.isArray(targetKey)) {
-    return targetKey.flatMap(combo =>
-      createAppSpecificKeyCombo(layer_key, combo.key, combo.terminalOutput, combo.otherAppsOutput)
-    );
-  }
-
-  // Regular single combo version
-  return [
-    ...createKeyCombo(layer_key, targetKey, terminalOutput!).map(m => {
-      if (!m.conditions) m.conditions = [];
-      m.conditions.push(forTerminal());
-      return m;
-    }),
-    ...createKeyCombo(layer_key, targetKey, otherAppsOutput!).map(m => {
-      if (!m.conditions) m.conditions = [];
-      m.conditions.push(unlessTerminal());
-      return m;
-    })
-  ];
-}
-
-/**
  * Helper for app-specific conditions
  */
 export function forApp(bundleIdentifiers: string[]): Conditions {
@@ -452,24 +336,10 @@ export function unlessApp(bundleIdentifiers: string[]): Conditions {
 }
 
 /**
- * Helper for terminal application conditions
- */
-export function forTerminal(): Conditions {
-  return forApp(["^com\\.apple\\.Terminal$", "^com\\.googlecode\\.iterm2$"]);
-}
-
-/**
- * Helper for excluding terminal applications
- */
-export function unlessTerminal(): Conditions {
-  return unlessApp(["^com\\.apple\\.Terminal$", "^com\\.googlecode\\.iterm2$"]);
-}
-
-/**
  * Configuration for creating a key layer
  */
 export interface KeyLayerConfig {
-  [key: string]: { key_code: KeyCode; modifiers?: ModifiersKeys[] };
+  [key: string]: { key_code: KeyCode; modifiers?: ModifiersKeys[]; appTarget?: string };
 }
 
 /**
@@ -501,11 +371,17 @@ export function createKeyLayer(
   const manipulators: Manipulator[] = [];
 
   Object.entries(combos).forEach(([key, output]) => {
+    // Extract the to output without any appTarget property
+    const toOutput = {
+      key_code: output.key_code,
+      ...(output.modifiers ? { modifiers: output.modifiers } : {})
+    };
+
     // Add mode-based handler
     manipulators.push(
       manipulator()
         .from(key as KeyCode)
-        .to(output)
+        .to(toOutput)
         .ifVariable(variableName, 1)
         .build()
     );
@@ -543,7 +419,7 @@ export function createKeyLayer(
               value: 1,
             },
           },
-          output
+          toOutput
         ])
         .withParameter("basic.simultaneous_threshold_milliseconds", simultaneousThreshold)
         .build()
@@ -558,164 +434,6 @@ export function createKeyLayer(
   });
 
   return manipulators;
-}
-
-/**
- * Creates a vim-style navigation layer that maps h,j,k,l to arrow keys
- * with support for various modifier combinations
- *
- * @param trigger The key that activates the vim navigation layer
- * @param options Optional configuration and customization
- * @returns Array of manipulators for vim navigation
- *
- * @example
- * // Basic vim navigation with caps_lock as trigger
- * createVimNavigationLayer("right_control")
- *
- * @example
- * // Custom vim navigation for specific apps
- * createVimNavigationLayer("right_option", {
- *   conditions: [forApp(["com.apple.Safari"])]
- * })
- *
- * @example
- * // Custom modifier combinations
- * createVimNavigationLayer("right_control", {
- *   modifierCombinations: [
- *     { from: [], to: [] },  // No modifiers
- *     { from: ["left_shift"], to: ["left_shift"] }  // Shift only
- *   ]
- * })
- */
-export function createVimNavigationLayer(
-  trigger: KeyCode,
-  options: {
-    modifierCombinations?: Array<{from: ModifiersKeys[], to: ModifiersKeys[]}>;
-    conditions?: Conditions[];
-    simultaneousThreshold?: number;
-  } = {}
-): Manipulator[] {
-  const {
-    modifierCombinations = [
-      { from: [], to: [] },
-      { from: ["left_command"], to: ["left_command"] },
-      { from: ["left_option"], to: ["left_option"] },
-      { from: ["left_shift"], to: ["left_shift"] },
-      { from: ["left_command", "left_option"], to: ["left_command", "left_option"] },
-      { from: ["left_command", "left_shift"], to: ["left_command", "left_shift"] },
-    ],
-    conditions = [],
-    simultaneousThreshold = 250
-  } = options;
-
-  const manipulators: Manipulator[] = [];
-
-  // Create mappings for each vim key to the corresponding arrow key
-  VIM_NAV_KEYS.forEach((keyChar, idx) => {
-    modifierCombinations.forEach(combo => {
-      // Add the appropriate modifiers
-      const mandatoryMods = ["right_control" as ModifiersKeys, ...combo.from];
-
-      manipulators.push(
-        manipulator()
-          .from(keyChar, { mandatory: mandatoryMods })
-          .to(ARROW_KEYS[idx], { modifiers: combo.to })
-          .build()
-      );
-
-      // Apply conditions if provided
-      if (conditions.length > 0 && manipulators.length > 0) {
-        conditions.forEach(condition => {
-          const lastManipulator = manipulators[manipulators.length - 1];
-          if (!lastManipulator.conditions) {
-            lastManipulator.conditions = [];
-          }
-          lastManipulator.conditions!.push(condition);
-        });
-      }
-    });
-  });
-
-  return manipulators;
-}
-
-/**
- * Creates mouse movement controls using the specified trigger key and arrow keys
- *
- * @param trigger The key that activates the mouse movement
- * @param options Optional configurations
- */
-export function createMouseControls(
-  trigger: KeyCode,
-  options: {
-    distance?: number;
-    conditions?: Conditions[];
-  } = {}
-): Manipulator[] {
-  const { distance = 1536, conditions = [] } = options;
-
-  const mouseMovements = [
-    { key: "down_arrow", mouse: { y: distance } },
-    { key: "up_arrow", mouse: { y: -distance } },
-    { key: "left_arrow", mouse: { x: -distance } },
-    { key: "right_arrow", mouse: { x: distance } },
-  ];
-
-  return mouseMovements.map(({ key, mouse }) => {
-    const manipulator = new ManipulatorBuilder()
-      .from(key as KeyCode, { mandatory: [trigger as ModifiersKeys] })
-      .toMouseMovement(mouse);
-
-    // Apply conditions
-    conditions.forEach(condition => {
-      manipulator.withCondition(condition);
-    });
-
-    return manipulator.build();
-  });
-}
-
-/**
- * Common modifiers helper to create both from and to modifiers
- * @example
- * // Using shift
- * mod.shift.from  // Gives ["left_shift"]
- * mod.shift.to    // Same for output
- *
- * // Command+Shift
- * mod.cmd.shift.from  // Gives ["left_command", "left_shift"]
- */
-export const mod = createModifierHelper();
-
-function createModifierHelper() {
-  const modifierMap = {
-    cmd: "left_command" as ModifiersKeys,
-    opt: "left_option" as ModifiersKeys,
-    alt: "left_option" as ModifiersKeys,
-    shift: "left_shift" as ModifiersKeys,
-    ctrl: "left_control" as ModifiersKeys
-  };
-
-  return createProxyChain(modifierMap);
-}
-
-function createProxyChain(modifierMap: Record<string, ModifiersKeys>) {
-  const baseObject = {
-    _keys: [] as ModifiersKeys[],
-    get from() { return this._keys; },
-    get to() { return this._keys; }
-  };
-
-  return new Proxy(baseObject, {
-    get(target, prop) {
-      if (typeof prop === 'string' && prop in modifierMap) {
-        const newChain = createProxyChain(modifierMap);
-        newChain._keys = [...target._keys, modifierMap[prop]];
-        return newChain;
-      }
-      return Reflect.get(target, prop);
-    }
-  });
 }
 
 /**
@@ -734,7 +452,7 @@ export function layer(triggerKey: KeyCode) {
 
 class LayerBuilder {
   private trigger: KeyCode;
-  private bindings: Record<string, { key_code: KeyCode, modifiers?: ModifiersKeys[] }> = {};
+  private bindings: Record<string, { key_code: KeyCode, modifiers?: ModifiersKeys[], appTarget?: string }> = {};
   private conditions: Conditions[] = [];
   private threshold: number = 250;
 
@@ -744,10 +462,13 @@ class LayerBuilder {
 
   bind(key: KeyCode) {
     return {
-      to: (targetKey: KeyCode, modifiers?: ModifiersKeys[]) => {
-        this.bindings[key] = {
+      to: (targetKey: KeyCode, modifiers?: ModifiersKeys[], appTarget?: string) => {
+        // If this key is already bound, we need to create a unique key in the bindings object
+        const bindingKey = appTarget ? `${key}_${appTarget}` : key;
+        this.bindings[bindingKey] = {
           key_code: targetKey,
-          ...(modifiers ? { modifiers } : {})
+          ...(modifiers ? { modifiers } : {}),
+          ...(appTarget ? { appTarget } : {})
         };
         return this;
       }
@@ -775,10 +496,36 @@ class LayerBuilder {
   }
 
   build(): Manipulator[] {
-    return createKeyLayer(this.trigger, this.bindings, {
-      conditions: this.conditions,
-      simultaneousThreshold: this.threshold
+    const result: Manipulator[] = [];
+
+    // Process each binding to create the appropriate manipulators
+    Object.entries(this.bindings).forEach(([key, binding]) => {
+      // Extract the actual key and remove any app target suffix
+      const actualKey = key.split('_')[0] as KeyCode;
+
+      // Create a base layer binding
+      const manipulators = createKeyLayer(this.trigger, { [actualKey]: binding }, {
+        conditions: this.conditions,
+        simultaneousThreshold: this.threshold
+      });
+
+      // If there's an app target, add the appropriate condition
+      if (binding.appTarget) {
+        manipulators.forEach(m => {
+          if (!m.conditions) m.conditions = [];
+
+          if (binding.appTarget === "terminal") {
+            m.conditions.push(forApp(["^com\\.apple\\.Terminal$", "^com\\.googlecode\\.iterm2$"]));
+          } else if (binding.appTarget === "other") {
+            m.conditions.push(unlessApp(["^com\\.apple\\.Terminal$", "^com\\.googlecode\\.iterm2$"]));
+          }
+        });
+      }
+
+      result.push(...manipulators);
     });
+
+    return result;
   }
 }
 
@@ -871,94 +618,4 @@ class KeyMapBuilder {
   build(): KarabinerRules {
     return createRule(this.description, this.manipulators);
   }
-}
-
-/**
- * Creates a simplified interface for mapping key combinations
- * with a more expressive and readable API
- */
-export class KeyMappingBuilder {
-  private manipulators: Manipulator[] = [];
-  private description: string;
-
-  constructor(description: string) {
-    this.description = description;
-  }
-
-  /**
-   * Map a key to another key
-   */
-  map(from: KeyCode, to: KeyCode): KeyMappingBuilder {
-    this.manipulators.push(
-      manipulator().from(from).to(to).build()
-    );
-    return this;
-  }
-
-  /**
-   * Map a key with modifiers to another key with modifiers
-   */
-  mapWithModifiers(
-    from: KeyCode,
-    fromModifiers: ModifiersKeys[],
-    to: KeyCode,
-    toModifiers: ModifiersKeys[] = []
-  ): KeyMappingBuilder {
-    this.manipulators.push(
-      manipulator()
-        .fromWithModifiers(from, fromModifiers)
-        .toWithModifiers(to, toModifiers)
-        .build()
-    );
-    return this;
-  }
-
-  /**
-   * Add a key that does one thing when pressed alone, another when held
-   */
-  mapDualRole(
-    key: KeyCode,
-    whenAlone: KeyCode,
-    whenHeld: KeyCode,
-    modifiersWhenAlone: ModifiersKeys[] = [],
-    modifiersWhenHeld: ModifiersKeys[] = []
-  ): KeyMappingBuilder {
-    this.manipulators.push(
-      manipulator()
-        .from(key)
-        .to(whenHeld, { modifiers: modifiersWhenHeld })
-        .toIfAlone(whenAlone, modifiersWhenAlone)
-        .build()
-    );
-    return this;
-  }
-
-  /**
-   * Add a condition that applies to all following mappings until clearConditions is called
-   */
-  withCondition(condition: Conditions): KeyMappingBuilder {
-    // Add the condition to the last manipulator
-    if (this.manipulators.length > 0) {
-      const lastManipulator = this.manipulators[this.manipulators.length - 1];
-      if (!lastManipulator.conditions) {
-        lastManipulator.conditions = [];
-      }
-      lastManipulator.conditions.push(condition);
-    }
-    return this;
-  }
-
-  /**
-   * Create a rule from all the defined manipulators
-   */
-  build(): KarabinerRules {
-    return createRule(this.description, this.manipulators);
-  }
-}
-
-/**
- * Factory function to create a key mapping builder
- */
-export function createKeyMapping(description: string): KeyMappingBuilder {
-  return new KeyMappingBuilder(description);
 }

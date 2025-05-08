@@ -4,10 +4,8 @@ import { KarabinerRules, KeyCode, ModifiersKeys, Manipulator } from "./types";
 import {
   manipulator,
   createRule,
-  createAppSpecificKeyCombo,
   forApp,
   unlessApp,
-  createKeyLayer,
   keymap,
   layer,
 } from "./builders";
@@ -66,28 +64,13 @@ const rules: KarabinerRules[] = [
   createRule(
     "delete sequences",
     [
-      // App-specific J key combinations
-      ...createAppSpecificKeyCombo(
-        "j",
-        [
-          // J + S -> Control + U (clear line) in Terminal / Command + Backspace (delete to start of line) in other apps
-          {
-            key: "s",
-            terminalOutput: { key_code: "u", modifiers: ["left_control"] },
-            otherAppsOutput: { key_code: "delete_or_backspace", modifiers: ["left_command"] }
-          },
-          // J + D -> Control + W (delete word) in Terminal / Option + Backspace (delete word) in other apps
-          {
-            key: "d",
-            terminalOutput: { key_code: "w", modifiers: ["left_control"] },
-            otherAppsOutput: { key_code: "delete_or_backspace", modifiers: ["left_option"] }
-          },
-        ]
-      ),
-
-      // J + F -> Backspace (delete character)
+      // J key combinations for terminal and other apps
       ...layer("j")
-        .bind("f").to("delete_or_backspace")
+        .bind("s").to("u", ["left_control"], "terminal")                    // Clear line in terminal
+        .bind("s").to("delete_or_backspace", ["left_command"], "other")     // Delete to line start in other apps
+        .bind("d").to("w", ["left_control"], "terminal")                    // Delete word in terminal
+        .bind("d").to("delete_or_backspace", ["left_option"], "other")      // Delete word in other apps
+        .bind("f").to("delete_or_backspace")                                // Delete character (all apps)
         .build()
     ]
   ),
