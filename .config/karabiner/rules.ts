@@ -68,12 +68,14 @@ const rules: KarabinerRules[] = [
         ),
 
         // Mouse control with arrow keys
-        ...[
-          { key: "down_arrow" as KeyCode, mouse: { y: 1536 } },
-          { key: "up_arrow" as KeyCode, mouse: { y: -1536 } },
-          { key: "left_arrow" as KeyCode, mouse: { x: -1536 } },
-          { key: "right_arrow" as KeyCode, mouse: { x: 1536 } },
-        ].map(({ key, mouse }) =>
+        ...(
+          [
+            { key: "down_arrow", mouse: { y: 1536 } },
+            { key: "up_arrow", mouse: { y: -1536 } },
+            { key: "left_arrow", mouse: { x: -1536 } },
+            { key: "right_arrow", mouse: { x: 1536 } },
+          ] as Array<{ key: KeyCode, mouse: { y?: number, x?: number } }>
+        ).map(({ key, mouse }) =>
           manipulator()
             .fromKey(key, withMandatoryModifiers("right_control"))
             .to({ mouse_key: mouse })
