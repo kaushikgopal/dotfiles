@@ -1,4 +1,4 @@
-import { To, KeyCode, Manipulator, KarabinerRules } from "./types";
+import { To, KeyCode, Manipulator, KarabinerRules, Conditions } from "./types";
 
 /**
  * Custom way to describe a command in a layer
@@ -264,75 +264,129 @@ export function createKeyLayerCombo(trigger: KeyCode, combos: KeyComboDefinition
 }
 
 /**
- * Creates a key combination layer using simultaneous key presses and variable mode
- * @param trigger The trigger key that starts the combo
- * @param combos Object mapping target keys to their outputs
+ * Base type for key combination output
  */
-export type SimultaneousKeyComboDefinition = {
-  [key: string]: {
-    key_code: KeyCode;
-    modifiers?: ModifierKey[];
-  };
+export type KeyComboOutput = {
+  key_code: KeyCode;
+  modifiers?: ModifierKey[];
 };
 
-export function createSimultaneousKeyCombo(trigger: KeyCode, combos: SimultaneousKeyComboDefinition): Manipulator[] {
+/**
+ * Base type for key combination definitions
+ */
+export type BaseKeyComboDefinition = {
+  [key: string]: KeyComboOutput;
+};
+
+/**
+ * Creates base manipulators for key combinations
+ */
+function createBaseKeyCombo(
+  trigger: KeyCode,
+  combos: BaseKeyComboDefinition,
+  options: {
+    useSimultaneous?: boolean;
+    variableMode?: boolean;
+    conditions?: Conditions[];
+  } = {}
+): Manipulator[] {
+  const { useSimultaneous = false, variableMode = false, conditions = [] } = options;
   const variableName = `${trigger}-mode`;
   const manipulators: Manipulator[] = [];
 
-  // Add individual key handlers when in the mode
   Object.entries(combos).forEach(([key, output]) => {
-    manipulators.push({
-      type: "basic",
-      from: {
-        key_code: key as KeyCode,
-      },
-      to: [output],
-      conditions: [
-        {
-          type: "variable_if",
-          name: variableName,
-          value: 1,
-        },
-      ],
-    });
+    // Base from configuration
+    const baseFrom = {
+      key_code: key as KeyCode,
+    };
 
-    // Add simultaneous key press handlers
-    manipulators.push({
-      type: "basic",
-      from: {
-        simultaneous: [
-          { key_code: trigger },
-          { key_code: key as KeyCode },
-        ],
-        simultaneous_options: {
-          detect_key_down_uninterruptedly: true,
-          key_down_order: "strict",
-          key_up_order: "strict_inverse",
-          key_up_when: "any",
-          to_after_key_up: [
+    // Base to configuration
+    const baseTo = [output];
+
+    if (useSimultaneous) {
+      // Add mode-based handler
+      if (variableMode) {
+        manipulators.push({
+          type: "basic",
+          from: baseFrom,
+          to: baseTo,
+          conditions: [
             {
-              set_variable: {
-                name: variableName,
-                value: 0,
-              },
+              type: "variable_if",
+              name: variableName,
+              value: 1,
             },
+            ...conditions,
           ],
-        },
-      },
-      to: [
-        {
-          set_variable: {
-            name: variableName,
-            value: 1,
+        });
+      }
+
+      // Add simultaneous handler
+      manipulators.push({
+        type: "basic",
+        from: {
+          simultaneous: [
+            { key_code: trigger },
+            { key_code: key as KeyCode },
+          ],
+          simultaneous_options: {
+            detect_key_down_uninterruptedly: true,
+            key_down_order: "strict",
+            key_up_order: "strict_inverse",
+            key_up_when: "any",
+            to_after_key_up: variableMode ? [
+              {
+                set_variable: {
+                  name: variableName,
+                  value: 0,
+                },
+              },
+            ] : undefined,
           },
         },
-        output,
-      ],
-      parameters: {
-        "basic.simultaneous_threshold_milliseconds": 250,
-      },
-    });
+        to: [
+          ...(variableMode ? [{
+            set_variable: {
+              name: variableName,
+              value: 1,
+            },
+          }] : []),
+          output,
+        ],
+        parameters: {
+          "basic.simultaneous_threshold_milliseconds": 250,
+        },
+        conditions,
+      });
+    } else {
+      // Regular key combo with modifiers
+      manipulators.push({
+        type: "basic",
+        from: {
+          ...baseFrom,
+          modifiers: {
+            mandatory: [trigger as ModifierKey],
+          },
+        },
+        to: baseTo,
+        conditions,
+      });
+    }
   });
 
   return manipulators;
+}
+
+/**
+ * Creates a key combination layer using simultaneous key presses and variable mode
+ */
+export function createSimultaneousKeyCombo(trigger: KeyCode, combos: BaseKeyComboDefinition): Manipulator[] {
+  return createBaseKeyCombo(trigger, combos, { useSimultaneous: true, variableMode: true });
+}
+
+/**
+ * Creates a key combination layer using modifiers
+ */
+export function createModifierKeyCombo(trigger: KeyCode, combos: BaseKeyComboDefinition): Manipulator[] {
+  return createBaseKeyCombo(trigger, combos, { useSimultaneous: false });
 }
