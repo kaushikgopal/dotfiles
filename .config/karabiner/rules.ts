@@ -1,6 +1,6 @@
 // @ts-ignore
 import fs from "fs";
-import { KarabinerRules, KeyCode } from "./types";
+import { KarabinerRules, KeyCode, ModifiersKeys } from "./types";
 import { createKeyCombo } from "./utils";
 import { manipulator, createRule, createAppSpecificKeyCombo, key, withOptionalModifiers, withMandatoryModifiers, forApp, unlessApp } from "./builders";
 import { DEVICE_COMBO } from "./devices";
@@ -23,8 +23,9 @@ const rules: KarabinerRules[] = [
   (() => {
     const vimKeys: KeyCode[] = ["h", "j", "k", "l"];
     const arrowKeys: KeyCode[] = ["left_arrow", "down_arrow", "up_arrow", "right_arrow"];
-    const shiftVimKeys: KeyCode[] = ["h", "k", "l"];
-    const shiftArrowKeys: KeyCode[] = ["left_arrow", "up_arrow", "right_arrow"];
+    // const shiftVimKeys: KeyCode[] = ["h", "k", "l"];
+    // const shiftArrowKeys: KeyCode[] = ["left_arrow", "up_arrow", "right_arrow"];
+
     return createRule(
       "Caps Lock -> Escape (alone) | Ctrl (simple)",
       [
@@ -35,29 +36,6 @@ const rules: KarabinerRules[] = [
           .toIfAlone(key("escape"))
           .build(),
 
-        // Vim-like arrow keys with Control
-        ...vimKeys.map((keyChar, idx) =>
-          manipulator()
-            .fromKey(keyChar, withMandatoryModifiers("right_control"))
-            .to(key(arrowKeys[idx]))
-            .build()
-        ),
-
-        // Command + Vim keys to Command + Arrow
-        ...vimKeys.map((keyChar, idx) =>
-          manipulator()
-            .fromKey(keyChar, withMandatoryModifiers("left_command", "right_control"))
-            .to(key(arrowKeys[idx], ["left_command"]))
-            .build()
-        ),
-
-        // Shift + Vim keys to Shift + Arrow (with JetBrains/Android Studio exception for j)
-        ...shiftVimKeys.map((keyChar, idx) =>
-          manipulator()
-            .fromKey(keyChar, withMandatoryModifiers("left_shift", "right_control"))
-            .to(key(shiftArrowKeys[idx], ["left_shift"]))
-            .build()
-        ),
         // j with Shift+Ctrl, with app-specific conditions
         manipulator()
           .fromKey("j", withMandatoryModifiers("left_shift", "right_control"))
@@ -70,28 +48,23 @@ const rules: KarabinerRules[] = [
           .withCondition(forApp(["com.google.android.studio", "^com\\.jetbrains\\..*$"]))
           .build(),
 
-        // Option + Vim keys to Option + Arrow
-        ...vimKeys.map((keyChar, idx) =>
-          manipulator()
-            .fromKey(keyChar, withMandatoryModifiers("left_option", "right_control"))
-            .to(key(arrowKeys[idx], ["left_option"]))
-            .build()
-        ),
-
-        // Command + Option + Vim keys to Command + Option + Arrow
-        ...vimKeys.map((keyChar, idx) =>
-          manipulator()
-            .fromKey(keyChar, withMandatoryModifiers("left_command", "left_option", "right_control"))
-            .to(key(arrowKeys[idx], ["left_command", "left_option"]))
-            .build()
-        ),
-
-        // Command + Shift + Vim keys to Command + Shift + Arrow
-        ...vimKeys.map((keyChar, idx) =>
-          manipulator()
-            .fromKey(keyChar, withMandatoryModifiers("left_command", "left_shift", "right_control"))
-            .to(key(arrowKeys[idx], ["left_command", "left_shift"]))
-            .build()
+        // CapLock + Vim keys -> quick arrow keys (along with modifier combinations)
+        ...(
+          [
+            { from: ["right_control" as ModifiersKeys], to: [] as ModifiersKeys[] },
+            { from: ["right_control" as ModifiersKeys, "left_command" as ModifiersKeys], to: ["left_command" as ModifiersKeys] },
+            { from: ["right_control" as ModifiersKeys, "left_option" as ModifiersKeys], to: ["left_option" as ModifiersKeys] },
+            { from: ["right_control" as ModifiersKeys, "left_shift" as ModifiersKeys], to: ["left_shift" as ModifiersKeys] },
+            { from: ["right_control" as ModifiersKeys, "left_command" as ModifiersKeys, "left_option" as ModifiersKeys], to: ["left_command" as ModifiersKeys, "left_option" as ModifiersKeys] },
+            { from: ["right_control" as ModifiersKeys, "left_command" as ModifiersKeys, "left_shift" as ModifiersKeys], to: ["left_command" as ModifiersKeys, "left_shift" as ModifiersKeys] },
+          ] as { from: ModifiersKeys[], to: ModifiersKeys[] }[]
+        ).flatMap(combo =>
+          vimKeys.map((keyChar, idx) =>
+            manipulator()
+              .fromKey(keyChar, withMandatoryModifiers(...combo.from))
+              .to(key(arrowKeys[idx], combo.to))
+              .build()
+          )
         ),
 
         // Mouse control with arrow keys
