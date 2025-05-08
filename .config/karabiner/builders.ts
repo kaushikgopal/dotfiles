@@ -1,4 +1,4 @@
-import { KarabinerRules, Manipulator, From, To, KeyCode, Modifiers, Conditions, Parameters, SimultaneousOptions, SimultaneousFrom } from "./types";
+import { KarabinerRules, Manipulator, From, To, KeyCode, Modifiers, Conditions, Parameters, SimultaneousOptions, SimultaneousFrom, ModifiersKeys } from "./types";
 import { DEVICE, DEVICE_COMBO } from "./devices";
 
 /**
@@ -187,27 +187,6 @@ export function withOptionalModifiers(...modifiers: ModifiersKeys[]): Partial<Mo
 export function withMandatoryModifiers(...modifiers: ModifiersKeys[]): Partial<Modifiers> {
   return { mandatory: modifiers };
 }
-
-type ModifiersKeys =
-  | "caps_lock"
-  | "left_command"
-  | "left_control"
-  | "left_option"
-  | "left_shift"
-  | "right_command"
-  | "right_control"
-  | "right_option"
-  | "right_shift"
-  | "fn"
-  | "command"
-  | "control"
-  | "option"
-  | "shift"
-  | "left_alt"
-  | "left_gui"
-  | "right_alt"
-  | "right_gui"
-  | "any";
 
 /**
  * Helper function to create key layer combinations
