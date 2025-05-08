@@ -2229,7 +2229,8 @@
                 ],
                 "parameters": {
                   "basic.simultaneous_threshold_milliseconds": 250
-                }
+                },
+                "conditions": []
               }
             ]
           },

@@ -2,7 +2,7 @@
 import fs from "fs";
 import { KarabinerRules, KeyCode } from "./types";
 import { createHyperSubLayers, app, open, rectangle, shell, createKeyLayerCombo, createKeyCombo } from "./utils";
-import { manipulator, createRule, createKeyCombo as createBuilderKeyCombo, createAppSpecificKeyCombo, key, withOptionalModifiers, withMandatoryModifiers, forApp, unlessApp } from "./builders";
+import { manipulator, createRule, createAppSpecificKeyCombo, key, withOptionalModifiers, withMandatoryModifiers, forApp, unlessApp } from "./builders";
 import { DEVICE_CONFIGS, DEVICE, DEVICE_COMBO } from "./devices";
 
 // Only the rules array is defined at the top level
@@ -179,7 +179,9 @@ const rules: KarabinerRules[] = [
       ),
 
       // J + F -> Backspace (delete character)
-      ...createBuilderKeyCombo("j", "f", { key_code: "delete_or_backspace" }),
+      ...createKeyCombo("j", {
+        f: { key_code: "delete_or_backspace" }
+      }),
     ]
   ),
   // --- Command next/prev tab ---
