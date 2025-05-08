@@ -2389,7 +2389,7 @@
           }
         ]
       },
-      "devices": [
+      "DEVICE_CONFIGS": [
         {
           "identifiers": {
             "is_keyboard": true,

@@ -3,6 +3,7 @@ import fs from "fs";
 import { KarabinerRules, KeyCode } from "./types";
 import { createHyperSubLayers, app, open, rectangle, shell } from "./utils";
 import { manipulator, createRule, createFKeyCombo, createJKeyCombo, key, createAppSpecificJKeyCombo, withOptionalModifiers, withMandatoryModifiers, forApp, unlessApp } from "./builders";
+import { DEVICE_CONFIGS, DEVICE, DEVICE_COMBO } from "./devices";
 
 // Only the rules array is defined at the top level
 const rules: KarabinerRules[] = [
@@ -14,11 +15,7 @@ const rules: KarabinerRules[] = [
         .fromKey("right_command", { optional: ["any"] })
         .to([{ key_code: "right_control" }])
         .toIfAlone([{ key_code: "return_or_enter" }])
-        .forDevices([
-          { vendor_id: 1452 },
-          { vendor_id: 76 },
-          { is_built_in_keyboard: true }
-        ])
+        .forDevices(DEVICE_COMBO.APPLE_ALL)
         .build()
     ]
   ),
@@ -230,39 +227,6 @@ const rules: KarabinerRules[] = [
   // ...createFKeyCombo("o", { key_code: "backslash" }),
 ];
 
-// Define the devices configuration
-const devices = [
-  {
-    identifiers: {
-      is_keyboard: true,
-      is_pointing_device: true,
-      product_id: 45919,
-      vendor_id: 1133,
-    },
-    ignore: false,
-    manipulate_caps_lock_led: false,
-  },
-  {
-    identifiers: {
-      is_pointing_device: true,
-    },
-    simple_modifications: [
-      {
-        from: { key_code: "right_command" },
-        to: [{ key_code: "right_control" }],
-      },
-    ],
-  },
-  {
-    identifiers: {
-      is_keyboard: true,
-      product_id: 50475,
-      vendor_id: 1133,
-    },
-    ignore: true,
-  },
-];
-
 // Define function keys mapping
 const fn_function_keys = [
   {
@@ -304,7 +268,7 @@ const karabinerConfig = {
         },
         rules,
       },
-      devices,
+      DEVICE_CONFIGS,
       fn_function_keys,
       selected: true,
       virtual_hid_keyboard: {

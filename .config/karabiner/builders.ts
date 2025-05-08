@@ -1,4 +1,5 @@
 import { KarabinerRules, Manipulator, From, To, KeyCode, Modifiers, Conditions, Parameters, SimultaneousOptions, SimultaneousFrom } from "./types";
+import { DEVICE, DEVICE_COMBO } from "./devices";
 
 /**
  * Builder class for creating Karabiner manipulator objects
@@ -85,8 +86,29 @@ export class ManipulatorBuilder {
 
   /**
    * Add a device condition to limit the rule to specific devices
+   * Can accept:
+   * - A predefined device group from DEVICE_COMBO
+   * - A single device identifier from DEVICE
+   * - A raw array of device identifiers
    */
-  forDevices(identifiers: object[]): ManipulatorBuilder {
+  forDevices(identifiersOrDevice: object[] | keyof typeof DEVICE_COMBO | keyof typeof DEVICE): ManipulatorBuilder {
+    let identifiers: object[];
+
+    if (typeof identifiersOrDevice === 'string') {
+      // Check if it's a DEVICE_COMBO key
+      if (Object.keys(DEVICE_COMBO).includes(identifiersOrDevice as string)) {
+        identifiers = DEVICE_COMBO[identifiersOrDevice as keyof typeof DEVICE_COMBO];
+      }
+      // Otherwise it must be a single DEVICE
+      else {
+        identifiers = [DEVICE[identifiersOrDevice as keyof typeof DEVICE]];
+      }
+    }
+    // Raw array of identifiers
+    else {
+      identifiers = identifiersOrDevice;
+    }
+
     return this.withCondition({
       type: "device_if",
       identifiers
