@@ -210,14 +210,18 @@ type ModifiersKeys =
   | "any";
 
 /**
- * Helper function to create F key layer combinations
+ * Helper function to create key layer combinations
  */
-export function createFKeyCombo(targetKey: KeyCode, output: To | To[]): Manipulator[] {
+export function createKeyCombo(
+  layer_key: KeyCode,
+  targetKey: KeyCode,
+  output: To | To[]
+): Manipulator[] {
   const outputs = Array.isArray(output) ? output : [output];
-  const modalVar = "f-mode";
+  const modalVar = `${layer_key}-mode`;
 
   return [
-    // When f-mode is active
+    // When mode is active
     manipulator()
       .fromKey(targetKey)
       .to(outputs)
@@ -226,7 +230,7 @@ export function createFKeyCombo(targetKey: KeyCode, output: To | To[]): Manipula
 
     // Simultaneous press
     manipulator()
-      .fromSimultaneous(["f", targetKey], {
+      .fromSimultaneous([layer_key, targetKey], {
         detect_key_down_uninterruptedly: true,
         key_down_order: "strict",
         key_up_order: "strict_inverse",
@@ -243,35 +247,25 @@ export function createFKeyCombo(targetKey: KeyCode, output: To | To[]): Manipula
 }
 
 /**
- * Helper function to create J key layer combinations
+ * Helper for creating app-specific key layer combinations
  */
-export function createJKeyCombo(targetKey: KeyCode, output: To | To[]): Manipulator[] {
-  const outputs = Array.isArray(output) ? output : [output];
-  const modalVar = "j-mode";
-
+export function createAppSpecificKeyCombo(
+  layer_key: KeyCode,
+  targetKey: KeyCode,
+  terminalOutput: To | To[],
+  otherAppsOutput: To | To[]
+): Manipulator[] {
   return [
-    // When j-mode is active
-    manipulator()
-      .fromKey(targetKey)
-      .to(outputs)
-      .ifVariable(modalVar, 1)
-      .build(),
-
-    // Simultaneous press
-    manipulator()
-      .fromSimultaneous(["j", targetKey], {
-        detect_key_down_uninterruptedly: true,
-        key_down_order: "strict",
-        key_up_order: "strict_inverse",
-        key_up_when: "any",
-        to_after_key_up: [{ set_variable: { name: modalVar, value: 0 } }]
-      })
-      .to([
-        { set_variable: { name: modalVar, value: 1 } },
-        ...outputs
-      ])
-      .withParameter("basic.simultaneous_threshold_milliseconds", 250)
-      .build()
+    ...createKeyCombo(layer_key, targetKey, terminalOutput).map(m => {
+      if (!m.conditions) m.conditions = [];
+      m.conditions.push(forTerminal());
+      return m;
+    }),
+    ...createKeyCombo(layer_key, targetKey, otherAppsOutput).map(m => {
+      if (!m.conditions) m.conditions = [];
+      m.conditions.push(unlessTerminal());
+      return m;
+    })
   ];
 }
 
@@ -313,26 +307,4 @@ export function unlessTerminal(): Conditions {
     type: "frontmost_application_unless",
     bundle_identifiers: ["^com\\.apple\\.Terminal$", "^com\\.googlecode\\.iterm2$"]
   } as Conditions;
-}
-
-/**
- * Helper for creating key combinations that behave differently in terminal vs other apps
- */
-export function createAppSpecificJKeyCombo(
-  targetKey: KeyCode,
-  terminalOutput: To | To[],
-  otherAppsOutput: To | To[]
-): Manipulator[] {
-  return [
-    ...createJKeyCombo(targetKey, terminalOutput).map(m => {
-      if (!m.conditions) m.conditions = [];
-      m.conditions.push(forTerminal());
-      return m;
-    }),
-    ...createJKeyCombo(targetKey, otherAppsOutput).map(m => {
-      if (!m.conditions) m.conditions = [];
-      m.conditions.push(unlessTerminal());
-      return m;
-    })
-  ];
 }

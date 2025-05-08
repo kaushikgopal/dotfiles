@@ -2,7 +2,7 @@
 import fs from "fs";
 import { KarabinerRules, KeyCode } from "./types";
 import { createHyperSubLayers, app, open, rectangle, shell } from "./utils";
-import { manipulator, createRule, createFKeyCombo, createJKeyCombo, key, createAppSpecificJKeyCombo, withOptionalModifiers, withMandatoryModifiers, forApp, unlessApp } from "./builders";
+import { manipulator, createRule, createKeyCombo, createAppSpecificKeyCombo, key, withOptionalModifiers, withMandatoryModifiers, forApp, unlessApp } from "./builders";
 import { DEVICE_CONFIGS, DEVICE, DEVICE_COMBO } from "./devices";
 
 // Only the rules array is defined at the top level
@@ -107,15 +107,15 @@ const rules: KarabinerRules[] = [
             .build()
         ),
 
-        // Mouse clicks
-        manipulator()
-          .fromKey("return_or_enter", withMandatoryModifiers("right_control"))
-          .to({ pointing_button: "button1" })
-          .build(),
-        manipulator()
-          .fromKey("return_or_enter", withMandatoryModifiers("left_command", "right_control"))
-          .to({ pointing_button: "button2" })
-          .build(),
+        // // Mouse clicks
+        // manipulator()
+        //   .fromKey("return_or_enter", withMandatoryModifiers("right_control"))
+        //   .to({ pointing_button: "button1" })
+        //   .build(),
+        // manipulator()
+        //   .fromKey("return_or_enter", withMandatoryModifiers("left_command", "right_control"))
+        //   .to({ pointing_button: "button2" })
+        //   .build(),
       ]
     );
   })(),
@@ -124,25 +124,25 @@ const rules: KarabinerRules[] = [
     "special characters enabled with shift + numkey",
     [
       // F + I -> * (shift + 8)
-      ...createFKeyCombo("i", { key_code: "8", modifiers: ["left_shift"] }),
+      ...createKeyCombo("f", "i", { key_code: "8", modifiers: ["left_shift"] }),
 
       // F + U -> & (shift + 7)
-      ...createFKeyCombo("u", { key_code: "7", modifiers: ["left_shift"] }),
+      ...createKeyCombo("f", "u", { key_code: "7", modifiers: ["left_shift"] }),
 
       // F + Y -> ^ (shift + 6)
-      ...createFKeyCombo("y", { key_code: "6", modifiers: ["left_shift"] }),
+      ...createKeyCombo("f", "y", { key_code: "6", modifiers: ["left_shift"] }),
 
       // F + O -> \ (backslash)
-      ...createFKeyCombo("o", { key_code: "backslash" }),
+      ...createKeyCombo("f", "o", { key_code: "backslash" }),
 
       // F + L -> - (hyphen)
-      ...createFKeyCombo("l", { key_code: "hyphen" }),
+      ...createKeyCombo("f", "l", { key_code: "hyphen" }),
 
       // F + Semicolon -> + (shift + equals)
-      ...createFKeyCombo("semicolon", { key_code: "equal_sign", modifiers: ["left_shift"] }),
+      ...createKeyCombo("f", "semicolon", { key_code: "equal_sign", modifiers: ["left_shift"] }),
 
       // F + Quote -> = (equals)
-      ...createFKeyCombo("quote", { key_code: "equal_sign" }),
+      ...createKeyCombo("f", "quote", { key_code: "equal_sign" }),
     ]
   ),
   // --- J-key special characters ---
@@ -150,19 +150,19 @@ const rules: KarabinerRules[] = [
     "J-key special character combinations",
     [
       // J + T -> % (shift + 5)
-      ...createJKeyCombo("t", { key_code: "5", modifiers: ["left_shift"] }),
+      ...createKeyCombo("j", "t", { key_code: "5", modifiers: ["left_shift"] }),
 
       // J + R -> $ (shift + 4)
-      ...createJKeyCombo("r", { key_code: "4", modifiers: ["left_shift"] }),
+      ...createKeyCombo("j", "r", { key_code: "4", modifiers: ["left_shift"] }),
 
       // J + E -> # (shift + 3)
-      ...createJKeyCombo("e", { key_code: "3", modifiers: ["left_shift"] }),
+      ...createKeyCombo("j", "e", { key_code: "3", modifiers: ["left_shift"] }),
 
       // J + W -> @ (shift + 2)
-      ...createJKeyCombo("w", { key_code: "2", modifiers: ["left_shift"] }),
+      ...createKeyCombo("j", "w", { key_code: "2", modifiers: ["left_shift"] }),
 
       // J + Q -> ! (shift + 1)
-      ...createJKeyCombo("q", { key_code: "1", modifiers: ["left_shift"] }),
+      ...createKeyCombo("j", "q", { key_code: "1", modifiers: ["left_shift"] }),
     ]
   ),
   // --- Bracket combinations ---
@@ -170,22 +170,22 @@ const rules: KarabinerRules[] = [
     "bracket combos",
     [
       // F + J -> ( (shift + 9)
-      ...createFKeyCombo("j", { key_code: "9", modifiers: ["left_shift"] }),
+      ...createKeyCombo("f", "j", { key_code: "9", modifiers: ["left_shift"] }),
 
       // F + K -> ) (shift + 0)
-      ...createFKeyCombo("k", { key_code: "0", modifiers: ["left_shift"] }),
+      ...createKeyCombo("f", "k", { key_code: "0", modifiers: ["left_shift"] }),
 
       // F + M -> [ (open_bracket)
-      ...createFKeyCombo("m", { key_code: "open_bracket" }),
+      ...createKeyCombo("f", "m", { key_code: "open_bracket" }),
 
       // F + Comma -> ] (close_bracket)
-      ...createFKeyCombo("comma", { key_code: "close_bracket" }),
+      ...createKeyCombo("f", "comma", { key_code: "close_bracket" }),
 
       // F + Period -> { (shift + open_bracket)
-      ...createFKeyCombo("period", { key_code: "open_bracket", modifiers: ["left_shift"] }),
+      ...createKeyCombo("f", "period", { key_code: "open_bracket", modifiers: ["left_shift"] }),
 
       // F + Slash -> } (shift + close_bracket)
-      ...createFKeyCombo("slash", { key_code: "close_bracket", modifiers: ["left_shift"] }),
+      ...createKeyCombo("f", "slash", { key_code: "close_bracket", modifiers: ["left_shift"] }),
     ]
   ),
   // --- Delete sequences ---
@@ -193,21 +193,23 @@ const rules: KarabinerRules[] = [
     "delete sequences",
     [
       // J + S -> Control + U (clear line) in Terminal / Command + Backspace (delete to start of line) in other apps
-      ...createAppSpecificJKeyCombo(
+      ...createAppSpecificKeyCombo(
+        "j",
         "s",
         { key_code: "u", modifiers: ["left_control"] },
         { key_code: "delete_or_backspace", modifiers: ["left_command"] }
       ),
 
       // J + D -> Control + W (delete word) in Terminal / Option + Backspace (delete word) in other apps
-      ...createAppSpecificJKeyCombo(
+      ...createAppSpecificKeyCombo(
+        "j",
         "d",
         { key_code: "w", modifiers: ["left_control"] },
         { key_code: "delete_or_backspace", modifiers: ["left_option"] }
       ),
 
       // J + F -> Backspace (delete character)
-      ...createJKeyCombo("f", { key_code: "delete_or_backspace" }),
+      ...createKeyCombo("j", "f", { key_code: "delete_or_backspace" }),
     ]
   ),
   // --- Command next/prev tab ---
@@ -215,16 +217,16 @@ const rules: KarabinerRules[] = [
     "cmd next/prev tab",
     [
       // J + X -> Command + Shift + [ (previous tab)
-      ...createJKeyCombo("x", { key_code: "open_bracket", modifiers: ["left_command", "left_shift"] }),
+      ...createKeyCombo("j", "x", { key_code: "open_bracket", modifiers: ["left_command", "left_shift"] }),
 
       // J + C -> Command + Shift + ] (next tab)
-      ...createJKeyCombo("c", { key_code: "close_bracket", modifiers: ["left_command", "left_shift"] }),
+      ...createKeyCombo("j", "c", { key_code: "close_bracket", modifiers: ["left_command", "left_shift"] }),
     ]
   ),
 
   // Example of adding a new F-key combo:
   // To add F+O -> \ (backslash), simply add this to the "special characters" section:
-  // ...createFKeyCombo("o", { key_code: "backslash" }),
+  // ...createKeyCombo("f", "o", { key_code: "backslash" }),
 ];
 
 // Define function keys mapping
