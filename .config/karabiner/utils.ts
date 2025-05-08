@@ -378,15 +378,23 @@ function createBaseKeyCombo(
 }
 
 /**
- * Creates a key combination layer using simultaneous key presses and variable mode
+ * Creates a key combination layer with configurable behavior.
+ * When a trigger key is provided, useSimultaneous and variableMode are automatically set to true.
+ * @param trigger The trigger key
+ * @param combos The key combinations to create
+ * @param options Optional configuration:
+ *   - conditions: Additional conditions to apply
  */
-export function createSimultaneousKeyCombo(trigger: KeyCode, combos: BaseKeyComboDefinition): Manipulator[] {
-  return createBaseKeyCombo(trigger, combos, { useSimultaneous: true, variableMode: true });
-}
-
-/**
- * Creates a key combination layer using modifiers
- */
-export function createModifierKeyCombo(trigger: KeyCode, combos: BaseKeyComboDefinition): Manipulator[] {
-  return createBaseKeyCombo(trigger, combos, { useSimultaneous: false });
+export function createKeyCombo(
+  trigger: KeyCode,
+  combos: BaseKeyComboDefinition,
+  options: {
+    conditions?: Conditions[];
+  } = {}
+): Manipulator[] {
+  return createBaseKeyCombo(trigger, combos, {
+    useSimultaneous: true,
+    variableMode: true,
+    ...options
+  });
 }

@@ -1,8 +1,8 @@
 // @ts-ignore
 import fs from "fs";
 import { KarabinerRules, KeyCode } from "./types";
-import { createHyperSubLayers, app, open, rectangle, shell, createKeyLayerCombo, createSimultaneousKeyCombo } from "./utils";
-import { manipulator, createRule, createKeyCombo, createAppSpecificKeyCombo, key, withOptionalModifiers, withMandatoryModifiers, forApp, unlessApp } from "./builders";
+import { createHyperSubLayers, app, open, rectangle, shell, createKeyLayerCombo, createKeyCombo } from "./utils";
+import { manipulator, createRule, createKeyCombo as createBuilderKeyCombo, createAppSpecificKeyCombo, key, withOptionalModifiers, withMandatoryModifiers, forApp, unlessApp } from "./builders";
 import { DEVICE_CONFIGS, DEVICE, DEVICE_COMBO } from "./devices";
 
 // Only the rules array is defined at the top level
@@ -122,7 +122,7 @@ const rules: KarabinerRules[] = [
   // --- Special characters enabled with shift + numkey ---
   createRule(
     "special characters enabled with shift + numkey",
-    createSimultaneousKeyCombo("f", {
+    createKeyCombo("f", {
       i: { key_code: "8", modifiers: ["left_shift"] },  // *
       u: { key_code: "7", modifiers: ["left_shift"] },  // &
       y: { key_code: "6", modifiers: ["left_shift"] },  // ^
@@ -135,7 +135,7 @@ const rules: KarabinerRules[] = [
   // --- J-key special characters ---
   createRule(
     "J-key special character combinations",
-    createSimultaneousKeyCombo("j", {
+    createKeyCombo("j", {
       t: { key_code: "5", modifiers: ["left_shift"] },  // % (shift + 5)
       r: { key_code: "4", modifiers: ["left_shift"] },  // $ (shift + 4)
       e: { key_code: "3", modifiers: ["left_shift"] },  // # (shift + 3)
@@ -146,7 +146,7 @@ const rules: KarabinerRules[] = [
   // --- Bracket combinations ---
   createRule(
     "bracket combos",
-    createSimultaneousKeyCombo("f", {
+    createKeyCombo("f", {
       j: { key_code: "9", modifiers: ["left_shift"] },   // (
       k: { key_code: "0", modifiers: ["left_shift"] },   // )
       m: { key_code: "open_bracket" },                   // [
@@ -179,13 +179,13 @@ const rules: KarabinerRules[] = [
       ),
 
       // J + F -> Backspace (delete character)
-      ...createKeyCombo("j", "f", { key_code: "delete_or_backspace" }),
+      ...createBuilderKeyCombo("j", "f", { key_code: "delete_or_backspace" }),
     ]
   ),
   // --- Command next/prev tab ---
   createRule(
     "cmd next/prev tab",
-    createSimultaneousKeyCombo("j", {
+    createKeyCombo("j", {
       x: { key_code: "open_bracket", modifiers: ["left_command", "left_shift"] },   // previous tab
       c: { key_code: "close_bracket", modifiers: ["left_command", "left_shift"] },  // next tab
     })
