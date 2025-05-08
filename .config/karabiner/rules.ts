@@ -123,89 +123,86 @@ const rules: KarabinerRules[] = [
   createRule(
     "special characters enabled with shift + numkey",
     [
-      // F + I -> * (shift + 8)
-      ...createKeyCombo("f", "i", { key_code: "8", modifiers: ["left_shift"] }),
-
-      // F + U -> & (shift + 7)
-      ...createKeyCombo("f", "u", { key_code: "7", modifiers: ["left_shift"] }),
-
-      // F + Y -> ^ (shift + 6)
-      ...createKeyCombo("f", "y", { key_code: "6", modifiers: ["left_shift"] }),
-
-      // F + O -> \ (backslash)
-      ...createKeyCombo("f", "o", { key_code: "backslash" }),
-
-      // F + L -> - (hyphen)
-      ...createKeyCombo("f", "l", { key_code: "hyphen" }),
-
-      // F + Semicolon -> + (shift + equals)
-      ...createKeyCombo("f", "semicolon", { key_code: "equal_sign", modifiers: ["left_shift"] }),
-
-      // F + Quote -> = (equals)
-      ...createKeyCombo("f", "quote", { key_code: "equal_sign" }),
+      // F key combinations for special characters
+      ...createKeyCombo("f", [
+        // F + I -> * (shift + 8)
+        { key: "i", output: { key_code: "8", modifiers: ["left_shift"] } },
+        // F + U -> & (shift + 7)
+        { key: "u", output: { key_code: "7", modifiers: ["left_shift"] } },
+        // F + Y -> ^ (shift + 6)
+        { key: "y", output: { key_code: "6", modifiers: ["left_shift"] } },
+        // F + O -> \ (backslash)
+        { key: "o", output: { key_code: "backslash" } },
+        // F + L -> - (hyphen)
+        { key: "l", output: { key_code: "hyphen" } },
+        // F + Semicolon -> + (shift + equals)
+        { key: "semicolon", output: { key_code: "equal_sign", modifiers: ["left_shift"] } },
+        // F + Quote -> = (equals)
+        { key: "quote", output: { key_code: "equal_sign" } },
+      ]),
     ]
   ),
   // --- J-key special characters ---
   createRule(
     "J-key special character combinations",
     [
-      // J + T -> % (shift + 5)
-      ...createKeyCombo("j", "t", { key_code: "5", modifiers: ["left_shift"] }),
-
-      // J + R -> $ (shift + 4)
-      ...createKeyCombo("j", "r", { key_code: "4", modifiers: ["left_shift"] }),
-
-      // J + E -> # (shift + 3)
-      ...createKeyCombo("j", "e", { key_code: "3", modifiers: ["left_shift"] }),
-
-      // J + W -> @ (shift + 2)
-      ...createKeyCombo("j", "w", { key_code: "2", modifiers: ["left_shift"] }),
-
-      // J + Q -> ! (shift + 1)
-      ...createKeyCombo("j", "q", { key_code: "1", modifiers: ["left_shift"] }),
+      // J key combinations for special characters
+      ...createKeyCombo("j", [
+        // J + T -> % (shift + 5)
+        { key: "t", output: { key_code: "5", modifiers: ["left_shift"] } },
+        // J + R -> $ (shift + 4)
+        { key: "r", output: { key_code: "4", modifiers: ["left_shift"] } },
+        // J + E -> # (shift + 3)
+        { key: "e", output: { key_code: "3", modifiers: ["left_shift"] } },
+        // J + W -> @ (shift + 2)
+        { key: "w", output: { key_code: "2", modifiers: ["left_shift"] } },
+        // J + Q -> ! (shift + 1)
+        { key: "q", output: { key_code: "1", modifiers: ["left_shift"] } },
+      ]),
     ]
   ),
   // --- Bracket combinations ---
   createRule(
     "bracket combos",
     [
-      // F + J -> ( (shift + 9)
-      ...createKeyCombo("f", "j", { key_code: "9", modifiers: ["left_shift"] }),
-
-      // F + K -> ) (shift + 0)
-      ...createKeyCombo("f", "k", { key_code: "0", modifiers: ["left_shift"] }),
-
-      // F + M -> [ (open_bracket)
-      ...createKeyCombo("f", "m", { key_code: "open_bracket" }),
-
-      // F + Comma -> ] (close_bracket)
-      ...createKeyCombo("f", "comma", { key_code: "close_bracket" }),
-
-      // F + Period -> { (shift + open_bracket)
-      ...createKeyCombo("f", "period", { key_code: "open_bracket", modifiers: ["left_shift"] }),
-
-      // F + Slash -> } (shift + close_bracket)
-      ...createKeyCombo("f", "slash", { key_code: "close_bracket", modifiers: ["left_shift"] }),
+      // F key combinations for brackets
+      ...createKeyCombo("f", [
+        // F + J -> ( (shift + 9)
+        { key: "j", output: { key_code: "9", modifiers: ["left_shift"] } },
+        // F + K -> ) (shift + 0)
+        { key: "k", output: { key_code: "0", modifiers: ["left_shift"] } },
+        // F + M -> [ (open_bracket)
+        { key: "m", output: { key_code: "open_bracket" } },
+        // F + Comma -> ] (close_bracket)
+        { key: "comma", output: { key_code: "close_bracket" } },
+        // F + Period -> { (shift + open_bracket)
+        { key: "period", output: { key_code: "open_bracket", modifiers: ["left_shift"] } },
+        // F + Slash -> } (shift + close_bracket)
+        { key: "slash", output: { key_code: "close_bracket", modifiers: ["left_shift"] } },
+      ]),
     ]
   ),
   // --- Delete sequences ---
   createRule(
     "delete sequences",
     [
-      // J + S -> Control + U (clear line) in Terminal / Command + Backspace (delete to start of line) in other apps
+      // App-specific J key combinations
       ...createAppSpecificKeyCombo(
         "j",
-        "s",
-        { key_code: "u", modifiers: ["left_control"] },
-        { key_code: "delete_or_backspace", modifiers: ["left_command"] }
-      ),
-
-      // J + D -> Control + W (delete word) in Terminal / Option + Backspace (delete word) in other apps
-      ...createAppSpecificKeyCombo(
-        "j",
-        "d",
-        { key_code: "w", modifiers: ["left_control"] },
-        { key_code: "delete_or_backspace", modifiers: ["left_option"] }
+        [
+          // J + S -> Control + U (clear line) in Terminal / Command + Backspace (delete to start of line) in other apps
+          {
+            key: "s",
+            terminalOutput: { key_code: "u", modifiers: ["left_control"] },
+            otherAppsOutput: { key_code: "delete_or_backspace", modifiers: ["left_command"] }
+          },
+          // J + D -> Control + W (delete word) in Terminal / Option + Backspace (delete word) in other apps
+          {
+            key: "d",
+            terminalOutput: { key_code: "w", modifiers: ["left_control"] },
+            otherAppsOutput: { key_code: "delete_or_backspace", modifiers: ["left_option"] }
+          },
+        ]
       ),
 
       // J + F -> Backspace (delete character)
@@ -216,11 +213,13 @@ const rules: KarabinerRules[] = [
   createRule(
     "cmd next/prev tab",
     [
-      // J + X -> Command + Shift + [ (previous tab)
-      ...createKeyCombo("j", "x", { key_code: "open_bracket", modifiers: ["left_command", "left_shift"] }),
-
-      // J + C -> Command + Shift + ] (next tab)
-      ...createKeyCombo("j", "c", { key_code: "close_bracket", modifiers: ["left_command", "left_shift"] }),
+      // J key combinations for tab navigation
+      ...createKeyCombo("j", [
+        // J + X -> Command + Shift + [ (previous tab)
+        { key: "x", output: { key_code: "open_bracket", modifiers: ["left_command", "left_shift"] } },
+        // J + C -> Command + Shift + ] (next tab)
+        { key: "c", output: { key_code: "close_bracket", modifiers: ["left_command", "left_shift"] } },
+      ]),
     ]
   ),
 

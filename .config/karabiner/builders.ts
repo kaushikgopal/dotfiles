@@ -214,10 +214,18 @@ type ModifiersKeys =
  */
 export function createKeyCombo(
   layer_key: KeyCode,
-  targetKey: KeyCode,
-  output: To | To[]
+  targetKey: KeyCode | Array<{key: KeyCode, output: To | To[]}>,
+  output?: To | To[]
 ): Manipulator[] {
-  const outputs = Array.isArray(output) ? output : [output];
+  // If targetKey is an array, we're using the bulk version
+  if (Array.isArray(targetKey)) {
+    return targetKey.flatMap(combo =>
+      createKeyCombo(layer_key, combo.key, combo.output)
+    );
+  }
+
+  // Regular single combo version
+  const outputs = Array.isArray(output) ? output : [output!];
   const modalVar = `${layer_key}-mode`;
 
   return [
@@ -251,17 +259,25 @@ export function createKeyCombo(
  */
 export function createAppSpecificKeyCombo(
   layer_key: KeyCode,
-  targetKey: KeyCode,
-  terminalOutput: To | To[],
-  otherAppsOutput: To | To[]
+  targetKey: KeyCode | Array<{key: KeyCode, terminalOutput: To | To[], otherAppsOutput: To | To[]}>,
+  terminalOutput?: To | To[],
+  otherAppsOutput?: To | To[]
 ): Manipulator[] {
+  // If targetKey is an array, we're using the bulk version
+  if (Array.isArray(targetKey)) {
+    return targetKey.flatMap(combo =>
+      createAppSpecificKeyCombo(layer_key, combo.key, combo.terminalOutput, combo.otherAppsOutput)
+    );
+  }
+
+  // Regular single combo version
   return [
-    ...createKeyCombo(layer_key, targetKey, terminalOutput).map(m => {
+    ...createKeyCombo(layer_key, targetKey, terminalOutput!).map(m => {
       if (!m.conditions) m.conditions = [];
       m.conditions.push(forTerminal());
       return m;
     }),
-    ...createKeyCombo(layer_key, targetKey, otherAppsOutput).map(m => {
+    ...createKeyCombo(layer_key, targetKey, otherAppsOutput!).map(m => {
       if (!m.conditions) m.conditions = [];
       m.conditions.push(unlessTerminal());
       return m;
