@@ -17,6 +17,28 @@ export class ManipulatorBuilder {
   }
 
   /**
+   * Unified method to specify source key with modifiers
+   */
+  from(key: KeyCode, options?: {
+    optional?: ModifiersKeys[],
+    mandatory?: ModifiersKeys[]
+  }): ManipulatorBuilder {
+    this.manipulator.from = { key_code: key };
+
+    if (options) {
+      let modifiers: Partial<Modifiers> = {};
+      if (options.optional) modifiers.optional = options.optional;
+      if (options.mandatory) modifiers.mandatory = options.mandatory;
+
+      if (Object.keys(modifiers).length > 0) {
+        this.manipulator.from.modifiers = modifiers;
+      }
+    }
+
+    return this;
+  }
+
+  /**
    * Specify simultaneous key combination
    */
   fromSimultaneous(
@@ -47,6 +69,14 @@ export class ManipulatorBuilder {
   }
 
   /**
+   * Unified method to specify target key with modifiers
+   */
+  toKey(key: KeyCode, modifiers?: ModifiersKeys[]): ManipulatorBuilder {
+    this.manipulator.to = [{ key_code: key, ...(modifiers ? { modifiers } : {}) }];
+    return this;
+  }
+
+  /**
    * Set the target key or commands when the key is pressed alone
    */
   toIfAlone(keyOrCommands: KeyCode | To | To[]): ManipulatorBuilder {
@@ -57,6 +87,14 @@ export class ManipulatorBuilder {
     } else {
       this.manipulator.to_if_alone = keyOrCommands;
     }
+    return this;
+  }
+
+  /**
+   * Unified method to specify target key with modifiers when pressed alone
+   */
+  toIfAloneKey(key: KeyCode, modifiers?: ModifiersKeys[]): ManipulatorBuilder {
+    this.manipulator.to_if_alone = [{ key_code: key, ...(modifiers ? { modifiers } : {}) }];
     return this;
   }
 
@@ -210,7 +248,7 @@ export function createKeyCombo(
   return [
     // When mode is active
     manipulator()
-      .fromKey(targetKey)
+      .from(targetKey)
       .to(outputs)
       .ifVariable(modalVar, 1)
       .build(),

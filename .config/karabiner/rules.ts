@@ -12,9 +12,9 @@ const rules: KarabinerRules[] = [
     "Right Cmd (alone) -> Enter",
     [
       manipulator()
-        .fromKey("right_command", { optional: ["any"] })
-        .to([{ key_code: "right_control" }])
-        .toIfAlone([{ key_code: "return_or_enter" }])
+        .from("right_command", { optional: ["any"] })
+        .toKey("right_control")
+        .toIfAloneKey("return_or_enter")
         .forDevices(DEVICE_COMBO.APPLE_ALL)
         .build()
     ]
@@ -31,20 +31,20 @@ const rules: KarabinerRules[] = [
       [
         // Caps Lock alone -> Escape, held -> right_control
         manipulator()
-          .fromKey("caps_lock", withOptionalModifiers("any"))
-          .to(key("right_control"))
-          .toIfAlone(key("escape"))
+          .from("caps_lock", { optional: ["any"] })
+          .toKey("right_control")
+          .toIfAloneKey("escape")
           .build(),
 
         // j with Shift+Ctrl, with app-specific conditions
         manipulator()
-          .fromKey("j", withMandatoryModifiers("left_shift", "right_control"))
-          .to(key("down_arrow", ["left_shift"]))
+          .from("j", { mandatory: ["left_shift", "right_control"] })
+          .toKey("down_arrow", ["left_shift"])
           .withCondition(unlessApp(["com.google.android.studio", "^com\\.jetbrains\\..*$"]))
           .build(),
         manipulator()
-          .fromKey("j", withMandatoryModifiers("left_shift", "right_control"))
-          .to(key("j", ["left_control", "left_shift"]))
+          .from("j", { mandatory: ["left_shift", "right_control"] })
+          .toKey("j", ["left_control", "left_shift"])
           .withCondition(forApp(["com.google.android.studio", "^com\\.jetbrains\\..*$"]))
           .build(),
 
@@ -61,8 +61,8 @@ const rules: KarabinerRules[] = [
         ).flatMap(combo =>
           vimKeys.map((keyChar, idx) =>
             manipulator()
-              .fromKey(keyChar, withMandatoryModifiers(...combo.from))
-              .to(key(arrowKeys[idx], combo.to))
+              .from(keyChar, { mandatory: combo.from })
+              .toKey(arrowKeys[idx], combo.to)
               .build()
           )
         ),
@@ -77,18 +77,18 @@ const rules: KarabinerRules[] = [
           ] as Array<{ key: KeyCode, mouse: { y?: number, x?: number } }>
         ).map(({ key, mouse }) =>
           manipulator()
-            .fromKey(key, withMandatoryModifiers("right_control"))
+            .from(key, { mandatory: ["right_control"] })
             .to({ mouse_key: mouse })
             .build()
         ),
 
         // // Mouse clicks
         // manipulator()
-        //   .fromKey("return_or_enter", withMandatoryModifiers("right_control"))
+        //   .from("return_or_enter", { mandatory: ["right_control"] })
         //   .to({ pointing_button: "button1" })
         //   .build(),
         // manipulator()
-        //   .fromKey("return_or_enter", withMandatoryModifiers("left_command", "right_control"))
+        //   .from("return_or_enter", { mandatory: ["left_command", "right_control"] })
         //   .to({ pointing_button: "button2" })
         //   .build(),
       ]
