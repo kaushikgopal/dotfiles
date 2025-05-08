@@ -1,4 +1,5 @@
 import { To, KeyCode, Manipulator, KarabinerRules, Conditions } from "./types";
+import type { ModifiersKeys } from "./types";
 
 /**
  * Custom way to describe a command in a layer
@@ -8,25 +9,19 @@ export interface LayerCommand {
   description?: string;
 }
 
-type HyperKeySublayer = {
-  // The ? is necessary, otherwise we'd have to define something for _every_ key code
-  [key_code in KeyCode]?: LayerCommand;
-};
-
 /**
  * Create a Hyper Key sublayer, where every command is prefixed with a key
  * e.g. Hyper + O ("Open") is the "open applications" layer, I can press
  * e.g. Hyper + O + G ("Google Chrome") to open Chrome
  */
-export function createHyperSubLayer(
+function createHyperSubLayer(
   sublayer_key: KeyCode,
-  commands: HyperKeySublayer,
+  commands: { [key_code in KeyCode]?: LayerCommand },
   allSubLayerVariables: string[]
 ): Manipulator[] {
-  const subLayerVariableName = generateSubLayerVariableName(sublayer_key);
+  const subLayerVariableName = `hyper_sublayer_${sublayer_key}`;
 
   return [
-    // When Hyper + sublayer_key is pressed, set the variable to 1; on key_up, set it to 0 again
     {
       description: `Toggle Hyper sublayer ${sublayer_key}`,
       type: "basic",
@@ -40,8 +35,6 @@ export function createHyperSubLayer(
         {
           set_variable: {
             name: subLayerVariableName,
-            // The default value of a variable is 0: https://karabiner-elements.pqrs.org/docs/json/complex-modifications-manipulator-definition/conditions/variable/
-            // That means by using 0 and 1 we can filter for "0" in the conditions below and it'll work on startup
             value: 0,
           },
         },
@@ -54,14 +47,9 @@ export function createHyperSubLayer(
           },
         },
       ],
-      // This enables us to press other sublayer keys in the current sublayer
-      // (e.g. Hyper + O > M even though Hyper + M is also a sublayer)
-      // basically, only trigger a sublayer if no other sublayer is active
       conditions: [
         ...allSubLayerVariables
-          .filter(
-            (subLayerVariable) => subLayerVariable !== subLayerVariableName
-          )
+          .filter((subLayerVariable) => subLayerVariable !== subLayerVariableName)
           .map((subLayerVariable) => ({
             type: "variable_if" as const,
             name: subLayerVariable,
@@ -74,7 +62,6 @@ export function createHyperSubLayer(
         },
       ],
     },
-    // Define the individual commands that are meant to trigger in the sublayer
     ...(Object.keys(commands) as (keyof typeof commands)[]).map(
       (command_key): Manipulator => ({
         ...commands[command_key],
@@ -85,7 +72,6 @@ export function createHyperSubLayer(
             optional: ["any"],
           },
         },
-        // Only trigger this command if the variable is 1 (i.e., if Hyper + sublayer is held)
         conditions: [
           {
             type: "variable_if",
@@ -104,11 +90,11 @@ export function createHyperSubLayer(
  * activates at a time
  */
 export function createHyperSubLayers(subLayers: {
-  [key_code in KeyCode]?: HyperKeySublayer | LayerCommand;
+  [key_code in KeyCode]?: { [key_code in KeyCode]?: LayerCommand } | LayerCommand;
 }): KarabinerRules[] {
   const allSubLayerVariables = (
     Object.keys(subLayers) as (keyof typeof subLayers)[]
-  ).map((sublayer_key) => generateSubLayerVariableName(sublayer_key));
+  ).map((sublayer_key) => `hyper_sublayer_${sublayer_key}`);
 
   return Object.entries(subLayers).map(([key, value]) =>
     "to" in value
@@ -150,10 +136,6 @@ export function createHyperSubLayers(subLayers: {
   );
 }
 
-function generateSubLayerVariableName(key: KeyCode) {
-  return `hyper_sublayer_${key}`;
-}
-
 /**
  * Shortcut for "open" shell command
  */
@@ -170,7 +152,7 @@ export function open(...what: string[]): LayerCommand {
  * Utility function to create a LayerCommand from a tagged template literal
  * where each line is a shell command to be executed.
  */
-export function shell(
+function shell(
   strings: TemplateStringsArray,
   ...values: any[]
 ): LayerCommand {
@@ -212,38 +194,22 @@ export function app(name: string): LayerCommand {
   return open(`-a '${name}.app'`);
 }
 
-export type ModifierKey =
-  | "left_command" | "left_control" | "left_option" | "left_shift"
-  | "right_command" | "right_control" | "right_option" | "right_shift";
-
 /**
- * Base type for key combination output
+ * Creates a key combination layer with configurable behavior.
+ * When a trigger key is provided, useSimultaneous and variableMode are automatically set to true.
+ * @param trigger The trigger key
+ * @param combos The key combinations to create
+ * @param options Optional configuration:
+ *   - conditions: Additional conditions to apply
  */
-export type KeyComboOutput = {
-  key_code: KeyCode;
-  modifiers?: ModifierKey[];
-};
-
-/**
- * Base type for key combination definitions
- */
-export type BaseKeyComboDefinition = {
-  [key: string]: KeyComboOutput;
-};
-
-/**
- * Creates base manipulators for key combinations
- */
-function createBaseKeyCombo(
+export function createKeyCombo(
   trigger: KeyCode,
-  combos: BaseKeyComboDefinition,
+  combos: { [key: string]: { key_code: KeyCode; modifiers?: ModifiersKeys[] } },
   options: {
-    useSimultaneous?: boolean;
-    variableMode?: boolean;
     conditions?: Conditions[];
   } = {}
 ): Manipulator[] {
-  const { useSimultaneous = false, variableMode = false, conditions = [] } = options;
+  const { conditions = [] } = options;
   const variableName = `${trigger}-mode`;
   const manipulators: Manipulator[] = [];
 
@@ -256,98 +222,59 @@ function createBaseKeyCombo(
     // Base to configuration
     const baseTo = [output];
 
-    if (useSimultaneous) {
-      // Add mode-based handler
-      if (variableMode) {
-        manipulators.push({
-          type: "basic",
-          from: baseFrom,
-          to: baseTo,
-          conditions: [
-            {
-              type: "variable_if",
-              name: variableName,
-              value: 1,
-            },
-            ...conditions,
-          ],
-        });
-      }
+    // Add mode-based handler
+    manipulators.push({
+      type: "basic",
+      from: baseFrom,
+      to: baseTo,
+      conditions: [
+        {
+          type: "variable_if",
+          name: variableName,
+          value: 1,
+        },
+        ...conditions,
+      ],
+    });
 
-      // Add simultaneous handler
-      manipulators.push({
-        type: "basic",
-        from: {
-          simultaneous: [
-            { key_code: trigger },
-            { key_code: key as KeyCode },
-          ],
-          simultaneous_options: {
-            detect_key_down_uninterruptedly: true,
-            key_down_order: "strict",
-            key_up_order: "strict_inverse",
-            key_up_when: "any",
-            to_after_key_up: variableMode ? [
-              {
-                set_variable: {
-                  name: variableName,
-                  value: 0,
-                },
-              },
-            ] : undefined,
-          },
-        },
-        to: [
-          ...(variableMode ? [{
-            set_variable: {
-              name: variableName,
-              value: 1,
-            },
-          }] : []),
-          output,
+    // Add simultaneous handler
+    manipulators.push({
+      type: "basic",
+      from: {
+        simultaneous: [
+          { key_code: trigger },
+          { key_code: key as KeyCode },
         ],
-        parameters: {
-          "basic.simultaneous_threshold_milliseconds": 250,
+        simultaneous_options: {
+          detect_key_down_uninterruptedly: true,
+          key_down_order: "strict",
+          key_up_order: "strict_inverse",
+          key_up_when: "any",
+          to_after_key_up: [
+            {
+              set_variable: {
+                name: variableName,
+                value: 0,
+              },
+            },
+          ],
         },
-        conditions,
-      });
-    } else {
-      // Regular key combo with modifiers
-      manipulators.push({
-        type: "basic",
-        from: {
-          ...baseFrom,
-          modifiers: {
-            mandatory: [trigger as ModifierKey],
+      },
+      to: [
+        {
+          set_variable: {
+            name: variableName,
+            value: 1,
           },
         },
-        to: baseTo,
-        conditions,
-      });
-    }
+        output,
+      ],
+      parameters: {
+        "basic.simultaneous_threshold_milliseconds": 250,
+      },
+      conditions,
+    });
   });
 
   return manipulators;
-}
-
-/**
- * Creates a key combination layer with configurable behavior.
- * When a trigger key is provided, useSimultaneous and variableMode are automatically set to true.
- * @param trigger The trigger key
- * @param combos The key combinations to create
- * @param options Optional configuration:
- *   - conditions: Additional conditions to apply
- */
-export function createKeyCombo(
-  trigger: KeyCode,
-  combos: BaseKeyComboDefinition,
-  options: {
-    conditions?: Conditions[];
-  } = {}
-): Manipulator[] {
-  return createBaseKeyCombo(trigger, combos, {
-    useSimultaneous: true,
-    variableMode: true,
-    ...options
-  });
 }

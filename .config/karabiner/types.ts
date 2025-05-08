@@ -97,7 +97,7 @@ export interface SimultaneousOptions {
   to_after_key_up?: To[];
 }
 
-type ModifiersKeys =
+export type ModifiersKeys =
   | "caps_lock"
   | "left_command"
   | "left_control"
