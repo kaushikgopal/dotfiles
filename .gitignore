@@ -23,6 +23,7 @@
 .config/fish/functions/caperwt.fish
 
 
+
 # more as a backup
 !.config/zsh/
 !.config/zsh/**
@@ -34,6 +35,7 @@
 
 !.config/karabiner/
 !.config/karabiner/**
+.config/karabiner/karabiner-kt/
 
 !.vim/
 !.vim/pack/**

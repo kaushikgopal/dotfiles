@@ -9,5 +9,5 @@
     path = ~/.config/git/config-oss
 [includeIf "gitdir:~/src/per/"]
     path = ~/.config/git/config-per
-[includeIf "gitdir:~/.config/karabiner/karabiner-kt"]
+[includeIf "gitdir:~/.config/karabiner/karabiner-kt/"]
     path = ~/.config/git/config-per
