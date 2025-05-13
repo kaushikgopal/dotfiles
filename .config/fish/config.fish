@@ -65,7 +65,7 @@ if status is-interactive
     abbr --add --global gcob    'git checkout -B'
 
     abbr --add --global gcm     'git commit -m'
-    abbr --add --global gano    'git commit --amend --no-edit'
+    abbr --add --global gano    'git add .; git commit --amend --no-edit'
 
     abbr --add --global gchp    'git cherry-pick'
     abbr --add --global gs      "git status -s"
