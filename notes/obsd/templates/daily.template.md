@@ -11,10 +11,10 @@ refs:
 
 
 
-> [!info] Added this week
-> ```tasks
-> not done
-> <%*
+>[!info] Added this week
+>```tasks
+>not done
+><%*
   let days = [];
   let today = moment().format('YYYY-MM-DD');
   for(let i=0; i<7; i++) {
@@ -26,20 +26,20 @@ refs:
   let weekPath = `(path includes ${moment().year()}-w${moment().week()}.todo) AND (heading includes Accomplish this week)`;
   tR += days.join(' OR ') + ' OR ' + weekPath;
   %>
-> short mode
-> hide created date
-> hide edit button
-> hide task count
-> ```
+>short mode
+>hide created date
+>hide edit button
+>hide task count
+>```
 
 ![[✱ Inbox#Due]]
 
 
 
-> [!abstract] Last week  🕛
-> ```tasks
-> not done
-> <%*
+>[!abstract] Last week  🕛
+>```tasks
+>not done
+><%*
   // Calculate the start and end of last week (Sunday to Saturday)
   let start = moment().subtract(1, 'week').startOf('week');
   let days = [];
@@ -52,11 +52,11 @@ refs:
   // Combine all
   tR += days.join(' OR ') + ' OR ' + weekPath;
   %>
-> short mode
-> hide created date
-> hide edit button
-> hide task count
-> ```
+>short mode
+>hide created date
+>hide edit button
+>hide task count
+>```
 
 
 
