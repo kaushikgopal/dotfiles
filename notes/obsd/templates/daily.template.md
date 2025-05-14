@@ -6,12 +6,9 @@ refs:
 ---
 <% tp.file.cursor(1) %>
 
+## Tasks
 
-# Tasks
 
-- [ ]
-- [ ]
-- [ ]
 
 
 > [!info] Added this week

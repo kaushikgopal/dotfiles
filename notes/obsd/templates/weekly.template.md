@@ -5,8 +5,6 @@ week: <% moment().week() %>
 year:
   - "[[✱ Years#<% moment().year() %>|<% moment().year() %>]]"
 ---
-# Accomplish this week
-- [ ] 
 
 
 
@@ -14,10 +12,7 @@ year:
 
 
 
-
-
-
-| [[✱ Personal]] | [[✱ Writing\|✱ Writing]] |
+| [[✱ Inbox]] | [[✱ Writing\|✱ Writing]] |
 | -------------- | ------------------------ |
 | [[✱ Work]]     | [[✱ Fragmented]]         |
 | [[✱ grocery]]  | [[Henry 3.0]]            |
