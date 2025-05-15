@@ -18,7 +18,9 @@ refs:
 > not done
  <%*
   let conditions = [];
-  let today = moment();
+  let today = moment(); // This is the actual 'today'
+  let todayFormatted = today.format('YYYY-MM-DD');
+
   for (let i = 0; i < 4; i++) { // Current week + last 3 weeks
     let currentMoment = today.clone().subtract(i, 'weeks');
     let weekStart = currentMoment.clone().startOf('isoWeek'); // Start of ISO week (Monday)
@@ -26,10 +28,18 @@ refs:
 
     // Daily notes for this week
     let dailyPaths = [];
+
     for (let day = 0; day < 7; day++) {
-      dailyPaths.push(`(path includes ${weekStart.clone().add(day, 'day').format('YYYY-MM-DD')})`);
+      let dayInLoopFormatted = weekStart.clone().add(day, 'day').format('YYYY-MM-DD');
+
+      // Exclude if it's the current week (i === 0) AND the day being processed is actually 'today'
+      if (!(i === 0 && dayInLoopFormatted === todayFormatted)) {
+        dailyPaths.push(`(path includes ${dayInLoopFormatted})`);
+      }
     }
-    conditions.push(`(${dailyPaths.join(' OR ')})`);
+    if (dailyPaths.length > 0) { // Only add if there are paths to include
+        conditions.push(`(${dailyPaths.join(' OR ')})`);
+    }
 
     // Weekly .todo file for this week
     let year = weekStart.year();
