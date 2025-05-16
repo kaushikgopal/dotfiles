@@ -40,6 +40,9 @@
 !.vim/
 !.vim/pack/**
 
+!.firebender/
+!.firebender/**
+
 # -------------
 # Obsidian
 # -------------

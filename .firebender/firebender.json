@@ -1,0 +1,15 @@
+{
+  "rules": [
+    "User level rules for Kotlin",
+    {
+      "filePathMatches": "**/*.kt",
+      "rulesPaths": "~/.firebender/kt.mdc"
+    }
+  ],
+  "ignore": [
+    "build/**",
+    ".gradle/**"
+  ],
+  "mcpServers": {},
+  "mcpEnvFile": "path/to/env"
+}
