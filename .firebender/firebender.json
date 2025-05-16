@@ -2,21 +2,19 @@
   "rules": [
     {
       "filePathMatches": "*",
-      "rulesPaths": "general.mdc"
+      "rulesPaths": "/Users/kg/.firebender/general.mdc"
     },
     {
       "filePathMatches": ["**/*.kt", "**/*.kts"],
-      "rulesPaths": "kt.mdc"
+      "rulesPaths": "/Users/kg/.firebender/kt.mdc"
     },
     {
       "filePathMatches": ["**/*Test*.kt", "**/*Test*.kts"],
-      "rulesPaths": "kt-test.mdc"
+      "rulesPaths": "/Users/kg/.firebender/kt-test.mdc"
     }
   ],
   "ignore": [
     "build/**",
     ".gradle/**"
-  ],
-  "mcpServers": {},
-  "mcpEnvFile": "path/to/env"
+  ]
 }
