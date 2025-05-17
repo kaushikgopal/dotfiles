@@ -49,6 +49,7 @@ refs:
   }
   tR += conditions.join(' OR ');
  %>
+> NOT (tag includes #grocery)
 > short mode
 > hide created date
 > hide edit button
