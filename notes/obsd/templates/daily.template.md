@@ -13,15 +13,16 @@ refs:
 
 
 
-> [!info] Last 4 weeks
+> [!info] Last week(s)
 > ```tasks
 > not done
+> filter by function ! 'forwarded'.includes(task.status.name)
  <%*
   let conditions = [];
   let today = moment(); // This is the actual 'today'
   let todayFormatted = today.format('YYYY-MM-DD');
 
-  for (let i = 0; i < 4; i++) { // Current week + last 3 weeks
+  for (let i = 0; i < 2; i++) { // Current week + last 3 weeks
     let currentMoment = today.clone().subtract(i, 'weeks');
     let weekStart = currentMoment.clone().startOf('isoWeek'); // Start of ISO week (Monday)
     let weekEnd = currentMoment.clone().endOf('isoWeek'); // End of ISO week (Sunday)
