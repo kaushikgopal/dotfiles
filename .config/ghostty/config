@@ -72,10 +72,39 @@ font-thicken                    = true
 #
 #font-feature            = ""
 #font-family             = ""
+#
+# font-family                              = TX-02-Variable
+# adjust-cell-height                       = 18%
+# font-size                                = 12.5
+# font-feature            = ss05,ss06,ss12
+# font-variation          = wght=400
+# font-variation-bold     = wght=750
 
-font-family                              = TX-02-Variable
-adjust-cell-height                       = 18%
-font-size                                = 12.5
-font-feature            = ss05,ss06,ss12
-font-variation          = wght=400
-font-variation-bold     = wght=750
+# Commit Mono ------------->
+
+font-family                              = CommitMonoV143
+font-style                               = 450 Regular
+font-style-italic                        = 450 Italic
+font-style-bold                          = 700 Regular
+font-style-bold-italic                   = 700 Italic
+
+adjust-cell-height                       = 20%
+font-size                                = 14
+font-feature                             = ss01
+                                         # ligatures
+font-feature                             = ss02
+                                         # arrows
+font-feature                             = ss03
+                                         # smart case
+font-feature                             = ss04
+                                         # smart spacing
+font-feature                             = ss05
+                                         # smart kerning
+font-feature                             = cv02
+                                         # alt g
+font-feature                             = cv04
+                                         # alt i
+#font-feature                             = cv06
+                                         # alt 6/9
+font-feature                             = cv08
+                                         # alt italics
