@@ -207,18 +207,18 @@
     compactionHeuristic = true
     show = delta
 [delta]
-    file-decoration-style = black ul
+    file-decoration-style = brightblack ul
     file-style = box gray
-    hunk-header-decoration-style = black ul
+    hunk-header-decoration-style = brightblack ul
     hunk-header-style = omit
     line-numbers = true
     line-numbers-left-format = {nm:>3}│
-    line-numbers-left-style = black
-    line-numbers-minus-style = black
-    line-numbers-plus-style = black
+    line-numbers-left-style = brightblack
+    line-numbers-minus-style = brightblack
+    line-numbers-plus-style = brightblack
     line-numbers-right-format = {np:>3}│
-    line-numbers-right-style = black
-    line-numbers-zero-style = black
+    line-numbers-right-style = brightblack
+    line-numbers-zero-style = brightblack
     minus-emph-style = red bold
     minus-empty-line-marker-style = omit
     minus-style = red
@@ -230,7 +230,7 @@
     syntax-theme = base16
     true-color = auto
     whitespace-error-style = red reverse
-    zero-style = black
+    zero-style = brightblack
 
 [pager]
   show = delta
