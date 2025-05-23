@@ -163,7 +163,7 @@ cask "webpquicklook"
 cask "cursor"
 # cask "visual-studio-code"
 
-# cask "ghostty"
+cask "ghostty"
 cask "warp"
 
 cask "brave-browser"

@@ -17,7 +17,11 @@ shell-integration               = fish
 ##############################################
 # Look and Feel
 # ghostty +list-themes
-theme                           = in-bed-by-7
+#theme                           = 0x96f
+#theme                           = Adwaita Dark
+#theme                           = xcodedarkhc
+theme                           = Batman
+theme                           = vesper
 adjust-cursor-thickness         = 3
 adjust-underline-position       = 3
 
