@@ -73,6 +73,9 @@ font-thicken                    = true
 #font-feature            = ""
 #font-family             = ""
 #
+
+# Berkeley Mono ------------->
+
 # font-family                              = TX-02-Variable
 # adjust-cell-height                       = 18%
 # font-size                                = 12.5
@@ -83,13 +86,13 @@ font-thicken                    = true
 # Commit Mono ------------->
 
 font-family                              = CommitMonoV143
-font-style                               = 450 Regular
-font-style-italic                        = 450 Italic
+font-style                               = 475 Regular
+font-style-italic                        = 475 Italic
 font-style-bold                          = 700 Regular
 font-style-bold-italic                   = 700 Italic
 
 adjust-cell-height                       = 20%
-font-size                                = 14
+font-size                                = 13
 font-feature                             = ss01
                                          # ligatures
 font-feature                             = ss02
