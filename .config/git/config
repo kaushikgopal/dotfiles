@@ -4,7 +4,6 @@
   #excludesfile   = ~/.config/git/ignore
   attributesfile = ~/.config/git/attributes
   whitespace = trailing-space,space-before-tab
-  pager = "delta"
 
 [alias]
     cleaner = !git branch --merged master --no-color | grep -v '^[ *]*master$' | xargs git branch -d
@@ -205,35 +204,6 @@
     colorMoved = default
     mnemonicprefix = true
     compactionHeuristic = true
-    show = delta
-[delta]
-    file-decoration-style = brightblack ul
-    file-style = box gray
-    hunk-header-decoration-style = brightblack ul
-    hunk-header-style = omit
-    line-numbers = true
-    line-numbers-left-format = {nm:>3}│
-    line-numbers-left-style = brightblack
-    line-numbers-minus-style = brightblack
-    line-numbers-plus-style = brightblack
-    line-numbers-right-format = {np:>3}│
-    line-numbers-right-style = brightblack
-    line-numbers-zero-style = brightblack
-    minus-emph-style = red bold
-    minus-empty-line-marker-style = omit
-    minus-style = red
-    navigate = false
-    plus-emph-style = green bold
-    plus-empty-line-marker-style = omit
-    plus-style = green
-    side-by-side = false
-    syntax-theme = base16
-    true-color = auto
-    whitespace-error-style = red reverse
-    zero-style = brightblack
-
-[pager]
-  show = delta
 
 [merge]
   tool = idea
@@ -250,9 +220,6 @@
 ;   cmd = meld "$LOCAL" "$BASE" "$REMOTE" --output "$MERGED"
 [mergetool "vscode"]
   cmd = code --wait $MERGED
-
-[interactive]
-  diffFilter = delta
 
 [pull]
   rebase = false
@@ -292,3 +259,103 @@
 	prune = true
 [rebase]
 	updateRefs = true
+
+
+
+############################################
+## DELTA
+############################################
+[core]
+  pager = "delta"
+[interactive]
+  diffFilter = delta --color-only
+[delta]
+    navigate    = false  # use n and N to move between diff sections
+    features    = chameleon
+#    syntax-theme = base16
+#    file-decoration-style = brightblack ul
+#    file-style = box gray
+#    hunk-header-decoration-style = brightblack ul
+    hunk-header-style = omit
+    line-numbers = true
+    line-numbers-left-format = {nm:>3}
+#    line-numbers-left-style = brightblack
+#    line-numbers-minus-style = brightblack
+#    line-numbers-plus-style = brightblack
+    line-numbers-right-format = {np:>3} 
+#    line-numbers-right-style = brightblack
+#    line-numbers-zero-style = brightblack
+#    minus-emph-style = red bold
+#    minus-empty-line-marker-style = omit
+#    minus-style = red
+#    plus-emph-style = green bold
+#    plus-empty-line-marker-style = omit
+#    plus-style = green
+#    side-by-side = false
+#    true-color = auto
+#    whitespace-error-style = red reverse
+#    zero-style = brightblack
+#
+[diff]
+    colorMoved = default
+    mnemonicprefix = true
+    compactionHeuristic = true
+    show = delta
+[pager]
+  show = delta
+[merge]
+  conflictStyle = zdiff3
+
+[delta "chameleon"] # https://github.com/AirOnSkin/dotfiles/blob/main/dot_gitconfig.tmpl
+  # features
+  dark = true
+  tabs = 2
+  line-numbers = true
+  side-by-side = true
+  keep-plus-minus-markers = false
+  syntax-theme = Nord
+
+  # file style
+  file-style = "#434C5E" bold
+  file-decoration-style = "#434C5E" ul
+  file-added-label = [+]
+  file-copied-label = [==]
+  file-modified-label = [*]
+  file-removed-label = [-]
+  file-renamed-label = [->]
+
+  # hunk header style
+  hunk-header-style = omit
+
+  # line numbers style
+  line-numbers-left-format = " {nm:>3} │"
+  line-numbers-left-style = red
+  line-numbers-right-format = " {np:>3} │"
+  line-numbers-right-style = green
+  line-numbers-minus-style = red italic brightblack
+  line-numbers-plus-style = green italic brightblack
+  line-numbers-zero-style = "#434C5E" italic
+
+  # diff style
+  minus-style = bold red # line removed
+  minus-emph-style = bold "#202020" red # changed part of line
+  minus-non-emph-style = bold # changed line backdrop
+  plus-style = bold green # line added
+  plus-emph-style = bold "#202020" green # changed part of line
+  plus-non-emph-style = bold # changed line backdrop
+
+  # unchanged lines style
+  zero-style = syntax
+
+  # style for git blame
+  blame-code-style = syntax
+  blame-format = "{author:<18} ({commit:>9}) {timestamp:^16}"
+  blame-palette = "#2E3440" "#3B4252" "#434C5E" "#4C566A"
+
+  # merge conflict style
+  merge-conflict-begin-symbol = ~
+  merge-conflict-end-symbol = ~
+  merge-conflict-ours-diff-header-style = yellow bold
+  merge-conflict-ours-diff-header-decoration-style = "#434C5E" box
+  merge-conflict-theirs-diff-header-style = yellow bold
+  merge-conflict-theirs-diff-header-decoration-style = "#434C5E" box
