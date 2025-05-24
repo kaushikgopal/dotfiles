@@ -332,7 +332,7 @@
   line-numbers-left-style = red
   line-numbers-right-format = " {np:>3} │"
   line-numbers-right-style = green
-  line-numbers-minus-style = red italic brightblack
+  line-numbers-minus-style = red italic black
   line-numbers-plus-style = green italic brightblack
   line-numbers-zero-style = "#434C5E" italic
 

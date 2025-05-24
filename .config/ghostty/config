@@ -17,11 +17,8 @@ shell-integration               = fish
 ##############################################
 # Look and Feel
 # ghostty +list-themes
-#theme                           = 0x96f
-#theme                           = Adwaita Dark
-#theme                           = xcodedarkhc
 theme                           = Batman
-theme                           = vesper
+theme                           = Adwaita Dark
 adjust-cursor-thickness         = 3
 adjust-underline-position       = 3
 
@@ -88,14 +85,13 @@ font-thicken                    = true
 # font-variation-bold     = wght=750
 
 # Commit Mono ------------->
-
 font-family                              = CommitMonoV143
 font-style                               = 475 Regular
 font-style-italic                        = 475 Italic
 font-style-bold                          = 700 Regular
 font-style-bold-italic                   = 700 Italic
 
-adjust-cell-height                       = 20%
+adjust-cell-height                       = 23%
 font-size                                = 13
 font-feature                             = ss01
                                          # ligatures
@@ -113,5 +109,7 @@ font-feature                             = cv04
                                          # alt i
 #font-feature                             = cv06
                                          # alt 6/9
+#font-feature                             = cv07
+                                         # dotted 0
 font-feature                             = cv08
                                          # alt italics
