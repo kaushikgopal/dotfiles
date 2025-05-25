@@ -42,11 +42,6 @@ window-padding-balance          = true
 
 font-thicken                    = true
 
-
-#font-family                              = Source Code Pro
-#adjust-cell-height                       = 12%
-#font-size                                = 12.5
-#
 #font-feature            = ""
 #font-family             = ""
 #
@@ -75,41 +70,51 @@ font-thicken                    = true
 #font-family             = ""
 #
 
-# Berkeley Mono ------------->
+# Berkeley Mono -------- -->
 
-# font-family                              = TX-02-Variable
-# adjust-cell-height                       = 18%
-# font-size                                = 12.5
-# font-feature            = ss05,ss06,ss12
-# font-variation          = wght=400
-# font-variation-bold     = wght=750
+font-family             = TX-02-Variable
+font-variation          = wght=400
+font-variation-bold     = wght=750
 
-# Commit Mono ------------->
-font-family                              = CommitMonoV143
-font-style                               = 475 Regular
-font-style-italic                        = 475 Italic
-font-style-bold                          = 700 Regular
-font-style-bold-italic                   = 700 Italic
+adjust-cell-height      = 12%
+font-size               = 14
 
-adjust-cell-height                       = 23%
-font-size                                = 13
-font-feature                             = ss01
-                                         # ligatures
-font-feature                             = ss02
-                                         # arrows
-font-feature                             = ss03
-                                         # smart case
-font-feature                             = ss04
-                                         # smart spacing
-font-feature                             = ss05
-                                         # smart kerning
-font-feature                             = cv02
-                                         # alt g
-font-feature                             = cv04
-                                         # alt i
-#font-feature                             = cv06
-                                         # alt 6/9
-#font-feature                             = cv07
-                                         # dotted 0
-font-feature                             = cv08
-                                         # alt italics
+font-feature            = ss01
+                        # slashed 0; ss02 - dotted 0; ss03 - inverted slash
+font-feature            = ss05
+                        # german r
+font-feature            = ss06
+                        # alternative pipe
+font-feature            = ss12
+                        # ligatures ->
+
+## Commit Mono ---------- -->
+# font-family                              = CommitMonoV143
+# font-style                               = 475 Regular
+# font-style-italic                        = 475 Italic
+# font-style-bold                          = 700 Regular
+# font-style-bold-italic                   = 700 Italic
+#
+# adjust-cell-height                       = 26%
+# font-size                                = 13
+
+# font-feature                             = ss01
+#                                          # ligatures
+# font-feature                             = ss02
+#                                          # arrows
+# font-feature                             = ss03
+#                                          # smart case
+# font-feature                             = ss04
+#                                          # smart spacing
+# font-feature                             = ss05
+#                                          # smart kerning
+# font-feature                             = cv02
+#                                          # alt g
+# font-feature                             = cv04
+#                                          # alt i
+# #font-feature                             = cv06
+#                                          # alt 6/9
+# #font-feature                             = cv07
+#                                          # dotted 0
+# font-feature                             = cv08
+#                                          # alt italics
