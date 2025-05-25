@@ -94,6 +94,10 @@ body .theme-dark .cm-inline-code {
     --code-background: var(--hl1);
 }
 
+body .cm-line {
+    font-feature-settings: "ss05", "ss06", "ss12";
+}
+
 /* *******************
  * Hashtags */
 /* display hashtags with normal font size */
