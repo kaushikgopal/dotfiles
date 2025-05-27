@@ -164,7 +164,7 @@ cask "cursor"
 # cask "visual-studio-code"
 
 cask "ghostty"
-cask "warp"
+#cask "warp"
 
 cask "brave-browser"
 cask "google-chrome"
