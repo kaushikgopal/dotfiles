@@ -850,7 +850,7 @@
                             {
                                 "type": "basic",
                                 "from": {
-                                    "key_code": "a",
+                                    "key_code": "s",
                                     "modifiers": {
                                         "mandatory": [
                                             "right_control",
@@ -869,7 +869,7 @@
                             {
                                 "type": "basic",
                                 "from": {
-                                    "key_code": "i",
+                                    "key_code": "a",
                                     "modifiers": {
                                         "mandatory": [
                                             "right_control",
