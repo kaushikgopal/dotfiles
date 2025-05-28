@@ -19,6 +19,7 @@ tap "buo/cask-upgrade" # better cask upgrading (see `cu`)
 ##### CLI tools
 
 brew "bat"
+brew "btop"
 brew "coreutils" # for gnu date
 brew "curl"
 brew "fastfetch"
@@ -30,7 +31,6 @@ brew "gnupg" # "openssl"
 brew "gum"
 brew "htmltest"
 brew "httpie"
-brew "htop"
 brew "hugo"
 brew "imagemagick"
 brew "mas"
