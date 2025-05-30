@@ -3,8 +3,9 @@ description:
 globs: *.kt
 alwaysApply: false
 ---
-- always prefer writing code that is easier to read and maintain
+- declare the type of each variable and function (parameters and return value)
 - use nullable types sparingly
 - prefer immutable over mutable types
 - only write concise and clear code comments
 - code comments should explain why (not what) and how (if code is complex)
+- use trailing commas where possible
