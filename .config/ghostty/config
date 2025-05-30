@@ -18,7 +18,7 @@ shell-integration               = fish
 # Look and Feel
 # ghostty +list-themes
 theme                           = Batman
-theme                           = Adwaita Dark
+#theme                           = Adwaita Dark
 adjust-cursor-thickness         = 3
 adjust-underline-position       = 3
 
