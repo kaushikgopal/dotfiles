@@ -93,6 +93,13 @@ body {
 /* *******************
  * Code blocks */
 
+body .cm-line {
+    /* font-feature-settings for Berkeley Mono */
+    font-feature-settings: "ss05", "ss06", "ss12";
+    font-weight: 550;
+}
+
+
 body .theme-light .cm-inline-code {
     /*--code-background: var(--background-primary-alt);*/
     --code-background: #ffdb9a;
@@ -101,11 +108,6 @@ body .theme-light .cm-inline-code {
 body .theme-dark .cm-inline-code {
     /*--code-background: var(--background-primary-alt);*/
     --code-background: var(--hl1);
-}
-
-body .cm-line {
-    /* font-feature-settings for Berkeley Mono */
-    font-feature-settings: "ss05", "ss06", "ss12";
 }
 
 /* *******************
