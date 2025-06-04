@@ -103,7 +103,6 @@ brew "postgresql"
 
 ######################
 ##### Javascript and TypeScript
-brew "ts-node"
 brew "typescript"
 brew "node"
 
