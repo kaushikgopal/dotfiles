@@ -95,7 +95,7 @@ body {
 
 body .cm-line {
     /* font-feature-settings for Berkeley Mono */
-    font-feature-settings: "ss05", "ss06", "ss12";
+    font-feature-settings: "ss01", "ss05", "ss12";
     font-weight: 550;
 }
 
