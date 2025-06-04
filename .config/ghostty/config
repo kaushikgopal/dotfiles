@@ -70,13 +70,13 @@ font-thicken                    = true
 #font-family             = ""
 #
 
-# Berkeley Mono -------- -->
+# Berkeley Mono (TX-02-Variable) -------- -->
 
 font-family             = TX-02-Variable
 font-variation          = wght=400
 font-variation-bold     = wght=750
 
-adjust-cell-height      = 12%
+adjust-cell-height      = 11%
 font-size               = 14
 
 font-feature            = ss01
