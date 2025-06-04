@@ -17,8 +17,8 @@ shell-integration               = fish
 ##############################################
 # Look and Feel
 # ghostty +list-themes
-theme                           = Batman
-#theme                           = Adwaita Dark
+theme                           = batman-kg
+theme                           = Ayu Mirage
 adjust-cursor-thickness         = 3
 adjust-underline-position       = 3
 
