@@ -27,9 +27,8 @@ brew "fd"
 brew "ffmpeg"
 brew "fzf"
 brew "gawk"
+brew "ghostscript" # for pdfs
 brew "gnupg" # "openssl"
-brew "gum"
-brew "htmltest"
 brew "httpie"
 brew "hugo"
 brew "imagemagick"
@@ -37,27 +36,27 @@ brew "llm"
 brew "mas"
 brew "openssl"
 brew "pgcli"
-brew "poppler"
 brew "powerlevel10k"
 brew "renameutils" # bulk renaming / copying
 brew "ripgrep"
 brew "rsync"
 brew "sox"
-brew "xmlstarlet" # fine-grain xml manipulation
+brew "trash"
+brew "tree"
+brew "wget"
+brew "yt-dlp"
+brew "zoxide"
 
+#brew "xmlstarlet" # fine-grain xml manipulation
+#brew "poppler"
+#brew "gum"
 # brew "neovim"
 # brew "briss" # pdf cropping tool
 # brew "exa"
 # brew "tmux"
 # brew "exiftool"
 # brew "eye-d3"
-
-brew "trash"
-brew "tree"
-brew "wget"
 #brew "youtube-dl"
-brew "yt-dlp"
-brew "zoxide"
 
 brew "fish"
 # brew "zsh-autosuggestions"          # fish like suggestions (from history + completions)
@@ -69,13 +68,11 @@ brew "fish"
 
 #############
 ##### general
-
 brew "gh"
 brew "git-delta"
 brew "git-lfs"
 brew "git"
 brew "github-keygen"
-
 # brew "docker-compose"
 # brew "docker-credential-helper-ecr"
 # cask "docker"
@@ -83,11 +80,10 @@ brew "github-keygen"
 ######################
 ##### Web dev
 brew "caddy"            # for remapping localhost
-
+brew "htmltest"
 
 ######################
 ##### android (zulu)
-
 # tap "mdogan/zulu"     # use sdk man
 # cask "zulu-jdk17"     # use sdk man
 # brew "kotlin"         # use sdk man
@@ -99,8 +95,6 @@ tap "sdkman/tap"
 brew "sdkman-cli"
 
 #########
-##### .rb
-
 # brew "asdf"
 # brew "ruby-build"
 brew "rbenv"
@@ -140,12 +134,6 @@ brew "grpcurl" # caper
 
 
 ##############################################################
-##### Karabiner
-#tap "candid82/brew"
-cask "karabiner-elements"
-
-
-##############################################################
 ##### Mac apps
 # install 1password manually
 #cask "1password"
@@ -153,6 +141,7 @@ cask "karabiner-elements"
 cask "google-drive"
 cask "imageoptim"
 cask "jetbrains-toolbox"
+cask "karabiner-elements"
 cask "netnewswire"
 #cask "notunes"
 cask "obsidian"
@@ -166,11 +155,9 @@ cask "cursor"
 # cask "visual-studio-code"
 
 cask "ghostty"
-#cask "warp"
 
 cask "brave-browser"
 cask "google-chrome"
-#cask "arc"
 
 #cask "keyboard-maestro"
 #cask "loopback"
@@ -178,39 +165,30 @@ cask "google-chrome"
 #cask "superduper"
 #cask "soulver"
 
-cask "font-source-code-pro"
-
-cask "font-figtree"             # closest to Circular
-cask "font-plus-jakarta-sans"
-
+cask "font-figtree"
 cask "font-sn-pro"
-
 cask "font-inter"
 cask "font-geist"
 cask "font-geist-mono"
 
+#cask "font-source-code-pro"
 #cask "font-sf-pro"
 #cask "font-sf-compact"
 #cask "font-sf-mono"
-
-# cask "font-source-code-pro" # install otf directly from Adobe
-# cask "font-source-sans-3"   # install otf directly from Adobe
-
-# cask "font-ia-writer-duo"
-# cask "font-ia-writer-mono"
-# cask "font-ia-writer-quattro"
-# cask "font-ibm-plex"
-# cask "font-ibm-plex-mono"
-# cask "font-ibm-plex-sans"
-# cask "font-ibm-plex-serif"
-# cask "font-ibm-plex-mono-kg"
-
-# cask "font-recursive-kg"
-# cask "font-roboto-mono"
-# cask "font-cascadia-code"
-# cask "font-cascadia-code-pl"
-# cask "font-new-york"
-
+#cask "font-plus-jakarta-sans"
+#cask "font-ia-writer-duo"
+#cask "font-ia-writer-mono"
+#cask "font-ia-writer-quattro"
+#cask "font-ibm-plex"
+#cask "font-ibm-plex-mono"
+#cask "font-ibm-plex-sans"
+#cask "font-ibm-plex-serif"
+#cask "font-ibm-plex-mono-kg"
+#cask "font-recursive-kg"
+#cask "font-roboto-mono"
+#cask "font-cascadia-code"
+#cask "font-cascadia-code-pl"
+#cask "font-new-york"
 
 # mas "iA Writer", id: 775737590
 # mas "Xcode", id: 497799835
