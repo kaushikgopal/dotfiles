@@ -92,6 +92,9 @@ if status is-interactive
 
     abbr --add --global gwt 'git worktree'
 
+    # llm commands
+    abbr --add --global lm llm
+    abbr --add --global lmc llm cmd
 
     # programs
     abbr --add --global hu hugo
