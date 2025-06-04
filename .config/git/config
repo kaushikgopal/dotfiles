@@ -182,11 +182,11 @@
     manyFiles = 1
 
 [color]
-  ui = always           # Use colors in Git commands that are capable of colored output when outputting to the terminal
+  ui = always           # all output (not intended for machine consumption) should always use color
 [color "branch"]
-  current = yellow reverse
-  local = yellow
-  remote = green
+#  current = yellow reverse
+#  local = yellow
+#  remote = green
 [color "diff"]
 #  meta = magenta bold
 #  frag = cyan bold
@@ -194,11 +194,11 @@
 #  new = green reverse
 #  whitespace = red reverse
 [color "status"]
-  header = white normal dim
-  added = red
-  changed = green
-  untracked = blue
-  branch = yellow
+#  header = white normal dim
+#  added = red
+#  changed = green
+#  untracked = blue
+#  branch = yellow
 
 [diff]
     colorMoved = default
