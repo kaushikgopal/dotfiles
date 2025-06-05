@@ -34,6 +34,10 @@
 /* *******************
  * General theme */
 
+body {
+    --code-size: var(--font-smallest);
+}
+
 body.theme-dark {
     --background-primary: #1a1a1a;
 }
@@ -95,9 +99,8 @@ body {
 
 body .HyperMD-codeblock {
     /* font-feature-settings for Berkeley Mono */
-    font-weight: 500;
+    font-weight: 600;
     font-feature-settings: "ss01", "ss05", "ss12";
-    line-height: 1.4;
 }
 
 
