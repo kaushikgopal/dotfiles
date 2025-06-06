@@ -48,3 +48,9 @@ web:*.{html,css,js}*
 #
 #  lah .git/hooks | rg -v '\.sample'   # invert the match with -v
 
+# List filenames
+# rg foo --files-with-matches  # list the filenames vs. results
+# rg foo -l
+# rg foo --files-without-match
+
+
