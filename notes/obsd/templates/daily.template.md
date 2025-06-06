@@ -1,7 +1,7 @@
 ---
 tags:
   - daily
-refs:
+categories:
   - '[[<% moment().year() + "-w" + moment().week() + ".todo"%>]]'
 ---
 <% tp.file.cursor(1) %>
@@ -58,10 +58,10 @@ refs:
 
 ![[✱ Inbox#Due]]
 
-| [[✱ Inbox]] | [[✱ Writing\|✱ Writing]] |
-| -------------- | ------------------------ |
-| [[✱ Work]]     | [[✱ Fragmented]]         |
-| [[✱ grocery]]  | [[Henry 3.0]]            |
-| [[✱ Skyview]]  | [[unsorted.todo]]        |
+| [[✱ Inbox]]   | [[✱ Writing\|✱ Writing]] |
+| ------------- | ------------------------ |
+| [[✱ Work]]    | [[✱ Fragmented]]         |
+| [[✱ grocery]] | [[Henry 3.0]]            |
+| [[✱ Skyview]] | [[unsorted.todo]]        |
 ***
 [[<% fileDate = moment(tp.file.title, 'YYYY-MM-DD').subtract(1, 'd').format('YYYY-MM-DD') %>|⇤]]  | **<% moment(tp.file.title,'YYYY-MM-DD').format("dddd") %>** | [[<% fileDate = moment(tp.file.title, 'YYYY-MM-DD').add(1, 'd').format('YYYY-MM-DD') %>|⇥]]

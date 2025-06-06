@@ -1,5 +1,5 @@
 ---
-refs:
+categories:
   - "[[People]]"
 tags:
 phone:

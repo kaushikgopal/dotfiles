@@ -3,7 +3,7 @@
     "aliases": "aliases",
     "cssclasses": "multitext",
     "tags": "tags",
-    "refs": "multitext",
+    "categories": "multitext",
     "loc": "multitext",
     "url": "multitext",
     "created": "date",
