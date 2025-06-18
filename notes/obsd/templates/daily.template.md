@@ -60,8 +60,8 @@ categories:
 
 | [[✱ Inbox]]   | [[✱ Writing\|✱ Writing]] |
 | ------------- | ------------------------ |
-| [[✱ Work]]    | [[✱ Fragmented]]         |
+| [[✱ Work]]    | [[Fragmented]]         |
 | [[✱ grocery]] | [[Henry 3.0]]            |
-| [[✱ Skyview]] | [[unsorted.todo]]        |
+| [[Skyview]] | [[unsorted.todo]]        |
 ***
 [[<% fileDate = moment(tp.file.title, 'YYYY-MM-DD').subtract(1, 'd').format('YYYY-MM-DD') %>|⇤]]  | **<% moment(tp.file.title,'YYYY-MM-DD').format("dddd") %>** | [[<% fileDate = moment(tp.file.title, 'YYYY-MM-DD').add(1, 'd').format('YYYY-MM-DD') %>|⇥]]

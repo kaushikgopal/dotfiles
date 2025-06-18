@@ -14,9 +14,9 @@ year:
 
 | [[✱ Inbox]] | [[✱ Writing\|✱ Writing]] |
 | -------------- | ------------------------ |
-| [[✱ Work]]     | [[✱ Fragmented]]         |
+| [[✱ Work]]     | [[Fragmented]]         |
 | [[✱ grocery]]  | [[Henry 3.0]]            |
-| [[✱ Skyview]]  | [[unsorted.todo]]        |
+| [[Skyview]]  | [[unsorted.todo]]        |
 ***
 [Last week](<%*
 tR += moment().year() + "-w" +  moment().subtract(1, 'weeks').week() + ".todo"

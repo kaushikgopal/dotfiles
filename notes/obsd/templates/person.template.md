@@ -6,18 +6,13 @@ phone:
 email:
 association:
 org: []
-created: { { date } }
+created: {{ date }}
 ---
+# Open Items
 
-## Open Items
 
-```tasks
-description includes <% tp.file.title %>
-not done
-(no due date) OR (happens before in 20 days)
-short mode
-```
+# Meetings
 
-# Full name
 
-<% tp.file.cursor(1) %>
+
+
