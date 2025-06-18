@@ -78,7 +78,7 @@ font-family             = TX-02-Variable
 font-variation          = wght=475
 font-variation-bold     = wght=750
 
-adjust-cell-height      = 11%
+adjust-cell-height      = 10%
 font-size               = 14
 
 font-feature            = ss01
