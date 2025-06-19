@@ -18,8 +18,8 @@ shell-integration               = fish
 # Look and Feel
 # ghostty +list-themes
 #theme                           = Batman
-#theme                           = batman-kg
 theme                           = Sublette
+theme                           = batman-kg
 adjust-cursor-thickness         = 3
 adjust-underline-position       = 3
 background-opacity              = 0.98
