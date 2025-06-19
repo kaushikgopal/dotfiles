@@ -767,7 +767,7 @@
                                 },
                                 "to": [
                                     {
-                                        "shell_command": "open raycast://extensions/raycast/raycast/confetti"
+                                        "shell_command": "open -g raycast://extensions/raycast/raycast/confetti"
                                     }
                                 ]
                             },
