@@ -812,63 +812,6 @@
                             {
                                 "type": "basic",
                                 "from": {
-                                    "key_code": "o",
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "right_control",
-                                            "right_command",
-                                            "right_option",
-                                            "right_shift"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "shell_command": "open -a Obsidian.app"
-                                    }
-                                ]
-                            },
-                            {
-                                "type": "basic",
-                                "from": {
-                                    "key_code": "u",
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "right_control",
-                                            "right_command",
-                                            "right_option",
-                                            "right_shift"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "shell_command": "open -a 'Cursor.app'"
-                                    }
-                                ]
-                            },
-                            {
-                                "type": "basic",
-                                "from": {
-                                    "key_code": "s",
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "right_control",
-                                            "right_command",
-                                            "right_option",
-                                            "right_shift"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "shell_command": "open -a 'Android Studio.app'"
-                                    }
-                                ]
-                            },
-                            {
-                                "type": "basic",
-                                "from": {
                                     "key_code": "a",
                                     "modifiers": {
                                         "mandatory": [
@@ -907,7 +850,7 @@
                             {
                                 "type": "basic",
                                 "from": {
-                                    "key_code": "n",
+                                    "key_code": "f",
                                     "modifiers": {
                                         "mandatory": [
                                             "right_control",
@@ -919,7 +862,7 @@
                                 },
                                 "to": [
                                     {
-                                        "shell_command": "open -a 'Mission Control.app' --args 2"
+                                        "shell_command": "open -a 'Firefox.app'"
                                     }
                                 ]
                             },
@@ -939,6 +882,82 @@
                                 "to": [
                                     {
                                         "shell_command": "open -a 'Mission Control.app' --args 3"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "n",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "right_control",
+                                            "right_command",
+                                            "right_option",
+                                            "right_shift"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "shell_command": "open -a 'Mission Control.app' --args 2"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "o",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "right_control",
+                                            "right_command",
+                                            "right_option",
+                                            "right_shift"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "shell_command": "open -a Obsidian.app"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "s",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "right_control",
+                                            "right_command",
+                                            "right_option",
+                                            "right_shift"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "shell_command": "open -a 'Android Studio.app'"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "u",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "right_control",
+                                            "right_command",
+                                            "right_option",
+                                            "right_shift"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "shell_command": "open -a 'Cursor.app'"
                                     }
                                 ]
                             }
