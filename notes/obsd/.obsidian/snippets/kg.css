@@ -97,18 +97,18 @@ body {
 /* *******************
  * Code blocks */
 
-body .HyperMD-codeblock {
-    /* font-feature-settings for Berkeley Mono */
+body .HyperMD-codeblock,
+body .cm-inline-code {
+    font-weight: 460;
+    font-feature-settings: 'ss01','ss02','ss03','ss04','ss05', 'cv02','cv04','cv06','cv08';
+    /* font-feature-settings for Berkeley Mono
     font-weight: 600;
-    font-feature-settings: "ss01", "ss05", "ss12";
+    font-feature-settings: "ss01", "ss05", "ss12";*/
 }
-
-
 body .theme-light .cm-inline-code {
     /*--code-background: var(--background-primary-alt);*/
     --code-background: #ffdb9a;
 }
-
 body .theme-dark .cm-inline-code {
     /*--code-background: var(--background-primary-alt);*/
     --code-background: var(--hl1);
