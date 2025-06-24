@@ -257,8 +257,10 @@
 	sort = -committerdate
 [fetch]
 	prune = true
+
 [rebase]
 	updateRefs = true
+    autosquash = true  # see --fixup
 
 
 
