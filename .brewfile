@@ -79,7 +79,6 @@ brew "github-keygen"
 
 ######################
 ##### Web dev
-brew "caddy"            # for remapping localhost
 brew "htmltest"
 
 ######################
