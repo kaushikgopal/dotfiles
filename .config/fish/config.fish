@@ -64,6 +64,7 @@ if status is-interactive
     abbr --add --global gco     'git checkout'  # checkout - regular
     abbr --add --global gcob    'git checkout -B'
 
+    abbr --add --global gcf     'git commit --fixup'
     abbr --add --global gcm     'git commit -m'
     abbr --add --global gano    'git add .; git commit --amend --no-edit'
 
@@ -107,6 +108,8 @@ if status is-interactive
     abbr --add --global cu cursor
     abbr --add --global cun cursor -n  # -n = --new-window
     abbr --add --global cur cursor -r  # -r = --reuse-window
+
+    abbr --add --global ts tailscale
 end
 
 
