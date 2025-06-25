@@ -29,6 +29,7 @@ brew "fzf"
 brew "gawk"
 brew "ghostscript" # for pdfs
 brew "gnupg" # "openssl"
+brew "gum"
 brew "httpie"
 brew "hugo"
 brew "imagemagick"
@@ -49,7 +50,6 @@ brew "zoxide"
 
 #brew "xmlstarlet" # fine-grain xml manipulation
 #brew "poppler"
-#brew "gum"
 # brew "neovim"
 # brew "briss" # pdf cropping tool
 # brew "exa"
