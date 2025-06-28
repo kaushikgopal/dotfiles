@@ -89,14 +89,14 @@ font-feature            = ss05
 font-feature            = ss12
                         # ligatures ->
 
-## Commit Mono ---------- -->
+# Commit Mono ---------- -->
 #font-family                              = CommitMonoV143
 #font-style                               = 475 Regular
 #font-style-italic                        = 475 Italic
 #font-style-bold                          = 700 Regular
 #font-style-bold-italic                   = 700 Italic
 #
-#adjust-cell-height                       = 18%
+#adjust-cell-height                       = 20%
 #font-size                                = 12.5
 #
 #font-feature                             = ss01
