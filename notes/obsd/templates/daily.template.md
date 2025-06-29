@@ -13,6 +13,8 @@ categories:
 
 
 
+![[✱ Inbox#Due]]
+
 > [!info] Last week(s)
 > ```tasks
 > not done
@@ -56,7 +58,6 @@ categories:
 > hide edit button
 > ```
 
-![[✱ Inbox#Due]]
 
 | [[✱ Inbox]]   | [[✱ Writing\|✱ Writing]] |
 | ------------- | ------------------------ |

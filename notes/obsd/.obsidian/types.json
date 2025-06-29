@@ -4,6 +4,7 @@
     "cssclasses": "multitext",
     "tags": "tags",
     "categories": "multitext",
+    "refs": "multitext",
     "loc": "multitext",
     "url": "multitext",
     "created": "date",
