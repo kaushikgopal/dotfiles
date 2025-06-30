@@ -78,7 +78,7 @@ font-variation          = wght=450
 font-variation-bold     = wght=750
 
 adjust-cell-height      = 8%
-font-size               = 12.5
+font-size               = 13
 
 font-feature            = ss01
                         # slashed 0; ss02 - dotted 0; ss03 - inverted slash
