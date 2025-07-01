@@ -17,6 +17,8 @@
     "year": "multitext",
     "week": "number",
     "rating": "number",
+    "publish": "checkbox",
+    "prio": "number",
     "TQ_explain": "checkbox",
     "TQ_extra_instructions": "text",
     "TQ_short_mode": "checkbox",
