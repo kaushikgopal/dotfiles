@@ -80,7 +80,7 @@ font-variation-bold     = wght=750
 adjust-cell-height      = 8%
 font-size               = 13
 
-font-feature            = ss01
+font-feature            = ss02
                         # slashed 0; ss02 - dotted 0; ss03 - inverted slash
 font-feature            = ss05
                         # german r
