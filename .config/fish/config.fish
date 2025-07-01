@@ -101,6 +101,8 @@ if status is-interactive
     # programs
     abbr --add --global hu hugo
 
+    abbr --add --global c claude
+
     abbr --add --global co code
     abbr --add --global con 'code --new-window'
     abbr --add --global cor 'code --reuse-window'
