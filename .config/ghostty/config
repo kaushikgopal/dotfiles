@@ -10,15 +10,27 @@ window-save-state               = always
 quit-after-last-window-closed   = true
 clipboard-trim-trailing-spaces  = true
 
+copy-on-select                  = clipboard
+mouse-hide-while-typing         = true
+focus-follows-mouse             = true
+
+
+##############################################
+# Shell config
 # because i have both zsh and fish (mark this explicitly)
+
 shell-integration               = fish
 #shell-integration-features      = cursor,sudo,title
+
 
 ##############################################
 # Look and Feel
 # ghostty +list-themes
-#theme                           = batman-kg
+theme                           = Blazer
 theme                           = Sublette
+theme                           = Galaxy
+theme                           = xcodedarkhc
+#theme                           = batman-kg
 adjust-cursor-thickness         = 3
 adjust-underline-position       = 3
 background-opacity              = 0.98
@@ -29,19 +41,16 @@ cursor-invert-fg-bg             = true
 cursor-opacity                  = 0.7
 link-url                        = true
 
-mouse-hide-while-typing         = true
-focus-follows-mouse             = true
-
 window-padding-x                = 10
 window-padding-y                = 8
 window-padding-balance          = true
 
+font-thicken                    = true
 
 ##############################################
 # Font combos
 # ghostty +list-fonts
 
-font-thicken                    = true
 
 #font-feature            = ""
 #font-family             = ""
