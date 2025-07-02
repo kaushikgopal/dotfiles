@@ -112,6 +112,9 @@ if status is-interactive
     abbr --add --global cur cursor -r  # -r = --reuse-window
 
     abbr --add --global ts tailscale
+
+    alias vimo='vimn'
+    alias vimt='vimn -t'
 end
 
 
