@@ -17,3 +17,7 @@
 
 ## Code Quality
 - See `rules/coding.mdc` for coding standards
+
+# explanations
+- be very detailed with summarizations
+- do not miss out important things

@@ -4,9 +4,12 @@ globs: "*"
 alwaysApply: true
 ---
 
-- Write better, maintainable code
+- Write better, maintainable code (readability is the most important attribute)
 - Implement features simply
 - Explain why (not what) in comments
 - Fix causes, not symptoms
 - No deprecated code
 - No trailing empty lines/characters
+
+# debugging
+- important: try to fix things at the cause, not the symptom
