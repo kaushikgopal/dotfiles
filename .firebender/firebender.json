@@ -2,15 +2,15 @@
   "rules": [
     {
       "filePathMatches": "*",
-      "rulesPaths": "/Users/kg/.firebender/general.mdc"
+      "rulesPaths": "/Users/kg/.ai/rules/coding.mdc"
     },
     {
       "filePathMatches": ["**/*.kt", "**/*.kts"],
-      "rulesPaths": "/Users/kg/.firebender/kt.mdc"
+      "rulesPaths": "/Users/kg/.ai/rules/kotlin.mdc"
     },
     {
       "filePathMatches": ["**/*Test*.kt", "**/*Test*.kts"],
-      "rulesPaths": "/Users/kg/.firebender/kt-test.mdc"
+      "rulesPaths": "/Users/kg/.ai/rules/kotlin-test.mdc"
     }
   ],
   "ignore": [
