@@ -84,6 +84,8 @@ if status is-interactive
 
     abbr --add --global gll 'git log --graph --decorate --date=short --pretty=format:"%C(magenta)%h%Creset %C(italic brightblack)%ad%C(reset)%C(auto) %s %C(blue)%an%C(auto) %D%C(reset)"'
     abbr --add --global gl 'git log --graph --decorate --date=short --topo-order -30 --pretty=format:"%C(magenta)%h%Creset %C(italic brightblack)%ad%C(reset)%C(auto) %s %C(blue)%an%C(auto) %D%C(reset)"'
+
+    abbr --add --global gms 'git merge --squash'
     abbr --add --global gmm 'git merge master'
 
     abbr --add --global greb 'git rebase --interactive HEAD~'
