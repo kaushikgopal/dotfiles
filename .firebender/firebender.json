@@ -2,7 +2,7 @@
   "rules": [
     {
       "filePathMatches": "*",
-      "rulesPaths": "/Users/kg/.ai/rules/coding.mdc"
+      "rulesPaths": "/Users/kg/.ai/instructions.md"
     },
     {
       "filePathMatches": ["**/*.kt", "**/*.kts"],
