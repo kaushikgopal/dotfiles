@@ -15,9 +15,4 @@
 - Confirm understanding before proceeding
 
 ## Code Quality
-- Write better, maintainable code
-- Implement features simply
-- Explain why (not what) in comments
-- Fix causes, not symptoms
-- No deprecated code
-- No trailing empty lines/characters
+- See `rules/coding.mdc` for coding standards

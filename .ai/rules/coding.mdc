@@ -1,0 +1,12 @@
+---
+description: General coding quality rules
+globs: "*"
+alwaysApply: true
+---
+
+- Write better, maintainable code
+- Implement features simply
+- Explain why (not what) in comments
+- Fix causes, not symptoms
+- No deprecated code
+- No trailing empty lines/characters
