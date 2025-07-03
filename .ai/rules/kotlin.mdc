@@ -1,0 +1,14 @@
+---
+description: Kotlin coding rules
+globs: "*.kt"
+alwaysApply: false
+---
+
+## Type Safety
+- Declare types for variables and functions (parameters + return values)
+- Use nullable types sparingly
+- Prefer immutable over mutable types
+
+## Code Style
+- Use trailing commas where possible
+- Concise, clear comments explaining why/how (not what)

@@ -22,6 +22,9 @@
 !.config/fish/functions/**
 .config/fish/functions/caperwt.fish
 
+# ai rules
+!.ai/
+!.ai/**
 
 
 # more as a backup
@@ -48,12 +51,6 @@
 # -------------
 
 !notes/
-!notes/obsd
-!notes/obsd/templates/
-!notes/obsd/.obsidian/
-
-!notes/obsd/.obsidian/snippets/
-!notes/obsd/.obsidian/snippets/**
 
 
-!notes/obsd/.obsidian/types.json
+**/.claude/settings.local.json
