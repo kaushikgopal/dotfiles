@@ -206,12 +206,14 @@
     compactionHeuristic = true
 
 [merge]
-  tool = idea
+  tool = cursor
 ;   log = true
 ;   stat = true
 ;   conflictStyle = diff3
 [mergetool]
   keepBackup = false
+[mergetool "cursor"]
+  cmd = cursor --wait $MERGED
 [mergetool "idea"]
   cmd = idea merge $LOCAL $REMOTE $BASE $MERGED
   trustExitCode = true
