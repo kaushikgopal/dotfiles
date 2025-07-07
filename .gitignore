@@ -22,6 +22,8 @@
 !.config/fish/functions/**
 .config/fish/functions/caperwt.fish
 
+!.config/starship.toml
+
 # ai rules
 !.ai/
 !.ai/**

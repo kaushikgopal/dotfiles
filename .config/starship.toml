@@ -1,0 +1,169 @@
+# Configuring starship
+
+command_timeout = 200
+
+# Inserts a blank line between shell prompts
+add_newline = true
+
+###############################################
+# overarching prompt format
+
+# functionally equivalent to $all
+format = """
+$username\
+$hostname\
+$localip\
+$shlvl\
+$directory\
+$git_branch\
+$git_status\
+$time\
+$git_commit\
+$git_state\
+$git_metrics\
+$battery\
+$docker_context\
+$package\
+$golang\
+$java\
+$kotlin\
+$nodejs\
+$python\
+$ruby\
+$rust\
+$swift\
+$memory_usage\
+$env_var\
+$custom\
+$sudo\
+$cmd_duration\
+$jobs\
+$status\
+$container\
+$shell\
+$character\
+"""
+
+# $aws\
+# $azure\
+# $buf\
+# $c\
+# $cmake\
+# $cobol\
+# $conda\
+# $crystal\
+# $daml\
+# $dart\
+# $deno\
+# $dotnet\
+# $elixir\
+# $elm\
+# $erlang\
+# $gcloud\
+# $git_status\
+# $haskell\
+# $helm\
+# $hg_branch\
+# $julia\
+# $kubernetes\
+# $lua\
+# $nim\
+# $nix_shell\
+# $ocaml\
+# $openstack\
+# $perl\
+# $php\
+# $pulumi\
+# $purescript\
+# $raku\
+# $red\
+# $rlang\
+# $scala\
+# $singularity\
+# $spack\
+# $terraform\
+# $vagrant\
+# $vcsh\
+# $vlang\
+# $zig\
+
+###############################################
+
+
+# Replace the "❯" symbol in the prompt with "$"
+[character]
+success_symbol  = "[‡](#878787)\n"
+error_symbol    = "[‡](red)\n"
+
+
+[directory]
+format = "[ $path ]($style)"
+style = "fg:black bg:blue"
+truncation_length = 0
+truncate_to_repo = false
+truncation_symbol = "…/"
+
+[git_branch]
+symbol = ""
+format = "[$symbol $branch ]($style)"
+style = "bg:3 fg:black"
+#format = "on [$symbol$branch]($style) "
+
+[git_status]
+# https://starship.rs/config/#git-status
+format = ' [$staged$modified$deleted $untracked $conflicted$stashed$renamed $ahead_behind]($style) '
+# style = "bold black"
+#format = '([\[$all_status$ahead_behind\]]($style) )'
+#all_status : $conflicted$stashed$deleted$renamed$modified$staged$untracked
+staged = "[+${count}](green)"
+modified = "[*${count}](yellow)"
+deleted = "[-${count}](red)"
+
+conflicted = "🤼 ${count}"
+stashed = "📦 [+${count}](white)"
+renamed = "🎭 ${count}"
+untracked = "🐾 ${count}"
+
+# ahead_behind
+ahead = "🐰"
+behind = "🐢"
+diverged = "🙈"
+
+[battery]
+full_symbol = " 🔋 "
+charging_symbol = " 🔌 "
+discharging_symbol = " 💀 "
+unknown_symbol = " 📟 "
+
+# "bold red" style when capacity is between 0% and 10%
+[[battery.display]]
+threshold = 50
+style = "1"
+
+# "bold yellow" style when capacity is between 10% and 30%
+[[battery.display]]
+threshold = 30
+style = "yellow"
+
+[username]
+format = "[ $user@]($style)"
+style_user = "bg:white fg:black"
+
+[hostname]
+format = "[$hostname ]($style)(#878787)"
+style = "bg:white fg:black"
+
+[nodejs]
+symbol = "📦"
+
+[time]
+disabled = false
+format = "[ $time ]($style)"
+style = "fg:8"
+
+# [jobs]
+# symbol = "+ "
+# threshold = 4
+
+# [package]
+# symbol = "🎁 "
