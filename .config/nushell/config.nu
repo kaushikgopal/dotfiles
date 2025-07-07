@@ -87,6 +87,8 @@ alias rgu = rg -uuu  # see .ripgreprc
 
 # git commands
 alias g = git
+alias ga = git add .
+
 alias gco = git checkout
 alias gm = git checkout master
 alias gma = git checkout main
