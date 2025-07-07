@@ -100,6 +100,7 @@ alias gcm = git commit -m
 alias gcf = git commit --fixup
 
 alias gs = git status -s
+alias gsu = git ls-files --other --directory --exclude-standard # list all untracked things
 
 alias gss = git stash save
 alias gsp = git stash pop
