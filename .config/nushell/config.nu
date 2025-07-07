@@ -157,3 +157,11 @@ def vimn [dir:string = "/tmp"] {
 }
 alias vimo = vimn "o"
 alias vimt = vimn
+
+
+# ----------------------------------------
+# prompt (powered by starship)
+# ----------------------------------------
+
+mkdir ($nu.data-dir | path join "vendor/autoload")
+starship init nu | save -f ($nu.data-dir | path join "vendor/autoload/starship.nu")

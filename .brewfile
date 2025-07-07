@@ -58,8 +58,9 @@ brew "zoxide"
 # brew "eye-d3"
 #brew "youtube-dl"
 
-brew "nushell"
 brew "fish"
+brew "nushell"
+brew "starship"
 # brew "zsh-autosuggestions"          # fish like suggestions (from history + completions)
 # brew "zsh-syntax-highlighting"      # fish like syntax highlighting
 # brew "zsh-completions"              # autocomplete candidates (without tab) - DOESN'T WORK
