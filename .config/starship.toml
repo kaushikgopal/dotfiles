@@ -92,8 +92,9 @@ $character\
 
 # Replace the "❯" symbol in the prompt with "$"
 [character]
-success_symbol  = "[‡](#878787)\n"
-error_symbol    = "[‡](red)\n"
+success_symbol  = "\n"
+# success_symbol  = "[⏹︎](#878787)\n"
+error_symbol    = "[⏹︎](red)\n"
 
 
 [directory]
@@ -110,24 +111,25 @@ style = "fg:black bg:13" # bg3 is yellow
 #format = "on [$symbol$branch]($style) "
 
 [git_status]
-# https://starship.rs/config/#git-status
-format = ' [$staged$modified$deleted $untracked $conflicted$stashed$renamed $ahead_behind]($style) '
-# style = "bold black"
-#format = '([\[$all_status$ahead_behind\]]($style) )'
-#all_status : $conflicted$stashed$deleted$renamed$modified$staged$untracked
-staged = "[+${count}](green)"
-modified = "[*${count}](yellow)"
-deleted = "[-${count}](red)"
+style = "fg:13"
+format = ' ([\[$all_status$ahead_behind\]]($style))'
+ahead = "↑${count}"
+diverged = "↑${ahead_count}↓${behind_count}"
+behind = "↓${count}"
+modified = "*${count}"
+untracked = "?${count}"
+staged = "+${count}"
+stashed = "\\$${count}"
+conflicted = "✖︎${count}"
+deleted = "-${count}"
+renamed = "↻${count}"
 
-conflicted = "🤼 ${count}"
-stashed = "📦 [+${count}](white)"
-renamed = "🎭 ${count}"
-untracked = "🐾 ${count}"
+## https://starship.rs/config/#git-status
+#format = ' [$staged$modified$deleted $untracked $conflicted$stashed$renamed $ahead_behind]($style) '
+##format = '([\[$all_status$ahead_behind\]]($style) )'
+##all_status : $conflicted$stashed$deleted$renamed$modified$staged$untracked
 
-# ahead_behind
-ahead = "🐰"
-behind = "🐢"
-diverged = "🙈"
+
 
 [battery]
 full_symbol = " 🔋 "
