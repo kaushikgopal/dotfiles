@@ -19,7 +19,7 @@ focus-follows-mouse             = true
 # Shell config
 # because i have both zsh and fish (mark this explicitly)
 
-shell-integration               = fish
+#shell-integration               = nu
 #shell-integration-features      = cursor,sudo,title
 
 

@@ -1,9 +1,6 @@
 # # Ignore everything by default
 *
 
-# include .profile (every shell respsects this)
-!.profile
-
 # Include .config so we can reach subdirectories
 !.config/
 
@@ -16,6 +13,10 @@
 
 !.config/ghostty/
 !.config/ghostty/**
+
+!.config/nushell/
+!.config/nushell/**
+.config/nushell/history.txt
 
 !.config/fish/
 !.config/fish/**

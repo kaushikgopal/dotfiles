@@ -50,19 +50,19 @@ if status is-interactive
     abbr --add --global gpu 'git push'
     abbr --add --global gmp 'git checkout master; git pull'
     abbr --add --global g-  'git checkout -'
-    abbr --add --global g.  'git checkout .'
+    # abbr --add --global g.  'git checkout .'
 
     abbr --add --global g git # using a git function which is better
-    abbr --add --global ga 'git a' # add with number support
-    abbr --add --global gaf 'git add --force'
-    abbr --add --global ga. 'git add .'
+    # abbr --add --global ga 'git a' # add with number support
+    # abbr --add --global gaf 'git add --force'
+    # abbr --add --global ga. 'git add .'
 
     abbr --add --global gb 'git branch'
-    abbr --add --global gbd 'git branch -D'
+    # abbr --add --global gbd 'git branch -D'
 
-    abbr --add --global gc      'git ch'        # checkout - with number support
+    # abbr --add --global gc      'git ch'        # checkout - with number support
     abbr --add --global gco     'git checkout'  # checkout - regular
-    abbr --add --global gcob    'git checkout -B'
+    # abbr --add --global gcob    'git checkout -B'
 
     abbr --add --global gcf     'git commit --fixup'
     abbr --add --global gcm     'git commit -m'
@@ -105,9 +105,9 @@ if status is-interactive
 
     abbr --add --global c claude
 
-    abbr --add --global co code
-    abbr --add --global con 'code --new-window'
-    abbr --add --global cor 'code --reuse-window'
+    # abbr --add --global co code
+    # abbr --add --global con 'code --new-window'
+    # abbr --add --global cor 'code --reuse-window'
 
     abbr --add --global cu cursor
     abbr --add --global cun cursor -n  # -n = --new-window

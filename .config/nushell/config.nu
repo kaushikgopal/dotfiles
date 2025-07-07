@@ -1,0 +1,159 @@
+# config.nu
+#
+# Installed by:
+# version = "0.105.1"
+#
+# This file is used to override default Nushell settings, define
+# (or import) custom commands, or run any other startup tasks.
+# See https://www.nushell.sh/book/configuration.html
+#
+# This file is loaded after env.nu and before login.nu
+#
+# You can open this file in your default editor using:
+# config nu
+#
+# See `help config nu` for more options
+#
+# You can remove these comments if you want or leave
+# them for future reference.
+
+# ----------------------------------------
+# $env.path
+# ----------------------------------------
+use std/util "path add"
+
+# prepends
+path add "/opt/homebrew/opt/sdkman-cli/libexec/candidates/gradle/current/bin"
+path add "~/.local/bin"
+path add "~/.pyenv/shims"
+path add "/sbin"
+path add "/usr/sbin"
+path add "/bin"
+path add "/usr/bin"
+path add "/usr/local/bin"
+path add "/opt/homebrew/sbin"
+path add "/opt/homebrew/bin"
+path add "~/bin"
+
+export-env {
+  $env.ANDROID_HOME = "~/Library/Android/sdk"
+  $env.JAVA_HOME = "~/Applications/Android Studio.app/Contents/jbr/Contents/Home"
+  ## export JAVA_HOME=(/usr/libexec/java_home -v"17")
+}
+path add ($env.ANDROID_HOME | path join "emulator")
+path add ($env.ANDROID_HOME | path join "tools/bin")
+path add ($env.ANDROID_HOME | path join "tools")
+path add ($env.ANDROID_HOME | path join "cmdline-tools/latest/bin")
+path add ($env.ANDROID_HOME | path join "platform-tools")
+
+# appends
+#$env.path ++= ["/usr/local/bin"]
+#$env.path ++= ["/usr/local/bin"]
+
+# ----------------------------------------
+# $env.config
+# ----------------------------------------
+
+export-env {
+  $env.ANDROID_HOME = "~/Library/Android/sdk"
+  $env.JAVA_HOME = "~/Applications/Android Studio.app/Contents/jbr/Contents/Home"
+  ## export JAVA_HOME=(/usr/libexec/java_home -v"17")
+  $env.GOKU_EDN_CONFIG_FILE = "~/.config/karabiner/karabiner.edn"
+  $env.BAT_CONFIG_PATH = "~/.config/.bat.conf"
+  $env.RIPGREP_CONFIG_PATH = "~/.config/.ripgreprc"
+}
+
+$env.config.show_banner = false # true or false to enable or disable the welcome banner at startup
+#$env.config.table.mode = 'none' # basic, compact, compact_double, light, thin, with_love, rounded, reinforced, heavy, none, other
+#$env.config.shell_integration.osc133 = false
+$env.config.cursor_shape = {
+  # emacs: block # block, underscore, line, blink_block, blink_underscore, blink_line, inherit to skip setting cursor shape (line is the default)
+  vi_insert: line # block, underscore, line, blink_block, blink_underscore, blink_line, inherit to skip setting cursor shape (block is the default)
+  vi_normal: block # block, underscore, line, blink_block, blink_underscore, blink_line, inherit to skip setting cursor shape (underscore is the default)
+}
+
+# ----------------------------------------
+# aliases
+# ----------------------------------------
+# # system commands (start with ^)
+# # alias ls-builtin = ^ls
+alias o = ^open
+alias oo = ^open .
+alias t = trash
+alias b = bat
+alias gw = ./gradlew
+alias fdu = fd -u
+alias rgu = rg -uuu  # see .ripgreprc
+
+# git commands
+alias g = git
+alias gco = git checkout
+alias gm = git checkout master
+alias gma = git checkout main
+alias g- = git checkout -
+
+alias gp = git pull
+alias gpu = git push
+alias gb = git branch
+
+alias gcm = git commit -m
+alias gcf = git commit --fixup
+
+alias gs = git status -s
+
+alias gss = git stash save
+alias gsp = git stash pop
+
+alias gd = git diff
+alias gdin = git diff --name-only master...HEAD # list files that have changed
+
+alias gms = git merge --squash
+alias gmm = git merge master
+
+alias gl = git log --graph --decorate --date=short --topo-order -30 --pretty=format:"%C(magenta)%h%Creset %C(italic brightblack)%ad%C(reset)%C(auto) %s %C(blue)%an%C(auto) %D%C(reset)"
+alias gll = git log --graph --decorate --date=short --pretty=format:"%C(magenta)%h%Creset %C(italic brightblack)%ad%C(reset)%C(auto) %s %C(blue)%an%C(auto) %D%C(reset)"
+
+alias c = claude
+alias cu = cursor
+alias cur = cursor -r
+alias cun = cursor -n
+
+alias ts = tailscale
+
+# ----------------------------------------
+# functions
+# ----------------------------------------
+# greet "Kaushik"
+def greet [name] {
+  $"Hello, ($name)!"
+}
+
+def tre [nesting:int = 1] {
+  ^tree --dirsfirst -CFL ($nesting)
+}
+
+def gmp [branch:string = "master"] {
+  git checkout ($branch)
+  git pull
+}
+
+def gano [] {
+  git add .
+  git commit --amend --no-edit
+}
+
+def vimn [dir:string = "/tmp"] {
+  let dir = if $dir == "o" { "~/notes/obsd" } else { $dir }
+  let timestamp = (date now | format date "%Y%m%d-%H%M%S")
+  let filename = $"($timestamp).md"
+  let filepath = ($dir | path expand | path join $filename)
+  echo '---' > $filepath
+  echo 'tags:' >> $filepath
+  echo '  - cli' >> $filepath
+  echo '---' >> $filepath
+  echo '' >> $filepath
+
+  vim $filepath
+}
+alias vimo = vimn "o"
+alias vimt = vimn

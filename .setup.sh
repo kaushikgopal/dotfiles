@@ -104,6 +104,20 @@ function clone_if_absent {
 curl https://lab.al0.de/a0n/oh-my-zsh/-/raw/master/plugins/adb/_adb >$(brew --prefix)/share/zsh/site-functions/_adb
 chmod +x $(brew --prefix)/share/zsh/site-functions/_adb
 
+launchctl setenv XDG_CONFIG_HOME
+
+##############################################################
+# Nu shell
+##############################################################
+
+if [[ "nu" == $(basename "${SHELL}") ]]; then
+    echo -e "${GRAY}---- default shell is nu shell${NC}"
+else
+    echo -e "${GRAY}---- default shell is NOT nu shell${NC}"
+    sudo chsh -s $(brew --prefix)/bin/nu $(whoami)
+fi
+
+
 ##############################################################
 # Fish shell
 ##############################################################
