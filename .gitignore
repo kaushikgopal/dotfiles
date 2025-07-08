@@ -1,62 +1,67 @@
 # # Ignore everything by default
 *
 
-# Include .config so we can reach subdirectories
+# allow git to see the .config directory
 !.config/
 
-# Include only specific directories & contents
+# ----------------------------------------
+# git itself
+!.gitignore
 !.config/git/
 !.config/git/**
 .config/git/config-*
 
-!.config/.ripgreprc
-
+# ----------------------------------------
+# ghostty
+# allow git to see the ghostty directory
 !.config/ghostty/
+# don't ignore anything in this directory
 !.config/ghostty/**
 
+# ----------------------------------------
+# nushell
 !.config/nushell/
 !.config/nushell/**
 .config/nushell/history.txt
 
+# ----------------------------------------
+# fish
 !.config/fish/
 !.config/fish/**
 .config/fish/fish_variables
-
 !.config/fish/functions/
 !.config/fish/functions/**
 .config/fish/functions/caperwt.fish
 
-!.config/starship.toml
-
-# ai rules
-!.ai/
-!.ai/**
-
-
-# more as a backup
+# ----------------------------------------
+# zsh
 !.config/zsh/
 !.config/zsh/**
 .config/zsh/.zsh_sessions
 
-!.warp/
-!.warp/themes/
-!.warp/themes/**
+# ----------------------------------------
+# ai rules
+!.ai/
+!.ai/**
 
+# ----------------------------------------
+# firebender
+!.firebender/
+!.firebender/**
+
+# ----------------------------------------
+# karabiner
 !.config/karabiner/
 !.config/karabiner/**
 .config/karabiner/karabiner-kt/
 
+# ----------------------------------------
+# vim
 !.vim/
+!.vim/pack/
 !.vim/pack/**
 
-!.firebender/
-!.firebender/**
-
-# -------------
-# Obsidian
-# -------------
-
+# ----------------------------------------
+!.config/starship.toml
+!.config/.ripgreprc
 !notes/
-
-
-**/.claude/settings.local.json
