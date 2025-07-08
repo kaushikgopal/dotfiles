@@ -24,6 +24,7 @@
 !.config/nushell/
 !.config/nushell/**
 .config/nushell/history.txt
+.config/nushell/zoxide.nu
 
 # ----------------------------------------
 # fish
@@ -69,3 +70,6 @@
 !.macos.sh
 !.brewfile
 !notes/
+
+
+
