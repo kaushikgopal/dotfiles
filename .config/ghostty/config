@@ -38,7 +38,7 @@ adjust-underline-position       = 3
 cursor-style                    = block
 cursor-style-blink              = false
 #cursor-invert-fg-bg             = true
-cursor-opacity                  = 0.9
+cursor-opacity                  = 0.6
 
 bold-is-bright                  = true
 link-url                        = true

@@ -1,12 +1,18 @@
 # Configuring starship
 
-command_timeout = 200
 
+command_timeout = 200
 # Inserts a blank line between shell prompts
 add_newline = true
 
-###############################################
-# overarching prompt format
+## a minimal left prompt
+#format = """$character"""
+## move the rest of the prompt to the right
+#right_format = """$all"""
+
+right_format="""
+$time\
+"""
 
 # functionally equivalent to $all
 format = """
@@ -17,7 +23,6 @@ $shlvl\
 $directory\
 $git_branch\
 $git_status\
-$time\
 $git_commit\
 $git_state\
 $git_metrics\
@@ -43,7 +48,6 @@ $container\
 $shell\
 $character\
 """
-
 # $aws\
 # $azure\
 # $buf\
@@ -94,12 +98,12 @@ $character\
 [character]
 success_symbol  = "\n"
 # success_symbol  = "[⏹︎](#878787)\n"
-error_symbol    = "[⏹︎](red)\n"
+error_symbol    = "[ ⏹︎](red)\n"
 
 
 [directory]
-format = "[ $path ]($style)"
-style = "fg:black bg:blue"
+format = " [ $path ]($style)"
+style = "bg:8 fg:black"
 truncation_length = 0
 truncate_to_repo = false
 truncation_symbol = "…/"
@@ -112,7 +116,7 @@ style = "fg:black bg:13" # bg3 is yellow
 
 [git_status]
 style = "fg:3 bg:black"
-format = ' ([ $all_status$ahead_behind]($style))'
+format = '([ $all_status$ahead_behind]($style))'
 ahead = "↑${count} "
 diverged = "↑${ahead_count}↓${behind_count} "
 behind = "↓${count} "
