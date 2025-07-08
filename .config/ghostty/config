@@ -26,9 +26,9 @@ focus-follows-mouse             = true
 ##############################################
 # Look and Feel
 # ghostty +list-themes
-theme                           = Blazer
-theme                           = Sublette
-theme                           = Galaxy
+#theme                           = Blazer
+#theme                           = Sublette
+theme                           = galaxy-kg
 #theme                           = xcodedarkhc
 #theme                           = batman-kg
 adjust-cursor-thickness         = 3
