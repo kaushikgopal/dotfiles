@@ -105,7 +105,7 @@ curl https://lab.al0.de/a0n/oh-my-zsh/-/raw/master/plugins/adb/_adb >$(brew --pr
 chmod +x $(brew --prefix)/share/zsh/site-functions/_adb
 
 # allow different shells to recognize this environment variable for macos
-launchctl setenv XDG_CONFIG_HOME
+launchctl setenv XDG_CONFIG_HOME ~/.config
 
 ##############################################################
 # Nu shell
