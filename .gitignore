@@ -1,21 +1,22 @@
 # # Ignore everything by default
 *
 
-# allow git to see the .config directory
-!.config/
 
 # ----------------------------------------
 # git itself
 !.gitignore
+# allow git to see the .config directory
+!.config/
+# allow git to see the git directory within .config
 !.config/git/
+# don't ignore anything in this directory
 !.config/git/**
+# ignore files matching pattern config-*
 .config/git/config-*
 
 # ----------------------------------------
 # ghostty
-# allow git to see the ghostty directory
 !.config/ghostty/
-# don't ignore anything in this directory
 !.config/ghostty/**
 
 # ----------------------------------------
@@ -64,4 +65,7 @@
 # ----------------------------------------
 !.config/starship.toml
 !.config/.ripgreprc
+!.setup.sh
+!.macos.sh
+!.brewfile
 !notes/
