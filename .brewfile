@@ -158,7 +158,7 @@ cask "ghostty"
 
 cask "firefox"
 cask "thebrowsercompany-dia"
-cask "google-chrome"    # probably remove this or firefox at some point
+#cask "google-chrome"    # probably remove this or firefox at some point
 
 #cask "keyboard-maestro"
 #cask "loopback"
