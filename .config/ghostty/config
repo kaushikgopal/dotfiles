@@ -20,7 +20,7 @@ focus-follows-mouse             = true
 # because i have both zsh and fish (mark this explicitly)
 
 #shell-integration               = nu
-#shell-integration-features      = cursor,sudo,title
+shell-integration-features      = cursor
 
 
 ##############################################
@@ -35,10 +35,12 @@ adjust-cursor-thickness         = 3
 adjust-underline-position       = 3
 #background-opacity              = 0.98
 
-bold-is-bright                  = true
+cursor-style                    = block
 cursor-style-blink              = false
-cursor-invert-fg-bg             = true
-cursor-opacity                  = 0.7
+#cursor-invert-fg-bg             = true
+cursor-opacity                  = 0.9
+
+bold-is-bright                  = true
 link-url                        = true
 
 window-padding-x                = 10
