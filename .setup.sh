@@ -104,6 +104,7 @@ function clone_if_absent {
 curl https://lab.al0.de/a0n/oh-my-zsh/-/raw/master/plugins/adb/_adb >$(brew --prefix)/share/zsh/site-functions/_adb
 chmod +x $(brew --prefix)/share/zsh/site-functions/_adb
 
+# allow different shells to recognize this environment variable for macos
 launchctl setenv XDG_CONFIG_HOME
 
 ##############################################################
