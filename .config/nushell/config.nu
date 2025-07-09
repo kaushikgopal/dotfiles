@@ -135,6 +135,11 @@ def tre [nesting:int = 1] {
   ^tree --dirsfirst -CFL ($nesting)
 }
 
+
+def gsh [cnum:int = 0] {
+  git show HEAD~($cnum)
+}
+
 def gmp [branch:string = "master"] {
   git checkout ($branch)
   git pull
