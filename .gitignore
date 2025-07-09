@@ -45,6 +45,8 @@
 # ai rules
 !.ai/
 !.ai/**
+!.ai/commands/
+!.ai/commands/**
 
 # ----------------------------------------
 # firebender
