@@ -73,6 +73,38 @@ $env.config.cursor_shape = {
 }
 
 # ----------------------------------------
+# keybindings
+# keybidings listen # to detect
+# ----------------------------------------
+
+$env.config.keybindings ++= [
+  {
+    modifier: alt
+    keycode: char_b
+    mode: [vi_insert]
+    event: { edit: MoveWordLeft }
+  }
+  {
+    modifier: alt
+    keycode: char_f
+    mode: [vi_insert]
+    event: { edit: MoveWordRight }
+  }
+  {
+    modifier: alt
+    keycode: backspace
+    mode: [vi_insert]
+    event: { edit: BackspaceWord }
+  }
+  {
+    modifier: control
+    keycode: char_u
+    mode: [vi_insert]
+    event: { edit: CutFromLineStart }
+  }
+]
+
+# ----------------------------------------
 # aliases
 # ----------------------------------------
 # # system commands (start with ^)
@@ -127,7 +159,7 @@ alias ts = tailscale
 # ----------------------------------------
 # greet "Kaushik"
 def greet [name] {
-  $"Hello, ($name)!"
+  "Hello, " + $name + "!"
 }
 
 def tre [nesting:int = 1] {
@@ -160,7 +192,7 @@ def gcm [msg?: string] {
 def vimn [dir:string = "/tmp"] {
   let dir = if $dir == "o" { "~/notes/obsd" } else { $dir }
   let timestamp = (date now | format date "%Y%m%d-%H%M%S")
-  let filename = $"($timestamp).md"
+  let filename = $timestamp + ".md"
   let filepath = ($dir | path expand | path join $filename)
   echo '---' > $filepath
   echo 'tags:' >> $filepath
