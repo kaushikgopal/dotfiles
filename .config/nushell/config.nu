@@ -50,10 +50,6 @@ path add ($env.ANDROID_HOME | path join "platform-tools")
 #$env.path ++= ["/usr/local/bin"]
 #$env.path ++= ["/usr/local/bin"]
 
-# ----------------------------------------
-# $env.config
-# ----------------------------------------
-
 export-env {
   $env.ANDROID_HOME = "~/Library/Android/sdk"
   $env.JAVA_HOME = "~/Applications/Android Studio.app/Contents/jbr/Contents/Home"
@@ -63,9 +59,13 @@ export-env {
   $env.RIPGREP_CONFIG_PATH = "~/.config/.ripgreprc"
 }
 
+# ----------------------------------------
+# configuration
+# ----------------------------------------
+
 $env.config.show_banner = false # true or false to enable or disable the welcome banner at startup
-#$env.config.table.mode = 'none' # basic, compact, compact_double, light, thin, with_love, rounded, reinforced, heavy, none, other
-#$env.config.shell_integration.osc133 = false
+
+$env.config.edit_mode = 'vi'
 $env.config.cursor_shape = {
   # emacs: block # block, underscore, line, blink_block, blink_underscore, blink_line, inherit to skip setting cursor shape (line is the default)
   vi_insert: line # block, underscore, line, blink_block, blink_underscore, blink_line, inherit to skip setting cursor shape (block is the default)
