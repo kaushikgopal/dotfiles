@@ -129,3 +129,4 @@ font-feature            = ss12
 #                                         # dotted 0
 #font-feature                             = cv08
 #                                         # alt _italics_
+keybind = shift+enter=text:\n
