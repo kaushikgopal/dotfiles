@@ -98,7 +98,6 @@ alias gp = git pull
 alias gpu = git push
 alias gb = git branch
 
-alias gcm = git commit -m
 alias gcf = git commit --fixup
 
 alias gs = git status -s
@@ -148,6 +147,10 @@ def gmp [branch:string = "master"] {
 def gano [] {
   git add .
   git commit --amend --no-edit
+}
+
+def gcm [msg?: string] {
+  git commit -m ($msg | default (claude -p "Look at the staged git changes and create a summarizing git commit title. Only respond with the title and no affirmation."))
 }
 
 def vimn [dir:string = "/tmp"] {
