@@ -150,7 +150,11 @@ def gano [] {
 }
 
 def gcm [msg?: string] {
-  git commit -m ($msg | default (claude -p "Look at the staged git changes and create a summarizing git commit title. Only respond with the title and no affirmation."))
+  if ($msg | is-empty) {
+    git commit -m (claude -p "Look at the staged git changes and create a summarizing git commit title. Only respond with the title and no affirmation.")
+  } else {
+    git commit -m $msg
+  }
 }
 
 def vimn [dir:string = "/tmp"] {
