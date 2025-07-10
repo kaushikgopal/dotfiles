@@ -118,7 +118,6 @@ alias rgu = rg -uuu  # see .ripgreprc
 
 # git commands
 alias g = git
-alias ga = git a .
 
 alias gco = git checkout
 alias gm = git checkout master
@@ -137,7 +136,6 @@ alias gsu = git ls-files --other --directory --exclude-standard # list all untra
 alias gss = git stash save
 alias gsp = git stash pop
 
-alias gd = git diff
 alias gdin = git diff --name-only master...HEAD # list files that have changed
 
 alias gms = git merge --squash
@@ -173,6 +171,16 @@ def gsh [cnum:int = 0] {
 def gmp [branch:string = "master"] {
   git checkout ($branch)
   git pull
+}
+
+def gd [refFiles:string = "."] {
+  git d ($refFiles)
+}
+
+def ga [refFiles:string = "."] {
+  # importantly we're using shortform `a`
+  # see https://kau.sh/blog/git-alias/
+  git a ($refFiles)
 }
 
 def gano [] {
