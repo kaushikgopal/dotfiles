@@ -163,20 +163,6 @@ def tre [nesting:int = 1] {
   ^tree --dirsfirst -CFL ($nesting)
 }
 
-
-def gsh [cnum:int = 0] {
-  git show HEAD~($cnum)
-}
-
-def gmp [branch:string = "master"] {
-  git checkout ($branch)
-  git pull
-}
-
-def gd [refFiles:string = "."] {
-  git d ($refFiles)
-}
-
 def ga [refFiles:string = "."] {
   # importantly we're using shortform `a`
   # see https://kau.sh/blog/git-alias/
@@ -194,6 +180,23 @@ def gcm [msg?: string] {
   } else {
     git commit -m $msg
   }
+}
+
+def gd [refFiles:string = "."] {
+  git d ($refFiles)
+}
+
+def gdc [refFiles:string = "."] {
+  git dc ($refFiles)
+}
+
+def gmp [branch:string = "master"] {
+  git checkout ($branch)
+  git pull
+}
+
+def gsh [cnum:int = 0] {
+  git show HEAD~($cnum)
 }
 
 def vimn [dir:string = "/tmp"] {
