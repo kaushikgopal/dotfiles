@@ -35,11 +35,6 @@ path add "/opt/homebrew/sbin"
 path add "/opt/homebrew/bin"
 path add "~/bin"
 
-export-env {
-  $env.ANDROID_HOME = "~/Library/Android/sdk"
-  $env.JAVA_HOME = "~/Applications/Android Studio.app/Contents/jbr/Contents/Home"
-  ## export JAVA_HOME=(/usr/libexec/java_home -v"17")
-}
 path add ($env.ANDROID_HOME | path join "emulator")
 path add ($env.ANDROID_HOME | path join "tools/bin")
 path add ($env.ANDROID_HOME | path join "tools")
@@ -48,16 +43,6 @@ path add ($env.ANDROID_HOME | path join "platform-tools")
 
 # appends
 #$env.path ++= ["/usr/local/bin"]
-#$env.path ++= ["/usr/local/bin"]
-
-export-env {
-  $env.ANDROID_HOME = "~/Library/Android/sdk"
-  $env.JAVA_HOME = "~/Applications/Android Studio.app/Contents/jbr/Contents/Home"
-  ## export JAVA_HOME=(/usr/libexec/java_home -v"17")
-  $env.GOKU_EDN_CONFIG_FILE = "~/.config/karabiner/karabiner.edn"
-  $env.BAT_CONFIG_PATH = "~/.config/.bat.conf"
-  $env.RIPGREP_CONFIG_PATH = "~/.config/.ripgreprc"
-}
 
 # ----------------------------------------
 # configuration
