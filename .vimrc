@@ -110,6 +110,29 @@ set foldlevelstart=10 " no folds closed when buffer opens
 autocmd BufWritePre * :%s/\s\+$//e
 
 " =========================================================
+" Cursor settings
+" =========================================================
+" force the cursor mode (for shells like nushell which allow customization)
+" https://vim.fandom.com/wiki/Change_cursor_shape_in_different_modes#For_Terminal_on_macOS
+
+:set timeout ttimeoutlen=100 "see https://vi.stackexchange.com/questions/15633
+let &t_SI.="\<Esc>[6 q"  " Insert mode: solid vertical bar
+let &t_SR.="\<Esc>[1 q"  " Replace mode: blinking block
+let &t_EI.="\<Esc>[2 q"  " Normal mode: solid block
+let &t_te.="\<Esc>[0 q"  " Terminal end: default
+let &t_ti.="\<Esc>[0 q"  " Terminal init: solid block
+
+"Cursor settings:
+
+"  1 -> blinking block
+"  2 -> solid block
+"  3 -> blinking underscore
+"  4 -> solid underscore
+"  5 -> blinking vertical bar
+"  6 -> solid vertical bar
+
+
+" =========================================================
 " Tabs, indent
 " =========================================================
 set smartindent " autoindent new lines
