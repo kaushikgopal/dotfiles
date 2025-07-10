@@ -4,8 +4,14 @@ globs: "*.kt"
 alwaysApply: false
 ---
 
+## Kotlin Standards
+- Use PascalCase for classes, camelCase for variables/functions
+- Start functions with verbs, use verbs for boolean variables
+- Write short functions (<20 instructions) with single purpose
+- Prefer immutability and data classes
+- Follow SOLID principles
+
 ## Type Safety
-- Declare types for variables and functions (parameters + return values)
 - Use nullable types sparingly
 - Prefer immutable over mutable types
 
