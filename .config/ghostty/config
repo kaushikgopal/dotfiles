@@ -89,10 +89,10 @@ adjust-cell-height      = 8%
 font-size               = 12.5
 
 font-feature            = ss02
-                        # slashed 0; ss02 - dotted 0; ss03 - inverted slash
+                        # ss01 - slashed 0; ss02 - dotted 0; ss03 - inverted slash
 font-feature            = ss05
                         # german r
-#font-feature            = ss06
+font-feature            = ss06
                         # alternative pipe
 font-feature            = ss12
                         # ligatures ->
