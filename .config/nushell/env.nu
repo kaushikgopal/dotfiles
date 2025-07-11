@@ -26,3 +26,5 @@ $env.JAVA_HOME = ($nu.home-path | path join 'Applications' 'Android Studio.app' 
 ## export JAVA_HOME=(/usr/libexec/java_home -v"17")
 $env.GOKU_EDN_CONFIG_FILE = ($nu.home-path | path join '.config' 'karabiner' 'karabiner.edn')
 $env.BAT_CONFIG_PATH = ($nu.home-path | path join '.config' '.bat.conf')
+
+source-env ($nu.home-path | path join '.config' 'nushell' 'secrets.nu')

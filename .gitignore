@@ -25,6 +25,7 @@
 !.config/nushell/**
 .config/nushell/history.txt
 .config/nushell/zoxide.nu
+.config/nushell/secrets.nu
 
 # ----------------------------------------
 # fish
