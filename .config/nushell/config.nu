@@ -18,6 +18,17 @@
 # them for future reference.
 
 # ----------------------------------------
+# env vars
+# ----------------------------------------
+
+$env.RIPGREP_CONFIG_PATH = ($nu.home-path | path join '.config' '.ripgreprc')
+$env.ANDROID_HOME =  ($nu.home-path | path join 'Library' 'Android' 'sdk')
+$env.JAVA_HOME = ($nu.home-path | path join 'Applications' 'Android Studio.app' 'Contents' 'jbr' 'Contents' 'Home')
+## export JAVA_HOME=(/usr/libexec/java_home -v"17")
+$env.GOKU_EDN_CONFIG_FILE = ($nu.home-path | path join '.config' 'karabiner' 'karabiner.edn')
+$env.BAT_CONFIG_PATH = ($nu.home-path | path join '.config' '.bat.conf')
+
+# ----------------------------------------
 # $env.path
 # ----------------------------------------
 use std/util "path add"
@@ -201,6 +212,12 @@ def vimn [dir:string = "/tmp"] {
 alias vimo = vimn "o"
 alias vimt = vimn
 
+# ----------------------------------------
+# secrets
+# ----------------------------------------
+# stuff i don't want in public dotfiles
+# source-env ($nu.home-path | path join '.config' 'nushell' 'secrets.nu')
+source ($nu.home-path | path join '.config' 'nushell' 'secrets.nu')
 
 # ----------------------------------------
 # prompt (powered by starship)
