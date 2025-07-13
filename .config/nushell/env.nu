@@ -18,4 +18,15 @@
 # them for future reference.
 
 
+# ----------------------------------------
+# zoxide quick jumper
+# ----------------------------------------
+# regenerate when needed
 #/opt/homebrew/bin/zoxide init --cmd j nushell | save -f ~/.config/nushell/zoxide.nu
+
+# ----------------------------------------
+# carapace - x-platform shell autocomplete
+# ----------------------------------------
+$env.CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense' # optional
+mkdir ~/.cache/carapace
+/opt/homebrew/bin/carapace _carapace nushell | save --force ~/.cache/carapace/init.nu

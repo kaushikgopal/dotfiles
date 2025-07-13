@@ -61,6 +61,7 @@ brew "zoxide"
 brew "fish"
 brew "nushell"
 brew "starship"
+brew "carapace"
 # brew "zsh-autosuggestions"          # fish like suggestions (from history + completions)
 # brew "zsh-syntax-highlighting"      # fish like syntax highlighting
 # brew "zsh-completions"              # autocomplete candidates (without tab) - DOESN'T WORK

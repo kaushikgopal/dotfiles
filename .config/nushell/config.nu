@@ -227,10 +227,14 @@ mkdir ($nu.data-dir | path join "vendor/autoload")
 starship init nu | save -f ($nu.data-dir | path join "vendor/autoload/starship.nu")
 
 
-
 # ----------------------------------------
 # zoxide quick jumper
 # ----------------------------------------
 # regenerate when needed
 #zoxide init --cmd j nushell | save -f ~/.config/nushell/zoxide.nu
 source ~/.config/nushell/zoxide.nu
+
+# ----------------------------------------
+# carapace - x-platform shell autocomplete
+# ----------------------------------------
+source ~/.cache/carapace/init.nu
