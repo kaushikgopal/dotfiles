@@ -6,6 +6,9 @@
 # fish_default_key_binding # go back to default bindings
 set -g fish_prompt_pwd_dir_length 80  # don't shorten pwd
 
+# ----------------------------------------------------------------------------------------------------------------------
+# Alias + abbreviations
+
 if status is-interactive
     # Commands to run in interactive sessions can go here
     # If you put them inside the section, they will only be available in interactive shells
@@ -119,7 +122,6 @@ if status is-interactive
     alias vimt='vimn -t'
 end
 
-
 # ----------------------------------------------------------------------------------------------------------------------
 # Path   # https://fishshell.com/docs/current/cmds/fish_add_path.html
 
@@ -140,14 +142,51 @@ export BAT_CONFIG_PATH=$HOME/.config/.bat.conf
 
 export RIPGREP_CONFIG_PATH=$HOME/.config/.ripgreprc
 
-# ---------------------------------------------------------
+# -----------------------------------
 # pyenv for python development setup
 pyenv init - fish | source
 
-# ---------------------------------------------------------
+# -----------------------------------
 # Zoxide
-
 zoxide init --cmd j fish | source
 
+# ---------------------------------------------------------
+# special instructions on bind
+
+# function on_fish_bind_mode --on-variable fish_bind_mode
+
+#     # this allows starsip to independently control prompt character & vi symbol
+#     # export the vi_mode_symbol variable which Starship can use
+#     set --global --export vi_mode_symbol ""
+
+#     # Do whatever you want here to set vi_mode_symbol...
+#     set --local color
+#     set --local char
+#     if test "$fish_key_bindings" = fish_vi_key_bindings
+#         switch $fish_bind_mode
+#             case default
+#                 set color red
+#                 set symbol N
+#             case insert
+#                 set color green
+#                 set symbol I
+#             case replace replace_one
+#                 set color green
+#                 set symbol R
+#             case visual
+#                 set color brmagenta
+#                 set symbol V
+#             case '*'
+#                 set color cyan
+#                 set symbol "?"
+#         end
+#         set vi_mode_symbol (set_color --bold $color)"[$symbol]"(set_color normal)
+#     end
+# end
+
+
+# ---------------------------------------------------------
+# Starship
+# starship init fish | source
 
 source ~/.secrets.fish

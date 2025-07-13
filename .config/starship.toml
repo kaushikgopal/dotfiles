@@ -47,6 +47,7 @@ $status\
 $container\
 $shell\
 $character\
+${custom.vi_mode}\
 """
 # $aws\
 # $azure\
@@ -91,14 +92,21 @@ $character\
 # $vlang\
 # $zig\
 
-###############################################
+# Make a custom vi_mode Starship section
+[custom.vi_mode]
+format="[$output]($style) "
+command = 'echo $vi_mode_symbol'
+when = 'test -n "$vi_mode_symbol"'
 
-
-# Replace the "❯" symbol in the prompt with "$"
 [character]
-success_symbol  = "\n"
-# success_symbol  = "[⏹︎](#878787)\n"
+# Replace the "❯" symbol in the prompt with "$"
+# success_symbol  = "\n"
+success_symbol  = "[ ⏹︎](#878787)\n"
 error_symbol    = "[ ⏹︎](red)\n"
+vicmd_symbol = "\n[:](bold green)"
+vimcmd_replace_one_symbol = "\n[>](bold purple)"
+vimcmd_replace_symbol = "\n[>](bold purple)"
+vimcmd_visual_symbol = "\n[>](bold yellow)"
 
 
 [directory]
