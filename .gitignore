@@ -48,11 +48,9 @@
 !.ai/**
 !.ai/commands/
 !.ai/commands/**
-
-# ----------------------------------------
-# firebender
 !.firebender/
 !.firebender/**
+**/.claude/settings.local.json
 
 # ----------------------------------------
 # karabiner
@@ -65,6 +63,8 @@
 !.vim/
 !.vim/pack/
 !.vim/pack/**
+
+# -----------------------------------
 
 # ----------------------------------------
 !.config/starship.toml
