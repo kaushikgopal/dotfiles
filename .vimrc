@@ -81,7 +81,7 @@ set nowrap          " wrap lines visually ; set wrap
 "set nowrapscan     " don't continue the search after the end of a buffer
 set visualbell      " stop vim from beeping at you when you make a mistake
 syntax enable       " enable syntax highlighting
-set number rnu      " show relative line numbers
+set number nu       " rnu = show relative line numbers
 set cursorline      " highlight current line
 set showmatch       " highlight matching parenthesis
 set scroll=20       " set the number of lines to scroll
