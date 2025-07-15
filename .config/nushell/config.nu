@@ -212,6 +212,22 @@ def vimn [dir:string = "/tmp"] {
 alias vimo = vimn "o"
 alias vimt = vimn
 
+def --env cdf [] {
+  # Change to the current Finder directory
+  let finder_dir = (^osascript -e 'tell application "Finder" to if (count of windows) > 0 then get POSIX path of (target of front window as alias)' | complete)
+
+  if $finder_dir.exit_code == 0 {
+    let dir = ($finder_dir.stdout | str trim)
+    if ($dir | path exists) and ($dir | path type) == "dir" {
+      cd $dir
+    } else {
+      print "Finder directory does not exist or is not a directory."
+    }
+  } else {
+    print "No Finder window found."
+  }
+}
+
 # ----------------------------------------
 # secrets
 # ----------------------------------------
