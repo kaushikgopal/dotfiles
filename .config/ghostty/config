@@ -33,7 +33,7 @@ theme                           = dark:galaxy-kg,light:GruvboxLightHard
 #theme                           = batman-kg
 adjust-cursor-thickness         = 3
 adjust-underline-position       = 3
-#background-opacity              = 0.9
+background-opacity              = 0.96
 
 cursor-style                    = block
 cursor-style-blink              = false

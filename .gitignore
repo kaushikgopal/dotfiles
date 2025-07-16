@@ -51,6 +51,7 @@
 !.ai/commands/**
 !.firebender/
 !.firebender/**
+.firebendher/history/
 **/.claude/settings.local.json
 
 # ----------------------------------------
