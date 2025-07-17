@@ -843,7 +843,7 @@
                             {
                                 "type": "basic",
                                 "from": {
-                                    "key_code": "1",
+                                    "key_code": "9",
                                     "modifiers": {
                                         "mandatory": [
                                             "right_control",
@@ -875,25 +875,6 @@
                                 "to": [
                                     {
                                         "shell_command": "open -a 'Music.app'"
-                                    }
-                                ]
-                            },
-                            {
-                                "type": "basic",
-                                "from": {
-                                    "key_code": "9",
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "right_control",
-                                            "right_command",
-                                            "right_option",
-                                            "right_shift"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "shell_command": "open -a 'dia.app'"
                                     }
                                 ]
                             },
