@@ -28,7 +28,8 @@ shell-integration-features      = cursor
 # ghostty +list-themes
 #theme                           = Blazer
 #theme                           = Sublette
-theme                           = dark:galaxy-kg,light:GruvboxLightHard
+#theme                           = dark:galaxy-kg,light:GruvboxLightHard
+theme                           = dark:galaxy-kg,light:Alabaster
 #theme                           = xcodedarkhc
 #theme                           = batman-kg
 adjust-cursor-thickness         = 3
