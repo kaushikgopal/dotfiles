@@ -1,6 +1,17 @@
 # official Batman theme
 # taken from /Applications/Ghostty.app/Contents/Resources/ghostty/themes/
 
+# Normal Colors (0-7)
+# 0 - Black
+# 1 - Red
+# 2 - Green
+# 3 - Yellow
+# 4 - Blue
+# 5 - Magenta
+# 6 - Cyan
+# 7 - White
+
+
 palette = 0=#1b1d1e
 palette = 1=#e6dc44
 palette = 2=#c8be46
@@ -9,6 +20,7 @@ palette = 4=#737174
 palette = 5=#747271
 palette = 6=#62605f
 palette = 7=#c6c5bf
+
 palette = 8=#505354
 palette = 9=#fff78e
 palette = 10=#fff27d
@@ -17,6 +29,8 @@ palette = 12=#919495
 palette = 13=#9a9a9d
 palette = 14=#a3a3a6
 palette = 15=#dadbd6
+
+
 background = #1b1d1e
 foreground = #6f6f6f
 cursor-color = #fcef0c
