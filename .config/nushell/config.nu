@@ -123,6 +123,7 @@ alias g- = git checkout -
 alias gp = git pull
 alias gpu = git push
 alias gb = git branch
+alias gbd = git branch -D
 
 alias gcf = git commit --fixup
 
