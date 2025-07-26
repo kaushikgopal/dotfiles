@@ -142,7 +142,8 @@ alias gl = git log --graph --decorate --date=short --topo-order -30 --pretty=for
 alias gll = git log --graph --decorate --date=short --pretty=format:"%C(magenta)%h%Creset %C(italic brightblack)%ad%C(reset)%C(auto) %s %C(blue)%an%C(auto) %D%C(reset)"
 
 alias c = claude
-alias cu = cursor
+alias cyolo = claude --dangerously-skip-permissions
+
 alias cur = cursor -r
 alias cun = cursor -n
 
