@@ -2,6 +2,9 @@
 # this file is always read
 # even in non-interactive or login shells.
 
+# remove the greeting
+set -g fish_greeting
+
 # fish_vi_key_bindings # start vi mode
 # fish_default_key_binding # go back to default bindings
 set -g fish_prompt_pwd_dir_length 80  # don't shorten pwd
