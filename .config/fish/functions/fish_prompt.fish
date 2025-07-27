@@ -88,4 +88,7 @@ function fish_prompt
     # assemble prompt
 
     string join "" -- $prompt_host $pwd $vcs $normal $prompt_status $delim
+
+    # show prompt on new line
+    echo  -n -e -s " "
 end
