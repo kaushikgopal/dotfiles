@@ -49,26 +49,21 @@ if status is-interactive
 
     # git commands
 
-    ## Frequently used
-    abbr --add --global gm  'git checkout master'
-    abbr --add --global gma 'git checkout main'
+    abbr --add --global g git # using a git function which is better
+
     abbr --add --global gp  'git pull'
     abbr --add --global gpu 'git push'
-    abbr --add --global gmp 'git checkout master; git pull'
+    abbr --add --global gb  'git branch'
+    abbr --add --global gco 'git checkout'
+    # abbr --add --global gd  'git diff' # diff regular
+
+    abbr --add --global gm  'git checkout master'
+    abbr --add --global gma 'git checkout main'
     abbr --add --global g-  'git checkout -'
-    # abbr --add --global g.  'git checkout .'
+    abbr --add --global g.  'git checkout .'
+    abbr --add --global gmp 'git checkout master; git pull'
 
-    abbr --add --global g git # using a git function which is better
-    # abbr --add --global ga 'git a' # add with number support
-    # abbr --add --global gaf 'git add --force'
-    # abbr --add --global ga. 'git add .'
-
-    abbr --add --global gb 'git branch'
-    # abbr --add --global gbd 'git branch -D'
-
-    # abbr --add --global gc      'git ch'        # checkout - with number support
-    abbr --add --global gco     'git checkout'  # checkout - regular
-    # abbr --add --global gcob    'git checkout -B'
+    abbr --add --global gbd 'git branch -D'
 
     abbr --add --global gcf     'git commit --fixup'
     abbr --add --global gcm     'git commit -m'
@@ -81,10 +76,12 @@ if status is-interactive
     abbr --add --global gss     "git stash save"
     abbr --add --global gsp     "git stash pop"
 
-    abbr --add --global gd      'git d' # diff with number support
+    # my diff commands alone i use an alias for the number support
+    #  cause i use these so often
+    #  my usual convention is to use .gitconfig abbreviations for number support
+    abbr --add --global gad     'git a'
+    abbr --add --global gdi     'git d' # diff with number support
     abbr --add --global gdc     "git dc" # diff --cached with number support
-    abbr --add --global gdi     'git diff' # diff regular
-    abbr --add --global gdic    'git diff --cached' # diff --cached regular
 
     abbr --add --global gdin    'git diff --name-only master...HEAD'  # list files that have changed
 
@@ -109,13 +106,14 @@ if status is-interactive
     # programs
     abbr --add --global hu hugo
 
-    abbr --add --global c claude
+    abbr --add --global c   claude
+    abbr --add --global cy  claude --dangerously-skip-permissions # yolo
 
     # abbr --add --global co code
     # abbr --add --global con 'code --new-window'
     # abbr --add --global cor 'code --reuse-window'
 
-    abbr --add --global cu cursor
+    # abbr --add --global cu cursor
     abbr --add --global cun cursor -n  # -n = --new-window
     abbr --add --global cur cursor -r  # -r = --reuse-window
 
