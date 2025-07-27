@@ -1,18 +1,4 @@
 function fish_right_prompt
-    set -g __fish_git_prompt_showdirtystate 1
-    set -g __fish_git_prompt_showuntrackedfiles 1
-    set -g __fish_git_prompt_showupstream informative
-    set -g __fish_git_prompt_showcolorhints 1
-    set -g __fish_git_prompt_use_informative_chars 1
-    # Unfortunately this only works if we have a sensible locale
-    string match -qi "*.utf-8" -- $LANG $LC_CTYPE $LC_ALL
-    and set -g __fish_git_prompt_char_dirtystate "*"
-    set -g __fish_git_prompt_char_untrackedfiles "?"
-
-    # The git prompt's default format is ' (%s)'.
-    # We don't want the leading space.
-    set -l vcs (fish_vcs_prompt '%s' 2>/dev/null)
-
     set -l dt (set_color brgrey)(date "+%R")(set_color normal)
 
     set -l duration "$cmd_duration$CMD_DURATION"
@@ -28,5 +14,5 @@ function fish_right_prompt
     and set -l venv (string replace -r '.*/' '' -- "$VIRTUAL_ENV")
 
     set_color normal
-    string join " " -- $venv $duration $vcs $dt
+    string join " " -- $venv $duration $dt
 end
