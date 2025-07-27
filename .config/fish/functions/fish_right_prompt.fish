@@ -1,4 +1,5 @@
 function fish_right_prompt
+    # ------------------------------------------
     set -l dt (set_color brgrey)(date "+%R")(set_color normal)
 
     set -l duration "$cmd_duration$CMD_DURATION"

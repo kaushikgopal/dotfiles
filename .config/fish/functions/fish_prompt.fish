@@ -15,7 +15,8 @@ function fish_prompt
     end
 
     # Set the default prompt delimiter with color.
-    set -l delim (set_color brblack)" #" $normal
+    # set -l delim (set_color brblack)" ⏹" $normal
+    set -l delim "" $normal
 
     # # If running as root, use a plain "#" as the delimiter (no color).
     # if fish_is_root_user
@@ -50,21 +51,27 @@ function fish_prompt
     # ------------------------------------------
     # [git branch]
 
-    # set -g __fish_git_prompt_showdirtystate 1
-    # set -g __fish_git_prompt_showuntrackedfiles 1
-    # set -g __fish_git_prompt_showupstream informative
-    # set -g __fish_git_prompt_showcolorhints 1
-    # set -g __fish_git_prompt_use_informative_chars 1
-    # # Unfortunately this only works if we have a sensible locale
-    # string match -qi "*.utf-8" -- $LANG $LC_CTYPE $LC_ALL
-    # and set -g __fish_git_prompt_char_dirtystate "*"
-    # set -g __fish_git_prompt_char_untrackedfiles "?"
 
-    # # The git prompt's default format is ' (%s)'.
-    # # We don't want the leading space.
-    # set -l vcs (fish_vcs_prompt '%s' 2>/dev/null)
-    set -l vcs (fish_vcs_prompt)
+    set -g __fish_git_prompt_showcolorhints 1            # colorize
+    set -g __fish_git_prompt_show_informative_status 1   # show counts!
 
+    set -g __fish_git_prompt_showuntrackedfiles 'yes'    # show untracked info
+    set -g __fish_git_prompt_showstashstate 'yes'        # show stash info
+    set -g __fish_git_prompt_showupstream 'yes'          # show upstream info
+
+    set -g __fish_git_prompt_char_stateseparator ' '     # separator between states
+    set -g __fish_git_prompt_char_upstream_equal '='
+    set -g __fish_git_prompt_char_upstream_ahead '↑'
+    set -g __fish_git_prompt_char_upstream_behind '↓'
+    set -g __fish_git_prompt_char_cleanstate ''
+    set -g __fish_git_prompt_char_dirtystate '*'
+    set -g __fish_git_prompt_char_invalidstate '✗'
+    set -g __fish_git_prompt_char_stagedstate '+'
+    set -g __fish_git_prompt_char_stashstate '$'
+    set -g __fish_git_prompt_char_untrackedfiles ' %'
+
+    # remove surround paranthesis
+    set -l vcs (fish_vcs_prompt ' %s' 2>/dev/null)
 
 
 
