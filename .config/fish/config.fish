@@ -5,7 +5,7 @@
 # remove the greeting
 set -g fish_greeting
 
-# fish_vi_key_bindings # start vi mode
+fish_vi_key_bindings # start vi mode
 # fish_default_key_binding # go back to default bindings
 set -g fish_prompt_pwd_dir_length 80  # don't shorten pwd
 
@@ -155,41 +155,25 @@ zoxide init --cmd j fish | source
 
 # ---------------------------------------------------------
 # special instructions on bind
-
 # function on_fish_bind_mode --on-variable fish_bind_mode
-
-#     # this allows starsip to independently control prompt character & vi symbol
-#     # export the vi_mode_symbol variable which Starship can use
-#     set --global --export vi_mode_symbol ""
-
-#     # Do whatever you want here to set vi_mode_symbol...
-#     set --local color
-#     set --local char
-#     if test "$fish_key_bindings" = fish_vi_key_bindings
-#         switch $fish_bind_mode
-#             case default
-#                 set color red
-#                 set symbol N
-#             case insert
-#                 set color green
-#                 set symbol I
-#             case replace replace_one
-#                 set color green
-#                 set symbol R
-#             case visual
-#                 set color brmagenta
-#                 set symbol V
-#             case '*'
-#                 set color cyan
-#                 set symbol "?"
-#         end
-#         set vi_mode_symbol (set_color --bold $color)"[$symbol]"(set_color normal)
-#     end
 # end
-
 
 # ---------------------------------------------------------
 # Starship
 # starship init fish | source
+
+# Custom key bindings
+# this allows me to use my karabiner delete word keybindings in fish
+function fish_user_key_bindings
+    # Provide word-wise navigation and editing in both insert (vi) and default modes
+    for mode in insert default
+        bind -M $mode \eb  backward-word          # Alt-b → move word left
+        bind -M $mode \ef  forward-word           # Alt-f → move word right
+        # Alt+Backspace can be sent as ESC DEL (\e\x7f) or ESC Backspace (\e\b)
+        bind -M $mode \e\x7f backward-kill-word   # Alt-Backspace → delete previous word
+        bind -M $mode \e\b  backward-kill-word    # Alt-Backspace (alternate)
+        bind -M $mode \cu  backward-kill-line     # Ctrl-u → cut from line start
+    end
+end
 
 source ~/.secrets.fish
