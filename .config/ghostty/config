@@ -102,6 +102,9 @@ font-thicken                    = true
 #font-feature            = ss12
 #                        # ligatures ->
 #
+#
+
+
 # Commit Mono ---------- -->
 font-family                              = CommitMonoV143
 font-style                               = 475 Regular
@@ -110,7 +113,7 @@ font-style-bold                          = 700 Regular
 font-style-bold-italic                   = 700 Italic
 
 adjust-cell-height                       = 20%
-font-size                                = 11.5
+font-size                                = 12.5
 
 font-feature                             = ss01
                                          # ligatures <= != ===
@@ -124,13 +127,13 @@ font-feature                             = ss03
 font-feature                             = ss04
                                          # smart spacing ... <<
 
-font-feature                             = ss05
-                                         # smart kerning immi
+#font-feature                             = ss05
+#                                         # smart kerning immi
 
 font-feature                             = cv02
                                          # alt g
 
-#font-feature                             = cv04
+font-feature                             = cv04
                                          # alt i
 
 font-feature                             = cv06
