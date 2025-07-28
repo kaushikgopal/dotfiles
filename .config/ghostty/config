@@ -24,6 +24,10 @@ shell-integration-features      = cursor
 
 
 ##############################################
+# Key bindings
+keybind = shift+enter=text:\n
+
+##############################################
 # Look and Feel
 # ghostty +list-themes
 #theme                           = Blazer
@@ -34,7 +38,7 @@ theme                           = galaxy-kg
 theme                           = batman-kg
 adjust-cursor-thickness         = 3
 adjust-underline-position       = 3
-background-opacity              = 0.96
+background-opacity              = 0.98
 
 cursor-style                    = block
 cursor-style-blink              = false
@@ -86,8 +90,8 @@ font-thicken                    = true
 #font-variation          = wght=450
 #font-variation-bold     = wght=750
 #
-#adjust-cell-height      = 8%
-#font-size               = 12.5
+#adjust-cell-height      = 10%
+#font-size               = 11.5
 #
 #font-feature            = ss02
 #                        # ss01 - slashed 0; ss02 - dotted 0; ss03 - inverted slash
@@ -106,9 +110,7 @@ font-style-bold                          = 700 Regular
 font-style-bold-italic                   = 700 Italic
 
 adjust-cell-height                       = 20%
-font-size                                = 12.5
-adjust-cell-height                       = 19%
-#font-size                                = 13
+font-size                                = 11.5
 
 font-feature                             = ss01
                                          # ligatures <= != ===
@@ -139,4 +141,3 @@ font-feature                             = cv07
 
 font-feature                             = cv08
                                          # alt _italics_
-keybind = shift+enter=text:\n
