@@ -1,4 +1,5 @@
 # Dracula Color Palette
+# activiate this by `fish_config theme choose "Dracula Official"`
 #
 # Foreground: f8f8f2
 # Selection: 44475a
