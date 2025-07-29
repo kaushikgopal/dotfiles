@@ -59,27 +59,9 @@ font-thicken                    = true
 # ghostty +list-fonts
 
 
-font-size               = 13
-
-## Berkeley Mono (TX-02-Variable) -------- -->
-#adjust-cell-height      = 8%
-#font-family             = TX-02-Variable
-#font-variation          = wght=450
-#font-variation-bold     = wght=750
-#
-#font-feature            = ss02
-#                        # ss01 - slashed 0; ss02 - dotted 0; ss03 - inverted slash
-#font-feature            = ss05
-#                        # german r
-#font-feature            = ss06
-#                        # alternative pipe
-#font-feature            = ss12
-#                        # ligatures ->
-#
-
-
 # Commit Mono ---------- -->
-#adjust-cell-width                       = -5%
+
+font-size               = 13
 adjust-cell-height                       = 20%
 font-family                              = CommitMonoV143
 font-style                               = 400 Regular
@@ -117,3 +99,24 @@ font-feature                             = cv07
 
 font-feature                             = cv08
                                          # alt _italics_
+
+
+
+
+## Berkeley Mono (TX-02-Variable) -------- -->
+#adjust-cell-height      = 8%
+#font-family             = TX-02-Variable
+#font-variation          = wght=450
+#font-variation-bold     = wght=750
+#
+#font-feature            = ss02
+#                        # ss01 - slashed 0; ss02 - dotted 0; ss03 - inverted slash
+#font-feature            = ss05
+#                        # german r
+#font-feature            = ss06
+#                        # alternative pipe
+#font-feature            = ss12
+#                        # ligatures ->
+#
+
+
