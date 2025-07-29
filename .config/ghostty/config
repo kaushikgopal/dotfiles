@@ -35,7 +35,7 @@ keybind = shift+enter=text:\n
 # theme                           = dark:galaxy-kg,light:GruvboxLightHard
 #theme                           = xcodedarkhc
 theme                           = galaxy-kg
-theme                           = batman-kg
+#theme                           = batman-kg
 adjust-cursor-thickness         = 3
 adjust-underline-position       = 3
 #background-opacity              = 0.95
@@ -62,7 +62,7 @@ font-thicken                    = true
 # Commit Mono ---------- -->
 
 font-size               = 13
-adjust-cell-height                       = 20%
+adjust-cell-height                       = 18%
 font-family                              = CommitMonoV143
 font-style                               = 400 Regular
 font-style-italic                        = 400 Italic
