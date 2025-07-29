@@ -38,7 +38,7 @@ theme                           = galaxy-kg
 theme                           = batman-kg
 adjust-cursor-thickness         = 3
 adjust-underline-position       = 3
-background-opacity              = 0.98
+#background-opacity              = 0.95
 
 cursor-style                    = block
 cursor-style-blink              = false
@@ -80,10 +80,10 @@ font-size               = 13
 
 # Commit Mono ---------- -->
 #adjust-cell-width                       = -5%
-adjust-cell-height                       = 18%
+adjust-cell-height                       = 20%
 font-family                              = CommitMonoV143
-font-style                               = 425 Regular
-font-style-italic                        = 425 Italic
+font-style                               = 400 Regular
+font-style-italic                        = 400 Italic
 font-style-bold                          = 750 Regular
 font-style-bold-italic                   = 750 Italic
 
@@ -106,11 +106,11 @@ font-feature                             = ss03
 font-feature                             = cv02
                                          # alt g
 
-font-feature                             = cv04
-                                         # alt i
+#font-feature                             = cv04
+#                                         # alt i
 
-#font-feature                             = cv06
-#                                         # alt 6/9
+font-feature                             = cv06
+                                         # alt 6/9
 
 font-feature                             = cv07
                                          # dotted 0
