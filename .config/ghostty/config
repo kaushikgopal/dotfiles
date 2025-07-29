@@ -30,12 +30,13 @@ keybind = shift+enter=text:\n
 ##############################################
 # Look and Feel
 # ghostty +list-themes
-#theme                           = Blazer
 #theme                           = Sublette
 # theme                           = dark:galaxy-kg,light:GruvboxLightHard
 #theme                           = xcodedarkhc
-theme                           = galaxy-kg
+#theme                           = galaxy-kg
 #theme                           = batman-kg
+#theme                           = monokai-pro-dark
+theme                           = Monokai Pro Machine
 adjust-cursor-thickness         = 3
 adjust-underline-position       = 3
 #background-opacity              = 0.95
