@@ -107,7 +107,7 @@ body {
 body .HyperMD-codeblock,
 body .cm-inline-code {
      font-weight: 450;
-    /* Commit Mono */
+    /* Commit Mono
      font-feature-settings:
           "ss01"
         , "ss02"
@@ -116,13 +116,13 @@ body .cm-inline-code {
         , "cv06"
         , "cv07"
         , "cv08"
-        ;
-    /* Berkeley Mono
+        ;*/
+    /* Berkeley Mono*/
     font-feature-settings:
         "ss02" 1,
         "ss05" 1,
         "ss06" 1,
-        "ss12" 1;*/
+        "ss12" 1;
 }
 body .theme-light .cm-inline-code {
     /*--code-background: var(--background-primary-alt);*/
