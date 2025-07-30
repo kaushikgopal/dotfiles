@@ -12,6 +12,21 @@
     mt    = mergetool
     ss    = status --short
 
+    compare = "!compare() { \
+        if git merge-base --is-ancestor \"$1\" \"$2\"; then \
+            echo \"    $1  ──▶  $2\"; \
+            echo \"    $1 is an ancestor of $2\"; \
+            echo \"i.e $2 commit was after $1\"; \
+        elif git merge-base --is-ancestor \"$2\" \"$1\"; then \
+            echo \"    $2  ──▶  $1\"; \
+            echo \"    $2 is an ancestor of $1\"; \
+            echo \"i.e $1 commit was after $2\"; \
+        else \
+            echo \"✘   these commits are not related\"; \
+        fi; \
+    }; compare"
+
+    #### git number support
     a = "!f() { \
         if [[ $# -eq 0 || \"$1\" == \".\" ]]; then \
             git add .; \
