@@ -59,65 +59,62 @@ font-thicken                    = true
 # Font combos
 # ghostty +list-fonts
 
+font-size               = 13
 
 # Commit Mono ---------- -->
 
-font-size               = 13
-adjust-cell-height                       = 18%
-font-family                              = CommitMonoV143
-font-style                               = 400 Regular
-font-style-italic                        = 400 Italic
-font-style-bold                          = 750 Regular
-font-style-bold-italic                   = 750 Italic
-
-
-font-feature                             = ss01
-                                         # ligatures <= != ===
-
-font-feature                             = ss02
-                                         # arrows -> >-> =>
-
-font-feature                             = ss03
-                                         # smart case 2+3
-
-#font-feature                             = ss04
-#                                         # smart spacing ... <<
-
-#font-feature                             = ss05
-#                                         # smart kerning immi
-
-font-feature                             = cv02
-                                         # alt g
-
-#font-feature                             = cv04
-#                                         # alt i
-
-font-feature                             = cv06
-                                         # alt 6/9
-
-font-feature                             = cv07
-                                         # dotted 0
-
-font-feature                             = cv08
-                                         # alt _italics_
-
-
-
-
-## Berkeley Mono (TX-02-Variable) -------- -->
-#adjust-cell-height      = 8%
-#font-family             = TX-02-Variable
-#font-variation          = wght=450
-#font-variation-bold     = wght=750
+#adjust-cell-height                       = 18%
+#font-family                              = CommitMonoV143
+#font-style                               = 400 Regular
+#font-style-italic                        = 400 Italic
+#font-style-bold                          = 750 Regular
+#font-style-bold-italic                   = 750 Italic
 #
-#font-feature            = ss02
-#                        # ss01 - slashed 0; ss02 - dotted 0; ss03 - inverted slash
-#font-feature            = ss05
-#                        # german r
-#font-feature            = ss06
-#                        # alternative pipe
-#font-feature            = ss12
-#                        # ligatures ->
+#
+#font-feature                             = ss01
+#                                         # ligatures <= != ===
+#
+#font-feature                             = ss02
+#                                         # arrows -> >-> =>
+#
+#font-feature                             = ss03
+#                                         # smart case 2+3
+#
+##font-feature                             = ss04
+##                                         # smart spacing ... <<
+#
+##font-feature                             = ss05
+##                                         # smart kerning immi
+#
+#font-feature                             = cv02
+#                                         # alt g
+#
+##font-feature                             = cv04
+##                                         # alt i
+#
+#font-feature                             = cv06
+#                                         # alt 6/9
+#
+#font-feature                             = cv07
+#                                         # dotted 0
+#
+#font-feature                             = cv08
+#                                         # alt _italics_
 #
 
 
+
+# Berkeley Mono (TX-02-Variable) -------- -->
+adjust-cell-height      = 8%
+font-family             = TX-02-Variable
+font-variation          = wght=450
+font-variation-bold     = wght=750
+
+font-feature            = ss02
+                        # ss01 - slashed 0; ss02 - dotted 0; ss03 - inverted slash
+font-feature            = ss05
+                        # german r
+font-feature            = ss06
+                        # alternative pipe
+font-feature            = ss12
+                        # ligatures ->
