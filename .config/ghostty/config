@@ -61,12 +61,12 @@ font-thicken                    = true
 
 font-size               = 13
 
-# Commit Mono ---------- -->
-
-#adjust-cell-height                       = 18%
+## Commit Mono ---------- -->
+#
+#adjust-cell-height                       = 23%
 #font-family                              = CommitMonoV143
-#font-style                               = 400 Regular
-#font-style-italic                        = 400 Italic
+#font-style                               = 500 Regular
+#font-style-italic                        = 500 Italic
 #font-style-bold                          = 750 Regular
 #font-style-bold-italic                   = 750 Italic
 #
@@ -105,7 +105,7 @@ font-size               = 13
 
 
 # Berkeley Mono (TX-02-Variable) -------- -->
-adjust-cell-height      = 8%
+adjust-cell-height      = 12%
 font-family             = TX-02-Variable
 font-variation          = wght=450
 font-variation-bold     = wght=750
