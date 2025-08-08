@@ -59,17 +59,28 @@ font-thicken                    = true
 # Font combos
 # ghostty +list-fonts
 
-font-size               = 13
+font-size               = 12.5
+
+## Input Mono ---------- -->
+#adjust-cell-height                       = 22%
+#font-family                              = Input Mono
+
+# Commit Mono ---------- -->
+adjust-cell-height                       = 30%
+font-family                              = CommitMono-KG-4
+font-style                               = 450Regular
+font-style-italic                        = 450Italic
+font-style-bold                          = 700Regular
+font-style-bold-italic                   = 700Italic
+
 
 ## Commit Mono ---------- -->
-#
-#adjust-cell-height                       = 23%
+#adjust-cell-height                       = 30%
 #font-family                              = CommitMonoV143
 #font-style                               = 500 Regular
 #font-style-italic                        = 500 Italic
-#font-style-bold                          = 750 Regular
-#font-style-bold-italic                   = 750 Italic
-#
+#font-style-bold                          = 700 Regular
+#font-style-bold-italic                   = 700 Italic
 #
 #font-feature                             = ss01
 #                                         # ligatures <= != ===
@@ -86,8 +97,11 @@ font-size               = 13
 ##font-feature                             = ss05
 ##                                         # smart kerning immi
 #
-#font-feature                             = cv02
+#font-feature                             = cv01
 #                                         # alt g
+#
+#font-feature                             = cv03
+#                                         # Square dots .:ij
 #
 ##font-feature                             = cv04
 ##                                         # alt i
@@ -104,17 +118,19 @@ font-size               = 13
 
 
 
-# Berkeley Mono (TX-02-Variable) -------- -->
-adjust-cell-height      = 12%
-font-family             = TX-02-Variable
-font-variation          = wght=450
-font-variation-bold     = wght=750
 
-font-feature            = ss02
-                        # ss01 - slashed 0; ss02 - dotted 0; ss03 - inverted slash
-font-feature            = ss05
-                        # german r
-font-feature            = ss06
-                        # alternative pipe
-font-feature            = ss12
-                        # ligatures ->
+
+## Berkeley Mono (TX-02-Variable) -------- -->
+#adjust-cell-height      = 12%
+#font-family             = TX-02-Variable
+#font-variation          = wght=450
+#font-variation-bold     = wght=750
+#
+#font-feature            = ss02
+#                        # ss01 - slashed 0; ss02 - dotted 0; ss03 - inverted slash
+#font-feature            = ss05
+#                        # german r
+#font-feature            = ss06
+#                        # alternative pipe
+#font-feature            = ss12
+#                        # ligatures ->
