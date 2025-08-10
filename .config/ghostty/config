@@ -59,23 +59,27 @@ font-thicken                    = true
 # Font combos
 # ghostty +list-fonts
 
-font-size               = 12.5
+font-size               = 12
 
 ## Input Mono ---------- -->
 #adjust-cell-height                       = 22%
 #font-family                              = Input Mono
 
-# Commit Mono ---------- -->
-adjust-cell-height                       = 30%
-font-family                              = CommitMono-KG-4
-font-style                               = 450Regular
-font-style-italic                        = 450Italic
-font-style-bold                          = 700Regular
-font-style-bold-italic                   = 700Italic
-
+# SF Mono ---------- -->
+adjust-cell-height                       = 20%
+font-family                              = SF Mono
 
 ## Commit Mono ---------- -->
 #adjust-cell-height                       = 30%
+#font-family                              = CommitMono-KG-4
+#font-style                               = 450Regular
+#font-style-italic                        = 450Italic
+#font-style-bold                          = 700Regular
+#font-style-bold-italic                   = 700Italic
+
+
+## Commit Mono ---------- -->
+#adjust-cell-height                       = 25%
 #font-family                              = CommitMonoV143
 #font-style                               = 500 Regular
 #font-style-italic                        = 500 Italic
@@ -84,39 +88,37 @@ font-style-bold-italic                   = 700Italic
 #
 #font-feature                             = ss01
 #                                         # ligatures <= != ===
-#
 #font-feature                             = ss02
 #                                         # arrows -> >-> =>
-#
-#font-feature                             = ss03
+##font-feature                             = ss03
 #                                         # smart case 2+3
-#
 ##font-feature                             = ss04
 ##                                         # smart spacing ... <<
-#
 ##font-feature                             = ss05
 ##                                         # smart kerning immi
 #
-#font-feature                             = cv01
-#                                         # alt g
 #
+#font-feature                             = cv01
+#                                         # alt a
+##font-feature                             = cv02
+##                                         # alt g
 #font-feature                             = cv03
 #                                         # Square dots .:ij
-#
-##font-feature                             = cv04
-##                                         # alt i
-#
+#font-feature                             = cv04
+#                                         # alt i
 #font-feature                             = cv06
 #                                         # alt 6/9
-#
 #font-feature                             = cv07
 #                                         # dotted 0
-#
 #font-feature                             = cv08
 #                                         # alt _italics_
+##font-feature                             = cv09
+##                                         # lifted *
+##font-feature                             = cv10
+##                                         # alt l
+#font-feature                             = cv11
+#                                         # alt 1
 #
-
-
 
 
 
