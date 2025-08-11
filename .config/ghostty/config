@@ -68,6 +68,10 @@ font-size               = 11
 # SF Mono ---------- -->
 adjust-cell-height                       = 20%
 font-family                              = SF Mono
+font-style                               = Medium
+font-style-italic                        = Medium Italic
+font-style-bold                          = Heavy
+font-style-bold-italic                   = Heavy Italic
 
 ## Commit Mono ---------- -->
 #adjust-cell-height                       = 27%
