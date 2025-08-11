@@ -59,7 +59,7 @@ font-thicken                    = true
 # Font combos
 # ghostty +list-fonts
 
-font-size               = 12
+font-size               = 11
 
 ## Input Mono ---------- -->
 #adjust-cell-height                       = 22%
@@ -70,7 +70,7 @@ adjust-cell-height                       = 20%
 font-family                              = SF Mono
 
 ## Commit Mono ---------- -->
-#adjust-cell-height                       = 30%
+#adjust-cell-height                       = 27%
 #font-family                              = CommitMono-KG-4
 #font-style                               = 450Regular
 #font-style-italic                        = 450Italic
@@ -79,7 +79,7 @@ font-family                              = SF Mono
 
 
 ## Commit Mono ---------- -->
-#adjust-cell-height                       = 25%
+#adjust-cell-height                       = 27%
 #font-family                              = CommitMonoV143
 #font-style                               = 500 Regular
 #font-style-italic                        = 500 Italic
@@ -118,7 +118,7 @@ font-family                              = SF Mono
 ##                                         # alt l
 #font-feature                             = cv11
 #                                         # alt 1
-#
+
 
 
 
