@@ -34,9 +34,9 @@ keybind = shift+enter=text:\n
 # theme                           = dark:galaxy-kg,light:GruvboxLightHard
 #theme                           = xcodedarkhc
 #theme                           = galaxy-kg
-#theme                           = batman-kg
+theme                           = batman-kg
 #theme                           = monokai-pro-dark
-theme                           = Monokai Pro Machine
+#theme                           = Monokai Pro Machine
 adjust-cursor-thickness         = 3
 adjust-underline-position       = 3
 #background-opacity              = 0.95
