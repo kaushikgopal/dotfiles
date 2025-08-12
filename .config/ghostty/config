@@ -34,9 +34,9 @@ keybind = shift+enter=text:\n
 # theme                           = dark:galaxy-kg,light:GruvboxLightHard
 #theme                           = xcodedarkhc
 #theme                           = galaxy-kg
-theme                           = batman-kg
+#theme                           = batman-kg
 #theme                           = monokai-pro-dark
-#theme                           = Monokai Pro Machine
+theme                           = Monokai Pro Machine
 adjust-cursor-thickness         = 3
 adjust-underline-position       = 3
 #background-opacity              = 0.95
@@ -61,27 +61,27 @@ font-thicken                    = true
 
 font-size               = 11
 
-# # SF Mono ---------- -->
-# adjust-cell-height                       = 15%
-# font-family                              = SF Mono
-# # font-style                               = Medium
-# # font-style-italic                        = Medium Italic
+# SF Mono ---------- -->
+adjust-cell-height                       = 15%
+font-family                              = SF Mono
+# font-style                               = Medium
+# font-style-italic                        = Medium Italic
 
 
-# Berkeley Mono (TX-02-Variable) -------- -->
-adjust-cell-height      = 15%
-font-family             = TX-02-Variable
-font-variation          = wght=500
-font-variation-bold     = wght=750
+# # Berkeley Mono (TX-02-Variable) -------- -->
+# adjust-cell-height      = 15%
+# font-family             = TX-02-Variable
+# font-variation          = wght=500
+# font-variation-bold     = wght=750
 
-font-feature            = ss02
-                       # ss01 - slashed 0; ss02 - dotted 0; ss03 - inverted slash
-font-feature            = ss05
-                       # german r
-font-feature            = ss06
-                       # alternative pipe
-font-feature            = ss12
-                       # ligatures ->
+# font-feature            = ss02
+#                        # ss01 - slashed 0; ss02 - dotted 0; ss03 - inverted slash
+# font-feature            = ss05
+#                        # german r
+# font-feature            = ss06
+#                        # alternative pipe
+# font-feature            = ss12
+#                        # ligatures ->
 
 
 ## Commit Mono ---------- -->
