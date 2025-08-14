@@ -13,6 +13,8 @@
 !.config/git/**
 # ignore files matching pattern config-*
 .config/git/config-*
+# ignore global git ignore file to prevent claude from modifying it
+.config/git/ignore
 
 # ----------------------------------------
 # ghostty
