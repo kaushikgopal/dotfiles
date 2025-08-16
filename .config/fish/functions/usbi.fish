@@ -221,210 +221,116 @@ system_profiler SPUSBDataType | awk -v MODE="$mode" -v USE_COLOR="$use_color" '
         if (!is_hub(dev_name)) {
             if (cat_speed(dev_speed) == "[low]" || cat_speed(dev_speed) == "[full]") slow_mark=" *"
         }
-        spcat = (dev_speed != "" ? cat_speed(dev_speed) : "")
-        if (MODE == "default") {
-            if (is_bus) {
-                if (bus_driver != "") print indent(level) blue(dev_name) " [" cyan(bus_driver) "]"
-                else print indent(level) blue(dev_name)
+        # Show all devices with default format (except for JSON mode)
+        if (MODE != "json" && MODE != "full") {
+            # Show devices with problems mode filtering
+            if (MODE == "problems" && !is_bus && !has_problems(dev_name, dev_speed, dev_manuf, dev_curr_req, dev_curr_avail, dev_vid, dev_location)) {
+                # Skip non-problem devices in problems mode
+            } else if (MODE == "storage" && !is_bus && !is_hub(dev_name) && !(categorize_device(dev_name, dev_vid, dev_pid) ~ /💾 Storage/ || dev_name ~ /drive|disk|storage|ssd|hdd/i || dev_name ~ /phone|pixel|iphone|android/i)) {
+                # Skip non-storage devices in storage mode (but include phones and always show hubs/buses)
             } else {
-                # Enhanced vendor info
-                enhanced_manuf = dev_manuf
-                if (dev_vid != "" && dev_manuf != "") {
-                    enhanced_vendor = get_vendor_name(dev_vid, dev_manuf)
-                    if (enhanced_vendor != dev_manuf) {
-                        enhanced_manuf = enhanced_vendor
-                    }
-                }
-
-                # Get device category and health indicators
-                category = ""
-                health_indicators = ""
-
-                if (!is_hub(dev_name)) {
-                    category = categorize_device(dev_name, dev_vid, dev_pid)
-
-                    # Power health indicator
-                    power_indicator = get_power_indicator(dev_curr_req, dev_curr_avail)
-                    if (power_indicator != "") health_indicators = health_indicators " " power_indicator
-
-                    # Add slow mark for non-hubs
-                    if (cat_speed(dev_speed) == "[low]" || cat_speed(dev_speed) == "[full]") {
-                        health_indicators = health_indicators " *"
-                    }
-                }
-
-                # Enhanced device display with category and health indicators
-                display_name = dev_name
-                if (category != "" && category !~ /Unknown/) {
-                    display_name = category " " bold(dev_name)
+                # Use default display format for all modes
+                spcat = (dev_speed != "" ? cat_speed(dev_speed) : "")
+                
+                if (is_bus) {
+                    if (bus_driver != "") print indent(level) blue(dev_name) " [" cyan(bus_driver) "]"
+                    else print indent(level) blue(dev_name)
                 } else {
-                    display_name = bold(dev_name)
-                }
-                if (health_indicators != "") {
-                    display_name = display_name health_indicators
-                }
+                    # Enhanced vendor info
+                    enhanced_manuf = dev_manuf
+                    if (dev_vid != "" && dev_manuf != "") {
+                        enhanced_vendor = get_vendor_name(dev_vid, dev_manuf)
+                        if (enhanced_vendor != dev_manuf) {
+                            enhanced_manuf = enhanced_vendor
+                        }
+                    }
 
-                print indent(level) display_name
+                    # Get device category and health indicators
+                    category = ""
+                    health_indicators = ""
 
-                # Speed line with category - color code by speed
-                if (dev_speed != "") {
-                    speed_cat = cat_speed(dev_speed)
-                    gsub(/\[|\]/, "", speed_cat)
-                    colored_speed = dev_speed
-                    if (speed_cat == "low" || speed_cat == "full") colored_speed = red(dev_speed)
-                    else if (speed_cat == "high") colored_speed = yellow(dev_speed)  
-                    else if (speed_cat == "ss" || speed_cat == "ss+") colored_speed = green(dev_speed)
-                    else if (speed_cat == "ss20" || speed_cat == "ss40") colored_speed = cyan(dev_speed)
+                    if (!is_hub(dev_name)) {
+                        category = categorize_device(dev_name, dev_vid, dev_pid)
+
+                        # Power health indicator
+                        power_indicator = get_power_indicator(dev_curr_req, dev_curr_avail)
+                        if (power_indicator != "") health_indicators = health_indicators " " power_indicator
+
+                        # Add slow mark for non-hubs
+                        if (cat_speed(dev_speed) == "[low]" || cat_speed(dev_speed) == "[full]") {
+                            health_indicators = health_indicators " *"
+                        }
+
+                        # Only add ❌ for non-power problems in problems mode
+                        if (MODE == "problems" && has_non_power_problems(dev_name, dev_speed, enhanced_manuf, dev_curr_req, dev_curr_avail, dev_vid, dev_location)) {
+                            health_indicators = health_indicators " ❌"
+                        }
+                    }
+
+                    # Enhanced device display with category and health indicators
+                    display_name = dev_name
+                    if (category != "" && category !~ /Unknown/) {
+                        display_name = category " " bold(dev_name)
+                    } else {
+                        display_name = bold(dev_name)
+                    }
+                    if (health_indicators != "") {
+                        display_name = display_name health_indicators
+                    }
+
+                    print indent(level) display_name
+
+                    # Speed line with category - color code by speed (skip for power and storage modes)
+                    if (dev_speed != "" && MODE != "power" && MODE != "storage") {
+                        speed_cat = cat_speed(dev_speed)
+                        gsub(/\[|\]/, "", speed_cat)
+                        colored_speed = dev_speed
+                        if (speed_cat == "low" || speed_cat == "full") colored_speed = red(dev_speed)
+                        else if (speed_cat == "high") colored_speed = yellow(dev_speed)  
+                        else if (speed_cat == "ss" || speed_cat == "ss+") colored_speed = green(dev_speed)
+                        else if (speed_cat == "ss20" || speed_cat == "ss40") colored_speed = cyan(dev_speed)
+                        
+                        printf "%s%-14s %s %s\n", indent(level+1), dim("Speed:"), colored_speed, spcat
+                        
+                        # Add transfer rate estimate for default modes (not speed mode)
+                        if (MODE == "default" || MODE == "problems" || MODE == "summary") {
+                            if (speed_cat == "high") printf "%s%-14s ~60 MB/s max\n", indent(level+1), dim("Transfer Rate:")
+                            else if (speed_cat == "ss") printf "%s%-14s ~625 MB/s max\n", indent(level+1), dim("Transfer Rate:")
+                            else if (speed_cat == "ss+") printf "%s%-14s ~1.25 GB/s max\n", indent(level+1), dim("Transfer Rate:")
+                            else if (speed_cat == "ss20") printf "%s%-14s ~2.5 GB/s max\n", indent(level+1), dim("Transfer Rate:")
+                            else if (speed_cat == "ss40") printf "%s%-14s ~5 GB/s max\n", indent(level+1), dim("Transfer Rate:")
+                        }
+                    }
                     
-                    printf "%s%-14s %s %s\n", indent(level+1), dim("Speed:"), colored_speed, spcat
-                }
-                # Enhanced manufacturer info
-                if (enhanced_manuf != "") printf "%s%-14s %s\n", indent(level+1), dim("Manufacturer:"), enhanced_manuf
-                # Enhanced power info with percentage - color code by usage
-                if (dev_curr_req != "" && dev_curr_avail != "") {
-                    usage = (dev_curr_req / dev_curr_avail) * 100
-                    power_color = ""
-                    if (usage > 95) power_color = red(sprintf("%dmA / %dmA (%.1f%%)", dev_curr_req, dev_curr_avail, usage))
-                    else if (usage > 80) power_color = yellow(sprintf("%dmA / %dmA (%.1f%%)", dev_curr_req, dev_curr_avail, usage))
-                    else power_color = green(sprintf("%dmA / %dmA (%.1f%%)", dev_curr_req, dev_curr_avail, usage))
+                    # For storage mode, show transfer rate without speed info
+                    if (MODE == "storage" && dev_speed != "") {
+                        speed_cat = cat_speed(dev_speed)
+                        gsub(/\[|\]/, "", speed_cat)
+                        if (speed_cat == "high") printf "%s%-14s ~60 MB/s max\n", indent(level+1), dim("Transfer Rate:")
+                        else if (speed_cat == "ss") printf "%s%-14s ~625 MB/s max\n", indent(level+1), dim("Transfer Rate:")
+                        else if (speed_cat == "ss+") printf "%s%-14s ~1.25 GB/s max\n", indent(level+1), dim("Transfer Rate:")
+                        else if (speed_cat == "ss20") printf "%s%-14s ~2.5 GB/s max\n", indent(level+1), dim("Transfer Rate:")
+                        else if (speed_cat == "ss40") printf "%s%-14s ~5 GB/s max\n", indent(level+1), dim("Transfer Rate:")
+                        else if (speed_cat == "full") printf "%s%-14s ~1.5 MB/s max\n", indent(level+1), dim("Transfer Rate:")
+                        else if (speed_cat == "low") printf "%s%-14s ~0.2 MB/s max\n", indent(level+1), dim("Transfer Rate:")
+                    }
+                    # Enhanced manufacturer info 
+                    if (enhanced_manuf != "") printf "%s%-14s %s\n", indent(level+1), dim("Manufacturer:"), enhanced_manuf
                     
-                    printf "%s%-14s %s\n", indent(level+1), dim("Power:"), power_color
-                }
-                # Location info
-                if (dev_location != "") printf "%s%-14s %s\n", indent(level+1), dim("Location:"), dim(dev_location)
-            }
-        } else if (MODE == "speed") {
-            # Speed-focused mode - same format as default but only show speed info
-            if (is_bus) {
-                if (bus_driver != "") print indent(level) dev_name " [" bus_driver "]"
-                else print indent(level) dev_name
-            } else {
-                # Enhanced vendor info (same as default)
-                enhanced_manuf = dev_manuf
-                if (dev_vid != "" && dev_manuf != "") {
-                    enhanced_vendor = get_vendor_name(dev_vid, dev_manuf)
-                    if (enhanced_vendor != dev_manuf) {
-                        enhanced_manuf = enhanced_vendor
+                    # Power info - show for all modes except speed and storage
+                    if (dev_curr_req != "" && dev_curr_avail != "" && MODE != "speed" && MODE != "storage") {
+                        usage = (dev_curr_req / dev_curr_avail) * 100
+                        power_color = ""
+                        if (usage > 95) power_color = red(sprintf("%dmA / %dmA (%.1f%%)", dev_curr_req, dev_curr_avail, usage))
+                        else if (usage > 80) power_color = yellow(sprintf("%dmA / %dmA (%.1f%%)", dev_curr_req, dev_curr_avail, usage))
+                        else power_color = green(sprintf("%dmA / %dmA (%.1f%%)", dev_curr_req, dev_curr_avail, usage))
+                        
+                        printf "%s%-14s %s\n", indent(level+1), dim("Power:"), power_color
                     }
+                    
+                    # Location info (skip for power, speed, and storage modes)
+                    if (dev_location != "" && MODE != "power" && MODE != "speed" && MODE != "storage") printf "%s%-14s %s\n", indent(level+1), dim("Location:"), dim(dev_location)
                 }
-                
-                # Get device category (same as default)
-                category = ""
-                if (!is_hub(dev_name)) {
-                    category = categorize_device(dev_name, dev_vid, dev_pid)
-                }
-                
-                # Enhanced device display (same as default)
-                display_name = dev_name
-                if (category != "" && category !~ /Unknown/) {
-                    display_name = category " " dev_name
-                }
-                
-                print indent(level) display_name
-                
-                # Only show speed line (simplified)
-                if (dev_speed != "") {
-                    printf "%s%-14s %s %s\n", indent(level+1), "Speed:", dev_speed, spcat
-                }
-            }
-        } else if (MODE == "power") {
-            # Power-focused output
-            if (is_bus) {
-                # For bus nodes, show driver inline
-                if (bus_driver != "") print indent(level) dev_name " [" bus_driver "]"
-                else print indent(level) dev_name
-            } else {
-                # For devices and hubs, show power info with indicators
-                power_info = ""
-                power_indicator = get_power_indicator(dev_curr_req, dev_curr_avail)
-                if (dev_curr_req != "" && dev_curr_avail != "") {
-                    usage = (dev_curr_req / dev_curr_avail) * 100
-                    power_info = " [" dev_curr_req "/" dev_curr_avail "mA " sprintf("%.0f%%", usage) "]"
-                    if (power_indicator != "") power_info = power_info " " power_indicator
-                } else if (dev_curr_req != "") {
-                    power_info = " [" dev_curr_req "mA req]"
-                } else if (dev_curr_avail != "") {
-                    power_info = " [" dev_curr_avail "mA avail]"
-                }
-                print indent(level) dev_name power_info
-            }
-        } else if (MODE == "problems") {
-            # Problems mode - only show devices with issues
-            if (is_bus) {
-                if (bus_driver != "") print indent(level) dev_name " [" bus_driver "]"
-                else print indent(level) dev_name
-            } else if (has_problems(dev_name, dev_speed, dev_manuf, dev_curr_req, dev_curr_avail, dev_vid, dev_location)) {
-                # Enhanced vendor info
-                enhanced_manuf = dev_manuf
-                if (dev_vid != "" && dev_manuf != "") {
-                    enhanced_vendor = get_vendor_name(dev_vid, dev_manuf)
-                    if (enhanced_vendor != dev_manuf) {
-                        enhanced_manuf = enhanced_vendor
-                    }
-                }
-
-                category = categorize_device(dev_name, dev_vid, dev_pid)
-                health_indicators = ""
-                power_indicator = get_power_indicator(dev_curr_req, dev_curr_avail)
-                if (power_indicator != "") health_indicators = health_indicators " " power_indicator
-
-                # Only add ❌ for non-power problems (missing info, power demand > supply, etc.)
-                if (has_non_power_problems(dev_name, dev_speed, enhanced_manuf, dev_curr_req, dev_curr_avail, dev_vid, dev_location)) {
-                    health_indicators = health_indicators " ❌"
-                }
-
-                display_name = dev_name
-                if (category != "" && category !~ /Unknown/) {
-                    display_name = category " " red(dev_name)
-                } else {
-                    display_name = red(dev_name)
-                }
-                display_name = display_name health_indicators
-
-                print indent(level) display_name
-                if (dev_speed != "") printf "%s%-14s %s %s\n", indent(level+1), "Speed:", dev_speed, cat_speed(dev_speed)
-                if (enhanced_manuf != "") printf "%s%-14s %s\n", indent(level+1), "Manufacturer:", enhanced_manuf
-                if (dev_curr_req != "" && dev_curr_avail != "") {
-                    usage = (dev_curr_req / dev_curr_avail) * 100
-                    printf "%s%-14s %dmA / %dmA (%.1f%%)\n", indent(level+1), "Power:", dev_curr_req, dev_curr_avail, usage
-                }
-                if (dev_location != "") printf "%s%-14s %s\n", indent(level+1), "Location:", dev_location
-            }
-        } else if (MODE == "storage") {
-            # Storage mode - focus on storage devices
-            if (is_bus) {
-                if (bus_driver != "") print indent(level) dev_name " [" bus_driver "]"
-                else print indent(level) dev_name
-            } else if (categorize_device(dev_name, dev_vid, dev_pid) ~ /💾 Storage/ || dev_name ~ /drive|disk|storage|ssd|hdd/i) {
-                category = categorize_device(dev_name, dev_vid, dev_pid)
-                health_indicators = ""
-                power_indicator = get_power_indicator(dev_curr_req, dev_curr_avail)
-                if (power_indicator != "") health_indicators = health_indicators " " power_indicator
-
-                print indent(level) category " " dev_name health_indicators
-                if (dev_speed != "") {
-                    speed_cat = cat_speed(dev_speed)
-                    gsub(/\[|\]/, "", speed_cat)  # Remove brackets
-                    printf "%s%-14s %s [%s]\n", indent(level+1), "Speed:", dev_speed, speed_cat
-                    # Estimate transfer rates
-                    if (speed_cat == "high") printf "%s%-14s ~60 MB/s max\n", indent(level+1), "Transfer Rate:"
-                    else if (speed_cat == "ss") printf "%s%-14s ~625 MB/s max\n", indent(level+1), "Transfer Rate:"
-                    else if (speed_cat == "ss+") printf "%s%-14s ~1.25 GB/s max\n", indent(level+1), "Transfer Rate:"
-                }
-
-                enhanced_manuf = dev_manuf
-                if (dev_vid != "" && dev_manuf != "") {
-                    enhanced_vendor = get_vendor_name(dev_vid, dev_manuf)
-                    if (enhanced_vendor != dev_manuf) {
-                        enhanced_manuf = enhanced_vendor
-                    }
-                }
-                if (enhanced_manuf != "") printf "%s%-14s %s\n", indent(level+1), "Manufacturer:", enhanced_manuf
-                if (dev_curr_req != "" && dev_curr_avail != "") {
-                    usage = (dev_curr_req / dev_curr_avail) * 100
-                    printf "%s%-14s %dmA / %dmA (%.1f%%)\n", indent(level+1), "Power:", dev_curr_req, dev_curr_avail, usage
-                }
-                if (dev_location != "") printf "%s%-14s %s\n", indent(level+1), "Location:", dev_location
             }
         } else if (MODE == "json" && !is_bus) {
             # JSON output for devices only (not buses)
@@ -561,65 +467,79 @@ system_profiler SPUSBDataType | awk -v MODE="$mode" -v USE_COLOR="$use_color" '
     END{
         flush_device()
 
-        # Summary mode
+        # Add mode-specific information at the end
         if (MODE == "summary") {
-            print "USB Summary:"
+            print ""
+            print blue("USB Summary:")
             print "============"
             printf "Total Devices: %d (excluding hubs)\n", device_count - hub_count
             printf "Hubs: %d\n", hub_count
             print ""
             printf "Power Usage: %dmA used / %dmA available", total_power_used, total_power_available
             if (total_power_available > 0) {
-                printf " (%.1f%%)\n", (total_power_used / total_power_available) * 100
+                usage_pct = (total_power_used / total_power_available) * 100
+                if (usage_pct > 95) printf " (%s)\n", red(sprintf("%.1f%%", usage_pct))
+                else if (usage_pct > 80) printf " (%s)\n", yellow(sprintf("%.1f%%", usage_pct))
+                else printf " (%s)\n", green(sprintf("%.1f%%", usage_pct))
             } else {
                 print ""
             }
             print ""
             print "Speed Distribution:"
-            if (speed_categories["low"] > 0) printf "  USB 1.0 (1.5 Mb/s):   %d devices\n", speed_categories["low"]
-            if (speed_categories["full"] > 0) printf "  USB 1.1 (12 Mb/s):    %d devices\n", speed_categories["full"]
-            if (speed_categories["high"] > 0) printf "  USB 2.0 (480 Mb/s):   %d devices\n", speed_categories["high"]
-            if (speed_categories["ss"] > 0) printf "  USB 3.0 (5 Gb/s):     %d devices\n", speed_categories["ss"]
-            if (speed_categories["ss+"] > 0) printf "  USB 3.1 (10 Gb/s):    %d devices\n", speed_categories["ss+"]
-            if (speed_categories["ss20"] > 0) printf "  USB 3.2 (20 Gb/s):    %d devices\n", speed_categories["ss20"]
-            if (speed_categories["ss40"] > 0) printf "  USB4 (40 Gb/s):       %d devices\n", speed_categories["ss40"]
+            if (speed_categories["low"] > 0) printf "  %s %d devices\n", red("USB 1.0 (1.5 Mb/s):"), speed_categories["low"]
+            if (speed_categories["full"] > 0) printf "  %s %d devices\n", red("USB 1.1 (12 Mb/s):"), speed_categories["full"]
+            if (speed_categories["high"] > 0) printf "  %s %d devices\n", yellow("USB 2.0 (480 Mb/s):"), speed_categories["high"]
+            if (speed_categories["ss"] > 0) printf "  %s %d devices\n", green("USB 3.0 (5 Gb/s):"), speed_categories["ss"]
+            if (speed_categories["ss+"] > 0) printf "  %s %d devices\n", green("USB 3.1 (10 Gb/s):"), speed_categories["ss+"]
+            if (speed_categories["ss20"] > 0) printf "  %s %d devices\n", cyan("USB 3.2 (20 Gb/s):"), speed_categories["ss20"]
+            if (speed_categories["ss40"] > 0) printf "  %s %d devices\n", cyan("USB4 (40 Gb/s):"), speed_categories["ss40"]
         }
         else if (MODE == "speed") {
             print ""
-            print "Speed Legend:"
-            print "  [low]:  1.5 Mb/s   (USB 1.0 - very old mice, basic devices)"
-            print "  [full]: 12 Mb/s    (USB 1.1 - keyboards, basic mice)"
-            print "  [high]: 480 Mb/s   (USB 2.0 - most phones, drives, common devices)"
-            print "  [ss]:   5 Gb/s     (USB 3.0 - fast external drives)"
-            print "  [ss+]:  10 Gb/s    (USB 3.1 - very fast drives, hubs)"
-            print "  [ss20]: 20 Gb/s    (USB 3.2 - high-end drives)"
-            print "  [ss40]: 40 Gb/s    (USB4/Thunderbolt - fastest possible)"
+            print blue("Speed Categories:")
+            if (speed_categories["low"] > 0) printf "  %s %d devices\n", red("[low]  1.5 Mb/s   (USB 1.0)"), speed_categories["low"]
+            if (speed_categories["full"] > 0) printf "  %s %d devices\n", red("[full] 12 Mb/s    (USB 1.1)"), speed_categories["full"] 
+            if (speed_categories["high"] > 0) printf "  %s %d devices\n", yellow("[high] 480 Mb/s   (USB 2.0)"), speed_categories["high"]
+            if (speed_categories["ss"] > 0) printf "  %s %d devices\n", green("[ss]   5 Gb/s     (USB 3.0)"), speed_categories["ss"]
+            if (speed_categories["ss+"] > 0) printf "  %s %d devices\n", green("[ss+]  10 Gb/s    (USB 3.1)"), speed_categories["ss+"]
+            if (speed_categories["ss20"] > 0) printf "  %s %d devices\n", cyan("[ss20] 20 Gb/s    (USB 3.2)"), speed_categories["ss20"]
+            if (speed_categories["ss40"] > 0) printf "  %s %d devices\n", cyan("[ss40] 40 Gb/s    (USB4)"), speed_categories["ss40"]
         } else if (MODE == "power") {
             print ""
-            print "Power Info:"
-            print "  Format: [required/available mA percentage] - how much power device needs vs provides"
-            print "  <80% = Normal usage 🟢"
-            print "  >80% = High usage 🟡"
-            print "  >95% = Critical usage 🔴"
-            print "  Common values: 100mA (mice), 500mA (phones/drives), 900mA+ (fast charging/hubs)"
+            print blue("Power Summary:")
+            printf "Total Power: %dmA used / %dmA available", total_power_used, total_power_available
+            if (total_power_available > 0) {
+                usage_pct = (total_power_used / total_power_available) * 100
+                if (usage_pct > 95) printf " (%s)\n", red(sprintf("%.1f%%", usage_pct))
+                else if (usage_pct > 80) printf " (%s)\n", yellow(sprintf("%.1f%%", usage_pct))
+                else printf " (%s)\n", green(sprintf("%.1f%%", usage_pct))
+            } else {
+                print ""
+            }
+            print "🔴 = Critical (>95%), 🟡 = High (>80%), 🟢 = Normal (<80%)"
         } else if (MODE == "problems") {
             print ""
             if (problem_count == 0) {
-                print "✅ No USB problems detected!"
+                print green("✅ No USB problems detected!")
             } else {
-                printf "Found %d device(s) with problems\n", problem_count
-                print "🔴 = Critical power usage (>95%)"
-                print "🟡 = High power usage (>80%)"
-                print "❌ = Missing info or errors"
+                printf "%s %d device(s) with problems\n", red("⚠️ Found"), problem_count
+                print "🔴 = Critical power (>95%), 🟡 = High power (>80%), ❌ = Missing info/errors"
             }
         } else if (MODE == "storage") {
+            # Count storage devices
+            storage_count = 0
+            for (cat in speed_categories) {
+                if (speed_categories[cat] > 0) storage_count += speed_categories[cat] 
+            }
             print ""
-            print "Storage Device Legend:"
-            print "  Transfer rates are theoretical maximums"
-            print "  Actual speeds depend on device and data type"
-            print "  USB 2.0: ~60 MB/s max"
-            print "  USB 3.0: ~625 MB/s max"
-            print "  USB 3.1+: ~1.25+ GB/s max"
+            print blue("Storage Performance Estimates:")
+            if (speed_categories["high"] > 0) printf "  %s ~60 MB/s max (%d devices)\n", yellow("USB 2.0:"), speed_categories["high"]
+            if (speed_categories["ss"] > 0) printf "  %s ~625 MB/s max (%d devices)\n", green("USB 3.0:"), speed_categories["ss"]
+            if (speed_categories["ss+"] > 0) printf "  %s ~1.25 GB/s max (%d devices)\n", green("USB 3.1+:"), speed_categories["ss+"]
+            if (speed_categories["ss20"] > 0 || speed_categories["ss40"] > 0) {
+                fast_count = speed_categories["ss20"] + speed_categories["ss40"]
+                printf "  %s ~2.5+ GB/s max (%d devices)\n", cyan("USB 3.2/4:"), fast_count
+            }
         } else if (MODE == "json") {
             print ""
             print "  ],"
