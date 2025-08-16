@@ -69,6 +69,10 @@
 !.vim/pack/**
 
 # -----------------------------------
+# bin scripts
+!bin/
+!bin/usbi
+!bin/git-user-stats
 
 # ----------------------------------------
 !.config/starship.toml
