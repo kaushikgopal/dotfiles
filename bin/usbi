@@ -310,8 +310,13 @@ EOF
                             else if (speed_cat == "full") printf "%s%-14s ~1.5 MB/s max\n", indent(level+1), dim("Transfer Rate:")
                             else if (speed_cat == "low") printf "%s%-14s ~0.2 MB/s max\n", indent(level+1), dim("Transfer Rate:")
                         }
-                        # Enhanced manufacturer info 
-                        if (enhanced_manuf != "") printf "%s%-14s %s\n", indent(level+1), dim("Manufacturer:"), enhanced_manuf
+                        # Show manufacturer and vendor ID for default mode, vendor ID only for other modes
+                        if (MODE == "default") {
+                            if (dev_manuf != "") printf "%s%-14s %s\n", indent(level+1), dim("Manufacturer:"), dev_manuf
+                            if (dev_vid != "") printf "%s%-14s %s\n", indent(level+1), dim("Vendor ID:"), dev_vid
+                        } else {
+                            if (dev_vid != "") printf "%s%-14s %s\n", indent(level+1), dim("Vendor ID:"), dev_vid
+                        }
                         
                         # Power info - show for all modes except speed, storage, and location
                         if (dev_curr_req != "" && dev_curr_avail != "" && MODE != "speed" && MODE != "storage" && MODE != "location") {
