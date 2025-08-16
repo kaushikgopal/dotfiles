@@ -1,5 +1,12 @@
 function usbi --description "Trimmed USB info from system_profiler"
 set -l mode "default"
+set -l use_color "1"
+
+# Disable colors if output is not to a terminal
+if not isatty stdout
+    set use_color "0"
+end
+
 for arg in $argv
     switch $arg
     case --full
@@ -16,6 +23,8 @@ for arg in $argv
         set mode "summary"
     case --json
         set mode "json"
+    case --no-color
+        set use_color "0"
     case --help -h
         echo "Usage: usbi [MODE]"
         echo "Modes:"
@@ -27,6 +36,7 @@ for arg in $argv
         echo "  --storage:  Focus on storage devices with detailed info"
         echo "  --summary:  Port utilization, power totals, device counts"
         echo "  --json:     Machine-readable JSON output for scripting"
+        echo "  --no-color: Disable colored output"
         echo ""
         echo "Health Indicators:"
         echo "  🔴 Critical power usage (>95% of available)"
@@ -93,8 +103,8 @@ function __usb_cat_speed
 end
 
 # Parse system_profiler and emit the desired formats.
-# We’ll use awk for structured parsing and formatting.
-system_profiler SPUSBDataType | awk -v MODE="$mode" '
+# We'll use awk for structured parsing and formatting.
+system_profiler SPUSBDataType | awk -v MODE="$mode" -v USE_COLOR="$use_color" '
     function trim(s){ gsub(/^[[:space:]]+|[[:space:]]+$/,"",s); return s }
     function indent(n){ s=""; for(i=0;i<n;i++) s=s "  "; return s }
 
@@ -135,12 +145,23 @@ system_profiler SPUSBDataType | awk -v MODE="$mode" '
         return "❓ Unknown Device"
     }
 
-    # Health indicator functions
+    # Color functions - check if colors are enabled
+    function red(text) { return (USE_COLOR == "1") ? sprintf("\033[31m%s\033[0m", text) : text }
+    function green(text) { return (USE_COLOR == "1") ? sprintf("\033[32m%s\033[0m", text) : text }
+    function yellow(text) { return (USE_COLOR == "1") ? sprintf("\033[33m%s\033[0m", text) : text }
+    function blue(text) { return (USE_COLOR == "1") ? sprintf("\033[34m%s\033[0m", text) : text }
+    function magenta(text) { return (USE_COLOR == "1") ? sprintf("\033[35m%s\033[0m", text) : text }
+    function cyan(text) { return (USE_COLOR == "1") ? sprintf("\033[36m%s\033[0m", text) : text }
+    function white(text) { return (USE_COLOR == "1") ? sprintf("\033[37m%s\033[0m", text) : text }
+    function bold(text) { return (USE_COLOR == "1") ? sprintf("\033[1m%s\033[0m", text) : text }
+    function dim(text) { return (USE_COLOR == "1") ? sprintf("\033[2m%s\033[0m", text) : text }
+
+    # Health indicator functions with color
     function get_power_indicator(req, avail) {
         if (req == "" || avail == "" || avail == 0) return ""
         usage = (req / avail) * 100
-        if (usage > 95) return "🔴"
-        if (usage > 80) return "🟡"
+        if (usage > 95) return red("🔴")
+        if (usage > 80) return yellow("🟡")
         return ""
     }
 
@@ -203,8 +224,8 @@ system_profiler SPUSBDataType | awk -v MODE="$mode" '
         spcat = (dev_speed != "" ? cat_speed(dev_speed) : "")
         if (MODE == "default") {
             if (is_bus) {
-                if (bus_driver != "") print indent(level) dev_name " [" bus_driver "]"
-                else print indent(level) dev_name
+                if (bus_driver != "") print indent(level) blue(dev_name) " [" cyan(bus_driver) "]"
+                else print indent(level) blue(dev_name)
             } else {
                 # Enhanced vendor info
                 enhanced_manuf = dev_manuf
@@ -235,7 +256,9 @@ system_profiler SPUSBDataType | awk -v MODE="$mode" '
                 # Enhanced device display with category and health indicators
                 display_name = dev_name
                 if (category != "" && category !~ /Unknown/) {
-                    display_name = category " " dev_name
+                    display_name = category " " bold(dev_name)
+                } else {
+                    display_name = bold(dev_name)
                 }
                 if (health_indicators != "") {
                     display_name = display_name health_indicators
@@ -243,19 +266,32 @@ system_profiler SPUSBDataType | awk -v MODE="$mode" '
 
                 print indent(level) display_name
 
-                # Speed line with category
+                # Speed line with category - color code by speed
                 if (dev_speed != "") {
-                    printf "%s%-14s %s %s\n", indent(level+1), "Speed:", dev_speed, spcat
+                    speed_cat = cat_speed(dev_speed)
+                    gsub(/\[|\]/, "", speed_cat)
+                    colored_speed = dev_speed
+                    if (speed_cat == "low" || speed_cat == "full") colored_speed = red(dev_speed)
+                    else if (speed_cat == "high") colored_speed = yellow(dev_speed)  
+                    else if (speed_cat == "ss" || speed_cat == "ss+") colored_speed = green(dev_speed)
+                    else if (speed_cat == "ss20" || speed_cat == "ss40") colored_speed = cyan(dev_speed)
+                    
+                    printf "%s%-14s %s %s\n", indent(level+1), dim("Speed:"), colored_speed, spcat
                 }
                 # Enhanced manufacturer info
-                if (enhanced_manuf != "") printf "%s%-14s %s\n", indent(level+1), "Manufacturer:", enhanced_manuf
-                # Enhanced power info with percentage
+                if (enhanced_manuf != "") printf "%s%-14s %s\n", indent(level+1), dim("Manufacturer:"), enhanced_manuf
+                # Enhanced power info with percentage - color code by usage
                 if (dev_curr_req != "" && dev_curr_avail != "") {
                     usage = (dev_curr_req / dev_curr_avail) * 100
-                    printf "%s%-14s %dmA / %dmA (%.1f%%)\n", indent(level+1), "Power:", dev_curr_req, dev_curr_avail, usage
+                    power_color = ""
+                    if (usage > 95) power_color = red(sprintf("%dmA / %dmA (%.1f%%)", dev_curr_req, dev_curr_avail, usage))
+                    else if (usage > 80) power_color = yellow(sprintf("%dmA / %dmA (%.1f%%)", dev_curr_req, dev_curr_avail, usage))
+                    else power_color = green(sprintf("%dmA / %dmA (%.1f%%)", dev_curr_req, dev_curr_avail, usage))
+                    
+                    printf "%s%-14s %s\n", indent(level+1), dim("Power:"), power_color
                 }
                 # Location info
-                if (dev_location != "") printf "%s%-14s %s\n", indent(level+1), "Location:", dev_location
+                if (dev_location != "") printf "%s%-14s %s\n", indent(level+1), dim("Location:"), dim(dev_location)
             }
         } else if (MODE == "speed") {
             # Speed-focused mode - same format as default but only show speed info
@@ -339,7 +375,9 @@ system_profiler SPUSBDataType | awk -v MODE="$mode" '
 
                 display_name = dev_name
                 if (category != "" && category !~ /Unknown/) {
-                    display_name = category " " dev_name
+                    display_name = category " " red(dev_name)
+                } else {
+                    display_name = red(dev_name)
                 }
                 display_name = display_name health_indicators
 
