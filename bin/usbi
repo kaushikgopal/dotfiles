@@ -248,17 +248,19 @@ EOF
                         if (!is_hub(dev_name)) {
                             category = categorize_device(dev_name, dev_vid, dev_pid)
 
-                            # Power health indicator
-                            power_indicator = get_power_indicator(dev_curr_req, dev_curr_avail)
-                            if (power_indicator != "") health_indicators = health_indicators " " power_indicator
+                            # Power health indicator - show in all modes except speed
+                            if (MODE != "speed") {
+                                power_indicator = get_power_indicator(dev_curr_req, dev_curr_avail)
+                                if (power_indicator != "") health_indicators = health_indicators " " power_indicator
+                            }
 
-                            # Add slow mark for non-hubs
-                            if (cat_speed(dev_speed) == "[low]" || cat_speed(dev_speed) == "[full]") {
+                            # Add slow mark for non-hubs - show in all modes except power
+                            if (MODE != "power" && (cat_speed(dev_speed) == "[low]" || cat_speed(dev_speed) == "[full]")) {
                                 health_indicators = health_indicators " *"
                             }
 
-                            # Only add ❌ for non-power problems in problems mode
-                            if (MODE == "problems" && has_non_power_problems(dev_name, dev_speed, enhanced_manuf, dev_curr_req, dev_curr_avail, dev_vid, dev_location)) {
+                            # Only add ❌ for non-power problems in problems mode or default mode
+                            if ((MODE == "problems" || MODE == "default") && has_non_power_problems(dev_name, dev_speed, enhanced_manuf, dev_curr_req, dev_curr_avail, dev_vid, dev_location)) {
                                 health_indicators = health_indicators " ❌"
                             }
                         }
