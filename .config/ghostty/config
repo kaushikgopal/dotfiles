@@ -72,14 +72,16 @@ adjust-cell-height      = 5%
                         # closed construction (lively rhythm)
 font-feature            = calt
                         # all ligatures ->
+font-feature            = zero
+                        # slasked 0
 
 #font-feature            = cv01
                         # l with symmetrical lower stroke. (ss01)
-font-feature            = cv05
+#font-feature            = cv05
                         # l with curly tail. (ss02)
 font-feature            = cv02
                         # t with curly tail. (ss02)
-font-feature            = cv03
+#font-feature            = cv03
                         # g with more complex construction.
 font-feature            = cv04
                         # j with curly descender (ss02)
@@ -99,11 +101,11 @@ font-feature            = cv17
                         # y with different ascender construction. (ss01)
 #font-feature            = cv12
                         # u with traditional construction. (ss01)
-font-feature            = cv14
+#font-feature            = cv14
                         # $ with broken bar.
-font-feature            = cv15
+#font-feature            = cv15
                         # alternate &.
-font-feature            = cv16
+#font-feature            = cv16
                         # Q with bent tail.
 #font-feature            = cv18
                         # alternate 2 6 9 .
