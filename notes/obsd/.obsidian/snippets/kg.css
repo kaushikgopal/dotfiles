@@ -119,13 +119,25 @@ body .cm-inline-code {
         , "cv06"
         , "cv07"
         , "cv08"
-        ;*/
-    /* Berkeley Mono*/
+        ;
+    */
+    /*
+    Berkeley Mono
     font-feature-settings:
         "ss02" 1,
         "ss05" 1,
         "ss06" 1,
         "ss12" 1;
+    */
+    /* Jetbrains Mono */
+     font-feature-settings:
+          "calt"
+        , "zero"
+        , "cv02"
+        , "cv04"
+        , "cv07"
+        , "cv17"
+        ;
 }
 body .theme-light .cm-inline-code {
     /*--code-background: var(--background-primary-alt);*/
