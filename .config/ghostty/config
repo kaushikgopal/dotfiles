@@ -61,6 +61,78 @@ font-thicken                    = true
 
 font-size               = 12
 
+## JetBrains Mono -------- -->
+adjust-cell-height      = 5%
+#font-family             = Jetbrains Mono # (default font in Ghostty)
+
+#                       https://github.com/JetBrains/JetBrainsMono/wiki/OpenType-features
+#font-feature            = ss01
+                        # classic construction
+#font-feature            = ss02
+                        # closed construction (lively rhythm)
+font-feature            = calt
+                        # all ligatures ->
+
+#font-feature            = cv01
+                        # l with symmetrical lower stroke. (ss01)
+font-feature            = cv05
+                        # l with curly tail. (ss02)
+font-feature            = cv02
+                        # t with curly tail. (ss02)
+font-feature            = cv03
+                        # g with more complex construction.
+font-feature            = cv04
+                        # j with curly descender (ss02)
+#font-feature            = cv06
+                        # m with shorter leg. (ss02)
+font-feature            = cv07
+                        # W w with lover middle connection. (ss02)
+#font-feature            = cv08
+                        # K k with sharp connection. (ss01) Kaushik
+#font-feature            = cv09
+                        # f with additional horizontal stroke. (ss01)
+font-feature            = cv17
+                        # f with curly ascender. (ss02)
+#font-feature            = cv10
+                        # r with more open construction. (ss01)
+#font-feature            = cv11
+                        # y with different ascender construction. (ss01)
+#font-feature            = cv12
+                        # u with traditional construction. (ss01)
+font-feature            = cv14
+                        # $ with broken bar.
+font-feature            = cv15
+                        # alternate &.
+font-feature            = cv16
+                        # Q with bent tail.
+#font-feature            = cv18
+                        # alternate 2 6 9 .
+#font-feature            = cv19
+                        # old construction of 8.
+#font-feature            = cv20
+                       # old construction of 5.
+#font-feature            = cv99
+                        # Highlights Cyrillic C c for debugging purposes.
+
+
+
+
+## Berkeley Mono (TX-02-Variable) -------- -->
+#adjust-cell-height      = 15%
+#font-family             = TX-02-Variable
+#font-variation          = wght=450
+#font-variation-bold     = wght=750
+#
+#font-feature            = ss02
+#                       # ss01 - slashed 0; ss02 - dotted 0; ss03 - inverted slash
+#font-feature            = ss05
+#                       # german r
+#font-feature            = ss06
+#                       # alternative pipe |
+#font-feature            = ss12
+#                       # ligatures ->
+
+
 ## SF Mono ---------- -->
 #adjust-cell-height                       = 12%
 #font-family                              = SF Mono
@@ -109,20 +181,4 @@ font-size               = 12
 #font-feature                             = cv11
 #                                        # alt 1
 
-
-
-# Berkeley Mono (TX-02-Variable) -------- -->
-adjust-cell-height      = 15%
-font-family             = TX-02-Variable
-font-variation          = wght=450
-font-variation-bold     = wght=750
-
-font-feature            = ss02
-                       # ss01 - slashed 0; ss02 - dotted 0; ss03 - inverted slash
-font-feature            = ss05
-                       # german r
-font-feature            = ss06
-                       # alternative pipe |
-font-feature            = ss12
-                       # ligatures ->
 
