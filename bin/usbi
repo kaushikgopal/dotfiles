@@ -190,6 +190,17 @@ EOF
             if (lspd ~ /40 *gb\/s/)  return "[ss40]"
             return "[]"
         }
+
+        function get_transfer_rate(speed_cat) {
+            if (speed_cat == "low") return dim("~0.2 MB/s max")
+            else if (speed_cat == "full") return dim("~1.5 MB/s max")
+            else if (speed_cat == "high") return dim("~60 MB/s max")
+            else if (speed_cat == "ss") return dim("~625 MB/s max")
+            else if (speed_cat == "ss+") return dim("~1.25 GB/s max")
+            else if (speed_cat == "ss20") return dim("~2.5 GB/s max")
+            else if (speed_cat == "ss40") return dim("~5 GB/s max")
+            return ""
+        }
         function is_hub(name){
             return (name ~ /Hub:?$/ || name ~ / Hub:?$/)
         }
@@ -288,29 +299,13 @@ EOF
                             else if (speed_cat == "ss" || speed_cat == "ss+") colored_speed = green(dev_speed)
                             else if (speed_cat == "ss20" || speed_cat == "ss40") colored_speed = cyan(dev_speed)
                             
-                            printf "%s%-14s %s %s\n", indent(level+1), dim("Speed:"), colored_speed, spcat
-                            
-                            # Add transfer rate estimate for default modes (not speed mode)
-                            if (MODE == "default" || MODE == "problems" || MODE == "summary") {
-                                if (speed_cat == "high") printf "%s%-14s ~60 MB/s max\n", indent(level+1), dim("Transfer Rate:")
-                                else if (speed_cat == "ss") printf "%s%-14s ~625 MB/s max\n", indent(level+1), dim("Transfer Rate:")
-                                else if (speed_cat == "ss+") printf "%s%-14s ~1.25 GB/s max\n", indent(level+1), dim("Transfer Rate:")
-                                else if (speed_cat == "ss20") printf "%s%-14s ~2.5 GB/s max\n", indent(level+1), dim("Transfer Rate:")
-                                else if (speed_cat == "ss40") printf "%s%-14s ~5 GB/s max\n", indent(level+1), dim("Transfer Rate:")
+                            # Include transfer rate in speed display for all modes except --full
+                            transfer_rate = get_transfer_rate(speed_cat)
+                            if (transfer_rate != "" && MODE != "full") {
+                                printf "%s%-14s %s %s %s\n", indent(level+1), dim("Speed:"), colored_speed, spcat, transfer_rate
+                            } else {
+                                printf "%s%-14s %s %s\n", indent(level+1), dim("Speed:"), colored_speed, spcat
                             }
-                        }
-                        
-                        # For storage mode, show transfer rate without speed info
-                        if (MODE == "storage" && dev_speed != "") {
-                            speed_cat = cat_speed(dev_speed)
-                            gsub(/\[|\]/, "", speed_cat)
-                            if (speed_cat == "high") printf "%s%-14s ~60 MB/s max\n", indent(level+1), dim("Transfer Rate:")
-                            else if (speed_cat == "ss") printf "%s%-14s ~625 MB/s max\n", indent(level+1), dim("Transfer Rate:")
-                            else if (speed_cat == "ss+") printf "%s%-14s ~1.25 GB/s max\n", indent(level+1), dim("Transfer Rate:")
-                            else if (speed_cat == "ss20") printf "%s%-14s ~2.5 GB/s max\n", indent(level+1), dim("Transfer Rate:")
-                            else if (speed_cat == "ss40") printf "%s%-14s ~5 GB/s max\n", indent(level+1), dim("Transfer Rate:")
-                            else if (speed_cat == "full") printf "%s%-14s ~1.5 MB/s max\n", indent(level+1), dim("Transfer Rate:")
-                            else if (speed_cat == "low") printf "%s%-14s ~0.2 MB/s max\n", indent(level+1), dim("Transfer Rate:")
                         }
                         # Show manufacturer and vendor ID for default mode, vendor ID only for other modes
                         if (MODE == "default") {
