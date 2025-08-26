@@ -43,10 +43,13 @@
 
 body {
     --code-size: var(--font-smallest);
+    /* --code-background: #fffbe6; */
+    --code-background: #ffd600;
 }
 
 body.theme-dark {
     --background-primary: #1a1a1a;
+    --code-background: #53190a;
 }
 
 body.theme-light.minimal-flexoki-light {

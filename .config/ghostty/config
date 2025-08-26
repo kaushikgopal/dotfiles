@@ -36,7 +36,7 @@ keybind = shift+enter=text:\n
 #theme                           = galaxy-kg
 #theme                           = batman-kg
 #theme                           = monokai-pro-dark
-theme                           = Monokai Pro Machine
+#theme                           = Monokai Pro Machine
 adjust-cursor-thickness         = 3
 adjust-underline-position       = 3
 #background-opacity              = 0.95
@@ -59,62 +59,70 @@ font-thicken                    = true
 # Font combos
 # ghostty +list-fonts
 
-font-size               = 13
+font-size               = 11.5
 
-## Commit Mono ---------- -->
-#
-#adjust-cell-height                       = 23%
-#font-family                              = CommitMonoV143
-#font-style                               = 500 Regular
-#font-style-italic                        = 500 Italic
-#font-style-bold                          = 750 Regular
-#font-style-bold-italic                   = 750 Italic
-#
-#
-#font-feature                             = ss01
+## SF Mono ---------- -->
+#adjust-cell-height                       = 12%
+#font-family                              = SF Mono
+## font-style                               = Medium
+## font-style-italic                        = Medium Italic
+
+# # Commit Mono ---------- -->
+# font-size               = 12
+# adjust-cell-height                       = 15%
+# font-family                              = CommitMonoV143
+# font-style                               = 500 Regular
+# font-style-italic                        = 500 Italic
+# font-style-bold                          = 700 Regular
+# font-style-bold-italic                   = 700 Italic
+
+# font-feature                             = ss01
 #                                         # ligatures <= != ===
-#
-#font-feature                             = ss02
+# font-feature                             = ss02
 #                                         # arrows -> >-> =>
-#
-#font-feature                             = ss03
+# #font-feature                             = ss03
 #                                         # smart case 2+3
-#
-##font-feature                             = ss04
-##                                         # smart spacing ... <<
-#
-##font-feature                             = ss05
-##                                         # smart kerning immi
-#
-#font-feature                             = cv02
+# #font-feature                             = ss04
+# #                                         # smart spacing ... <<
+# #font-feature                             = ss05
+# #                                         # smart kerning immi
+
+
+# # font-feature                             = cv01
+# #                                         # alt a
+# font-feature                             = cv02
 #                                         # alt g
-#
-##font-feature                             = cv04
-##                                         # alt i
-#
-#font-feature                             = cv06
+# font-feature                             = cv03
+#                                         # Square dots .:ij
+# #font-feature                             = cv04
+# #                                         # alt i
+# font-feature                             = cv06
 #                                         # alt 6/9
-#
-#font-feature                             = cv07
+# font-feature                             = cv07
 #                                         # dotted 0
-#
-#font-feature                             = cv08
+# font-feature                             = cv08
 #                                         # alt _italics_
-#
+# #font-feature                             = cv09
+# #                                         # lifted *
+# #font-feature                             = cv10
+# #                                         # alt l
+# font-feature                             = cv11
+#                                         # alt 1
 
 
 
 # Berkeley Mono (TX-02-Variable) -------- -->
 adjust-cell-height      = 12%
 font-family             = TX-02-Variable
-font-variation          = wght=450
+font-variation          = wght=500
 font-variation-bold     = wght=750
 
 font-feature            = ss02
-                        # ss01 - slashed 0; ss02 - dotted 0; ss03 - inverted slash
+                       # ss01 - slashed 0; ss02 - dotted 0; ss03 - inverted slash
 font-feature            = ss05
-                        # german r
+                       # german r
 font-feature            = ss06
-                        # alternative pipe
+                       # alternative pipe |
 font-feature            = ss12
-                        # ligatures ->
+                       # ligatures ->
+
