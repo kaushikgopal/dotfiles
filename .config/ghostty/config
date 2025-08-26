@@ -36,7 +36,7 @@ keybind = shift+enter=text:\n
 #theme                           = galaxy-kg
 #theme                           = batman-kg
 #theme                           = monokai-pro-dark
-#theme                           = Monokai Pro Machine
+theme                           = Monokai Pro Machine
 adjust-cursor-thickness         = 3
 adjust-underline-position       = 3
 #background-opacity              = 0.95
@@ -114,7 +114,7 @@ font-size               = 11.5
 # Berkeley Mono (TX-02-Variable) -------- -->
 adjust-cell-height      = 12%
 font-family             = TX-02-Variable
-font-variation          = wght=500
+font-variation          = wght=475
 font-variation-bold     = wght=750
 
 font-feature            = ss02
