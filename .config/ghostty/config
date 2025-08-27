@@ -83,9 +83,9 @@ font-feature            = cv02
                         # t with curly tail. (ss02)
 #font-feature            = cv03
                         # g with more complex construction.
-font-feature            = cv04
+#font-feature            = cv04
                         # j with curly descender (ss02)
-#font-feature            = cv06
+font-feature            = cv06
                         # m with shorter leg. (ss02)
 font-feature            = cv07
                         # W w with lover middle connection. (ss02)
