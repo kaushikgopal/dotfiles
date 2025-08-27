@@ -71,10 +71,12 @@ adjust-cell-height      = 5%
                         # classic construction
 #font-feature            = ss02
                         # closed construction (lively rhythm)
-font-feature            = calt
-                        # all ligatures ->
 font-feature            = zero
                         # slasked 0
+font-feature            = ss19
+                        # broken equals ligatures == === != !==
+font-feature            = calt
+                        # all ligatures ->
 
 #font-feature            = cv01
                         # l with symmetrical lower stroke. (ss01)
@@ -86,18 +88,23 @@ font-feature            = cv02
                         # g with more complex construction.
 font-feature            = cv04
                         # j with curly descender (ss02)
-font-feature            = cv06
+
+#font-feature            = cv06
                         # m with shorter leg. (ss02)
 font-feature            = cv07
                         # W w with lover middle connection. (ss02)
-#font-feature            = cv08
+
+font-feature            = cv08
                         # K k with sharp connection. (ss01) Kaushik
+
 #font-feature            = cv09
                         # f with additional horizontal stroke. (ss01)
 font-feature            = cv17
                         # f with curly ascender. (ss02)
-#font-feature            = cv10
+
+font-feature            = cv10
                         # r with more open construction. (ss01)
+
 #font-feature            = cv11
                         # y with different ascender construction. (ss01)
 #font-feature            = cv12
@@ -108,14 +115,13 @@ font-feature            = cv17
                         # alternate &.
 #font-feature            = cv16
                         # Q with bent tail.
+
 #font-feature            = cv18
                         # alternate 2 6 9 .
-#font-feature            = cv19
+font-feature            = cv19
                         # old construction of 8.
-#font-feature            = cv20
+font-feature            = cv20
                        # old construction of 5.
-#font-feature            = cv99
-                        # Highlights Cyrillic C c for debugging purposes.
 
 
 
