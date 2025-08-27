@@ -133,11 +133,15 @@ body .cm-inline-code {
      font-feature-settings:
           "calt"
         , "zero"
+        , "ss19"
         , "cv02"
         , "cv04"
-        , "cv06"
         , "cv07"
-        , "cv17"
+        , "cv08"
+        , "cv09"
+        , "cv10"
+        , "cv19"
+        , "cv20"
         ;
 }
 body .theme-light .cm-inline-code {
