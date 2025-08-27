@@ -62,7 +62,7 @@ font-thicken                    = true
 font-size               = 12
 
 ## JetBrains Mono -------- -->
-adjust-cell-height      = 5%
+adjust-cell-height      = 4%
 #font-family             = Jetbrains Mono # (default font in Ghostty)
 
 #                       https://github.com/JetBrains/JetBrainsMono/wiki/OpenType-features
@@ -83,7 +83,7 @@ font-feature            = cv02
                         # t with curly tail. (ss02)
 #font-feature            = cv03
                         # g with more complex construction.
-#font-feature            = cv04
+font-feature            = cv04
                         # j with curly descender (ss02)
 font-feature            = cv06
                         # m with shorter leg. (ss02)
