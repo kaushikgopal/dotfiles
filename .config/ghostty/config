@@ -96,9 +96,9 @@ font-feature            = cv07
 font-feature            = cv08
                         # K k with sharp connection. (ss01) Kaushik
 
-#font-feature            = cv09
+font-feature            = cv09
                         # f with additional horizontal stroke. (ss01)
-font-feature            = cv17
+#font-feature            = cv17
                         # f with curly ascender. (ss02)
 
 font-feature            = cv10
