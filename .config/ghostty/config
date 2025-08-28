@@ -62,7 +62,7 @@ font-thicken                    = true
 
 ## JetBrains Mono -------- -->
 font-size               = 11.5
-adjust-cell-height      = 5%
+adjust-cell-height      = 4%
 #font-family             = Jetbrains Mono # (default font in Ghostty)
 
 # list of open-type features
