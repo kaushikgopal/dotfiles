@@ -35,7 +35,8 @@ keybind = shift+enter=text:\n
 #theme                           = xcodedarkhc
 #theme                           = galaxy-kg
 #theme                           = batman-kg
-theme                           = monokai-pro-dark
+#theme                           = monokai-pro-dark
+theme                            = Monokai Pro Machine
 adjust-cursor-thickness         = 3
 adjust-underline-position       = 3
 #background-opacity              = 0.95
@@ -58,68 +59,68 @@ font-thicken                    = true
 # Font combos
 # ghostty +list-fonts
 
-#font-size               = 12
+font-size               = 12
 
 ## JetBrains Mono -------- -->
-font-size               = 11.5
-adjust-cell-height      = 4%
-#font-family             = Jetbrains Mono # (default font in Ghostty)
-
-# list of open-type features
-# https://github.com/JetBrains/JetBrainsMono?tab=readme-ov-file#opentype-features
-# zero - slashed 0
-# calt - all ligatures
-# ss01 - classic construction
-# sso2 - closed construction (lively rhythm)
-# ss19 - broken equals ligatures == === != !==
-
-# cv01 - l with symmetrical lower stroke. (ss01)
-# cv05 - l with curly tail. (ss02)
-# cv02 - t with curly tail. (ss02)
-# cv03 - g with more complex construction.
-# cv04 - j with curly descender (ss02)
-# cv06 - m with shorter leg. (ss02)
-# cv07 - W w with lover middle connection. (ss02)
-# cv08 - K k with shartp connnection (ss01)
-# cv09 - f with additional horizontal stroke. (ss01)
-# cv17 - f with curly ascender. (ss02)
-# cv10 - r with more open construction. (ss01)
-# cv11 - y with different ascender construction. (ss01)
-# cv12 - u with traditional construction. (ss01)
-# cv14 - $ with broken bar.
-# cv15 - alternate &.
-# cv16 - Q with bent tail.
-# cv18 - alternate 2 6 9 . (ss01)
-# cv19 - old construction of 8. (ss01)
-# cv20 - old construction of 5.
-font-feature            = calt
-font-feature            = zero
-font-feature            = ss19
-font-feature            = cv02
-font-feature            = cv04
-font-feature            = cv07
-font-feature            = cv08
-font-feature            = cv09
-font-feature            = cv10
-font-feature            = cv19
-font-feature            = cv20
-
-
-
-## Berkeley Mono (TX-02-Variable) -------- -->
-#adjust-cell-height      = 15%
-#font-family             = TX-02-Variable
-#font-variation          = wght=450
-#font-variation-bold     = wght=750
+#font-size               = 11.5
+#adjust-cell-height      = 4%
+##font-family             = Jetbrains Mono # (default font in Ghostty)
 #
-#font-feature            = ss02
-#                       # ss01 - slashed 0; ss02 - dotted 0; ss03 - inverted slash
-#font-feature            = ss05
-#                       # german r
-#font-feature            = ss06
-#                       # alternative pipe |
-#font-feature            = ss12
-#                       # ligatures ->
+## list of open-type features
+## https://github.com/JetBrains/JetBrainsMono?tab=readme-ov-file#opentype-features
+## zero - slashed 0
+## calt - all ligatures
+## ss01 - classic construction
+## sso2 - closed construction (lively rhythm)
+## ss19 - broken equals ligatures == === != !==
+#
+## cv01 - l with symmetrical lower stroke. (ss01)
+## cv05 - l with curly tail. (ss02)
+## cv02 - t with curly tail. (ss02)
+## cv03 - g with more complex construction.
+## cv04 - j with curly descender (ss02)
+## cv06 - m with shorter leg. (ss02)
+## cv07 - W w with lover middle connection. (ss02)
+## cv08 - K k with shartp connnection (ss01)
+## cv09 - f with additional horizontal stroke. (ss01)
+## cv17 - f with curly ascender. (ss02)
+## cv10 - r with more open construction. (ss01)
+## cv11 - y with different ascender construction. (ss01)
+## cv12 - u with traditional construction. (ss01)
+## cv14 - $ with broken bar.
+## cv15 - alternate &.
+## cv16 - Q with bent tail.
+## cv18 - alternate 2 6 9 . (ss01)
+## cv19 - old construction of 8. (ss01)
+## cv20 - old construction of 5.
+#font-feature            = calt
+#font-feature            = zero
+#font-feature            = ss19
+#font-feature            = cv02
+#font-feature            = cv04
+#font-feature            = cv07
+#font-feature            = cv08
+#font-feature            = cv09
+#font-feature            = cv10
+#font-feature            = cv19
+#font-feature            = cv20
+#
+
+
+# Berkeley Mono (TX-02-Variable) -------- -->
+adjust-cell-height      = 10%
+font-family             = TX-02-Variable
+font-variation          = wght=500
+font-variation-bold     = wght=750
+
+font-feature            = ss02
+                       # ss01 - slashed 0; ss02 - dotted 0; ss03 - inverted slash
+font-feature            = ss05
+                       # german r
+font-feature            = ss06
+                       # alternative pipe |
+font-feature            = ss12
+                       # ligatures ->
 
 
 ## SF Mono ---------- -->
