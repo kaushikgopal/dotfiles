@@ -16,7 +16,7 @@ tap "kaushikgopal/tools"
 tap "buo/cask-upgrade" # better cask upgrading (see `cu`)
 
 ##############################################################
-##### CLI tools
+##### Unix/CLI tools
 
 brew "bat"
 brew "btop"
@@ -80,6 +80,7 @@ brew "github-keygen"
 ######################
 ##### Web dev
 brew "htmltest"
+brew "flyctl"
 
 ######################
 ##### android (zulu)
@@ -93,7 +94,9 @@ brew "ktfmt"
 tap "sdkman/tap"
 brew "sdkman-cli"
 
-#########
+######################
+##### Ruby
+
 # brew "asdf"
 # brew "ruby-build"
 brew "rbenv"
@@ -104,7 +107,6 @@ brew "postgresql"
 ##### Javascript and TypeScript
 brew "typescript"
 brew "node"
-
 
 ######################
 ##### .py
@@ -119,9 +121,10 @@ brew "python-yq" # caper local mock server
 ##### go
 brew "go"
 
-######################
-##### fly.io
-brew "flyctl"
+
+#######################
+######## cli apps
+gemini-cli
 
 ######################
 ##### work
@@ -129,6 +132,7 @@ brew "bazelisk"
 brew "pipx"
 #cask "orbstack"
 brew "grpcurl" # caper
+
 
 
 ##############################################################
