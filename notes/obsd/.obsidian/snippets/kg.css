@@ -43,13 +43,12 @@
 
 body {
     --code-size: var(--font-smallest);
-    /* --code-background: #fffbe6; */
-    --code-background: #ffd600;
+    /* --code-background: #ffd600; */
 }
 
 body.theme-dark {
-    --background-primary: #1a1a1a;
-    --code-background: #53190a;
+    /* --background-primary: #1a1a1a; */
+    /* --code-background: #53190a; */
 }
 
 body.theme-light.minimal-flexoki-light {
@@ -109,13 +108,17 @@ body {
 
 body .HyperMD-codeblock,
 body .cm-inline-code {
-     font-weight: 450;
+     line-height: 1.45;
+     font-weight: 500;
     /* Commit Mono */
      font-feature-settings:
           "ss01"
         , "ss02"
         , "ss03"
+        , "ss04"
         , "cv02"
+        , "cv03"
+        , "cv04"
         , "cv06"
         , "cv07"
         , "cv08"
