@@ -59,11 +59,10 @@ font-thicken                    = true
 # Font combos
 # ghostty +list-fonts
 
-
 # Commit Mono ---------- -->
+font-family             = CommitMonoV143
 font-size               = 11.5
 adjust-cell-height      = 25%
-font-family             = CommitMonoV143
 font-style              = 500 Regular
 font-style-italic       = 500 Italic
 font-style-bold         = 700 Regular
@@ -100,10 +99,24 @@ font-feature   = cv07
 font-feature   = cv08
 
 
+## Source Code Pro -------- -->
+#font-family           = Source Code Pro
+## cv01 - alt a
+## cv02 - alt g
+## cv04 - alt i
+## cv12 - slashed 0 | zero
+## cv15 - lifted *
+## cv16 - $ through
+## cv17 - alt 1 (sharper head)
+#font-feature   = cv02
+#font-feature   = cv04
+
+
+
 ## JetBrains Mono -------- -->
+##font-family             = Jetbrains Mono # (default font in Ghostty)
 #font-size               = 11.5
 #adjust-cell-height      = 4%
-##font-family             = Jetbrains Mono # (default font in Ghostty)
 #
 ## list of open-type features
 ## https://github.com/JetBrains/JetBrainsMono?tab=readme-ov-file#opentype-features
@@ -146,8 +159,8 @@ font-feature   = cv08
 #
 
 ## Berkeley Mono (TX-02-Variable) -------- -->
-#adjust-cell-height      = 10%
 #font-family             = TX-02-Variable
+#adjust-cell-height      = 10%
 #font-variation          = wght=500
 #font-variation-bold     = wght=750
 #
@@ -162,8 +175,8 @@ font-feature   = cv08
 
 
 ## SF Mono ---------- -->
-#adjust-cell-height                       = 12%
 #font-family                              = SF Mono
+#adjust-cell-height                       = 12%
 ## font-style                               = Medium
 ## font-style-italic                        = Medium Italic
 
