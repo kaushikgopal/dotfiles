@@ -97,6 +97,21 @@ font-feature   = cv08
 
 
 
+# # DM Mono ---------- -->
+# font-family             = DM Mono
+# font-size               = 12.5
+# adjust-cell-height      = 10%
+# font-feature    =  ss03
+# font-feature    =  ss04
+# font-feature    =  ss05
+
+# # list of open-type features
+# # salt - alt , ; , "" '
+# # ss02 - alt a
+# # ss03 - alt g
+# # ss04 - alt 3 6 9
+# # ss05 - f - no lower loop
+
 
 ## Source Code Pro -------- -->
 #font-family           = Source Code Pro
