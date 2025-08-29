@@ -57,6 +57,10 @@
 **/.claude/settings.local.json
 
 # ----------------------------------------
+# node dependencies
+**/node_modules/
+
+# ----------------------------------------
 # karabiner
 !.config/karabiner/
 !.config/karabiner/**
