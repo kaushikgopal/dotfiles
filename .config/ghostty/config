@@ -113,20 +113,26 @@ font-feature   = cv08
 # # ss05 - f - no lower loop
 
 
-## Source Code Pro -------- -->
-#font-family           = Source Code Pro
-## cv01 - alt a
-## cv02 - alt g
-## cv04 - alt i
-## cv12 - slashed 0 | zero
-## cv15 - lifted *
-## cv16 - $ through
-## cv17 - alt 1 (sharper head)
-#font-feature   = cv02
-#font-feature   = cv04
-#
-#
-#
+# # Source Code Pro -------- -->
+# Font-family           = Source Code Pro
+# Font-size             = 12
+# Adjust-cell-height    = 15%
+# Font-style            = Medium
+# Font-style-italic     = Medium Italic
+# Font-style-bold       = Semibold
+# Font-style-bold-italic= Semibold Italic
+# Font-feature   = cv02
+# Font-feature   = cv04
+# # cv00 - alt a
+# # cv02 - alt g
+# # cv04 - alt i
+# # cv12 - slashed 0 | zero
+# # cv15 - lifted *
+# # cv16 - $ through
+# # cv17 - alt 1 (sharper head)
+
+
+
 ## JetBrains Mono -------- -->
 ##font-family             = Jetbrains Mono # (default font in Ghostty)
 #font-size               = 11.5
