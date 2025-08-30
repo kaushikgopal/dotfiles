@@ -50,10 +50,7 @@ Modes:
   --summary:  Port utilization, power totals, device counts
   --no-color: Disable colored output
 
-Health Indicators:
-  🔴 Critical power usage (>95% of available)
-  🟡 High power usage (>80% of available)
-  ❌ Problem device (missing info or errors)
+Color thresholds (power): red >90%, yellow >50%, green otherwise
 EOF
                 return 0
                 ;;
@@ -206,14 +203,17 @@ EOF
         function white(text) { return (USE_COLOR == "1") ? sprintf("\033[37m%s\033[0m", text) : text }
         function bold(text) { return (USE_COLOR == "1") ? sprintf("\033[1m%s\033[0m", text) : text }
         function dim(text) { return (USE_COLOR == "1") ? sprintf("\033[2m%s\033[0m", text) : text }
+        # Bold helpers that do not reset all attributes (to preserve outer colors)
+        function bold_on(){ return (USE_COLOR == "1") ? "\033[1m" : "" }
+        function bold_off(){ return (USE_COLOR == "1") ? "\033[22m" : "" }
 
-        # Choose color for the given speed string by category token
+        # Choose color for the given speed string by USB version token
         function choose_speed_color(speed_string, speed_cat,    colored){
             colored = speed_string
-            if (speed_cat == "low" || speed_cat == "full") colored = red(speed_string)
-            else if (speed_cat == "high") colored = yellow(speed_string)
-            else if (speed_cat == "ss" || speed_cat == "ss+") colored = green(speed_string)
-            else if (speed_cat == "ss20" || speed_cat == "ss40") colored = cyan(speed_string)
+            if (speed_cat == "USB 1.0" || speed_cat == "USB 1.1") colored = red(speed_string)
+            else if (speed_cat == "USB 2.0") colored = yellow(speed_string)
+            else if (speed_cat == "USB 3.0" || speed_cat == "USB 3.1") colored = green(speed_string)
+            else if (speed_cat == "USB 3.2" || speed_cat == "USB4") colored = cyan(speed_string)
             return colored
         }
 
@@ -226,14 +226,8 @@ EOF
             return manuf
         }
 
-        # Health indicator functions with color
-        function get_power_indicator(req, avail) {
-            if (req == "" || avail == "" || avail == 0) return ""
-            usage = (req / avail) * 100
-            if (usage > 95) return red("🔴")
-            if (usage > 80) return yellow("🟡")
-            return ""
-        }
+        # Legacy indicator function (no emoji output; color alone is used elsewhere)
+        function get_power_indicator(req, avail) { return "" }
 
         function has_problems(name, speed, manuf, curr_req, curr_avail, vid, location) {
             # Missing critical info
@@ -255,25 +249,54 @@ EOF
         }
         function cat_speed(spd,   lspd){
             lspd=tolower(spd)
-            if (lspd ~ /1\.5 *mb\/s/) return "[low]"
-            if (lspd ~ /12 *mb\/s/)  return "[full]"
-            if (lspd ~ /480 *mb\/s/) return "[high]"
-            if (lspd ~ /5 *gb\/s/)   return "[ss]"
-            if (lspd ~ /10 *gb\/s/)  return "[ss+]"
-            if (lspd ~ /20 *gb\/s/)  return "[ss20]"
-            if (lspd ~ /40 *gb\/s/)  return "[ss40]"
+            if (lspd ~ /1\.5 *mb\/s/) return "[USB 1.0]"
+            if (lspd ~ /12 *mb\/s/)  return "[USB 1.1]"
+            if (lspd ~ /480 *mb\/s/) return "[USB 2.0]"
+            if (lspd ~ /5 *gb\/s/)   return "[USB 3.0]"
+            if (lspd ~ /10 *gb\/s/)  return "[USB 3.1]"
+            if (lspd ~ /20 *gb\/s/)  return "[USB 3.2]"
+            if (lspd ~ /40 *gb\/s/)  return "[USB4]"
             return "[]"
         }
 
         function get_transfer_rate(speed_cat) {
-            if (speed_cat == "low") return dim("~0.2 MB/s max")
-            else if (speed_cat == "full") return dim("~1.5 MB/s max")
-            else if (speed_cat == "high") return dim("~60 MB/s max")
-            else if (speed_cat == "ss") return dim("~625 MB/s max")
-            else if (speed_cat == "ss+") return dim("~1.25 GB/s max")
-            else if (speed_cat == "ss20") return dim("~2.5 GB/s max")
-            else if (speed_cat == "ss40") return dim("~5 GB/s max")
+            if (speed_cat == "USB 1.0") return "~0.2 MB/s max"
+            else if (speed_cat == "USB 1.1") return "~1.5 MB/s max"
+            else if (speed_cat == "USB 2.0") return "~60 MB/s max"
+            else if (speed_cat == "USB 3.0") return "~625 MB/s max"
+            else if (speed_cat == "USB 3.1") return "~1.25 GB/s max"
+            else if (speed_cat == "USB 3.2") return "~2.5 GB/s max"
+            else if (speed_cat == "USB4") return "~5 GB/s max"
             return ""
+        }
+
+        # Unified Speed summary renderer
+        function render_speed_summary() {
+            print blue("Speed:")
+            if (speed_categories["USB 1.0"] > 0) printf "  %s %10s %14s %3d devices\n", red("[USB 1.0]"), "1.5 Mb/s", "(USB 1.0)", speed_categories["USB 1.0"]
+            if (speed_categories["USB 1.1"] > 0) printf "  %s %10s %14s %3d devices\n", red("[USB 1.1]"), "12 Mb/s", "(USB 1.1)", speed_categories["USB 1.1"]
+            if (speed_categories["USB 2.0"] > 0) printf "  %s %10s %14s %3d devices\n", yellow("[USB 2.0]"), "480 Mb/s", "(USB 2.0)", speed_categories["USB 2.0"]
+            if (speed_categories["USB 3.0"] > 0) printf "  %s %10s %14s %3d devices\n", green("[USB 3.0]"), "5 Gb/s", "(USB 3.0)", speed_categories["USB 3.0"]
+            if (speed_categories["USB 3.1"] > 0) printf "  %s %10s %14s %3d devices\n", green("[USB 3.1]"), "10 Gb/s", "(USB 3.1)", speed_categories["USB 3.1"]
+            if (speed_categories["USB 3.2"] > 0) printf "  %s %10s %14s %3d devices\n", cyan("[USB 3.2]"), "20 Gb/s", "(USB 3.2)", speed_categories["USB 3.2"]
+            if (speed_categories["USB4"] > 0) printf "  %s %10s %14s %3d devices\n", cyan("[USB4]"), "40 Gb/s", "(USB4)", speed_categories["USB4"]
+        }
+
+        # Unified Power summary renderer (new thresholds and brackets)
+        function render_power_summary() {
+            print blue("Power:")
+            total_text = sprintf("%dmA used / %dmA available [%.1f%%]", total_power_used, total_power_available, (total_power_available>0? (total_power_used/total_power_available)*100 : 0))
+
+            usage_pct = (total_power_available > 0) ? (total_power_used / total_power_available) * 100 : 0
+            colored_total = total_text
+            if (usage_pct > 90) colored_total = red(total_text)
+            else if (usage_pct > 50) colored_total = yellow(total_text)
+            else colored_total = green(total_text)
+
+            printf "  %-10s %s\n", "Total", colored_total
+            printf "                %s\n", green("< 50%")
+            printf "                %s\n", yellow("> 50%")
+            printf "                %s\n", red("> 90%")
         }
         function is_hub(name){
             return (name ~ /Hub:?$/ || name ~ / Hub:?$/)
@@ -387,21 +410,17 @@ EOF
                         if (!is_hub(dev_name)) {
                             category = categorize_device(dev_name, dev_vid, dev_pid)
 
-                            # Power health indicator - show in all modes except speed
-                            if (MODE != "speed") {
-                                power_indicator = get_power_indicator(dev_curr_req, dev_curr_avail)
-                                if (power_indicator != "") health_indicators = health_indicators " " power_indicator
-                            }
+                            # Power health indicator: no longer shown on device line (shown on Power line only)
 
                             # Add slow mark for non-hubs - show in all modes except power
                             speed_bracketed = (dev_speed != "" ? cat_speed(dev_speed) : "")
-                            if (MODE != "power" && (speed_bracketed == "[low]" || speed_bracketed == "[full]")) {
+                            if (MODE != "power" && (speed_bracketed == "[USB 1.0]" || speed_bracketed == "[USB 1.1]" || speed_bracketed == "[USB 2.0]")) {
                                 health_indicators = health_indicators " *"
                             }
 
-                            # Only add ❌ for non-power problems in problems mode or default mode
+                            # Only add problem marker (text, no emoji) for non-power problems
                             if ((MODE == "problems" || MODE == "default") && has_non_power_problems(dev_name, dev_speed, enhanced_manuf, dev_curr_req, dev_curr_avail, dev_vid, dev_location)) {
-                                health_indicators = health_indicators " ❌"
+                                health_indicators = health_indicators " " red("[Problem]")
                             }
                         }
 
@@ -425,20 +444,19 @@ EOF
 
                         # No special emoji-based indentation for hubs
 
-                        # Speed line with category - color code by speed (skip for power, storage, and location modes)
+                        # Speed line with category - color whole line, bracket bolded (skip for power, storage, location)
                         if (dev_speed != "" && MODE != "power" && MODE != "storage" && MODE != "location") {
-                            speed_cat = cat_speed(dev_speed)
-                            gsub(/\[|\]/, "", speed_cat)
-                            colored_speed = choose_speed_color(dev_speed, speed_cat)
-
-                            # Include transfer rate in speed display for all modes except --raw
-                            spcat = (dev_speed != "" ? cat_speed(dev_speed) : "")
+                            speed_cat_br = cat_speed(dev_speed)
+                            speed_cat = speed_cat_br
+                            gsub(/\[|\]/, "", speed_cat)  # e.g., USB 2.0
                             transfer_rate = get_transfer_rate(speed_cat)
-                            if (transfer_rate != "" && MODE != "raw") {
-                                printf "%s%-14s %s %s %s\n", attr_indent, dim("Speed:"), colored_speed, spcat, transfer_rate
-                            } else {
-                                printf "%s%-14s %s %s\n", attr_indent, dim("Speed:"), colored_speed, spcat
-                            }
+
+                            # Build line text with bolded bracket
+                            line_text = sprintf("%-14s %s %s%s%s", "Speed:", dev_speed, bold_on(), speed_cat_br, bold_off())
+                            if (transfer_rate != "") line_text = line_text " " transfer_rate
+
+                            colored_line = choose_speed_color(line_text, speed_cat)
+                            printf "%s%s\n", attr_indent, colored_line
                         }
 
                         # Show manufacturer and vendor ID for default mode, vendor ID only for other modes
@@ -449,15 +467,15 @@ EOF
                             if (dev_vid != "") printf "%s%-14s %s\n", attr_indent, dim("Vendor ID:"), dev_vid
                         }
 
-                        # Power info - show for all modes except speed, storage, and location
+                        # Power info - show for all modes except speed, storage, and location (no emoji indicators)
                         if (dev_curr_req != "" && dev_curr_avail != "" && MODE != "speed" && MODE != "storage" && MODE != "location") {
                             usage = (dev_curr_req / dev_curr_avail) * 100
-                            power_color = ""
-                            if (usage > 95) power_color = red(sprintf("%dmA / %dmA (%.1f%%)", dev_curr_req, dev_curr_avail, usage))
-                            else if (usage > 80) power_color = yellow(sprintf("%dmA / %dmA (%.1f%%)", dev_curr_req, dev_curr_avail, usage))
-                            else power_color = green(sprintf("%dmA / %dmA (%.1f%%)", dev_curr_req, dev_curr_avail, usage))
+                            power_text = sprintf("%dmA/%dmA [%.1f%%]", dev_curr_req, dev_curr_avail, usage)
+                            if (usage > 90) power_text = red(power_text)
+                            else if (usage > 50) power_text = yellow(power_text)
+                            else power_text = green(power_text)
 
-                            printf "%s%-14s %s\n", attr_indent, dim("Power:"), power_color
+                            printf "%s%-14s %s\n", attr_indent, dim("Power:"), power_text
                         }
 
                         # Location info - only show in location mode
@@ -475,13 +493,13 @@ EOF
             total_power_used = 0
             total_power_available = 0
             problem_count = 0
-            speed_categories["low"] = 0
-            speed_categories["full"] = 0
-            speed_categories["high"] = 0
-            speed_categories["ss"] = 0
-            speed_categories["ss+"] = 0
-            speed_categories["ss20"] = 0
-            speed_categories["ss40"] = 0
+            speed_categories["USB 1.0"] = 0
+            speed_categories["USB 1.1"] = 0
+            speed_categories["USB 2.0"] = 0
+            speed_categories["USB 3.0"] = 0
+            speed_categories["USB 3.1"] = 0
+            speed_categories["USB 3.2"] = 0
+            speed_categories["USB4"] = 0
 
             # Arrays for storing device info for tree drawing
             device_idx = 0
@@ -585,54 +603,21 @@ EOF
                 printf "Total Devices: %d (excluding hubs)\n", device_count - hub_count
                 printf "Hubs: %d\n", hub_count
                 print ""
-                printf "Power Usage: %dmA used / %dmA available", total_power_used, total_power_available
-                if (total_power_available > 0) {
-                    usage_pct = (total_power_used / total_power_available) * 100
-                    if (usage_pct > 95) printf " (%s)\n", red(sprintf("%.1f%%", usage_pct))
-                    else if (usage_pct > 80) printf " (%s)\n", yellow(sprintf("%.1f%%", usage_pct))
-                    else printf " (%s)\n", green(sprintf("%.1f%%", usage_pct))
-                } else {
-                    print ""
-                }
+                render_power_summary()
                 print ""
-                print "Speed Distribution:"
-                if (speed_categories["low"] > 0) printf "  %s %d devices\n", red("USB 1.0 (1.5 Mb/s):"), speed_categories["low"]
-                if (speed_categories["full"] > 0) printf "  %s %d devices\n", red("USB 1.1 (12 Mb/s):"), speed_categories["full"]
-                if (speed_categories["high"] > 0) printf "  %s %d devices\n", yellow("USB 2.0 (480 Mb/s):"), speed_categories["high"]
-                if (speed_categories["ss"] > 0) printf "  %s %d devices\n", green("USB 3.0 (5 Gb/s):"), speed_categories["ss"]
-                if (speed_categories["ss+"] > 0) printf "  %s %d devices\n", green("USB 3.1 (10 Gb/s):"), speed_categories["ss+"]
-                if (speed_categories["ss20"] > 0) printf "  %s %d devices\n", cyan("USB 3.2 (20 Gb/s):"), speed_categories["ss20"]
-                if (speed_categories["ss40"] > 0) printf "  %s %d devices\n", cyan("USB4 (40 Gb/s):"), speed_categories["ss40"]
+                render_speed_summary()
             } else if (MODE == "speed") {
                 print ""
-                print blue("Speed Categories:")
-                if (speed_categories["low"] > 0) printf "  %s %d devices\n", red("[low]  1.5 Mb/s   (USB 1.0)"), speed_categories["low"]
-                if (speed_categories["full"] > 0) printf "  %s %d devices\n", red("[full] 12 Mb/s    (USB 1.1)"), speed_categories["full"]
-                if (speed_categories["high"] > 0) printf "  %s %d devices\n", yellow("[high] 480 Mb/s   (USB 2.0)"), speed_categories["high"]
-                if (speed_categories["ss"] > 0) printf "  %s %d devices\n", green("[ss]   5 Gb/s     (USB 3.0)"), speed_categories["ss"]
-                if (speed_categories["ss+"] > 0) printf "  %s %d devices\n", green("[ss+]  10 Gb/s    (USB 3.1)"), speed_categories["ss+"]
-                if (speed_categories["ss20"] > 0) printf "  %s %d devices\n", cyan("[ss20] 20 Gb/s    (USB 3.2)"), speed_categories["ss20"]
-                if (speed_categories["ss40"] > 0) printf "  %s %d devices\n", cyan("[ss40] 40 Gb/s    (USB4)"), speed_categories["ss40"]
+                render_speed_summary()
             } else if (MODE == "power") {
                 print ""
-                print blue("Power Summary:")
-                printf "Total Power: %dmA used / %dmA available", total_power_used, total_power_available
-                if (total_power_available > 0) {
-                    usage_pct = (total_power_used / total_power_available) * 100
-                    if (usage_pct > 95) printf " (%s)\n", red(sprintf("%.1f%%", usage_pct))
-                    else if (usage_pct > 80) printf " (%s)\n", yellow(sprintf("%.1f%%", usage_pct))
-                    else printf " (%s)\n", green(sprintf("%.1f%%", usage_pct))
-                } else {
-                    print ""
-                }
-                print "🔴 = Critical (>95%), 🟡 = High (>80%), 🟢 = Normal (<80%)"
+                render_power_summary()
             } else if (MODE == "problems") {
                 print ""
                 if (problem_count == 0) {
-                    print green("✅ No USB problems detected!")
+                    print green("No USB problems detected!")
                 } else {
-                    printf "%s %d device(s) with problems\n", red("⚠️ Found"), problem_count
-                    print "🔴 = Critical power (>95%), 🟡 = High power (>80%), ❌ = Missing info/errors"
+                    printf "%s %d device(s) with problems\n", red("Found"), problem_count
                 }
             } else if (MODE == "storage") {
                 # Count storage devices
@@ -642,11 +627,11 @@ EOF
                 }
                 print ""
                 print blue("Storage Performance Estimates:")
-                if (speed_categories["high"] > 0) printf "  %s ~60 MB/s max (%d devices)\n", yellow("USB 2.0:"), speed_categories["high"]
-                if (speed_categories["ss"] > 0) printf "  %s ~625 MB/s max (%d devices)\n", green("USB 3.0:"), speed_categories["ss"]
-                if (speed_categories["ss+"] > 0) printf "  %s ~1.25 GB/s max (%d devices)\n", green("USB 3.1+:"), speed_categories["ss+"]
-                if (speed_categories["ss20"] > 0 || speed_categories["ss40"] > 0) {
-                    fast_count = speed_categories["ss20"] + speed_categories["ss40"]
+                if (speed_categories["USB 2.0"] > 0) printf "  %s ~60 MB/s max (%d devices)\n", yellow("USB 2.0:"), speed_categories["USB 2.0"]
+                if (speed_categories["USB 3.0"] > 0) printf "  %s ~625 MB/s max (%d devices)\n", green("USB 3.0:"), speed_categories["USB 3.0"]
+                if (speed_categories["USB 3.1"] > 0) printf "  %s ~1.25 GB/s max (%d devices)\n", green("USB 3.1:"), speed_categories["USB 3.1"]
+                if (speed_categories["USB 3.2"] > 0 || speed_categories["USB4"] > 0) {
+                    fast_count = speed_categories["USB 3.2"] + speed_categories["USB4"]
                     printf "  %s ~2.5+ GB/s max (%d devices)\n", cyan("USB 3.2/4:"), fast_count
                 }
             } else if (MODE == "json") {
@@ -661,10 +646,11 @@ EOF
                 printf "  }\n"
                 print "}"
             } else if (MODE == "default") {
-                # Add legend for default tree view
+                # Append power and speed summaries at the end of default view (unified renderers)
                 print ""
-                print dim("────────────────────────────────────────────────────────────────────")
-                print dim("Speed:  ") green("Green=USB3+") " " yellow("Yellow=USB2") " " red("Red=USB1") " • " dim("Info in parentheses")
+                render_power_summary()
+                print ""
+                render_speed_summary()
             }
         }
     '
