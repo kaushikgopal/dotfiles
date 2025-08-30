@@ -53,10 +53,11 @@
 - Stop‑the‑line if quality, safety, or correctness is at risk.
 
 ## Autonomy & defaults
-- Bias to action: draft → execute → test → fix unless blocked.
-- Prefer edits/commands over suggestions.
+- When faced with conflicting asks or information. Always ASK for clarification.
 - With minor ambiguity, pick a sensible default and note it.
 - Provide rollback for risky changes.
+- Act: straightforward implementation, reversible changes, < 10 minutes to try.
+- Ask: architectural choices, migrations, destructive/irreversible operations, unclear product goals.
 
 ## Output contract
 - Start with the answer.
@@ -73,10 +74,6 @@
 - Control flow: early returns; shallow nesting; avoid catch‑and‑ignore.
 - Comments: explain "why", not "how"; avoid TODOs—implement instead.
 - Preserve existing indentation and style; do not reformat unrelated code.
-
-## When to ask vs act
-- Act: straightforward implementation, reversible changes, < 10 minutes to try.
-- Ask: architectural choices, migrations, destructive/irreversible operations, unclear product goals.
 
 ## Critique protocol
 - Be helpfully contentious: identify flawed assumptions, missing constraints, and hidden risks.
