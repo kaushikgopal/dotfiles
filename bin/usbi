@@ -2,6 +2,7 @@
 
 # Trimmed USB info from system_profiler
 # Converted from Fish to Bash for cross-platform use
+# Usage: source this file to define `usbi`, or execute to run.
 
 usbi() {
     local mode="default"
@@ -90,14 +91,20 @@ EOF
         return $?
     fi
 
-    # Parse system_profiler and emit the desired formats.
-    # We'll use awk for structured parsing and formatting.
-    # First pass to collect all devices, second pass to display with proper tree
+    # Parse system_profiler and emit the desired formats using awk.
+    # Implementation notes:
+    # - Single pass collects devices; final END block renders with tree layout.
+    # - Helpers are grouped by purpose: utilities, tree, domain, presentation.
     system_profiler SPUSBDataType | awk -v MODE="$mode" -v USE_COLOR="$use_color" -v USE_ASCII="${USE_ASCII:-0}" '
+        #
+        # Utility helpers
+        #
         function trim(s){ gsub(/^[[:space:]]+|[[:space:]]+$/,"",s); return s }
         function indent(n){ s=""; for(i=0;i<n;i++) s=s "  "; return s }
 
-        # Tree drawing functions
+        #
+        # Tree rendering helpers
+        #
         function tree_prefix(level, is_last, tree_state) {
             if (level == 0) return ""
 
@@ -123,13 +130,34 @@ EOF
             return prefix
         }
 
-        # Store devices at each level to determine last child
-        function peek_next_level() {
-            # Look ahead to see if next non-empty line has lower or equal indentation
-            # This helps determine if current device is last at its level
-            # Note: simplified version - in production would need full lookahead
-            return 0
+        # Map SP nesting level to display tree level
+        function compute_display_level(raw_level,    dl){
+            dl = (raw_level - 2) / 2
+            if (dl < 1) dl = 1
+            return dl
         }
+
+        # Build the attribute indentation for aligned key/value rows
+        function build_attr_indent(display_level, display_is_last,    i, out, vert){
+            out = ""
+            vert = (USE_ASCII == "1") ? "|" : "│"
+            for (i = 1; i <= display_level; i++) {
+                if (i < display_level && tree_continues[i]) {
+                    out = out vert "  "
+                } else if (i < display_level) {
+                    out = out "   "
+                } else if (!display_is_last) {
+                    out = out vert "  "
+                } else {
+                    out = out "   "
+                }
+            }
+            return out
+        }
+
+        #
+        # Domain helpers
+        #
 
         # Enhanced vendor database
         function get_vendor_name(vid, orig_name) {
@@ -178,6 +206,25 @@ EOF
         function white(text) { return (USE_COLOR == "1") ? sprintf("\033[37m%s\033[0m", text) : text }
         function bold(text) { return (USE_COLOR == "1") ? sprintf("\033[1m%s\033[0m", text) : text }
         function dim(text) { return (USE_COLOR == "1") ? sprintf("\033[2m%s\033[0m", text) : text }
+
+        # Choose color for the given speed string by category token
+        function choose_speed_color(speed_string, speed_cat,    colored){
+            colored = speed_string
+            if (speed_cat == "low" || speed_cat == "full") colored = red(speed_string)
+            else if (speed_cat == "high") colored = yellow(speed_string)
+            else if (speed_cat == "ss" || speed_cat == "ss+") colored = green(speed_string)
+            else if (speed_cat == "ss20" || speed_cat == "ss40") colored = cyan(speed_string)
+            return colored
+        }
+
+        # Prefer known vendor name when possible
+        function enhanced_manufacturer(vid, manuf,    v){
+            if (vid != "" && manuf != "") {
+                v = get_vendor_name(vid, manuf)
+                if (v != manuf) return v
+            }
+            return manuf
+        }
 
         # Health indicator functions with color
         function get_power_indicator(req, avail) {
@@ -313,10 +360,7 @@ EOF
                     } else {
                         # For non-bus devices, adjust the level for tree drawing
                         # Since buses are shown at root, their children should appear relative to the bus
-                        # The bus is at level 2, its direct children at level 4, etc.
-                        # We want to map: level 4 -> display_level 1, level 6 -> display_level 2, etc.
-                        display_level = (level - 2) / 2
-                        if (display_level < 1) display_level = 1
+                        display_level = compute_display_level(level)
 
                         # Determine if this is the last device at this display level
                         display_is_last = 1
@@ -334,13 +378,7 @@ EOF
                         prefix = tree_prefix(display_level, display_is_last)
 
                         # Enhanced vendor info
-                        enhanced_manuf = dev_manuf
-                        if (dev_vid != "" && dev_manuf != "") {
-                            enhanced_vendor = get_vendor_name(dev_vid, dev_manuf)
-                            if (enhanced_vendor != dev_manuf) {
-                                enhanced_manuf = enhanced_vendor
-                            }
-                        }
+                        enhanced_manuf = enhanced_manufacturer(dev_vid, dev_manuf)
 
                         # Get device category and health indicators
                         category = ""
@@ -356,7 +394,8 @@ EOF
                             }
 
                             # Add slow mark for non-hubs - show in all modes except power
-                            if (MODE != "power" && (cat_speed(dev_speed) == "[low]" || cat_speed(dev_speed) == "[full]")) {
+                            speed_bracketed = (dev_speed != "" ? cat_speed(dev_speed) : "")
+                            if (MODE != "power" && (speed_bracketed == "[low]" || speed_bracketed == "[full]")) {
                                 health_indicators = health_indicators " *"
                             }
 
@@ -382,18 +421,7 @@ EOF
                         print prefix display_name
 
                         # Create indent for attributes based on current tree state
-                        attr_indent = ""
-                        for (i = 1; i <= display_level; i++) {
-                            if (i < display_level && tree_continues[i]) {
-                                attr_indent = attr_indent (USE_ASCII == "1" ? "|" : "│") "  "
-                            } else if (i < display_level) {
-                                attr_indent = attr_indent "   "
-                            } else if (!display_is_last) {
-                                attr_indent = attr_indent (USE_ASCII == "1" ? "|" : "│") "  "
-                            } else {
-                                attr_indent = attr_indent "   "
-                            }
-                        }
+                        attr_indent = build_attr_indent(display_level, display_is_last)
 
                         # No special emoji-based indentation for hubs
 
@@ -401,11 +429,7 @@ EOF
                         if (dev_speed != "" && MODE != "power" && MODE != "storage" && MODE != "location") {
                             speed_cat = cat_speed(dev_speed)
                             gsub(/\[|\]/, "", speed_cat)
-                            colored_speed = dev_speed
-                            if (speed_cat == "low" || speed_cat == "full") colored_speed = red(dev_speed)
-                            else if (speed_cat == "high") colored_speed = yellow(dev_speed)
-                            else if (speed_cat == "ss" || speed_cat == "ss+") colored_speed = green(dev_speed)
-                            else if (speed_cat == "ss20" || speed_cat == "ss40") colored_speed = cyan(dev_speed)
+                            colored_speed = choose_speed_color(dev_speed, speed_cat)
 
                             # Include transfer rate in speed display for all modes except --raw
                             spcat = (dev_speed != "" ? cat_speed(dev_speed) : "")
