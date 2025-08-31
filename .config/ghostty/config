@@ -62,8 +62,8 @@ font-thicken                    = true
 
 # Commit Mono ---------- -->
 font-family             = CommitMonoV143
-font-size               = 11.5
-adjust-cell-height      = 25%
+font-size               = 12
+adjust-cell-height      = 20%
 font-style              = 500 Regular
 font-style-italic       = 500 Italic
 font-style-bold         = 700 Regular
@@ -97,6 +97,27 @@ font-feature   = cv11
 # cv11 - alt 1
 
 
+
+
+# # Berkeley Mono (TX-02-Variable) -------- -->
+# font-family             = TX-02-Variable
+# adjust-cell-height      = 15%
+# font-variation          = wght=500
+# font-variation-bold     = wght=750
+
+# font-feature            = ss02
+# font-feature            = ss05
+# font-feature            = ss06
+# font-feature            = ss12
+# # ss01 - slashed 0
+# # ss02 - dotted 0
+# # ss03 - inverted slash
+# # ss05 - german r
+# # ss06 - alternative pipe |
+# # ss12 - ligatures ->
+
+
+
 # # Commit Mono - KG ---------- -->
 # font-family             = CommitMono-KG
 # font-size               = 11.5
@@ -105,6 +126,11 @@ font-feature   = cv11
 # font-style-italic       = 500Italic
 # font-style-bold         = 700Regular
 # font-style-bold-italic  = 700Italic
+
+# # Google Sans Code ---------- -->
+# font-family             = Google Sans Code
+# adjust-cell-height      = 15%
+# font-feature   = ss01
 
 
 # # DM Mono ---------- -->
@@ -143,74 +169,58 @@ font-feature   = cv11
 
 
 
-## JetBrains Mono -------- -->
-##font-family             = Jetbrains Mono # (default font in Ghostty)
-#font-size               = 11.5
-#adjust-cell-height      = 4%
-#
-#font-feature            = calt
-#font-feature            = zero
-#font-feature            = ss19
-#font-feature            = cv02
-#font-feature            = cv04
-#font-feature            = cv07
-#font-feature            = cv08
-#font-feature            = cv09
-#font-feature            = cv10
-#font-feature            = cv19
-#font-feature            = cv20
-#
-## list of open-type features
-## https://github.com/JetBrains/JetBrainsMono?tab=readme-ov-file#opentype-features
-## zero - slashed 0
-## calt - all ligatures
-## ss01 - classic construction
-## sso2 - closed construction (lively rhythm)
-## ss19 - broken equals ligatures == === != !==
-#
-## cv01 - l with symmetrical lower stroke. (ss01)
-## cv05 - l with curly tail. (ss02)
-## cv02 - t with curly tail. (ss02)
-## cv03 - g with more complex construction.
-## cv04 - j with curly descender (ss02)
-## cv06 - m with shorter leg. (ss02)
-## cv07 - W w with lover middle connection. (ss02)
-## cv08 - K k with shartp connnection (ss01)
-## cv09 - f with additional horizontal stroke. (ss01)
-## cv17 - f with curly ascender. (ss02)
-## cv10 - r with more open construction. (ss01)
-## cv11 - y with different ascender construction. (ss01)
-## cv12 - u with traditional construction. (ss01)
-## cv14 - $ with broken bar.
-## cv15 - alternate &.
-## cv16 - Q with bent tail.
-## cv18 - alternate 2 6 9 . (ss01)
-## cv19 - old construction of 8. (ss01)
-## cv20 - old construction of 5.
-#
-#
-#
-## Berkeley Mono (TX-02-Variable) -------- -->
-#font-family             = TX-02-Variable
-#adjust-cell-height      = 10%
-#font-variation          = wght=500
-#font-variation-bold     = wght=750
-#
-#font-feature            = ss02
-#font-feature            = ss05
-#font-feature            = ss06
-#font-feature            = ss12
-## ss01 - slashed 0
-## ss02 - dotted 0
-## ss03 - inverted slash
-## ss05 - german r
-## ss06 - alternative pipe |
-## ss12 - ligatures ->
+# # JetBrains Mono -------- -->
+# #font-family             = Jetbrains Mono # (default font in Ghostty)
+# font-size               = 11.5
+# adjust-cell-height      = 4%
+
+# font-feature            = calt
+# font-feature            = zero
+# font-feature            = ss19
+# font-feature            = cv02
+# font-feature            = cv04
+# font-feature            = cv07
+# font-feature            = cv08
+# font-feature            = cv09
+# font-feature            = cv10
+# font-feature            = cv19
+# font-feature            = cv20
+
+# list of open-type features
+# https://github.com/JetBrains/JetBrainsMono?tab=readme-ov-file#opentype-features
+# zero - slashed 0
+# calt - all ligatures
+# ss01 - classic construction
+# sso2 - closed construction (lively rhythm)
+# ss19 - broken equals ligatures == === != !==
+
+# cv01 - l with symmetrical lower stroke. (ss01)
+# cv05 - l with curly tail. (ss02)
+# cv02 - t with curly tail. (ss02)
+# cv03 - g with more complex construction.
+# cv04 - j with curly descender (ss02)
+# cv06 - m with shorter leg. (ss02)
+# cv07 - W w with lover middle connection. (ss02)
+# cv08 - K k with shartp connnection (ss01)
+# cv09 - f with additional horizontal stroke. (ss01)
+# cv17 - f with curly ascender. (ss02)
+# cv10 - r with more open construction. (ss01)
+# cv11 - y with different ascender construction. (ss01)
+# cv12 - u with traditional construction. (ss01)
+# cv14 - $ with broken bar.
+# cv15 - alternate &.
+# cv16 - Q with bent tail.
+# cv18 - alternate 2 6 9 . (ss01)
+# cv19 - old construction of 8. (ss01)
+# cv20 - old construction of 5.
 
 
-## SF Mono ---------- -->
-#font-family                              = SF Mono
-#adjust-cell-height                       = 12%
-## font-style                               = Medium
-## font-style-italic                        = Medium Italic
+
+
+
+# # SF Mono ---------- -->
+# font-family                              = SF Mono
+# adjust-cell-height                       = 12%
+# # font-style                               = Medium
+# # font-style-italic                        = Medium Italic
 
