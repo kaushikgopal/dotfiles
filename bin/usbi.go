@@ -551,42 +551,47 @@ func renderDeviceAttributes(device USBDevice, indent string, opts DisplayOptions
 		speedCat := categorizeSpeed(device.Speed)
 		transferRate := getTransferRate(speedCat)
 
-		line := fmt.Sprintf("%-14s %s", "Speed:", device.Speed)
+		// Build the main part of the line without transfer rate
+		mainLine := fmt.Sprintf("%s %s", "Speed:", device.Speed)
 		if speedCat != "" {
-			line += fmt.Sprintf(" %s[%s]%s", bold("", opts.UseColor), speedCat, colorize("", "reset", opts.UseColor))
-		}
-		if transferRate != "" {
-			line += " " + transferRate
+			mainLine += fmt.Sprintf(" [%s]", speedCat)
 		}
 
-		// Color the entire line based on speed category
+		// Color the main line based on speed category
+		var colorFunc func(string, bool) string
 		if speedCat != "" {
 			switch speedCat {
 			case "USB 1.0", "USB 1.1":
-				line = red(line, opts.UseColor)
+				colorFunc = red
 			case "USB 2.0":
-				line = yellow(line, opts.UseColor)
+				colorFunc = yellow
 			case "USB 3.0", "USB 3.1":
-				line = green(line, opts.UseColor)
+				colorFunc = green
 			case "USB 3.2", "USB4":
-				line = cyan(line, opts.UseColor)
+				colorFunc = cyan
 			}
+			mainLine = colorFunc(mainLine, opts.UseColor)
 		}
 
-		fmt.Printf("%s%s\n", indent, line)
+		// Add transfer rate in dimmed color if available
+		if transferRate != "" {
+			mainLine += " " + dim(transferRate, opts.UseColor)
+		}
+
+		fmt.Printf("%s%s\n", indent, mainLine)
 	}
 
 	// Manufacturer and Vendor ID
 	if opts.Mode == "default" {
 		if device.Manufacturer != "" {
-			fmt.Printf("%s%-14s %s\n", indent, dim("Manufacturer:", opts.UseColor), device.Manufacturer)
+			fmt.Printf("%s%s %s\n", indent, dim("Manufacturer:", opts.UseColor), device.Manufacturer)
 		}
 		if device.VendorID != "" {
-			fmt.Printf("%s%-14s %s\n", indent, dim("Vendor ID:", opts.UseColor), device.VendorID)
+			fmt.Printf("%s%s %s\n", indent, dim("Vendor ID:", opts.UseColor), device.VendorID)
 		}
 	} else {
 		if device.VendorID != "" {
-			fmt.Printf("%s%-14s %s\n", indent, dim("Vendor ID:", opts.UseColor), device.VendorID)
+			fmt.Printf("%s%s %s\n", indent, dim("Vendor ID:", opts.UseColor), device.VendorID)
 		}
 	}
 
@@ -594,22 +599,32 @@ func renderDeviceAttributes(device USBDevice, indent string, opts DisplayOptions
 	if device.PowerRequired > 0 && device.PowerAvailable > 0 &&
 		opts.Mode != "speed" && opts.Mode != "location" {
 		usage := float64(device.PowerRequired) / float64(device.PowerAvailable) * 100
-		powerText := fmt.Sprintf("%dmA/%dmA [%.1f%%]", device.PowerRequired, device.PowerAvailable, usage)
+		
+		// Build main power text without percentage
+		mainPowerText := fmt.Sprintf("Power: %dmA/%dmA", device.PowerRequired, device.PowerAvailable)
+		percentageText := fmt.Sprintf(" [%.1f%%]", usage)
 
+		// Color the main power text based on usage
+		var colorFunc func(string, bool) string
 		if usage > 90 {
-			powerText = red(powerText, opts.UseColor)
+			colorFunc = red
 		} else if usage > 50 {
-			powerText = yellow(powerText, opts.UseColor)
+			colorFunc = yellow
 		} else {
-			powerText = green(powerText, opts.UseColor)
+			colorFunc = green
 		}
+		
+		mainPowerText = colorFunc(mainPowerText, opts.UseColor)
+		
+		// Add dimmed percentage
+		mainPowerText += dim(percentageText, opts.UseColor)
 
-		fmt.Printf("%s%-14s %s\n", indent, dim("Power:", opts.UseColor), powerText)
+		fmt.Printf("%s%s\n", indent, mainPowerText)
 	}
 
 	// Location information (only in location mode)
 	if device.LocationID != "" && opts.Mode == "location" {
-		fmt.Printf("%s%-14s %s\n", indent, dim("Location:", opts.UseColor), dim(device.LocationID, opts.UseColor))
+		fmt.Printf("%s%s %s\n", indent, dim("Location:", opts.UseColor), dim(device.LocationID, opts.UseColor))
 	}
 }
 
