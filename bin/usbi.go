@@ -636,6 +636,29 @@ func generateSingleDeviceContent(device USBDevice, isLast bool, opts DisplayOpti
 		if speedCat != "" {
 			speedText += fmt.Sprintf(" [%s]", speedCat)
 		}
+		
+		// Add theoretical max speed for devices we specifically know about
+		maxStandard := getDeviceMaxUSBStandard(device.Name, device.VendorID)
+		// Show theoretical max for known devices or when there's a speed mismatch
+		shouldShowMax := false
+		
+		// Always show for known Pixel devices and other specific devices
+		nameLower := strings.ToLower(device.Name)
+		if strings.Contains(nameLower, "pixel") || strings.Contains(nameLower, "ssd") || strings.Contains(nameLower, "nvme") {
+			shouldShowMax = true
+		}
+		
+		// Also show when device capability exceeds current speed (speed problem)
+		if maxStandard != "USB 2.0" && isSpeedSuboptimal(device.Name, device.VendorID, device.Speed) {
+			shouldShowMax = true
+		}
+		
+		if shouldShowMax {
+			maxSpeed := getUSBStandardMaxSpeed(maxStandard)
+			if maxSpeed != "Unknown" {
+				speedText += fmt.Sprintf(" (max: %s)", maxSpeed)
+			}
+		}
 	}
 	
 	transferRate := getTransferRate(speedCat)
