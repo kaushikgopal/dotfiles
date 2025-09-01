@@ -6,7 +6,6 @@ import (
 	"os"
 	"os/exec"
 	"regexp"
-	"sort"
 	"strconv"
 	"strings"
 )
@@ -41,12 +40,34 @@ type Summary struct {
 	SpeedCategories map[string]int
 }
 
+// Content structures for unified rendering
+type DeviceContent struct {
+	Name            string
+	Category        string
+	HealthIndicators string
+	Speed           string
+	SpeedCategory   string
+	TransferRate    string
+	Manufacturer    string
+	VendorID        string
+	PowerText       string
+	PowerUsage      float64
+	Location        string
+	HasProblems     bool
+	IsHub           bool
+	IsBus           bool
+	BusDriver       string
+	Level           int
+	TreePrefix      string
+	AttributeIndent string
+}
+
 // Color functions
 func colorize(text, color string, useColor bool) string {
 	if !useColor {
 		return text
 	}
-
+	
 	colors := map[string]string{
 		"red":     "\033[31m",
 		"green":   "\033[32m",
@@ -59,20 +80,21 @@ func colorize(text, color string, useColor bool) string {
 		"dim":     "\033[2m",
 		"reset":   "\033[0m",
 	}
-
+	
 	if code, exists := colors[color]; exists {
 		return code + text + colors["reset"]
 	}
 	return text
 }
 
-func red(text string, useColor bool) string    { return colorize(text, "red", useColor) }
-func green(text string, useColor bool) string  { return colorize(text, "green", useColor) }
-func yellow(text string, useColor bool) string { return colorize(text, "yellow", useColor) }
-func blue(text string, useColor bool) string   { return colorize(text, "blue", useColor) }
-func cyan(text string, useColor bool) string   { return colorize(text, "cyan", useColor) }
-func bold(text string, useColor bool) string   { return colorize(text, "bold", useColor) }
-func dim(text string, useColor bool) string    { return colorize(text, "dim", useColor) }
+func red(text string, useColor bool) string     { return colorize(text, "red", useColor) }
+func green(text string, useColor bool) string   { return colorize(text, "green", useColor) }
+func yellow(text string, useColor bool) string  { return colorize(text, "yellow", useColor) }
+func blue(text string, useColor bool) string    { return colorize(text, "blue", useColor) }
+func cyan(text string, useColor bool) string    { return colorize(text, "cyan", useColor) }
+func white(text string, useColor bool) string   { return colorize(text, "white", useColor) }
+func bold(text string, useColor bool) string    { return colorize(text, "bold", useColor) }
+func dim(text string, useColor bool) string     { return colorize(text, "dim", useColor) }
 
 // Vendor database
 func getVendorName(vendorID, originalName string) string {
@@ -93,7 +115,7 @@ func getVendorName(vendorID, originalName string) string {
 		"0x04e8": "Samsung",
 		"0x0bc2": "Seagate",
 	}
-
+	
 	if vendor, exists := vendorMap[strings.ToLower(vendorID)]; exists {
 		return vendor
 	}
@@ -103,7 +125,7 @@ func getVendorName(vendorID, originalName string) string {
 // Device categorization
 func categorizeDevice(name, vendorID, productID string) string {
 	nameLower := strings.ToLower(name)
-
+	
 	categories := map[string][]string{
 		"Hub":              {"hub"},
 		"Mouse/Trackpad":   {"mouse", "trackpad", "touchpad"},
@@ -116,7 +138,7 @@ func categorizeDevice(name, vendorID, productID string) string {
 		"Adapter":          {"adapter", "dongle"},
 		"Composite Device": {"composite"},
 	}
-
+	
 	for category, keywords := range categories {
 		for _, keyword := range keywords {
 			if strings.Contains(nameLower, keyword) {
@@ -124,14 +146,14 @@ func categorizeDevice(name, vendorID, productID string) string {
 			}
 		}
 	}
-
+	
 	return "Unknown Device"
 }
 
 // Speed categorization
 func categorizeSpeed(speed string) string {
 	speedLower := strings.ToLower(speed)
-
+	
 	if strings.Contains(speedLower, "1.5 mb/s") {
 		return "USB 1.0"
 	}
@@ -153,7 +175,7 @@ func categorizeSpeed(speed string) string {
 	if strings.Contains(speedLower, "40 gb/s") {
 		return "USB4"
 	}
-
+	
 	return ""
 }
 
@@ -167,7 +189,7 @@ func getTransferRate(speedCategory string) string {
 		"USB 3.2": "~2.5 GB/s max",
 		"USB4":    "~5 GB/s max",
 	}
-
+	
 	return rates[speedCategory]
 }
 
@@ -177,7 +199,7 @@ func hasProblems(device USBDevice) bool {
 	if device.Name == "" || device.Speed == "" {
 		return true
 	}
-
+	
 	// Power problems
 	if device.PowerRequired > 0 && device.PowerAvailable > 0 {
 		if device.PowerRequired > device.PowerAvailable {
@@ -188,7 +210,7 @@ func hasProblems(device USBDevice) bool {
 			return true
 		}
 	}
-
+	
 	return false
 }
 
@@ -197,14 +219,14 @@ func hasNonPowerProblems(device USBDevice) bool {
 	if device.Name == "" || device.Speed == "" {
 		return true
 	}
-
+	
 	// Power demand exceeds supply
 	if device.PowerRequired > 0 && device.PowerAvailable > 0 {
 		if device.PowerRequired > device.PowerAvailable {
 			return true
 		}
 	}
-
+	
 	return false
 }
 
@@ -217,7 +239,7 @@ func getTreePrefix(level int, isLast bool, useASCII bool, treeContinues []bool) 
 	if level == 0 {
 		return ""
 	}
-
+	
 	var vert, branch, lastBranch string
 	if useASCII {
 		vert = "|"
@@ -228,7 +250,7 @@ func getTreePrefix(level int, isLast bool, useASCII bool, treeContinues []bool) 
 		branch = "├─"
 		lastBranch = "└─"
 	}
-
+	
 	prefix := ""
 	for i := 1; i < level; i++ {
 		if i < len(treeContinues) && treeContinues[i] {
@@ -237,7 +259,7 @@ func getTreePrefix(level int, isLast bool, useASCII bool, treeContinues []bool) 
 			prefix += "   "
 		}
 	}
-
+	
 	if isLast {
 		prefix += lastBranch + " "
 		if level < len(treeContinues) {
@@ -249,7 +271,7 @@ func getTreePrefix(level int, isLast bool, useASCII bool, treeContinues []bool) 
 			treeContinues[level] = true
 		}
 	}
-
+	
 	return prefix
 }
 
@@ -259,7 +281,7 @@ func getAttributeIndent(displayLevel int, isLast bool, useASCII bool, treeContin
 	if useASCII {
 		vert = "|"
 	}
-
+	
 	for i := 1; i <= displayLevel; i++ {
 		if i < displayLevel && i < len(treeContinues) && treeContinues[i] {
 			indent += vert + "  "
@@ -271,32 +293,65 @@ func getAttributeIndent(displayLevel int, isLast bool, useASCII bool, treeContin
 			indent += "   "
 		}
 	}
-
+	
 	return indent
 }
 
+func computeDisplayLevel(rawLevel int) int {
+	displayLevel := (rawLevel - 2) / 2
+	if displayLevel < 1 {
+		displayLevel = 1
+	}
+	return displayLevel
+}
+
+func isLastAtLevel(devices []USBDevice, currentIndex, level int, isBus bool) bool {
+	for i := currentIndex + 1; i < len(devices); i++ {
+		if devices[i].IsBus && !isBus {
+			break
+		}
+		
+		if isBus {
+			if devices[i].IsBus {
+				return false
+			}
+		} else {
+			displayLevel := computeDisplayLevel(level)
+			nextDisplayLevel := computeDisplayLevel(devices[i].Level)
+			
+			if nextDisplayLevel <= displayLevel {
+				if nextDisplayLevel == displayLevel {
+					return false
+				}
+				break
+			}
+		}
+	}
+	return true
+}
+
 // Parse system_profiler output
-func macosUSBCommand() ([]USBDevice, error) {
+func parseSystemProfiler() ([]USBDevice, error) {
 	cmd := exec.Command("system_profiler", "SPUSBDataType")
 	output, err := cmd.Output()
 	if err != nil {
 		return nil, fmt.Errorf("failed to run system_profiler: %v", err)
 	}
-
+	
 	var devices []USBDevice
 	var currentDevice USBDevice
 	var currentBusDriver string
-
+	
 	scanner := bufio.NewScanner(strings.NewReader(string(output)))
-
+	
 	for scanner.Scan() {
 		line := strings.TrimRight(scanner.Text(), "\r\n")
-
+		
 		// Skip empty lines and USB: header
 		if line == "" || line == "USB:" {
 			continue
 		}
-
+		
 		// Calculate indentation level
 		level := 0
 		for i, char := range line {
@@ -306,14 +361,14 @@ func macosUSBCommand() ([]USBDevice, error) {
 				break
 			}
 		}
-
+		
 		// Bus detection
 		busRegex := regexp.MustCompile(`^USB \d+\.\d+ Bus:?$`)
 		if busRegex.MatchString(line) {
 			if currentDevice.Name != "" {
 				devices = append(devices, currentDevice)
 			}
-
+			
 			currentDevice = USBDevice{
 				Name:      strings.TrimSuffix(line, ":"),
 				Level:     level,
@@ -323,7 +378,7 @@ func macosUSBCommand() ([]USBDevice, error) {
 			currentBusDriver = ""
 			continue
 		}
-
+		
 		// Host Controller Driver
 		if strings.HasPrefix(line, "Host Controller Driver:") {
 			parts := strings.SplitN(line, ":", 2)
@@ -333,30 +388,30 @@ func macosUSBCommand() ([]USBDevice, error) {
 			}
 			continue
 		}
-
+		
 		// Device name (ends with colon)
 		if strings.HasSuffix(line, ":") {
 			if currentDevice.Name != "" {
 				devices = append(devices, currentDevice)
 			}
-
+			
 			currentDevice = USBDevice{
 				Name:  strings.TrimSuffix(line, ":"),
 				Level: level,
 			}
 			continue
 		}
-
+		
 		// Device attributes
 		if strings.Contains(line, ":") {
 			parts := strings.SplitN(line, ":", 2)
 			if len(parts) != 2 {
 				continue
 			}
-
+			
 			key := strings.TrimSpace(parts[0])
 			value := strings.TrimSpace(parts[1])
-
+			
 			switch key {
 			case "Speed":
 				currentDevice.Speed = value
@@ -379,13 +434,257 @@ func macosUSBCommand() ([]USBDevice, error) {
 			}
 		}
 	}
-
+	
 	// Don't forget the last device
 	if currentDevice.Name != "" {
 		devices = append(devices, currentDevice)
 	}
-
+	
 	return devices, nil
+}
+
+// Generate unified content for all devices
+func generateDeviceContent(devices []USBDevice, opts DisplayOptions) []DeviceContent {
+	var content []DeviceContent
+	treeContinues := make([]bool, 20)
+	
+	for i, device := range devices {
+		// Skip problem filtering - show all devices in unified content
+		if device.Name == "" {
+			continue
+		}
+		
+		isLast := isLastAtLevel(devices, i, device.Level, device.IsBus)
+		
+		if device.IsBus {
+			content = append(content, generateBusContent(device, opts))
+		} else {
+			content = append(content, generateSingleDeviceContent(device, isLast, opts, treeContinues))
+		}
+	}
+	
+	return content
+}
+
+func generateBusContent(device USBDevice, opts DisplayOptions) DeviceContent {
+	return DeviceContent{
+		Name:      device.Name,
+		BusDriver: device.BusDriver,
+		IsBus:     true,
+		Level:     device.Level,
+	}
+}
+
+func generateSingleDeviceContent(device USBDevice, isLast bool, opts DisplayOptions, treeContinues []bool) DeviceContent {
+	displayLevel := computeDisplayLevel(device.Level)
+	prefix := getTreePrefix(displayLevel, isLast, opts.UseASCII, treeContinues)
+	attrIndent := getAttributeIndent(displayLevel, isLast, opts.UseASCII, treeContinues)
+	
+	// Generate all content regardless of mode
+	category := ""
+	healthIndicators := ""
+	
+	if !isHub(device.Name) {
+		category = categorizeDevice(device.Name, device.VendorID, device.ProductID)
+		
+		// Add slow speed indicator
+		speedCat := categorizeSpeed(device.Speed)
+		if speedCat == "USB 1.0" || speedCat == "USB 1.1" || speedCat == "USB 2.0" {
+			healthIndicators += " *"
+		}
+		
+		// Add problem marker for non-power problems
+		if hasNonPowerProblems(device) {
+			healthIndicators += " [Problem]"
+		}
+	}
+	
+	// Generate power text
+	var powerText string
+	var powerUsage float64
+	if device.PowerRequired > 0 && device.PowerAvailable > 0 {
+		powerUsage = float64(device.PowerRequired) / float64(device.PowerAvailable) * 100
+		powerText = fmt.Sprintf("Power: %dmA/%dmA [%.1f%%]", device.PowerRequired, device.PowerAvailable, powerUsage)
+	}
+	
+	// Generate speed text
+	speedCat := categorizeSpeed(device.Speed)
+	speedText := ""
+	if device.Speed != "" {
+		speedText = fmt.Sprintf("Speed: %s", device.Speed)
+		if speedCat != "" {
+			speedText += fmt.Sprintf(" [%s]", speedCat)
+		}
+	}
+	
+	transferRate := getTransferRate(speedCat)
+	
+	return DeviceContent{
+		Name:             device.Name,
+		Category:         category,
+		HealthIndicators: healthIndicators,
+		Speed:            speedText,
+		SpeedCategory:    speedCat,
+		TransferRate:     transferRate,
+		Manufacturer:     device.Manufacturer,
+		VendorID:         device.VendorID,
+		PowerText:        powerText,
+		PowerUsage:       powerUsage,
+		Location:         device.LocationID,
+		HasProblems:      hasProblems(device),
+		IsHub:            isHub(device.Name),
+		IsBus:            false,
+		Level:            device.Level,
+		TreePrefix:       prefix,
+		AttributeIndent:  attrIndent,
+	}
+}
+
+// Mode-specific color application
+func applyModeColors(content DeviceContent, mode string, useColor bool) {
+	if content.IsBus {
+		renderBusWithColors(content, mode, useColor)
+		return
+	}
+	
+	// Device name line
+	displayName := content.Name
+	if content.IsHub {
+		displayName = bold(content.Name, useColor)
+	} else if content.Category != "" && !strings.Contains(content.Category, "Unknown") {
+		displayName = content.Category + " " + bold(content.Name, useColor)
+	} else {
+		displayName = bold(content.Name, useColor)
+	}
+	
+	// Always show hub and device names in white, problems in red
+	if content.HasProblems && strings.Contains(content.HealthIndicators, "[Problem]") {
+		healthPart := strings.Replace(content.HealthIndicators, "[Problem]", red("[Problem]", useColor), 1)
+		displayName = white(displayName, useColor) + healthPart
+	} else {
+		displayName = white(displayName+content.HealthIndicators, useColor)
+	}
+	
+	fmt.Println(content.TreePrefix + displayName)
+	
+	// Render attributes with mode-specific coloring
+	renderAttributesWithColors(content, mode, useColor)
+}
+
+func renderBusWithColors(content DeviceContent, mode string, useColor bool) {
+	busName := content.Name
+	if content.BusDriver != "" {
+		busName += " [" + content.BusDriver + "]"
+	}
+	
+	// Always show bus names in white
+	fmt.Println(white(busName, useColor))
+}
+
+func renderAttributesWithColors(content DeviceContent, mode string, useColor bool) {
+	indent := content.AttributeIndent
+	
+	// Speed information
+	if content.Speed != "" {
+		switch mode {
+		case "speed":
+			// Color speed info based on category, dim transfer rate
+			line := content.Speed
+			if content.TransferRate != "" {
+				line += " " + dim(content.TransferRate, useColor)
+			}
+			
+			// Apply speed-based coloring
+			switch content.SpeedCategory {
+			case "USB 1.0", "USB 1.1":
+				line = red(line, useColor)
+			case "USB 2.0":
+				line = yellow(line, useColor)
+			case "USB 3.0", "USB 3.1":
+				line = green(line, useColor)
+			case "USB 3.2", "USB4":
+				line = cyan(line, useColor)
+			default:
+				line = dim(line, useColor)
+			}
+			fmt.Printf("%s%s\n", indent, line)
+		default:
+			// Dim everything
+			line := content.Speed
+			if content.TransferRate != "" {
+				line += " " + content.TransferRate
+			}
+			fmt.Printf("%s%s\n", indent, dim(line, useColor))
+		}
+	}
+	
+	// Manufacturer and Vendor ID
+	if content.Manufacturer != "" {
+		fmt.Printf("%s%s %s\n", indent, dim("Manufacturer:", useColor), dim(content.Manufacturer, useColor))
+	}
+	if content.VendorID != "" {
+		fmt.Printf("%s%s %s\n", indent, dim("Vendor ID:", useColor), dim(content.VendorID, useColor))
+	}
+	
+	// Power information
+	if content.PowerText != "" {
+		switch mode {
+		case "power":
+			// Color power info based on usage, dim percentage
+			mainPart := fmt.Sprintf("Power: %dmA/%dmA", 
+				extractPowerRequired(content.PowerText), 
+				extractPowerAvailable(content.PowerText))
+			percentPart := fmt.Sprintf(" [%.1f%%]", content.PowerUsage)
+			
+			// Apply coloring to main part, then add dimmed percentage
+			var line string
+			if content.PowerUsage > 90 {
+				line = red(mainPart, useColor) + dim(percentPart, useColor)
+			} else if content.PowerUsage > 50 {
+				line = yellow(mainPart, useColor) + dim(percentPart, useColor)
+			} else {
+				line = green(mainPart, useColor) + dim(percentPart, useColor)
+			}
+			
+			fmt.Printf("%s%s\n", indent, line)
+		default:
+			// Dim everything
+			fmt.Printf("%s%s\n", indent, dim(content.PowerText, useColor))
+		}
+	}
+	
+	// Location information
+	if content.Location != "" {
+		switch mode {
+		case "location":
+			fmt.Printf("%s%s %s\n", indent, dim("Location:", useColor), white(content.Location, useColor))
+		default:
+			fmt.Printf("%s%s %s\n", indent, dim("Location:", useColor), dim(content.Location, useColor))
+		}
+	}
+}
+
+// Helper functions to extract power values from formatted text
+func extractPowerRequired(powerText string) int {
+	re := regexp.MustCompile(`(\d+)mA/`)
+	matches := re.FindStringSubmatch(powerText)
+	if len(matches) > 1 {
+		if val, err := strconv.Atoi(matches[1]); err == nil {
+			return val
+		}
+	}
+	return 0
+}
+
+func extractPowerAvailable(powerText string) int {
+	re := regexp.MustCompile(`/(\d+)mA`)
+	matches := re.FindStringSubmatch(powerText)
+	if len(matches) > 1 {
+		if val, err := strconv.Atoi(matches[1]); err == nil {
+			return val
+		}
+	}
+	return 0
 }
 
 // Calculate summary statistics
@@ -393,302 +692,76 @@ func calculateSummary(devices []USBDevice) Summary {
 	summary := Summary{
 		SpeedCategories: make(map[string]int),
 	}
-
+	
 	for _, device := range devices {
 		if device.IsBus {
 			continue
 		}
-
+		
 		summary.DeviceCount++
-
+		
 		if isHub(device.Name) {
 			summary.HubCount++
 		}
-
+		
 		if device.PowerRequired > 0 {
 			summary.TotalPowerUsed += device.PowerRequired
 		}
 		if device.PowerAvailable > 0 {
 			summary.TotalPowerAvail += device.PowerAvailable
 		}
-
+		
 		if device.Speed != "" {
 			speedCat := categorizeSpeed(device.Speed)
 			if speedCat != "" {
 				summary.SpeedCategories[speedCat]++
 			}
 		}
-
+		
 		if hasProblems(device) {
 			summary.ProblemCount++
 		}
 	}
-
+	
 	return summary
 }
 
-// Rendering functions
-func renderDevices(devices []USBDevice, opts DisplayOptions) {
-	treeContinues := make([]bool, 20)
-
-	for i, device := range devices {
-		// Skip filtered devices based on mode
-		if shouldSkipDevice(device, opts.Mode) {
-			continue
-		}
-
-		// Determine if this is the last device at this level
-		isLast := isLastAtLevel(devices, i, device.Level, device.IsBus)
-
-		if device.IsBus {
-			renderBus(device, opts)
-		} else {
-			renderDevice(device, isLast, opts, treeContinues)
-		}
-	}
-}
-
-func shouldSkipDevice(device USBDevice, mode string) bool {
+func renderSummary(summary Summary, mode string, useColor bool) {
+	fmt.Println()
+	
 	switch mode {
-	case "problems":
-		return !device.IsBus && !hasProblems(device)
-	default:
-		return false
-	}
-}
-
-func isLastAtLevel(devices []USBDevice, currentIndex, level int, isBus bool) bool {
-	for i := currentIndex + 1; i < len(devices); i++ {
-		if devices[i].IsBus && !isBus {
-			break
-		}
-
-		if isBus {
-			if devices[i].IsBus {
-				return false
-			}
+	case "summary":
+		// Only show basic stats and problem count for summary mode
+		fmt.Printf("Total Devices: %d (excluding hubs)\n", summary.DeviceCount-summary.HubCount)
+		fmt.Printf("Hubs: %d\n", summary.HubCount)
+		fmt.Println()
+		if summary.ProblemCount == 0 {
+			fmt.Println(green("No USB problems detected!", useColor))
 		} else {
-			displayLevel := computeDisplayLevel(level)
-			nextDisplayLevel := computeDisplayLevel(devices[i].Level)
-
-			if nextDisplayLevel <= displayLevel {
-				if nextDisplayLevel == displayLevel {
-					return false
-				}
-				break
-			}
+			fmt.Printf("%s %d device(s) with problems\n", red("Found", useColor), summary.ProblemCount)
 		}
-	}
-	return true
-}
-
-func computeDisplayLevel(rawLevel int) int {
-	displayLevel := (rawLevel - 2) / 2
-	if displayLevel < 1 {
-		displayLevel = 1
-	}
-	return displayLevel
-}
-
-func renderBus(device USBDevice, opts DisplayOptions) {
-	busName := blue(device.Name, opts.UseColor)
-	if device.BusDriver != "" {
-		busName += " [" + cyan(device.BusDriver, opts.UseColor) + "]"
-	}
-	fmt.Println(busName)
-}
-
-func renderDevice(device USBDevice, isLast bool, opts DisplayOptions, treeContinues []bool) {
-	displayLevel := computeDisplayLevel(device.Level)
-	prefix := getTreePrefix(displayLevel, isLast, opts.UseASCII, treeContinues)
-
-	// Enhanced manufacturer info (used in problem detection)
-	_ = getVendorName(device.VendorID, device.Manufacturer)
-
-	// Device category and health indicators
-	category := ""
-	healthIndicators := ""
-
-	if !isHub(device.Name) {
-		category = categorizeDevice(device.Name, device.VendorID, device.ProductID)
-
-		// Add slow speed indicator
-		speedCat := categorizeSpeed(device.Speed)
-		if opts.Mode != "power" && (speedCat == "USB 1.0" || speedCat == "USB 1.1" || speedCat == "USB 2.0") {
-			healthIndicators += " *"
-		}
-
-		// Add problem marker for non-power problems
-		if (opts.Mode == "problems" || opts.Mode == "default") && hasNonPowerProblems(device) {
-			healthIndicators += " " + red("[Problem]", opts.UseColor)
-		}
-	}
-
-	// Build display name
-	displayName := device.Name
-	if isHub(device.Name) {
-		displayName = bold(device.Name, opts.UseColor)
-	} else if category != "" && !strings.Contains(category, "Unknown") {
-		displayName = category + " " + bold(device.Name, opts.UseColor)
-	} else {
-		displayName = bold(device.Name, opts.UseColor)
-	}
-
-	if healthIndicators != "" {
-		displayName += healthIndicators
-	}
-
-	fmt.Println(prefix + displayName)
-
-	// Render attributes
-	attrIndent := getAttributeIndent(displayLevel, isLast, opts.UseASCII, treeContinues)
-	renderDeviceAttributes(device, attrIndent, opts)
-}
-
-func renderDeviceAttributes(device USBDevice, indent string, opts DisplayOptions) {
-	// Speed information
-	if device.Speed != "" && opts.Mode != "power" && opts.Mode != "location" {
-		speedCat := categorizeSpeed(device.Speed)
-		transferRate := getTransferRate(speedCat)
-
-		// Build the main part of the line without transfer rate
-		mainLine := fmt.Sprintf("%s %s", "Speed:", device.Speed)
-		if speedCat != "" {
-			mainLine += fmt.Sprintf(" [%s]", speedCat)
-		}
-
-		// Color the main line based on speed category
-		var colorFunc func(string, bool) string
-		if speedCat != "" {
-			switch speedCat {
-			case "USB 1.0", "USB 1.1":
-				colorFunc = red
-			case "USB 2.0":
-				colorFunc = yellow
-			case "USB 3.0", "USB 3.1":
-				colorFunc = green
-			case "USB 3.2", "USB4":
-				colorFunc = cyan
-			}
-			mainLine = colorFunc(mainLine, opts.UseColor)
-		}
-
-		// Add transfer rate in dimmed color if available
-		if transferRate != "" {
-			mainLine += " " + dim(transferRate, opts.UseColor)
-		}
-
-		fmt.Printf("%s%s\n", indent, mainLine)
-	}
-
-	// Manufacturer and Vendor ID
-	if opts.Mode == "default" {
-		if device.Manufacturer != "" {
-			fmt.Printf("%s%s %s\n", indent, dim("Manufacturer:", opts.UseColor), device.Manufacturer)
-		}
-		if device.VendorID != "" {
-			fmt.Printf("%s%s %s\n", indent, dim("Vendor ID:", opts.UseColor), device.VendorID)
-		}
-	} else {
-		if device.VendorID != "" {
-			fmt.Printf("%s%s %s\n", indent, dim("Vendor ID:", opts.UseColor), device.VendorID)
-		}
-	}
-
-	// Power information
-	if device.PowerRequired > 0 && device.PowerAvailable > 0 &&
-		opts.Mode != "speed" && opts.Mode != "location" {
-		usage := float64(device.PowerRequired) / float64(device.PowerAvailable) * 100
-		
-		// Build main power text without percentage
-		mainPowerText := fmt.Sprintf("Power: %dmA/%dmA", device.PowerRequired, device.PowerAvailable)
-		percentageText := fmt.Sprintf(" [%.1f%%]", usage)
-
-		// Color the main power text based on usage
-		var colorFunc func(string, bool) string
-		if usage > 90 {
-			colorFunc = red
-		} else if usage > 50 {
-			colorFunc = yellow
-		} else {
-			colorFunc = green
-		}
-		
-		mainPowerText = colorFunc(mainPowerText, opts.UseColor)
-		
-		// Add dimmed percentage
-		mainPowerText += dim(percentageText, opts.UseColor)
-
-		fmt.Printf("%s%s\n", indent, mainPowerText)
-	}
-
-	// Location information (only in location mode)
-	if device.LocationID != "" && opts.Mode == "location" {
-		fmt.Printf("%s%s %s\n", indent, dim("Location:", opts.UseColor), dim(device.LocationID, opts.UseColor))
+	case "power":
+		// Show power legend
+		renderPowerLegend(useColor)
+	case "speed":
+		// Show speed legend
+		renderSpeedLegend(useColor)
 	}
 }
 
-func renderPowerSummary(summary Summary, useColor bool) {
-	fmt.Println(blue("Power:", useColor))
-
-	usagePct := float64(0)
-	if summary.TotalPowerAvail > 0 {
-		usagePct = float64(summary.TotalPowerUsed) / float64(summary.TotalPowerAvail) * 100
-	}
-
-	totalText := fmt.Sprintf("%dmA used / %dmA available [%.1f%%]",
-		summary.TotalPowerUsed, summary.TotalPowerAvail, usagePct)
-
-	if usagePct > 90 {
-		totalText = red(totalText, useColor)
-	} else if usagePct > 50 {
-		totalText = yellow(totalText, useColor)
-	} else {
-		totalText = green(totalText, useColor)
-	}
-
-	fmt.Printf("  %-10s %s\n", "Total", totalText)
-	fmt.Printf("                %s\n", green("< 50%", useColor))
-	fmt.Printf("                %s\n", yellow("> 50%", useColor))
-	fmt.Printf("                %s\n", red("> 90%", useColor))
+func renderPowerLegend(useColor bool) {
+	fmt.Println(blue("Power Legend:", useColor))
+	fmt.Printf("  %s - Low usage, efficient\n", green("< 50%", useColor))
+	fmt.Printf("  %s - Moderate usage, monitor\n", yellow("> 50%", useColor))
+	fmt.Printf("  %s - High usage, may cause issues\n", red("> 90%", useColor))
 }
 
-func renderSpeedSummary(summary Summary, useColor bool) {
-	fmt.Println(blue("Speed:", useColor))
-
-	// Sort speed categories for consistent output
-	var categories []string
-	for cat := range summary.SpeedCategories {
-		if summary.SpeedCategories[cat] > 0 {
-			categories = append(categories, cat)
-		}
-	}
-	sort.Strings(categories)
-
-	speedInfo := map[string]struct {
-		speed string
-		color func(string, bool) string
-	}{
-		"USB 1.0": {"1.5 Mb/s", red},
-		"USB 1.1": {"12 Mb/s", red},
-		"USB 2.0": {"480 Mb/s", yellow},
-		"USB 3.0": {"5 Gb/s", green},
-		"USB 3.1": {"10 Gb/s", green},
-		"USB 3.2": {"20 Gb/s", cyan},
-		"USB4":    {"40 Gb/s", cyan},
-	}
-
-	for _, cat := range categories {
-		info := speedInfo[cat]
-		count := summary.SpeedCategories[cat]
-		bracket := fmt.Sprintf("[%s]", cat)
-
-		fmt.Printf("  %s %10s %14s %3d devices\n",
-			info.color(bracket, useColor),
-			info.speed,
-			fmt.Sprintf("(%s)", cat),
-			count)
-	}
+func renderSpeedLegend(useColor bool) {
+	fmt.Println(blue("Speed Legend:", useColor))
+	fmt.Printf("  %s - Very slow, legacy devices\n", red("USB 1.0/1.1", useColor))
+	fmt.Printf("  %s - Slower, older devices\n", yellow("USB 2.0", useColor))
+	fmt.Printf("  %s - Fast, modern devices\n", green("USB 3.0/3.1", useColor))
+	fmt.Printf("  %s - Very fast, latest devices\n", cyan("USB 3.2/USB4", useColor))
 }
 
 func printHelp() {
@@ -712,7 +785,7 @@ func main() {
 		UseColor: true,
 		UseASCII: false,
 	}
-
+	
 	// Parse command line arguments
 	for _, arg := range os.Args[1:] {
 		switch arg {
@@ -735,14 +808,14 @@ func main() {
 			return
 		}
 	}
-
+	
 	// Disable colors if output is not to a terminal
 	if opts.UseColor {
 		if fileInfo, _ := os.Stdout.Stat(); (fileInfo.Mode() & os.ModeCharDevice) == 0 {
 			opts.UseColor = false
 		}
 	}
-
+	
 	// Handle raw mode separately (mimics original bash behavior)
 	if opts.Mode == "raw" {
 		cmd := exec.Command("system_profiler", "SPUSBDataType")
@@ -751,7 +824,7 @@ func main() {
 			fmt.Fprintf(os.Stderr, "Error running system_profiler: %v\n", err)
 			os.Exit(1)
 		}
-
+		
 		fmt.Println("USB:")
 		scanner := bufio.NewScanner(strings.NewReader(string(output)))
 		for scanner.Scan() {
@@ -763,7 +836,7 @@ func main() {
 			if line == "USB:" {
 				continue
 			}
-
+			
 			// Calculate and preserve indentation
 			spaces := 0
 			for i, char := range line {
@@ -774,61 +847,42 @@ func main() {
 			}
 			level := spaces / 2
 			indent := strings.Repeat("  ", level)
-
+			
 			fmt.Printf("%s%s\n", indent, strings.TrimSpace(line))
 		}
 		return
 	}
-
+	
 	// Parse USB devices
-	devices, err := macosUSBCommand()
+	devices, err := parseSystemProfiler()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error parsing USB data: %v\n", err)
 		os.Exit(1)
 	}
-
-	summary := calculateSummary(devices)
-
-	// Render based on mode
-	if opts.Mode != "summary" {
-		fmt.Println()
-		renderDevices(devices, opts)
-	}
-
-	// Add mode-specific summaries
-	switch opts.Mode {
-	case "summary":
-		fmt.Println()
-		fmt.Println(blue("USB Summary:", opts.UseColor))
-		fmt.Println("============")
-		fmt.Printf("Total Devices: %d (excluding hubs)\n", summary.DeviceCount-summary.HubCount)
-		fmt.Printf("Hubs: %d\n", summary.HubCount)
-		fmt.Println()
-		renderPowerSummary(summary, opts.UseColor)
-		fmt.Println()
-		renderSpeedSummary(summary, opts.UseColor)
-
-	case "speed":
-		fmt.Println()
-		renderSpeedSummary(summary, opts.UseColor)
-
-	case "power":
-		fmt.Println()
-		renderPowerSummary(summary, opts.UseColor)
-
-	case "problems":
-		fmt.Println()
-		if summary.ProblemCount == 0 {
-			fmt.Println(green("No USB problems detected!", opts.UseColor))
-		} else {
-			fmt.Printf("%s %d device(s) with problems\n",
-				red("Found", opts.UseColor), summary.ProblemCount)
+	
+	// Filter for problems mode only
+	if opts.Mode == "problems" {
+		var filteredDevices []USBDevice
+		for _, device := range devices {
+			if device.IsBus || hasProblems(device) {
+				filteredDevices = append(filteredDevices, device)
+			}
 		}
-
-	case "default":
-		fmt.Println()
-		renderPowerSummary(summary, opts.UseColor)
-		fmt.Println()
-		renderSpeedSummary(summary, opts.UseColor)
+		devices = filteredDevices
+	}
+	
+	// Generate unified content
+	content := generateDeviceContent(devices, opts)
+	summary := calculateSummary(devices)
+	
+	// Render devices with mode-specific colors
+	fmt.Println()
+	for _, deviceContent := range content {
+		applyModeColors(deviceContent, opts.Mode, opts.UseColor)
+	}
+	
+	// Render summary only for specific modes
+	if opts.Mode == "speed" || opts.Mode == "power" || opts.Mode == "summary" {
+		renderSummary(summary, opts.Mode, opts.UseColor)
 	}
 }
