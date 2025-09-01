@@ -54,6 +54,8 @@ type DeviceContent struct {
 	PowerUsage      float64
 	Location        string
 	HasProblems     bool
+	HasSpeedProblems bool
+	HasPowerProblems bool
 	IsHub           bool
 	IsBus           bool
 	BusDriver       string
@@ -120,6 +122,98 @@ func getVendorName(vendorID, originalName string) string {
 		return vendor
 	}
 	return originalName
+}
+
+// Device to USB standard mapping
+func getDeviceMaxUSBStandard(deviceName, vendorID string) string {
+	nameLower := strings.ToLower(deviceName)
+	
+	// Google Pixel devices (based on common specifications)
+	pixelDevices := map[string]string{
+		"pixel 9 pro":     "USB 3.2",    // USB 3.2 Gen 2 (10 Gbps)
+		"pixel 9":         "USB 3.2",    // USB 3.2 Gen 2 (10 Gbps)
+		"pixel 8 pro":     "USB 3.2",    // USB 3.2 Gen 2 (10 Gbps)
+		"pixel 8":         "USB 3.0",    // USB 3.0/3.1 Gen 1 (5 Gbps)
+		"pixel 7 pro":     "USB 3.1",    // USB 3.1 Gen 1 (5 Gbps)
+		"pixel 7":         "USB 3.0",    // USB 3.0 (5 Gbps)
+		"pixel 6 pro":     "USB 3.1",    // USB 3.1 Gen 1 (5 Gbps)
+		"pixel 6":         "USB 3.0",    // USB 3.0 (5 Gbps)
+		"pixel 5":         "USB 3.0",    // USB 3.0 (5 Gbps)
+		"pixel 4":         "USB 3.0",    // USB 3.0 (5 Gbps)
+		"pixel 3":         "USB 2.0",    // USB 2.0 (480 Mbps)
+		"pixel 2":         "USB 2.0",    // USB 2.0 (480 Mbps)
+	}
+	
+	// Check for Pixel devices
+	for deviceKey, usbStandard := range pixelDevices {
+		if strings.Contains(nameLower, deviceKey) {
+			return usbStandard
+		}
+	}
+	
+	// Common device patterns
+	if strings.Contains(nameLower, "ssd") || strings.Contains(nameLower, "nvme") {
+		return "USB 3.1" // Modern SSDs typically support USB 3.1+
+	}
+	if strings.Contains(nameLower, "hdd") || strings.Contains(nameLower, "drive") {
+		return "USB 3.0" // HDDs typically USB 3.0
+	}
+	if strings.Contains(nameLower, "mouse") || strings.Contains(nameLower, "keyboard") {
+		return "USB 2.0" // Input devices typically USB 2.0
+	}
+	
+	// Default: assume USB 2.0 for unknown devices
+	return "USB 2.0"
+}
+
+// USB standard to maximum speed mapping
+func getUSBStandardMaxSpeed(standard string) string {
+	speedMap := map[string]string{
+		"USB 1.0": "1.5 Mb/s",
+		"USB 1.1": "12 Mb/s", 
+		"USB 2.0": "480 Mb/s",
+		"USB 3.0": "5 Gb/s",
+		"USB 3.1": "10 Gb/s",  // USB 3.1 Gen 2
+		"USB 3.2": "20 Gb/s",  // USB 3.2 Gen 2x2
+		"USB4":    "40 Gb/s",
+	}
+	
+	if speed, exists := speedMap[standard]; exists {
+		return speed
+	}
+	return "Unknown"
+}
+
+// Check if device is running at suboptimal speed
+func isSpeedSuboptimal(deviceName, vendorID, currentSpeed string) bool {
+	maxStandard := getDeviceMaxUSBStandard(deviceName, vendorID)
+	currentStandard := categorizeSpeed(currentSpeed)
+	
+	// If we can't determine standards, assume it's fine
+	if maxStandard == "USB 2.0" || currentStandard == "" {
+		return false
+	}
+	
+	// Compare standards - device should be running at or near its max capability
+	standardOrder := map[string]int{
+		"USB 1.0": 1,
+		"USB 1.1": 2,
+		"USB 2.0": 3,
+		"USB 3.0": 4,
+		"USB 3.1": 5,
+		"USB 3.2": 6,
+		"USB4":    7,
+	}
+	
+	maxOrder, maxExists := standardOrder[maxStandard]
+	currentOrder, currentExists := standardOrder[currentStandard]
+	
+	if !maxExists || !currentExists {
+		return false
+	}
+	
+	// Flag as suboptimal if running more than one standard below capability
+	return currentOrder < (maxOrder - 1)
 }
 
 // Device categorization
@@ -211,6 +305,11 @@ func hasProblems(device USBDevice) bool {
 		}
 	}
 	
+	// Speed problems - device running significantly below capability
+	if isSpeedSuboptimal(device.Name, device.VendorID, device.Speed) {
+		return true
+	}
+	
 	return false
 }
 
@@ -220,14 +319,36 @@ func hasNonPowerProblems(device USBDevice) bool {
 		return true
 	}
 	
-	// Power demand exceeds supply
+	// Power demand exceeds supply (but not high usage)
 	if device.PowerRequired > 0 && device.PowerAvailable > 0 {
 		if device.PowerRequired > device.PowerAvailable {
 			return true
 		}
 	}
 	
+	// Speed problems - device running significantly below capability
+	if isSpeedSuboptimal(device.Name, device.VendorID, device.Speed) {
+		return true
+	}
+	
 	return false
+}
+
+func hasPowerProblems(device USBDevice) bool {
+	if device.PowerRequired > 0 && device.PowerAvailable > 0 {
+		if device.PowerRequired > device.PowerAvailable {
+			return true
+		}
+		usage := float64(device.PowerRequired) / float64(device.PowerAvailable)
+		if usage > 0.95 {
+			return true
+		}
+	}
+	return false
+}
+
+func hasSpeedProblems(device USBDevice) bool {
+	return isSpeedSuboptimal(device.Name, device.VendorID, device.Speed)
 }
 
 func isHub(name string) bool {
@@ -487,14 +608,14 @@ func generateSingleDeviceContent(device USBDevice, isLast bool, opts DisplayOpti
 	if !isHub(device.Name) {
 		category = categorizeDevice(device.Name, device.VendorID, device.ProductID)
 		
-		// Add slow speed indicator
+		// Add slow speed indicator for legacy speeds
 		speedCat := categorizeSpeed(device.Speed)
 		if speedCat == "USB 1.0" || speedCat == "USB 1.1" || speedCat == "USB 2.0" {
 			healthIndicators += " *"
 		}
 		
-		// Add problem marker for non-power problems
-		if hasNonPowerProblems(device) {
+		// Keep only the legacy speed indicator and generic non-speed/power problems
+		if hasNonPowerProblems(device) && !hasSpeedProblems(device) && !hasPowerProblems(device) {
 			healthIndicators += " [Problem]"
 		}
 	}
@@ -532,6 +653,8 @@ func generateSingleDeviceContent(device USBDevice, isLast bool, opts DisplayOpti
 		PowerUsage:       powerUsage,
 		Location:         device.LocationID,
 		HasProblems:      hasProblems(device),
+		HasSpeedProblems: hasSpeedProblems(device),
+		HasPowerProblems: hasPowerProblems(device),
 		IsHub:            isHub(device.Name),
 		IsBus:            false,
 		Level:            device.Level,
@@ -557,7 +680,7 @@ func applyModeColors(content DeviceContent, mode string, useColor bool) {
 		displayName = bold(content.Name, useColor)
 	}
 	
-	// Always show hub and device names in white, problems in red
+	// Always show hub and device names in white, generic problems in red
 	if content.HasProblems && strings.Contains(content.HealthIndicators, "[Problem]") {
 		healthPart := strings.Replace(content.HealthIndicators, "[Problem]", red("[Problem]", useColor), 1)
 		displayName = white(displayName, useColor) + healthPart
@@ -608,8 +731,20 @@ func renderAttributesWithColors(content DeviceContent, mode string, useColor boo
 				line = dim(line, useColor)
 			}
 			fmt.Printf("%s%s\n", indent, line)
+		case "default":
+			// Show speed problems in red for default mode, otherwise dim
+			line := content.Speed
+			if content.TransferRate != "" {
+				line += " " + content.TransferRate
+			}
+			
+			if content.HasSpeedProblems {
+				fmt.Printf("%s%s\n", indent, red(line, useColor))
+			} else {
+				fmt.Printf("%s%s\n", indent, dim(line, useColor))
+			}
 		default:
-			// Dim everything
+			// Other modes: always dim speed info (no problem highlighting)
 			line := content.Speed
 			if content.TransferRate != "" {
 				line += " " + content.TransferRate
@@ -647,8 +782,15 @@ func renderAttributesWithColors(content DeviceContent, mode string, useColor boo
 			}
 			
 			fmt.Printf("%s%s\n", indent, line)
+		case "default":
+			// Show power problems in red for default mode, otherwise dim
+			if content.HasPowerProblems {
+				fmt.Printf("%s%s\n", indent, red(content.PowerText, useColor))
+			} else {
+				fmt.Printf("%s%s\n", indent, dim(content.PowerText, useColor))
+			}
 		default:
-			// Dim everything
+			// Other modes: always dim power info (no problem highlighting)
 			fmt.Printf("%s%s\n", indent, dim(content.PowerText, useColor))
 		}
 	}
