@@ -63,7 +63,7 @@ font-thicken                    = true
 # Commit Mono ---------- -->
 font-family             = CommitMonoV143
 font-size               = 12
-adjust-cell-height      = 20%
+adjust-cell-height      = 25%
 font-style              = 500 Regular
 font-style-italic       = 500 Italic
 font-style-bold         = 700 Regular
@@ -72,7 +72,7 @@ font-style-bold-italic  = 700 Italic
 font-feature   = ss01
 font-feature   = ss02
 font-feature   = cv02
-# font-feature   = cv04
+font-feature   = cv04
 font-feature   = cv06
 font-feature   = cv07
 font-feature   = cv08
