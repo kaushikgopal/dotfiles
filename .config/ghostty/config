@@ -63,7 +63,7 @@ font-thicken                    = true
 # Commit Mono ---------- -->
 font-family             = CommitMonoV143
 font-size               = 12
-adjust-cell-height      = 25%
+adjust-cell-height      = 30%
 font-style              = 500 Regular
 font-style-italic       = 500 Italic
 font-style-bold         = 700 Regular
@@ -96,6 +96,23 @@ font-feature   = cv11
 # cv10 - alt l
 # cv11 - alt 1
 
+
+# # Source Code Pro -------- -->
+# font-family           = Source Code Pro
+# font-size             = 12
+# adjust-cell-height    = 19%
+# font-style-bold       = Semibold
+# font-style-bold-italic= Semibold Italic
+# font-feature   = cv02
+# font-feature   = cv16
+# font-feature   = cv17
+# # cv00 - alt a
+# # cv02 - alt g
+# # cv04 - alt i (add base)
+# # cv12 - slashed 0 | zero
+# # cv15 - lifted *
+# # cv16 - $ through
+# # cv17 - alt 1 (sharper head)
 
 
 
@@ -148,24 +165,6 @@ font-feature   = cv11
 # # ss04 - alt 3 6 9
 # # ss05 - f - no lower loop
 
-
-# # Source Code Pro -------- -->
-# Font-family           = Source Code Pro
-# Font-size             = 12
-# Adjust-cell-height    = 15%
-# Font-style            = Medium
-# Font-style-italic     = Medium Italic
-# Font-style-bold       = Semibold
-# Font-style-bold-italic= Semibold Italic
-# Font-feature   = cv02
-# Font-feature   = cv04
-# # cv00 - alt a
-# # cv02 - alt g
-# # cv04 - alt i
-# # cv12 - slashed 0 | zero
-# # cv15 - lifted *
-# # cv16 - $ through
-# # cv17 - alt 1 (sharper head)
 
 
 
