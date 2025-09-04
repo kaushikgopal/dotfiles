@@ -30,13 +30,12 @@ keybind = shift+enter=text:\n
 ##############################################
 # Look and Feel
 # ghostty +list-themes
-#theme                           = dark:Monokai Pro Machine,light:Adwaita
 #theme                           = Sublette
-#theme                           = xcodedarkhc
+theme                           = xcodedarkhc
 #theme                           = galaxy-kg
 #theme                           = batman-kg
 #theme                           = monokai-pro-dark
-theme                            = Monokai Pro Machine
+#theme                            = Monokai Pro Machine
 adjust-cursor-thickness         = 3
 adjust-underline-position       = 3
 #background-opacity              = 0.95
@@ -75,7 +74,7 @@ font-feature   = cv02
 font-feature   = cv04
 font-feature   = cv06
 font-feature   = cv07
-font-feature   = cv08
+# font-feature   = cv08
 font-feature   = cv11
 # list of open-type features
 # https://commitmono.com/
