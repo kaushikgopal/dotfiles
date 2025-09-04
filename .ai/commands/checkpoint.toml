@@ -1,131 +1,186 @@
 # Command to create a checkpoint for any AI coding agent so you can resume later
 name = "checkpoint"
-description = "Create a checkpoint file in the folder .ai/plans with all the relevant context for your conversation with an AI coding agent. You can use this to resume later"
+description = "Create a checkpoint capturing current conversation state and context to resume work later"
 prompt = """
+# Checkpoint Command
 
-# AI Checkpoint Analysis Prompt
+**IMMEDIATE ACTION**: Determine the checkpoint operation based on user command.
 
-You are an AI coding assistant tasked with creating a comprehensive checkpoint document for a complex technical issue. Your goal is to
-analyze the current state of a codebase problem and create a detailed document that another AI could use to immediately understand
-and continue working on the issue.
+## Operation Detection
 
-## Your Task
+### If command contains "review":
+1. Find most recent checkpoint file in `.ai/checkpoints/`
+2. Read the checkpoint and provide a concise summary:
+   - Original request (1 sentence)
+   - What was accomplished (bullet points, max 5)
+   - Current blockers if any
+   - Next immediate steps (max 3)
+3. Keep summary under 10 lines total
+4. End with: "Full checkpoint available at: [filepath]"
 
-Create a markdown file at `.ai/plans/[ISSUE-ID].md` that serves as a complete checkpoint for the current technical issue. This
-document must be thorough enough that a fresh AI agent could read it and immediately understand the problem, codebase context, and
-continue working effectively.
+### If command contains "update":
+1. Look for existing checkpoint files in `.ai/checkpoints/`
+2. If multiple files exist, ask: "Which checkpoint should I update?" and list options
+3. If only one exists, update that file
+4. If none exist, create new checkpoint
+5. For UPDATE operations:
+   - Append new progress to existing sections
+   - Update "Last Activity" timestamp
+   - Move completed items from "In Progress" to "Completed"
+   - Add new errors/blockers
+   - Update "Next Steps" based on current state
+   - Preserve original request and earlier context
+   - Add separator: `---\n## Update: [timestamp]\n---`
 
-## Required Analysis Steps
+### DEFAULT - Create New Checkpoint:
+**This is the primary operation - DO NOT dilute or complicate this flow**
 
-1. **Deep Codebase Investigation**
- - Search for all relevant files related to the issue
- - Read and analyze key implementation files
- - Trace code flow and dependencies
- - Identify architectural patterns and conventions
- - Map out component relationships
+Create file `.ai/checkpoints/checkpoint-[timestamp].md` with the following analysis. Execute immediately without asking for confirmation.
 
-2. **Problem Context Gathering**
- - Extract git commit history (last 20 commits)
- - Identify the current branch and recent changes
- - Understand what was already attempted
- - Document symptoms vs root causes
- - Note any previous investigation findings
+## Step 1: Capture Current State (DO THIS FIRST)
+- Run `git status` and `git diff --stat` to capture uncommitted changes
+- Check for any active TODOs using available task tracking
+- Note current directory and git branch
+- Capture any error messages or failures from recent commands in this session
 
-3. **Technical Architecture Mapping**
- - Document system components and their interactions
- - Identify data flows and communication patterns
- - Map out network topology, APIs, and dependencies
- - Note configuration files and environment setup
- - Document any hardware or deployment specifics
+## Step 2: Analyze & Document
 
-## Required Document Structure
+Create a markdown checkpoint with these sections:
 
-### 1. Problem Statement
-- **Core Issue**: One-sentence problem description
-- **Symptoms**: Specific observable failures/errors
-- **Impact**: What breaks and under what conditions
-- **Business Context**: Why this matters
+### Session Context
+**Original Request**: [Extract the user's initial ask/problem from this conversation]
+**Current Objective**: [What we're trying to achieve right now]
+**Session Start**: [Timestamp when work began]
+**Last Activity**: [Most recent action taken]
 
-### 2. Current State & History
-- **Branch**: Current working branch name
-- **Recent Commits**: Last 10-15 relevant commits with descriptions
-- **Previous Attempts**: What has been tried and results
-- **Known Working State**: What conditions work vs don't work
+### Progress Summary
+**Completed**:
+- [List what's been successfully done with file:line references]
+- [Include specific functions/features implemented]
+- [Note any successful tests or validations]
 
-### 3. Architecture Overview
-- **System Components**: All relevant parts of the system
-- **Data/Network Flow**: How components communicate
-- **Key Technologies**: Frameworks, protocols, languages used
-- **Configuration**: Important config files and settings
-- **Dependencies**: External services, libraries, hardware
+**In Progress**:
+- [Current task being worked on]
+- [Last command or edit attempted]
+- [What was expected vs what happened]
 
-### 4. Code Analysis
-- **Key Files**: List with file paths and brief descriptions
-- **Critical Methods/Functions**: Important code sections with line references
-- **Code Flow**: Trace execution path for the problematic scenario
-- **Interfaces/APIs**: How components interact
-- **Error Handling**: Current error handling and logging
+**Blocked/Failed**:
+- [What didn't work and why]
+- [Include actual error messages with full context]
+- [Note any unexpected behaviors]
 
-### 5. Investigation Findings
-- **Root Cause Hypothesis**: Best current understanding of the problem
-- **Evidence**: Logs, error messages, test results that support hypothesis
-- **Unknowns**: What questions still need answers
-- **Contradictions**: Any confusing or conflicting information
+### Code Changes
+**Modified Files**: 
+```
+[git status output showing all changes]
+```
 
-### 6. Technical Deep Dive
-- **Implementation Details**: How the relevant code actually works
-- **Configuration**: All relevant settings and their effects
-- **Environment**: Runtime environment, permissions, network setup
-- **Dependencies**: Version specifics, compatibility issues
+**Key Implementation Details**:
+- [Critical code sections added/modified with file:line references]
+- [Design decisions made and why]
+- [Architectural patterns followed]
 
-### 7. Next Steps Strategy
-- **Immediate Debug Questions**: Specific questions to investigate next
-- **Proposed Solutions**: Potential approaches with pros/cons
-- **Test Strategy**: How to reproduce and verify fixes
-- **Risk Assessment**: What could go wrong with each approach
+### Conversation Highlights
+**Important Decisions**:
+- [Key choices made during this session]
+- [Tradeoffs discussed]
 
-### 8. Reference Information
-- **File Locations**: Complete paths to all relevant files
-- **Command Examples**: Specific commands to run for debugging/testing
-- **Log Patterns**: What to look for in logs
-- **Environment Setup**: How to reproduce the issue
+**User Preferences**:
+- [Any specific requirements or constraints mentioned]
+- [Coding style preferences observed]
 
-## Quality Standards
+### Next Steps
+**Immediate** (next 1-3 actions):
+1. [Specific next action with exact command/edit]
+2. [Following action]
+3. [Third action if applicable]
 
-- **Completeness**: Include ALL relevant technical details
-- **Precision**: Use exact file paths, line numbers, function names
-- **Clarity**: Write for an AI that has never seen this codebase
-- **Actionability**: Provide specific next steps, not vague directions
-- **Context**: Explain not just what but why and how
-- **Evidence**: Include concrete examples, logs, code snippets
+**Remaining Tasks**:
+- [What's left to complete the original request]
+- [Any deferred improvements or optimizations]
 
-## Example Usage
+**Open Questions**:
+- [Decisions needing user input]
+- [Ambiguities to clarify]
+- [Technical uncertainties]
 
-Your task: Analyze the authentication timeout issue in the mobile app where users get logged out after 30 minutes instead of the
-expected 2 hours. The issue was introduced recently and affects both iOS and Android. Create a checkpoint document that captures all
-relevant context.
+### Quick Resume Commands
+```bash
+# Get back to exact working state
+cd [working directory]
+git checkout [branch]
+git status  # Verify state matches checkpoint
 
-[AI then performs comprehensive analysis and creates detailed checkpoint document]
+# If there were uncommitted changes:
+[commands to recreate any temp files or state]
 
-## Critical Success Factors
+# Continue with next immediate action:
+[exact command for next step]
+```
 
-1. **Trace Code Execution**: Follow the actual code path for the problematic scenario
-2. **Understand Dependencies**: Map all external dependencies and their versions
-3. **Capture Environment**: Document runtime environment, permissions, network setup
-4. **Include Evidence**: Add actual error messages, log snippets, test results
-5. **Provide Specifics**: Use exact file paths, line numbers, method names
-6. **Think Systematically**: Cover all layers from UI to database/network
-7. **Document Unknowns**: Explicitly state what still needs investigation
+### Key Code Snippets
+Include 2-3 most relevant code sections from current work:
 
-Remember: The checkpoint document should allow another AI to immediately pick up where you left off and make meaningful progress on
-the issue.
+```[language]
+// File: [path:line]
+[code snippet showing important implementation]
+```
 
-This prompt template provides:
-- Clear structure and expectations
-- Specific analysis steps to follow
-- Quality standards for thoroughness
-- Examples of what to include
-- Success criteria for the resulting document
+### Error Context (if applicable)
+**Last Error**:
+```
+[Full error message and stack trace]
+```
+**Error Location**: [file:line where error occurred]
+**Attempted Fix**: [What was tried to resolve it]
 
-You can customize the prompt by adding specific context about your issue, codebase, or requirements.
+### Environment State
+- **Working Directory**: [pwd output]
+- **Branch**: [current git branch]
+- **Modified Files**: [count and list]
+- **Tests Status**: [passing/failing if tests were run]
+- **Dependencies**: [any new packages added]
+
+## Step 3: Save Checkpoint
+- Generate timestamp: `YYYYMMDD-HHMMSS`
+- If working on specific feature/bug: save as `checkpoint-[feature-name]-[timestamp].md`
+- Otherwise: save as `checkpoint-[timestamp].md`
+- Create `.ai/checkpoints/` directory if it doesn't exist
+- Save file and confirm location to user
+
+## Important Instructions
+1. Extract ALL context from our current conversation - don't ask what to include
+2. Include actual code snippets, not just descriptions
+3. Capture exact error messages, not summaries
+4. Make the checkpoint immediately actionable - someone should be able to run the resume commands and continue
+5. Focus on the current work session, not theoretical codebase analysis
+6. Be specific with line numbers, file paths, and function names
+7. Include enough context that you or another AI can resume in days/weeks
+
+## Update Mode Instructions
+When updating an existing checkpoint:
+1. Read the entire existing checkpoint first
+2. Preserve the original "Session Context" section
+3. Append new progress with clear timestamps
+4. Consolidate "Completed" items (remove duplicates)
+5. Update "In Progress" to reflect current state
+6. Keep historical error context but mark resolved ones
+7. Update resume commands to latest state
+8. Add update summary at the top of the update section:
+   ```
+   ### Update Summary
+   - Time since last checkpoint: [duration]
+   - New tasks completed: [count]
+   - New issues encountered: [count]
+   - Current focus: [what's being worked on now]
+   ```
+
+## Command Variants
+- `/checkpoint` - Create new checkpoint file (DEFAULT - most common operation)
+- `/checkpoint review` - Get concise summary of most recent checkpoint
+- `/checkpoint update` - Update most recent or single existing checkpoint
+- `/checkpoint update [filename]` - Update specific checkpoint file
+- `/checkpoint new` - Force create new checkpoint even if one exists
+
+This checkpoint should be superior to any compact summary - it should contain everything needed to resume work seamlessly.
 """
