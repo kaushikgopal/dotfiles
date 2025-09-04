@@ -1,0 +1,131 @@
+# Command to create a checkpoint for any AI coding agent so you can resume later
+name = "checkpoint"
+description = "Create a checkpoint file in the folder .ai/plans with all the relevant context for your conversation with an AI coding agent. You can use this to resume later"
+prompt = """
+
+# AI Checkpoint Analysis Prompt
+
+You are an AI coding assistant tasked with creating a comprehensive checkpoint document for a complex technical issue. Your goal is to
+analyze the current state of a codebase problem and create a detailed document that another AI could use to immediately understand
+and continue working on the issue.
+
+## Your Task
+
+Create a markdown file at `.ai/plans/[ISSUE-ID].md` that serves as a complete checkpoint for the current technical issue. This
+document must be thorough enough that a fresh AI agent could read it and immediately understand the problem, codebase context, and
+continue working effectively.
+
+## Required Analysis Steps
+
+1. **Deep Codebase Investigation**
+ - Search for all relevant files related to the issue
+ - Read and analyze key implementation files
+ - Trace code flow and dependencies
+ - Identify architectural patterns and conventions
+ - Map out component relationships
+
+2. **Problem Context Gathering**
+ - Extract git commit history (last 20 commits)
+ - Identify the current branch and recent changes
+ - Understand what was already attempted
+ - Document symptoms vs root causes
+ - Note any previous investigation findings
+
+3. **Technical Architecture Mapping**
+ - Document system components and their interactions
+ - Identify data flows and communication patterns
+ - Map out network topology, APIs, and dependencies
+ - Note configuration files and environment setup
+ - Document any hardware or deployment specifics
+
+## Required Document Structure
+
+### 1. Problem Statement
+- **Core Issue**: One-sentence problem description
+- **Symptoms**: Specific observable failures/errors
+- **Impact**: What breaks and under what conditions
+- **Business Context**: Why this matters
+
+### 2. Current State & History
+- **Branch**: Current working branch name
+- **Recent Commits**: Last 10-15 relevant commits with descriptions
+- **Previous Attempts**: What has been tried and results
+- **Known Working State**: What conditions work vs don't work
+
+### 3. Architecture Overview
+- **System Components**: All relevant parts of the system
+- **Data/Network Flow**: How components communicate
+- **Key Technologies**: Frameworks, protocols, languages used
+- **Configuration**: Important config files and settings
+- **Dependencies**: External services, libraries, hardware
+
+### 4. Code Analysis
+- **Key Files**: List with file paths and brief descriptions
+- **Critical Methods/Functions**: Important code sections with line references
+- **Code Flow**: Trace execution path for the problematic scenario
+- **Interfaces/APIs**: How components interact
+- **Error Handling**: Current error handling and logging
+
+### 5. Investigation Findings
+- **Root Cause Hypothesis**: Best current understanding of the problem
+- **Evidence**: Logs, error messages, test results that support hypothesis
+- **Unknowns**: What questions still need answers
+- **Contradictions**: Any confusing or conflicting information
+
+### 6. Technical Deep Dive
+- **Implementation Details**: How the relevant code actually works
+- **Configuration**: All relevant settings and their effects
+- **Environment**: Runtime environment, permissions, network setup
+- **Dependencies**: Version specifics, compatibility issues
+
+### 7. Next Steps Strategy
+- **Immediate Debug Questions**: Specific questions to investigate next
+- **Proposed Solutions**: Potential approaches with pros/cons
+- **Test Strategy**: How to reproduce and verify fixes
+- **Risk Assessment**: What could go wrong with each approach
+
+### 8. Reference Information
+- **File Locations**: Complete paths to all relevant files
+- **Command Examples**: Specific commands to run for debugging/testing
+- **Log Patterns**: What to look for in logs
+- **Environment Setup**: How to reproduce the issue
+
+## Quality Standards
+
+- **Completeness**: Include ALL relevant technical details
+- **Precision**: Use exact file paths, line numbers, function names
+- **Clarity**: Write for an AI that has never seen this codebase
+- **Actionability**: Provide specific next steps, not vague directions
+- **Context**: Explain not just what but why and how
+- **Evidence**: Include concrete examples, logs, code snippets
+
+## Example Usage
+
+Your task: Analyze the authentication timeout issue in the mobile app where users get logged out after 30 minutes instead of the
+expected 2 hours. The issue was introduced recently and affects both iOS and Android. Create a checkpoint document that captures all
+relevant context.
+
+[AI then performs comprehensive analysis and creates detailed checkpoint document]
+
+## Critical Success Factors
+
+1. **Trace Code Execution**: Follow the actual code path for the problematic scenario
+2. **Understand Dependencies**: Map all external dependencies and their versions
+3. **Capture Environment**: Document runtime environment, permissions, network setup
+4. **Include Evidence**: Add actual error messages, log snippets, test results
+5. **Provide Specifics**: Use exact file paths, line numbers, method names
+6. **Think Systematically**: Cover all layers from UI to database/network
+7. **Document Unknowns**: Explicitly state what still needs investigation
+
+Remember: The checkpoint document should allow another AI to immediately pick up where you left off and make meaningful progress on
+the issue.
+
+This prompt template provides:
+- Clear structure and expectations
+- Specific analysis steps to follow
+- Quality standards for thoroughness
+- Examples of what to include
+- Success criteria for the resulting document
+
+You can customize the prompt by adding specific context about your issue, codebase, or requirements.
+"""
