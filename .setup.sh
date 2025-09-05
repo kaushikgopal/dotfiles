@@ -251,7 +251,7 @@ sudo xcode-select --switch /Library/Developer/CommandLineTools/
 
 # SDK man for .kt dev & kscript
 curl -s "https://get.sdkman.io" | bash
-sdk install kotlin 1.9.24
+sdk install kotlin
 
 mkdir -p ~/.warp/themes
 pushd ~/.warp/themes
