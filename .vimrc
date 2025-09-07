@@ -239,6 +239,9 @@ nnoremap <leader>s :set spell!<cr>
 "nnoremap <leader>d "_d
 "vnoremap <leader>d "_d
 
+" newer vim versions will sync clilpboard now
+set clipboard=unnamed
+
 " pad current line with empty line above/below/around
 "inoremap <silent> <leader>o <C-\><C-O>:call append(line('.')-1, '')<CR><Esc>
 "nnoremap <silent> <leader>o :call append(line('.')-1, '')<CR><Esc>
