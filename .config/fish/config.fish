@@ -108,12 +108,13 @@ if status is-interactive
 
     abbr --add --global c   claude
     abbr --add --global cy  claude --dangerously-skip-permissions # yolo
+    abbr --add --global cyr claude --dangerously-skip-permissions --resume
 
     # abbr --add --global co code
     # abbr --add --global con 'code --new-window'
     # abbr --add --global cor 'code --reuse-window'
 
-    # abbr --add --global cu cursor
+    abbr --add --global cu cursor
     abbr --add --global cun cursor -n  # -n = --new-window
     abbr --add --global cur cursor -r  # -r = --reuse-window
 
