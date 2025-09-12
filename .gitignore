@@ -54,6 +54,8 @@
 !.firebender/
 !.firebender/**
 .firebender/history
+!.firebender/worktrees/
+.firebender/worktrees/**
 **/.claude/settings.local.json
 
 # ----------------------------------------
