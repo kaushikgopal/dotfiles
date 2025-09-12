@@ -62,7 +62,7 @@ font-thicken                    = true
 # Commit Mono ---------- -->
 font-family             = CommitMonoV143
 font-size               = 12
-adjust-cell-height      = 30%
+adjust-cell-height      = 25%
 font-style              = 500 Regular
 font-style-italic       = 500 Italic
 font-style-bold         = 700 Regular
