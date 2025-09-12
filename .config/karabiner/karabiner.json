@@ -1499,7 +1499,10 @@
                                 },
                                 "to": [
                                     {
-                                        "key_code": "open_bracket"
+                                        "key_code": "9",
+                                        "modifiers": [
+                                            "left_shift"
+                                        ]
                                     }
                                 ],
                                 "conditions": [
@@ -1544,7 +1547,10 @@
                                         }
                                     },
                                     {
-                                        "key_code": "open_bracket"
+                                        "key_code": "9",
+                                        "modifiers": [
+                                            "left_shift"
+                                        ]
                                     }
                                 ],
                                 "parameters": {
@@ -1564,7 +1570,10 @@
                                 },
                                 "to": [
                                     {
-                                        "key_code": "close_bracket"
+                                        "key_code": "0",
+                                        "modifiers": [
+                                            "left_shift"
+                                        ]
                                     }
                                 ],
                                 "conditions": [
@@ -1609,7 +1618,10 @@
                                         }
                                     },
                                     {
-                                        "key_code": "close_bracket"
+                                        "key_code": "0",
+                                        "modifiers": [
+                                            "left_shift"
+                                        ]
                                     }
                                 ],
                                 "parameters": {
@@ -1629,10 +1641,7 @@
                                 },
                                 "to": [
                                     {
-                                        "key_code": "9",
-                                        "modifiers": [
-                                            "left_shift"
-                                        ]
+                                        "key_code": "open_bracket"
                                     }
                                 ],
                                 "conditions": [
@@ -1677,10 +1686,7 @@
                                         }
                                     },
                                     {
-                                        "key_code": "9",
-                                        "modifiers": [
-                                            "left_shift"
-                                        ]
+                                        "key_code": "open_bracket"
                                     }
                                 ],
                                 "parameters": {
@@ -1700,10 +1706,7 @@
                                 },
                                 "to": [
                                     {
-                                        "key_code": "0",
-                                        "modifiers": [
-                                            "left_shift"
-                                        ]
+                                        "key_code": "close_bracket"
                                     }
                                 ],
                                 "conditions": [
@@ -1748,10 +1751,7 @@
                                         }
                                     },
                                     {
-                                        "key_code": "0",
-                                        "modifiers": [
-                                            "left_shift"
-                                        ]
+                                        "key_code": "close_bracket"
                                     }
                                 ],
                                 "parameters": {
@@ -2260,178 +2260,6 @@
                                     "basic.simultaneous_threshold_milliseconds": 250
                                 },
                                 "conditions": []
-                            },
-                            {
-                                "type": "basic",
-                                "from": {
-                                    "key_code": "s",
-                                    "modifiers": {
-                                        "optional": [
-                                            "any"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "u",
-                                        "modifiers": [
-                                            "left_control"
-                                        ]
-                                    }
-                                ],
-                                "conditions": [
-                                    {
-                                        "type": "variable_if",
-                                        "name": "j-layer",
-                                        "value": 1
-                                    },
-                                    {
-                                        "type": "frontmost_application_if",
-                                        "bundle_identifiers": [
-                                            "^com\\.apple\\.Terminal$",
-                                            "^com\\.googlecode\\.iterm2$"
-                                        ]
-                                    }
-                                ]
-                            },
-                            {
-                                "type": "basic",
-                                "from": {
-                                    "simultaneous": [
-                                        {
-                                            "key_code": "j"
-                                        },
-                                        {
-                                            "key_code": "s"
-                                        }
-                                    ],
-                                    "simultaneous_options": {
-                                        "key_down_order": "strict",
-                                        "detect_key_down_uninterruptedly": true,
-                                        "key_up_order": "strict_inverse",
-                                        "key_up_when": "any",
-                                        "to_after_key_up": [
-                                            {
-                                                "set_variable": {
-                                                    "name": "j-layer",
-                                                    "value": 0
-                                                }
-                                            }
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "set_variable": {
-                                            "name": "j-layer",
-                                            "value": 1
-                                        }
-                                    },
-                                    {
-                                        "key_code": "u",
-                                        "modifiers": [
-                                            "left_control"
-                                        ]
-                                    }
-                                ],
-                                "parameters": {
-                                    "basic.simultaneous_threshold_milliseconds": 250
-                                },
-                                "conditions": [
-                                    {
-                                        "type": "frontmost_application_if",
-                                        "bundle_identifiers": [
-                                            "^com\\.apple\\.Terminal$",
-                                            "^com\\.googlecode\\.iterm2$"
-                                        ]
-                                    }
-                                ]
-                            },
-                            {
-                                "type": "basic",
-                                "from": {
-                                    "key_code": "s",
-                                    "modifiers": {
-                                        "optional": [
-                                            "any"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "delete_or_backspace",
-                                        "modifiers": [
-                                            "left_command"
-                                        ]
-                                    }
-                                ],
-                                "conditions": [
-                                    {
-                                        "type": "variable_if",
-                                        "name": "j-layer",
-                                        "value": 1
-                                    },
-                                    {
-                                        "type": "frontmost_application_unless",
-                                        "bundle_identifiers": [
-                                            "^com\\.apple\\.Terminal$",
-                                            "^com\\.googlecode\\.iterm2$"
-                                        ]
-                                    }
-                                ]
-                            },
-                            {
-                                "type": "basic",
-                                "from": {
-                                    "simultaneous": [
-                                        {
-                                            "key_code": "j"
-                                        },
-                                        {
-                                            "key_code": "s"
-                                        }
-                                    ],
-                                    "simultaneous_options": {
-                                        "key_down_order": "strict",
-                                        "detect_key_down_uninterruptedly": true,
-                                        "key_up_order": "strict_inverse",
-                                        "key_up_when": "any",
-                                        "to_after_key_up": [
-                                            {
-                                                "set_variable": {
-                                                    "name": "j-layer",
-                                                    "value": 0
-                                                }
-                                            }
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "set_variable": {
-                                            "name": "j-layer",
-                                            "value": 1
-                                        }
-                                    },
-                                    {
-                                        "key_code": "delete_or_backspace",
-                                        "modifiers": [
-                                            "left_command"
-                                        ]
-                                    }
-                                ],
-                                "parameters": {
-                                    "basic.simultaneous_threshold_milliseconds": 250
-                                },
-                                "conditions": [
-                                    {
-                                        "type": "frontmost_application_unless",
-                                        "bundle_identifiers": [
-                                            "^com\\.apple\\.Terminal$",
-                                            "^com\\.googlecode\\.iterm2$"
-                                        ]
-                                    }
-                                ]
                             },
                             {
                                 "type": "basic",
