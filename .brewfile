@@ -176,6 +176,7 @@ cask "font-sn-pro"
 cask "font-inter"
 cask "font-sf-mono"
 cask "font-jetbrains-mono"
+cask "font-ibm-plex-mono"
 
 #cask "font-cascadia-code"
 #cask "font-cascadia-code-pl"
