@@ -30,9 +30,7 @@ keybind = shift+enter=text:\n
 ##############################################
 # Look and Feel
 # ghostty +list-themes
-#theme                           = Sublette
-theme                           = xcodedarkhc
-#theme                           = galaxy-kg
+#theme                           = Xcode Dark hc
 #theme                           = batman-kg
 #theme                           = monokai-pro-dark
 #theme                            = Monokai Pro Machine
@@ -69,24 +67,36 @@ font-thicken                    = true
 
 
 
-# Commit Mono ---------- -->
-font-family             = CommitMonoV143
+
+
+# Commit Mono - KG ---------- -->
+font-family             = CommitMono-KG
 font-size               = 11.5
 adjust-cell-height      = 40%
-font-style              = 500 Regular
-font-style-italic       = 500 Italic
-font-style-bold         = 700 Regular
-font-style-bold-italic  = 700 Italic
+font-style              = 500Regular
+font-style-italic       = 500Italic
+font-style-bold         = 700Regular
+font-style-bold-italic  = 700Italic
 
-font-feature   = ss01
-font-feature   = ss02
-font-feature   = cv06
-font-feature   = cv07
-font-feature   = cv11
 
-# font-feature   = cv02
-font-feature   = cv04
-# font-feature   = cv08
+# # Commit Mono ---------- -->
+# font-family             = CommitMonoV143
+# font-size               = 11.5
+# adjust-cell-height      = 40%
+# font-style              = 500 Regular
+# font-style-italic       = 500 Italic
+# font-style-bold         = 700 Regular
+# font-style-bold-italic  = 700 Italic
+
+# font-feature   = ss01
+# font-feature   = ss02
+# font-feature   = cv06
+# font-feature   = cv07
+# font-feature   = cv11
+
+# # font-feature   = cv02
+# font-feature   = cv04
+# # font-feature   = cv08
 
 # list of open-type features
 # https://commitmono.com/
@@ -127,6 +137,8 @@ font-feature   = cv04
 
 
 
+
+
 # # Berkeley Mono (TX-02-Variable) -------- -->
 # font-family             = TX-02-Variable
 # adjust-cell-height      = 15%
@@ -146,14 +158,8 @@ font-feature   = cv04
 
 
 
-# # Commit Mono - KG ---------- -->
-# font-family             = CommitMono-KG
-# font-size               = 11.5
-# adjust-cell-height      = 25%
-# font-style              = 500Regular
-# font-style-italic       = 500Italic
-# font-style-bold         = 700Regular
-# font-style-bold-italic  = 700Italic
+
+
 
 # # Google Sans Code ---------- -->
 # font-family             = Google Sans Code
