@@ -824,7 +824,7 @@
                             {
                                 "type": "basic",
                                 "from": {
-                                    "key_code": "0",
+                                    "key_code": "semicolon",
                                     "modifiers": {
                                         "mandatory": [
                                             "right_control",
@@ -843,7 +843,7 @@
                             {
                                 "type": "basic",
                                 "from": {
-                                    "key_code": "9",
+                                    "key_code": "s",
                                     "modifiers": {
                                         "mandatory": [
                                             "right_control",
