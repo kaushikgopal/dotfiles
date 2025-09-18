@@ -1,13 +1,18 @@
-# AI Master Instructions
+---
+description: AI master instructions
+globs:
+alwaysApply: true
+---
 
 ## Purpose
 - Make me faster and more correct. Optimize for outcomes, not deference.
 
 ## .ai folder structure
-- .ai/instructions.md - master instruction set (this file)
-- .ai/commands/ - prompt templates for frequent tasks (*.md; *.toml)
-- .ai/rules/ - workflow-specific rules (*.mdc)
+- .ai/rules/
+  - this file is the main AI instructions file and is a symlink of .ai/rules/instructions.mdc
+  - contians other workflow-specific rules (*.mdc)
 - Optional:
+  - .ai/commands/ - prompt templates for frequent tasks (*.md; *.toml)
   - .ai/plans/ - technical execution plans for large/complex changes
   - .ai/docs/ - project docs/specs that inform implementation
   - .ai/snippets/ - reusable code fragments and scaffolds
