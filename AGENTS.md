@@ -1,23 +1,13 @@
----
-description: AI master instructions
-globs:
-alwaysApply: true
----
-
 ## Purpose
 - Make me faster and more correct. Optimize for outcomes, not deference.
 
 ## .ai folder structure
-- .ai/rules/
-  - this file is the main AI instructions file and is a symlink of .ai/rules/instructions.mdc
-  - contians other workflow-specific rules (*.mdc)
-- Optional:
-  - .ai/commands/ - prompt templates for frequent tasks (*.md; *.toml)
-  - .ai/plans/ - technical execution plans for large/complex changes
-  - .ai/docs/ - project docs/specs that inform implementation
-  - .ai/snippets/ - reusable code fragments and scaffolds
-  - .ai/checklists/ - repeatable process checklists (release, incident, review)
-  - .ai/playbooks/ - runbooks for common ops and incident responses
+- This file is the main AI instructions file and is a symlink of AGENTS.md
+- .ai/commands    # *.md (or *.toml) prompt templates for frequent tasks (call directly)
+- .ai/docs        # project documentation that helps the AI understand features
+- .ai/rules       # structured rules (specific programming languages) scoped to project/codebase
+- .ai/plans       # technical execution plans for large changes
+- .ai/checkpoints # project level checkpoints to quickly resume or load context in an agent session
 
 ## Communication style
 - Be direct. No compliments. Flag flawed assumptions.

@@ -2,19 +2,7 @@
   "rules": [
     {
       "filePathMatches": "*",
-      "rulesPaths": "/Users/kg/.ai/instructions.md"
-    },
-    {
-      "filePathMatches": ["**/*.kt", "**/*.kts"],
-      "rulesPaths": "/Users/kg/.ai/rules/kotlin.mdc"
-    },
-    {
-      "filePathMatches": ["**/*Test*.kt", "**/*Test*.kts"],
-      "rulesPaths": "/Users/kg/.ai/rules/kotlin-test.mdc"
+      "rulesPaths": "/Users/kg/AGENTS.md"
     }
-  ],
-  "ignore": [
-    "build/**",
-    ".gradle/**"
   ]
 }

@@ -1,4 +1,4 @@
-Please analyze this codebase and create an `.ai/rules/instructions.mdc` file, which will be given to future instances of this AI coding agent (like Claude Code or Gemini Cli) to operate in this repository.
+Please analyze this codebase and create an `AGENTS.md` file, which will be given to future instances of this AI coding agent (like Claude Code, Codex or Gemini Cli) a simple set of rules to operate in this project.
 
 What to add:
 
@@ -7,8 +7,8 @@ What to add:
 
 Usage notes:
 
-- If there's already an `.ai/rules/instructions.mdc`, suggest improvements to it.
-- When you make the initial `.ai/rules/instructions.mdc` do not repeat yourself and do not include obvious instructions like "Provide helpful error messages to users", "Write unit tests for all new utilities", "Never include sensitive information (API keys, tokens) in code or commits"
+- If there's already an `AGENTS.md`, suggest improvements to it.
+- When you make the initial `AGENTS.md` do not repeat yourself and do not include obvious instructions like "Provide helpful error messages to users", "Write unit tests for all new utilities", "Never include sensitive information (API keys, tokens) in code or commits"
 - Avoid listing every component or file structure that can be easily discovered
 - Don't include generic development practices
 - If there are Cursor rules (in .cursor/rules/ or .cursorrules), AGENTS.md, GEMINI.md or Copilot rules (in .github/copilot-instructions.md), make sure to include the important parts.
@@ -17,6 +17,13 @@ Usage notes:
 - Be sure to prefix the file with the following text:
 
 ```
-# AI Instructions
-This file provides guidance to AI coding agents like Claude Code (claude.ai/code) when working with code in this repository.
+# Project instructions for Agent
+This file provides guidance to AI coding agents like Claude Code (claude.ai/code), when working with code in this repository.
 ```
+
+Best practices:
+
+* Good rules are focused, actionable, and scoped.
+* Keep rules under 500 lines
+* Avoid vague guidance. Write rules like clear internal docs
+* Reuse rules when repeating prompts in chat
