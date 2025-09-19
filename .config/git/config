@@ -198,45 +198,6 @@
 
 [color]
   ui = always           # all output (not intended for machine consumption) should always use color
-[color "branch"]
-#  current = yellow reverse
-#  local = yellow
-#  remote = green
-[color "diff"]
-#  meta = magenta bold
-#  frag = cyan bold
-#  old = red reverse
-#  new = green reverse
-#  whitespace = red reverse
-[color "status"]
-#  header = white normal dim
-#  added = red
-#  changed = green
-#  untracked = blue
-#  branch = yellow
-
-[diff]
-    colorMoved = default
-    mnemonicprefix = true
-    compactionHeuristic = true
-
-[merge]
-  tool = cursor
-;   log = true
-;   stat = true
-;   conflictStyle = diff3
-[mergetool]
-  keepBackup = false
-[mergetool "cursor"]
-  cmd = cursor --wait $MERGED
-[mergetool "idea"]
-  cmd = idea merge $LOCAL $REMOTE $BASE $MERGED
-  trustExitCode = true
-[mergetool "meld"]
-  cmd = meld "$LOCAL" "$MERGED" "$REMOTE" --output "$MERGED"
-;   cmd = meld "$LOCAL" "$BASE" "$REMOTE" --output "$MERGED"
-[mergetool "vscode"]
-  cmd = code --wait $MERGED
 
 [pull]
   rebase = false
@@ -280,14 +241,49 @@
     autosquash = true  # see --fixup
 
 
+[merge]
+  conflictStyle = zdiff3
+[mergetool]
+  keepBackup = false
+[mergetool "cursor"]
+  cmd = cursor --wait $MERGED
+[mergetool "idea"]
+  cmd = idea merge $LOCAL $REMOTE $BASE $MERGED
+  trustExitCode = true
+[mergetool "meld"]
+  cmd = meld "$LOCAL" "$MERGED" "$REMOTE" --output "$MERGED"
+[mergetool "vscode"]
+  cmd = code --wait $MERGED
 
-############################################
-## DELTA
-############################################
+#####################
+# delta configuation
 [core]
-  pager = "delta"
+    pager = delta
 [interactive]
-  diffFilter = delta --color-only
+    diffFilter = delta --color-only
+[pager]
+    show = delta
+
+
+# ##############################
+# difftastic for external tool
+[diff]
+    # set difftastic as the default difftool, so we don't need to specific `-t difftastic` every time
+    tool = difftastic
+#     # if you want difftastic as default
+#     external = difft
+# [difftool]
+#     # run difftool immediately, don't ask 'are you sure' each time
+#     prompt = false
+# [difftool "difftastic"]
+#     # See `man git-difftool` for a description of MERGED, LOCAL and REMOTE.
+#     cmd = difft "$MERGED" "$LOCAL" "abcdef1" "100644" "$REMOTE" "abcdef2" "100644"
+
+
+
+
+######################
+# delta theme config
 [delta]
     navigate    = false  # use n and N to move between diff sections
     features    = chameleon
@@ -315,16 +311,6 @@
 #    whitespace-error-style = red reverse
 #    zero-style = brightblack
 #
-[diff]
-    colorMoved = default
-    mnemonicprefix = true
-    compactionHeuristic = true
-    show = delta
-[pager]
-  show = delta
-[merge]
-  conflictStyle = zdiff3
-
 [delta "chameleon"] # https://github.com/AirOnSkin/dotfiles/blob/main/dot_gitconfig.tmpl
   # features
   dark = true

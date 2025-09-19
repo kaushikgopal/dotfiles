@@ -22,6 +22,7 @@ brew "bat"
 brew "btop"
 brew "coreutils" # for gnu date
 brew "curl"
+brew "difftastic"
 brew "fastfetch"
 brew "fd"
 brew "ffmpeg"
