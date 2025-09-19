@@ -49,6 +49,7 @@ if status is-interactive
 
     # git commands
     abbr --add --global g    git # using a git function which is better
+    abbr --add --global ga   git a
     abbr --add --global gs   "git status -s"
     abbr --add --global gano 'git acan'
     abbr --add --global gsh  "git show HEAD~"
