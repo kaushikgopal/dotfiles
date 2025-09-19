@@ -23,12 +23,24 @@
     cm = commit -m
     cf = commit --fixup
     # d -> diff (with git number)
-    din   = diff --name-only master...HEAD  # list files that have changed
     # ds -> diff --staged (with git number)
+    din   = diff --name-only master...HEAD  # list files that have changed
     # dt -> difftool (with git number)
     mt    = mergetool
+    p = pull
+    pu = push
+    # re -> reset (with git number)
     ss    = status --short
+    sts   = stash push # previously stash save
+    stp   = stash pop
+    wip = !git add .; git commit -a -m "--wip-- [ci skip]" --no-verify
+    wipr = !git reset --soft HEAD~; git reset
+    wt = worktree
 
+    l  = !git log --graph --decorate --date=short --topo-order -30 --pretty=format:'%C(magenta)%h%Creset %C(italic brightblack)%ad%C(reset)%C(auto) %s %C(blue)%an%C(auto) %D%C(reset)'
+    ll = !git log --graph --decorate --date=short --pretty=format:'%C(magenta)%h%Creset %C(italic brightblack)%ad%C(reset)%C(auto) %s %C(blue)%an%C(auto) %D%C(reset)'
+
+    # compare two commits
     compare = "!compare() { \
         if git merge-base --is-ancestor \"$1\" \"$2\"; then \
             echo \"    $1  ──▶  $2\"; \
@@ -42,6 +54,7 @@
             echo \"✘   these commits are not related\"; \
         fi; \
     }; compare"
+
 
     #### git number support
     a = "!f() { \
@@ -90,7 +103,7 @@
           fi; \
         fi; \
     }; f"
-    r = "!f() { \
+    re = "!f() { \
         if [[ $# -eq 0 || \"$1\" == \".\" ]]; then \
             git reset .; \
         else \
@@ -205,6 +218,8 @@
           fi; \
         fi; \
     }; f"
+    # i want to start using diff --staged more than --cached
+    # dc = ds
 
 
 [credential]

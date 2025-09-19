@@ -48,75 +48,20 @@ if status is-interactive
     abbr --add --global rgu 'rg -uuu' # see .ripgreprc
 
     # git commands
-
-    abbr --add --global g git # using a git function which is better
-
-    abbr --add --global gp  'git pull'
-    abbr --add --global gpu 'git push'
-    abbr --add --global gb  'git branch'
-    abbr --add --global gco 'git checkout'
-    # abbr --add --global gd  'git diff' # diff regular
-
-    abbr --add --global gm  'git checkout master'
-    abbr --add --global gma 'git checkout main'
-    abbr --add --global g-  'git checkout -'
-    abbr --add --global g.  'git checkout .'
-    abbr --add --global gmp 'git checkout master; git pull'
-
-    abbr --add --global gbd 'git branch -D'
-
-    abbr --add --global gcf     'git commit --fixup'
-    abbr --add --global gcm     'git commit -m'
-    abbr --add --global gano    'git add .; git commit --amend --no-edit'
-
-    abbr --add --global gchp    'git cherry-pick'
-    abbr --add --global gs      "git status -s"
-    abbr --add --global gsh     "git show HEAD~"
-
-    abbr --add --global gss     "git stash save"
-    abbr --add --global gsp     "git stash pop"
-
-    # my diff commands alone i use an alias for the number support
-    #  cause i use these so often
-    #  my usual convention is to use .gitconfig abbreviations for number support
-    abbr --add --global gad     'git a'
-    abbr --add --global gdi     'git d' # diff with number support
-    abbr --add --global gdc     "git dc" # diff --cached with number support
-
-    abbr --add --global gdin    'git diff --name-only master...HEAD'  # list files that have changed
-
-    abbr --add --global gll 'git log --graph --decorate --date=short --pretty=format:"%C(magenta)%h%Creset %C(italic brightblack)%ad%C(reset)%C(auto) %s %C(blue)%an%C(auto) %D%C(reset)"'
-    abbr --add --global gl 'git log --graph --decorate --date=short --topo-order -30 --pretty=format:"%C(magenta)%h%Creset %C(italic brightblack)%ad%C(reset)%C(auto) %s %C(blue)%an%C(auto) %D%C(reset)"'
-
-    abbr --add --global gms 'git merge --squash'
-    abbr --add --global gmm 'git merge master'
-
+    abbr --add --global g    git # using a git function which is better
+    abbr --add --global gs   "git status -s"
+    abbr --add --global gano 'git acan'
+    abbr --add --global gsh  "git show HEAD~"
     abbr --add --global greb 'git rebase --interactive HEAD~'
 
-    abbr --add --global gwip 'git add .; git commit -a -m "--wip-- [ci skip]" --no-verify' # quick commit (get in the reflog)
-    abbr --add --global gwipr 'git reset --soft HEAD~; git reset' # undo last commit (works well with gwip)
-
-    abbr --add --global gwt 'git worktree'
-
     # llm commands
-    abbr --add --global lm  llm
-    abbr --add --global lmm llm -m
-    abbr --add --global lmc llm cmd
+    #abbr --add --global lm  llm
+    #abbr --add --global lmm llm -m
+    #abbr --add --global lmc llm cmd
 
-    # programs
-    abbr --add --global hu hugo
-
-    abbr --add --global c   claude
-    abbr --add --global cy  claude --dangerously-skip-permissions # yolo
-    abbr --add --global cyr claude --dangerously-skip-permissions --resume
-
-    # abbr --add --global co code
-    # abbr --add --global con 'code --new-window'
-    # abbr --add --global cor 'code --reuse-window'
+    abbr --add --global cl claude --dangerously-skip-permissions --resume
 
     abbr --add --global cu cursor
-    abbr --add --global cun cursor -n  # -n = --new-window
-    abbr --add --global cur cursor -r  # -r = --reuse-window
 
     abbr --add --global ts tailscale
 
