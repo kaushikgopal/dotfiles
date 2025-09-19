@@ -17,7 +17,6 @@ Usage notes:
 - Be sure to prefix the file with the following text:
 
 ```
-# Project instructions for Agent
 This file provides guidance to AI coding agents like Claude Code (claude.ai/code), when working with code in this repository.
 ```
 
