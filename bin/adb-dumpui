@@ -1,0 +1,224 @@
+#!/usr/bin/env bash
+
+# Colorized Android UI snapshot
+# brew install gawk
+# brew install watch
+
+set -euo pipefail
+
+# Detect TTY to enable/disable colors
+if [ -t 1 ]; then
+    bold="\033[1m"
+    dim="\033[2m"
+    red="\033[31m"
+    green="\033[32m"
+    yellow="\033[33m"
+    blue="\033[34m"
+    magenta="\033[35m"
+    cyan="\033[36m"
+    gray="\033[90m"
+    reset="\033[0m"
+else
+    bold=""; dim=""; red=""; green=""; yellow=""; blue=""; magenta=""; cyan=""; gray=""; reset=""
+fi
+
+title() {
+    local t="$1"
+    printf "${bold}${blue}╔══════════════════════════════════════════════════════════════╗${reset}\n"
+    printf "${bold}${blue}║ ${reset}${bold}%s${reset}\n" "$t"
+    printf "${bold}${blue}╚══════════════════════════════════════════════════════════════╝${reset}\n"
+}
+
+section() {
+    local t="$1"
+    printf "\n${bold}${cyan}▶ %s${reset}\n" "$t"
+}
+
+label_kv() {
+    # label, value, color(optional)
+    local l="$1"; shift
+    local v="$1"; shift || true
+    local c="${1:-$reset}"
+    printf "  ${dim}%s${reset}: %b%s${reset}\n" "$l" "$c" "$v"
+}
+
+bullet() {
+    # color, text
+    local c="$1"; shift
+    local t="$*"
+    printf "  %b•%b %s\n" "$c" "$reset" "$t"
+}
+
+adb_wait_device() {
+    adb get-state >/dev/null 2>&1 || adb wait-for-device
+}
+
+adb_wait_device
+
+timestamp="$(date +"%Y-%m-%d %H:%M:%S %Z")"
+title "Android UI Snapshot @ ${timestamp}"
+
+# Pull raw dumps (no on-device filtering)
+printf "${gray}Collecting dumpsys outputs...${reset}\n"
+activity_dump="$(adb shell dumpsys activity activities || true)"
+window_dump="$(adb shell dumpsys window windows || true)"
+
+# 1) Foreground (RESUMED) activity
+resumed_line="$(
+    printf "%s\n" "$activity_dump" \
+    | gawk '
+        /^[[:space:]]*ResumedActivity:/ {
+            if (match($0, /ResumedActivity:[[:space:]]*ActivityRecord\{[^}]*[[:space:]]u[0-9]+[[:space:]]([^[:space:]]+)[[:space:]]t([-0-9]+)\}/, m)) {
+                print m[1] " (task " m[2] ")"
+                exit
+            }
+        }
+    '
+)"
+
+section "Foreground"
+if [[ -n "$resumed_line" ]]; then
+    bullet "$green" "$resumed_line"
+else
+    bullet "$red" "No foreground activity detected"
+fi
+
+# 2) Running activities (most recent first), deduplicated across stacks
+section "Running activities (most recent first)"
+printf "%s\n" "$activity_dump" \
+| gawk -v green="$green" -v reset="$reset" -v dim="$dim" '
+    BEGIN { inRun=0; n=0 }
+    /Running activities \(most recent first\):/ { inRun=1; next }
+    inRun && (/^[[:space:]]*Stack #[0-9]+:/ || /^ActivityStackSupervisor state:/) { inRun=0 }
+    inRun && /ActivityRecord\{/ {
+        if (match($0, /ActivityRecord\{[^}]*[[:space:]]u[0-9]+[[:space:]]([^[:space:]]+)[[:space:]]t([-0-9]+)/, m)) {
+            key = m[1] " (task " m[2] ")"
+            if (!(key in seen)) { seen[key]=1; order[++n]=key }
+        }
+    }
+    END {
+        if (n==0) {
+            printf("  - none -\n")
+        } else {
+            for (i=1; i<=n; i++) {
+                printf("  %s•%s %s\n", green, reset, order[i])
+            }
+        }
+    }
+'
+
+# 3) Window focus (CurrentFocus and FocusedApp)
+section "Window focus (WindowManager)"
+
+# CurrentFocus: handle multiple variants
+current_focus="$(
+    printf "%s\n" "$window_dump" \
+    | gawk '
+        /mCurrentFocus=/ {
+            # Common forms:
+            #  mCurrentFocus=Window{... u0 pkg/.Activity}
+            #  mCurrentFocus=Window{... pkg/.Activity}
+            #  mCurrentFocus=Window{... pkg/.Activity type=...}
+            # Try to capture the last non-space token before the closing brace
+            if (match($0, /mCurrentFocus=Window\{[^}]*[[:space:]]([^[:space:]]+)\}$/, m)) {
+                print m[1]; exit
+            }
+            # Fallback: capture a component-looking token anywhere near the end
+            if (match($0, /mCurrentFocus=Window\{[^}]*([a-zA-Z0-9._]+\/[a-zA-Z0-9._$]+)\b/, m)) {
+                print m[1]; exit
+            }
+        }
+    '
+)"
+
+# FocusedApp: handle both AppWindowToken and WindowToken lines, or missing task id
+focused_app="$(
+    printf "%s\n" "$window_dump" \
+    | gawk '
+        /mFocusedApp=/ {
+            # Preferred: extract from ActivityRecord with task id
+            if (match($0, /ActivityRecord\{[^}]*[[:space:]]u[0-9]+[[:space:]]([^[:space:]]+)[[:space:]]t([-0-9]+)/, m)) {
+                print m[1] " (task " m[2] ")"; exit
+            }
+            # Fallback: capture component after mFocusedApp=... if ActivityRecord is not present
+            if (match($0, /mFocusedApp=[^)]*\b([a-zA-Z0-9._]+\/[a-zA-Z0-9._$]+)\b/, m)) {
+                print m[1]; exit
+            }
+        }
+    '
+)"
+
+if [[ -n "$current_focus" ]]; then
+    label_kv "CurrentFocus" "$current_focus" "$yellow"
+fi
+if [[ -n "$focused_app" ]]; then
+    label_kv "FocusedApp" "$focused_app" "$yellow"
+fi
+if [[ -z "$current_focus$focused_app" ]]; then
+    bullet "$red" "No focus info found"
+fi
+
+# 4) Visible app windows (filter out system windows)
+section "Visible app windows"
+printf "%s\n" "$window_dump" \
+| gawk -v green="$green" -v reset="$reset" '
+    BEGIN { RS="\n  Window #[0-9]+ "; FS="\n"; count=0 }
+    NR>1 {
+        on=0; vis=0; name=""
+        for (i=1; i<=NF; i++) {
+            if ($i ~ /^Window\{/) name=$i
+            if ($i ~ /isOnScreen=true/) on=1
+            if ($i ~ /isVisible=true/) vis=1
+        }
+        if (on && vis && name ~ / u[0-9]+ / && name !~ /(StatusBar|ImageWallpaper|InputMethod|AssistPreviewPanel|DockedStackDivider)/) {
+            sub(/^Window\{[^ ]+[[:space:]]+u[0-9]+[[:space:]]+/, "", name)
+            sub(/\}.*/, "", name)
+            printf("  %s•%s %s\n", green, reset, name)
+            count++
+        }
+    }
+    END {
+        if (count==0) printf("  - none -\n")
+    }
+'
+
+# 5) Extras (quick debug signals)
+section "Extras"
+# LastPaused
+last_paused="$(
+    printf "%s\n" "$activity_dump" \
+    | gawk '
+        /^[[:space:]]*mLastPausedActivity:/ {
+            if (match($0, /ActivityRecord\{[^}]*[[:space:]]u[0-9]+[[:space:]]([^[:space:]]+)[[:space:]]t([-0-9]+)/, m)) {
+                print m[1] " (task " m[2] ")"; exit
+            }
+        }
+    '
+)"
+[ -n "$last_paused" ] && label_kv "LastPaused" "$last_paused" "$magenta"
+[ -n "$resumed_line" ] && label_kv "ResumedActivity" "$resumed_line" "$magenta"
+
+# Top focused display
+top_focused_disp="$(
+    printf "%s\n" "$window_dump" \
+    | gawk '
+        /^[[:space:]]*mTopFocusedDisplayId=/ {
+            if (match($0, /mTopFocusedDisplayId=([0-9]+)/, m)) { print m[1]; exit }
+        }
+    '
+)"
+[ -n "$top_focused_disp" ] && label_kv "TopFocusedDisplayId" "$top_focused_disp" "$magenta"
+
+# Lock task mode
+lock_task="$(
+    printf "%s\n" "$activity_dump" \
+    | gawk '
+        /LockTaskController/ { printing=1; next }
+        printing && /mLockTaskModeState=/ {
+            sub(/^.*mLockTaskModeState=/, "", $0); print; exit
+        }
+    '
+)"
+[ -n "$lock_task" ] && label_kv "LockTaskMode" "$lock_task" "$magenta"
+
+printf "\n${dim}${gray}Tip: Use${reset} watch -n 1 ./adb-dumpui.sh ${dim}${gray}to live-refresh.\n"
