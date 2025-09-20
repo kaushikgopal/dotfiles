@@ -8,7 +8,7 @@
 [alias]
     # a -> add (with git number)
     # ap -> add --patch
-    acan  = !git add .; git commit --amend --no-edit
+    cane  = !git add . && git commit --amend --no-edit
     branch-cleaner = !git branch --merged master --no-color | grep -v '^[ *]*master$' | xargs git branch -d
     b = branch
     ba = branch -a
@@ -33,8 +33,8 @@
     ss    = status --short
     sts   = stash push # previously stash save
     stp   = stash pop
-    wip = !git add .; git commit -a -m "--wip-- [ci skip]" --no-verify
-    wipr = !git reset --soft HEAD~; git reset
+    wip = !git add . && git commit -a -m "--wip-- [ci skip]" --no-verify
+    wipr = !git reset --soft HEAD~ && git reset
     wt = worktree
 
     l  = !git log --graph --decorate --date=short --topo-order -30 --pretty=format:'%C(magenta)%h%Creset %C(italic brightblack)%ad%C(reset)%C(auto) %s %C(blue)%an%C(auto) %D%C(reset)'
