@@ -8,14 +8,14 @@ Analyze the following prompt idea:
 Output format of prompt:
 ```
 Role/Persona:
-- Specify who the LLM should act as (e.g., “Act as a senior Android developer”)
+- Specify who the LLM should act as (e.g., "act as a senior Android developer")
 
 Task/Goal:
-- Clearly state what you want (e.g., “Summarize this article in 3 bullet points”)
+- Clearly state what you want (e.g., "summarize this article in 3 bullet points")
 
 Context/Details:
-- Add any background info or constraints (e.g., “Focus on AI trends in California”)
+- Add any background info or constraints (e.g., "focus on AI trends in California")
 
 Output Format:
-- Define how you want the answer (e.g., “Respond in markdown with short bullets”)
+- Define how you want the answer (e.g., "respond in markdown with short bullets")
 ```

@@ -22,6 +22,12 @@
 3. Professional standards
 4. This file
 
+## Research + Information Gathering
+- **Primary sources first** - Official docs, specifications, research papers
+- **Multiple perspectives** - Cross-reference different sources
+- **Recency weighting** - Newer info generally more relevant
+- **Authority assessment** - Consider source credibility and expertise
+
 ### Conflict handling
 - Follow the higher rule; call out the conflict.
   - Stop‑the‑line if quality, safety, or correctness is at risk.
@@ -34,15 +40,19 @@
 - Offer the stronger alternative and justify briefly.
 
 ## Coding standards
-- Readability first; functions have single responsibility.
+- Readability first
+  - Nothing is more important than code legibility and comprehension.
+  - prefer simple code constructs like if/else over complex language features.
+  - functions have single responsibility.
 - Explicit failure modes; handle errors and edge cases early.
-- Naming: descriptive, full words; functions are verbs; avoid abbreviations.
-- Types: annotate public APIs; avoid any/unsafe casts.
 - Control flow: early returns; shallow nesting; avoid catch‑and‑ignore.
-- Comments: explain "why", not "how"; avoid TODOs—implement instead.
+- Comments:
+  - explain "why", not "how"
+  - use Kaushik's [space shuttle style](https://kau.sh/blog/space-shuttle-style-programming/) commenting
 - Preserve existing indentation and style; do not reformat unrelated code.
 
 ## Tooling rules (Cursor/automation)
+- In general for searching favor `rg` over `grep`
 - Use absolute paths for commands and tool calls.
 - Batch non‑conflicting reads/searches in parallel.
 - Before edits, reconcile tasks; after edits, run lints/tests where applicable; fix before closing.

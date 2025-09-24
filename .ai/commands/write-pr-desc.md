@@ -1,96 +1,114 @@
 You are generating a GitHub Pull Request description. Follow these rules strictly:
--  Be concise, factual, and reviewer-centric. No fluff.
--  Use short sentences, bullet points, and specific nouns.
--  Prefer present tense and active voice.
--  Avoid restating code—summarize intent, scope, and impact.
--  Note flags, risks, and follow-ups explicitly.
--  If a section doesn’t apply, omit it.
--  Only gather content or information from the code (never make up stuff)
 
-Required sections and formats:
+# Core Principles
+- Be concise, factual, and reviewer-centric
+- Use short sentences, bullet points, and specific nouns
+- Present tense, active voice
+- Never make up information - only use what's in the code
+- Focus on "why" over "what" - the diff shows what changed
 
-# What’s changing
--  1–4 lines total.
--  Start with an action verb and the core change.
--  Scope: include packages/modules touched and top-level feature flags if any.
--  Example: “Refactors auth token refresh to async queue; adds retry/backoff; deprecates legacy sync path.”
+# Required Sections
 
-## ASCII Overview (after)
--  Optional. Provide a minimal diagram of the new flow or architecture.
--  Use ASCII or mermaid. Keep to ≤15 lines.
--  Show key components and edges, label main data/control paths.
+## What's changing
+2-4 lines covering:
+- Core change with action verb
+- Scope: packages/modules touched
+- For bugs: Root cause in plain language
+- Feature flags if any
 
-## ASCII Overview (before)
--  Optional. Only include if it clarifies the delta versus “after.”
--  Keep to ≤15 lines.
+## Why
+Show the problem and solution through scenarios.
 
-# Why
--  Bullet list of the specific problems or goals.
--  For each bullet, add a sub-bullet “This PR” explaining how this change addresses it.
--  Cite evidence if available (issue links, error rates, perf metrics).
+### [Component/Feature Name]
+[One-line problem statement]
 
-# How
--  3–7 bullets max.
--  Describe the approach, notable design decisions, and trade-offs.
--  Call out new interfaces, schemas, migrations, or contracts.
--  Note removed/deprecated paths and compatibility handling.
+**Before:**
+- Scenario: [specific situation] → [problem/outcome]
+- Impact: [user/system effect]
 
-# Impact
--  One line summary of what to watch out for (risk/behavior/perf).
--  Add subsections as needed.
+```
+[ASCII diagram if it clarifies flow - 5-10 lines]
+User → ServiceA → ServiceB → Problem
+```
 
-## Performance
--  Note complexity changes: \(O(n) \rightarrow O(\log n)\) if applicable.
--  If code is in a hot path, then evaluate object allocation or frivilous method calls
+**After:**
+- Scenario: [same situation] → [fixed outcome]
+- Impact: [improvement achieved]
 
-## Behavior
--  User-facing or API changes (requests/responses, status codes, events).
--  Config/flags and default values.
--  Backward compatibility and rollout plan.
+```
+[ASCII diagram of new flow if needed]
+User → ServiceA → NewHandler → ServiceB → Success
+```
 
-## Security
--  AuthN/Z changes, data access surface, secret handling.
--  Threat considerations and mitigations.
+## How
+3-5 bullets covering:
+- Key design decisions and trade-offs
+- New interfaces or patterns introduced
+- Breaking changes or migrations
+- Why this approach over alternatives
 
-## Migrations
--  Data/schema migrations with order of operations.
--  Downgrade/rollback plan.
+## Impact & Testing
+**Risk:** [One line - what could break]
 
-## Testing
--  Coverage summary: unit/integration/e2e.
--  New test cases added and critical scenarios.
--  Manual validation steps if$$ applicable.
+**Changes:**
+- Performance: [complexity/latency if significant]
+- Behavior: [user-facing/API changes]
+- Security: [auth/data access if relevant]
 
-## Rollout Plan
--  Call out any feature flags or configuration steps
+**Testing:**
+- Coverage: [what's tested]
+- Manual validation: [if needed]
 
-## Observability
--  New/updated logs, metrics, traces, dashboards, alerts.
-
-## Risks and Mitigations
--  Enumerate top risks and how they’re mitigated or monitored.
-
-## Alternatives Considered
--  1–3 bullets on other approaches and why rejected.
+**Rollout:**
+- [Feature flags, compatibility notes]
 
 ## Related
--  Issue/incident links, design docs, RFCs.
--  Follow-ups and TODOs with owners.
+- Links: [issues, RFCs]
+- Follow-ups: [TODOs with owners]
 
-Style and constraints:
--  Max total length: ~250–400 lines. Prefer shorter if possible.
--  Avoid duplicating code diffs; summarize intent and deltas.
--  Use code blocks only for config examples or migrations.
--  Use checkboxes for operational steps where helpful.
+# Examples
 
-Optional helper prompts for the AI (if you have the diff/metadata):
--  Given the diff, list the top 3 functional changes in plain language.
--  Identify any breaking API changes and propose a compatibility layer.
--  Extract any new env vars/configs and their defaults.
--  Suggest a minimal ASCII diagram of the new data flow.
--  Generate performance test plan based on changed components.
+## Bug Fix Example
+**What's changing:**
+Prevents duplicate tabs by tracking container switches. Firefox redirect protection was firing multiple events for the same navigation, causing duplicate tab creation.
 
-Example "What’s changing" patterns:
--  “Introduce X to replace Y; adds Z integration and removes legacy polling.”
--  “Split module A into A’ and B; define interface IA; migrate callers.”
--  “Add write-through cache for K/V reads; TTL 5m; cache stampede protection.”
+**Why - recentContainerSwitches:**
+Firefox's redirect protection creates multiple URL events for a single user action.
+
+Before:
+- Scenario: User clicks link → Firefox fires 2 events → 2 tabs created
+- Impact: Confusing UX with duplicate tabs
+
+After:
+- Scenario: User clicks link → Firefox fires 2 events → Second event ignored (within 1.5s window)
+- Impact: Single tab as expected
+
+## Feature Example
+**What's changing:**
+Adds write-through cache layer for K/V store reads. Implements LRU with TTL, configurable per namespace. Behind feature flag `kv_cache_enabled`.
+
+**Why - K/V Store Performance:**
+Database queries creating latency spikes during peak traffic.
+
+Before:
+- Scenario: 1000 QPS → Each query hits DB → 500ms p99 latency
+- Impact: Timeouts and degraded user experience
+
+```
+Client → API → DB (every request)
+```
+
+After:
+- Scenario: 1000 QPS → 95% cache hit rate → 50ms p99 latency
+- Impact: 10x latency reduction, eliminated timeouts
+
+```
+Client → API → Cache → DB (on miss only)
+```
+
+# Constraints
+- Max ~200 lines total
+- Every section must add unique value
+- Concrete examples > abstract descriptions
+- Scenario-driven explanations
+- Include ASCII diagrams only when they clarify architecture
