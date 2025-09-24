@@ -60,7 +60,8 @@ if status is-interactive
     #abbr --add --global lmm llm -m
     #abbr --add --global lmc llm cmd
 
-    abbr --add --global cl claude --dangerously-skip-permissions --resume
+    abbr --add --global cyr claude --dangerously-skip-permissions --resume  # y for yolo
+    abbr --add --global cy claude  --dangerously-skip-permissions
 
     abbr --add --global cu cursor
 
