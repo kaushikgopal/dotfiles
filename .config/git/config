@@ -17,8 +17,8 @@
     co = checkout
     com = checkout master
     coma = checkout main
-    comp = !git checkout master; git pull
-    comap = !git checkout main; git pull
+    comp = !git checkout master && git pull
+    comap = !git checkout main && git pull
     chp = cherry-pick
     cm = commit -m
     cf = commit --fixup
