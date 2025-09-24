@@ -31,8 +31,10 @@
     pu = push
     # re -> reset (with git number)
     ss    = status --short
-    sts   = stash push # previously stash save
-    stp   = stash pop
+
+    spu   = stash push # previously stash save
+    spo   = stash pop
+
     wip = !git add . && git commit -a -m "--wip-- [ci skip]" --no-verify
     wipr = !git reset --soft HEAD~ && git reset
     wt = worktree
