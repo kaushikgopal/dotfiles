@@ -50,6 +50,10 @@ bullet() {
 }
 
 adb_wait_device() {
+    if ! adb devices | grep -q "device$"; then
+        printf "${red}No ADB devices connected${reset}\n"
+        exit 1
+    fi
     adb get-state >/dev/null 2>&1 || adb wait-for-device
 }
 
