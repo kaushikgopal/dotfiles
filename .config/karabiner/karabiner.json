@@ -1369,7 +1369,7 @@
                                 },
                                 "to": [
                                     {
-                                        "key_code": "hyphen"
+                                        "key_code": "equal_sign"
                                     }
                                 ],
                                 "conditions": [
@@ -1414,7 +1414,7 @@
                                         }
                                     },
                                     {
-                                        "key_code": "hyphen"
+                                        "key_code": "equal_sign"
                                     }
                                 ],
                                 "parameters": {
@@ -1434,10 +1434,7 @@
                                 },
                                 "to": [
                                     {
-                                        "key_code": "equal_sign",
-                                        "modifiers": [
-                                            "left_shift"
-                                        ]
+                                        "key_code": "hyphen"
                                     }
                                 ],
                                 "conditions": [
@@ -1482,10 +1479,7 @@
                                         }
                                     },
                                     {
-                                        "key_code": "equal_sign",
-                                        "modifiers": [
-                                            "left_shift"
-                                        ]
+                                        "key_code": "hyphen"
                                     }
                                 ],
                                 "parameters": {
@@ -1505,7 +1499,10 @@
                                 },
                                 "to": [
                                     {
-                                        "key_code": "equal_sign"
+                                        "key_code": "equal_sign",
+                                        "modifiers": [
+                                            "left_shift"
+                                        ]
                                     }
                                 ],
                                 "conditions": [
@@ -1550,7 +1547,10 @@
                                         }
                                     },
                                     {
-                                        "key_code": "equal_sign"
+                                        "key_code": "equal_sign",
+                                        "modifiers": [
+                                            "left_shift"
+                                        ]
                                     }
                                 ],
                                 "parameters": {
