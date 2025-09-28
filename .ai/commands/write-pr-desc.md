@@ -9,12 +9,18 @@ You are generating a GitHub Pull Request description. Follow these rules strictl
 
 # Required Sections
 
-## What's changing
-2-4 lines covering:
-- Core change with action verb
-- Scope: packages/modules touched
-- For bugs: Root cause in plain language
-- Feature flags if any
+## Title (50 chars max)
+Use imperative mood that completes: "If applied, this PR will..."
+- Start with action verb: Add/Fix/Update/Remove/Refactor
+- Capitalize first word, no period
+- Examples: "Fix duplicate tab creation in Firefox", "Add caching layer for K/V reads"
+
+## Summary
+Brief overview explaining what this PR accomplishes:
+- Primary change using imperative mood
+- Scope: packages/modules affected
+- Root cause (for bugs) or motivation (for features)
+- Feature flags or configuration changes
 
 ## Why
 Show the problem and solution through scenarios.
@@ -40,12 +46,13 @@ User → ServiceA → ServiceB → Problem
 User → ServiceA → NewHandler → ServiceB → Success
 ```
 
-## How
-3-5 bullets covering:
+## Implementation
+3-5 bullets covering technical approach:
 - Key design decisions and trade-offs
 - New interfaces or patterns introduced
 - Breaking changes or migrations
 - Why this approach over alternatives
+- Reference related commits if multiple logical changes
 
 ## Impact & Testing
 **Risk:** [One line - what could break]
@@ -69,8 +76,10 @@ User → ServiceA → NewHandler → ServiceB → Success
 # Examples
 
 ## Bug Fix Example
-**What's changing:**
-Prevents duplicate tabs by tracking container switches. Firefox redirect protection was firing multiple events for the same navigation, causing duplicate tab creation.
+**Title:** Fix duplicate tab creation in Firefox redirects
+
+**Summary:**
+Prevent duplicate tabs by tracking container switches within 1.5s window. Firefox redirect protection fires multiple URL events for single user actions, creating unwanted duplicate tabs.
 
 **Why - recentContainerSwitches:**
 Firefox's redirect protection creates multiple URL events for a single user action.
@@ -84,8 +93,10 @@ After:
 - Impact: Single tab as expected
 
 ## Feature Example
-**What's changing:**
-Adds write-through cache layer for K/V store reads. Implements LRU with TTL, configurable per namespace. Behind feature flag `kv_cache_enabled`.
+**Title:** Add write-through cache layer for K/V store reads
+
+**Summary:**
+Implement LRU cache with TTL for K/V store reads, configurable per namespace. Reduces database load and improves response times. Behind feature flag `kv_cache_enabled`.
 
 **Why - K/V Store Performance:**
 Database queries creating latency spikes during peak traffic.
