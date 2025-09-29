@@ -110,7 +110,7 @@ body .HyperMD-codeblock,
 body .cm-inline-code {
      line-height: 1.45;
      font-weight: 500;
-    /* Commit Mono */
+    /* Commit Mono
      font-feature-settings:
           "ss01"
         , "ss02"
@@ -122,7 +122,7 @@ body .cm-inline-code {
         , "cv06"
         , "cv07"
         , "cv08"
-        ;
+        ;*/
         /*
     Berkeley Mono
     font-feature-settings:
@@ -131,22 +131,17 @@ body .cm-inline-code {
         "ss06" 1,
         "ss12" 1;
     */
-    /* Jetbrains Mono
+    /* Jetbrains Mono*/
      font-feature-settings:
           "calt"
-        , "zero"
+        , "cv14"
         , "ss19"
-        , "cv02"
-        , "cv04"
-        , "cv07"
         , "cv08"
-        , "cv09"
         , "cv10"
-        , "cv19"
-        , "cv20"
+        , "cv17"
+        , "cv03"
         ;
-    */
-}
+    }
 body .theme-light .cm-inline-code {
     /*--code-background: var(--background-primary-alt);*/
     --code-background: #ffdb9a;
