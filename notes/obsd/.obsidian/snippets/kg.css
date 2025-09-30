@@ -42,8 +42,8 @@
  * General theme */
 
 body {
-    --code-size: var(--font-smallest);
-    /* --code-background: #ffd600; */
+    /* --code-size: var(--font-smallest);
+    --code-background: #ffd600; */
 }
 
 body.theme-dark {
@@ -108,9 +108,11 @@ body {
 
 body .HyperMD-codeblock,
 body .cm-inline-code {
+
+    /*
      line-height: 1.45;
      font-weight: 500;
-    /* Commit Mono
+    Commit Mono
      font-feature-settings:
           "ss01"
         , "ss02"
