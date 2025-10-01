@@ -42,8 +42,8 @@
  * General theme */
 
 body {
-    /* --code-size: var(--font-smallest);
-    --code-background: #ffd600; */
+    --code-size: var(--font-smallest);
+    /* --code-background: #ffd600; */
 }
 
 body.theme-dark {
@@ -108,11 +108,9 @@ body {
 
 body .HyperMD-codeblock,
 body .cm-inline-code {
-
-    /*
      line-height: 1.45;
-     font-weight: 500;
-    Commit Mono
+     font-weight: 600;
+
      font-feature-settings:
           "ss01"
         , "ss02"
@@ -124,16 +122,19 @@ body .cm-inline-code {
         , "cv06"
         , "cv07"
         , "cv08"
-        ;*/
-        /*
+        ;
+
+    /*
+     Commit Mono
+
     Berkeley Mono
     font-feature-settings:
         "ss02" 1,
         "ss05" 1,
         "ss06" 1,
         "ss12" 1;
-    */
-    /* Jetbrains Mono*/
+
+    Jetbrains Mono
      font-feature-settings:
           "calt"
         , "cv14"
@@ -143,7 +144,9 @@ body .cm-inline-code {
         , "cv17"
         , "cv03"
         ;
-    }
+    */
+
+}
 body .theme-light .cm-inline-code {
     /*--code-background: var(--background-primary-alt);*/
     --code-background: #ffdb9a;
