@@ -30,29 +30,30 @@ keybind = shift+enter=text:\n
 ##############################################
 # Look and Feel
 # ghostty +list-themes
-#theme                           = batman-kg
-#theme                           = monokai-pro-dark
-#theme                            = Monokai Pro Machine
-theme                            = Monokai Classic
-#theme                            = Xcode Dark hc
+#theme                           = dark:batman-kg,light:Breadog
+#theme                           = dark:Monokai Classic,light:Flexoki Light
+#theme                       = batman-kg
+theme                       = Monokai Classic
 adjust-cursor-thickness         = 3
 adjust-underline-position       = 3
 #background-opacity              = 0.95
 bell-features                   = border
+bold-is-bright                  = true
 
 cursor-style                    = block
 cursor-style-blink              = false
 #cursor-invert-fg-bg             = true
 cursor-opacity                  = 0.6
 
-bold-is-bright                  = true
 link-url                        = true
 
 window-padding-x                = 10
 window-padding-y                = 8
 window-padding-balance          = true
 
-font-thicken                    = true
+
+#macos-titlebar-style    = tabs
+#window-theme            = ghostty
 
 ##############################################
 # Font combos
@@ -60,65 +61,37 @@ font-thicken                    = true
 # lLiI1 oO0
 ##############################################
 
+font-thicken                    = true
 
-# JetBrains Mono -------- -->
-font-family             = Jetbrains Mono
-font-style              = Medium
-font-style-italic       = Medium Italic
-font-style-bold         = Bold
-font-style-bold-italic  = Bold Italic
-font-size               = 12.5
-adjust-cell-height      = 14%
-
-font-feature            = calt
-font-feature            = cv17
-font-feature            = ss19
-
-# font-feature            = cv02
-# font-feature            = cv03
-font-feature            = cv08
-font-feature            = cv10
-font-feature            = cv14
-
-
-# list of open-type features
-# https://github.com/JetBrains/JetBrainsMono?tab=readme-ov-file#opentype-features
-# zero - slashed 0
-# calt - all ligatures
-# ss01 - classic construction
-# sso2 - closed construction (lively rhythm)
-# ss19 - broken equals ligatures == === != !==
+# # JetBrains Mono -------- -->   $rf8g
 #
-# cv01 - l with symmetrical lower stroke. (ss01)
-# cv05 - l with curly tail. (ss02)
-# cv02 - t with curly tail. (ss02)
-# cv03 - g with more complex construction.
-# cv04 - j with curly descender (ss02)
-# cv06 - m with shorter leg. (ss02)
-# cv07 - W w with lover middle connection. (ss02)
-# cv08 - K k with shartp connnection (ss01)
-# cv09 - f with additional horizontal stroke. (ss01)
-# cv17 - f with curly ascender. (ss02)
-# cv10 - r with more open construction. (ss01)
-# cv11 - y with different ascender construction. (ss01)
-# cv12 - u with traditional construction. (ss01)
-# cv14 - $ with broken bar.
-# cv15 - alternate &
-# cv16 - Q with bent tail.
-# cv18 - alternate 2 6 9 . (ss01)
-# cv19 - old construction of 8. (ss01)
-# cv20 - old construction of 5.
-
-
-# # Commit Mono - KG ---------- -->
-# # font-family             = CommitMono-KGS
-# font-family             = CommitMono-KG
+# #font-family             = Jetbrains Mono KG
+# font-style              = Medium
+# font-style-italic       = Medium Italic
+# font-style-bold         = Bold
+# font-style-bold-italic  = Bold Italic
+#
 # font-size               = 12.5
-# adjust-cell-height      = 40%
-# font-style              = 500Regular
-# font-style-italic       = 500Italic
-# font-style-bold         = 700Regular
-# font-style-bold-italic  = 700Italic
+# adjust-cell-height      = 14%
+#
+# font-feature            = calt
+# font-feature            = cv03
+# font-feature            = cv14
+#
+# # font-feature            = cv09
+# font-feature            = cv17
+
+
+
+# Commit Mono - KG ---------- -->
+# font-family             = CommitMono-KGS
+font-family             = CommitMono-KG
+font-size               = 14
+adjust-cell-height      = 35%
+font-style              = 500Regular
+font-style-italic       = 500Italic
+font-style-bold         = 700Regular
+font-style-bold-italic  = 700Italic
 
 # # SF Mono ---------- -->
 # font-family             = SF Mono
@@ -139,6 +112,34 @@ font-feature            = cv14
 # font-style-bold         = SemiBold
 # font-style-bold-italic  = SemiBold Italic
 
+# # JetBrains Mono -------- -->
+# # list of open-type features
+# # https://github.com/JetBrains/JetBrainsMono?tab=readme-ov-file#opentype-features
+# # zero - slashed 0
+# # calt - all ligatures
+# # ss01 - classic construction
+# # sso2 - closed construction (lively rhythm)
+# # ss19 - broken equals ligatures == === != !==
+# #
+# # cv01 - l with symmetrical lower stroke. (ss01)
+# # cv02 - t with curly tail. (ss02)
+# # cv03 - g with more complex construction.
+# # cv04 - j with curly descender (ss02)
+# # cv05 - l with curly tail. (ss02)
+# # cv06 - m with shorter leg. (ss02)
+# # cv07 - W w with lover middle connection. (ss02)
+# # cv08 - K k with shartp connnection (ss01)
+# # cv09 - f with additional horizontal stroke. (ss01)
+# # cv10 - r with more open construction. (ss01)
+# # cv11 - y with different ascender construction. (ss01)
+# # cv12 - u with traditional construction. (ss01)
+# # cv14 - $ with broken bar.
+# # cv15 - alternate &
+# # cv16 - Q with bent tail.
+# # cv17 - f with curly ascender. (ss02)
+# # cv18 - alternate 2 6 9 . (ss01)
+# # cv19 - old construction of 8. (ss01)
+# # cv20 - old construction of 5.
 
 
 # # Commit Mono ---------- -->
