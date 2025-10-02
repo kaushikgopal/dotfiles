@@ -157,7 +157,7 @@ cask "tailscale"
 cask "zerotier-one"
 
 cask "cursor"
-# cask "visual-studio-code"
+cask "visual-studio-code"
 
 cask "ghostty"
 
