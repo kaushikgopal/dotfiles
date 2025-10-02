@@ -30,6 +30,7 @@
     p = pull
     pu = push
     # re -> reset (with git number)
+    s     = status
     ss    = status --short
 
     spu   = stash push # previously stash save
