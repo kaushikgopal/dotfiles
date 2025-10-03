@@ -28,6 +28,16 @@
 - **Recency weighting** - Newer info generally more relevant
 - **Authority assessment** - Consider source credibility and expertise
 
+## Tool preferences
+- In general for searching use ripgrep `rg` over regular `grep`
+- Use absolute paths for commands and tool calls.
+- Batch non‑conflicting reads/searches in parallel.
+- Before edits, reconcile tasks; after edits, run lints/tests where applicable; fix before closing.
+- Prefer non‑interactive flags (e.g., `--yes`) and avoid pagers; pipe to `| cat` when needed.
+- Run long‑running commands in the background; surface logs and status.
+- Favor idempotent commands; use `--dry‑run` or backups for destructive operations.
+- Verify paths exist and permissions are adequate before executing commands.
+
 ### Conflict handling
 - Follow the higher rule; call out the conflict.
   - Stop‑the‑line if quality, safety, or correctness is at risk.
@@ -51,15 +61,6 @@
   - use Kaushik's [space shuttle style](https://kau.sh/blog/space-shuttle-style-programming/) commenting
 - Preserve existing indentation and style; do not reformat unrelated code.
 
-## Tooling rules (Cursor/automation)
-- In general for searching favor `rg` over `grep`
-- Use absolute paths for commands and tool calls.
-- Batch non‑conflicting reads/searches in parallel.
-- Before edits, reconcile tasks; after edits, run lints/tests where applicable; fix before closing.
-- Prefer non‑interactive flags (e.g., `--yes`) and avoid pagers; pipe to `| cat` when needed.
-- Run long‑running commands in the background; surface logs and status.
-- Favor idempotent commands; use `--dry‑run` or backups for destructive operations.
-- Verify paths exist and permissions are adequate before executing commands.
 
 ## Security & privacy
 - Do not include secrets, tokens, or PII in logs or outputs.
