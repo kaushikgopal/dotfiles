@@ -58,6 +58,7 @@
 !.firebender/worktrees/
 .firebender/worktrees/**
 **/.claude/settings.local.json
+!.aider.conf.yml
 
 # ----------------------------------------
 # node dependencies
