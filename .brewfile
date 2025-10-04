@@ -35,7 +35,6 @@ brew "httpie"
 brew "hugo"
 brew "imagemagick"
 brew "llm"
-brew "mas"
 brew "openssl"
 brew "pgcli"
 brew "powerlevel10k"
@@ -198,10 +197,14 @@ cask "font-ibm-plex-mono"
 #cask "font-sf-pro"
 #cask "font-source-code-pro"
 
+brew "mas"
+# mas "Folder Quick Look", id: 6753110395
+
 # mas "iA Writer", id: 775737590
 # mas "Xcode", id: 497799835
 # mas "Hand Mirror", id: 1502839586
 # mas "Things 3", id: 904280696
+
 
 ##############################################################
 ##### Helpful commands
