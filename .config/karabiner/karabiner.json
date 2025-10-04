@@ -789,7 +789,7 @@
                         ]
                     },
                     {
-                        "description": "Caps Lock alone -> Escape, held -> Hyper(♦)",
+                        "description": "Caps Lock alone -> Escape * 2 (for Obsidian alone)",
                         "manipulators": [
                             {
                                 "type": "basic",
@@ -925,25 +925,6 @@
                                 "to": [
                                     {
                                         "shell_command": "open raycast://extensions/raycast/raycast-ai/ai-chat"
-                                    }
-                                ]
-                            },
-                            {
-                                "type": "basic",
-                                "from": {
-                                    "key_code": "e",
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "right_control",
-                                            "right_command",
-                                            "right_option",
-                                            "right_shift"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "shell_command": "osascript -e 'tell application \"Code\" to reopen' -e 'tell application \"Code\" to activate'"
                                     }
                                 ]
                             },
@@ -1121,12 +1102,12 @@
                         ]
                     },
                     {
-                        "description": "F-key layer mappings",
+                        "description": "(J layer) delete sequences",
                         "manipulators": [
                             {
                                 "type": "basic",
                                 "from": {
-                                    "key_code": "y",
+                                    "key_code": "d",
                                     "modifiers": {
                                         "optional": [
                                             "any"
@@ -1135,17 +1116,25 @@
                                 },
                                 "to": [
                                     {
-                                        "key_code": "6",
+                                        "key_code": "w",
                                         "modifiers": [
-                                            "left_shift"
+                                            "left_control"
                                         ]
                                     }
                                 ],
                                 "conditions": [
                                     {
                                         "type": "variable_if",
-                                        "name": "f-layer",
+                                        "name": "j-layer",
                                         "value": 1
+                                    },
+                                    {
+                                        "type": "frontmost_application_if",
+                                        "bundle_identifiers": [
+                                            "^com\\.apple\\.Terminal$",
+                                            "^com\\.googlecode\\.iterm2$",
+                                            "^com\\.mitchellh\\.ghostty$"
+                                        ]
                                     }
                                 ]
                             },
@@ -1154,10 +1143,10 @@
                                 "from": {
                                     "simultaneous": [
                                         {
-                                            "key_code": "f"
+                                            "key_code": "j"
                                         },
                                         {
-                                            "key_code": "y"
+                                            "key_code": "d"
                                         }
                                     ],
                                     "simultaneous_options": {
@@ -1168,7 +1157,7 @@
                                         "to_after_key_up": [
                                             {
                                                 "set_variable": {
-                                                    "name": "f-layer",
+                                                    "name": "j-layer",
                                                     "value": 0
                                                 }
                                             }
@@ -1178,26 +1167,35 @@
                                 "to": [
                                     {
                                         "set_variable": {
-                                            "name": "f-layer",
+                                            "name": "j-layer",
                                             "value": 1
                                         }
                                     },
                                     {
-                                        "key_code": "6",
+                                        "key_code": "w",
                                         "modifiers": [
-                                            "left_shift"
+                                            "left_control"
                                         ]
                                     }
                                 ],
                                 "parameters": {
                                     "basic.simultaneous_threshold_milliseconds": 250
                                 },
-                                "conditions": []
+                                "conditions": [
+                                    {
+                                        "type": "frontmost_application_if",
+                                        "bundle_identifiers": [
+                                            "^com\\.apple\\.Terminal$",
+                                            "^com\\.googlecode\\.iterm2$",
+                                            "^com\\.mitchellh\\.ghostty$"
+                                        ]
+                                    }
+                                ]
                             },
                             {
                                 "type": "basic",
                                 "from": {
-                                    "key_code": "o",
+                                    "key_code": "d",
                                     "modifiers": {
                                         "optional": [
                                             "any"
@@ -1206,17 +1204,25 @@
                                 },
                                 "to": [
                                     {
-                                        "key_code": "7",
+                                        "key_code": "delete_or_backspace",
                                         "modifiers": [
-                                            "left_shift"
+                                            "left_option"
                                         ]
                                     }
                                 ],
                                 "conditions": [
                                     {
                                         "type": "variable_if",
-                                        "name": "f-layer",
+                                        "name": "j-layer",
                                         "value": 1
+                                    },
+                                    {
+                                        "type": "frontmost_application_unless",
+                                        "bundle_identifiers": [
+                                            "^com\\.apple\\.Terminal$",
+                                            "^com\\.googlecode\\.iterm2$",
+                                            "^com\\.mitchellh\\.ghostty$"
+                                        ]
                                     }
                                 ]
                             },
@@ -1225,10 +1231,10 @@
                                 "from": {
                                     "simultaneous": [
                                         {
-                                            "key_code": "f"
+                                            "key_code": "j"
                                         },
                                         {
-                                            "key_code": "o"
+                                            "key_code": "d"
                                         }
                                     ],
                                     "simultaneous_options": {
@@ -1239,7 +1245,7 @@
                                         "to_after_key_up": [
                                             {
                                                 "set_variable": {
-                                                    "name": "f-layer",
+                                                    "name": "j-layer",
                                                     "value": 0
                                                 }
                                             }
@@ -1249,26 +1255,35 @@
                                 "to": [
                                     {
                                         "set_variable": {
-                                            "name": "f-layer",
+                                            "name": "j-layer",
                                             "value": 1
                                         }
                                     },
                                     {
-                                        "key_code": "7",
+                                        "key_code": "delete_or_backspace",
                                         "modifiers": [
-                                            "left_shift"
+                                            "left_option"
                                         ]
                                     }
                                 ],
                                 "parameters": {
                                     "basic.simultaneous_threshold_milliseconds": 250
                                 },
-                                "conditions": []
+                                "conditions": [
+                                    {
+                                        "type": "frontmost_application_unless",
+                                        "bundle_identifiers": [
+                                            "^com\\.apple\\.Terminal$",
+                                            "^com\\.googlecode\\.iterm2$",
+                                            "^com\\.mitchellh\\.ghostty$"
+                                        ]
+                                    }
+                                ]
                             },
                             {
                                 "type": "basic",
                                 "from": {
-                                    "key_code": "8",
+                                    "key_code": "f",
                                     "modifiers": {
                                         "optional": [
                                             "any"
@@ -1277,16 +1292,13 @@
                                 },
                                 "to": [
                                     {
-                                        "key_code": "8",
-                                        "modifiers": [
-                                            "left_shift"
-                                        ]
+                                        "key_code": "delete_or_backspace"
                                     }
                                 ],
                                 "conditions": [
                                     {
                                         "type": "variable_if",
-                                        "name": "f-layer",
+                                        "name": "j-layer",
                                         "value": 1
                                     }
                                 ]
@@ -1296,10 +1308,10 @@
                                 "from": {
                                     "simultaneous": [
                                         {
-                                            "key_code": "f"
+                                            "key_code": "j"
                                         },
                                         {
-                                            "key_code": "8"
+                                            "key_code": "f"
                                         }
                                     ],
                                     "simultaneous_options": {
@@ -1310,7 +1322,7 @@
                                         "to_after_key_up": [
                                             {
                                                 "set_variable": {
-                                                    "name": "f-layer",
+                                                    "name": "j-layer",
                                                     "value": 0
                                                 }
                                             }
@@ -1320,294 +1332,24 @@
                                 "to": [
                                     {
                                         "set_variable": {
-                                            "name": "f-layer",
+                                            "name": "j-layer",
                                             "value": 1
                                         }
                                     },
                                     {
-                                        "key_code": "8",
-                                        "modifiers": [
-                                            "left_shift"
-                                        ]
+                                        "key_code": "delete_or_backspace"
                                     }
                                 ],
                                 "parameters": {
                                     "basic.simultaneous_threshold_milliseconds": 250
                                 },
                                 "conditions": []
-                            },
-                            {
-                                "type": "basic",
-                                "from": {
-                                    "key_code": "p",
-                                    "modifiers": {
-                                        "optional": [
-                                            "any"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "8",
-                                        "modifiers": [
-                                            "left_shift"
-                                        ]
-                                    }
-                                ],
-                                "conditions": [
-                                    {
-                                        "type": "variable_if",
-                                        "name": "f-layer",
-                                        "value": 1
-                                    }
-                                ]
-                            },
-                            {
-                                "type": "basic",
-                                "from": {
-                                    "simultaneous": [
-                                        {
-                                            "key_code": "f"
-                                        },
-                                        {
-                                            "key_code": "p"
-                                        }
-                                    ],
-                                    "simultaneous_options": {
-                                        "key_down_order": "strict",
-                                        "detect_key_down_uninterruptedly": true,
-                                        "key_up_order": "strict_inverse",
-                                        "key_up_when": "any",
-                                        "to_after_key_up": [
-                                            {
-                                                "set_variable": {
-                                                    "name": "f-layer",
-                                                    "value": 0
-                                                }
-                                            }
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "set_variable": {
-                                            "name": "f-layer",
-                                            "value": 1
-                                        }
-                                    },
-                                    {
-                                        "key_code": "8",
-                                        "modifiers": [
-                                            "left_shift"
-                                        ]
-                                    }
-                                ],
-                                "parameters": {
-                                    "basic.simultaneous_threshold_milliseconds": 250
-                                },
-                                "conditions": []
-                            },
-                            {
-                                "type": "basic",
-                                "from": {
-                                    "key_code": "l",
-                                    "modifiers": {
-                                        "optional": [
-                                            "any"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "equal_sign"
-                                    }
-                                ],
-                                "conditions": [
-                                    {
-                                        "type": "variable_if",
-                                        "name": "f-layer",
-                                        "value": 1
-                                    }
-                                ]
-                            },
-                            {
-                                "type": "basic",
-                                "from": {
-                                    "simultaneous": [
-                                        {
-                                            "key_code": "f"
-                                        },
-                                        {
-                                            "key_code": "l"
-                                        }
-                                    ],
-                                    "simultaneous_options": {
-                                        "key_down_order": "strict",
-                                        "detect_key_down_uninterruptedly": true,
-                                        "key_up_order": "strict_inverse",
-                                        "key_up_when": "any",
-                                        "to_after_key_up": [
-                                            {
-                                                "set_variable": {
-                                                    "name": "f-layer",
-                                                    "value": 0
-                                                }
-                                            }
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "set_variable": {
-                                            "name": "f-layer",
-                                            "value": 1
-                                        }
-                                    },
-                                    {
-                                        "key_code": "equal_sign"
-                                    }
-                                ],
-                                "parameters": {
-                                    "basic.simultaneous_threshold_milliseconds": 250
-                                },
-                                "conditions": []
-                            },
-                            {
-                                "type": "basic",
-                                "from": {
-                                    "key_code": "semicolon",
-                                    "modifiers": {
-                                        "optional": [
-                                            "any"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "hyphen"
-                                    }
-                                ],
-                                "conditions": [
-                                    {
-                                        "type": "variable_if",
-                                        "name": "f-layer",
-                                        "value": 1
-                                    }
-                                ]
-                            },
-                            {
-                                "type": "basic",
-                                "from": {
-                                    "simultaneous": [
-                                        {
-                                            "key_code": "f"
-                                        },
-                                        {
-                                            "key_code": "semicolon"
-                                        }
-                                    ],
-                                    "simultaneous_options": {
-                                        "key_down_order": "strict",
-                                        "detect_key_down_uninterruptedly": true,
-                                        "key_up_order": "strict_inverse",
-                                        "key_up_when": "any",
-                                        "to_after_key_up": [
-                                            {
-                                                "set_variable": {
-                                                    "name": "f-layer",
-                                                    "value": 0
-                                                }
-                                            }
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "set_variable": {
-                                            "name": "f-layer",
-                                            "value": 1
-                                        }
-                                    },
-                                    {
-                                        "key_code": "hyphen"
-                                    }
-                                ],
-                                "parameters": {
-                                    "basic.simultaneous_threshold_milliseconds": 250
-                                },
-                                "conditions": []
-                            },
-                            {
-                                "type": "basic",
-                                "from": {
-                                    "key_code": "quote",
-                                    "modifiers": {
-                                        "optional": [
-                                            "any"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "equal_sign",
-                                        "modifiers": [
-                                            "left_shift"
-                                        ]
-                                    }
-                                ],
-                                "conditions": [
-                                    {
-                                        "type": "variable_if",
-                                        "name": "f-layer",
-                                        "value": 1
-                                    }
-                                ]
-                            },
-                            {
-                                "type": "basic",
-                                "from": {
-                                    "simultaneous": [
-                                        {
-                                            "key_code": "f"
-                                        },
-                                        {
-                                            "key_code": "quote"
-                                        }
-                                    ],
-                                    "simultaneous_options": {
-                                        "key_down_order": "strict",
-                                        "detect_key_down_uninterruptedly": true,
-                                        "key_up_order": "strict_inverse",
-                                        "key_up_when": "any",
-                                        "to_after_key_up": [
-                                            {
-                                                "set_variable": {
-                                                    "name": "f-layer",
-                                                    "value": 0
-                                                }
-                                            }
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "set_variable": {
-                                            "name": "f-layer",
-                                            "value": 1
-                                        }
-                                    },
-                                    {
-                                        "key_code": "equal_sign",
-                                        "modifiers": [
-                                            "left_shift"
-                                        ]
-                                    }
-                                ],
-                                "parameters": {
-                                    "basic.simultaneous_threshold_milliseconds": 250
-                                },
-                                "conditions": []
-                            },
+                            }
+                        ]
+                    },
+                    {
+                        "description": "(F layer) bracket sequences",
+                        "manipulators": [
                             {
                                 "type": "basic",
                                 "from": {
@@ -2025,8 +1767,302 @@
                         ]
                     },
                     {
-                        "description": "J-key layer mappings",
+                        "description": "J + W -> #",
                         "manipulators": [
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "w",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "3",
+                                        "modifiers": [
+                                            "left_shift"
+                                        ]
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "j-layer",
+                                        "value": 1
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "simultaneous": [
+                                        {
+                                            "key_code": "j"
+                                        },
+                                        {
+                                            "key_code": "w"
+                                        }
+                                    ],
+                                    "simultaneous_options": {
+                                        "key_down_order": "strict",
+                                        "detect_key_down_uninterruptedly": true,
+                                        "key_up_order": "strict_inverse",
+                                        "key_up_when": "any",
+                                        "to_after_key_up": [
+                                            {
+                                                "set_variable": {
+                                                    "name": "j-layer",
+                                                    "value": 0
+                                                }
+                                            }
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "j-layer",
+                                            "value": 1
+                                        }
+                                    },
+                                    {
+                                        "key_code": "3",
+                                        "modifiers": [
+                                            "left_shift"
+                                        ]
+                                    }
+                                ],
+                                "parameters": {
+                                    "basic.simultaneous_threshold_milliseconds": 250
+                                },
+                                "conditions": []
+                            }
+                        ]
+                    },
+                    {
+                        "description": "F + O -> *",
+                        "manipulators": [
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "o",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "8",
+                                        "modifiers": [
+                                            "left_shift"
+                                        ]
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "f-layer",
+                                        "value": 1
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "simultaneous": [
+                                        {
+                                            "key_code": "f"
+                                        },
+                                        {
+                                            "key_code": "o"
+                                        }
+                                    ],
+                                    "simultaneous_options": {
+                                        "key_down_order": "strict",
+                                        "detect_key_down_uninterruptedly": true,
+                                        "key_up_order": "strict_inverse",
+                                        "key_up_when": "any",
+                                        "to_after_key_up": [
+                                            {
+                                                "set_variable": {
+                                                    "name": "f-layer",
+                                                    "value": 0
+                                                }
+                                            }
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "f-layer",
+                                            "value": 1
+                                        }
+                                    },
+                                    {
+                                        "key_code": "8",
+                                        "modifiers": [
+                                            "left_shift"
+                                        ]
+                                    }
+                                ],
+                                "parameters": {
+                                    "basic.simultaneous_threshold_milliseconds": 250
+                                },
+                                "conditions": []
+                            }
+                        ]
+                    },
+                    {
+                        "description": "(J layer) special character sequences (vim sequences)",
+                        "manipulators": [
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "e",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "4",
+                                        "modifiers": [
+                                            "left_shift"
+                                        ]
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "j-layer",
+                                        "value": 1
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "simultaneous": [
+                                        {
+                                            "key_code": "j"
+                                        },
+                                        {
+                                            "key_code": "e"
+                                        }
+                                    ],
+                                    "simultaneous_options": {
+                                        "key_down_order": "strict",
+                                        "detect_key_down_uninterruptedly": true,
+                                        "key_up_order": "strict_inverse",
+                                        "key_up_when": "any",
+                                        "to_after_key_up": [
+                                            {
+                                                "set_variable": {
+                                                    "name": "j-layer",
+                                                    "value": 0
+                                                }
+                                            }
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "j-layer",
+                                            "value": 1
+                                        }
+                                    },
+                                    {
+                                        "key_code": "4",
+                                        "modifiers": [
+                                            "left_shift"
+                                        ]
+                                    }
+                                ],
+                                "parameters": {
+                                    "basic.simultaneous_threshold_milliseconds": 250
+                                },
+                                "conditions": []
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "r",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "6",
+                                        "modifiers": [
+                                            "left_shift"
+                                        ]
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "j-layer",
+                                        "value": 1
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "simultaneous": [
+                                        {
+                                            "key_code": "j"
+                                        },
+                                        {
+                                            "key_code": "r"
+                                        }
+                                    ],
+                                    "simultaneous_options": {
+                                        "key_down_order": "strict",
+                                        "detect_key_down_uninterruptedly": true,
+                                        "key_up_order": "strict_inverse",
+                                        "key_up_when": "any",
+                                        "to_after_key_up": [
+                                            {
+                                                "set_variable": {
+                                                    "name": "j-layer",
+                                                    "value": 0
+                                                }
+                                            }
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "j-layer",
+                                            "value": 1
+                                        }
+                                    },
+                                    {
+                                        "key_code": "6",
+                                        "modifiers": [
+                                            "left_shift"
+                                        ]
+                                    }
+                                ],
+                                "parameters": {
+                                    "basic.simultaneous_threshold_milliseconds": 250
+                                },
+                                "conditions": []
+                            },
                             {
                                 "type": "basic",
                                 "from": {
@@ -2097,220 +2133,12 @@
                                     "basic.simultaneous_threshold_milliseconds": 250
                                 },
                                 "conditions": []
-                            },
-                            {
-                                "type": "basic",
-                                "from": {
-                                    "key_code": "r",
-                                    "modifiers": {
-                                        "optional": [
-                                            "any"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "4",
-                                        "modifiers": [
-                                            "left_shift"
-                                        ]
-                                    }
-                                ],
-                                "conditions": [
-                                    {
-                                        "type": "variable_if",
-                                        "name": "j-layer",
-                                        "value": 1
-                                    }
-                                ]
-                            },
-                            {
-                                "type": "basic",
-                                "from": {
-                                    "simultaneous": [
-                                        {
-                                            "key_code": "j"
-                                        },
-                                        {
-                                            "key_code": "r"
-                                        }
-                                    ],
-                                    "simultaneous_options": {
-                                        "key_down_order": "strict",
-                                        "detect_key_down_uninterruptedly": true,
-                                        "key_up_order": "strict_inverse",
-                                        "key_up_when": "any",
-                                        "to_after_key_up": [
-                                            {
-                                                "set_variable": {
-                                                    "name": "j-layer",
-                                                    "value": 0
-                                                }
-                                            }
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "set_variable": {
-                                            "name": "j-layer",
-                                            "value": 1
-                                        }
-                                    },
-                                    {
-                                        "key_code": "4",
-                                        "modifiers": [
-                                            "left_shift"
-                                        ]
-                                    }
-                                ],
-                                "parameters": {
-                                    "basic.simultaneous_threshold_milliseconds": 250
-                                },
-                                "conditions": []
-                            },
-                            {
-                                "type": "basic",
-                                "from": {
-                                    "key_code": "e",
-                                    "modifiers": {
-                                        "optional": [
-                                            "any"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "3",
-                                        "modifiers": [
-                                            "left_shift"
-                                        ]
-                                    }
-                                ],
-                                "conditions": [
-                                    {
-                                        "type": "variable_if",
-                                        "name": "j-layer",
-                                        "value": 1
-                                    }
-                                ]
-                            },
-                            {
-                                "type": "basic",
-                                "from": {
-                                    "simultaneous": [
-                                        {
-                                            "key_code": "j"
-                                        },
-                                        {
-                                            "key_code": "e"
-                                        }
-                                    ],
-                                    "simultaneous_options": {
-                                        "key_down_order": "strict",
-                                        "detect_key_down_uninterruptedly": true,
-                                        "key_up_order": "strict_inverse",
-                                        "key_up_when": "any",
-                                        "to_after_key_up": [
-                                            {
-                                                "set_variable": {
-                                                    "name": "j-layer",
-                                                    "value": 0
-                                                }
-                                            }
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "set_variable": {
-                                            "name": "j-layer",
-                                            "value": 1
-                                        }
-                                    },
-                                    {
-                                        "key_code": "3",
-                                        "modifiers": [
-                                            "left_shift"
-                                        ]
-                                    }
-                                ],
-                                "parameters": {
-                                    "basic.simultaneous_threshold_milliseconds": 250
-                                },
-                                "conditions": []
-                            },
-                            {
-                                "type": "basic",
-                                "from": {
-                                    "key_code": "w",
-                                    "modifiers": {
-                                        "optional": [
-                                            "any"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "2",
-                                        "modifiers": [
-                                            "left_shift"
-                                        ]
-                                    }
-                                ],
-                                "conditions": [
-                                    {
-                                        "type": "variable_if",
-                                        "name": "j-layer",
-                                        "value": 1
-                                    }
-                                ]
-                            },
-                            {
-                                "type": "basic",
-                                "from": {
-                                    "simultaneous": [
-                                        {
-                                            "key_code": "j"
-                                        },
-                                        {
-                                            "key_code": "w"
-                                        }
-                                    ],
-                                    "simultaneous_options": {
-                                        "key_down_order": "strict",
-                                        "detect_key_down_uninterruptedly": true,
-                                        "key_up_order": "strict_inverse",
-                                        "key_up_when": "any",
-                                        "to_after_key_up": [
-                                            {
-                                                "set_variable": {
-                                                    "name": "j-layer",
-                                                    "value": 0
-                                                }
-                                            }
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "set_variable": {
-                                            "name": "j-layer",
-                                            "value": 1
-                                        }
-                                    },
-                                    {
-                                        "key_code": "2",
-                                        "modifiers": [
-                                            "left_shift"
-                                        ]
-                                    }
-                                ],
-                                "parameters": {
-                                    "basic.simultaneous_threshold_milliseconds": 250
-                                },
-                                "conditions": []
-                            },
+                            }
+                        ]
+                    },
+                    {
+                        "description": "(J layer) misc special characters",
+                        "manipulators": [
                             {
                                 "type": "basic",
                                 "from": {
@@ -2323,10 +2151,7 @@
                                 },
                                 "to": [
                                     {
-                                        "key_code": "1",
-                                        "modifiers": [
-                                            "left_shift"
-                                        ]
+                                        "key_code": "grave_accent_and_tilde"
                                     }
                                 ],
                                 "conditions": [
@@ -2371,251 +2196,7 @@
                                         }
                                     },
                                     {
-                                        "key_code": "1",
-                                        "modifiers": [
-                                            "left_shift"
-                                        ]
-                                    }
-                                ],
-                                "parameters": {
-                                    "basic.simultaneous_threshold_milliseconds": 250
-                                },
-                                "conditions": []
-                            },
-                            {
-                                "type": "basic",
-                                "from": {
-                                    "key_code": "d",
-                                    "modifiers": {
-                                        "optional": [
-                                            "any"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "w",
-                                        "modifiers": [
-                                            "left_control"
-                                        ]
-                                    }
-                                ],
-                                "conditions": [
-                                    {
-                                        "type": "variable_if",
-                                        "name": "j-layer",
-                                        "value": 1
-                                    },
-                                    {
-                                        "type": "frontmost_application_if",
-                                        "bundle_identifiers": [
-                                            "^com\\.apple\\.Terminal$",
-                                            "^com\\.googlecode\\.iterm2$",
-                                            "^com\\.mitchellh\\.ghostty$"
-                                        ]
-                                    }
-                                ]
-                            },
-                            {
-                                "type": "basic",
-                                "from": {
-                                    "simultaneous": [
-                                        {
-                                            "key_code": "j"
-                                        },
-                                        {
-                                            "key_code": "d"
-                                        }
-                                    ],
-                                    "simultaneous_options": {
-                                        "key_down_order": "strict",
-                                        "detect_key_down_uninterruptedly": true,
-                                        "key_up_order": "strict_inverse",
-                                        "key_up_when": "any",
-                                        "to_after_key_up": [
-                                            {
-                                                "set_variable": {
-                                                    "name": "j-layer",
-                                                    "value": 0
-                                                }
-                                            }
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "set_variable": {
-                                            "name": "j-layer",
-                                            "value": 1
-                                        }
-                                    },
-                                    {
-                                        "key_code": "w",
-                                        "modifiers": [
-                                            "left_control"
-                                        ]
-                                    }
-                                ],
-                                "parameters": {
-                                    "basic.simultaneous_threshold_milliseconds": 250
-                                },
-                                "conditions": [
-                                    {
-                                        "type": "frontmost_application_if",
-                                        "bundle_identifiers": [
-                                            "^com\\.apple\\.Terminal$",
-                                            "^com\\.googlecode\\.iterm2$",
-                                            "^com\\.mitchellh\\.ghostty$"
-                                        ]
-                                    }
-                                ]
-                            },
-                            {
-                                "type": "basic",
-                                "from": {
-                                    "key_code": "d",
-                                    "modifiers": {
-                                        "optional": [
-                                            "any"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "delete_or_backspace",
-                                        "modifiers": [
-                                            "left_option"
-                                        ]
-                                    }
-                                ],
-                                "conditions": [
-                                    {
-                                        "type": "variable_if",
-                                        "name": "j-layer",
-                                        "value": 1
-                                    },
-                                    {
-                                        "type": "frontmost_application_unless",
-                                        "bundle_identifiers": [
-                                            "^com\\.apple\\.Terminal$",
-                                            "^com\\.googlecode\\.iterm2$",
-                                            "^com\\.mitchellh\\.ghostty$"
-                                        ]
-                                    }
-                                ]
-                            },
-                            {
-                                "type": "basic",
-                                "from": {
-                                    "simultaneous": [
-                                        {
-                                            "key_code": "j"
-                                        },
-                                        {
-                                            "key_code": "d"
-                                        }
-                                    ],
-                                    "simultaneous_options": {
-                                        "key_down_order": "strict",
-                                        "detect_key_down_uninterruptedly": true,
-                                        "key_up_order": "strict_inverse",
-                                        "key_up_when": "any",
-                                        "to_after_key_up": [
-                                            {
-                                                "set_variable": {
-                                                    "name": "j-layer",
-                                                    "value": 0
-                                                }
-                                            }
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "set_variable": {
-                                            "name": "j-layer",
-                                            "value": 1
-                                        }
-                                    },
-                                    {
-                                        "key_code": "delete_or_backspace",
-                                        "modifiers": [
-                                            "left_option"
-                                        ]
-                                    }
-                                ],
-                                "parameters": {
-                                    "basic.simultaneous_threshold_milliseconds": 250
-                                },
-                                "conditions": [
-                                    {
-                                        "type": "frontmost_application_unless",
-                                        "bundle_identifiers": [
-                                            "^com\\.apple\\.Terminal$",
-                                            "^com\\.googlecode\\.iterm2$",
-                                            "^com\\.mitchellh\\.ghostty$"
-                                        ]
-                                    }
-                                ]
-                            },
-                            {
-                                "type": "basic",
-                                "from": {
-                                    "key_code": "f",
-                                    "modifiers": {
-                                        "optional": [
-                                            "any"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "delete_or_backspace"
-                                    }
-                                ],
-                                "conditions": [
-                                    {
-                                        "type": "variable_if",
-                                        "name": "j-layer",
-                                        "value": 1
-                                    }
-                                ]
-                            },
-                            {
-                                "type": "basic",
-                                "from": {
-                                    "simultaneous": [
-                                        {
-                                            "key_code": "j"
-                                        },
-                                        {
-                                            "key_code": "f"
-                                        }
-                                    ],
-                                    "simultaneous_options": {
-                                        "key_down_order": "strict",
-                                        "detect_key_down_uninterruptedly": true,
-                                        "key_up_order": "strict_inverse",
-                                        "key_up_when": "any",
-                                        "to_after_key_up": [
-                                            {
-                                                "set_variable": {
-                                                    "name": "j-layer",
-                                                    "value": 0
-                                                }
-                                            }
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "set_variable": {
-                                            "name": "j-layer",
-                                            "value": 1
-                                        }
-                                    },
-                                    {
-                                        "key_code": "delete_or_backspace"
+                                        "key_code": "grave_accent_and_tilde"
                                     }
                                 ],
                                 "parameters": {
@@ -2760,6 +2341,283 @@
                                         "key_code": "close_bracket",
                                         "modifiers": [
                                             "left_command",
+                                            "left_shift"
+                                        ]
+                                    }
+                                ],
+                                "parameters": {
+                                    "basic.simultaneous_threshold_milliseconds": 250
+                                },
+                                "conditions": []
+                            }
+                        ]
+                    },
+                    {
+                        "description": "(F layer) special character sequences",
+                        "manipulators": [
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "p",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "7",
+                                        "modifiers": [
+                                            "left_shift"
+                                        ]
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "f-layer",
+                                        "value": 1
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "simultaneous": [
+                                        {
+                                            "key_code": "f"
+                                        },
+                                        {
+                                            "key_code": "p"
+                                        }
+                                    ],
+                                    "simultaneous_options": {
+                                        "key_down_order": "strict",
+                                        "detect_key_down_uninterruptedly": true,
+                                        "key_up_order": "strict_inverse",
+                                        "key_up_when": "any",
+                                        "to_after_key_up": [
+                                            {
+                                                "set_variable": {
+                                                    "name": "f-layer",
+                                                    "value": 0
+                                                }
+                                            }
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "f-layer",
+                                            "value": 1
+                                        }
+                                    },
+                                    {
+                                        "key_code": "7",
+                                        "modifiers": [
+                                            "left_shift"
+                                        ]
+                                    }
+                                ],
+                                "parameters": {
+                                    "basic.simultaneous_threshold_milliseconds": 250
+                                },
+                                "conditions": []
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "l",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "equal_sign"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "f-layer",
+                                        "value": 1
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "simultaneous": [
+                                        {
+                                            "key_code": "f"
+                                        },
+                                        {
+                                            "key_code": "l"
+                                        }
+                                    ],
+                                    "simultaneous_options": {
+                                        "key_down_order": "strict",
+                                        "detect_key_down_uninterruptedly": true,
+                                        "key_up_order": "strict_inverse",
+                                        "key_up_when": "any",
+                                        "to_after_key_up": [
+                                            {
+                                                "set_variable": {
+                                                    "name": "f-layer",
+                                                    "value": 0
+                                                }
+                                            }
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "f-layer",
+                                            "value": 1
+                                        }
+                                    },
+                                    {
+                                        "key_code": "equal_sign"
+                                    }
+                                ],
+                                "parameters": {
+                                    "basic.simultaneous_threshold_milliseconds": 250
+                                },
+                                "conditions": []
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "semicolon",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "hyphen"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "f-layer",
+                                        "value": 1
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "simultaneous": [
+                                        {
+                                            "key_code": "f"
+                                        },
+                                        {
+                                            "key_code": "semicolon"
+                                        }
+                                    ],
+                                    "simultaneous_options": {
+                                        "key_down_order": "strict",
+                                        "detect_key_down_uninterruptedly": true,
+                                        "key_up_order": "strict_inverse",
+                                        "key_up_when": "any",
+                                        "to_after_key_up": [
+                                            {
+                                                "set_variable": {
+                                                    "name": "f-layer",
+                                                    "value": 0
+                                                }
+                                            }
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "f-layer",
+                                            "value": 1
+                                        }
+                                    },
+                                    {
+                                        "key_code": "hyphen"
+                                    }
+                                ],
+                                "parameters": {
+                                    "basic.simultaneous_threshold_milliseconds": 250
+                                },
+                                "conditions": []
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "quote",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "equal_sign",
+                                        "modifiers": [
+                                            "left_shift"
+                                        ]
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "f-layer",
+                                        "value": 1
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "simultaneous": [
+                                        {
+                                            "key_code": "f"
+                                        },
+                                        {
+                                            "key_code": "quote"
+                                        }
+                                    ],
+                                    "simultaneous_options": {
+                                        "key_down_order": "strict",
+                                        "detect_key_down_uninterruptedly": true,
+                                        "key_up_order": "strict_inverse",
+                                        "key_up_when": "any",
+                                        "to_after_key_up": [
+                                            {
+                                                "set_variable": {
+                                                    "name": "f-layer",
+                                                    "value": 0
+                                                }
+                                            }
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "f-layer",
+                                            "value": 1
+                                        }
+                                    },
+                                    {
+                                        "key_code": "equal_sign",
+                                        "modifiers": [
                                             "left_shift"
                                         ]
                                     }
