@@ -530,7 +530,7 @@ func runSystemCommand() ([]USBDevice, error) {
 				Name:      strings.TrimSuffix(line, ":"),
 				Level:     level,
 				IsBus:     true,
-				BusDriver: currentBusDriver,
+				BusDriver: "", // Driver will be set by subsequent "Host Controller Driver:" or "Driver:" line
 			}
 			currentBusDriver = ""
 			continue
@@ -576,11 +576,23 @@ func runSystemCommand() ([]USBDevice, error) {
 			case "Manufacturer":
 				currentDevice.Manufacturer = value
 			// Vendor ID - handles both old "Vendor ID:" and new "USB Vendor ID:" formats
+			// Old format: "0x05ac (Apple Inc.)" - extract just the hex code
+			// New format: "0x05ac" - already clean
 			case "Vendor ID", "USB Vendor ID":
-				currentDevice.VendorID = value
+				// Extract just the hex code, ignoring any vendor name in parentheses
+				if matches := regexp.MustCompile(`(0x[0-9a-fA-F]+)`).FindStringSubmatch(value); len(matches) > 0 {
+					currentDevice.VendorID = strings.ToLower(matches[1])
+				} else {
+					currentDevice.VendorID = value
+				}
 			// Product ID - handles both old "Product ID:" and new "USB Product ID:" formats
+			// Same extraction logic as Vendor ID
 			case "Product ID", "USB Product ID":
-				currentDevice.ProductID = value
+				if matches := regexp.MustCompile(`(0x[0-9a-fA-F]+)`).FindStringSubmatch(value); len(matches) > 0 {
+					currentDevice.ProductID = strings.ToLower(matches[1])
+				} else {
+					currentDevice.ProductID = value
+				}
 			// Old power format: "Current Required (mA):"
 			case "Current Required (mA)":
 				if val, err := strconv.Atoi(regexp.MustCompile(`\d+`).FindString(value)); err == nil {
