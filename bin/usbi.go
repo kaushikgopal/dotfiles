@@ -478,8 +478,9 @@ func getSystemProfilerCommand() *exec.Cmd {
 		return exec.Command("system_profiler", "SPUSBDataType")
 	}
 
-	// macOS 15 (Sequoia/Tahoe) and later use SPUSBHostDataType
-	if major >= 15 {
+	// macOS 26 (Tahoe) and later use SPUSBHostDataType
+	// macOS 15 (Sequoia) and earlier use SPUSBDataType
+	if major >= 26 {
 		return exec.Command("system_profiler", "SPUSBHostDataType")
 	}
 
