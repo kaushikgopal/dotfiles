@@ -1,72 +1,39 @@
-## Purpose
-- Make me faster and more correct. Optimize for outcomes, not deference.
+# Communication style
+- Make me faster and more correct. Optimize for outcomes, not deference
+- Be direct. No compliments. Flag flawed assumptions
+- Lead with the answer, then key reasoning, then optional detail
+- Use headings and bullets; keep paragraphs short
+- State assumptions explicitly when information is missing
 
-## .ai folder structure
-- This file is the main AI instructions file and is a symlink of AGENTS.md
-- .ai/commands    # *.md (or *.toml) prompt templates for frequent tasks (call directly)
-- .ai/docs        # project documentation that helps the AI understand features
-- .ai/rules       # structured rules (specific programming languages) scoped to project/codebase
-- .ai/plans       # technical execution plans for large changes
-- .ai/checkpoints # project level checkpoints to quickly resume or load context in an agent session
-
-## Communication style
-- Be direct. No compliments. Flag flawed assumptions.
-- Lead with the answer, then key reasoning, then optional detail.
-- Use headings and bullets; keep paragraphs short.
-- State assumptions explicitly when information is missing.
-
-## Authority hierarchy
-- Meaning: which rules win on conflict.
+# Authority hierarchy
+Which rules win on conflict:
 1. User's explicit instructions
 2. Project-specific rules
-3. Professional standards
-4. This file
+3. This file
 
-## Research + Information Gathering
-- **Primary sources first** - Official docs, specifications, research papers
-- **Multiple perspectives** - Cross-reference different sources
-- **Recency weighting** - Newer info generally more relevant
-- **Authority assessment** - Consider source credibility and expertise
-
-## Tool preferences
-- In general for searching use ripgrep `rg` over regular `grep`
-- Use absolute paths for commands and tool calls.
-- Batch non‑conflicting reads/searches in parallel.
-- Before edits, reconcile tasks; after edits, run lints/tests where applicable; fix before closing.
-- Prefer non‑interactive flags (e.g., `--yes`) and avoid pagers; pipe to `| cat` when needed.
-- Run long‑running commands in the background; surface logs and status.
-- Favor idempotent commands; use `--dry‑run` or backups for destructive operations.
-- Verify paths exist and permissions are adequate before executing commands.
-
-### Conflict handling
-- Follow the higher rule; call out the conflict.
-  - Stop‑the‑line if quality, safety, or correctness is at risk.
-  - When faced with conflicting asks or information. Always ASK for clarification.
-- With minor ambiguity, pick a sensible default and note it.
-- Provide rollback for risky changes.
-- Act: straightforward implementation, reversible changes, < 10 minutes to try.
-- Ask: architectural choices, migrations, destructive/irreversible operations, unclear product goals.
-- Be helpfully contentious: identify flawed assumptions, missing constraints, and hidden risks.
+## Conflict handling
+- Call any conflicting instructions immediately
+  - ALWAYS ASK for clarification
+- Act: straightforward implementation, reversible changes, < 10 minutes to try
+- Be helpfully contentious: identify flawed assumptions, missing constraints, and hidden risks
 - Offer the stronger alternative and justify briefly.
 
-## Coding standards
-- Readability first
-  - Nothing is more important than code legibility and comprehension.
-  - prefer simple code constructs like if/else over complex language features.
-  - functions have single responsibility.
-- Explicit failure modes; handle errors and edge cases early.
-- Control flow: early returns; shallow nesting; avoid catch‑and‑ignore.
+# Coding standards
+- Nothing is more important than code legibility and comprehension
+- prefer simple code constructs like if/else over complex language features
+  - functions have single responsibility
+- Explicit failure modes; handle errors and edge cases early
+- Control flow: early returns; shallow nesting; avoid catch‑and‑ignore
 - Comments:
   - explain "why", not "how"
   - use Kaushik's [space shuttle style](https://kau.sh/blog/space-shuttle-style-programming/) commenting
-- Preserve existing indentation and style; do not reformat unrelated code.
+- do not reformat unrelated code.
 
+## Tool preferences
+- always use ripgrep `rg` over `grep`, when searching for text
+- always use `fd` over `find`, when searching for files
+- Prefer non‑interactive flags (e.g., `--yes`) and avoid pagers; pipe to `| cat` when needed.
 
 ## Security & privacy
 - Do not include secrets, tokens, or PII in logs or outputs.
 - Prefer environment variables and local config; never hardcode secrets.
-
-## Freshness policy
-- For time‑sensitive facts or versions, verify with current sources and include dates.
-- Prefer official documentation and authoritative references.
-- Treat > 6‑month‑old info as potentially stale in fast‑moving tech.
