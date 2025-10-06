@@ -451,9 +451,45 @@ func isLastAtLevel(devices []USBDevice, currentIndex, level int, isBus bool) boo
 	return true
 }
 
+// Get the system-specific command to retrieve USB information
+// This function centralizes platform and version detection logic
+// Future: Add Linux support (lsusb), Windows support (devcon), etc.
+func getSystemProfilerCommand() *exec.Cmd {
+	// Detect OS - currently only macOS is supported
+	// Future: check runtime.GOOS for "linux", "windows", etc.
+
+	// Get macOS version to determine correct command
+	versionCmd := exec.Command("sw_vers", "-productVersion")
+	output, err := versionCmd.Output()
+	if err != nil {
+		// Default to older command if we can't detect version
+		return exec.Command("system_profiler", "SPUSBDataType")
+	}
+
+	version := strings.TrimSpace(string(output))
+	parts := strings.Split(version, ".")
+	if len(parts) == 0 {
+		return exec.Command("system_profiler", "SPUSBDataType")
+	}
+
+	// Parse major version
+	major, err := strconv.Atoi(parts[0])
+	if err != nil {
+		return exec.Command("system_profiler", "SPUSBDataType")
+	}
+
+	// macOS 15 (Sequoia/Tahoe) and later use SPUSBHostDataType
+	if major >= 15 {
+		return exec.Command("system_profiler", "SPUSBHostDataType")
+	}
+
+	// Older versions use SPUSBDataType
+	return exec.Command("system_profiler", "SPUSBDataType")
+}
+
 // Parse system_profiler output
 func runSystemCommand() ([]USBDevice, error) {
-	cmd := exec.Command("system_profiler", "SPUSBDataType")
+	cmd := getSystemProfilerCommand()
 	output, err := cmd.Output()
 	if err != nil {
 		return nil, fmt.Errorf("failed to run system_profiler: %v", err)
@@ -500,8 +536,8 @@ func runSystemCommand() ([]USBDevice, error) {
 			continue
 		}
 
-		// Host Controller Driver
-		if strings.HasPrefix(line, "Host Controller Driver:") {
+		// Host Controller Driver (old format) or Driver (new format)
+		if strings.HasPrefix(line, "Host Controller Driver:") || strings.HasPrefix(line, "Driver:") {
 			parts := strings.SplitN(line, ":", 2)
 			if len(parts) == 2 {
 				currentBusDriver = strings.TrimSpace(parts[1])
@@ -534,21 +570,42 @@ func runSystemCommand() ([]USBDevice, error) {
 			value := strings.TrimSpace(parts[1])
 
 			switch key {
-			case "Speed":
+			// Speed - handles both old "Speed:" and new "Link Speed:" formats
+			case "Speed", "Link Speed":
 				currentDevice.Speed = value
 			case "Manufacturer":
 				currentDevice.Manufacturer = value
-			case "Vendor ID":
+			// Vendor ID - handles both old "Vendor ID:" and new "USB Vendor ID:" formats
+			case "Vendor ID", "USB Vendor ID":
 				currentDevice.VendorID = value
-			case "Product ID":
+			// Product ID - handles both old "Product ID:" and new "USB Product ID:" formats
+			case "Product ID", "USB Product ID":
 				currentDevice.ProductID = value
+			// Old power format: "Current Required (mA):"
 			case "Current Required (mA)":
 				if val, err := strconv.Atoi(regexp.MustCompile(`\d+`).FindString(value)); err == nil {
 					currentDevice.PowerRequired = val
 				}
+			// Old power format: "Current Available (mA):"
 			case "Current Available (mA)":
 				if val, err := strconv.Atoi(regexp.MustCompile(`\d+`).FindString(value)); err == nil {
 					currentDevice.PowerAvailable = val
+				}
+			// New power format: "Power Allocated: 2.5 W (500 mA)"
+			case "Power Allocated":
+				// Extract mA value from format like "2.5 W (500 mA)"
+				if matches := regexp.MustCompile(`\((\d+)\s*mA\)`).FindStringSubmatch(value); len(matches) > 1 {
+					if val, err := strconv.Atoi(matches[1]); err == nil {
+						currentDevice.PowerRequired = val
+					}
+				}
+			// New power format: "Power Sink Capability: 12 W (2400 mA)"
+			case "Power Sink Capability":
+				// Extract mA value from format like "12 W (2400 mA)"
+				if matches := regexp.MustCompile(`\((\d+)\s*mA\)`).FindStringSubmatch(value); len(matches) > 1 {
+					if val, err := strconv.Atoi(matches[1]); err == nil {
+						currentDevice.PowerAvailable = val
+					}
 				}
 			case "Location ID":
 				currentDevice.LocationID = value
@@ -933,7 +990,7 @@ func printHelp() {
 	fmt.Println(`Usage: usbi [MODE]
 Modes:
   default:    Enhanced info with categories, vendor names, and health indicators
-  --raw:      Raw system_profiler output with normalized whitespace
+  --raw:      Raw system_profiler output with normalized whitespace (auto-detects SPUSBDataType/SPUSBHostDataType)
   --speed:    Speed-focused tree with actual values [category speed]
   --power:    Power-focused tree with usage warnings [req/avail mA]
   --problems: Show only devices with issues (power, speed, driver problems)
@@ -983,7 +1040,7 @@ func main() {
 
 	// Handle raw mode separately (mimics original bash behavior)
 	if opts.Mode == "raw" {
-		cmd := exec.Command("system_profiler", "SPUSBDataType")
+		cmd := getSystemProfilerCommand()
 		output, err := cmd.Output()
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "Error running system_profiler: %v\n", err)
