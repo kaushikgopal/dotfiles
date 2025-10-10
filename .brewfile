@@ -124,8 +124,8 @@ brew "go"
 
 #######################
 ######## AI apps
-codex
-gemini-cli
+brew "codex"
+brew "gemini-cli"
 
 ######################
 ##### work
