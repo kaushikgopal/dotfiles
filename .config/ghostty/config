@@ -30,20 +30,18 @@ keybind = shift+enter=text:\n
 ##############################################
 # Look and Feel
 # ghostty +list-themes
-#theme                           = dark:batman-kg,light:Breadog
-#theme                           = dark:Monokai Classic,light:Flexoki Light
-#theme                       = batman-kg
-theme                       = Monokai Classic
+#theme     = dark:batman-kg,light:Flexoki Light
+#theme     = The Hulk
+theme     = Sublette
 adjust-cursor-thickness         = 3
 adjust-underline-position       = 3
-#background-opacity              = 0.95
-bell-features                   = border
-bold-is-bright                  = true
-
-cursor-style                    = block
-cursor-style-blink              = false
-#cursor-invert-fg-bg             = true
-cursor-opacity                  = 0.6
+#background-opacity      = 0.95
+bell-features           = border
+bold-is-bright          = true
+cursor-style                = block
+cursor-style-blink          = false
+#cursor-invert-fg-bg        = true
+cursor-opacity              = 0.6
 
 link-url                        = true
 
@@ -63,24 +61,23 @@ window-padding-balance          = true
 
 font-thicken                    = true
 
-# # JetBrains Mono -------- -->   $rf8g
+# # Berkeley Mono (TX-02-Variable) -------- -->
+# font-family             = TX-02-Variable
+# font-size               = 14
+# adjust-cell-height      = 15%
+# font-variation          = wght=500
+# font-variation-bold     = wght=750
 #
-# #font-family             = Jetbrains Mono KG
-# font-style              = Medium
-# font-style-italic       = Medium Italic
-# font-style-bold         = Bold
-# font-style-bold-italic  = Bold Italic
-#
-# font-size               = 12.5
-# adjust-cell-height      = 14%
-#
-# font-feature            = calt
-# font-feature            = cv03
-# font-feature            = cv14
-#
-# # font-feature            = cv09
-# font-feature            = cv17
-
+# font-feature            = ss02
+# font-feature            = ss05
+# font-feature            = ss06
+# font-feature            = ss12
+# # ss01 - slashed 0
+# # ss02 - dotted 0
+# # ss03 - inverted slash
+# # ss05 - german r
+# # ss06 - alternative pipe |
+# ss12 - ligatures ->
 
 
 # Commit Mono - KG ---------- -->
@@ -99,6 +96,24 @@ font-style-bold-italic  = 700Italic
 # adjust-cell-height      = 25%
 # # font-style              = Medium
 # # font-style-italic       = Medium Italic
+
+# # JetBrains Mono -------- -->   $rf8g
+#
+# #font-family             = Jetbrains Mono KG
+# font-style              = Medium
+# font-style-italic       = Medium Italic
+# font-style-bold         = Bold
+# font-style-bold-italic  = Bold Italic
+#
+# font-size               = 12.5
+# adjust-cell-height      = 14%
+#
+# font-feature            = calt
+# font-feature            = cv03
+# font-feature            = cv14
+#
+# # font-feature            = cv09
+# font-feature            = cv17
 
 
 
@@ -201,23 +216,6 @@ font-style-bold-italic  = 700Italic
 
 
 
-
-# # Berkeley Mono (TX-02-Variable) -------- -->
-# font-family             = TX-02-Variable
-# adjust-cell-height      = 15%
-# font-variation          = wght=500
-# font-variation-bold     = wght=750
-
-# font-feature            = ss02
-# font-feature            = ss05
-# font-feature            = ss06
-# font-feature            = ss12
-# # ss01 - slashed 0
-# # ss02 - dotted 0
-# # ss03 - inverted slash
-# # ss05 - german r
-# # ss06 - alternative pipe |
-# # ss12 - ligatures ->
 
 # # Google Sans Code ---------- -->
 # font-family             = Google Sans Code
