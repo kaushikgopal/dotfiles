@@ -83,6 +83,7 @@
 !bin/usbi.go
 !bin/git-user-stats
 !bin/adb-dumpui
+!bin/difft-pager
 
 # ----------------------------------------
 !.config/starship.toml
