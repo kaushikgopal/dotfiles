@@ -39,7 +39,7 @@
 
     cm = commit -m
     cf = commit --fixup
-    can  = git commit --amend --no-edit
+    can  = commit --amend --no-edit
     acan = !git add . && git commit --amend --no-edit
 
 
