@@ -96,8 +96,14 @@ export RIPGREP_CONFIG_PATH=$HOME/.config/.ripgreprc
 pyenv init - fish | source
 
 # -----------------------------------
+# FZF
+fzf --fish | source
+
+
+# -----------------------------------
 # Zoxide
 zoxide init --cmd j fish | source
+
 
 # ---------------------------------------------------------
 # special instructions on bind
