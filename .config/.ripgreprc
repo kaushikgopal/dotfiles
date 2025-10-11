@@ -29,23 +29,60 @@ web:*.{html,css,js}*
 # --no-line-number
 # --color=never  # when you want to script
 
+#############################################################
+# MANUAL
 # sample commands
-# rg fast README.md               # search for literal "fast" in file README.md
-# rg "com\.android\.application"  # search "pattern"
-# rg "com\.android\.application" --type gradle  -g '!experimental/*'
+#############################################################
 
-# rg 'fn run' -g '*.rs'           # search all rust files for "fun run"
+# search for string "fast" in file README.md
+# rg fast README.md
+
+# search patterns recursively from current directory
+# rg "com\.android\.application"
+
+
+# replace fast -> FAST
+# rg fast README.md -r FAST
+
+
+# ------------
+### File types
+
+# glob pattern only applies to the the filepath
+# search all rust files for "fun run"
+# rg 'fn run' -g '*.rs'
+# rg 'fn run' -g '!*.rs'  # invert
+
+
+# - simpler alternative for file types
 #            --type rust
 #             -trust
 #            --type-not rust
-#
-# rg fast README.md -r FAST       # replace fast -> FAST
-#
-#  lah .git/hooks | rg -v '\.sample'   # invert the match with -v
 
-# List filenames
-# rg foo --files-with-matches  # list the filenames vs. results
-# rg foo -l
+# search pattern
+# - only search gradle files
+# - exclude experimental folder
+# rg "com\.android\.application" --type gradle  -g '!experimental/*'
+
+
+# -----------------------
+### Print filenames only (don't show content results)
+# - but still search based on content search results
+
+# search files that contain foo and print filenames only
+# rg foo --files-with-matches
+#        -l
+
 # rg foo --files-without-match
+#        # invert (i.e. show filenames without the pattern)
 
 
+# ------------------------------------
+## Searching based on filename/path
+
+# list all files in current directory
+# rg --files
+
+# exclude pattern (from file name/path)
+# rg .git/hooks -uuu --files | rg -v '\.sample'
+#               -uuu necessary  cause you're searching .git which is ignored by default
