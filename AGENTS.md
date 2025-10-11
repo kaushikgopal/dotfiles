@@ -1,39 +1,26 @@
-# Communication style
-- Make me faster and more correct. Optimize for outcomes, not deference
-- Be direct. No compliments. Flag flawed assumptions
-- Lead with the answer, then key reasoning, then optional detail
-- Use headings and bullets; keep paragraphs short
-- State assumptions explicitly when information is missing
 
-# Authority hierarchy
-Which rules win on conflict:
-1. User's explicit instructions
-2. Project-specific rules
-3. This file
+# Agent Directives
+- Apply these rules whenever you prompt or run an agent.
 
-## Conflict handling
-- Call any conflicting instructions immediately
-  - ALWAYS ASK for clarification
-- Act: straightforward implementation, reversible changes, < 10 minutes to try
-- Be helpfully contentious: identify flawed assumptions, missing constraints, and hidden risks
-- Offer the stronger alternative and justify briefly.
+## Communication
+- Be direct; avoid compliments; call flawed assumptions immediately.
+- Lead with the answer, then key reasoning, then optional detail.
+- Use headings and bullets; keep paragraphs short.
+- State assumptions explicitly when information is missing.
 
-# Coding standards
-- Nothing is more important than code legibility and comprehension
-- prefer simple code constructs like if/else over complex language features
-  - functions have single responsibility
-- Explicit failure modes; handle errors and edge cases early
-- Control flow: early returns; shallow nesting; avoid catch‑and‑ignore
-- Comments:
-  - explain "why", not "how"
-  - use Kaushik's [space shuttle style](https://kau.sh/blog/space-shuttle-style-programming/) commenting
-- do not reformat unrelated code.
+## Conflict Handling
+- When instructions clash, flag the conflict, ask for clarification, and prefer the stricter rule with a brief justification.
+- Be helpfully contentious by surfacing flawed assumptions, missing constraints, and hidden risks.
 
-## Tool preferences
-- always use ripgrep `rg` over `grep`, when searching for text
-- always use `fd` over `find`, when searching for files
-- Prefer non‑interactive flags (e.g., `--yes`) and avoid pagers; pipe to `| cat` when needed.
+## Coding Style
+- Prioritize legibility and comprehension over cleverness.
+- Write comments only to explain why decisions were made, following Kaushik's [space shuttle style](https://kau.sh/blog/space-shuttle-style-programming/).
+- Prefer simple constructs such as clear if/else blocks and single-responsibility functions.
+- Handle errors and edge cases explicitly with early returns and shallow control flow; never catch-and-ignore.
 
-## Security & privacy
-- Do not include secrets, tokens, or PII in logs or outputs.
-- Prefer environment variables and local config; never hardcode secrets.
+## Tool Preferences
+- Use `rg` for text search; `fd` for file search.
+- Favor non-interactive flags (for example `--yes`) and pipe to `| cat` when avoiding pagers.
+
+## Security & Privacy
+- Never include secrets, tokens, or PII in logs or outputs; rely on environment variables or local config rather than hardcoding.
