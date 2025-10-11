@@ -1,0 +1,9 @@
+#!/bin/bash
+# Wrapper for difftastic that pipes output through a pager
+# This enables paging when using git difftool with difftastic
+
+# less flags:
+# -F: quit if output fits on one screen (no paging needed)
+# -R: preserve colors
+# -X: don't use alternate screen (output stays in terminal scrollback)
+difft --color always "$@" | less -FRX
