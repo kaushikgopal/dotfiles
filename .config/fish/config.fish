@@ -96,8 +96,25 @@ export RIPGREP_CONFIG_PATH=$HOME/.config/.ripgreprc
 pyenv init - fish | source
 
 # -----------------------------------
+# FZF
+
+# enable FZF for fish while disabling alt + c
+fzf --fish | FZF_ALT_C_COMMAND= source
+
+# set -gx FZF_DEFAULT_COMMAND 'rg --files'
+# default command is different from ctrl + t
+set -gx FZF_CTRL_T_COMMAND 'rg --files'
+
+# CTRL-Y to copy the command into clipboard when previewing command history
+set -gx FZF_CTRL_R_OPTS " \
+  --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort' \
+  --color header:italic \
+  --header 'Press CTRL-Y to copy command into clipboard'"
+
+# -----------------------------------
 # Zoxide
 zoxide init --cmd j fish | source
+
 
 # ---------------------------------------------------------
 # special instructions on bind
