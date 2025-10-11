@@ -66,7 +66,8 @@ if status is-interactive
     abbr --add --global cyr claude --dangerously-skip-permissions --resume  # y for yolo
     abbr --add --global cy claude  --dangerously-skip-permissions
 
-    abbr --add --global cu cursor
+    abbr --add --global cu  cursor
+    abbr --add --global cug cursor . -g
 
     abbr --add --global ts tailscale
 
@@ -107,6 +108,14 @@ fzf --fish | FZF_ALT_C_COMMAND= source
 # set -gx FZF_DEFAULT_COMMAND 'rg --files'
 # default command is different from ctrl + t
 set -gx FZF_CTRL_T_COMMAND 'rg --files'
+
+# Ctrl+T preview with syntax highlighting
+set -gx FZF_CTRL_T_OPTS " \
+  --height 60% \
+  --layout=reverse \
+  --border \
+  --preview 'bat --color=always --style=numbers --line-range=:500 {}' \
+  --preview-window=right:60%:wrap"
 
 # CTRL-Y to copy the command into clipboard when previewing command history
 set -gx FZF_CTRL_R_OPTS " \
