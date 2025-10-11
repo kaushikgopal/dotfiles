@@ -15,7 +15,7 @@
             | fzf -0 -m --height 40% --layout=reverse --border \
                 --preview 'git diff --color=always -- {-1}' \
                 --preview-window=right:60%:wrap \
-            | xargs -r -I {} sh -c 'git add -p -- \"$1\" </dev/tty' _ {}"
+            | xargs -r -I {} sh -c 'git add -p -- "$1" </dev/tty' _ {}"
 
 
     branch-cleaner = !git branch --merged master --no-color | grep -v '^[ *]*master$' | xargs git branch -d
