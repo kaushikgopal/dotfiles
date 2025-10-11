@@ -6,6 +6,7 @@
 set -g fish_greeting
 
 fish_vi_key_bindings # start vi mode
+
 # fish_default_key_binding # go back to default bindings
 set -g fish_prompt_pwd_dir_length 80  # don't shorten pwd
 
@@ -44,8 +45,10 @@ if status is-interactive
     abbr --add --global gr gradle
     abbr --add --global gw './gradlew'
 
-    abbr --add --global fdu 'fd -u'
-    abbr --add --global rgu 'rg -uuu' # see .ripgreprc
+    abbr --add --global fd 'rg --files'  # use rg instead of fd (one less dep)
+    abbr --add --global rgu 'rg -u'
+    abbr --add --global rguu 'rg -uu'
+    abbr --add --global rguuu 'rg -uuu'
 
     # git commands
     abbr --add --global g    git # using a git function which is better

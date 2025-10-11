@@ -24,7 +24,6 @@ brew "coreutils" # for gnu date
 brew "curl"
 brew "difftastic"
 brew "fastfetch"
-brew "fd"
 brew "ffmpeg"
 brew "fzf"
 brew "gawk"
@@ -48,6 +47,7 @@ brew "wget"
 brew "yt-dlp"
 brew "zoxide"
 
+# brew "fd" # just use ripgrep --files
 #brew "xmlstarlet" # fine-grain xml manipulation
 #brew "poppler"
 # brew "neovim"

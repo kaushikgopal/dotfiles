@@ -6,12 +6,15 @@
 --type-add
 web:*.{html,css,js}*
 
-# Using glob patterns to include/exclude files or folders
-# --glob=!.git/*
 
-# or
---glob
-!.git/*
+# Search hidden files / directories (e.g. dotfiles) by default
+# -u    = '--no-ignore'                     # don't respect .ignore files
+# -uu   = '--no-ignore --hidden'.           # don't respect .gitignore either
+# -uuu  = '--no-ignore --hidden --binary'   # don't even ignore hidden files/directories
+
+# Using glob patterns to include/exclude files or folders
+# --glob
+# !.git/*
 
 # Set the colors.
 --colors=line:none
@@ -19,14 +22,6 @@ web:*.{html,css,js}*
 
 # Because who cares about case!?
 --smart-case
-
-
-# Search hidden files / directories (e.g. dotfiles) by default
-#--hidden
-
-# -u    = '--no-ignore'                     # don't respect .ignore files
-# -uu   = '--no-ignore --hidden'.           # don't respect .gitignore either
-# -uuu  = '--no-ignore --hidden --binary'   # don't even ignore hidden files/directories
 
 # -S = --smart-case
 # -I = --no-filename
