@@ -46,7 +46,8 @@ function fish_prompt
     #     set -l col (string replace 0x '' $col | string pad -c 0 -w 2 | string join "")
     #     set cwd (set_color -b brblack $col)
     # end
-    set -l pwd (set_color -b brblack black)" "(prompt_pwd)" "(set_color normal)
+    # set -l pwd (set_color -b brblack black)" "(prompt_pwd)" "(set_color normal)
+    set -l pwd (set_color brgrey)" "(prompt_pwd)" "(set_color normal)
 
     # ------------------------------------------
     # [git branch]
