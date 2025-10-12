@@ -189,21 +189,6 @@
     show = delta
 
 
-# ##############################
-# difftastic for external tool
-[diff]
-    # set difftastic as the default difftool, so we don't need to specific `-t difftastic` every time
-    tool = difftastic
-#     # if you want difftastic as default
-#     external = difft
-[difftool]
-    # run difftool immediately, don't ask 'are you sure' each time
-    prompt = false
-[difftool "difftastic"]
-    # See `man git-difftool` for a description of MERGED, LOCAL and REMOTE.
-    cmd = difft-pager "$MERGED" "$LOCAL" "abcdef1" "100644" "$REMOTE" "abcdef2" "100644"
-
-
 
 
 ######################
