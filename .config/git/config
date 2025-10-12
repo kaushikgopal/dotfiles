@@ -72,9 +72,17 @@
     wipr = !git reset --soft HEAD~ && git reset
     wt = worktree
 
-    l  = "!git log --all --pretty=oneline --pretty=format:'%Cgreen%h%Creset %s %Cred%d%Creset' --color=always \
-              | fzf --ansi --preview 'git show --pretty=medium --color=always $(echo {} | cut -d\" \" -f1)' \
-              | cut -d\" \" -f1"
+    l  = "!f() { \
+            if [ $# -eq 0 ]; then \
+                git log --all --pretty=format:'%Cgreen%h%Creset %s %Cred%d%Creset' --color=always \
+                    | fzf --ansi --preview 'git show --pretty=medium --color=always $(echo {} | cut -d\" \" -f1)' \
+                    | cut -d\" \" -f1; \
+            else \
+                git log --pretty=format:'%Cgreen%h%Creset %s %Cred%d%Creset' --color=always \"$@\" \
+                    | fzf --ansi --preview 'git show --pretty=medium --color=always $(echo {} | cut -d\" \" -f1)' \
+                    | cut -d\" \" -f1; \
+            fi; \
+        }; f"
     ll = !git log --graph --decorate --date=short --pretty=format:'%C(magenta)%h%Creset %C(italic brightblack)%ad%C(reset)%C(auto) %s %C(blue)%an%C(auto) %D%C(reset)'
 
     # compare two commits
