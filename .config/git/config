@@ -114,55 +114,6 @@
         fi; \
     }; compare"
 
-#    #### git number support samples
-#    a = "!f() { \
-#        if [[ $# -eq 0 || \"$1\" == \".\" ]]; then \
-#            git add .; \
-#        else \
-#          files_to_add=(); \
-#          for arg in $(seq $(git status --porcelain | wc -l)); do \
-#              files_to_add+=($(git status --porcelain | sed -n ${arg}p | awk '{print $2}')); \
-#          done; \
-#          if [[ $1 == *'-'* ]]; then \
-#              IFS='-' read -ra RANGE <<< \"$1\"; \
-#              for i in $(seq ${RANGE[0]} ${RANGE[1]}); do \
-#                  git add \"${files_to_add[$i-1]}\"; \
-#              done; \
-#          elif [[ $1 == *','* ]]; then \
-#              IFS=',' read -ra NUMS <<< \"$1\"; \
-#              for i in \"${NUMS[@]}\"; do \
-#                  git add \"${files_to_add[$i-1]}\"; \
-#              done; \
-#          else \
-#              git add \"${files_to_add[$1-1]}\"; \
-#          fi; \
-#        fi; \
-#    }; f"
-#    d = "!f() { \
-#        if [[ $# -eq 0 || \"$1\" == \".\" ]]; then \
-#            git diff .; \
-#        else \
-#          files_to_add=(); \
-#          for arg in $(seq $(git status --porcelain | wc -l)); do \
-#              files_to_add+=($(git status --porcelain | sed -n ${arg}p | awk '{print $2}')); \
-#          done; \
-#          if [[ $1 == *'-'* ]]; then \
-#              IFS='-' read -ra RANGE <<< \"$1\"; \
-#              for i in $(seq ${RANGE[0]} ${RANGE[1]}); do \
-#                  git diff \"${files_to_add[$i-1]}\"; \
-#              done; \
-#          elif [[ $1 == *','* ]]; then \
-#              IFS=',' read -ra NUMS <<< \"$1\"; \
-#              for i in \"${NUMS[@]}\"; do \
-#                  git diff \"${files_to_add[$i-1]}\"; \
-#              done; \
-#          else \
-#              git diff \"${files_to_add[$1-1]}\"; \
-#          fi; \
-#        fi; \
-#    }; f"
-
-
 [credential]
 	helper = osxkeychain
 
