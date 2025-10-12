@@ -43,16 +43,30 @@
     acan = !git add . && git commit --amend --no-edit
 
 
-    d = "!git ls-files --deleted --modified --other --exclude-standard \
-            | fzf -0 -m --height 40% --layout=reverse --border \
-                --preview 'git diff --color=always -- {-1} | sed -n \"1,200p\"' \
-                --preview-window=right:70%:wrap \
-            | xargs -r git diff --"
-    ds = "!git diff --name-only --staged \
-            | fzf -0 -m --height 40% --layout=reverse --border \
-                --preview 'git diff --staged --color=always -- {-1} | sed -n \"1,200p\"' \
-                --preview-window=right:60%:wrap \
-            | xargs -r git diff --staged --"
+    d = "!f() { \
+            files=$(git ls-files --deleted --modified --other --exclude-standard); \
+            count=$(echo \"$files\" | grep -c .); \
+            if [ \"$count\" -eq 1 ]; then \
+                git diff -- \"$files\"; \
+            elif [ \"$count\" -gt 1 ]; then \
+                echo \"$files\" | fzf -0 -m --height 40% --layout=reverse --border \
+                    --preview 'git diff --color=always -- {-1} | sed -n \"1,200p\"' \
+                    --preview-window=right:70%:wrap \
+                | xargs -r git diff --; \
+            fi; \
+        }; f"
+    ds = "!f() { \
+            files=$(git diff --name-only --staged); \
+            count=$(echo \"$files\" | grep -c .); \
+            if [ \"$count\" -eq 1 ]; then \
+                git diff --staged -- \"$files\"; \
+            elif [ \"$count\" -gt 1 ]; then \
+                echo \"$files\" | fzf -0 -m --height 40% --layout=reverse --border \
+                    --preview 'git diff --staged --color=always -- {-1} | sed -n \"1,200p\"' \
+                    --preview-window=right:60%:wrap \
+                | xargs -r git diff --staged --; \
+            fi; \
+        }; f"
     din   = diff --name-only master...HEAD  # list files that have changed
     mt    = mergetool
     p = pull
