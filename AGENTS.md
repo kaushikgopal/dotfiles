@@ -1,6 +1,4 @@
-
-# Agent Directives
-- Apply these rules whenever you prompt or run an agent.
+Agent instructions
 
 ## Communication
 - Be direct; avoid compliments; call flawed assumptions immediately.
@@ -19,7 +17,7 @@
 - Handle errors and edge cases explicitly with early returns and shallow control flow; never catch-and-ignore.
 
 ## Tool Preferences
-- Use `rg` for text search; `fd` for file search.
+- Use `rg` for text search; `rg --files` for file search.
 - Favor non-interactive flags (for example `--yes`) and pipe to `| cat` when avoiding pagers.
 
 ## Security & Privacy
