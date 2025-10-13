@@ -86,3 +86,10 @@ web:*.{html,css,js}*
 # exclude pattern (from file name/path)
 # rg .git/hooks -uuu --files | rg -v '\.sample'
 #               -uuu necessary  cause you're searching .git which is ignored by default
+
+
+# --------------------------------
+## Print directory names
+
+# no direct way, but you can chain commands to do it
+# rg --files --null | xargs -0 dirname | uniq
