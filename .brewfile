@@ -125,7 +125,8 @@ brew "go"
 #######################
 ######## AI apps
 brew "codex"
-brew "gemini-cli"
+#brew "gemini-cli"
+#brew "sst/tap/opencode"
 
 ######################
 ##### work
@@ -174,9 +175,6 @@ cask "font-jost"
 cask "font-figtree"
 cask "font-sn-pro"
 cask "font-inter"
-cask "font-sf-mono"
-cask "font-jetbrains-mono"
-cask "font-ibm-plex-mono"
 
 #cask "font-cascadia-code"
 #cask "font-cascadia-code-pl"
@@ -187,14 +185,17 @@ cask "font-ibm-plex-mono"
 #cask "font-ia-writer-quattro"
 #cask "font-ibm-plex"
 #cask "font-ibm-plex-mono"
+#cask "font-ibm-plex-mono"
 #cask "font-ibm-plex-mono-kg"
 #cask "font-ibm-plex-sans"
 #cask "font-ibm-plex-serif"
+#cask "font-jetbrains-mono"
 #cask "font-new-york"
 #cask "font-plus-jakarta-sans"
 #cask "font-recursive-kg"
 #cask "font-roboto-mono"
 #cask "font-sf-compact"
+#cask "font-sf-mono"
 #cask "font-sf-pro"
 #cask "font-source-code-pro"
 
