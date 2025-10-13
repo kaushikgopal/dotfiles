@@ -52,6 +52,10 @@
 !.ai/**
 !.ai/commands/
 !.ai/commands/**
+!.ai/plans/
+!.ai/plans/PLANS.md
+!.claude/
+!.claude/CLAUDE.md
 !.firebender/
 !.firebender/**
 .firebender/history

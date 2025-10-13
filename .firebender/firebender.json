@@ -1,8 +1,8 @@
 {
-  "rules": [
-    {
-      "filePathMatches": "*",
-      "rulesPaths": "/Users/kg/AGENTS.md"
-    }
-  ]
+    "rules": [
+        {
+            "filePathMatches": "*",
+            "rulesPaths": "~/AGENTS.md"
+        }
+    ]
 }
