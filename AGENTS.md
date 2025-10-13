@@ -17,7 +17,8 @@ Agent instructions
 - Handle errors and edge cases explicitly with early returns and shallow control flow; never catch-and-ignore.
 
 # Tool Preferences
-- Use `rg` for text search; `rg --files` for file search.
+- Use `rg` for text search (NEVER use grep)
+- Use `fd` for finding files or directories (NEVER use find)
 - Favor non-interactive flags (for example `--yes`) and pipe to `| cat` when avoiding pagers.
 
 # Security & Privacy
