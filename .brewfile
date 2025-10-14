@@ -10,7 +10,7 @@ cask_args appdir: '/Applications', no_quarantine: true
 # java_present = system('/usr/libexec/java_home --failfast')
 is_arm = Hardware::CPU.arm? # TODO: All lines that are based on this condition are currently not working for ARM architecture - and thus this check
 
-tap "homebrew/bundle"
+# tap "homebrew/bundle"
 
 tap "kaushikgopal/tools"
 tap "buo/cask-upgrade" # better cask upgrading (see `cu`)
@@ -99,9 +99,9 @@ brew "sdkman-cli"
 
 # brew "asdf"
 # brew "ruby-build"
-brew "rbenv"
+# brew "rbenv"
 # brew "ruby-install"
-brew "postgresql"
+# brew "postgresql"
 
 ######################
 ##### Javascript and TypeScript
@@ -152,7 +152,6 @@ cask "obsidian"
 cask "raycast"
 cask "slack"
 cask "the-unarchiver"
-cask "webpquicklook"
 
 cask "tailscale"
 cask "zerotier-one"
