@@ -83,7 +83,7 @@ font-thicken                    = true
 # Commit Mono - KG ---------- -->
 # font-family             = CommitMono-KGS
 font-family             = CommitMono-KG
-font-size               = 13
+font-size               = 12.5
 adjust-cell-height      = 40%
 font-style              = 500Regular
 font-style-italic       = 500Italic
