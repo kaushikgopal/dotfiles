@@ -19,7 +19,8 @@ Agent instructions
 # Tool Preferences
 - Use `rg` for text search (NEVER use grep)
 - Use `fd` for finding files or directories (NEVER use find)
-- Favor non-interactive flags (for example `--yes`) and pipe to `| cat` when avoiding pagers.
+- Use `gh` cli command instead of trying search github for PRs
+- Favor non-interactive flags (for example `--yes`) and pipe to `| cat` when avoiding pagers
 
 # Security & Privacy
 - Never include secrets, tokens, or PII in logs or outputs; rely on environment variables or local config rather than hardcoding.

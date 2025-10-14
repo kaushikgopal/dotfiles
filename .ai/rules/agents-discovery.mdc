@@ -1,0 +1,22 @@
+---
+description: Module context discovery - always read module-level AGENTS.md and README.md
+globs: *
+alwaysApply: true
+---
+
+## Module Context Discovery
+
+Before answering questions or making changes in a module:
+
+1. **Identify the module** – Determine which module or directory the task touches.
+2. **Read module documentation** – Load files in this order:
+   - `AGENTS.md` in the same directory for module-specific AI guidance.
+   - `README.md` in the same directory for human context and setup.
+   - Relevant `.ai/docs/*` references (architecture, testing, navigation, etc.).
+3. **Check parents when needed** – If you are in a nested submodule, repeat the search upward until you reach the repo root or find the required context.
+
+Examples:
+- Working in `data/resolution/impl/` → Read `data/resolution/impl/AGENTS.md`, `data/resolution/README.md`, `data/README.md`.
+- Working in `common/navigation/` → Read `common/navigation/AGENTS.md`.
+- Investigating tests → Read `.ai/docs/TESTING.md`.
+- Investigating architecture → Read `.ai/docs/ARCHITECTURE.md`.
