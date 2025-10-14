@@ -45,7 +45,7 @@ if status is-interactive
     abbr --add --global gr gradle
     abbr --add --global gw './gradlew'
 
-    abbr --add --global fd 'rg --files'  # use rg instead of fd (one less dep)
+    # abbr --add --global fd 'rg --files'  # use rg instead of fd (one less dep)
     abbr --add --global rgu 'rg -u'
     abbr --add --global rguu 'rg -uu'
     abbr --add --global rguuu 'rg -uuu'
