@@ -2448,7 +2448,7 @@
                             {
                                 "type": "basic",
                                 "from": {
-                                    "key_code": "l",
+                                    "key_code": "p",
                                     "modifiers": {
                                         "optional": [
                                             "any"
@@ -2458,6 +2458,71 @@
                                 "to": [
                                     {
                                         "key_code": "equal_sign"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "f-layer",
+                                        "value": 1
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "simultaneous": [
+                                        {
+                                            "key_code": "f"
+                                        },
+                                        {
+                                            "key_code": "p"
+                                        }
+                                    ],
+                                    "simultaneous_options": {
+                                        "key_down_order": "strict",
+                                        "detect_key_down_uninterruptedly": true,
+                                        "key_up_order": "strict_inverse",
+                                        "key_up_when": "any",
+                                        "to_after_key_up": [
+                                            {
+                                                "set_variable": {
+                                                    "name": "f-layer",
+                                                    "value": 0
+                                                }
+                                            }
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "f-layer",
+                                            "value": 1
+                                        }
+                                    },
+                                    {
+                                        "key_code": "equal_sign"
+                                    }
+                                ],
+                                "parameters": {
+                                    "basic.simultaneous_threshold_milliseconds": 250
+                                },
+                                "conditions": []
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "l",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "hyphen"
                                     }
                                 ],
                                 "conditions": [
@@ -2502,7 +2567,7 @@
                                         }
                                     },
                                     {
-                                        "key_code": "equal_sign"
+                                        "key_code": "hyphen"
                                     }
                                 ],
                                 "parameters": {
@@ -2514,71 +2579,6 @@
                                 "type": "basic",
                                 "from": {
                                     "key_code": "semicolon",
-                                    "modifiers": {
-                                        "optional": [
-                                            "any"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "hyphen"
-                                    }
-                                ],
-                                "conditions": [
-                                    {
-                                        "type": "variable_if",
-                                        "name": "f-layer",
-                                        "value": 1
-                                    }
-                                ]
-                            },
-                            {
-                                "type": "basic",
-                                "from": {
-                                    "simultaneous": [
-                                        {
-                                            "key_code": "f"
-                                        },
-                                        {
-                                            "key_code": "semicolon"
-                                        }
-                                    ],
-                                    "simultaneous_options": {
-                                        "key_down_order": "strict",
-                                        "detect_key_down_uninterruptedly": true,
-                                        "key_up_order": "strict_inverse",
-                                        "key_up_when": "any",
-                                        "to_after_key_up": [
-                                            {
-                                                "set_variable": {
-                                                    "name": "f-layer",
-                                                    "value": 0
-                                                }
-                                            }
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "set_variable": {
-                                            "name": "f-layer",
-                                            "value": 1
-                                        }
-                                    },
-                                    {
-                                        "key_code": "hyphen"
-                                    }
-                                ],
-                                "parameters": {
-                                    "basic.simultaneous_threshold_milliseconds": 250
-                                },
-                                "conditions": []
-                            },
-                            {
-                                "type": "basic",
-                                "from": {
-                                    "key_code": "quote",
                                     "modifiers": {
                                         "optional": [
                                             "any"
@@ -2609,7 +2609,7 @@
                                             "key_code": "f"
                                         },
                                         {
-                                            "key_code": "quote"
+                                            "key_code": "semicolon"
                                         }
                                     ],
                                     "simultaneous_options": {
