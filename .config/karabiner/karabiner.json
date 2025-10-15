@@ -2377,7 +2377,7 @@
                             {
                                 "type": "basic",
                                 "from": {
-                                    "key_code": "p",
+                                    "key_code": "y",
                                     "modifiers": {
                                         "optional": [
                                             "any"
@@ -2408,7 +2408,7 @@
                                             "key_code": "f"
                                         },
                                         {
-                                            "key_code": "p"
+                                            "key_code": "y"
                                         }
                                     ],
                                     "simultaneous_options": {
