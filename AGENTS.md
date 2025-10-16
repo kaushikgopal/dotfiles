@@ -1,8 +1,8 @@
 # Agent instructions
 
-- State assumptions explicitly, when information is missing.
 - When instructions clash, flag the conflict right away; then ask for clarification
 - Never include secrets, tokens, or PII in logs or outputs; rely on environment variables or local config rather than hardcoding.
+- State assumptions explicitly, when information is missing.
 
 # Coding Style
 
