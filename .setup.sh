@@ -12,7 +12,7 @@ PURPLE='\033[1;35m'
 NC='\033[0m'
 
 ##############################################################
-# Setup the symlinks first
+# Setup the dotfiles symlinks
 ##############################################################
 
 # capture the current directory
@@ -22,6 +22,7 @@ current_dir=$(pwd)
 pushd $HOME
 
 mkdir -p .config
+mkdir -p .config/karabiner  # see https://github.com/kaushikgopal/karabiner-kt.git for karabiner.json
 
 # List of files to symlink (one per line for easy maintenance)
 files_to_link=(
@@ -36,7 +37,7 @@ files_to_link=(
     .config/git
     .editorconfig
     .firebender
-    .gitconfig
+    # .gitconfig   # symlink on first run
     .ideavimrc
     .profile
     .vim

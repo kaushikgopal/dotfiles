@@ -1,103 +1,13 @@
-# # Ignore everything by default
-*
-
-
-# ----------------------------------------
-# git itself
-!.gitignore
-# allow git to see the .config directory
-!.config/
-# allow git to see the git directory within .config
-!.config/git/
-# don't ignore anything in this directory
-!.config/git/**
-# ignore files matching pattern config-*
 .config/git/config-*
 # ignore global git ignore file to prevent claude from modifying it
 .config/git/ignore
-
-# ----------------------------------------
-# ghostty
-!.config/ghostty/
-!.config/ghostty/**
-
-# ----------------------------------------
-# nushell
-!.config/nushell/
-!.config/nushell/**
 .config/nushell/history.txt
-.config/nushell/zoxide.nu
 .config/nushell/secrets.nu
 .config/nushell/vendor
-
-# ----------------------------------------
-# fish
-!.config/fish/
-!.config/fish/**
 .config/fish/fish_variables
-!.config/fish/functions/
-!.config/fish/functions/**
 .config/fish/functions/caperwt.fish
-
-# ----------------------------------------
-# zsh
-!.config/zsh/
-!.config/zsh/**
+# we maintain karabiner in a separate repo
+.config/karabiner
 .config/zsh/.zsh_sessions
-
-# ----------------------------------------
-# ai rules
-!AGENTS.md
-!.ai/
-!.ai/**
-!.ai/commands/
-!.ai/commands/**
-!.ai/plans/
-!.ai/plans/PLANS.md
-!.claude/
-!.claude/CLAUDE.md
-!.firebender/
-!.firebender/**
 .firebender/history
-!.firebender/worktrees/
 .firebender/worktrees/**
-**/.claude/settings.local.json
-!.aider.conf.yml
-
-# ----------------------------------------
-# node dependencies
-**/node_modules/
-
-# ----------------------------------------
-# karabiner
-!.config/karabiner/
-!.config/karabiner/**
-.config/karabiner/karabiner-kt/
-
-# ----------------------------------------
-# vim
-!.vim/
-!.vim/pack/
-!.vim/pack/**
-
-# -----------------------------------
-# bin scripts
-!bin/
-!bin/usbi
-!bin/usbi.go
-!bin/git-user-stats
-!bin/adb-dumpui
-!bin/difft-pager
-
-# ----------------------------------------
-!.config/starship.toml
-!.config/.ripgreprc
-!.setup.sh
-!.macos.sh
-!.brewfile
-!notes/
-
-
-
-# test commit without secret-guard
-# test without LFS
