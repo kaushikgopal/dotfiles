@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -euo pipefail
+
 # switching section
 YELLOW='\033[1;33m'
 # info
@@ -8,6 +10,51 @@ GRAY='\033[1;30m'
 PURPLE='\033[1;35m'
 # No Color
 NC='\033[0m'
+
+##############################################################
+# Setup the symlinks first
+##############################################################
+
+# capture the current directory
+current_dir=$(pwd)
+
+# move into the home directory first
+pushd $HOME
+
+mkdir -p .config
+
+# List of files to symlink (one per line for easy maintenance)
+files_to_link=(
+    .ai
+    .bashrc
+    .brewfile
+    .brew.sh
+    .claude
+    .config/.ripgreprc
+    .config/fish
+    .config/ghostty
+    .config/git
+    .editorconfig
+    .firebender
+    .gitconfig
+    .ideavimrc
+    .profile
+    .vim
+    .vimrc
+    bin
+    AGENTS.md
+)
+
+for file in "${files_to_link[@]}"; do
+    echo -e "${GRAY}••••••• symlinking $current_dir/$file -> $HOME/$file ${NC}"
+    rm -rf "$HOME/$file"
+    ln -sfn "$current_dir/$file" "$HOME/$file"
+done
+
+popd
+
+# exit the script (temporarily)
+exit 0
 
 ##############################################################
 # Basics (git & dotfiles)

@@ -2,12 +2,8 @@
     path = ~/.config/git/config
 
 [includeIf "gitdir:~/src/off/"]
-    path = ~/.config/git/config-off
-[includeIf "gitdir:~/caper-configs-mirror/"]
-    path = ~/.config/git/config-off
+    path = ~/.gitconfig-off
 [includeIf "gitdir:~/src/oss/"]
-    path = ~/.config/git/config-oss
+    path = ~/.gitconfig-oss
 [includeIf "gitdir:~/src/per/"]
-    path = ~/.config/git/config-per
-[includeIf "gitdir:~/.config/karabiner/karabiner-kt/"]
-    path = ~/.config/git/config-per
+    path = ~/.gitconfig-per
