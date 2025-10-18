@@ -85,8 +85,8 @@ font-family             = CommitMono-KGS
 #font-family             = CommitMono-KG
 font-size               = 12.5
 adjust-cell-height      = 40%
-font-style              = 500Regular
-font-style-italic       = 500Italic
+font-style              = 575Regular
+font-style-italic       = 575Italic
 font-style-bold         = 700Regular
 font-style-bold-italic  = 700Italic
 
