@@ -38,6 +38,7 @@ files_to_link=(
     .editorconfig
     .firebender
     # .gitconfig   # symlink on first run
+    .hushlogin
     .ideavimrc
     .profile
     .vim
