@@ -15,6 +15,7 @@
 # we maintain karabiner in a separate repo
 .config/karabiner
 .config/zed/prompts
+.config/zed/conversations
 .config/zsh/.zsh_sessions
 .firebender/history
 .firebender/worktrees/**
