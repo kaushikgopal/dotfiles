@@ -9,7 +9,7 @@
 - Prioritize legibility and comprehension, over terse or clever code
 - Use guard clauses and early returns
 - Write comments only to explain the why
-    - Practice Space Shuttle style: preserve deliberate verbosity, capture intent, assumptions, and business context for each branch, pair every `if` with an explicit `else`, spell out reasoning even when it feels obvious, and call out intentional no-ops so future maintainers know not to "simplify" away encoded knowledge.
+    - Practice Space Shuttle style: preserve deliberate verbosity, capture intent, assumptions, and business context for each branch, pair every `if` with an explicit `else`, spell out reasoning even when it feels obvious, and call out intentional no-ops so future maintainers know not to "simplify" away encoded knowledge. Never label the comments themselves as “Space Shuttle style”; just write the intent-rich explanation directly.
 - Keep verbose control flow that documents domain rules; never collapse branches or strip comments if it would erase captured reasoning.
 - Prefer simple constructs such as clear if/else blocks and single-responsibility functions
 - Handle errors and edge cases explicitly
