@@ -35,6 +35,7 @@ files_to_link=(
     .config/fish
     .config/ghostty
     .config/git
+    .config/zed
     .editorconfig
     .firebender
     # .gitconfig   # symlink on first run
