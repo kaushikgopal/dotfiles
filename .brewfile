@@ -81,6 +81,7 @@ brew "github-keygen"
 ##### Web dev
 brew "htmltest"
 brew "flyctl"
+brew "web-ext"      # firefox add-on dev
 
 ######################
 ##### android (zulu)
@@ -122,12 +123,6 @@ brew "python-yq" # caper local mock server
 brew "go"
 
 
-#######################
-######## AI apps
-brew "codex"
-#brew "gemini-cli"
-#brew "sst/tap/opencode"
-
 ######################
 ##### work
 brew "bazelisk"
@@ -135,6 +130,18 @@ brew "pipx"
 #cask "orbstack"
 brew "grpcurl" # caper
 
+#######################
+######## AI apps
+brew "codex"
+#brew "gemini-cli"
+#brew "sst/tap/opencode"
+
+
+#######################
+######## IDEs
+cask "cursor"
+cask "zed"
+#cask "visual-studio-code"
 
 
 ##############################################################
@@ -155,9 +162,6 @@ cask "the-unarchiver"
 
 cask "tailscale"
 cask "zerotier-one"
-
-cask "cursor"
-cask "visual-studio-code"
 
 cask "ghostty"
 
