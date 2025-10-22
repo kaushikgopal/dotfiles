@@ -12,8 +12,10 @@
     }
   },
   {
-    "context": "Editor && vim_mode == insert",
+    "context": "vim_mode == normal || vim_mode == visual || vim_mode == operator",
     "bindings": {
+      "ctrl-shift-up": "editor::SelectLargerSyntaxNode",
+      "ctrl-shift-down": "editor::SelectSmallerSyntaxNode"
       // "j k": "vim::NormalBefore"
     }
   },
