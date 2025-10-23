@@ -1,0 +1,32 @@
+#!/usr/bin/env rust-script
+//! ```cargo
+//! [dependencies]
+//! ```
+
+use std::io::{self, BufRead, Write};
+
+fn main() -> io::Result<()> {
+    let stdin = io::stdin();
+    let mut stdout = io::stdout();
+
+    for raw_line in stdin.lock().lines() {
+        let line = raw_line?;
+        let trimmed = line.trim();
+
+        if trimmed.is_empty() {
+            // The Python version emits a lone marker when callers send spacing lines, so we preserve that contract verbatim.
+            writeln!(stdout, ">")?;
+        } else {
+            if trimmed.starts_with('>') {
+                // Upstream content that already carries the quote must flow through untouched so we do not stack prefixes.
+                writeln!(stdout, "{trimmed}")?;
+            } else {
+                // Everything else needs the quote prefix so downstream consumers can treat the output as a fully quoted block.
+                writeln!(stdout, "> {trimmed}")?;
+            }
+        }
+    }
+
+    stdout.flush()?; // Flushing intentionally mirrors the python script's immediate stdout behavior so pipelines never block on buffered data.
+    Ok(())
+}
