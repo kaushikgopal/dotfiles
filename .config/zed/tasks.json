@@ -5,13 +5,15 @@
     "command": "claude --dangerously-skip-permissions",
     "reveal": "always",
     "use_new_terminal": true,
-    "allow_concurrent_runs": false
+    "allow_concurrent_runs": false,
+    "reveal_target": "center"
   },
   {
     "label": "codex",
     "command": "codex --yolo",
     "reveal": "always",
     "use_new_terminal": true,
-    "allow_concurrent_runs": false
+    "allow_concurrent_runs": false,
+    "reveal_target": "center"
   }
 ]
