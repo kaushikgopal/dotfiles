@@ -67,6 +67,7 @@ if status is-interactive
     abbr --add --global cl  claude  --dangerously-skip-permissions
     abbr --add --global cu  cursor
     abbr --add --global cug cursor . -g
+    abbr --add --global z   zed
 
     abbr --add --global ts tailscale
 
@@ -93,6 +94,16 @@ export JAVA_HOME=$HOME/Applications/Android\ Studio.app/Contents/jbr/Contents/Ho
 export BAT_CONFIG_PATH=$HOME/.config/.bat.conf
 
 export RIPGREP_CONFIG_PATH=$HOME/.config/.ripgreprc
+
+# -----------------------------------
+# Rust development
+if test -s $HOME/.cargo/env.fish
+    # Ensures cargo-provided bins such as rust-script are discoverable every time a shell starts after rustup installs them.
+    source "$HOME/.cargo/env.fish"
+else
+    # Avoids sourcing a non-existent file when rustup has not yet been installed; this no-op protects first-time setups from confusing errors.
+    # intentional no-op
+end
 
 # -----------------------------------
 # pyenv for python development setup

@@ -122,6 +122,11 @@ brew "python-yq" # caper local mock server
 ##### go
 brew "go"
 
+######################
+##### Rust
+brew "rustup-init" # we need rustup so we can manage stable toolchains required by rust-script
+brew "rust-script" # we depend on rust-script for shebang-driven Rust executables like commadd
+
 
 ######################
 ##### work
