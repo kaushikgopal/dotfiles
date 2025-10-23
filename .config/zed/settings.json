@@ -19,7 +19,7 @@
     "font_family": "CommitMono-KGS",
     "font_weight": 700,
     "font_size": 12.5,
-    "line_height": { "custom": 1.55 }
+    "line_height": { "custom": 1.6 }
   },
   "telemetry": {
     "metrics": false,
