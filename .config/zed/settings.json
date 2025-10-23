@@ -42,6 +42,13 @@
         }
       }
     }
+    // "Fish": {
+    //   "formatter": {
+    //     "external": {
+    //       "command": "fish_indent"
+    //     }
+    //   }
+    // }
   },
   "file_types": {
     "Rust": ["**/bin/comm*", "**/bin/mdquote"]
