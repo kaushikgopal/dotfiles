@@ -6,5 +6,12 @@
     "reveal": "always",
     "use_new_terminal": true,
     "allow_concurrent_runs": false
+  },
+  {
+    "label": "codex",
+    "command": "codex --yolo",
+    "reveal": "always",
+    "use_new_terminal": true,
+    "allow_concurrent_runs": false
   }
 ]
