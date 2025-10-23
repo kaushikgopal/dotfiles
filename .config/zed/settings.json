@@ -51,7 +51,7 @@
     // }
   },
   "file_types": {
-    "Rust": ["**/bin/comm*", "**/bin/mdquote"]
+    "Rust": ["**/bin/comm*", "**/bin/mdquote", "**/bin/nato"]
   },
   // --------------------------------- THEME
   "theme": {
