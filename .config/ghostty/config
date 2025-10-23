@@ -73,8 +73,8 @@ font-style-bold-italic  = 700Italic
 
 # # Berkeley Mono (TX-02-Variable) -------- -->
 # font-family             = TX-02-Variable
-# font-size               = 14
-# adjust-cell-height      = 15%
+# font-size               = 13
+# adjust-cell-height      = 30%
 # font-variation          = wght=500
 # font-variation-bold     = wght=750
 #
@@ -87,7 +87,7 @@ font-style-bold-italic  = 700Italic
 # # ss03 - inverted slash
 # # ss05 - german r
 # # ss06 - alternative pipe |
-# ss12 - ligatures ->
+# # ss12 - ligatures ->
 
 
 
