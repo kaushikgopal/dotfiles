@@ -96,16 +96,6 @@ export BAT_CONFIG_PATH=$HOME/.config/.bat.conf
 export RIPGREP_CONFIG_PATH=$HOME/.config/.ripgreprc
 
 # -----------------------------------
-# Rust development
-if test -s $HOME/.cargo/env.fish
-    # Ensures cargo-provided bins such as rust-script are discoverable every time a shell starts after rustup installs them.
-    source "$HOME/.cargo/env.fish"
-else
-    # Avoids sourcing a non-existent file when rustup has not yet been installed; this no-op protects first-time setups from confusing errors.
-    # intentional no-op
-end
-
-# -----------------------------------
 # pyenv for python development setup
 pyenv init - fish | source
 
