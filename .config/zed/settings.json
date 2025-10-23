@@ -9,7 +9,7 @@
 {
   // ---------------------------------
   "buffer_font_family": "CommitMono-KGS",
-  "buffer_font_size": 12.5,
+  "buffer_font_size": 13.5,
   "buffer_font_weight": 575,
   "cursor_blink": false,
   "hide_mouse": "on_typing_and_movement",
@@ -18,8 +18,8 @@
   "terminal": {
     "font_family": "CommitMono-KGS",
     "font_weight": 700,
-    "font_size": 11.5,
-    "line_height": { "custom": 1.6 }
+    "font_size": 12.5,
+    "line_height": { "custom": 1.55 }
   },
   "telemetry": {
     "metrics": false,
@@ -28,7 +28,20 @@
   "wrap_guides": [80],
   // --------------------------------- Language specific instructions
   "languages": {
-    "Markdown": {}
+    "Markdown": {
+      "format_on_save": "on",
+      "formatter": {
+        "external": {
+          "command": "prettier",
+          "arguments": [
+            "--prose-wrap",
+            "always",
+            "--stdin-filepath",
+            "{buffer_path}"
+          ]
+        }
+      }
+    }
   },
   // --------------------------------- THEME
   "theme": {
@@ -46,5 +59,11 @@
         "font_weight": 700
       }
     }
+  },
+  // ----------------------------------- EXTENSIONS
+  "auto_install_extensions": {
+    "ini": true,
+    "fish": true,
+    "kotlin": true
   }
 }
