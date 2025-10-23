@@ -62,10 +62,10 @@ window-padding-balance          = true
 font-thicken                    = true
 
 # Commit Mono - KG ---------- -->
-font-family             = CommitMono-KGS
-#font-family             = CommitMono-KG
+# font-family             = CommitMono-KGS
+font-family             = CommitMono-KG
 font-size               = 12.5
-adjust-cell-height      = 45%
+adjust-cell-height      = 42%
 font-style              = 550Regular
 font-style-italic       = 550Italic
 font-style-bold         = 700Regular
@@ -238,5 +238,3 @@ font-style-bold-italic  = 700Italic
 # # ss03 - alt g
 # # ss04 - alt 3 6 9
 # # ss05 - f - no lower loop
-
-
