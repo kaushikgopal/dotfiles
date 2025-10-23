@@ -95,9 +95,8 @@ export BAT_CONFIG_PATH=$HOME/.config/.bat.conf
 
 export RIPGREP_CONFIG_PATH=$HOME/.config/.ripgreprc
 
-# -----------------------------------
-# pyenv for python development setup
-pyenv init - fish | source
+set -Ux PYENV_ROOT $HOME/.pyenv
+test -d $PYENV_ROOT/bin; and fish_add_path $PYENV_ROOT/bin
 
 # -----------------------------------
 # FZF
@@ -127,7 +126,6 @@ set -gx FZF_CTRL_R_OPTS " \
 # Zoxide
 zoxide init --cmd j fish | source
 
-
 # ---------------------------------------------------------
 # special instructions on bind
 # function on_fish_bind_mode --on-variable fish_bind_mode
@@ -136,6 +134,16 @@ zoxide init --cmd j fish | source
 # ---------------------------------------------------------
 # Starship
 # starship init fish | source
+
+# -----------------------------------
+# pyenv for python development setup
+if not command -q pyenv
+    # Keep startup quiet when pyenv is absent; otherwise the guard would still emit noise on machines without Python tooling.
+    true
+else
+    # Ensure shims and shell functions are active so `pyenv shell` stops erroring when fish sessions start.
+    pyenv init - fish | source
+end
 
 # Custom key bindings
 # this allows me to use my karabiner delete word keybindings in fish
