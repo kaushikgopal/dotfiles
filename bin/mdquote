@@ -17,13 +17,8 @@ fn main() -> io::Result<()> {
             // The Python version emits a lone marker when callers send spacing lines, so we preserve that contract verbatim.
             writeln!(stdout, ">")?;
         } else {
-            if trimmed.starts_with('>') {
-                // Upstream content that already carries the quote must flow through untouched so we do not stack prefixes.
-                writeln!(stdout, "{trimmed}")?;
-            } else {
-                // Everything else needs the quote prefix so downstream consumers can treat the output as a fully quoted block.
-                writeln!(stdout, "> {trimmed}")?;
-            }
+            // Stacking markers keeps re-quoting explicit and ensures mdquote injects a visible depth level every run so consumers can unnest by counting prefixes.
+            writeln!(stdout, "> {trimmed}")?;
         }
     }
 
