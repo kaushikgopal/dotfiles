@@ -16,10 +16,10 @@
   "ui_font_size": 16,
   "vim_mode": true,
   "terminal": {
-    "font_family": "CommitMono-KGS",
-    "font_weight": 700,
+    "font_family": "CommitMono-KG",
+    "font_weight": 550,
     "font_size": 12.5,
-    "line_height": { "custom": 1.6 }
+    "line_height": { "custom": 1.55 }
   },
   "telemetry": {
     "metrics": false,
