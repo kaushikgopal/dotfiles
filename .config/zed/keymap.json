@@ -26,7 +26,8 @@
   {
     "context": "Workspace",
     "bindings": {
-      "cmd-p": "command_palette::Toggle"
+      "cmd-p": "command_palette::Toggle",
+      "cmd-ctrl-o": "project_symbols::Toggle"
     }
   }
 ]
