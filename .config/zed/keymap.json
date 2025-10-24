@@ -8,7 +8,11 @@
 [
   {
     "bindings": {
-      "cmd-o": "file_finder::Toggle"
+      "cmd-o": "file_finder::Toggle",
+      "ctrl-alt-c": [
+        "agent::NewExternalAgentThread",
+        { "agent": "claude_code" }
+      ]
     }
   },
   {

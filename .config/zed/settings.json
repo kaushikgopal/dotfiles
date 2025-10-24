@@ -75,5 +75,17 @@
     "ini": true,
     "fish": true,
     "kotlin": true
+  },
+  // ------------------------------------- AI Stuff
+  // ---------- [ACP] terminal-based agents
+  "agent_servers": {
+    "gemini": {
+      "ignore_system_version": false
+    },
+    "claude": {
+      "env": {
+        "CLAUDE_CODE_EXECUTABLE": "/opt/homebrew/bin/claude"
+      }
+    }
   }
 }
