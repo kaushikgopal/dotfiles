@@ -55,9 +55,9 @@
   },
   // --------------------------------- THEME
   "theme": {
-    // "mode": "system",
-    "mode": "dark",
-    "light": "One Light",
+    // "mode": "dark",
+    "mode": "system",
+    "light": "Night Owl Light",
     "dark": "Ayu Mirage"
   },
   // ---- THEME overrides
