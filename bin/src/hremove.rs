@@ -1,8 +1,3 @@
-#!/usr/bin/env rust-script
-//! ```cargo
-//! [dependencies]
-//! ```
-
 use std::io::{self, BufRead, Write};
 
 fn main() -> io::Result<()> {

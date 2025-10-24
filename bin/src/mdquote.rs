@@ -1,4 +1,3 @@
-#!/usr/bin/env rust-script
 use std::io::{self, BufRead, Write};
 
 fn main() -> io::Result<()> {
