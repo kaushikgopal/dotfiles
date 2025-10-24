@@ -54,8 +54,7 @@ if status is-interactive
     abbr --add --global g    git # using a git function which is better
     abbr --add --global g.   git add .
     abbr --add --global gs   "git status -s"
-    abbr --add --global gano 'git acan'
-    abbr --add --global gsh  "git show HEAD~"
+    abbr --add --global gcm  git cm
     abbr --add --global greb 'git rebase --interactive HEAD~'
 
     # llm commands
