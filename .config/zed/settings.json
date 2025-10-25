@@ -77,11 +77,27 @@
     "kotlin": true
   },
   // ------------------------------------- AI Stuff
+  "agent": {
+    "default_model": {
+      "provider": "GATEWAY GPT",
+      "model": "gpt-5"
+    },
+    "model_parameters": []
+  },
+  // ---------- Edit prediction (autocomplete)
+  "features": {
+    // "edit_prediction_provider": "zed"
+    "edit_prediction_provider": "copilot"
+  },
+  "edit_predictions": {
+    "disabled_globs": []
+  },
   // ---------- [ACP] terminal-based agents
   "agent_servers": {
     "gemini": {
       "ignore_system_version": false
     },
+    // "codex" is configured via the interface
     "claude": {
       "env": {
         "CLAUDE_CODE_EXECUTABLE": "/opt/homebrew/bin/claude"
