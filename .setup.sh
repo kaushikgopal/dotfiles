@@ -38,7 +38,6 @@ files_to_link=(
     .config/zed
     .editorconfig
     .firebender
-    # .gitconfig   # symlink on first run
     .hushlogin
     .ideavimrc
     .profile

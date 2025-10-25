@@ -6,7 +6,7 @@
 .claude/todos
 .config/git/config-*
 # ignore global git ignore file to prevent claude from modifying it
-.config/git/ignore
+#.config/git/ignore
 .config/nushell/history.txt
 .config/nushell/secrets.nu
 .config/nushell/vendor
