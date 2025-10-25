@@ -29,12 +29,13 @@
       "ctrl-shift-down": "editor::SelectSmallerSyntaxNode"
       // "j k": "vim::NormalBefore"
     }
-  },
-  {
-    "context": "vim_mode == normal",
-    "bindings": {
-      "g h": "editor::GoToHunk",
-      "g shift-h": "editor::GoToPreviousHunk"
-    }
   }
+  // [ c = [ is easy to type in vim and c - chunk
+  // {
+  //   "context": "vim_mode == normal",
+  //   "bindings": {
+  //     "g h": "editor::GoToHunk",
+  //     "g shift-h": "editor::GoToPreviousHunk"
+  //   }
+  // }
 ]
