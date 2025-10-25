@@ -16,6 +16,13 @@
     }
   },
   {
+    "context": "Workspace",
+    "bindings": {
+      "cmd-p": "command_palette::Toggle",
+      "cmd-ctrl-o": "project_symbols::Toggle"
+    }
+  },
+  {
     "context": "vim_mode == normal || vim_mode == visual || vim_mode == operator",
     "bindings": {
       "ctrl-shift-up": "editor::SelectLargerSyntaxNode",
@@ -24,10 +31,10 @@
     }
   },
   {
-    "context": "Workspace",
+    "context": "vim_mode == normal",
     "bindings": {
-      "cmd-p": "command_palette::Toggle",
-      "cmd-ctrl-o": "project_symbols::Toggle"
+      "g h": "editor::GoToHunk",
+      "g shift-h": "editor::GoToPreviousHunk"
     }
   }
 ]
