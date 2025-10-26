@@ -66,8 +66,8 @@ font-thicken                    = true
 font-family             = CommitMono-KG
 font-size               = 12.5
 adjust-cell-height      = 42%
-font-style              = 550Regular
-font-style-italic       = 550Italic
+font-style              = 500Regular
+font-style-italic       = 500Italic
 font-style-bold         = 700Regular
 font-style-bold-italic  = 700Italic
 
