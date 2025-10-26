@@ -14,9 +14,8 @@
   "buffer_line_height": { "custom": 1.55 },
   "cursor_blink": false,
   "hide_mouse": "on_typing_and_movement",
+  "project_panel": { "entry_spacing": "standard" },
   "relative_line_numbers": true,
-  "ui_font_size": 16,
-  "vim_mode": true,
   "terminal": {
     "font_family": "CommitMono-KG",
     "font_weight": 550,
@@ -27,7 +26,35 @@
     "metrics": false,
     "diagnostics": false
   },
+  "ui_font_size": 16,
+  // "vim_mode": true,
+  "helix_mode": true, // trying this out
   "wrap_guides": [80],
+  // --------------------------------- THEME
+  "theme": {
+    // "mode": "dark",
+    "mode": "system",
+    "light": "Night Owl Light",
+    // "dark": "Ayu Mirage"
+    "dark": "Everforest Dark Hard"
+  },
+  // ---- THEME overrides
+  "experimental.theme_overrides": {
+    "players": [{ "cursor": "#FF4685" }],
+    "syntax": {
+      "title": {
+        "color": "#FF4685",
+        "font_weight": 700
+      }
+    }
+  },
+  // ----------------------------------- EXTENSIONS
+  "auto_install_extensions": {
+    "ini": true,
+    "fish": true,
+    "kotlin": true,
+    "everforest-theme": true
+  },
   // --------------------------------- Language specific instructions
   "languages": {
     "Markdown": {
@@ -54,29 +81,6 @@
   },
   "file_types": {
     "Rust": ["**/bin/comm*", "**/bin/mdquote", "**/bin/nato"]
-  },
-  // --------------------------------- THEME
-  "theme": {
-    // "mode": "dark",
-    "mode": "system",
-    "light": "Night Owl Light",
-    "dark": "Ayu Mirage"
-  },
-  // ---- THEME overrides
-  "experimental.theme_overrides": {
-    "players": [{ "cursor": "#FF4685" }],
-    "syntax": {
-      "title": {
-        "color": "#FF4685",
-        "font_weight": 700
-      }
-    }
-  },
-  // ----------------------------------- EXTENSIONS
-  "auto_install_extensions": {
-    "ini": true,
-    "fish": true,
-    "kotlin": true
   },
   // ------------------------------------- AI Stuff
   "agent": {
