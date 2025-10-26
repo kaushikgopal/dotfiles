@@ -52,31 +52,31 @@
     acan = !git add . && git commit --amend --no-edit
 
 
-    ; d = "!f() { \
-    ;         files=$(git diff --name-only); \
-    ;         count=$(echo \"$files\" | grep -c .); \
-    ;         if [ \"$count\" -eq 1 ]; then \
-    ;             git diff -- \"$files\"; \
-    ;         elif [ \"$count\" -gt 1 ]; then \
-    ;             echo \"$files\" | fzf -0 -m --height 40% --layout=reverse --border \
-    ;                 --preview 'git diff --color=always -- {-1} | sed -n \"1,200p\"' \
-    ;                 --preview-window=right:70%:wrap \
-    ;             | xargs -r git diff --; \
-    ;         fi; \
-    ;     }; f"
+    d = "!f() { \
+            files=$(git diff --name-only); \
+            count=$(echo \"$files\" | grep -c .); \
+            if [ \"$count\" -eq 1 ]; then \
+                git diff -- \"$files\"; \
+            elif [ \"$count\" -gt 1 ]; then \
+                echo \"$files\" | fzf -0 -m --height 40% --layout=reverse --border \
+                    --preview 'git diff --color=always -- {-1} | sed -n \"1,200p\"' \
+                    --preview-window=right:70%:wrap \
+                | xargs -r git diff --; \
+            fi; \
+        }; f"
 
-    ; ds = "!f() { \
-    ;         files=$(git diff --name-only --staged); \
-    ;         count=$(echo \"$files\" | grep -c .); \
-    ;         if [ \"$count\" -eq 1 ]; then \
-    ;             git diff --staged -- \"$files\"; \
-    ;         elif [ \"$count\" -gt 1 ]; then \
-    ;             echo \"$files\" | fzf -0 -m --height 40% --layout=reverse --border \
-    ;                 --preview 'git diff --staged --color=always -- {-1} | sed -n \"1,200p\"' \
-    ;                 --preview-window=right:60%:wrap \
-    ;             | xargs -r git diff --staged --; \
-    ;         fi; \
-    ;     }; f"
+    ds = "!f() { \
+            files=$(git diff --name-only --staged); \
+            count=$(echo \"$files\" | grep -c .); \
+            if [ \"$count\" -eq 1 ]; then \
+                git diff --staged -- \"$files\"; \
+            elif [ \"$count\" -gt 1 ]; then \
+                echo \"$files\" | fzf -0 -m --height 40% --layout=reverse --border \
+                    --preview 'git diff --staged --color=always -- {-1} | sed -n \"1,200p\"' \
+                    --preview-window=right:60%:wrap \
+                | xargs -r git diff --staged --; \
+            fi; \
+        }; f"
     din   = diff --name-only master...HEAD  # list files that have changed
     mt    = mergetool
     p = pull
@@ -96,34 +96,34 @@
     wipr = !git reset --soft HEAD~ && git reset
     wt = worktree
 
-    ; ll  = "!f() { \
-    ;         if [ $# -eq 0 ]; then \
-    ;             git log --all --pretty=format:'%Cgreen%h%Creset %s %Cred%d%Creset' --color=always \
-    ;                 | fzf --ansi --preview 'git show --pretty=medium --color=always $(echo {} | cut -d\" \" -f1)' \
-    ;                 | cut -d\" \" -f1; \
-    ;         else \
-    ;             git log --pretty=format:'%Cgreen%h%Creset %s %Cred%d%Creset' --color=always \"$@\" \
-    ;                 | fzf --ansi --preview 'git show --pretty=medium --color=always $(echo {} | cut -d\" \" -f1)' \
-    ;                 | cut -d\" \" -f1; \
-    ;         fi; \
-    ;     }; f"
+    ll  = "!f() { \
+            if [ $# -eq 0 ]; then \
+                git log --all --pretty=format:'%Cgreen%h%Creset %s %Cred%d%Creset' --color=always \
+                    | fzf --ansi --preview 'git show --pretty=medium --color=always $(echo {} | cut -d\" \" -f1)' \
+                    | cut -d\" \" -f1; \
+            else \
+                git log --pretty=format:'%Cgreen%h%Creset %s %Cred%d%Creset' --color=always \"$@\" \
+                    | fzf --ansi --preview 'git show --pretty=medium --color=always $(echo {} | cut -d\" \" -f1)' \
+                    | cut -d\" \" -f1; \
+            fi; \
+        }; f"
     l = !git log --graph --decorate --date=short --pretty=format:'%C(magenta)%h%Creset %C(italic brightblack)%ad%C(reset)%C(auto) %s %C(blue)%an%C(auto) %D%C(reset)' --topo-order -30
 
     # compare two commits
     #   git compare <commit1> <commit2>
-    ; compare = "!compare() { \
-    ;     if git merge-base --is-ancestor \"$1\" \"$2\"; then \
-    ;         echo \"    $1  ──▶  $2\"; \
-    ;         echo \"    $1 is an ancestor of $2\"; \
-    ;         echo \"i.e $2 commit was after $1\"; \
-    ;     elif git merge-base --is-ancestor \"$2\" \"$1\"; then \
-    ;         echo \"    $2  ──▶  $1\"; \
-    ;         echo \"    $2 is an ancestor of $1\"; \
-    ;         echo \"i.e $1 commit was after $2\"; \
-    ;     else \
-    ;         echo \"✘   these commits are not related\"; \
-    ;     fi; \
-    ; }; compare"
+    compare = "!compare() { \
+        if git merge-base --is-ancestor \"$1\" \"$2\"; then \
+            echo \"    $1  ──▶  $2\"; \
+            echo \"    $1 is an ancestor of $2\"; \
+            echo \"i.e $2 commit was after $1\"; \
+        elif git merge-base --is-ancestor \"$2\" \"$1\"; then \
+            echo \"    $2  ──▶  $1\"; \
+            echo \"    $2 is an ancestor of $1\"; \
+            echo \"i.e $1 commit was after $2\"; \
+        else \
+            echo \"✘   these commits are not related\"; \
+        fi; \
+    }; compare"
 
 [credential]
 	helper = osxkeychain
