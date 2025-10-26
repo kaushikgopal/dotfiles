@@ -27,8 +27,7 @@
     "diagnostics": false
   },
   "ui_font_size": 16,
-  // "vim_mode": true,
-  "helix_mode": true, // trying this out
+  "vim_mode": true,
   "wrap_guides": [80],
   // --------------------------------- THEME
   "theme": {
