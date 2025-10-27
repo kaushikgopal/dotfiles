@@ -31,7 +31,6 @@
   "wrap_guides": [80],
   // --------------------------------- THEME
   "theme": {
-    // "mode": "dark",
     "mode": "system",
     "light": "Night Owl Light",
     // "dark": "Ayu Mirage"
@@ -52,8 +51,7 @@
   "auto_install_extensions": {
     "ini": true,
     "fish": true,
-    "kotlin": true,
-    "everforest-theme": true
+    "kotlin": true
   },
   // --------------------------------- Language specific instructions
   "languages": {
