@@ -33,11 +33,12 @@
   "theme": {
     "mode": "system",
     "light": "One Light",
-    "dark": "Zedokai Darker (Filter Machine)"
+    "dark": "Everforest Dark Hard"
+    // "dark": "Zedokai Darker (Filter Machine)"
   },
   // ---- THEME overrides
   "experimental.theme_overrides": {
-    "link_text.hover": "#ffd866", // zedokai
+    // "link_text.hover": "#ffd866", // zedokai
     "players": [
       {
         "cursor": "#FF4685",
