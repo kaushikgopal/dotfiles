@@ -76,6 +76,16 @@ end
 
 # ----------------------------------------------------------------------------------------------------------------------
 # Path   # https://fishshell.com/docs/current/cmds/fish_add_path.html
+# set -Ux -> set once and forget
+# set -gx -> same as export
+
+set -gx ANDROID_HOME $HOME/Library/Android/sdk
+set -gx JAVA_HOME $HOME/Applications/Android\ Studio.app/Contents/jbr/Contents/Home
+# set -gx JAVA_HOME (/usr/libexec/java_home -v "17")
+# set -gx GOKU_EDN_CONFIG_FILE $HOME/.config/karabiner/karabiner.edn
+set -gx BAT_CONFIG_PATH $HOME/.config/.bat.conf
+set -gx RIPGREP_CONFIG_PATH $HOME/.config/.ripgreprc
+set -Ux PYENV_ROOT $HOME/.pyenv
 
 fish_add_path /opt/homebrew/bin # so homebrew is available
 fish_add_path ~/bin
@@ -83,18 +93,8 @@ fish_add_path ~/bin
 fish_add_path --append (brew --prefix)/sbin
 fish_add_path --append /usr/local/bin /usr/bin /bin /usr/local/sbin /usr/sbin /sbin
 fish_add_path --append ~/.local/bin # pipx
-
-export ANDROID_HOME=$HOME/Library/Android/sdk
+fish_add_path --append "$HOME/.config/gohan/bin"
 fish_add_path --append "$ANDROID_HOME/platform-tools" "$ANDROID_HOME/cmdline-tools/latest/bin" "$ANDROID_HOME/tools" "$ANDROID_HOME/tools/bin" "$ANDROID_HOME/emulator"
-
-export JAVA_HOME=$HOME/Applications/Android\ Studio.app/Contents/jbr/Contents/Home
-# export JAVA_HOME=(/usr/libexec/java_home -v"17")
-# export GOKU_EDN_CONFIG_FILE=$HOME/.config/karabiner/karabiner.edn
-export BAT_CONFIG_PATH=$HOME/.config/.bat.conf
-
-export RIPGREP_CONFIG_PATH=$HOME/.config/.ripgreprc
-
-set -Ux PYENV_ROOT $HOME/.pyenv
 test -d $PYENV_ROOT/bin; and fish_add_path $PYENV_ROOT/bin
 
 # -----------------------------------
