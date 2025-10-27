@@ -93,7 +93,7 @@ fish_add_path ~/bin
 fish_add_path --append (brew --prefix)/sbin
 fish_add_path --append /usr/local/bin /usr/bin /bin /usr/local/sbin /usr/sbin /sbin
 fish_add_path --append ~/.local/bin # pipx
-fish_add_path --append "$HOME/.config/gohan/bin"
+test -d $HOME/.config/gohan/bin; and fish_add_path --append "$HOME/.config/gohan/bin"
 fish_add_path --append "$ANDROID_HOME/platform-tools" "$ANDROID_HOME/cmdline-tools/latest/bin" "$ANDROID_HOME/tools" "$ANDROID_HOME/tools/bin" "$ANDROID_HOME/emulator"
 test -d $PYENV_ROOT/bin; and fish_add_path $PYENV_ROOT/bin
 
