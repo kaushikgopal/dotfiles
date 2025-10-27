@@ -32,13 +32,22 @@
   // --------------------------------- THEME
   "theme": {
     "mode": "system",
-    "light": "Night Owl Light",
-    // "dark": "Ayu Mirage"
-    "dark": "Everforest Dark Hard"
+    "light": "One Light",
+    "dark": "Zedokai Darker (Filter Machine)"
   },
   // ---- THEME overrides
   "experimental.theme_overrides": {
-    "syntax": {}
+    "link_text.hover": "#ffd866", // zedokai
+    "players": [
+      {
+        "cursor": "#FF4685",
+        "selection": "#FF46855c",
+        "background": "#FF468530"
+      }
+    ],
+    "syntax": {
+      "link_uri": { "font_style": "italic" }
+    }
   },
   // ----------------------------------- EXTENSIONS
   "auto_install_extensions": {
