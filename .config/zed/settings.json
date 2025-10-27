@@ -47,6 +47,7 @@
       }
     ],
     "syntax": {
+      "link_text": { "font_style": "normal" },
       "link_uri": { "font_style": "italic" }
     }
   },
