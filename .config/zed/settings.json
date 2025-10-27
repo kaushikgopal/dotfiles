@@ -38,14 +38,7 @@
   },
   // ---- THEME overrides
   "experimental.theme_overrides": {
-    "search.match_background": "#dbbc7f5c",
-    "players": [{ "cursor": "#FF4685" }],
-    "syntax": {
-      "title": {
-        "color": "#FF4685",
-        "font_weight": 700
-      }
-    }
+    "syntax": {}
   },
   // ----------------------------------- EXTENSIONS
   "auto_install_extensions": {
