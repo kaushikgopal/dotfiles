@@ -6,6 +6,8 @@
     path = ~/.config/git/config-oss
 [includeIf "gitdir:~/caper-configs-mirror/"]
     path = ~/.config/git/config-oss
+[includeIf "gitdir:~/.config/"]
+    path = ~/.config/git/config-oss
 
 [core]
   editor = zed
