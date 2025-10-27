@@ -19,7 +19,8 @@
     "context": "Workspace",
     "bindings": {
       "cmd-p": "command_palette::Toggle",
-      "cmd-ctrl-o": "project_symbols::Toggle"
+      "cmd-ctrl-o": "project_symbols::Toggle",
+      "ctrl-alt-cmd-shift-g": "git_panel::ToggleFocus"
     }
   },
   {
