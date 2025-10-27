@@ -39,6 +39,7 @@
   },
   // ---- THEME overrides
   "experimental.theme_overrides": {
+    "search.match_background": "#dbbc7f5c",
     "players": [{ "cursor": "#FF4685" }],
     "syntax": {
       "title": {
