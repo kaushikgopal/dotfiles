@@ -184,6 +184,7 @@ cask "font-jost"
 cask "font-figtree"
 cask "font-sn-pro"
 cask "font-inter"
+cask "font-lilex"
 
 #cask "font-cascadia-code"
 #cask "font-cascadia-code-pl"
