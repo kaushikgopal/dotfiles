@@ -18,9 +18,10 @@
   "relative_line_numbers": true,
   "terminal": {
     "font_family": "CommitMono-KG",
-    "font_weight": 550,
-    "font_size": 12.5,
-    "line_height": { "custom": 1.55 }
+    "font_weight": 575,
+    "font_size": 12,
+    "line_height": { "custom": 1.5 },
+    "copy_on_select": true
   },
   "telemetry": {
     "metrics": false,
