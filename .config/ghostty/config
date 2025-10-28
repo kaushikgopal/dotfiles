@@ -30,9 +30,11 @@ keybind = shift+enter=text:\n
 ##############################################
 # Look and Feel
 # ghostty +list-themes
-#theme     = dark:batman-kg,light:Flexoki Light
-#theme     = The Hulk
-theme     = Sublette
+# theme     = Sublette
+theme     = dark:Sublette,light:Adwaita
+# theme     = batman-kg
+# theme     = The Hulk
+# theme     = everforest-dark
 adjust-cursor-thickness         = 3
 adjust-underline-position       = 3
 #background-opacity      = 0.95
