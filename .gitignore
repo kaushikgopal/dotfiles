@@ -10,6 +10,7 @@
 .config/nushell/history.txt
 .config/nushell/secrets.nu
 .config/nushell/vendor
+.config/fish/conf.d/gohan.fish
 .config/fish/fish_variables
 .config/fish/functions/caperwt.fish
 # we maintain karabiner in a separate repo
