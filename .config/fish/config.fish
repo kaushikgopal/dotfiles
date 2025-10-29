@@ -79,6 +79,8 @@ end
 # set -Ux -> set once and forget
 # set -gx -> same as export
 
+set -gx XDG_CONFIG_HOME $HOME/.config
+
 set -gx ANDROID_HOME $HOME/Library/Android/sdk
 set -gx JAVA_HOME $HOME/Applications/Android\ Studio.app/Contents/jbr/Contents/Home
 # set -gx JAVA_HOME (/usr/libexec/java_home -v "17")

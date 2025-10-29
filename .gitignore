@@ -20,3 +20,4 @@
 .config/zsh/.zsh_sessions
 .firebender/history
 .firebender/worktrees/**
+.profile
