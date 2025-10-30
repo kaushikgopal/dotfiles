@@ -19,24 +19,19 @@ tap "buo/cask-upgrade" # better cask upgrading (see `cu`)
 ##### Unix/CLI tools
 
 brew "bat"
-brew "btop"
 brew "coreutils" # for gnu date
 brew "curl"
-brew "fastfetch"
+brew "fastfetch" # like neofetch, but faster
 brew "fd"
 brew "ffmpeg"
-brew "fzf"
 brew "gawk"
 brew "ghostscript" # for pdfs
 brew "gnupg" # "openssl"
-brew "gum"
 brew "httpie"
 brew "hugo"
 brew "imagemagick"
 brew "llm"
 brew "openssl"
-brew "pgcli"
-brew "powerlevel10k"
 brew "renameutils" # bulk renaming / copying
 brew "ripgrep"
 brew "rsync"
@@ -47,21 +42,27 @@ brew "wget"
 brew "yt-dlp"
 brew "zoxide"
 
-# brew "difftastic" # delta is pretty darn good
-#brew "xmlstarlet" # fine-grain xml manipulation
-#brew "poppler"
-# brew "neovim"
-# brew "briss" # pdf cropping tool
-# brew "exa"
-# brew "tmux"
-# brew "exiftool"
-# brew "eye-d3"
-#brew "youtube-dl"
-
 brew "fish"
+brew "fzf"
+brew "gum"
 brew "nushell"
 brew "starship"
-brew "carapace"
+
+
+#brew "btop"
+#brew "carapace"
+#brew "difftastic" # delta is pretty darn good
+#brew "xmlstarlet" # fine-grain xml manipulation
+#brew "pgcli"
+#brew "poppler"
+#brew "powerlevel10k"
+#brew "neovim"
+#brew "briss" # pdf cropping tool
+#brew "exa"
+#brew "tmux"
+#brew "exiftool"
+#brew "eye-d3"
+#brew "youtube-dl"
 
 ##############################################################
 ##### development
@@ -80,8 +81,8 @@ brew "github-keygen"
 ######################
 ##### Web dev
 brew "htmltest"
-brew "flyctl"
 brew "web-ext"      # firefox add-on dev
+#brew "flyctl"
 
 ######################
 ##### android (zulu)
@@ -142,7 +143,6 @@ brew "codex"
 brew "gemini-cli"
 #brew "sst/tap/opencode"
 
-
 #######################
 ######## IDEs
 cask "cursor"
@@ -152,40 +152,32 @@ cask "zed"
 
 ##############################################################
 ##### Mac apps
-# install 1password manually
-#cask "1password"
-#cask "1password-cli" # required for Raycast/Alfred integration
+cask "firefox"
+cask "ghostty"
 cask "google-drive"
-cask "imageoptim"
 cask "jetbrains-toolbox"
 cask "karabiner-elements"
+cask "loopback"
 cask "netnewswire"
-#cask "notunes"
 cask "obsidian"
 cask "raycast"
 cask "slack"
-cask "the-unarchiver"
-
 cask "tailscale"
-cask "zerotier-one"
-
-cask "ghostty"
-
-cask "firefox"
-#cask "google-chrome"    # probably remove this or firefox at some point
-
+cask "the-unarchiver"
+#cask "1password"       # install 1password manually
+#cask "1password-cli"   # required for Raycast/Alfred integration
+#cask "google-chrome"   # probably remove this or firefox at some point
+#cask "imageoptim"
 #cask "keyboard-maestro"
-#cask "loopback"
 #cask "soundsource"
 #cask "superduper"
 #cask "soulver"
+#cask "zerotier-one"
 
 cask "font-jost"
 cask "font-figtree"
 cask "font-sn-pro"
 cask "font-inter"
-cask "font-lilex"
-
 #cask "font-cascadia-code"
 #cask "font-cascadia-code-pl"
 #cask "font-geist"
@@ -200,6 +192,7 @@ cask "font-lilex"
 #cask "font-ibm-plex-sans"
 #cask "font-ibm-plex-serif"
 #cask "font-jetbrains-mono"
+#cask "font-lilex"
 #cask "font-new-york"
 #cask "font-plus-jakarta-sans"
 #cask "font-recursive-kg"
