@@ -7,19 +7,32 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
-  // ---------------------------------
-  "buffer_font_family": "CommitMono-KG",
   "buffer_font_size": 13.5,
-  "buffer_font_weight": 575,
+  "buffer_font_weight": 600,
+  "buffer_font_family": "TX-02-Variable",
+  "buffer_font_features": {
+    "ss02": true, // 0
+    "ss05": true, // r
+    "ss06": true, // |
+    "ss12": true // ligatures -> !=
+  },
+  // ----------------------------------------
+  // "buffer_font_size": 13.5,
+  // "buffer_font_weight": 575,
+  // "buffer_font_family": "CommitMono-KG",
+  // ----------------------------------------
   "cursor_blink": false,
   "hide_mouse": "on_typing_and_movement",
   "project_panel": { "entry_spacing": "standard" },
   "relative_line_numbers": true,
   "terminal": {
-    "font_family": "CommitMono-KG",
-    "font_weight": 575,
+    // "font_weight": 575,
+    // "line_height": { "custom": 1.5 },
+    // "font_family": "CommitMono-KG",
+    "font_weight": 600,
+    "line_height": { "custom": 1.55 },
+    "font_family": "TX-02-Variable",
     "font_size": 12,
-    "line_height": { "custom": 1.5 },
     "copy_on_select": true
   },
   "telemetry": {
@@ -33,8 +46,9 @@
   "theme": {
     "mode": "system",
     "light": "Zedokai Light",
-    "dark": "Everforest Dark Hard"
-    // "dark": "Zedokai Darker (Filter Machine)"
+    // "dark": "Everforest Dark Hard"
+    // "dark": "Night Owl Dark",
+    "dark": "Zedokai Darker (Filter Machine)"
   },
   // ---- THEME overrides
   "experimental.theme_overrides": {
@@ -55,7 +69,8 @@
   "auto_install_extensions": {
     "ini": true,
     "fish": true,
-    "kotlin": true
+    "kotlin": true,
+    "zedokai": true
   },
   // --------------------------------- Language specific instructions
   "languages": {
