@@ -62,15 +62,34 @@ window-padding-balance          = true
 
 font-thicken                    = true
 
-# Commit Mono - KG ---------- -->
-# font-family             = CommitMono-KGS
-font-family             = CommitMono-KG
-font-size               = 12.5
-adjust-cell-height      = 40%
-font-style              = 500Regular
-font-style-italic       = 500Italic
-font-style-bold         = 700Regular
-font-style-bold-italic  = 700Italic
+# # Commit Mono - KG ---------- -->
+# # font-family             = CommitMono-KGS
+# font-family             = CommitMono-KG
+# font-size               = 12.5
+# adjust-cell-height      = 40%
+# font-style              = 500Regular
+# font-style-italic       = 500Italic
+# font-style-bold         = 700Regular
+# font-style-bold-italic  = 700Italic
+#
+
+# Berkeley Mono (TX-02-Variable) -------- -->
+font-family             = TX-02-Variable
+font-size               = 13
+adjust-cell-height      = 30%
+font-variation          = wght=500
+font-variation-bold     = wght=750
+
+font-feature            = ss02
+font-feature            = ss05
+font-feature            = ss06
+font-feature            = ss12
+# ss01 - slashed 0
+# ss02 - dotted 0
+# ss03 - inverted slash
+# ss05 - german r
+# ss06 - alternative pipe |
+# ss12 - ligatures ->
 
 # # Lilex (IBM Plex Mono with ligatures) ---------- -->
 # font-family             = Lilex
@@ -81,24 +100,6 @@ font-style-bold-italic  = 700Italic
 # font-style-bold         = SemiBold
 # font-style-bold-italic  = SemiBold Italic
 
-
-# # Berkeley Mono (TX-02-Variable) -------- -->
-# font-family             = TX-02-Variable
-# font-size               = 13
-# adjust-cell-height      = 30%
-# font-variation          = wght=500
-# font-variation-bold     = wght=750
-#
-# font-feature            = ss02
-# font-feature            = ss05
-# font-feature            = ss06
-# font-feature            = ss12
-# # ss01 - slashed 0
-# # ss02 - dotted 0
-# # ss03 - inverted slash
-# # ss05 - german r
-# # ss06 - alternative pipe |
-# # ss12 - ligatures ->
 
 # # SF Mono ---------- -->
 # font-family             = SF Mono
