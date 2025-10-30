@@ -32,7 +32,7 @@
   // --------------------------------- THEME
   "theme": {
     "mode": "system",
-    "light": "One Light",
+    "light": "Zedokai Light",
     "dark": "Everforest Dark Hard"
     // "dark": "Zedokai Darker (Filter Machine)"
   },
