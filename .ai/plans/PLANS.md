@@ -4,13 +4,13 @@ This document describes the requirements for an execution plan ("ExecPlan"), a d
 
 ## How to use ExecPlans and PLANS.md
 
-When authoring an executable specification (ExecPlan), follow PLANS.md _to the letter_. If it is not in your context, refresh your memory by reading the entire PLANS.md file. Be thorough in reading (and re-reading) source material to produce an accurate specification. When creating a spec, start from the skeleton and flesh it out as you do your research.
+When authoring an executable specification (ExecPlan), follow PLANS.md _to the letter_. If it is not in your context, refresh your memory by reading the entire PLANS.md file. Be thorough in reading (and re-reading) source material to produce an accurate specification. When creating a spec, start from the template and flesh it out as you do your research.
 
-When implementing an executable specification (ExecPlan), do not prompt the user for "next steps"; simply proceed to the next milestone. Keep all sections up to date, add or split entries in the list at every stopping point to affirmatively state the progress made and next steps. Resolve ambiguities autonomously, and commit frequently.
+When implementing an executable specification (ExecPlan), do not prompt the user for "next steps"; simply proceed autonomously. Keep all sections up to date, add or split entries in the list at every stopping point to affirmatively state the progress made and next steps. Resolve ambiguities autonomously, and commit frequently.
 
 When discussing an executable specification (ExecPlan), record decisions in a log in the spec for posterity; it should be unambiguously clear why any change to the specification was made. ExecPlans are living documents, and it should always be possible to restart from _only_ the ExecPlan and no other work.
 
-When researching a design with challenging requirements or significant unknowns, use milestones to implement proof of concepts, "toy implementations", etc., that allow validating whether the user's proposal is feasible. Read the source code of libraries by finding or acquiring them, research deeply, and include prototypes to guide a fuller implementation.
+When researching a design with challenging requirements or significant unknowns, implement proof of concepts, "toy implementations", etc., that allow validating whether the user's proposal is feasible. Read the source code of libraries by finding or acquiring them, research deeply, and include prototypes to guide a fuller implementation.
 
 ## Requirements
 
@@ -24,7 +24,7 @@ NON-NEGOTIABLE REQUIREMENTS:
 
 Purpose and intent come first. Begin by explaining, in a few sentences, why the work matters from a user's perspective: what someone can do after this change that they could not do before, and how to see it working. Then guide the reader through the exact steps to achieve that outcome, including what to edit, what to run, and what they should observe.
 
-The agent executing your plan can list files, read files, search, run the project, and run tests. It does not know any prior context and cannot infer what you meant from earlier milestones. Repeat any assumption you rely on. Do not point to external blogs or docs; if knowledge is required, embed it in the plan itself in your own words. If an ExecPlan builds upon a prior ExecPlan and that file is checked in, incorporate it by reference. If it is not, you must include all relevant context from that plan.
+The agent executing your plan can list files, read files, search, run the project, and run tests. It does not know any prior context and cannot infer what you meant from earlier sections. Repeat any assumption you rely on. Do not point to external blogs or docs; if knowledge is required, embed it in the plan itself in your own words. If an ExecPlan builds upon a prior ExecPlan and that file is checked in, incorporate it by reference. If it is not, you must include all relevant context from that plan.
 
 ## Formatting
 
@@ -32,7 +32,7 @@ Format and envelope are simple and strict. Each ExecPlan must be one single fenc
 
 When writing an ExecPlan to a Markdown (.md) file where the content of the file *is only* the single ExecPlan, you should omit the triple backticks.
 
-Write in plain prose. Prefer sentences over lists. Avoid checklists, tables, and long enumerations unless brevity would obscure meaning. Checklists are permitted only in the `Progress` section, where they are mandatory. Narrative sections must remain prose-first.
+Write using hybrid prose/bullets approach: prose where it helps understanding of "why" and flow, bullets where agent needs to scan "what" and "how". Checklists are mandatory in the TASKS section. DESIGN sections should be prose-focused for narrative clarity where it aids comprehension.
 
 ## Guidelines
 
@@ -50,103 +50,260 @@ Validation is not optional. Include instructions to run tests, to start the syst
 
 Capture evidence. When your steps produce terminal output, short diffs, or logs, include them inside the single fenced block as indented examples. Keep them concise and focused on what proves success. If you need to include a patch, prefer file-scoped diffs or small excerpts that a reader can recreate by following your instructions rather than pasting large blobs.
 
-## Milestones
-
-Milestones are narrative, not bureaucracy. If you break the work into milestones, introduce each with a brief paragraph that describes the scope, what will exist at the end of the milestone that did not exist before, the commands to run, and the acceptance you expect to observe. Keep it readable as a story: goal, work, result, proof. Progress and milestones are distinct: milestones tell the story, progress tracks granular work. Both must exist. Never abbreviate a milestone merely for the sake of brevity, do not leave out details that could be crucial to a future implementation.
-
-Each milestone must be independently verifiable and incrementally implement the overall goal of the execution plan.
-
 ## Living plans and design decisions
 
-* ExecPlans are living documents. As you make key design decisions, update the plan to record both the decision and the thinking behind it. Record all decisions in the `Decision Log` section.
-* ExecPlans must contain and maintain a `Progress` section, a `Surprises & Discoveries` section, a `Decision Log`, and an `Outcomes & Retrospective` section. These are not optional.
+* ExecPlans are living documents. As you make key design decisions, update the plan to record both the decision and the thinking behind it. Record all decisions in the `Decision Log` section within EXECUTION.
+* ExecPlans must contain and maintain a `TASKS` section, a `Surprises & Discoveries` section, a `Decision Log`, and an `Outcomes & Retrospective` section within EXECUTION. These are not optional.
 * When you discover optimizer behavior, performance tradeoffs, unexpected bugs, or inverse/unapply semantics that shaped your approach, capture those observations in the `Surprises & Discoveries` section with short evidence snippets (test output is ideal).
-* If you change course mid-implementation, document why in the `Decision Log` and reflect the implications in `Progress`. Plans are guides for the next contributor as much as checklists for you.
+* If you change course mid-implementation, document why in the `Decision Log` and reflect the implications in `TASKS` and `Next Steps`. Plans are guides for the next contributor as much as checklists for you.
 * At completion of a major task or the full plan, write an `Outcomes & Retrospective` entry summarizing what was achieved, what remains, and lessons learned.
 
-# Prototyping milestones and parallel implementations
+## Prototyping and parallel implementations
 
-It is acceptable—-and often encouraged—-to include explicit prototyping milestones when they de-risk a larger change. Examples: adding a low-level operator to a dependency to validate feasibility, or exploring two composition orders while measuring optimizer effects. Keep prototypes additive and testable. Clearly label the scope as “prototyping”; describe how to run and observe results; and state the criteria for promoting or discarding the prototype.
+It is acceptable—-and often encouraged—-to include explicit prototyping phases when they de-risk a larger change. Examples: adding a low-level operator to a dependency to validate feasibility, or exploring two composition orders while measuring optimizer effects. Keep prototypes additive and testable. Clearly label the scope as "prototyping"; describe how to run and observe results; and state the criteria for promoting or discarding the prototype.
 
 Prefer additive code changes followed by subtractions that keep tests passing. Parallel implementations (e.g., keeping an adapter alongside an older path during migration) are fine when they reduce risk or enable tests to continue passing during a large migration. Describe how to validate both paths and how to retire one safely with tests. When working with multiple new libraries or feature areas, consider creating spikes that evaluate the feasibility of these features _independently_ of one another, proving that the external library performs as expected and implements the features we need in isolation.
 
-## Skeleton of a Good ExecPlan
+## ExecPlan Format (DESIGN/EXECUTION/TASKS)
 
-```md
-# <Short, action-oriented description>
+For features requiring iterative autonomous execution with frequent context management, use this streamlined single-file format that separates stable design from dynamic execution state. This format optimizes for:
 
-This ExecPlan is a living document. The sections `Progress`, `Surprises & Discoveries`, `Decision Log`, and `Outcomes & Retrospective` must be kept up to date as work proceeds.
+- **Surviving compaction**: Plan is external memory, not conversation context
+- **Agent autonomy**: Minimal interruption during execution phase
+- **Scannable progress**: Quick orientation without reading full prose
+- **Clean git history**: Design stable, execution medium churn, tasks high churn
 
-If PLANS.md file is checked into the repo, reference the path to that file here from the repository root and note that this document must be maintained in accordance with PLANS.md.
+A single, stateless agent -- or a human novice -- can read your ExecPlan from top to bottom and produce a working, observable result. That is the bar: **SELF-CONTAINED, SELF-SUFFICIENT, NOVICE-GUIDING, OUTCOME-FOCUSED**.
+
+### Source of Truth Priority
+
+When exec plans exist in .ai/plans/:
+
+- **ALWAYS treat them as source of truth** over conversation memory
+- **When preparing to compact**: Update exec plan with current state first
+- **When compacting**: Base summary on exec plan file, not conversation details
+- **After compaction**: Check conversation summary for plan path, read that file, and resume autonomously
+- **During execution**: Update plan frequently after every task completion, don't rely on conversation context
+- **Output plan reference frequently**: After every task completion, output the plan file path so it survives summarization
+
+### Format Overview
+
+Each exec plan is a single .md file in .ai/plans/ with three major sections divided by H1 headers:
+
+1. **DESIGN** - Stable comprehensive specification (updated only when design changes)
+2. **EXECUTION** - Living log of decisions, discoveries, and context (updated as discoveries happen)
+3. **TASKS** - Granular checklist with inline decision notes (updated after every task)
+
+### Writing Style
+
+Use hybrid prose/bullets approach to maximize both agent understanding and scannability:
+
+**Use prose where it helps agent understand "why" and "flow":**
+- Purpose / Big Picture (prose)
+- Context & Orientation (prose for definitions, bullets for file lists)
+- Plan of Work (prose narrative - helps agent see the big picture)
+
+**Use bullets where agent needs to scan "what" and "how":**
+- Concrete Steps (bullets)
+- Interfaces & Dependencies (bullets with code examples)
+- Validation (bullets)
+- TASKS section (bullets/checklist)
+- Next Steps (bullets)
+
+### TodoWrite Integration
+
+If using Claude Code: Automatically sync the TASKS section to TodoWrite for native todo UI tracking. When reading or updating the exec plan, populate TodoWrite from TASKS. When completing a task, update both exec plan TASKS and TodoWrite simultaneously. Keep both in sync throughout execution.
+
+### Execution Behavior
+
+**During DESIGN stage:**
+- Agent asks clarifying questions
+- Agent collaborates with user on design
+- Agent may iterate multiple times
+- Agent asks permission before proceeding to EXECUTION
+
+**During EXECUTION stage:**
+- Agent executes autonomously without interruption
+- Agent does NOT ask "should I continue?" between tasks
+- Agent does NOT ask "is this correct?" after each edit
+- Agent updates TASKS after every completed task
+- Agent outputs plan reference after every task
+- Agent only stops when: all tasks complete, blocker encountered, or context approaching limit
+
+**When context approaching limit:**
+- Agent updates Next Steps with specific details
+- Agent updates all completed tasks
+- Agent outputs plan reference
+- Agent continues working until hard limit (does not preemptively stop)
+
+**After compaction:**
+- Agent reads conversation summary for plan file path
+- Agent reads the plan file (source of truth)
+- Agent resumes from Next Steps
+- Agent outputs: "Reading source of truth: [path]"
+
+### Stage Transition Outputs
+
+Output visual stage markers in chat (works across all LLM agents):
+
+**Entering design:**
+```
+====================================
+🎨 Entering DESIGN stage
+====================================
+```
+
+**Entering execution:**
+```
+====================================
+⚡ Entering EXECUTION stage
+====================================
+
+📋 Executing plan: .ai/plans/[feature-name].md
+   This file is the SOURCE OF TRUTH for all context, decisions, and progress.
+```
+
+**After each task completion:**
+```
+✓ Task completed: [task name]
+✓ TASKS updated (X completed, Y pending)
+📋 Source of truth: .ai/plans/[feature-name].md
+```
+
+**When resuming after compaction:**
+```
+Reading source of truth: .ai/plans/[feature-name].md
+
+Progress: X completed, Y pending
+Resuming from: [next task]
+```
+
+<template>
+# [Feature Name]
+
+This ExecPlan follows .ai/plans/PLANS.md requirements and is a living document.
+
+If using Claude Code, you can derive TodoWrite session state from TASKS section.
+
+Last Updated: [YYYY-MM-DDTHH:MM:SSZ]
+
+---
+
+# DESIGN
 
 ## Purpose / Big Picture
 
-Explain in a few sentences what someone gains after this change and how they can see it working. State the user-visible behavior you will enable.
+Write 2-4 sentences explaining what the user can do after this change that they could not do before. Describe the observable outcome and how to demonstrate it working. Focus on user-visible value, not implementation details.
 
-## Progress
+## Context & Orientation
 
-Use a list with checkboxes to summarize granular steps. Every stopping point must be documented here, even if it requires splitting a partially completed task into two (“done” vs. “remaining”). This section must always reflect the actual current state of the work.
+Describe the current repository state relevant to this task. Define any technical terms in plain language. List key files with full repository-relative paths. Explain how the pieces fit together so a novice can navigate confidently. Do not assume prior knowledge.
 
-- [x] (2025-10-01 13:00Z) Example completed step.
-- [ ] Example incomplete step.
-- [ ] Example partially completed step (completed: X; remaining: Y).
-
-Use timestamps to measure rates of progress.
-
-## Surprises & Discoveries
-
-Document unexpected behaviors, bugs, optimizations, or insights discovered during implementation. Provide concise evidence.
-
-- Observation: …
-  Evidence: …
-
-## Decision Log
-
-Record every decision made while working on the plan in the format:
-
-- Decision: …
-  Rationale: …
-  Date/Author: …
-
-## Outcomes & Retrospective
-
-Summarize outcomes, gaps, and lessons learned at major milestones or at completion. Compare the result against the original purpose.
-
-## Context and Orientation
-
-Describe the current state relevant to this task as if the reader knows nothing. Name the key files and modules by full path. Define any non-obvious term you will use. Do not refer to prior plans.
+Key files:
+- [path/to/file.ext] - [purpose and role]
+- [path/to/other.ext] - [purpose and role]
 
 ## Plan of Work
 
-Describe, in prose, the sequence of edits and additions. For each edit, name the file and location (function, module) and what to insert or change. Keep it concrete and minimal.
+Write a prose narrative explaining the sequence of changes. Describe what will be edited or created and in what order. Keep it concrete but focus on the flow and reasoning, not every line of code. Help the agent understand the big picture and dependencies between steps.
 
 ## Concrete Steps
 
-State the exact commands to run and where to run them (working directory). When a command generates output, show a short expected transcript so the reader can compare. This section must be updated as work proceeds.
+List the exact commands to run and where to run them. Show expected outputs so the reader can compare. Include test commands and how to verify each step worked.
 
-## Validation and Acceptance
+- Step 1: [command]
+  Expected: [output or behavior]
 
-Describe how to start or exercise the system and what to observe. Phrase acceptance as behavior, with specific inputs and outputs. If tests are involved, say "run <project’s test command> and expect <N> passed; the new test <name> fails before the change and passes after>".
+- Step 2: [command]
+  Expected: [output or behavior]
 
-## Idempotence and Recovery
+## Interfaces & Dependencies
 
-If steps can be repeated safely, say so. If a step is risky, provide a safe retry or rollback path. Keep the environment clean after completion.
+Specify the types, function signatures, libraries, and modules to use. Show code examples where helpful. Be prescriptive about naming and structure.
 
-## Artifacts and Notes
+Dependencies:
+- [library@version] - [why we're using it]
 
-Include the most important transcripts, diffs, or snippets as indented examples. Keep them concise and focused on what proves success.
+Key interfaces:
 
-## Interfaces and Dependencies
-
-Be prescriptive. Name the libraries, modules, and services to use and why. Specify the types, traits/interfaces, and function signatures that must exist at the end of the milestone. Prefer stable names and paths such as `crate::module::function` or `package.submodule.Interface`. E.g.:
-
-In crates/foo/planner.rs, define:
-
-    pub trait Planner {
-        fn plan(&self, observed: &Observed) -> Vec<Action>;
+    interface ExampleInterface {
+        method(param: Type): ReturnType;
     }
-```
 
-If you follow the guidance above, a single, stateless agent -- or a human novice -- can read your ExecPlan from top to bottom and produce a working, observable result. That is the bar: SELF-CONTAINED, SELF-SUFFICIENT, NOVICE-GUIDING, OUTCOME-FOCUSED.
+## Validation & Acceptance
 
-When you revise a plan, you must ensure your changes are comprehensively reflected across all sections, including the living document sections, and you must write a note at the bottom of the plan describing the change and the reason why. ExecPlans must describe not just the what but the why for almost everything.
+Describe observable behavior that proves the feature works. Phrase as actions a human can take with expected results. Include test commands and criteria for success.
+
+- Action: [what to do]
+  Expected: [what should happen]
+
+- Test: [command to run]
+  Expected: [N tests pass, specific test names]
+
+---
+
+# EXECUTION
+
+## Current Status
+
+Write 2-3 sentences summarizing where we are in the implementation. What's been completed? What's currently being worked on? Any blockers or open questions?
+
+## Decision Log
+
+Record every decision made during implementation. Capture what was decided, why, when, and what was affected.
+
+- **Decision:** [what was decided]
+  **Rationale:** [why this choice was made, what alternatives were considered]
+  **Date:** [YYYY-MM-DDTHH:MM:SSZ]
+  **Files Affected:** [paths to files that implement this decision]
+
+## Surprises & Discoveries
+
+Document unexpected behaviors, bugs, performance characteristics, or insights discovered during implementation. Include evidence (error messages, test output, measurements).
+
+- **Observation:** [what was discovered]
+  **Evidence:** [error message, test output, or code snippet]
+  **Date:** [YYYY-MM-DDTHH:MM:SSZ]
+  **Resolution:** [how it was handled or what changed]
+
+## Next Steps
+
+List the immediate next actions to take. Be specific with file paths and line numbers where relevant. This section is critical for resuming after compaction.
+
+- [Next immediate action with specific details]
+- [Following action]
+
+## Outcomes & Retrospective
+
+(Leave empty until feature is complete or at major phases. Fill this when all tasks are done.)
+
+At completion of the feature or at major phases, summarize what was achieved, what remains, and lessons learned. Compare the result against the original purpose stated in DESIGN.
+
+- **What was delivered:** [Summary of completed functionality]
+- **What remains:** [Known gaps or future enhancements]
+- **Lessons learned:** [Insights for future work]
+- **Comparison to original purpose:** [Did we achieve what we set out to do?]
+
+---
+
+# TASKS
+
+## Completed
+
+- [x] (YYYY-MM-DDTHH:MM:SSZ) [Task description]
+  💡 Decision: [What approach was taken and why]
+  📁 Files: [paths to files changed]
+
+## In Progress
+
+- [ ] [Task description] (started: YYYY-MM-DDTHH:MM:SSZ)
+  - [x] [Completed subtask]
+  - [ ] [Remaining subtask]
+
+## Pending
+
+- [ ] [Task description]
+  - [ ] [Subtask]
+  - [ ] [Subtask]
+- [ ] [Next task]
+</template>
