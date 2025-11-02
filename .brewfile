@@ -74,6 +74,7 @@ brew "git-delta"
 brew "git-lfs"
 brew "git"
 brew "github-keygen"
+brew "serie"            # better git logs
 # brew "docker-compose"
 # brew "docker-credential-helper-ecr"
 # cask "docker"

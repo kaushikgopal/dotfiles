@@ -109,7 +109,8 @@
                     | cut -d\" \" -f1; \
             fi; \
         }; f"
-    l = !git log --graph --decorate --date=short --pretty=format:'%C(magenta)%h%Creset %C(italic brightblack)%ad%C(reset)%C(auto) %s %C(blue)%an%C(auto) %D%C(reset)' --topo-order -30
+    # l = !git log --graph --decorate --date=short --pretty=format:'%C(magenta)%h%Creset %C(italic brightblack)%ad%C(reset)%C(auto) %s %C(blue)%an%C(auto) %D%C(reset)' --topo-order -30
+    l = !serie
 
     # compare two commits
     #   git compare <commit1> <commit2>
