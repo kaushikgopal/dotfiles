@@ -19,5 +19,6 @@
 .config/zed/conversations
 .config/zsh/.zsh_sessions
 .firebender/history
+.firebender/*log.txt
 .firebender/worktrees/**
 .profile

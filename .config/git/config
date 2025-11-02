@@ -242,7 +242,7 @@
   dark = true
   tabs = 2
   line-numbers = true
-  side-by-side = true
+  # side-by-side = true # use -c delta.features=side-by-side diff
   keep-plus-minus-markers = false
   syntax-theme = Nord
 

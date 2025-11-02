@@ -35,6 +35,7 @@ files_to_link=(
     .config/fish
     .config/ghostty
     .config/git
+    .config/serie
     .config/zed
     .editorconfig
     .firebender
