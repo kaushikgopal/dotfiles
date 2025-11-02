@@ -21,4 +21,4 @@
 - Favor non-interactive flags (for example `--yes`) and pipe to `| cat` when avoiding pagers
 
 # ExecPlans
-When writing complex features or significant refactors, use an ExecPlan (as described in @.ai/plans/PLANS.md or @~/.ai/plans/PLANS.md) from design to implementation. Write new plans to the @.ai/plans directory. Place any temporary research, clones etc., in the .gitignored subdirectory @.ai/plans/tmp
+When writing complex features or significant refactors, use an ExecPlan (as described in .ai/plans/PLANS.md or ~/.ai/plans/PLANS.md) from design to implementation. Write new plans to the .ai/plans directory. Place any temporary research, clones etc., in the .gitignored subdirectory .ai/plans/tmp
