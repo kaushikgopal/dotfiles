@@ -88,7 +88,13 @@
       }
     },
     "Kotlin": {
-      "tab_size": 2 // match ktfmt
+      "format_on_save": "on",
+      "formatter": {
+        "external": {
+          "command": "ktfmt",
+          "arguments": ["--meta-style", "-"]
+        }
+      }
     }
     // "Fish": {
     //   "formatter": {
