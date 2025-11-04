@@ -136,6 +136,7 @@ For each pending task:
    ✓ TASKS updated (X completed, Y pending)
    📋 Source of truth: .ai/plans/[feature-name].md
    ```
+   Immediately after posting this update in the conversation, continue executing the next pending task without pausing or waiting for replies unless a blocker occurs.
 6. **Sync to TodoWrite** (if using Claude Code): Update TodoWrite todo list to match TASKS section
 7. **Continue to next task without asking for permission**
 
