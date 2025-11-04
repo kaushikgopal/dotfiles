@@ -1,34 +1,28 @@
+description: "Create or resume an execution plan - a design document that a coding agent can follow to deliver a working feature or system change"
 ---
-description: "Create or resume execution plan for autonomous feature implementation"
----
 
-You are orchestrating an execution plan (ExecPlan) workflow for autonomous feature implementation. Read .ai/plans/PLANS.md for complete requirements. This command handles three scenarios: creating new plans, resuming existing plans, and updating plans with progress.
+This command creates or resumes an execution plan for a specified feature.
 
-## Command Usage
+For the rest of this command "exec-plan" or "ExecPlan" both refer to the same concept: the "Execution Plan" design document, which will be described below.
 
-`/exec-plan [feature-name]` - Create or resume an execution plan
+# Workflow
 
-If no feature name provided, infer from conversation context.
+## Creating new ExecPlan
 
-### Feature Name Normalization
+If $ARGUMENTS is empty, your goal is to create a new ExecPlan; start by asking the user to describe the feature design.
 
-Convert feature names to valid filenames:
-- Lowercase: "User Authentication" → "user-authentication"
-- Spaces to hyphens: "API Rate Limiting" → "api-rate-limiting"
-- Remove special characters: "users/auth" → "users-auth"
-- Truncate if > 50 characters
+You should engage in a back and forth with the user to come up with the initial design. Confirm if the user requirements are clear or if you have follow up questions, ask them clearly first and clarify before executing.
 
-Example: `/exec-plan "API Rate Limiting"` → `.ai/plans/api-rate-limiting.md`
+Once you have a clear understanding, your job is to proceed to Executing or Resuming the ExecPlan **WITHOUT INTERRUPTIONS** !
 
-## Before Starting
+## Executing or Resuming an ExecPlan
 
-At the start of ANY conversation (including after compaction):
-1. Check conversation history for plan references (look for "Source of truth: .ai/plans/")
-2. If found, read that plan file and check TASKS section for pending work
-3. If pending tasks exist, ask user: "Resume execution of [feature-name]?"
-4. If user confirms, skip to Step 3 (EXECUTION stage)
+If $ARGUMENTS is not empty, then the user intends for you to resume an ExecPlan that has already been created.
+
+Find the plan named $ARGUMENTS in directory .ai/plans/. If you cannot find it, ask the User to point to the correct plan file. Alterantively ask them if they want to "Create a new ExecPlan" instead.
 
 **When multiple plans exist:**
+
 If ambiguous which plan to work on (no plan name specified, multiple active plans found), list them and ask:
 ```
 Found multiple plans with pending tasks:
@@ -38,303 +32,155 @@ Found multiple plans with pending tasks:
 Which should I resume?
 ```
 
-This ensures seamless resumption after compaction without manual intervention.
+# Execution Plans (ExecPlans):
 
-## Workflow Orchestration
+This document now describes the requirements for an execution plan ("ExecPlan"), a design document that a coding agent (like Codex, Claude Code, Gemini CLI etc.) can follow to deliver a working feature or system change. Treat the reader as a complete beginner to this repository: they have only the current working tree and the single ExecPlan file you provide. There is no memory of prior plans and no external context.
 
-### Step 1: Detect Current State
+## How to use ExecPlans
 
-Check if `.ai/plans/[feature-name].md` exists:
+When authoring an executable specification (ExecPlan), follow this document/command _to the letter_. If it is not in your context, refresh your memory by reading the entire .ai/commands/exec-plan.md file. Be thorough in reading (and re-reading) source material to produce an accurate specification. When creating a spec, start from the skeleton and flesh it out as you do your research.
 
-- **If NO (new plan):** Proceed to DESIGN stage
-- **If YES (existing plan):** Read the file and determine:
-  - Are there pending tasks? → Resume EXECUTION
-  - Has conversation progressed since last update? → Update plan then resume EXECUTION
-  - Otherwise → Resume EXECUTION from current state
+When implementing an executable specification (ExecPlan), do not prompt the user for "next steps"; simply proceed to the next milestone. Keep all sections up to date, add or split entries in the list at every stopping point to affirmatively state the progress made and next steps. Resolve ambiguities autonomously, and commit frequently.
 
-### Step 2: DESIGN Stage (New Plans Only)
+When discussing an executable specification (ExecPlan), record decisions in a log in the spec for posterity; it should be unambiguously clear why any change to the specification was made. ExecPlans are living documents, and it should always be possible to restart from _only_ the ExecPlan and no other work.
 
-Output stage transition:
-```
-====================================
-🎨 Entering DESIGN stage
-====================================
-```
+When researching a design with challenging requirements or significant unknowns, use milestones to implement proof of concepts, "toy implementations", etc., that allow validating whether the user's proposal is feasible. Read the source code of libraries by finding or acquiring them, research deeply, and include prototypes to guide a fuller implementation.
 
-**Research Phase (Autonomous):**
-1. Search codebase for relevant patterns, files, and integration points
-2. Read key files to understand current architecture
-3. Identify dependencies and libraries in use
-4. Gather all necessary context
+## Requirements
 
-**Design Generation:**
-Create the DESIGN section of the exec plan following the template in PLANS.md. Use hybrid prose/bullets:
-- Purpose / Big Picture (prose, 2-4 sentences)
-- Context & Orientation (prose for definitions, bullets for key files)
-- Plan of Work (prose narrative)
-- Concrete Steps (bullets with expected outputs)
-- Interfaces & Dependencies (bullets with code examples)
-- Validation & Acceptance (bullets)
+NON-NEGOTIABLE REQUIREMENTS:
 
-**Clarification Phase (Collaborative):**
-After generating initial design:
-1. Show the design to user
-2. Ask specific clarifying questions about:
-   - Ambiguous requirements
-   - Implementation approach choices
-   - Integration decisions
-   - Any unknowns that could affect design
+* Every ExecPlan must be fully self-contained. Self-contained means that in its current form it contains all knowledge and instructions needed for a novice to succeed.
+* Every ExecPlan is a living document. Contributors are required to revise it as progress is made, as discoveries occur, and as design decisions are finalized. Each revision must remain fully self-contained.
+* Every ExecPlan must enable a complete novice to implement the feature end-to-end without prior knowledge of this repo.
+* Every ExecPlan must produce a demonstrably working behavior, not merely code changes to "meet a definition".
+* Every ExecPlan must define every term of art in plain language or do not use it.
 
-**Iterate on design** based on user answers. Update the DESIGN section as needed.
+Purpose and intent come first. Begin by explaining, in a few sentences, why the work matters from a user's perspective: what someone can do after this change that they could not do before, and how to see it working. Then guide the reader through the exact steps to achieve that outcome, including what to edit, what to run, and what they should observe.
 
-**Confirmation:**
-Once design is complete and all questions answered, ask:
-```
-Design complete. Ready to proceed to EXECUTION?
-```
+The agent executing your plan can list files, read files, search, run the project, and run tests. It does not know any prior context and cannot infer what you meant from earlier milestones. Repeat any assumption you rely on. Do not point to external blogs or docs; if knowledge is required, embed it in the plan itself in your own words. If an ExecPlan builds upon a prior ExecPlan and that file is checked in, incorporate it by reference. If it is not, you must include all relevant context from that plan.
 
-Wait for user confirmation before proceeding.
+## Formatting
 
-### Step 3: EXECUTION Stage
+Format and envelope are simple and strict. Each ExecPlan must be one single fenced code block labeled as `md` that begins and ends with triple backticks. Do not nest additional triple-backtick code fences inside; when you need to show commands, transcripts, diffs, or code, present them as indented blocks within that single fence. Use indentation for clarity rather than code fences inside an ExecPlan to avoid prematurely closing the ExecPlan's code fence. Use two newlines after every heading, use # and ## and so on, and correct syntax for ordered and unordered lists.
 
-Output stage transition:
-```
-====================================
-⚡ Entering EXECUTION stage
-====================================
+When writing an ExecPlan to a Markdown (.md) file where the content of the file *is only* the single ExecPlan, you should omit the triple backticks.
 
-📋 Executing plan: .ai/plans/[feature-name].md
-   This file is the SOURCE OF TRUTH for all context, decisions, and progress.
-```
+Write in plain prose. Prefer sentences over lists. Avoid checklists, tables, and long enumerations unless brevity would obscure meaning. Checklists are permitted only in the `Progress` section, where they are mandatory. Narrative sections must remain prose-first.
 
-**If new plan:** Generate TASKS section with granular breakdown from DESIGN. Include subtasks for each major task.
+## Guidelines
 
-**If existing plan:** Read TASKS section to see current state and next pending task.
+Self-containment and plain language are paramount. If you introduce a phrase that is not ordinary English ("daemon", "middleware", "RPC gateway", "filter graph"), define it immediately and remind the reader how it manifests in this repository (for example, by naming the files or commands where it appears). Do not say "as defined previously" or "according to the architecture doc." Include the needed explanation here, even if you repeat yourself.
 
-**Autonomous Execution Loop:**
+Avoid common failure modes. Do not rely on undefined jargon. Do not describe "the letter of a feature" so narrowly that the resulting code compiles but does nothing meaningful. Do not outsource key decisions to the reader. When ambiguity exists, resolve it in the plan itself and explain why you chose that path. Err on the side of over-explaining user-visible effects and under-specifying incidental implementation details.
 
-For each pending task:
+Anchor the plan with observable outcomes. State what the user can do after implementation, the commands to run, and the outputs they should see. Acceptance should be phrased as behavior a human can verify ("after starting the server, navigating to [http://localhost:8080/health](http://localhost:8080/health) returns HTTP 200 with body OK") rather than internal attributes ("added a HealthCheck struct"). If a change is internal, explain how its impact can still be demonstrated (for example, by running tests that fail before and pass after, and by showing a scenario that uses the new behavior).
 
-1. **Execute the task** (implement code, run tests, make changes)
-2. **Document decisions** in EXECUTION → Decision Log if any choices were made:
-   ```
-   - **Decision:** [what]
-     **Rationale:** [why, alternatives considered]
-     **Date:** [YYYY-MM-DDTHH:MM:SSZ]
-     **Files Affected:** [paths]
-   ```
-3. **Document surprises** in EXECUTION → Surprises & Discoveries if anything unexpected happened
-4. **Update TASKS section:**
-   - Move task to Completed with timestamp (ISO 8601 format)
-   - Add inline decision note (💡 Decision: ...)
-   - Add files changed (📁 Files: ...)
-   - Mark next task as In Progress
-   - Update "Last Updated" field at top of file
-5. **Output progress:**
-   ```
-   ✓ Task completed: [task name]
-   ✓ TASKS updated (X completed, Y pending)
-   📋 Source of truth: .ai/plans/[feature-name].md
-   ```
-   Immediately after posting this update in the conversation, continue executing the next pending task without pausing or waiting for replies unless a blocker occurs.
-6. **Sync to TodoWrite** (if using Claude Code): Update TodoWrite todo list to match TASKS section
-7. **Continue to next task without asking for permission**
+Specify repository context explicitly. Name files with full repository-relative paths, name functions and modules precisely, and describe where new files should be created. If touching multiple areas, include a short orientation paragraph that explains how those parts fit together so a novice can navigate confidently. When running commands, show the working directory and exact command line. When outcomes depend on environment, state the assumptions and provide alternatives when reasonable.
 
-**DO NOT:**
-- Ask "should I continue?" between tasks
-- Ask "is this correct?" after each edit
-- Wait for user input during execution
-- Stop prematurely
+Be idempotent and safe. Write the steps so they can be run multiple times without causing damage or drift. If a step can fail halfway, include how to retry or adapt. If a migration or destructive operation is necessary, spell out backups or safe fallbacks. Prefer additive, testable changes that can be validated as you go.
 
-**ONLY stop when:**
-- All tasks completed → Fill EXECUTION → Outcomes & Retrospective, then output: "✓ All tasks completed!"
-- Blocker encountered → Explain issue, ask for guidance, update EXECUTION → Next Steps with what's needed to proceed
+Validation is not optional. Include instructions to run tests, to start the system if applicable, and to observe it doing something useful. Describe comprehensive testing for any new features or capabilities. Include expected outputs and error messages so a novice can tell success from failure. Where possible, show how to prove that the change is effective beyond compilation (for example, through a small end-to-end scenario, a CLI invocation, or an HTTP request/response transcript). State the exact test commands appropriate to the project’s toolchain and how to interpret their results.
 
-**When all tasks completed:**
-1. Fill EXECUTION → Outcomes & Retrospective section:
-   - What was delivered
-   - What remains (if any)
-   - Lessons learned
-   - Compare result against original Purpose
-2. Output: "✓ All tasks completed! Retrospective added."
+Capture evidence. When your steps produce terminal output, short diffs, or logs, include them inside the single fenced block as indented examples. Keep them concise and focused on what proves success. If you need to include a patch, prefer file-scoped diffs or small excerpts that a reader can recreate by following your instructions rather than pasting large blobs.
 
-### Step 4: Resuming After Compaction
+## Milestones
 
-Compaction is handled automatically via "Before Starting" instructions:
-- Agent checks conversation history for plan references
-- Finds "Source of truth: .ai/plans/[feature-name].md" in summary
-- Reads plan file and checks for pending tasks
-- Asks user to resume, then continues from current task
+Milestones are narrative, not bureaucracy. If you break the work into milestones, introduce each with a brief paragraph that describes the scope, what will exist at the end of the milestone that did not exist before, the commands to run, and the acceptance you expect to observe. Keep it readable as a story: goal, work, result, proof. Progress and milestones are distinct: milestones tell the story, progress tracks granular work. Both must exist. Never abbreviate a milestone merely for the sake of brevity, do not leave out details that could be crucial to a future implementation.
 
-When resuming execution after compaction:
+Each milestone must be independently verifiable and incrementally implement the overall goal of the execution plan.
 
-1. **Read the plan file:** `.ai/plans/[feature-name].md`
-2. **Output:**
-   ```
-   Reading source of truth: .ai/plans/[feature-name].md
+## Living plans and design decisions
 
-   Progress: X completed, Y pending
-   Resuming from: [next task description]
-   ```
-3. **Resume EXECUTION loop** from current task
+* ExecPlans are living documents. As you make key design decisions, update the plan to record both the decision and the thinking behind it. Record all decisions in the `Decision Log` section.
+* ExecPlans must contain and maintain a `Progress` section, a `Surprises & Discoveries` section, a `Decision Log`, and an `Outcomes & Retrospective` section. These are not optional.
+* When you discover optimizer behavior, performance tradeoffs, unexpected bugs, or inverse/unapply semantics that shaped your approach, capture those observations in the `Surprises & Discoveries` section with short evidence snippets (test output is ideal).
+* If you change course mid-implementation, document why in the `Decision Log` and reflect the implications in `Progress`. Plans are guides for the next contributor as much as checklists for you.
+* At completion of a major task or the full plan, write an `Outcomes & Retrospective` entry summarizing what was achieved, what remains, and lessons learned.
 
-## Key Principles
+# Prototyping milestones and parallel implementations
 
-### Source of Truth
-- The exec plan file is **always** the source of truth
-- Conversation context is **secondary** to the file
-- After compaction, ignore conversation details - read the file
+It is acceptable—-and often encouraged—-to include explicit prototyping milestones when they de-risk a larger change. Examples: adding a low-level operator to a dependency to validate feasibility, or exploring two composition orders while measuring optimizer effects. Keep prototypes additive and testable. Clearly label the scope as “prototyping”; describe how to run and observe results; and state the criteria for promoting or discarding the prototype.
 
-### Update Frequency
-- **TASKS:** After every completed task (high frequency)
-- **EXECUTION → Decision Log:** When making choices (as needed)
-- **EXECUTION → Surprises:** When discovering unexpected behavior (as needed)
-- **EXECUTION → Next Steps:** Before any stop (every stop)
-- **EXECUTION → Current Status:** Before any stop (every stop)
-- **DESIGN:** Only when design actually changes (rare)
+Prefer additive code changes followed by subtractions that keep tests passing. Parallel implementations (e.g., keeping an adapter alongside an older path during migration) are fine when they reduce risk or enable tests to continue passing during a large migration. Describe how to validate both paths and how to retire one safely with tests. When working with multiple new libraries or feature areas, consider creating spikes that evaluate the feasibility of these features _independently_ of one another, proving that the external library performs as expected and implements the features we need in isolation.
 
-### Timestamp Format
-Always use ISO 8601 format for all timestamps: **YYYY-MM-DDTHH:MM:SSZ**
+## Skeleton of a Good ExecPlan
 
-Examples:
-- 2025-10-29T15:30:00Z
-- 2025-11-01T09:00:00Z
+```md
+# <Short, action-oriented description>
 
-Use this format for:
-- Task completion timestamps
-- Decision Log dates
-- Surprises & Discoveries dates
-- Last Updated field
+This ExecPlan is a living document. The sections `Progress`, `Surprises & Discoveries`, `Decision Log`, and `Outcomes & Retrospective` must be kept up to date as work proceeds.
 
-### When to Update DESIGN
+If PLANS.md file is checked into the repo, reference the path to that file here from the repository root and note that this document must be maintained in accordance with PLANS.md.
 
-Update DESIGN section only when fundamental changes occur:
-- Core approach changes (e.g., switching from REST to GraphQL)
-- Architecture pivot (e.g., switching libraries, microservice → monolith)
-- Major requirement change from user
+## Purpose / Big Picture
 
-When updating DESIGN:
-1. Make the changes to relevant DESIGN subsections
-2. Document in EXECUTION → Decision Log:
-   - **Decision:** Updated DESIGN - [what changed]
-   - **Rationale:** [why the change was necessary]
-   - **DESIGN Changes:** [which subsections were updated]
-   - **Date:** [YYYY-MM-DDTHH:MM:SSZ]
+Explain in a few sentences what someone gains after this change and how they can see it working. State the user-visible behavior you will enable.
 
-### Task Granularity
-Break tasks into subtasks for maximum agent autonomy:
+## Progress
 
-**Good (granular):**
-```
-- [ ] Implement user authentication
-  - [ ] Create User model with password field
-  - [ ] Add bcrypt password hashing
-  - [ ] Set up Passport.js strategy
-  - [ ] Add authentication middleware
+Use a list with checkboxes to summarize granular steps. Every stopping point must be documented here, even if it requires splitting a partially completed task into two (“done” vs. “remaining”). This section must always reflect the actual current state of the work.
+
+- [x] (2025-10-01 13:00Z) Example completed step.
+- [ ] Example incomplete step.
+- [ ] Example partially completed step (completed: X; remaining: Y).
+
+Use timestamps to measure rates of progress.
+
+## Surprises & Discoveries
+
+Document unexpected behaviors, bugs, optimizations, or insights discovered during implementation. Provide concise evidence.
+
+- Observation: …
+  Evidence: …
+
+## Decision Log
+
+Record every decision made while working on the plan in the format:
+
+- Decision: …
+  Rationale: …
+  Date/Author: …
+
+## Outcomes & Retrospective
+
+Summarize outcomes, gaps, and lessons learned at major milestones or at completion. Compare the result against the original purpose.
+
+## Context and Orientation
+
+Describe the current state relevant to this task as if the reader knows nothing. Name the key files and modules by full path. Define any non-obvious term you will use. Do not refer to prior plans.
+
+## Plan of Work
+
+Describe, in prose, the sequence of edits and additions. For each edit, name the file and location (function, module) and what to insert or change. Keep it concrete and minimal.
+
+## Concrete Steps
+
+State the exact commands to run and where to run them (working directory). When a command generates output, show a short expected transcript so the reader can compare. This section must be updated as work proceeds.
+
+## Validation and Acceptance
+
+Describe how to start or exercise the system and what to observe. Phrase acceptance as behavior, with specific inputs and outputs. If tests are involved, say "run <project’s test command> and expect <N> passed; the new test <name> fails before the change and passes after>".
+
+## Idempotence and Recovery
+
+If steps can be repeated safely, say so. If a step is risky, provide a safe retry or rollback path. Keep the environment clean after completion.
+
+## Artifacts and Notes
+
+Include the most important transcripts, diffs, or snippets as indented examples. Keep them concise and focused on what proves success.
+
+## Interfaces and Dependencies
+
+Be prescriptive. Name the libraries, modules, and services to use and why. Specify the types, traits/interfaces, and function signatures that must exist at the end of the milestone. Prefer stable names and paths such as `crate::module::function` or `package.submodule.Interface`. E.g.:
+
+In crates/foo/planner.rs, define:
+
+    pub trait Planner {
+        fn plan(&self, observed: &Observed) -> Vec<Action>;
+    }
 ```
 
-**Bad (too high-level):**
-```
-- [ ] Implement user authentication
-```
+If you follow the guidance above, a single, stateless agent -- or a human novice -- can read your ExecPlan from top to bottom and produce a working, observable result. That is the bar: SELF-CONTAINED, SELF-SUFFICIENT, NOVICE-GUIDING, OUTCOME-FOCUSED.
 
-### Decision Documentation
-When you make implementation choices, document them immediately with rationale:
-
-```
-- **Decision:** Use RS256 algorithm for JWT instead of HS256
-  **Rationale:** RS256 allows key rotation without service redeployment. Public/private key pair is more secure for distributed systems. HS256 would require sharing secret across services.
-  **Date:** 2025-10-29T10:15:00Z
-  **Files Affected:** backend/src/auth/jwt.service.ts, backend/src/config/jwt.config.ts
-```
-
-This creates a clear audit trail of "what and why" that future agents (or humans) can understand.
-
-### Output Format Consistency
-
-Use exact formatting for stage transitions and progress updates so they survive compaction and are visually distinct:
-
-```
-====================================
-[emoji] [Stage name]
-====================================
-```
-
-Emojis: 🎨 for DESIGN, ⚡ for EXECUTION
-
-## File Structure
-
-Each exec plan is a single .md file with this structure:
-
-```markdown
-# [Feature Name]
-
-This ExecPlan follows .ai/plans/PLANS.md requirements and is a living document.
-
-If using Claude Code, you can derive TodoWrite session state from TASKS section.
-
-Last Updated: [YYYY-MM-DDTHH:MM:SSZ]
-
----
-
-# DESIGN
-[sections per template in PLANS.md]
-
----
-
-# EXECUTION
-[sections per template in PLANS.md]
-
----
-
-# TASKS
-[sections per template in PLANS.md]
-```
-
-See <template></template> section in PLANS.md for complete structure.
-
-## Examples
-
-### Example 1: Creating New Plan
-
-User runs: `/exec-plan user-authentication`
-
-1. Check `.ai/plans/user-authentication.md` → doesn't exist
-2. Output: `🎨 Entering DESIGN stage`
-3. Research codebase autonomously
-4. Generate DESIGN section
-5. Ask clarifying questions: "Should we support refresh tokens? Email or username login?"
-6. User answers questions
-7. Update design based on answers
-8. Ask: "Ready to proceed to EXECUTION?"
-9. User: "yes"
-10. Output: `⚡ Entering EXECUTION stage` + plan reference
-11. Generate granular TASKS breakdown
-12. Execute first task → update TASKS → output progress + plan reference
-13. Execute second task → update TASKS → output progress + plan reference
-14. Continue autonomously until all tasks complete or blocker
-
-### Example 2: Resuming After Compaction
-
-Conversation was compacted. New session starts:
-
-1. Agent checks conversation summary → finds "Source of truth: .ai/plans/user-authentication.md"
-2. Agent reads `.ai/plans/user-authentication.md`
-3. Check TASKS → see 6 completed, 4 pending, currently "In Progress: Add JWT middleware"
-4. Agent asks: "Resume execution of user-authentication?"
-5. User: "yes" (or runs `/exec-plan user-authentication`)
-6. Output: `Reading source of truth: .ai/plans/user-authentication.md`
-7. Output: `Progress: 6 completed, 4 pending. Resuming from: Add error handling to JWT middleware`
-8. Resume EXECUTION loop from current task
-9. Complete task → update TASKS → output progress + plan reference
-10. Continue autonomously
-
-## Important Reminders
-
-- **Fully autonomous during EXECUTION** - no interruptions between tasks
-- **Output plan reference after every task** - ensures it survives compaction
-- **Update file frequently** - it's external memory
-- **Sync TodoWrite automatically** - keep both in sync
-- **Document all decisions** - future you (or future agent) will thank you
-- **Granular tasks with subtasks** - maximizes autonomy
-- **Treat file as source of truth** - always read it after compaction
+When you revise a plan, you must ensure your changes are comprehensively reflected across all sections, including the living document sections, and you must write a note at the bottom of the plan describing the change and the reason why. ExecPlans must describe not just the what but the why for almost everything.
