@@ -23,8 +23,7 @@
   // ----------------------------------------
   "cursor_blink": false,
   "hide_mouse": "on_typing_and_movement",
-  "project_panel": { "dock": "right",
-                     "entry_spacing": "standard" },
+  "project_panel": { "dock": "right", "entry_spacing": "standard" },
   "relative_line_numbers": true,
   "terminal": {
     // "font_weight": 575,
