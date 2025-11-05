@@ -23,7 +23,6 @@
   // ----------------------------------------
   "cursor_blink": false,
   "hide_mouse": "on_typing_and_movement",
-  "project_panel": { "dock": "right", "entry_spacing": "standard" },
   "relative_line_numbers": true,
   "terminal": {
     // "font_weight": 575,
@@ -60,7 +59,8 @@
     ],
     "syntax": {
       "link_text": { "font_style": "normal" },
-      "link_uri": { "font_style": "italic" }
+      "link_uri": { "font_style": "italic" },
+      "title": { "font_weight": 900 }
     }
   },
   // ----------------------------------- EXTENSIONS
