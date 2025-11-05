@@ -5,6 +5,8 @@ This command creates or resumes an execution plan for a specified feature.
 
 For the rest of this command "exec-plan" or "ExecPlan" both refer to the same concept: the "Execution Plan" design document, which will be described below.
 
+Place any temporary research, clones etc., in the .gitignored subdirectory .ai/plans/tmp
+
 # Workflow
 
 ## Creating new ExecPlan
