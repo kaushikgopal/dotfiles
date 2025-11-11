@@ -40,6 +40,7 @@
                 --preview-window=right:60%:wrap \
             | xargs -r -n1 git checkout --"
 
+
     co = checkout
     com = checkout master
     coma = checkout main
@@ -80,14 +81,18 @@
             fi; \
         }; f"
     din   = diff --name-only master...HEAD  # list files that have changed
+
     mt    = mergetool
+
     p = pull
     pu = push
+
     re = "!git diff --cached --name-only \
             | fzf -0 -m --height 40% --layout=reverse --border \
                 --preview 'git diff --staged --color=always -- {-1}' \
                 --preview-window=right:60%:wrap \
             | xargs -r -n1 git reset HEAD --"
+
     s     = status
     ss    = status --short
 
