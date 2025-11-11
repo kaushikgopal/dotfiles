@@ -1,6 +1,15 @@
 // Project tasks configuration. See https://zed.dev/docs/tasks for documentation.
 [
   {
+    "label": "lazygit",
+    "command": "lazygit -p $ZED_WORKTREE_ROOT",
+    "hide": "on_success",
+    "use_new_terminal": true,
+    "allow_concurrent_runs": false,
+    "reveal_target": "center",
+    "shell": { "program": "sh" }
+  },
+  {
     "label": "olive claude",
     "command": "olive claude --dangerously-skip-permissions",
     "reveal": "always",

@@ -51,6 +51,7 @@ if status is-interactive
     abbr --add --global rguuu 'rg -uuu'
 
     # git commands
+    abbr --add --global gg   lazygit
     abbr --add --global g    git # using a git function which is better
     abbr --add --global g.   git add .
     abbr --add --global gs   "git status -s"

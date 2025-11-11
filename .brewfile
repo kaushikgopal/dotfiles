@@ -69,12 +69,13 @@ brew "starship"
 
 #############
 ##### general
-brew "gh"
-brew "git-delta"
-brew "git-lfs"
 brew "git"
-brew "github-keygen"
+brew "git-delta"
 brew "serie"            # better git logs
+brew "git-lfs"
+brew "jesseduffield/lazygit/lazygit"
+brew "gh"
+brew "github-keygen"
 # brew "docker-compose"
 # brew "docker-credential-helper-ecr"
 # cask "docker"
