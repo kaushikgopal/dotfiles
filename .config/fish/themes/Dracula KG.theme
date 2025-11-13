@@ -14,7 +14,7 @@
 
 # Syntax Highlighting Colors
 fish_color_normal f8f8f2
-fish_color_command 8be9fd
+fish_color_command 5fafff
 fish_color_keyword ff79c6
 fish_color_quote f1fa8c
 fish_color_redirection f8f8f2
@@ -38,7 +38,7 @@ fish_color_cwd 50fa7b
 fish_color_cwd_root red
 fish_color_host bd93f9
 fish_color_host_remote bd93f9
-fish_color_user 8be9fd
+fish_color_user 5fafff
 
 # Completion Pager Colors
 fish_pager_color_progress 6272a4

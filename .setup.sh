@@ -191,7 +191,7 @@ echo -e "${GRAY}---- symlink fish_history ${NC}"
 trash ~/.local/share/fish/fish_history
 ln -s $XDG_DATA_HOME/fish/fish_history ~/.local/share/fish/
 
-fish_config theme choose "Dracula Official"
+fish_config theme choose "Dracula KG"
 fish_config theme save
 
 ##############################################################
