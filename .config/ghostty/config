@@ -30,7 +30,7 @@ keybind = shift+enter=text:\n
 ##############################################
 # Look and Feel
 # ghostty +list-themes
-# theme     = dark:Sublette,light:Adwaita
+theme     = dark:Ghostty Default Style Dark,light:Adwaita
 # theme     = batman-kg
 # theme     = The Hulk
 # theme     = everforest-dark
