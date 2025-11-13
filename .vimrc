@@ -85,7 +85,7 @@ set number rnu       " rnu = show relative line numbers " nu = regular line numb
 set cursorline      " highlight current line
 set showmatch       " highlight matching parenthesis
 "set scroll=10       " set the number of lines to scroll
-set colorcolumn=100 " line length marker at 80 columns
+set colorcolumn=80  " line length marker at 80 columns
 
 "set splitright " open vertical split to the right
 "set splitbelow " open horizontal split to the bottom
@@ -167,18 +167,17 @@ let g:netrw_liststyle = 3 " use tree style by default
 " autocmd (file settings/defaults)
 " ===================================
 
+" Limit column width for all markdown files
+" auto hard wrap markdown files to 80
+au BufRead,BufNewFile *.md,*.txt,*.markdown setlocal textwidth=80
+
 augroup vimrcEx
     " Clear all autocmds in the group
     autocmd!
 
     " change markdown options
     autocmd BufNewFile,BufReadPost *.md set filetype=markdown
-    " Limit column width for all markdown files
-    autocmd BufNewFile,BufReadPost *.md,*.txt,*.markdown setlocal textwidth=80
-
     autocmd BufNewFile,BufReadPost *.fish set syntax=sh
-
-
 
 
     " Limit git commit message to 50 chars subject and 72 chars body
