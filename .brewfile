@@ -84,6 +84,7 @@ brew "github-keygen"
 ##### Web dev
 brew "htmltest"
 brew "web-ext"      # firefox add-on dev
+brew "prettier"     # markdown parsing
 #brew "flyctl"
 
 ######################
