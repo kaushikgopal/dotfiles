@@ -48,6 +48,7 @@
   // },
   // ---- THEME overrides
   "experimental.theme_overrides": {
+    "editor.document_highlight.read_background": "#FF46855c", // highlight matching braces
     // "link_text.hover": "#ffd866", // zedokai
     "players": [
       {
