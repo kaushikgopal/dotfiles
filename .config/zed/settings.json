@@ -23,7 +23,7 @@
   // ----------------------------------------
   "cursor_blink": false,
   "hide_mouse": "on_typing_and_movement",
-  "relative_line_numbers": true,
+  "relative_line_numbers": "enabled",
   "terminal": {
     // "font_weight": 575,
     "line_height": { "custom": 1.5 },
