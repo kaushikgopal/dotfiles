@@ -12,10 +12,6 @@
       "ctrl-alt-c": [
         "agent::NewExternalAgentThread",
         { "agent": "claude_code" }
-      ],
-      "space g g": [
-        "task::Spawn",
-        { "task_name": "lazygit", "target": "center" }
       ]
     }
   },
