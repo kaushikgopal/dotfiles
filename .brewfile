@@ -156,6 +156,8 @@ cask "zed"
 ##############################################################
 ##### Mac apps
 cask "firefox"
+cask "brave-browser"
+
 cask "ghostty"
 cask "google-drive"
 cask "jetbrains-toolbox"
@@ -167,9 +169,9 @@ cask "raycast"
 cask "slack"
 cask "tailscale"
 cask "the-unarchiver"
+
 #cask "1password"       # install 1password manually
 #cask "1password-cli"   # required for Raycast/Alfred integration
-#cask "google-chrome"   # probably remove this or firefox at some point
 #cask "imageoptim"
 #cask "keyboard-maestro"
 #cask "soundsource"
