@@ -7,29 +7,40 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
-  "buffer_font_size": 13.5,
-  "buffer_font_weight": 525,
-  "buffer_font_family": "TX-02-Variable",
-  "buffer_font_features": {
-    "ss02": true, // 0
-    "ss05": true, // r
-    "ss06": true, // |
-    "ss12": true // ligatures -> !=
-  },
-  // ----------------------------------------
+  // // ----------------------------------------
+  // "buffer_font_size": 14.5,
+  // "buffer_font_weight": 500,
+  // "buffer_font_family": "JetBrains Mono",
+  // "buffer_font_features": {
+  //   // "cv02": true, // t
+  //   "cv03": true, // g
+  //   "cv04": true, // j
+  //   "cv07": true, // w
+  //   // "cv08": true, // Kk
+  //   "cv09": true, // f
+  //   // "cv17": true, // f (curled top)
+  //   "cv10": true, // r
+  //   "cv11": true, // y
+  //   "cv14": true, // $
+  //   "cv15": true, // &
+  //   "ss19": true // Broken = ligatures != == === !===
+  // },
+  // "buffer_line_height": { "custom": 1.5 },
+  // // ----------------------------------------
   // "buffer_font_size": 13.5,
   // "buffer_font_weight": 575,
   // "buffer_font_family": "CommitMono-KG",
   // ----------------------------------------
+  "buffer_font_family": "Recursive KG",
+  "buffer_font_size": 13.5,
+  // "buffer_font_weight": 500,
+  // ----------------------------------------
+
   "cursor_blink": false,
   "hide_mouse": "on_typing_and_movement",
   "relative_line_numbers": "enabled",
   "terminal": {
-    // "font_weight": 575,
-    "line_height": { "custom": 1.5 },
-    // "font_family": "CommitMono-KG",
-    // "font_family": "TX-02-Variable",
-    "font_weight": 600,
+    "font_weight": 510,
     "font_size": 12.5,
     "copy_on_select": true
   },
@@ -41,11 +52,11 @@
   "vim_mode": true,
   "wrap_guides": [80],
   // --------------------------------- THEME
-  // "theme": {
-  //   "mode": "system",
-  //   "light": "Zedokai Light",
-  //   "dark": "Zedokai Darker (Filter Machine)"
-  // },
+  "theme": {
+    "mode": "dark",
+    "light": "One Dark",
+    "dark": "One Dark"
+  },
   // ---- THEME overrides
   "experimental.theme_overrides": {
     "editor.document_highlight.read_background": "#FF46855c", // highlight matching braces
