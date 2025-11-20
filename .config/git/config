@@ -103,7 +103,7 @@
     wipr = !git reset --soft HEAD~ && git reset
     wt = worktree
 
-    l = "!f() { if [ $# -eq 0 ]; then serie; else lazygit -f \"$1\"; fi; }; f"
+    l = "!f() { if [ $# -eq 0 ]; then git ll; else lazygit -f \"$1\"; fi; }; f"
     ll = !git log --graph --decorate --date=short --pretty=format:'%C(magenta)%h%Creset %C(italic brightblack)%ad%C(reset)%C(auto) %s %C(blue)%an%C(auto) %D%C(reset)' --topo-order -30
     # fzf version
     lll= "!f() { \
