@@ -46,7 +46,7 @@
   // ----------------------------------------
   "buffer_font_family": "Recursive KG",
   "buffer_font_size": 13.5,
-  // "buffer_font_weight": 500,
+  "buffer_font_weight": 500,
   // ----------------------------------------
 
   "cursor_blink": false,
