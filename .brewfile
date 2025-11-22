@@ -11,8 +11,6 @@ cask_args appdir: '/Applications', no_quarantine: true
 is_arm = Hardware::CPU.arm? # TODO: All lines that are based on this condition are currently not working for ARM architecture - and thus this check
 
 # tap "homebrew/bundle"
-
-tap "kaushikgopal/tools"
 tap "buo/cask-upgrade" # better cask upgrading (see `cu`)
 
 ##############################################################
@@ -185,6 +183,9 @@ cask "font-jetbrains-mono"
 cask "font-jost"
 cask "font-sn-pro"
 cask "font-source-code-pro"
+cask "kaushikgopal/tools/font-recursive-kg"
+
+
 #cask "font-cascadia-code"
 #cask "font-cascadia-code-pl"
 #cask "font-geist"
@@ -201,7 +202,6 @@ cask "font-source-code-pro"
 #cask "font-lilex"
 #cask "font-new-york"
 #cask "font-plus-jakarta-sans"
-#cask "font-recursive-kg"
 #cask "font-roboto-mono"
 #cask "font-sf-compact"
 #cask "font-sf-mono"
