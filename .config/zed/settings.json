@@ -8,8 +8,13 @@
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
   // // ----------------------------------------
+  "buffer_font_family": "Recursive KG 34",
+  "buffer_font_size": 14.5,
+  "buffer_font_weight": 450,
+  "buffer_line_height": { "custom": 1.55 },
+  // // ----------------------------------------
   // "buffer_font_size": 14.5,
-  // "buffer_font_weight": 500,
+  // // "buffer_font_weight": 500,
   // "buffer_font_family": "JetBrains Mono",
   // "buffer_font_features": {
   //   // "cv02": true, // t
@@ -25,7 +30,7 @@
   //   "cv15": true, // &
   //   "ss19": true // Broken = ligatures != == === !===
   // },
-  // "buffer_line_height": { "custom": 1.5 },
+  // "buffer_line_height": { "custom": 1.55 },
   // // ----------------------------------------
   // "buffer_font_size": 13.5,
   // "buffer_font_weight": 575,
@@ -43,10 +48,6 @@
   // },
   // "buffer_line_height": { "custom": 1.55 },
   //
-  // ----------------------------------------
-  "buffer_font_family": "Recursive KG",
-  "buffer_font_size": 13.5,
-  "buffer_font_weight": 500,
   // ----------------------------------------
 
   "cursor_blink": false,
@@ -128,6 +129,8 @@
     // }
   },
   "file_types": {
-    "Rust": ["**/bin/comm*", "**/bin/mdquote", "**/bin/nato"]
+    "Rust": ["**/bin/comm*", "**/bin/mdquote", "**/bin/nato"],
+    "Ini": [".brewfile"]
+  },
   }
 }
