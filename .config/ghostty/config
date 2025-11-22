@@ -74,10 +74,10 @@ font-thicken                    = true
 
 
 # Recursive ---------------------->
-font-family             = Recursive KG
-font-size               = 13
+font-family             = Recursive KG 34
+font-size               = 14
+font-style              = Regular
 adjust-cell-height      = 30%
-
 
 # # Berkeley Mono (TX-02-Variable) -------- -->
 # font-family             = TX-02-Variable
