@@ -217,7 +217,7 @@
 # delta theme config
 [delta]
     navigate    = false  # use n and N to move between diff sections
-    features    = chameleon
+#    features    = chameleon
 #    syntax-theme = base16
 #    file-decoration-style = brightblack ul
 #    file-style = box gray
