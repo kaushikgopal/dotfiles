@@ -140,7 +140,7 @@ brew "grpcurl" # caper
 
 #######################
 ######## AI apps
-brew "codex"
+cask "codex"
 brew "gemini-cli"
 #brew "sst/tap/opencode"
 
