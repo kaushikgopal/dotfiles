@@ -8,7 +8,7 @@
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
   // // ----------------------------------------
-  "buffer_font_family": "Recursive KG 34",
+  "buffer_font_family": "Recursive KG",
   "buffer_font_size": 14.5,
   "buffer_font_weight": 450,
   "buffer_line_height": { "custom": 1.55 },
@@ -54,7 +54,6 @@
   "hide_mouse": "on_typing_and_movement",
   "relative_line_numbers": "enabled",
   "terminal": {
-    "font_weight": 510,
     "font_size": 12.5,
     "copy_on_select": true
   },
@@ -67,7 +66,7 @@
   "wrap_guides": [80],
   // --------------------------------- THEME
   "theme": {
-    "mode": "dark",
+    "mode": "system",
     "light": "One Dark",
     "dark": "One Dark"
   },
@@ -132,5 +131,62 @@
     "Rust": ["**/bin/comm*", "**/bin/mdquote", "**/bin/nato"],
     "Ini": [".brewfile"]
   },
+  // ------------------------------------- AI Stuff
+  "features": {
+    // "edit_prediction_provider": "zed"
+    "edit_prediction_provider": "copilot"
+  },
+  "edit_predictions": {
+    "disabled_globs": []
+  },
+  "agent": {
+    "always_allow_tool_actions": true,
+    "default_model": {
+      "provider": "copilot_chat",
+      "model": "claude-sonnet-4.5"
+    },
+    "model_parameters": []
+  },
+  // ---------- [ACP] terminal-based agents
+  "agent_servers": {
+    "gemini": {
+      "ignore_system_version": false
+    },
+    // "codex" is configured via the interface
+    "claude": {
+      "env": {
+        "CLAUDE_CODE_EXECUTABLE": "/opt/homebrew/bin/claude"
+      }
+    }
+  },
+  // ---------- LLM Providers
+  "language_models": {
+    "openai_compatible": {
+      // "GATEWAY BEDROCK": {
+      //   // "api_url": "https://aigateway.instacart.tools/unified/zed/chat/completions/user/kaushik/v1",
+      //   // "api_url": "https://aigateway.instacart.tools/unified/zed/bedrock/user/kaushik/v1", // 404
+      //   // "api_url": "https://aigateway.instacart.tools/proxy/zed/bedrock/user/kaushik/v1", // no claude in here
+      //   "api_url": "https://aigateway.instacart.tools/unified/zed/user/kaushik/v1", // enum error response
+      //   "available_models": [
+      //     {
+      //       "name": "claude-sonnet-4.5",
+      //       "display_name": "ic-sonnet-4.5",
+      //       "max_tokens": 200000
+      //     }
+      //   ]
+      // },
+      "GATEWAY GPT": {
+        "api_url": "https://aigateway.instacart.tools/unified/zed/user/kaushik/v1",
+        "available_models": [
+          {
+            "name": "gpt-5",
+            "display_name": "ic-gpt-5",
+            "max_tokens": 200000,
+            "max_output_tokens": 32000,
+            "max_completion_tokens": 200000
+          }
+        ]
+      }
+    }
   }
 }
