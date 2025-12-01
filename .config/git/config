@@ -99,8 +99,8 @@
     spu   = stash push # previously stash save
     spo   = stash pop
 
-    wip = !git add . && git commit -a -m "--wip-- [ci skip]" --no-verify
-    wipr = !git reset --soft HEAD~ && git reset
+    wip = "!git add . && git commit -a -m '--wip-- [ci skip]' --no-verify"
+    wipr = "!git reset --soft HEAD~ && git reset"
     wt = worktree
 
     l = "!f() { serie; }; f"
