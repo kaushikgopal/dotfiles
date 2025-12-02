@@ -174,6 +174,9 @@ fi
 ##############################################################
 
 echo -e "\n\n\n${YELLOW}---- Setting up Fish${NC}"
+
+echo -e "${GRAY}---- creating ~/.cache for fish shell init caches${NC}"
+mkdir -p ~/.cache
 if grep -Fxq "$(brew --prefix)/bin/fish" /etc/shells; then
     echo -e "${GRAY}---- fish declaration present${NC}"
 else
