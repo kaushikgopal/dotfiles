@@ -93,18 +93,62 @@ set -Ux PYENV_ROOT $HOME/.pyenv
 fish_add_path /opt/homebrew/bin # so homebrew is available
 fish_add_path ~/bin
 # fish_add_path --append  # so we maintain the order as declared
-fish_add_path --append (brew --prefix)/sbin
+fish_add_path --append /opt/homebrew/sbin
 fish_add_path --append /usr/local/bin /usr/bin /bin /usr/local/sbin /usr/sbin /sbin
 fish_add_path --append ~/.local/bin # pipx
 
 fish_add_path --append "$ANDROID_HOME/platform-tools" "$ANDROID_HOME/cmdline-tools/latest/bin" "$ANDROID_HOME/tools" "$ANDROID_HOME/tools/bin" "$ANDROID_HOME/emulator"
 test -d $PYENV_ROOT/bin; and fish_add_path $PYENV_ROOT/bin
 
+# ----------------------------------------------------------------------------------------------------------------------
+# Cached tool inits (for faster shell startup)
+
+# These tools normally run `tool init | source` on every shell start.
+# We cache the output to ~/.cache/*.fish for speed.
+#
+# Regenerate all caches manually:
+#   regen-shell-caches
+#
+# Or regenerate individually after updating a tool:
+#   fzf --fish > ~/.cache/fzf.fish
+#   zoxide init --cmd j fish > ~/.cache/zoxide.fish
+#   pyenv init - fish > ~/.cache/pyenv.fish
+
+# Auto-regenerate caches if tool binary is newer than cache file
+function __regen_cache_if_stale --argument-names tool_bin cache_file gen_cmd
+    if not test -f $cache_file
+        eval $gen_cmd
+    else if test (which $tool_bin) -nt $cache_file
+        eval $gen_cmd
+    end
+end
+
+# Regenerate all shell caches (run after brew upgrade)
+function regen-shell-caches
+    echo "Regenerating shell caches..."
+    mkdir -p ~/.cache
+    fzf --fish > ~/.cache/fzf.fish && echo "  ✓ fzf"
+    zoxide init --cmd j fish > ~/.cache/zoxide.fish && echo "  ✓ zoxide"
+    pyenv init - fish > ~/.cache/pyenv.fish 2>/dev/null && echo "  ✓ pyenv"
+    echo "Done. Restart your shell."
+end
+
+# Check for stale caches on first interactive shell of the day
+if status is-interactive
+    set -l today (date +%Y-%m-%d)
+    if test "$__shell_cache_check_date" != "$today"
+        set -g __shell_cache_check_date $today
+        __regen_cache_if_stale fzf ~/.cache/fzf.fish "fzf --fish > ~/.cache/fzf.fish"
+        __regen_cache_if_stale zoxide ~/.cache/zoxide.fish "zoxide init --cmd j fish > ~/.cache/zoxide.fish"
+        __regen_cache_if_stale pyenv ~/.cache/pyenv.fish "pyenv init - fish > ~/.cache/pyenv.fish 2>/dev/null"
+    end
+end
+
 # -----------------------------------
 # FZF
 
 # enable FZF for fish while disabling alt + c
-fzf --fish | FZF_ALT_C_COMMAND= source
+FZF_ALT_C_COMMAND= source ~/.cache/fzf.fish
 
 # set -gx FZF_DEFAULT_COMMAND 'rg --files'
 # default command is different from ctrl + t
@@ -126,7 +170,7 @@ set -gx FZF_CTRL_R_OPTS " \
 
 # -----------------------------------
 # Zoxide
-zoxide init --cmd j fish | source
+source ~/.cache/zoxide.fish
 
 # ---------------------------------------------------------
 # special instructions on bind
@@ -139,13 +183,7 @@ zoxide init --cmd j fish | source
 
 # -----------------------------------
 # pyenv for python development setup
-if not command -q pyenv
-    # Keep startup quiet when pyenv is absent; otherwise the guard would still emit noise on machines without Python tooling.
-    true
-else
-    # Ensure shims and shell functions are active so `pyenv shell` stops erroring when fish sessions start.
-    pyenv init - fish | source
-end
+test -f ~/.cache/pyenv.fish && source ~/.cache/pyenv.fish
 
 # Custom key bindings
 # this allows me to use my karabiner delete word keybindings in fish

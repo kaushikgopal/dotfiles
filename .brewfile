@@ -39,10 +39,10 @@ brew "trash"
 brew "tree"
 brew "wget"
 brew "yt-dlp"
-brew "zoxide"
+brew "zoxide"    # after upgrading, run: regen-shell-caches
 
 brew "fish"
-brew "fzf"
+brew "fzf"       # after upgrading, run: regen-shell-caches
 brew "gum"
 brew "nushell"
 brew "starship"
@@ -114,7 +114,7 @@ brew "node"
 
 ######################
 ##### .py
-brew "pyenv"
+brew "pyenv"     # after upgrading, run: regen-shell-caches
 # brew "pyenv-virtualenv"
 # brew "python-tabulate"
 # brew "python@3.10"
