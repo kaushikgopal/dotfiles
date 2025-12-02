@@ -16,6 +16,7 @@ tap "buo/cask-upgrade" # better cask upgrading (see `cu`)
 ##############################################################
 ##### Unix/CLI tools
 
+brew "bash"      # esp. when you run scripts macOS is still on 3.2
 brew "bat"
 brew "coreutils" # for gnu date
 brew "curl"
