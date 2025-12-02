@@ -75,7 +75,7 @@ font-thicken                    = true
 
 # Recursive ---------------------->
 font-family             = Recursive KG
-font-size               = 14
+font-size               = 13
 font-style              = Regular
 adjust-cell-height      = 30%
 
