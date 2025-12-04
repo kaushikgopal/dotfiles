@@ -9,9 +9,9 @@
 {
   // --------
   "buffer_font_family": "Recursive KG",
-  "buffer_font_size": 14.5,
+  "buffer_font_size": 13,
   "buffer_font_weight": 450,
-  "buffer_line_height": { "custom": 1.55 },
+  // "buffer_line_height": { "custom": 1.55 },
   // --------
   // "buffer_font_size": 14.5,
   // "buffer_font_weight": 525,
@@ -24,9 +24,9 @@
   // },
   // "buffer_line_height": { "custom": 1.55 },
   // --------
-  // "buffer_font_size": 14.5,
-  // // "buffer_font_weight": 500,
+  // "buffer_font_size": 13.5,
   // "buffer_font_family": "JetBrains Mono",
+  // "buffer_font_weight": 450,
   // "buffer_font_features": {
   //   // "cv01": true, // l (classic)
   //   // "cv05": true, // curled l
@@ -34,23 +34,23 @@
   //   // "cv03": true, // g
   //   // "cv04": true, // j
   //   // "cv06": true, // m
-  //   "cv07": true, // w
-  //   "cv08": true, // Kk (classic)
-  //   "cv09": true, // f  (classic)
+  //   // "cv07": true, // w
+  //   // "cv08": true, // Kk (classic)
+  //   // "cv09": true, // f  (classic)
   //   // "cv17": true, // f (curled top)
-  //   "cv10": true, // r  (classic)
-  //   "cv11": true, // y  (classic)
+  //   // "cv11": true, // y  (classic)
   //   // "cv12": true, // u (classic)
-  //   "cv14": true, // $
-  //   "cv15": true, // &
-  //   "cv16": true, // Q
-  //   "cv18": true, // 269
-  //   "cv19": true, // 8
-  //   "cv20": true, // 5
+  //   // "cv14": true, // $
+  //   // "cv15": true, // &
+  //   // "cv16": true, // Q
+  //   // "cv18": true, // 269
+  //   // "cv19": true, // 8
+  //   // "cv20": true, // 5
+  //   // "ss19": true // Broken = ligatures != == === !===
   //   // "ss20": true, // raised bar f
-  //   "ss19": true // Broken = ligatures != == === !===
+  //   "cv10": true // r  (classic)
   // },
-  // "buffer_line_height": { "custom": 1.55 },
+  // // "buffer_line_height": { "custom": 1.55 },
   // --------
   // "buffer_font_size": 14.5,
   // "buffer_font_weight": 575,
@@ -63,7 +63,8 @@
   "relative_line_numbers": "enabled",
   "terminal": {
     "font_size": 12.5,
-    "copy_on_select": true
+    "copy_on_select": true,
+    "line_height": { "custom": 1.5 }
   },
   "telemetry": {
     "metrics": false,
