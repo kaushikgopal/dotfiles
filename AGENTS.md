@@ -10,8 +10,8 @@ Never include secrets, tokens, or PII in logs or outputs; rely on environment
 # Tool Preferences
 - Treat built-in tools (Search/Read/Edit/Glob) as last resort; a single
   well-crafted CLI command beats multiple tool calls
-- Use `rg` for text search (NEVER use grep)
-- Use `fd` for finding files or directories (NEVER use find)
+- use fd (command `fd`) instead of `find` ; it's faster
+- use ripgrep (command `rg`) instead of `grep` ; it's faster
 - Use `gh` cli command instead of trying search github for PRs
 - Favor non-interactive flags (for example `--yes`) and pipe to `| cat` when
   avoiding pagers
