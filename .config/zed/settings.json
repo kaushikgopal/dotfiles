@@ -10,11 +10,11 @@
   // --------
   "buffer_font_family": "Recursive KG",
   "buffer_font_size": 13,
-  "buffer_font_weight": 450,
-  // "buffer_line_height": { "custom": 1.55 },
+  "buffer_font_weight": 400,
+  "buffer_line_height": { "custom": 1.7 },
   // --------
-  // "buffer_font_size": 14.5,
-  // "buffer_font_weight": 525,
+  // "buffer_font_size": 13,
+  // "buffer_font_weight": 500,
   // "buffer_font_family": "TX-02-Variable",
   // "buffer_font_features": {
   //   "ss02": true, // 0
@@ -22,7 +22,6 @@
   //   "ss06": true, // |
   //   "ss12": true // ligatures -> !=
   // },
-  // "buffer_line_height": { "custom": 1.55 },
   // --------
   // "buffer_font_size": 13.5,
   // "buffer_font_family": "JetBrains Mono",
@@ -52,12 +51,11 @@
   // },
   // // "buffer_line_height": { "custom": 1.55 },
   // --------
-  // "buffer_font_size": 14.5,
+  // "buffer_font_size": 14,
   // "buffer_font_weight": 575,
   // "buffer_font_family": "CommitMono-KG",
-  // "buffer_line_height": { "custom": 1.5 },
+  // // "buffer_line_height": { "custom": 1.5 },
   // --------
-
   "cursor_blink": false,
   "hide_mouse": "on_typing_and_movement",
   "relative_line_numbers": "enabled",
