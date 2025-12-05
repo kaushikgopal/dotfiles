@@ -75,9 +75,12 @@ font-thicken                    = true
 
 # Recursive ---------------------->
 font-family             = Recursive KG
-font-size               = 12.5
 font-style              = Regular
-adjust-cell-height      = 35%
+font-style-italic       = Italic
+# font-style-bold         = Medium
+# font-style-bold-italic  = Medium Italic
+font-size               = 13
+adjust-cell-height      = 30%
 
 # # JetBrains Mono -------- -->   $rf8g
 #
