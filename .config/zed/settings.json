@@ -11,9 +11,9 @@
   "buffer_font_family": "Recursive KG",
   "buffer_font_size": 13,
   "buffer_font_weight": 400,
-  "buffer_line_height": { "custom": 1.7 },
+  "buffer_line_height": { "custom": 1.6 },
   // --------
-  // "buffer_font_size": 13,
+  // "buffer_font_size": 13.5,
   // "buffer_font_weight": 500,
   // "buffer_font_family": "TX-02-Variable",
   // "buffer_font_features": {
