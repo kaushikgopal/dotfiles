@@ -24,3 +24,8 @@ Never include secrets, tokens, or PII in logs or outputs; rely on environment
 5. Project structure: `tree -L 2 directories`
 6. JSON inspection: `jq '.key' file.json`
 
+# Git Commits & PRs
+- NEVER include Claude Code or Codex or any other coding agent in the attribution
+  - e.g. no "Generated with Claude Code", no "Co-Authored-By: Claude" lines.
+  - user reviews and takes responsibility for all commits
+  - AI attribution undermines that ownership.

@@ -31,7 +31,6 @@ files_to_link=(
     .brewfile
     .brew.sh
     .claude
-    .claude/CLAUDE.md
     .config/.ripgreprc
     .config/fish
     .config/ghostty
@@ -54,6 +53,9 @@ for file in "${files_to_link[@]}"; do
     rm -rf "$HOME/$file"
     ln -sfn "$current_dir/$file" "$HOME/$file"
 done
+
+echo -e "${GRAY}••••••• symlinking (special) files"
+ln -sfn "$current_dir/AGENTS.md" "$HOME/.claude/CLAUDE.md"
 
 popd
 
