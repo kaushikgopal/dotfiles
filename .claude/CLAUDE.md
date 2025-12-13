@@ -1,1 +1,1 @@
-/Users/kg/src/oss/dotfiles/.claude/CLAUDE.md
+/Users/kg/src/oss/dotfiles/AGENTS.md

@@ -10,7 +10,7 @@
     path = ~/.config/git/config-oss
 
 [core]
-  editor = zed
+  editor = zed -n -w
   #editor = idea -e --wait
   excludesfile   = ~/.config/git/ignore
   attributesfile = ~/.config/git/attributes
