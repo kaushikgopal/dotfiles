@@ -31,6 +31,7 @@ files_to_link=(
     .brewfile
     .brew.sh
     .claude
+    .claude/CLAUDE.md
     .config/.ripgreprc
     .config/fish
     .config/ghostty
