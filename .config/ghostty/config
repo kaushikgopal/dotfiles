@@ -60,18 +60,32 @@ window-padding-balance          = true
 # lLiI1 oO0
 ##############################################
 
-font-thicken                    = true
+font-thicken            = true
+font-size               = 13
+adjust-cell-height      = 30%
 
-# # Commit Mono - KG ---------- -->
-# # font-family             = CommitMono-KGS
-# font-family             = CommitMono-KG
-# font-size               = 13
-# adjust-cell-height      = 40%
-# font-style              = 500Regular
-# font-style-italic       = 500Italic
-# font-style-bold         = 700Regular
-# font-style-bold-italic  = 700Italic
+font-family             = Recursive KG
+font-style              = Regular
+font-style-italic       = Italic
+font-style-bold         = Medium
+font-style-bold-italic  = Medium Italic
 
+
+###########################################
+#########  FONT MATRIX ################
+
+#  !ilI17 AHH-eye-ell-Eye-one-seven
+#  co0ODQ see-oh-zero-Oh-Dee-Cue
+#  b6&B80 bee-six-et-Bee-eight-zero
+#  sS5$S  ess-Ess-five-dollar-Ess
+#  abcdefghijklmnopqrstuvwxyz .?!'"
+#  ABCDEFGHIJKLMNOPQRSTUVWXYZ ,;:-_
+#  1234567890 ,._-+=>< --__ ~-+=><
+#  !@#$%^&*() <> '"`~_-=+*\/|!?,.:;
+#  {}[]()<>$*-+=/#_%^@\&|~?'" !,.;:
+#  a@ B8 dbqp E3 i! 96 G6& g9qCGQ
+#  coO08BbODQ |!iIlL17 $5SZ2zsz
+#  TtijJlFPRK vvw VVW \/V
 
 # # Recursive ---------------------->
 # font-family             = Recursive KG
@@ -82,47 +96,23 @@ font-thicken                    = true
 # font-size               = 13
 # adjust-cell-height      = 30%
 
-
-# Berkeley Mono (TX-02-Variable) -------- -->
-font-family             = TX-02-Variable
-font-size               = 12.5
-adjust-cell-height      = 30%
-font-variation          = wght=400
-font-variation-bold     = wght=750
-
-font-feature            = ss02
-font-feature            = ss05
-font-feature            = ss06
-font-feature            = ss12
-# ss01 - slashed 0
-# ss02 - dotted 0
-# ss03 - inverted slash
-# ss05 - german r
-# ss06 - alternative pipe |
-# ss12 - ligatures ->
-
-# # JetBrains Mono -------- -->   $rf8g
-#
-# #font-family             = Jetbrains Mono KG
-# font-style              = Medium
-# font-style-italic       = Medium Italic
-# font-style-bold         = Bold
-# font-style-bold-italic  = Bold Italic
-#
+# # Berkeley Mono (TX-02-Variable) -------- -->
+# font-family             = TX-02-Variable
 # font-size               = 13
-# adjust-cell-height      = 15%
+# adjust-cell-height      = 30%
+# font-variation          = wght=400
+# font-variation-bold     = wght=750
 #
-# font-feature            = cv10
-
-# # Lilex (IBM Plex Mono with ligatures) ---------- -->
-# font-family             = Lilex
-# font-size               = 12.5
-# adjust-cell-height      = 20%
-# font-style              = Medium
-# font-style-italic       = Medium Italic
-# font-style-bold         = SemiBold
-# font-style-bold-italic  = SemiBold Italic
-
+# font-feature            = ss02
+# font-feature            = ss05
+# font-feature            = ss06
+# font-feature            = ss12
+# # ss01 - slashed 0
+# # ss02 - dotted 0
+# # ss03 - inverted slash
+# # ss05 - german r
+# # ss06 - alternative pipe |
+# # ss12 - ligatures ->
 
 # # SF Mono ---------- -->
 # font-family             = SF Mono
@@ -137,6 +127,15 @@ font-feature            = ss12
 # adjust-cell-height      = 20%
 # font-style              = Text
 # font-style-italic       = Text Italic
+# font-style-bold         = SemiBold
+# font-style-bold-italic  = SemiBold Italic
+
+# # Lilex (IBM Plex Mono with ligatures) ---------- -->
+# font-family             = Lilex
+# font-size               = 12.5
+# adjust-cell-height      = 20%
+# font-style              = Medium
+# font-style-italic       = Medium Italic
 # font-style-bold         = SemiBold
 # font-style-bold-italic  = SemiBold Italic
 
@@ -168,6 +167,13 @@ font-feature            = ss12
 # # cv18 - alternate 2 6 9 . (ss01)
 # # cv19 - old construction of 8. (ss01)
 # # cv20 - old construction of 5.
+
+# JetBrains Mono -------- -->   $rf8g
+# font-family             = Jetbrains Mono KG
+# font-style              = Medium
+# font-style-italic       = Medium Italic
+# font-style-bold         = Bold
+# font-style-bold-italic  = Bold Italic
 
 
 # # Commit Mono ---------- -->
@@ -208,6 +214,16 @@ font-feature            = ss12
 # cv10 - alt l
 # cv11 - alt 1
 
+# # Commit Mono - KG ---------- -->
+# # font-family             = CommitMono-KGS
+# font-family             = CommitMono-KG
+# font-size               = 13
+# adjust-cell-height      = 40%
+# font-style              = 500Regular
+# font-style-italic       = 500Italic
+# font-style-bold         = 700Regular
+# font-style-bold-italic  = 700Italic
+
 
 # # Source Code Pro -------- -->
 # font-family           = Source Code Pro
@@ -247,19 +263,3 @@ font-feature            = ss12
 # # ss03 - alt g
 # # ss04 - alt 3 6 9
 # # ss05 - f - no lower loop
-
-###########################################
-#########      FONT MATRIX ################
-
-#      !ilI17 AHH-eye-ell-Eye-one-seven
-#      co0ODQ see-oh-zero-Oh-Dee-Cue
-#      b6&B80 bee-six-et-Bee-eight-zero
-#      sS5$S  ess-Ess-five-dollar-Ess
-#      abcdefghijklmnopqrstuvwxyz .?!'"
-#      ABCDEFGHIJKLMNOPQRSTUVWXYZ ,;:-_
-#      1234567890 ,._-+=>< --__ ~-+=><
-#      !@#$%^&*() <> '"`~_-=+*\/|!?,.:;
-#      {}[]()<>$*-+=/#_%^@\&|~?'" !,.;:
-#      a@ B8 dbqp E3 i! 96 G6& g9qCGQ
-#      coO08BbODQ |!iIlL17 $5SZ2zsz
-#      TtijJlFPRK vvw VVW \/V
