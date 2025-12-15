@@ -7,11 +7,14 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  // "buffer_font_family": "Recursive KG",
+  // "buffer_font_size": 13.5,
+  // "buffer_font_weight": 375,
+  // "buffer_line_height": { "custom": 1.66 },
   // --------
-  "buffer_font_family": "Recursive KG",
+  "buffer_font_family": "SF Mono",
   "buffer_font_size": 13,
-  "buffer_font_weight": 375,
-  "buffer_line_height": { "custom": 1.66 },
+  "buffer_line_height": { "custom": 1.7 },
   // --------
   // "buffer_font_size": 13,
   // "buffer_font_weight": 375,
@@ -73,9 +76,9 @@
   "wrap_guides": [80],
   // --------------------------------- THEME
   "theme": {
-    "mode": "system",
+    "mode": "dark",
     "light": "One Dark",
-    "dark": "One Dark"
+    "dark": "Zedokai Darker (Filter Machine)"
   },
   // ---- THEME overrides
   "experimental.theme_overrides": {
