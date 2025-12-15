@@ -61,14 +61,6 @@ window-padding-balance          = true
 ##############################################
 
 font-thicken            = true
-font-size               = 13
-adjust-cell-height      = 30%
-
-font-family             = Recursive KG
-font-style              = Regular
-font-style-italic       = Italic
-font-style-bold         = Medium
-font-style-bold-italic  = Medium Italic
 
 
 ###########################################
@@ -89,12 +81,13 @@ font-style-bold-italic  = Medium Italic
 
 # # Recursive ---------------------->
 # font-family             = Recursive KG
+# font-size               = 12.5
+# adjust-cell-height      = 30%
 # font-style              = Regular
 # font-style-italic       = Italic
-# # font-style-bold         = Medium
-# # font-style-bold-italic  = Medium Italic
-# font-size               = 13
-# adjust-cell-height      = 30%
+# font-style-bold         = Medium
+# font-style-bold-italic  = Medium Italic
+
 
 # # Berkeley Mono (TX-02-Variable) -------- -->
 # font-family             = TX-02-Variable
@@ -114,12 +107,14 @@ font-style-bold-italic  = Medium Italic
 # # ss06 - alternative pipe |
 # # ss12 - ligatures ->
 
-# # SF Mono ---------- -->
-# font-family             = SF Mono
-# font-size               = 12.5
-# adjust-cell-height      = 25%
-# # font-style              = Medium
-# # font-style-italic       = Medium Italic
+# SF Mono ---------- -->
+font-family             = SF Mono
+font-size               = 12
+adjust-cell-height      = 28%
+font-style              = Regular
+font-style-italic       = Italic
+font-style-bold         = Medium
+font-style-bold-italic  = Medium Italic
 
 # # IBM Plex Mono ---------- -->
 # font-family             = IBM Plex Mono
