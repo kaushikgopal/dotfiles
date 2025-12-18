@@ -72,6 +72,8 @@ if status is-interactive
 
     abbr --add --global ts tailscale
 
+    abbr --add --global tm     tmux new -s
+
     alias vimo='vimn'
     alias vimt='vimn -t'
 end
