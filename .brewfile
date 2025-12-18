@@ -44,23 +44,23 @@ brew "zoxide"    # after upgrading, run: regen-shell-caches
 brew "fish"
 brew "fzf"       # after upgrading, run: regen-shell-caches
 brew "gum"
-brew "nushell"
-brew "starship"
+brew "tmux"
 
 
+#brew "briss" # pdf cropping tool
 #brew "btop"
 #brew "carapace"
 #brew "difftastic" # delta is pretty darn good
-#brew "xmlstarlet" # fine-grain xml manipulation
+#brew "exa"
+#brew "exiftool"
+#brew "eye-d3"
+#brew "neovim"
+#brew "nushell"
 #brew "pgcli"
 #brew "poppler"
 #brew "powerlevel10k"
-#brew "neovim"
-#brew "briss" # pdf cropping tool
-#brew "exa"
-#brew "tmux"
-#brew "exiftool"
-#brew "eye-d3"
+#brew "starship"
+#brew "xmlstarlet" # fine-grain xml manipulation
 #brew "youtube-dl"
 
 ##############################################################
