@@ -33,7 +33,8 @@ keybind = shift+enter=text:\n
 # theme     = dark:Ghostty Default Style Dark,light:Adwaita
 # theme     = batman-kg
 # theme     = The Hulk
-# theme     = everforest-dark
+theme     = Monokai Pro
+
 adjust-cursor-thickness         = 3
 adjust-underline-position       = 3
 #background-opacity      = 0.95
