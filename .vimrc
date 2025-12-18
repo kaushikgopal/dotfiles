@@ -65,10 +65,11 @@ set synmaxcol=240   " syntax highlight only for N colums
 " =========================================================
 " Colorscheme Theme
 " =========================================================
-"packadd! dracula_pro
+set termguicolors     " enable true color (24-bit RGB) support
+packadd! dracula_pro
 syntax enable
-"let g:dracula_colorterm = 0
-"colorscheme dracula_pro
+let g:dracula_colorterm = 0
+colorscheme dracula_pro
 "colorscheme alucard
 
 
