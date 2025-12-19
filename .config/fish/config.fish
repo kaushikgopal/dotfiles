@@ -70,12 +70,10 @@ if status is-interactive
     abbr --add --global cug cursor . -g
     abbr --add --global z   zed
 
-    abbr --add --global ts tailscale
-
     abbr --add --global tm  tmux
-    abbr --add --global tmn tmux new -s
-    abbr --add --global tma tmux attach -t
-    abbr --add --global tmx tmux kill-server
+    abbr --add --global ts tmux new -s
+    abbr --add --global ta tmux attach -t
+    abbr --add --global tx tmux kill-server
 
     alias vimo='vimn'
     alias vimt='vimn -t'
