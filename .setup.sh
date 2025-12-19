@@ -44,6 +44,7 @@ files_to_link=(
     .profile
     .vim
     .vimrc
+    .tmux.conf
     bin
     AGENTS.md
 )
