@@ -12,19 +12,19 @@
   // "buffer_font_weight": 375,
   // "buffer_line_height": { "custom": 1.66 },
   // --------
-  "buffer_font_family": "SF Mono",
-  "buffer_font_size": 13,
-  "buffer_line_height": { "custom": 1.7 },
-  // --------
+  // "buffer_font_family": "SF Mono",
   // "buffer_font_size": 13,
-  // "buffer_font_weight": 375,
-  // "buffer_font_family": "TX-02-Variable",
-  // "buffer_font_features": {
-  //   "ss02": true, // 0
-  //   "ss05": true, // r
-  //   "ss06": true, // |
-  //   "ss12": true // ligatures -> !=
-  // },
+  // "buffer_line_height": { "custom": 1.7 },
+  // --------
+  "buffer_font_size": 13,
+  "buffer_font_weight": 375,
+  "buffer_font_family": "TX-02-Variable",
+  "buffer_font_features": {
+    "ss02": true, // 0
+    "ss05": true, // r
+    "ss06": true, // |
+    "ss12": true, // ligatures -> !=
+  },
   // --------
   // "buffer_font_size": 13,
   // "buffer_font_family": "JetBrains Mono",
@@ -65,11 +65,11 @@
   "terminal": {
     "font_size": 12.5,
     "copy_on_select": true,
-    "line_height": { "custom": 1.5 }
+    "line_height": { "custom": 1.5 },
   },
   "telemetry": {
     "metrics": false,
-    "diagnostics": false
+    "diagnostics": false,
   },
   "ui_font_size": 16,
   "vim_mode": true,
@@ -78,7 +78,7 @@
   "theme": {
     "mode": "dark",
     "light": "One Dark",
-    "dark": "Zedokai Darker (Filter Machine)"
+    "dark": "Zedokai Darker (Filter Machine)",
   },
   // ---- THEME overrides
   "experimental.theme_overrides": {
@@ -88,21 +88,21 @@
       {
         "cursor": "#FF4685",
         "selection": "#FF46855c",
-        "background": "#FF468530"
-      }
+        "background": "#FF468530",
+      },
     ],
     "syntax": {
       "link_text": { "font_style": "normal" },
       "link_uri": { "font_style": "italic" },
-      "title": { "font_weight": 900 }
-    }
+      "title": { "font_weight": 900 },
+    },
   },
   // ----------------------------------- EXTENSIONS
   "auto_install_extensions": {
     "ini": true,
     "fish": true,
     "kotlin": true,
-    "zedokai": true
+    "zedokai": true,
   },
   // --------------------------------- Language specific instructions
   "languages": {
@@ -115,20 +115,20 @@
             "--prose-wrap",
             "always",
             "--stdin-filepath",
-            "{buffer_path}"
-          ]
-        }
-      }
+            "{buffer_path}",
+          ],
+        },
+      },
     },
     "Kotlin": {
       "format_on_save": "on",
       "formatter": {
         "external": {
           "command": "ktfmt",
-          "arguments": ["--meta-style", "-"]
-        }
-      }
-    }
+          "arguments": ["--meta-style", "-"],
+        },
+      },
+    },
     // "Fish": {
     //   "formatter": {
     //     "external": {
@@ -139,6 +139,6 @@
   },
   "file_types": {
     "Rust": ["**/bin/comm*", "**/bin/mdquote", "**/bin/nato"],
-    "Ini": [".brewfile"]
-  }
+    "Ini": [".brewfile"],
+  },
 }
