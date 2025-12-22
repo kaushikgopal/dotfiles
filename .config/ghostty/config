@@ -80,16 +80,6 @@ font-thicken            = true
 #  coO08BbODQ |!iIlL17 $5SZ2zsz
 #  TtijJlFPRK vvw VVW \/V
 
-# # Recursive ---------------------->
-# font-family             = Recursive KG
-# font-size               = 12.5
-# adjust-cell-height      = 30%
-# font-style              = Regular
-# font-style-italic       = Italic
-# font-style-bold         = Medium
-# font-style-bold-italic  = Medium Italic
-
-
 # Berkeley Mono (TX-02-Variable) -------- -->
 font-family             = TX-02-Variable
 font-size               = 12.5
@@ -112,10 +102,21 @@ font-feature            = ss12
 # font-family             = SF Mono
 # font-size               = 12
 # adjust-cell-height      = 30%
-# font-style              = Regular
-# font-style-italic       = Italic
+# font-style              = Medium
+# font-style-italic       = Medium Italic
 # font-style-bold         = Bold
 # font-style-bold-italic  = Bold Italic
+
+# # Recursive ---------------------->
+# font-family             = Recursive KG
+# font-size               = 12.5
+# adjust-cell-height      = 30%
+# font-style              = Regular
+# font-style-italic       = Italic
+# font-style-bold         = Medium
+# font-style-bold-italic  = Medium Italic
+
+
 
 # # IBM Plex Mono ---------- -->
 # font-family             = IBM Plex Mono
