@@ -1,0 +1,8 @@
+#!/bin/bash
+cd "$1" || exit 1
+selected=$(fd --type f | fzf \
+  --preview "bat --color=always --style=numbers --line-range=:300 {}" \
+  --bind "ctrl-g:reload(fd --type f --no-ignore)+change-prompt(no-ignore> )" \
+  --bind "ctrl-h:reload(fd --type f)+change-prompt(> )" \
+  --prompt "> ")
+[ -n "$selected" ] && tmux send-keys -t "$2" "$selected"
