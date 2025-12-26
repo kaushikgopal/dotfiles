@@ -155,7 +155,7 @@ cask "zed"
 
 ##############################################################
 ##### Mac apps
-cask "firefox"
+cask "firefox", args: { appdir: "~/Applications" }
 cask "brave-browser"
 
 cask "ghostty"
