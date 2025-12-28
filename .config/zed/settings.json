@@ -7,16 +7,27 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
-  "buffer_font_size": 13,
-  "buffer_font_weight": 400,
+  "theme": {
+    "mode": "dark",
+    "light": "One Light",
+    "dark": "Zedokai Darker (Filter Spectrum)",
+  },
+  // --------
   "buffer_font_family": "TX-02-Variable",
+  "buffer_font_size": 12.5,
+  "buffer_font_weight": 400,
   "buffer_font_features": {
     "ss02": true, // 0
     "ss05": true, // r
     "ss06": true, // |
     "ss12": true, // ligatures -> !=
   },
-  "buffer_line_height": { "custom": 1.55 },
+  "buffer_line_height": { "custom": 1.5 },
+  // --------
+  // "buffer_font_family": "SF Mono",
+  // "buffer_font_size": 12,
+  // // "buffer_font_weight": 600,
+  // // "buffer_line_height": { "custom": 1.55 },
   // --------
   // "buffer_font_size": 13,
   // "buffer_font_weight": 575,
@@ -27,10 +38,6 @@
   // "buffer_font_size": 13.5,
   // "buffer_font_weight": 400,
   // "buffer_line_height": { "custom": 1.55 },
-  // --------
-  // "buffer_font_family": "SF Mono",
-  // "buffer_font_size": 13,
-  // "buffer_line_height": { "custom": 1.7 },
   // --------
   // "buffer_font_size": 13,
   // "buffer_font_family": "JetBrains Mono",
