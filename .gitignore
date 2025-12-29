@@ -22,4 +22,6 @@
 .firebender/**
 !.firebender/firebender.json
 
+.ai/tmp/**
+
 .profile
