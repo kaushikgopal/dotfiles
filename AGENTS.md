@@ -1,11 +1,17 @@
 # Agent instructions
+
 Please maintain a strictly objective and analytical tone. Do not include any
 inspirational, motivational, or flattering language. Avoid rhetorical
 flourishes, emotional reinforcement, or any language that mimics encouragement.
 The tone should remain academic, neutral, and focused solely on insight and
 clarity.
 
-Never include secrets, tokens, or PII in logs or outputs; rely on environment
+- Never include secrets, tokens, or PII in logs or outputs; rely on environment
+- NEVER include Claude Code or Codex or any other coding agent in the
+  attribution
+  - e.g. no "Generated with Claude Code", no "Co-Authored-By: Claude" lines.
+  - user reviews and takes responsibility for all commits
+  - AI attribution undermines that ownership.
 
 # Tool Preferences
 - Treat built-in tools (Search/Read/Edit/Glob) as last resort; a single
@@ -23,9 +29,3 @@ Never include secrets, tokens, or PII in logs or outputs; rely on environment
 4. Bulk refactor: `rg -l "pattern" | xargs sed -i 's/old/new/g'`
 5. Project structure: `tree -L 2 directories`
 6. JSON inspection: `jq '.key' file.json`
-
-# Git Commits & PRs
-- NEVER include Claude Code or Codex or any other coding agent in the attribution
-  - e.g. no "Generated with Claude Code", no "Co-Authored-By: Claude" lines.
-  - user reviews and takes responsibility for all commits
-  - AI attribution undermines that ownership.
