@@ -1,0 +1,316 @@
+#!/usr/bin/env bash
+#
+# This is a lightweight, agent-agnostic workflow for spawning parallel
+# worker agents from any CLI agent (codex, claude, gemini-cli) running in tmux.
+#
+# Usage:
+#   tmux-subagent prompt-spawn PANE CWD AGENT
+#   tmux-subagent spawn --master-pane PANE --cwd DIR --agent AGENT --task TASK
+#
+# Environment:
+#   TMUX_SUBAGENT_CONTEXT_LINES        Max lines captured from master pane (default: 1000)
+#   TMUX_SUBAGENT_SUMMARIZE_MIN_LINES  Summarize only if captured context exceeds this many lines (default: 500)
+#   TMUX_SUBAGENT_SUMMARIZATION_TOOL   Tool for summarization: claude or gemini (default: claude)
+#   TMUX_SUBAGENT_SUMMARIZATION_MODEL_FOR_CLAUDE  Model for claude summarization (default: sonnet)
+#   TMUX_SUBAGENT_SUMMARY_PROMPT       Prompt passed to summarization tool
+#   TMUX_SUBAGENT_STARTUP_DELAY_SECS   Delay before injecting prompt (default: 1)
+#   TMUX_SUBAGENT_INJECT_WAIT_SECS     Max seconds to wait for agent prompt before injecting (default: 20)
+#   TMUX_SUBAGENT_INJECT_POLL_SECS     Poll interval (seconds) while waiting for prompt (default: 0.5)
+#   TMUX_SUBAGENT_POST_PASTE_DELAY_SECS Delay after paste before sending Enter (default: 0.4)
+#
+# Notes:
+# - Creates a new tmux window in the background (does not switch focus).
+# - Does not write any files; uses tmux buffers for prompt injection.
+#
+
+set -euo pipefail
+
+# Colors for output
+_c_gray=$'\033[90m'
+_c_reset=$'\033[0m'
+
+msg() {
+    echo "${_c_gray}[tmux-subagent]${_c_reset} $*"
+}
+
+readonly DEFAULT_CONTEXT_LINES=1000
+readonly DEFAULT_SUMMARIZE_MIN_LINES=500
+readonly DEFAULT_SUMMARIZATION_TOOL=claude
+readonly DEFAULT_SUMMARIZATION_MODEL_FOR_CLAUDE=sonnet
+readonly DEFAULT_STARTUP_DELAY_SECS=1
+readonly DEFAULT_INJECT_WAIT_SECS=20
+readonly DEFAULT_INJECT_POLL_SECS=0.5
+readonly DEFAULT_POST_PASTE_DELAY_SECS=0.4
+readonly DEFAULT_SUMMARY_PROMPT=$'Write a concise markdown summary of the important learnings, observations, and context from the session transcript.\n\nConstraints:\n- Output markdown to stdout only (no files).\n- Preserve key file paths, commands, decisions, and open questions.\n- Be succinct and structured.\n'
+
+die() {
+    echo "tmux-subagent: $*" >&2
+    exit 1
+}
+
+require_command() {
+    command -v "$1" >/dev/null 2>&1 || die "required command not found: $1"
+}
+
+sh_escape_for_double_quotes() {
+    local s="${1-}"
+    s="${s//\\/\\\\}"
+    s="${s//\"/\\\"}"
+    s="${s//\$/\\\$}"
+    s="${s//\`/\\\`}"
+    printf '%s' "$s"
+}
+
+script_path() {
+    local src="${BASH_SOURCE[0]:-$0}"
+    if [[ "$src" != */* ]]; then
+        src="$(command -v "$src" || true)"
+    fi
+    [[ -n "$src" ]] || die "cannot resolve script path"
+    echo "$(cd "$(dirname "$src")" && pwd)/$(basename "$src")"
+}
+
+find_session_id_for_pane() {
+    local pane="$1"
+    tmux list-panes -a -F '#{pane_id} #{session_id}' | awk -v p="$pane" '$1==p {print $2; exit}'
+}
+
+cmd_bootstrap() {
+    local master_pane="${1:-}"
+    local agent="${2:-}"
+    local task="${3:-}"
+
+    [[ -n "$master_pane" ]] || die "bootstrap: master pane required"
+    [[ -n "$agent" ]]       || die "bootstrap: agent required"
+    [[ -n "$task" ]]        || die "bootstrap: task required"
+
+    require_command tmux
+
+    local context_lines summarize_min_lines startup_delay_secs inject_wait_secs inject_poll_secs post_paste_delay_secs
+    context_lines="${TMUX_SUBAGENT_CONTEXT_LINES:-$DEFAULT_CONTEXT_LINES}"
+    summarize_min_lines="${TMUX_SUBAGENT_SUMMARIZE_MIN_LINES:-$DEFAULT_SUMMARIZE_MIN_LINES}"
+    startup_delay_secs="${TMUX_SUBAGENT_STARTUP_DELAY_SECS:-$DEFAULT_STARTUP_DELAY_SECS}"
+    inject_wait_secs="${TMUX_SUBAGENT_INJECT_WAIT_SECS:-$DEFAULT_INJECT_WAIT_SECS}"
+    inject_poll_secs="${TMUX_SUBAGENT_INJECT_POLL_SECS:-$DEFAULT_INJECT_POLL_SECS}"
+    post_paste_delay_secs="${TMUX_SUBAGENT_POST_PASTE_DELAY_SECS:-$DEFAULT_POST_PASTE_DELAY_SECS}"
+
+    local summary_prompt summarization_tool summarization_model_for_claude
+    summary_prompt="${TMUX_SUBAGENT_SUMMARY_PROMPT:-$DEFAULT_SUMMARY_PROMPT}"
+    summarization_tool="${TMUX_SUBAGENT_SUMMARIZATION_TOOL:-$DEFAULT_SUMMARIZATION_TOOL}"
+    summarization_model_for_claude="${TMUX_SUBAGENT_SUMMARIZATION_MODEL_FOR_CLAUDE:-$DEFAULT_SUMMARIZATION_MODEL_FOR_CLAUDE}"
+
+    if ! [[ "$context_lines" =~ ^[0-9]+$ ]]; then
+        context_lines="$DEFAULT_CONTEXT_LINES"
+    fi
+
+    if ! [[ "$summarize_min_lines" =~ ^[0-9]+$ ]]; then
+        summarize_min_lines="$DEFAULT_SUMMARIZE_MIN_LINES"
+    fi
+
+    if ! [[ "$startup_delay_secs" =~ ^[0-9]+(\.[0-9]+)?$ ]]; then
+        startup_delay_secs="$DEFAULT_STARTUP_DELAY_SECS"
+    fi
+
+    if ! [[ "$inject_wait_secs" =~ ^[0-9]+$ ]]; then
+        inject_wait_secs="$DEFAULT_INJECT_WAIT_SECS"
+    fi
+
+    if ! [[ "$inject_poll_secs" =~ ^[0-9]+(\.[0-9]+)?$ ]]; then
+        inject_poll_secs="$DEFAULT_INJECT_POLL_SECS"
+    fi
+
+    if ! [[ "$post_paste_delay_secs" =~ ^[0-9]+(\.[0-9]+)?$ ]]; then
+        post_paste_delay_secs="$DEFAULT_POST_PASTE_DELAY_SECS"
+    fi
+
+    local raw_context line_count
+    raw_context="$(tmux capture-pane -t "$master_pane" -p -S "-${context_lines}" 2>/dev/null | sed 's/\x1b\[[0-9;]*m//g' || true)"
+    line_count="$(printf '%s' "$raw_context" | wc -l | tr -d ' ')"
+    msg "Captured ${line_count}/${context_lines} lines..."
+
+    local context
+    context="$raw_context"
+    if [[ "$line_count" -gt "$summarize_min_lines" ]]; then
+        if ! command -v "$summarization_tool" >/dev/null 2>&1; then
+            msg "$summarization_tool not found; using raw context"
+        else
+            msg "Summarizing with $summarization_tool (${line_count} > ${summarize_min_lines})"
+            local summary
+            case "$summarization_tool" in
+                claude)
+                    summary="$(printf '%s' "$raw_context" | claude -p --model "$summarization_model_for_claude" "$summary_prompt" 2>/dev/null)" || summary=""
+                    ;;
+                gemini)
+                    summary="$(printf '%s' "$raw_context" | gemini -p "$summary_prompt" 2>/dev/null)" || summary=""
+                    ;;
+                *)
+                    msg "Unknown summarization tool: $summarization_tool; using raw context"
+                    summary=""
+                    ;;
+            esac
+            if [[ -n "$summary" ]]; then
+                context="$summary"
+            else
+                msg "$summarization_tool summarization failed; using raw context"
+            fi
+        fi
+    else
+        msg "Context < ${summarize_min_lines} lines; skipping summarization..."
+    fi
+
+    local prompt_payload buffer_name
+    prompt_payload="$(printf '<context>\n%s\n</context>\n\n<task>\n%s\n\nConstraints:\n- Do not create or modify files unless the task explicitly asks you to.\n- Respond in this chat/session output (no writing to disk).\n</task>\n' "$context" "$task")"
+    buffer_name="subagent-prompt-$$"
+    printf '%s' "$prompt_payload" | tmux load-buffer -b "$buffer_name" -
+
+    (
+        trap 'tmux delete-buffer -b "$buffer_name" 2>/dev/null || true' EXIT
+        sleep "$startup_delay_secs"
+        msg "Waiting for agent prompt (up to ${inject_wait_secs}s)..."
+        local end_at prompt_re
+        end_at=$((SECONDS + inject_wait_secs))
+        prompt_re='(^>($|[[:space:]]))|(^›($|[[:space:]]))|(^❯($|[[:space:]]))'
+        while [[ $SECONDS -lt $end_at ]]; do
+            local pane_tail last_nonempty
+            pane_tail="$(tmux capture-pane -t "$TMUX_PANE" -p -S -120 2>/dev/null || true)"
+            last_nonempty="$(
+                printf '%s\n' "$pane_tail" \
+                    | sed -E 's/\x1b\\[[0-9;]*m//g; s/\r$//' \
+                    | sed '/^[[:space:]]*$/d' \
+                    | tail -n 1
+            )"
+            if printf '%s\n' "$last_nonempty" | grep -Eq "$prompt_re"; then
+                msg "Detected prompt; injecting task"
+                break
+            fi
+            sleep "$inject_poll_secs"
+        done
+        tmux paste-buffer -b "$buffer_name" -t "$TMUX_PANE"
+        sleep "$post_paste_delay_secs"
+        tmux send-keys -t "$TMUX_PANE" Enter
+    ) &
+
+    local default_shell
+    default_shell="$(tmux show-option -gqv default-shell 2>/dev/null || true)"
+    if [[ -n "$default_shell" ]]; then
+        exec "$default_shell" -lc "$agent"
+    else
+        if command -v bash >/dev/null 2>&1; then
+            exec bash -lc "$agent"
+        else
+            exec sh -lc "$agent"
+        fi
+    fi
+}
+
+cmd_spawn() {
+    local master_pane="" cwd="" task="" agent=""
+
+    while [[ $# -gt 0 ]]; do
+        case "$1" in
+            --master-pane) master_pane="$2"; shift 2 ;;
+            --cwd)         cwd="$2"; shift 2 ;;
+            --agent)       agent="$2"; shift 2 ;;
+            --task)        task="$2"; shift 2 ;;
+            *)             die "spawn: unknown argument: $1" ;;
+        esac
+    done
+
+    [[ -n "$master_pane" ]] || die "spawn: --master-pane required"
+    [[ -n "$cwd" ]]         || die "spawn: --cwd required"
+    [[ -n "$agent" ]]       || die "spawn: --agent required"
+    [[ -n "$task" ]]        || die "spawn: --task required"
+
+    require_command tmux
+
+    local session_id
+    session_id="$(find_session_id_for_pane "$master_pane")"
+    [[ -n "$session_id" ]] || die "spawn: cannot find session for pane $master_pane"
+
+    local script
+    script="$(script_path)"
+
+    local bootstrap_cmd
+    bootstrap_cmd="$(printf '%q ' "$script" bootstrap "$master_pane" "$agent" "$task")"
+
+    local ts window_name
+    ts="$(date +%H%M%S)"
+    window_name="subagent:${agent}:${ts}"
+    tmux new-window -d -t "$session_id" -n "$window_name" -c "$cwd" bash -lc "$bootstrap_cmd"
+}
+
+cmd_prompt_spawn() {
+    local cwd="" agent=""
+    case $# in
+        3) cwd="${2:-}"; agent="${3:-}" ;; # legacy: prompt-spawn PANE CWD AGENT (PANE ignored)
+        2) cwd="${1:-}"; agent="${2:-}" ;;
+        1) cwd='#{pane_current_path}'; agent="${1:-}" ;;
+        *) die "prompt-spawn: usage: prompt-spawn [PANE] [CWD] AGENT" ;;
+    esac
+
+    [[ -n "$cwd" ]]   || die "prompt-spawn: cwd required"
+    [[ -n "$agent" ]] || die "prompt-spawn: agent required"
+
+    local script
+    script="$(script_path)"
+
+    local script_q cwd_q agent_q
+    script_q="$(sh_escape_for_double_quotes "$script")"
+    cwd_q="$(sh_escape_for_double_quotes "$cwd")"
+    agent_q="$(sh_escape_for_double_quotes "$agent")"
+
+    local task_buffer
+    task_buffer="subagent-task-${RANDOM}-${SECONDS}-$$"
+
+    local template
+    template="$(
+        printf 'set-buffer -b "%s" "%%%%%%"; run-shell -b "task=$(tmux show-buffer -b \\"%s\\" 2>/dev/null || true); tmux delete-buffer -b \\"%s\\" 2>/dev/null || true; exec \\"%s\\" spawn --master-pane \\"#{pane_id}\\" --cwd \\"%s\\" --agent \\"%s\\" --task \\"\\$task\\""' \
+            "$task_buffer" \
+            "$task_buffer" \
+            "$task_buffer" \
+            "$script_q" \
+            "$cwd_q" \
+            "$agent_q"
+    )"
+
+    tmux command-prompt -p 'task:' "$template"
+}
+
+cmd_help() {
+    cat <<'EOF'
+tmux-subagent: Minimal tmux subagent spawner for CLI agents
+
+Commands:
+  prompt-spawn [PANE] [CWD] AGENT
+          Prompt for task, then spawn a background tmux window running AGENT
+
+  spawn   --master-pane PANE --cwd DIR --agent AGENT --task TASK
+          Spawn a background tmux window running AGENT and inject context+task
+
+Environment:
+  TMUX_SUBAGENT_CONTEXT_LINES        Max context lines captured from master pane (default: 1000)
+  TMUX_SUBAGENT_SUMMARIZE_MIN_LINES  Summarize only if captured context exceeds this many lines (default: 500)
+  TMUX_SUBAGENT_SUMMARIZATION_TOOL   Tool for summarization: claude or gemini (default: claude)
+  TMUX_SUBAGENT_SUMMARIZATION_MODEL_FOR_CLAUDE  Model for claude summarization (default: sonnet)
+  TMUX_SUBAGENT_SUMMARY_PROMPT       Prompt passed to summarization tool
+  TMUX_SUBAGENT_STARTUP_DELAY_SECS   Delay before injecting prompt (default: 1)
+  TMUX_SUBAGENT_INJECT_WAIT_SECS     Max seconds to wait for agent prompt before injecting (default: 20)
+  TMUX_SUBAGENT_INJECT_POLL_SECS     Poll interval (seconds) while waiting for prompt (default: 0.5)
+  TMUX_SUBAGENT_POST_PASTE_DELAY_SECS Delay after paste before sending Enter (default: 0.4)
+EOF
+}
+
+main() {
+    local cmd="${1:-help}"
+    shift || true
+
+    case "$cmd" in
+        bootstrap)       cmd_bootstrap "$@" ;;
+        spawn)          cmd_spawn "$@" ;;
+        prompt-spawn)   cmd_prompt_spawn "$@" ;;
+        help|-h|--help) cmd_help ;;
+        *)              die "unknown command: $cmd (try: help)" ;;
+    esac
+}
+
+main "$@"

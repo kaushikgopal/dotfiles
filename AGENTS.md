@@ -14,6 +14,7 @@ clarity.
   - AI attribution undermines that ownership.
 
 # Tool Preferences
+
 - Treat built-in tools (Search/Read/Edit/Glob) as last resort; a single
   well-crafted CLI command beats multiple tool calls
 - use fd (command `fd`) instead of `find` ; it's faster
@@ -23,6 +24,7 @@ clarity.
   avoiding pagers
 
 ### CLI Essentials
+
 1. Pattern search: `rg -n "pattern" --glob '!node_modules/*'`
 2. File finding: `fd filename` or `fd .ext directory`
 3. File preview: `bat -n filepath`
