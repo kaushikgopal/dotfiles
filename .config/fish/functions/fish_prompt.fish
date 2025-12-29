@@ -69,7 +69,7 @@ function fish_prompt
     set -g __fish_git_prompt_char_invalidstate '✗'
     set -g __fish_git_prompt_char_stagedstate '+'
     set -g __fish_git_prompt_char_stashstate '$'
-    set -g __fish_git_prompt_char_untrackedfiles ' %'
+    set -g __fish_git_prompt_char_untrackedfiles ' ?'
 
     # remove surround paranthesis
     set -l vcs (fish_vcs_prompt ' %s' 2>/dev/null)
