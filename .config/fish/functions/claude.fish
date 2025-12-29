@@ -1,7 +1,7 @@
 function claude --description "Claude with olive wrapper"
     set -l filtered_argv (string match -v -- '--yolo' --dangerously-skip-permissions $argv)
     if command -q olive
-        echo -e "\033[90mwrapping with 🫒\033[0m"
+        echo (set_color brblack)"wrapping with 🫒"(set_color normal)
         olive claude --dangerously-skip-permissions $filtered_argv
     else
         command claude --dangerously-skip-permissions $filtered_argv
