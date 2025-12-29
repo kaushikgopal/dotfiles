@@ -41,7 +41,7 @@ readonly DEFAULT_STARTUP_DELAY_SECS=1
 readonly DEFAULT_INJECT_WAIT_SECS=20
 readonly DEFAULT_INJECT_POLL_SECS=0.5
 readonly DEFAULT_POST_PASTE_DELAY_SECS=0.4
-readonly DEFAULT_SUMMARY_PROMPT=$'Write a concise markdown summary of the important learnings, observations, and context from the session transcript.\n\nConstraints:\n- Output markdown to stdout only (no files).\n- Preserve key file paths, commands, decisions, and open questions.\n- Be succinct and structured.\n'
+readonly DEFAULT_SUMMARY_PROMPT=$'Write a concise markdown summary of the transcript, prioritizing information necessary to complete the task and excluding unrelated discussion.\n\nOutput format (use these headings in this order):\n1. Task — reproduce the task text verbatim.\n2. Current State — 3–7 bullets describing what is true now (key files/branches/config/state).\n3. Key Context (Task-Relevant) — up to 8 bullets; include only facts that change how the task should be done.\n4. Decisions / Constraints — up to 6 bullets (safety constraints, chosen options).\n5. Commands / Paths / Identifiers — exact literals (paths, commands, flags, env vars, branch/commit ids, relevant ids).\n6. Open Questions / Risks — up to 5 bullets; if missing, write `Unknown`.\n\nHard rules:\n- Output markdown to stdout only (no files).\n- Do not invent details; if not present, write `Unknown`.\n- Preserve exact file paths, command lines, flags, and error messages when present.\n- Prefer short bullets.\n'
 
 die() {
     echo "tmux-subagent: $*" >&2
@@ -138,10 +138,16 @@ cmd_bootstrap() {
             local summary
             case "$summarization_tool" in
                 claude)
-                    summary="$(printf '%s' "$raw_context" | claude -p --model "$summarization_model_for_claude" "$summary_prompt" 2>/dev/null)" || summary=""
+                    summary="$(
+                        printf '<task>\n%s\n</task>\n\n<transcript>\n%s\n</transcript>\n' "$task" "$raw_context" \
+                            | claude -p --model "$summarization_model_for_claude" "$summary_prompt" 2>/dev/null
+                    )" || summary=""
                     ;;
                 gemini)
-                    summary="$(printf '%s' "$raw_context" | gemini -p "$summary_prompt" 2>/dev/null)" || summary=""
+                    summary="$(
+                        printf '<task>\n%s\n</task>\n\n<transcript>\n%s\n</transcript>\n' "$task" "$raw_context" \
+                            | gemini -p "$summary_prompt" 2>/dev/null
+                    )" || summary=""
                     ;;
                 *)
                     msg "Unknown summarization tool: $summarization_tool; using raw context"
