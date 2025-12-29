@@ -25,3 +25,6 @@
 .ai/tmp/**
 
 .profile
+
+
+bin/studio
