@@ -10,7 +10,7 @@
   "theme": {
     "mode": "dark",
     "light": "One Light",
-    "dark": "Zedokai Darker (Filter Spectrum)",
+    "dark": "One Dark",
   },
   // --------
   "buffer_font_family": "TX-02-Variable",
