@@ -15,7 +15,7 @@
   },
   // --------
   "buffer_font_family": "TX-02-Variable",
-  "buffer_font_size": 12.5,
+  "buffer_font_size": 12,
   "buffer_font_weight": 400,
   "buffer_font_features": {
     "ss02": true, // 0
@@ -23,7 +23,7 @@
     "ss06": true, // |
     "ss12": true, // ligatures -> !=
   },
-  "buffer_line_height": { "custom": 1.5 },
+  "buffer_line_height": { "custom": 1.55 },
   // --------
   // "buffer_font_family": "SF Mono",
   // "buffer_font_size": 12,
