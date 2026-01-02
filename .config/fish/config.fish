@@ -10,6 +10,10 @@ fish_vi_key_bindings # start vi mode
 # fish_default_key_binding # go back to default bindings
 set -g fish_prompt_pwd_dir_length 80  # don't shorten pwd
 
+# use vim key bindings in fish
+set -g fish_key_bindings fish_vi_key_bindings
+
+
 # ----------------------------------------------------------------------------------------------------------------------
 # Alias + abbreviations
 
