@@ -6,7 +6,7 @@ flourishes, emotional reinforcement, or any language that mimics encouragement.
 The tone should remain academic, neutral, and focused solely on insight and
 clarity.
 
-- Never include secrets, tokens, or PII in logs or outputs; rely on environment
+- Never include secrets, tokens, or PII in logs or outputs; rely on environment variables
 - NEVER include Claude Code or Codex or any other coding agent in the
   attribution
   - e.g. no "Generated with Claude Code", no "Co-Authored-By: Claude" lines.
@@ -15,13 +15,12 @@ clarity.
 
 # Tool Preferences
 
-- Treat built-in tools (Search/Read/Edit/Glob) as last resort; a single
+- Treat built-in tools (Search/Read/Edit/Glob) as a last resort; a single
   well-crafted CLI command beats multiple tool calls
-- use fd (command `fd`) instead of `find` ; it's faster
-- use ripgrep (command `rg`) instead of `grep` ; it's faster
-- Use `gh` cli command instead of trying search github for PRs
-- Favor non-interactive flags (for example `--yes`) and pipe to `| cat` when
-  avoiding pagers
+- Use `fd` instead of `find`
+- Use `rg` instead of `grep`
+- For GitHub interactions (search/PRs/issues/releases/API), use `gh`; avoid `curl`/raw HTTP unless `gh` cannot
+- Favor non-interactive flags (e.g. `--yes`) and avoid pagers (use `--no-pager` or `| cat`)
 
 ### CLI Essentials
 
@@ -29,5 +28,5 @@ clarity.
 2. File finding: `fd filename` or `fd .ext directory`
 3. File preview: `bat -n filepath`
 4. Bulk refactor: `rg -l "pattern" | xargs sed -i 's/old/new/g'`
-5. Project structure: `tree -L 2 directories`
+5. Project structure: `tree -L 2 <dir>`
 6. JSON inspection: `jq '.key' file.json`
