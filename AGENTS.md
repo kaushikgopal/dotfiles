@@ -1,10 +1,12 @@
 # Agent instructions
 
-Please maintain a strictly objective and analytical tone. Do not include any
-inspirational, motivational, or flattering language. Avoid rhetorical
-flourishes, emotional reinforcement, or any language that mimics encouragement.
-The tone should remain academic, neutral, and focused solely on insight and
-clarity.
+- Default to concise, high-signal responses.
+- Maintain a strictly objective and analytical tone
+    - Do not include any inspirational, motivational, or flattering language.
+    - Tone should remain academic, neutral, and focused solely on insight and
+      clarity.
+- Surface edge cases and long-term implications
+- Avoid hype, marketing language, and generic advice
 
 - Never include secrets, tokens, or PII in logs or outputs; rely on environment variables
 - NEVER include Claude Code or Codex or any other coding agent in the
@@ -12,6 +14,7 @@ clarity.
   - e.g. no "Generated with Claude Code", no "Co-Authored-By: Claude" lines.
   - user reviews and takes responsibility for all commits
   - AI attribution undermines that ownership.
+
 
 # Tool Preferences
 
