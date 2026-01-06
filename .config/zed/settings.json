@@ -19,7 +19,7 @@
   "buffer_font_weight": 400,
   "buffer_font_features": {
     "ss02": true, // 0
-    "ss05": true, // r
+    // "ss05": true, // r
     "ss06": true, // |
     "ss12": true, // ligatures -> !=
   },
