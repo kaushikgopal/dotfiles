@@ -2,6 +2,27 @@
 
 Generated: {YYYY-MM-DD HH:MM}
 
+---
+
+## Bootstrap Instructions
+
+**To reach full context, read these files in order:**
+
+```
+1. {/absolute/path/to/primary-file.md}    # {why this is first}
+2. {/absolute/path/to/second-file.md}     # {role}
+3. {/absolute/path/to/third-file.md}      # {role}
+```
+
+Optional (if applicable):
+```
+4. {/absolute/path/to/optional-file.md}   # {role}
+```
+
+After reading, confirm context with user before proceeding.
+
+---
+
 ## Summary
 
 {2-3 sentences: what was the goal, what was accomplished, what is the current state}

@@ -21,9 +21,10 @@ Synthesize the current session's important context, learnings, and state into a 
 2. Identify key files that are central to the work
 3. Determine current state and logical next steps
 4. Note any open questions or blockers
-5. Generate a succinct but descriptive name for the session (2-4 words, kebab-case)
-6. Open [TEMPLATE.md](TEMPLATE.md) and follow it exactly
-7. Write output to `.ai/tmp/{YYYY-MM-DD}-{succinct-name}.md`
+5. **Create Bootstrap Instructions**: List the key files in priority order (most important first) with absolute paths so a future agent can read them to reach full context
+6. Generate a succinct but descriptive name for the session (2-4 words, kebab-case)
+7. Open [TEMPLATE.md](TEMPLATE.md) and follow it exactly
+8. Write output to `.ai/tmp/{YYYY-MM-DD}-{succinct-name}.md`
 
 ## Output Format
 
@@ -36,5 +37,6 @@ Use [TEMPLATE.md](TEMPLATE.md) as the output structure.
 - **Be explicit**: Don't assume the reading agent has any prior context
 - **Capture decisions**: Include rationale so decisions aren't re-litigated
 - **Name meaningfully**: The filename should indicate what the session was about
+- **Bootstrap first**: The ppage is a summary, not a full context dump. The Bootstrap Instructions tell the future agent which files to read to reach full context. Prioritize files (most important first), use absolute paths, and separate required vs optional files.
 
 Create the `.ai/tmp/` directory if it doesn't exist.
