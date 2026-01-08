@@ -124,7 +124,7 @@ cmd_bootstrap() {
     fi
 
     local raw_context line_count
-    raw_context="$(tmux capture-pane -t "$master_pane" -p -S "-${context_lines}" 2>/dev/null | sed 's/\x1b\[[0-9;]*m//g' || true)"
+    raw_context="$(tmux capture-pane -t "$master_pane" -p -S "-${context_lines}" 2>/dev/null | tmux-agent-output-clean || true)"
     line_count="$(printf '%s' "$raw_context" | wc -l | tr -d ' ')"
     msg "Captured ${line_count}/${context_lines} lines..."
 
