@@ -1,9 +1,0 @@
-function codex --description "Codex with olive wrapper"
-    set -l filtered_argv (string match -v -- '--yolo' $argv)
-    if command -q olive
-        echo (set_color brblack)"wrapping with 🫒"(set_color normal)
-        olive codex --yolo $filtered_argv
-    else
-        command codex --yolo $filtered_argv
-    end
-end
