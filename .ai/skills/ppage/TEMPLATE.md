@@ -25,7 +25,9 @@ After reading, confirm context with user before proceeding.
 
 ## Summary
 
-{2-3 sentences: what was the goal, what was accomplished, what is the current state}
+- **Goal**: {what we set out to accomplish}
+- **Completed**: {what was done}
+- **Remaining**: {gap between current state and goal}
 
 ## Key Learnings
 
@@ -36,6 +38,17 @@ After reading, confirm context with user before proceeding.
 
 - {Decision}: {rationale}
 - {Decision}: {rationale}
+
+## Constraints & Preferences
+
+- {Constraint or user preference discovered during session}
+- {Constraint or user preference discovered during session}
+
+## Critical References
+
+- {URL, doc link, or external resource}: {why it matters}
+- {Key value or config}: {context}
+- {Example input/output}: {relevance}
 
 ## Current State
 
