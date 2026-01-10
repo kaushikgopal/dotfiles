@@ -67,8 +67,8 @@ if status is-interactive
     #abbr --add --global lmm llm -m
     #abbr --add --global lmc llm cmd
 
-    abbr --add --global co  codex
-    abbr --add --global cl  claude
+    abbr --add --global co  codex --yolo
+    abbr --add --global cl  claude --dangerously-skip-permissions
     abbr --add --global ge  gemini
     # abbr --add --global cu  cursor
     # abbr --add --global cug cursor . -g
