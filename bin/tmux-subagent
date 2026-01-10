@@ -196,6 +196,12 @@ cmd_bootstrap() {
         tmux send-keys -t "$TMUX_PANE" Enter
     ) &
 
+    # Transform known agents to their auto-approve variants
+    case "$agent" in
+        claude)  agent="claude --dangerously-skip-permissions" ;;
+        codex)   agent="codex --yolo" ;;
+    esac
+
     local default_shell
     default_shell="$(tmux show-option -gqv default-shell 2>/dev/null || true)"
     if [[ -n "$default_shell" ]]; then
