@@ -215,33 +215,32 @@
 
 
 ######################
-# delta theme config
+# delta theme config (Nord palette)
 [delta]
-    navigate    = false  # use n and N to move between diff sections
-#    features    = chameleon
-#    syntax-theme = base16
-#    file-decoration-style = brightblack ul
-#    file-style = box gray
-#    hunk-header-decoration-style = brightblack ul
+    navigate = false  # use n and N to move between diff sections
+    syntax-theme = Nord
+
     hunk-header-style = omit
     line-numbers = true
-    line-numbers-left-format = {nm:>3}
-#    line-numbers-left-style = brightblack
-#    line-numbers-minus-style = brightblack
-#    line-numbers-plus-style = brightblack
-    line-numbers-right-format = {np:>3} 
-#    line-numbers-right-style = brightblack
-#    line-numbers-zero-style = brightblack
-#    minus-emph-style = red bold
-#    minus-empty-line-marker-style = omit
-#    minus-style = red
-#    plus-emph-style = green bold
-#    plus-empty-line-marker-style = omit
-#    plus-style = green
-#    side-by-side = false
-#    true-color = auto
-#    whitespace-error-style = red reverse
-#    zero-style = brightblack
+    line-numbers-left-format  = " {nm:>3} │"
+    line-numbers-right-format = " {np:>3} │"
+
+    # Nord aurora colors for line numbers
+    line-numbers-minus-style = "#BF616A"        # nord11 red
+    line-numbers-plus-style  = "#A3BE8C"        # nord14 green
+    line-numbers-zero-style  = "#4C566A"        # nord3 muted
+
+    # Diff line styling - Nord aurora colors
+    minus-style      = "#BF616A"                # nord11 red
+    minus-emph-style = "#2E3440" "#BF616A"      # dark bg on red
+    plus-style       = "#A3BE8C"                # nord14 green
+    plus-emph-style  = "#2E3440" "#A3BE8C"      # dark bg on green
+
+    zero-style = syntax
+
+    # File header styling
+    file-style = "#81A1C1" bold                 # nord9 blue
+    file-decoration-style = "#4C566A" ul        # nord3 underline
 
 
 [delta "chameleon"]
