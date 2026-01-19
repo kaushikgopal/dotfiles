@@ -79,6 +79,8 @@ brew "github-keygen"
 # brew "docker-credential-helper-ecr"
 # cask "docker"
 
+brew "mole"  # macOS cleaner app
+
 ######################
 ##### Web dev
 brew "htmltest"
@@ -180,14 +182,11 @@ cask "the-unarchiver"
 #cask "zerotier-one"
 
 cask "font-figtree"
+cask "font-hasklig"     # ligature version of font-source-code-pro
 cask "font-inter"
-cask "font-jetbrains-mono"
 cask "font-jost"
-cask "font-sn-pro"
 cask "font-sf-mono"
-cask "font-source-code-pro"
-cask "kaushikgopal/tools/font-recursive-kg"
-
+cask "font-sn-pro"
 
 #cask "font-cascadia-code"
 #cask "font-cascadia-code-pl"
@@ -202,12 +201,15 @@ cask "kaushikgopal/tools/font-recursive-kg"
 #cask "font-ibm-plex-mono-kg"
 #cask "font-ibm-plex-sans"
 #cask "font-ibm-plex-serif"
+#cask "font-jetbrains-mono"
 #cask "font-lilex"
 #cask "font-new-york"
 #cask "font-plus-jakarta-sans"
 #cask "font-roboto-mono"
 #cask "font-sf-compact"
 #cask "font-sf-pro"
+#cask "font-source-code-pro"
+#cask "kaushikgopal/tools/font-recursive-kg"
 
 brew "mas"
 # mas "Folder Quick Look", id: 6753110395
