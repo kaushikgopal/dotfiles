@@ -30,9 +30,8 @@
   // --------
   // "buffer_font_family": "Source Code Pro",
   "buffer_font_family": "Hasklig",
-  "buffer_font_weight": 500,
-  "buffer_font_size": 13.5,
-  "buffer_line_height": { "custom": 1.5 },
+  // "buffer_font_weight": 500,
+  "buffer_font_size": 13,
   "buffer_font_features": {
     "cv02": true, // alt g
     // "cv04": true, // alt i (add base)
