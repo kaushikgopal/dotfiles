@@ -14,24 +14,41 @@
     // "dark": "Zedokai (Filter Spectrum)",
   },
   // --------
-  "buffer_font_family": "TX-02-Variable",
-  "buffer_font_size": 12,
-  "buffer_font_weight": 500,
-  "buffer_font_features": {
-    "ss02": true, // 0
-    // "ss05": true, // r
-    "ss06": true, // |
-    "ss12": true, // ligatures -> !=
-  },
-  "buffer_line_height": { "custom": 1.55 },
+  // "buffer_font_family": "TX-02-Variable",
+  // "buffer_font_size": 12,
+  // "buffer_font_weight": 500,
+  // "buffer_font_features": {
+  //   "ss02": true, // 0
+  //   // "ss05": true, // r
+  //   "ss06": true, // |
+  //   "ss12": true, // ligatures -> !=
+  // },
+  // "buffer_line_height": { "custom": 1.5 },
   // --------
   // "buffer_font_family": "Jetbrains Mono KG",
   // "buffer_font_size": 12,
   // --------
+  // "buffer_font_family": "Source Code Pro",
+  "buffer_font_family": "Hasklig",
+  "buffer_font_weight": 500,
+  "buffer_font_size": 13.5,
+  "buffer_line_height": { "custom": 1.5 },
+  "buffer_font_features": {
+    "cv02": true, // alt g
+    // "cv04": true, // alt i (add base)
+    // "cv12": true, // slashed 0
+    // "cv15": true, // lifted *
+    "cv16": true, // $ through
+    "cv17": true, // sharper 1 head
+  },
+  // --------
+  // "buffer_font_family": "Google Sans Code",
+  // "buffer_font_size": 12,
+  // // "buffer_line_height": { "custom": 1.5 },
+  // --------
   // "buffer_font_family": "SF Mono",
   // "buffer_font_size": 11.5,
-  // // "buffer_font_weight": 600,
-  // // "buffer_line_height": { "custom": 1.55 },
+  // "buffer_line_height": { "custom": 1.55 },
   // --------
   // "buffer_font_size": 13,
   // "buffer_font_weight": 575,
@@ -43,18 +60,18 @@
   // "buffer_font_weight": 400,
   // "buffer_line_height": { "custom": 1.55 },
   // --------
-  // "buffer_font_size": 13,
+  // "buffer_font_size": 11.5,
   // "buffer_font_family": "JetBrains Mono",
   // "buffer_font_weight": 450,
   // "buffer_font_features": {
   //   // "cv01": true, // l (classic)
   //   // "cv05": true, // curled l
   //   // "cv02": true, // t
-  //   // "cv03": true, // g
+  //   "cv03": true, // g
   //   // "cv04": true, // j
   //   // "cv06": true, // m
-  //   // "cv07": true, // w
-  //   // "cv08": true, // Kk (classic)
+  //   "cv07": true, // w
+  //   "cv08": true, // Kk (classic)
   //   // "cv09": true, // f  (classic)
   //   // "cv17": true, // f (curled top)
   //   // "cv11": true, // y  (classic)
@@ -63,13 +80,13 @@
   //   // "cv15": true, // &
   //   // "cv16": true, // Q
   //   // "cv18": true, // 269
-  //   // "cv19": true, // 8
-  //   // "cv20": true, // 5
-  //   // "ss19": true // Broken = ligatures != == === !===
+  //   "cv19": true, // 8
+  //   "cv20": true, // 5
+  //   // "ss19": true, // Broken = ligatures != == === !===
   //   // "ss20": true, // raised bar f
-  //   "cv10": true // r  (classic)
+  //   "cv10": true, // r  (classic)
   // },
-  // "buffer_line_height": { "custom": 1.7 },
+  // "buffer_line_height": { "custom": 1.5 },
   // --------
   "cursor_blink": false,
   "hide_mouse": "on_typing_and_movement",
