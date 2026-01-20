@@ -34,8 +34,7 @@ keybind = shift+enter=text:\n
 # theme     = batman-kg
 # theme     = The Hulk
 # theme     = Monokai Pro
-# theme     =  gruvbox-dark
-theme     = nord
+# theme     = nord
 
 adjust-cursor-thickness         = 3
 adjust-underline-position       = 3
@@ -81,66 +80,33 @@ font-thicken            = true
 #  coO08BbODQ |!iIlL17 $5SZ2zsz
 #  TtijJlFPRK vvw VVW \/V
 
+# Berkeley Mono (TX-02-Variable) -------- -->
+font-family             = TX-02-Variable
+font-size               = 12.5
+adjust-cell-height      = 30%
+font-variation          = wght=400
+font-variation-bold     = wght=750
 
-# # Berkeley Mono (TX-02-Variable) -------- -->
-# font-family             = TX-02-Variable
-# font-size               = 11.5
-# adjust-cell-height      = 32%
-# font-variation          = wght=450
-# font-variation-bold     = wght=750
-#
-# font-feature            = ss02
-# font-feature            = ss06
-# font-feature            = ss12
-# # ss01 - slashed 0
-# # ss02 - dotted 0
-# # ss03 - inverted slash
-# # ss05 - german r
-# # ss06 - alternative pipe |
-# # ss12 - ligatures ->
-
-# Source Code Pro -------- -->
-# font-family           = Source Code Pro
-font-family           = Hasklig
-font-size             = 11
-adjust-cell-height    = 20%
-font-feature   = cv02
-font-feature   = cv17
-# cv00 - alt a
-# cv02 - alt g
-# cv04 - alt i (add base)
-# cv12 - slashed 0 | zero
-# cv15 - lifted *
-# cv16 - $ through
-# cv17 - alt 1 (sharper head)
+font-feature            = ss02
+font-feature            = ss06
+font-feature            = ss12
 
 # # SF Mono ---------- -->
 # font-family             = SF Mono
-# font-size               = 11
+# font-size               = 12
 # adjust-cell-height      = 32%
 # # font-style              = Regular
 # # font-style-italic       = Regular Italic
 # font-style-bold         = Bold
 # font-style-bold-italic  = Bold Italic
 
-# # Recursive ---------------------->
-# font-family             = Recursive KG
-# font-size               = 11.5
-# adjust-cell-height      = 15%
-# font-style              = Regular
-# font-style-italic       = Italic
-# font-style-bold         = Medium
-# font-style-bold-italic  = Medium Italic
-
-# # Commit Mono - KG ---------- -->
-# # font-family             = CommitMono-KGS
-# font-family             = CommitMono-KG
-# font-size               = 11
-# adjust-cell-height      = 30%
-# font-style              = 500Regular
-# font-style-italic       = 500Italic
-# font-style-bold         = 700Regular
-# font-style-bold-italic  = 700Italic
+# # Source Code Pro -------- -->
+# # font-family           = Source Code Pro
+# font-family           = Hasklig
+# font-size             = 13
+# adjust-cell-height    = 18%
+# font-feature   = cv02
+# font-feature   = cv17
 
 # # JetBrains Mono -------- -->   $rf8g
 # font-size               = 12
@@ -153,9 +119,3 @@ font-feature   = cv17
 # font-style-bold-italic  = Bold Italic
 # # font-style-bold       = Semibold
 # # font-style-bold-italic= Semibold Italic
-# font-feature   = cv03
-# font-feature   = cv07
-# font-feature   = cv08
-# font-feature   = cv10
-# font-feature   = cv19
-# font-feature   = cv20
