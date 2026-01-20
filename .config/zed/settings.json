@@ -14,32 +14,32 @@
     // "dark": "Zedokai (Filter Spectrum)",
   },
   // --------
-  // "buffer_font_family": "TX-02-Variable",
-  // "buffer_font_size": 12,
-  // "buffer_font_weight": 500,
-  // "buffer_font_features": {
-  //   "ss02": true, // 0
-  //   // "ss05": true, // r
-  //   "ss06": true, // |
-  //   "ss12": true, // ligatures -> !=
-  // },
-  // "buffer_line_height": { "custom": 1.5 },
+  "buffer_font_family": "TX-02-Variable",
+  "buffer_font_size": 13.5,
+  "buffer_font_weight": 400,
+  "buffer_font_features": {
+    "ss02": true, // 0
+    // "ss05": true, // r
+    "ss06": true, // |
+    "ss12": true, // ligatures -> !=
+  },
+  // "buffer_line_height": { "custom": 1.6 },
   // --------
   // "buffer_font_family": "Jetbrains Mono KG",
   // "buffer_font_size": 12,
   // --------
-  // "buffer_font_family": "Source Code Pro",
-  "buffer_font_family": "Hasklig",
-  "buffer_font_weight": 500,
-  "buffer_font_size": 13,
-  "buffer_font_features": {
-    "cv02": true, // alt g
-    // "cv04": true, // alt i (add base)
-    // "cv12": true, // slashed 0
-    // "cv15": true, // lifted *
-    "cv16": true, // $ through
-    "cv17": true, // sharper 1 head
-  },
+  // // "buffer_font_family": "Source Code Pro",
+  // "buffer_font_family": "Hasklig",
+  // "buffer_font_weight": 500,
+  // "buffer_font_size": 13,
+  // "buffer_font_features": {
+  //   "cv02": true, // alt g
+  //   // "cv04": true, // alt i (add base)
+  //   // "cv12": true, // slashed 0
+  //   // "cv15": true, // lifted *
+  //   "cv16": true, // $ through
+  //   "cv17": true, // sharper 1 head
+  // },
   // --------
   // "buffer_font_family": "Google Sans Code",
   // "buffer_font_size": 12,
