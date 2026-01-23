@@ -95,10 +95,22 @@ font-feature            = ss12
 # # font-family           = Source Code Pro
 # font-family           = Hasklig
 # font-size             = 12.5
-# adjust-cell-height    = 30%
+# adjust-cell-height    = 25%
 # font-feature   = cv02
 # font-feature   = cv17
-#
+
+
+# # Commit Mono - KG ---------- -->
+# # font-family             = CommitMono-KGS
+# font-family             = CommitMono-KG
+# font-size               = 12.5
+# adjust-cell-height      = 42%
+# font-style              = 425Regular
+# font-style-italic       = 425Italic
+# font-style-bold         = 700Regular
+# font-style-bold-italic  = 700Italic
+
+
 # # SF Mono ---------- -->
 # font-family             = SF Mono
 # font-size               = 12
@@ -107,15 +119,3 @@ font-feature            = ss12
 # # font-style-italic       = Regular Italic
 # font-style-bold         = Bold
 # font-style-bold-italic  = Bold Italic
-
-# # JetBrains Mono -------- -->   $rf8g
-# font-size               = 12
-# # font-family             = Jetbrains Mono KG
-# font-family             = Jetbrains Mono
-# adjust-cell-height      = 10%
-# font-style              = Regular
-# font-style-italic       = Regular Italic
-# font-style-bold         = Bold
-# font-style-bold-italic  = Bold Italic
-# # font-style-bold       = Semibold
-# # font-style-bold-italic= Semibold Italic
