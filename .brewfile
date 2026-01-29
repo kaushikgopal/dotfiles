@@ -72,7 +72,7 @@ brew "git"
 brew "git-delta"
 brew "serie"            # better git logs
 brew "git-lfs"
-brew "jesseduffield/lazygit/lazygit"
+brew "lazygit"
 brew "gh"
 brew "github-keygen"
 # brew "docker-compose"
@@ -150,7 +150,7 @@ brew "gemini-cli"
 
 #######################
 ######## IDEs
-cask "cursor"
+# cask "cursor"
 cask "zed"
 #cask "visual-studio-code"
 
