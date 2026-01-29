@@ -34,9 +34,9 @@ keybind = shift+enter=text:\n
 # theme     = batman-kg
 # theme     = The Hulk
 # theme     = Monokai Pro
-# theme     = in-bed-by-7
+theme     = in-bed-by-7
 # theme     = Catppuccin Macchiato
-theme     = Catppuccin Mocha
+# theme     = Catppuccin Mocha
 
 adjust-cursor-thickness         = 3
 adjust-underline-position       = 3
