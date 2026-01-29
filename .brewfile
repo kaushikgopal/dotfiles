@@ -143,7 +143,7 @@ brew "grpcurl" # caper
 
 #######################
 ######## AI apps
-cask "claude-code"
+# cask "claude-code" # curl -fsSL https://claude.ai/install.sh | bash
 cask "codex"
 brew "gemini-cli"
 #brew "sst/tap/opencode"
