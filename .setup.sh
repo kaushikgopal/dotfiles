@@ -23,6 +23,7 @@ pushd $HOME
 
 mkdir -p .config
 mkdir -p .config/karabiner  # see https://github.com/kaushikgopal/karabiner-kt.git for karabiner.json
+mkdir -p .local
 
 # List of files to symlink (one per line for easy maintenance)
 files_to_link=(
@@ -45,7 +46,6 @@ files_to_link=(
     .vim
     .vimrc
     .tmux.conf
-    bin
     AGENTS.md
 )
 
@@ -57,6 +57,14 @@ done
 
 echo -e "${GRAY}••••••• symlinking (special) files"
 ln -sfn "$current_dir/AGENTS.md" "$HOME/.claude/CLAUDE.md"
+
+# symlink each script in bin/ to ~/.local/bin/
+for script in "$current_dir"/bin/*; do
+    [ -f "$script" ] || continue
+    name=$(basename "$script")
+    echo -e "${GRAY}••••••• symlinking $script -> $HOME/.local/bin/$name ${NC}"
+    ln -sfn "$script" "$HOME/.local/bin/$name"
+done
 
 popd
 

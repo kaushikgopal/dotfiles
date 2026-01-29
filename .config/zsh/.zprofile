@@ -29,7 +29,7 @@ export BAT_CONFIG_PATH=~/.bat.conf
 #   if you added something at the beginning, the old one will disappear
 typeset -U path
 path=(
-    ~/bin
+    ~/.local/bin
     /opt/homebrew/bin
     /opt/homebrew/sbin
     /usr/local/bin
@@ -38,7 +38,6 @@ path=(
     /usr/local/sbin
     /usr/sbin
     /sbin
-    ~/.local/bin                  # pipx
 
     "$ANDROID_HOME/platform-tools"
     "$ANDROID_HOME/cmdline-tools/latest/bin"

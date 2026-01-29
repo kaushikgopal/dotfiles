@@ -99,11 +99,10 @@ set -gx RIPGREP_CONFIG_PATH $HOME/.config/.ripgreprc
 set -Ux PYENV_ROOT $HOME/.pyenv
 
 fish_add_path /opt/homebrew/bin # so homebrew is available
-fish_add_path ~/bin
+fish_add_path ~/.local/bin
 # fish_add_path --append  # so we maintain the order as declared
 fish_add_path --append /opt/homebrew/sbin
 fish_add_path --append /usr/local/bin /usr/bin /bin /usr/local/sbin /usr/sbin /sbin
-fish_add_path --append ~/.local/bin # pipx
 
 fish_add_path --append "$ANDROID_HOME/platform-tools" "$ANDROID_HOME/cmdline-tools/latest/bin" "$ANDROID_HOME/tools" "$ANDROID_HOME/tools/bin" "$ANDROID_HOME/emulator"
 test -d $PYENV_ROOT/bin; and fish_add_path $PYENV_ROOT/bin
