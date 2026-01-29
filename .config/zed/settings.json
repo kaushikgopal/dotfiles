@@ -10,8 +10,9 @@
   "theme": {
     "mode": "dark",
     "light": "One Light",
-    "dark": "One Dark",
+    // "dark": "One Dark",
     // "dark": "Zedokai (Filter Spectrum)",
+    "dark": "Catppuccin Macchiato",
   },
   // --------
   "buffer_font_family": "TX-02-Variable",
