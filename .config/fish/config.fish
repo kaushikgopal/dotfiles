@@ -88,18 +88,22 @@ end
 # set -Ux -> set once and forget
 # set -gx -> same as export
 
+set -gx XDG_BIN_HOME $HOME/.local/bin
+set -gx XDG_CACHE_HOME $HOME/.cache
 set -gx XDG_CONFIG_HOME $HOME/.config
+set -gx XDG_DATA_HOME $HOME/.local/share
+set -gx XDG_STATE_HOME $HOME/.local/state
 
 set -gx ANDROID_HOME $HOME/Library/Android/sdk
 set -gx JAVA_HOME $HOME/Applications/Android\ Studio.app/Contents/jbr/Contents/Home
 # set -gx JAVA_HOME (/usr/libexec/java_home -v "17")
-# set -gx GOKU_EDN_CONFIG_FILE $HOME/.config/karabiner/karabiner.edn
-set -gx BAT_CONFIG_PATH $HOME/.config/.bat.conf
-set -gx RIPGREP_CONFIG_PATH $HOME/.config/.ripgreprc
+# set -gx GOKU_EDN_CONFIG_FILE $XDG_CONFIG_HOME/karabiner/karabiner.edn
+set -gx BAT_CONFIG_PATH $XDG_CONFIG_HOME/.bat.conf
+set -gx RIPGREP_CONFIG_PATH $XDG_CONFIG_HOME/.ripgreprc
 set -Ux PYENV_ROOT $HOME/.pyenv
 
 fish_add_path /opt/homebrew/bin # so homebrew is available
-fish_add_path ~/.local/bin
+fish_add_path $XDG_BIN_HOME
 # fish_add_path --append  # so we maintain the order as declared
 fish_add_path --append /opt/homebrew/sbin
 fish_add_path --append /usr/local/bin /usr/bin /bin /usr/local/sbin /usr/sbin /sbin
