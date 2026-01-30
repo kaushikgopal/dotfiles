@@ -1,12 +1,18 @@
+[includeIf "gitdir:~/.config/"]
+    path = ~/.config/git/config-oss
 [includeIf "gitdir:~/src/off/"]
+    path = ~/.config/git/config-off
+[includeIf "gitdir:~/dev/off/"]
     path = ~/.config/git/config-off
 [includeIf "gitdir:~/src/oss/"]
     path = ~/.config/git/config-oss
+[includeIf "gitdir:~/dev/oss/"]
+    path = ~/.config/git/config-oss
 [includeIf "gitdir:~/src/per/"]
     path = ~/.config/git/config-oss
-[includeIf "gitdir:~/caper-configs-mirror/"]
+[includeIf "gitdir:~/dev/per/"]
     path = ~/.config/git/config-oss
-[includeIf "gitdir:~/.config/"]
+[includeIf "gitdir:~/caper-configs-mirror/"]
     path = ~/.config/git/config-oss
 
 [core]
