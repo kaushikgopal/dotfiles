@@ -30,13 +30,9 @@ keybind = shift+enter=text:\n
 ##############################################
 # Look and Feel
 # ghostty +list-themes
-# theme     = dark:Ghostty Default Style Dark,light:Adwaita
-# theme     = batman-kg
-# theme     = The Hulk
-# theme     = Monokai Pro
-theme     = in-bed-by-7
-# theme     = Catppuccin Macchiato
-# theme     = Catppuccin Mocha
+# theme     = dark:batman-kg,light:Monokai Pro Machine
+# theme     = dark:Monokai Pro Machine,light:Monokai Pro Light
+theme     = Monokai Pro Machine
 
 adjust-cursor-thickness         = 3
 adjust-underline-position       = 3
@@ -90,7 +86,7 @@ font-variation          = wght=400
 font-variation-bold     = wght=750
 
 font-feature            = ss02
-font-feature            = ss06
+# font-feature            = ss06
 font-feature            = ss12
 
 # # Source Code Pro -------- -->
