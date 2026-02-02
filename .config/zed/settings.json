@@ -8,11 +8,9 @@
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
   "theme": {
-    "mode": "dark",
-    "light": "One Light",
-    // "dark": "One Dark",
-    // "dark": "Zedokai (Filter Spectrum)",
-    "dark": "Catppuccin Macchiato",
+    "mode": "system",
+    "light": "Zedokai Light (Filter Sun)",
+    "dark": "Zedokai (Filter Octagon)",
   },
   // --------
   "buffer_font_family": "TX-02-Variable",
