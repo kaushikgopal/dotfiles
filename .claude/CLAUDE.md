@@ -1,1 +1,0 @@
-/Users/kg/src/oss/dotfiles/AGENTS.md

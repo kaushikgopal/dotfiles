@@ -1,8 +1,4 @@
 .claude/**
-!.claude/CLAUDE.md
-!.claude/commands
-!.claude/skills
-!.claude/plans
 
 .config/git/config-*
 # ignore global git ignore file to prevent claude from modifying it
