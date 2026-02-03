@@ -57,6 +57,7 @@ done
 
 echo -e "${GRAY}••••••• symlinking (special) files"
 ln -sfn "$current_dir/AGENTS.md" "$HOME/.claude/CLAUDE.md"
+ln -sfn "$current_dir/.ai/skills" "$HOME/.claude/skills"
 
 # symlink each script in bin/ to ~/.local/bin/
 for script in "$current_dir"/bin/*; do
