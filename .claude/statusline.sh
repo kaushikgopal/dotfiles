@@ -12,7 +12,7 @@ CURRENT_K=$((CURRENT_TOKENS / 1000))
 SIZE_K=$((CONTEXT_SIZE / 1000))
 
 # Alternate display every minute (even=tokens, odd=percent)
-if [ $((10#$(date +%M) % 2)) -eq 1 ]; then
+if [ $((10#$(date +%M) % 2)) -eq 1 ] || true; then
   USAGE="${PERCENT_USAGE}%"
 else
   USAGE="${CURRENT_K}/${SIZE_K}k"
