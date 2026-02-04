@@ -34,7 +34,7 @@ if [ "$usage" != "null" ]; then
   elif [ $pct -ge 60 ]; then
     c='\033[33m'  # orange/yellow
   else
-    c='\033[32m'  # green
+    c='\033[90m'  # dark gray
   fi
 
   if [ -n "$output" ]; then
