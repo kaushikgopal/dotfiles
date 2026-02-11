@@ -9,8 +9,8 @@
 {
   "theme": {
     "mode": "system",
-    "light": "Catppuccin Latte",
-    "dark": "Catppuccin Frappé",
+    "light": "Zedokai Light (Filter Sun)",
+    "dark": "Zedokai (Filter Ristretto)",
   },
   // --------
   "buffer_font_family": "TX-02-Variable",
@@ -161,8 +161,11 @@
     "Ini": [".brewfile"],
   },
   // ------------------------------------- AI Stuff
+  "features": {
+    // "edit_prediction_provider": "zed"
+    "edit_prediction_provider": "copilot",
+  },
   "edit_predictions": {
-    "provider": "copilot",
     "disabled_globs": [],
   },
   "agent": {

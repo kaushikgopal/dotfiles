@@ -1,0 +1,79 @@
+{
+  "hooks": {
+    "Notification": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "afplay ~/.claude/hooks/sound-notification"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "afplay ~/.claude/hooks/sound-stop"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/bash-permission.sh",
+            "timeout": 30
+          }
+        ]
+      },
+      {
+        "matcher": "Write|Edit|Read|Glob|Grep",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/file-edit-permission.sh",
+            "timeout": 30
+          }
+        ]
+      },
+      {
+        "matcher": "mcp__.*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/mcp-permission.sh",
+            "timeout": 30
+          }
+        ]
+      },
+      {
+        "matcher": "Task|TaskOutput|TaskStop|TaskCreate|TaskUpdate|TaskList|TaskGet|WebFetch|WebSearch|AskUserQuestion|EnterPlanMode|ExitPlanMode|Skill|NotebookEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/safe-operations-permission.sh",
+            "timeout": 30
+          }
+        ]
+      }
+    ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "~/.claude/statusline.sh"
+  },
+  "outputStyle": "Explanatory",
+  "spinnerTipsEnabled": false,
+  "model": "us.anthropic.claude-opus-4-6-v1",
+  "enabledPlugins": {
+    "annual-reviews@instacart": false,
+    "context7@claude-plugins-official": true,
+    "document-skills@anthropic-agent-skills": false,
+    "superpowers@claude-plugins-official": true
+  }
+}

@@ -6,7 +6,7 @@ description:
   "capture learnings", or before ending a substantial work session. Previously
   called "ppage" command.
 compatibility:
-  Requires filesystem write access to create `.ai/tmp/*.md` in the current
+  Requires filesystem write access to create `.agents/tmp/*.md` in the current
   repository.
 ---
 
@@ -57,7 +57,7 @@ re-discovery.
      (function/class/target/script name)
 5. Generate a succinct filename topic (2-6 words, kebab-case).
 6. Open [TEMPLATE.md](TEMPLATE.md) and follow it exactly.
-7. Write output to `.ai/tmp/{YYYY-MM-DD}-{topic}.md` (create `.ai/tmp/` if
+7. Write output to `.agents/tmp/{YYYY-MM-DD}-{topic}.md` (create `.agents/tmp/` if
    missing).
 
 ## Output Format
@@ -87,7 +87,7 @@ Use [TEMPLATE.md](TEMPLATE.md) as the output structure.
   essential, keep it short (<=10 lines) and include its anchor.
 - **Omit empty sections**: If a section has no content, omit it (do not leave
   placeholders).
-- **Git hygiene**: Prefer `.ai/tmp/` so pages are not accidentally committed;
-  add `.ai/tmp/**` to `.gitignore` if needed.
+- **Git hygiene**: Prefer `.agents/tmp/` so pages are not accidentally committed;
+  add `.agents/tmp/**` to `.gitignore` if needed.
 
-Create the `.ai/tmp/` directory if it doesn't exist.
+Create the `.agents/tmp/` directory if it doesn't exist.

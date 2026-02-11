@@ -5,13 +5,12 @@
 # remove the greeting
 set -g fish_greeting
 
-fish_vi_key_bindings # start vi mode
+if status is-interactive
+    fish_vi_key_bindings # start vi mode
+end
 
 # fish_default_key_binding # go back to default bindings
-set -g fish_prompt_pwd_dir_length 80  # don't shorten pwd
-
-# use vim key bindings in fish
-set -g fish_key_bindings fish_vi_key_bindings
+set -g fish_prompt_pwd_dir_length 0  # don't shorten pwd
 
 
 # ----------------------------------------------------------------------------------------------------------------------
@@ -31,53 +30,58 @@ if status is-interactive
 
     # https://fishshell.com/docs/3.2/cmds/abbr.html#internals
 
-    abbr --add --global ppath 'echo "$PATH\n\n" | tr ":" "\n"' # print path
+    abbr -a -- ppath 'echo "$PATH\n\n" | tr ":" "\n"' # print path
 
 
-    abbr --add --global lsd 'tree -d -CFL 1'
-    abbr --add --global tre 'tree --dirsfirst -CFL 1'
+    abbr -a -- lsd 'tree -d -CFL 1'
+    abbr -a -- tre 'tree --dirsfirst -CFL 1'
 
-    abbr --add --global o open
-    abbr --add --global oo 'open .'
-    abbr --add --global t trash
+    abbr -a -- o open
+    abbr -a -- oo 'open .'
+    abbr -a -- t trash
 
-    abbr --add --global b   bat
-    abbr --add --global cat bat
+    abbr -a -- b   bat
+    abbr -a -- cat bat
 
-    abbr --add --global bid './bin/dev'
-    abbr --add --global bir './bin/rails'
-    abbr --add --global gr gradle
-    abbr --add --global gw './gradlew'
+    abbr -a -- bid './bin/dev'
+    abbr -a -- bir './bin/rails'
+    abbr -a -- gr gradle
+    abbr -a -- gw './gradlew'
 
-    # abbr --add --global fd 'rg --files'  # use rg instead of fd (one less dep)
-    abbr --add --global rgu 'rg -u'
-    abbr --add --global rguu 'rg -uu'
-    abbr --add --global rguuu 'rg -uuu'
+    # abbr -a -- fd 'rg --files'  # use rg instead of fd (one less dep)
+    abbr -a -- rgu 'rg -u'
+    abbr -a -- rguu 'rg -uu'
+    abbr -a -- rguuu 'rg -uuu'
 
     # git commands
-    abbr --add --global gg   lazygit
-    abbr --add --global g    git # using a git function which is better
-    abbr --add --global g.   git add .
-    abbr --add --global gs   "git status -s"
-    abbr --add --global gcm  git cm
-    abbr --add --global greb 'git rebase --interactive HEAD~'
+    abbr -a -- gg   lazygit
+    abbr -a -- g    git # using a git function which is better
+    abbr -a -- g.   git add .
+    abbr -a -- gs   "git status -s"
+    abbr -a -- gcm  git cm
+    abbr -a -- greb 'git rebase --interactive HEAD~'
 
     # llm commands
-    #abbr --add --global lm  llm
-    #abbr --add --global lmm llm -m
-    #abbr --add --global lmc llm cmd
+    #abbr -a -- lm  llm
+    #abbr -a -- lmm llm -m
+    #abbr -a -- lmc llm cmd
 
-    abbr --add --global co  codex --yolo
-    abbr --add --global cl  claude --dangerously-skip-permissions
-    abbr --add --global ge  gemini --yolo
-    # abbr --add --global cu  cursor
-    # abbr --add --global cug cursor . -g
-    abbr --add --global z   zed
+    abbr -a -- co      codex
+    abbr -a -- coy     codex --yolo
 
-    abbr --add --global tm  tmux
-    abbr --add --global tn tmux new -s
-    abbr --add --global ta tmux attach -t
-    abbr --add --global tk tmux kill-server
+    abbr -a -- cl      claude
+    abbr -a -- cly     claude --dangerously-skip-permissions
+    abbr -a -- clp     claude --plugin-dir ~/dev/off/claude-marketplace/caper/android
+
+    abbr -a -- ge      gemini
+    abbr -a -- gey     gemini --yolo
+
+    abbr -a -- z   zed
+
+    abbr -a -- tm  tmux
+    abbr -a -- tn tmux new -s
+    abbr -a -- ta tmux attach -t
+    abbr -a -- tk tmux kill-server
 
     alias vimo='vimn'
     alias vimt='vimn -t'
@@ -100,36 +104,47 @@ set -gx JAVA_HOME $HOME/Applications/Android\ Studio.app/Contents/jbr/Contents/H
 # set -gx GOKU_EDN_CONFIG_FILE $XDG_CONFIG_HOME/karabiner/karabiner.edn
 set -gx BAT_CONFIG_PATH $XDG_CONFIG_HOME/.bat.conf
 set -gx RIPGREP_CONFIG_PATH $XDG_CONFIG_HOME/.ripgreprc
-set -Ux PYENV_ROOT $HOME/.pyenv
+fish_add_path \
+    /opt/homebrew/bin \
+    $HOME/.cargo/bin \
+    $XDG_BIN_HOME
 
-fish_add_path /opt/homebrew/bin # so homebrew is available
-fish_add_path $XDG_BIN_HOME
-# fish_add_path --append  # so we maintain the order as declared
-fish_add_path --append /opt/homebrew/sbin
-fish_add_path --append /usr/local/bin /usr/bin /bin /usr/local/sbin /usr/sbin /sbin
+fish_add_path --append \
+    /opt/homebrew/sbin \
+    /usr/local/bin \
+    /usr/bin \
+    /bin \
+    /usr/local/sbin \
+    /usr/sbin \
+    /sbin \
+    "$ANDROID_HOME/platform-tools" \
+    "$ANDROID_HOME/cmdline-tools/latest/bin" \
+    "$ANDROID_HOME/tools" \
+    "$ANDROID_HOME/tools/bin" \
+    "$ANDROID_HOME/emulator"
 
-fish_add_path --append "$ANDROID_HOME/platform-tools" "$ANDROID_HOME/cmdline-tools/latest/bin" "$ANDROID_HOME/tools" "$ANDROID_HOME/tools/bin" "$ANDROID_HOME/emulator"
-test -d $PYENV_ROOT/bin; and fish_add_path $PYENV_ROOT/bin
 
 # ----------------------------------------------------------------------------------------------------------------------
 # Cached tool inits (for faster shell startup)
 
 # These tools normally run `tool init | source` on every shell start.
-# We cache the output to ~/.cache/*.fish for speed.
+# We cache the output to $XDG_CACHE_HOME/*.fish for speed.
 #
 # Regenerate all caches manually:
 #   regen-shell-caches
 #
 # Or regenerate individually after updating a tool:
-#   fzf --fish > ~/.cache/fzf.fish
-#   zoxide init --cmd j fish > ~/.cache/zoxide.fish
-#   pyenv init - fish > ~/.cache/pyenv.fish
+#   fzf --fish > $XDG_CACHE_HOME/fzf.fish
+#   zoxide init --cmd j fish > $XDG_CACHE_HOME/zoxide.fish
 
 # Auto-regenerate caches if tool binary is newer than cache file
 function __regen_cache_if_stale --argument-names tool_bin cache_file gen_cmd
+    command -sq $tool_bin; or return 0
+    set -l tool_path (command -s $tool_bin)
+
     if not test -f $cache_file
         eval $gen_cmd
-    else if test (which $tool_bin) -nt $cache_file
+    else if test $tool_path -nt $cache_file
         eval $gen_cmd
     end
 end
@@ -137,51 +152,50 @@ end
 # Regenerate all shell caches (run after brew upgrade)
 function regen-shell-caches
     echo "Regenerating shell caches..."
-    mkdir -p ~/.cache
-    fzf --fish > ~/.cache/fzf.fish && echo "  ✓ fzf"
-    zoxide init --cmd j fish > ~/.cache/zoxide.fish && echo "  ✓ zoxide"
-    pyenv init - fish > ~/.cache/pyenv.fish 2>/dev/null && echo "  ✓ pyenv"
+    mkdir -p $XDG_CACHE_HOME
+    fzf --fish > $XDG_CACHE_HOME/fzf.fish && echo "  ✓ fzf"
+    zoxide init --cmd j fish > $XDG_CACHE_HOME/zoxide.fish && echo "  ✓ zoxide"
     echo "Done. Restart your shell."
 end
 
-# Check for stale caches on first interactive shell of the day
+# Check for stale caches on interactive shell start
 if status is-interactive
-    set -l today (date +%Y-%m-%d)
-    if test "$__shell_cache_check_date" != "$today"
-        set -g __shell_cache_check_date $today
-        __regen_cache_if_stale fzf ~/.cache/fzf.fish "fzf --fish > ~/.cache/fzf.fish"
-        __regen_cache_if_stale zoxide ~/.cache/zoxide.fish "zoxide init --cmd j fish > ~/.cache/zoxide.fish"
-        __regen_cache_if_stale pyenv ~/.cache/pyenv.fish "pyenv init - fish > ~/.cache/pyenv.fish 2>/dev/null"
-    end
+    test -d $XDG_CACHE_HOME; or mkdir -p $XDG_CACHE_HOME
+    __regen_cache_if_stale fzf $XDG_CACHE_HOME/fzf.fish "fzf --fish > $XDG_CACHE_HOME/fzf.fish"
+    __regen_cache_if_stale zoxide $XDG_CACHE_HOME/zoxide.fish "zoxide init --cmd j fish > $XDG_CACHE_HOME/zoxide.fish"
 end
 
 # -----------------------------------
 # FZF
 
-# enable FZF for fish while disabling alt + c
-FZF_ALT_C_COMMAND= source ~/.cache/fzf.fish
+if status is-interactive
+    # enable FZF for fish while disabling alt + c
+    test -f $XDG_CACHE_HOME/fzf.fish; and FZF_ALT_C_COMMAND= source $XDG_CACHE_HOME/fzf.fish
 
-# set -gx FZF_DEFAULT_COMMAND 'rg --files'
-# default command is different from ctrl + t
-set -gx FZF_CTRL_T_COMMAND 'rg --files'
+    # set -gx FZF_DEFAULT_COMMAND 'rg --files'
+    # default command is different from ctrl + t
+    set -gx FZF_CTRL_T_COMMAND 'rg --files'
 
-# Ctrl+T preview with syntax highlighting
-set -gx FZF_CTRL_T_OPTS " \
-  --height 60% \
-  --layout=reverse \
-  --border \
-  --preview 'bat --color=always --style=numbers --line-range=:500 {}' \
-  --preview-window=right:60%:wrap"
+    # Ctrl+T preview with syntax highlighting
+    set -gx FZF_CTRL_T_OPTS " \
+      --height 60% \
+      --layout=reverse \
+      --border \
+      --preview 'bat --color=always --style=numbers --line-range=:500 {}' \
+      --preview-window=right:60%:wrap"
 
-# CTRL-Y to copy the command into clipboard when previewing command history
-set -gx FZF_CTRL_R_OPTS " \
-  --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort' \
-  --color header:italic \
-  --header 'Press CTRL-Y to copy command into clipboard'"
+    # CTRL-Y to copy the command into clipboard when previewing command history
+    set -gx FZF_CTRL_R_OPTS " \
+      --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort' \
+      --color header:italic \
+      --header 'Press CTRL-Y to copy command into clipboard'"
+end
 
 # -----------------------------------
 # Zoxide
-source ~/.cache/zoxide.fish
+if status is-interactive
+    test -f $XDG_CACHE_HOME/zoxide.fish; and source $XDG_CACHE_HOME/zoxide.fish
+end
 
 # ---------------------------------------------------------
 # special instructions on bind
@@ -191,10 +205,6 @@ source ~/.cache/zoxide.fish
 # ---------------------------------------------------------
 # Starship
 # starship init fish | source
-
-# -----------------------------------
-# pyenv for python development setup
-test -f ~/.cache/pyenv.fish && source ~/.cache/pyenv.fish
 
 # Custom key bindings
 # this allows me to use my karabiner delete word keybindings in fish
@@ -210,4 +220,4 @@ function fish_user_key_bindings
     end
 end
 
-source ~/.secrets.fish
+test -f ~/.secrets.fish; and source ~/.secrets.fish

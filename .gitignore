@@ -1,6 +1,3 @@
-.claude/**
-!.claude/statusline.sh
-
 .config/git/config-*
 # ignore global git ignore file to prevent claude from modifying it
 #.config/git/ignore
@@ -16,10 +13,16 @@
 .config/zed/conversations
 .config/zsh/.zsh_sessions
 
+.agents/skills/agent-browser
+.agents/tmp/**
+
+.claude/**
+!.claude/statusline.sh
+!.claude/settings.json
+
+
 .firebender/**
 !.firebender/firebender.json
-
-.ai/tmp/**
 
 .profile
 

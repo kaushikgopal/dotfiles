@@ -79,7 +79,8 @@ brew "github-keygen"
 # brew "docker-credential-helper-ecr"
 # cask "docker"
 
-brew "mole"  # macOS cleaner app
+brew "agent-browser"
+brew "mole"             # macOS cleaner app
 
 ######################
 ##### Web dev
@@ -116,12 +117,14 @@ brew "node"
 
 ######################
 ##### .py
-brew "pyenv"     # after upgrading, run: regen-shell-caches
+brew "uv"    # python
+# brew "pipx"
+# brew "pyenv"     # after upgrading, run: regen-shell-caches
 # brew "pyenv-virtualenv"
 # brew "python-tabulate"
 # brew "python@3.10"
-brew "python3"   # caper local mock server
-brew "python-yq" # caper local mock server
+# brew "python3"   # caper local mock server
+# brew "python-yq" # caper local mock server
 
 ######################
 ##### go
@@ -137,16 +140,15 @@ brew "rust-script" # we depend on rust-script for shebang-driven Rust executable
 ######################
 ##### work
 brew "bazelisk"
-brew "pipx"
-#cask "orbstack"
+# cask "orbstack"
 brew "grpcurl" # caper
 
 #######################
 ######## AI apps
-# cask "claude-code" # curl -fsSL https://claude.ai/install.sh | bash
-cask "codex"
-brew "gemini-cli"
-#brew "sst/tap/opencode"
+# cask "claude-code"    # using gohan # curl -fsSL https://claude.ai/install.sh | bash
+# cask "codex"          # using gohan
+# brew "gemini-cli"     # using gohan # npm install -g @google/gemini-cli
+# brew "sst/tap/opencode"
 
 #######################
 ######## IDEs

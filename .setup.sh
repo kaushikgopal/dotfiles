@@ -27,11 +27,9 @@ mkdir -p .local
 
 # List of files to symlink (one per line for easy maintenance)
 files_to_link=(
-    .ai
     .bashrc
     .brewfile
     .brew.sh
-    .claude
     .config/.ripgreprc
     .config/fish
     .config/ghostty
@@ -45,8 +43,7 @@ files_to_link=(
     .profile
     .vim
     .vimrc
-    .tmux.conf
-    AGENTS.md
+    .config/tmux
 )
 
 for file in "${files_to_link[@]}"; do
@@ -55,9 +52,11 @@ for file in "${files_to_link[@]}"; do
     ln -sfn "$current_dir/$file" "$HOME/$file"
 done
 
-echo -e "${GRAY}••••••• symlinking (special) files"
-ln -sfn "$current_dir/AGENTS.md" "$HOME/.claude/CLAUDE.md"
-ln -sfn "$current_dir/.ai/skills" "$HOME/.claude/skills"
+##############################################################
+# Agents (instructions, skills, commands)
+##############################################################
+
+source "$current_dir/.setup.agents.sh"
 
 # symlink each script in bin/ to ~/.local/bin/
 for script in "$current_dir"/bin/*; do
