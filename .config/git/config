@@ -236,11 +236,11 @@
     line-numbers-plus-style  = "#38a660"        # claude added
     line-numbers-zero-style  = "#4C566A"        # nord3 muted
 
-    # Diff line styling - claude code default dark palette
-    minus-style          = syntax "#7a2936"      # syntax text on dark red bg
-    minus-emph-style     = syntax "#b3596b"      # syntax text on bright red bg
-    plus-style           = syntax "#225c2b"      # syntax text on dark green bg
-    plus-emph-style      = syntax "#38a660"      # syntax text on bright green bg
+    # Diff line styling - claude code dark palette (darkened for delta)
+    minus-style          = syntax "#5c1f29"      # dark red bg
+    minus-emph-style     = syntax "#864350"      # bright red bg
+    plus-style           = syntax "#1a4520"      # dark green bg
+    plus-emph-style      = syntax "#2a7d48"      # bright green bg
 
     zero-style = syntax
 
@@ -280,11 +280,11 @@
   line-numbers-plus-style = "#38a660" brightblack
   line-numbers-zero-style = "#434C5E"
 
-  # diff style - claude code default dark palette
-  minus-style = syntax "#7a2936"
-  minus-emph-style = syntax "#b3596b"
-  plus-style = syntax "#225c2b"
-  plus-emph-style = syntax "#38a660"
+  # diff style - claude code dark palette (darkened for delta)
+  minus-style = syntax "#5c1f29"
+  minus-emph-style = syntax "#864350"
+  plus-style = syntax "#1a4520"
+  plus-emph-style = syntax "#2a7d48"
 
   # unchanged lines style
   zero-style = syntax
