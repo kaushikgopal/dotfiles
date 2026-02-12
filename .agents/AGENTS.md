@@ -28,6 +28,12 @@
   - breathless intensifiers ("mind-blowing", "breakthrough", "game-changer")
 - State information directly. Skip the rhetorical framing.
 
+## Research standards
+
+- Never say "not possible" based on a single source
+- If the first search comes up empty, try at least two more angles before
+  concluding
+
 ## Subagent strategy
 
 - Use subagents liberally to keep main context window clean
@@ -38,31 +44,30 @@
 
 # Coding Guidelines
 
-- **Simplicity First**: Make every change as simple as possible. Impact minimal code.
-- **No Laziness**: Find root causes. No temporary fixes. Senior developer standards.
-- **Minimal Impact**: Changes should only touch what's necessary. Avoid introducing bugs.
-
 ## Think Before Coding
 
 - State assumptions explicitly. If uncertain, ask.
 - If multiple interpretations exist, present them—don't pick silently.
 - If a simpler approach exists, say so. Push back when warranted.
 - If something is unclear, stop. Name what's confusing. Ask.
+- For non-trivial changes, explain your approach before editing.
+- When user redirects strategy or suggests a simpler approach, adopt it
+  immediately.
 
 ## Simplicity First
 
-- No features beyond what was asked.
+- Implement exactly what was requested — nothing more.
 - No abstractions for single-use code.
 - No "flexibility" or "configurability" that wasn't requested.
 - No error handling for impossible scenarios.
 - If 200 lines could be 50, rewrite it.
+- Find root causes. No temporary fixes or workarounds.
 
 ## Surgical Changes
 
 When editing existing code:
 
-- Don't "improve" adjacent code, comments, or formatting.
-- Don't refactor things that aren't broken.
+- Leave surrounding code, comments, and formatting unchanged.
 - Match existing style, even if you'd do it differently.
 - If you notice unrelated dead code, mention it—don't delete it.
 - Remove imports/variables/functions that YOUR changes made unused.
@@ -70,11 +75,13 @@ When editing existing code:
 
 The test: every changed line should trace directly to the user's request.
 
+## Verify Before Done
+
+- Run relevant tests and verify output before claiming work is complete.
+- If no tests exist, verify the change works by other means (lint, type check,
+  manual inspection).
+
 ## Tool Preferences
 
-- Pattern search: `rg -n "pattern" --glob '!node_modules/*'`
-- File finding: `fd filename` or `fd .ext directory`
-- File preview: `bat -n filepath`
-- Bulk refactor: `rg -l "pattern" | xargs sed -i 's/old/new/g'`
 - Project structure: `tree -L 2 <dir>`
 - JSON inspection: `jq '.key' file.json`
