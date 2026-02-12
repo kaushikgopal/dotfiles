@@ -221,7 +221,7 @@
 
 
 ######################
-# delta theme config (Nord palette)
+# delta theme config (Nord palette, colorblind-friendly blue/red)
 [delta]
     navigate = false  # use n and N to move between diff sections
     syntax-theme = Nord
@@ -231,16 +231,16 @@
     line-numbers-left-format  = " {nm:>3} │"
     line-numbers-right-format = " {np:>3} │"
 
-    # Nord aurora colors for line numbers
-    line-numbers-minus-style = "#BF616A"        # nord11 red
-    line-numbers-plus-style  = "#A3BE8C"        # nord14 green
+    # Line number colors
+    line-numbers-minus-style = "#b3596b"        # claude removed
+    line-numbers-plus-style  = "#38a660"        # claude added
     line-numbers-zero-style  = "#4C566A"        # nord3 muted
 
-    # Diff line styling - Nord aurora colors
-    minus-style      = "#BF616A"                # nord11 red
-    minus-emph-style = "#2E3440" "#BF616A"      # dark bg on red
-    plus-style       = "#A3BE8C"                # nord14 green
-    plus-emph-style  = "#2E3440" "#A3BE8C"      # dark bg on green
+    # Diff line styling - claude code default dark palette
+    minus-style          = syntax "#7a2936"      # syntax text on dark red bg
+    minus-emph-style     = syntax "#b3596b"      # syntax text on bright red bg
+    plus-style           = syntax "#225c2b"      # syntax text on dark green bg
+    plus-emph-style      = syntax "#38a660"      # syntax text on bright green bg
 
     zero-style = syntax
 
@@ -273,20 +273,18 @@
 
   # line numbers style
   line-numbers-left-format = " {nm:>3} │"
-  line-numbers-left-style = red
+  line-numbers-left-style = "#b3596b"
   line-numbers-right-format = " {np:>3} │"
-  line-numbers-right-style = green
-  line-numbers-minus-style = red black
-  line-numbers-plus-style = green brightblack
+  line-numbers-right-style = "#38a660"
+  line-numbers-minus-style = "#b3596b" black
+  line-numbers-plus-style = "#38a660" brightblack
   line-numbers-zero-style = "#434C5E"
 
-  # diff style
-  minus-style = bold red # line removed
-  minus-emph-style = bold "#202020" red # changed part of line
-  minus-non-emph-style = bold # changed line backdrop
-  plus-style = bold green # line added
-  plus-emph-style = bold "#202020" green # changed part of line
-  plus-non-emph-style = bold # changed line backdrop
+  # diff style - claude code default dark palette
+  minus-style = syntax "#7a2936"
+  minus-emph-style = syntax "#b3596b"
+  plus-style = syntax "#225c2b"
+  plus-emph-style = syntax "#38a660"
 
   # unchanged lines style
   zero-style = syntax
