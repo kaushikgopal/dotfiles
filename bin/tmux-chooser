@@ -1,0 +1,182 @@
+#!/usr/bin/env bash
+# tmux-chooser: fzf-powered session/window/directory picker for tmux
+#
+# Usage (from tmux):
+#   tmux display-popup -E '$XDG_BIN_HOME/tmux-chooser'
+#
+# Subcommands (called internally by fzf bindings):
+#   tmux-chooser list [all|sessions|windows|dirs]
+#   tmux-chooser preview <key>
+#   tmux-chooser kill <key>
+
+set -euo pipefail
+SELF="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/$(basename "${BASH_SOURCE[0]}")"
+
+# nerd font icons
+ICON_SESSION=""
+ICON_WINDOW=""
+ICON_DIR=""
+
+# ANSI colors
+C_SESSION='\033[36m'        # cyan
+C_WINDOW='\033[38;5;245m'   # grey
+C_DIR='\033[34m'            # blue
+C_DIM='\033[2m'
+C_RESET='\033[0m'
+
+CURRENT_SESSION=$(tmux display-message -p '#S' 2>/dev/null || true)
+
+# --- list helpers -----------------------------------------------------------
+
+list_sessions_and_windows() {
+    tmux list-sessions -F "#{session_name}	#{session_windows}	#{session_attached}" 2>/dev/null | \
+    while IFS=$'\t' read -r name win_count attached; do
+        local marker=""
+        [[ "$name" == "$CURRENT_SESSION" ]] && marker=" •"
+        printf "s:%s\t${C_SESSION}%s  %s${C_DIM}  %s win%s${C_RESET}\n" \
+            "$name" "$ICON_SESSION" "$name" "$win_count" "$marker"
+
+        tmux list-windows -t "$name" \
+            -F "#{window_index}	#{window_name}	#{pane_current_path}	#{window_active}" 2>/dev/null | \
+        while IFS=$'\t' read -r idx wname path active; do
+            local short="${path/#$HOME/\~}"
+            local wmarker=""
+            [[ "$name" == "$CURRENT_SESSION" && "$active" == "1" ]] && wmarker=" •"
+            printf "w:%s:%s\t${C_WINDOW}   %s  %s  %s${C_DIM}  %s%s${C_RESET}\n" \
+                "$name" "$idx" "$ICON_WINDOW" "$wname" "$short" "$name" "$wmarker"
+        done
+    done
+}
+
+list_sessions() {
+    tmux list-sessions -F "#{session_name}	#{session_windows}	#{session_attached}" 2>/dev/null | \
+    while IFS=$'\t' read -r name win_count attached; do
+        local marker=""
+        [[ "$name" == "$CURRENT_SESSION" ]] && marker=" •"
+        printf "s:%s\t${C_SESSION}%s  %s${C_DIM}  %s win%s${C_RESET}\n" \
+            "$name" "$ICON_SESSION" "$name" "$win_count" "$marker"
+    done
+}
+
+list_windows() {
+    tmux list-sessions -F "#{session_name}" 2>/dev/null | while read -r session; do
+        tmux list-windows -t "$session" \
+            -F "#{window_index}	#{window_name}	#{pane_current_path}	#{window_active}" 2>/dev/null | \
+        while IFS=$'\t' read -r idx wname path active; do
+            local short="${path/#$HOME/\~}"
+            local wmarker=""
+            [[ "$session" == "$CURRENT_SESSION" && "$active" == "1" ]] && wmarker=" •"
+            printf "w:%s:%s\t${C_WINDOW}   %s  %s  %s${C_DIM}  %s%s${C_RESET}\n" \
+                "$session" "$idx" "$ICON_WINDOW" "$wname" "$short" "$session" "$wmarker"
+        done
+    done
+}
+
+list_dirs() {
+    command -v zoxide &>/dev/null || return 0
+    zoxide query -l 2>/dev/null | head -20 | while read -r dir; do
+        local short="${dir/#$HOME/\~}"
+        printf "d:%s\t${C_DIR}%s  %s${C_RESET}\n" "$dir" "$ICON_DIR" "$short"
+    done
+}
+
+list_all() {
+    list_sessions_and_windows
+    list_dirs
+}
+
+# --- preview ----------------------------------------------------------------
+
+do_preview() {
+    local key="$1"
+    local type="${key%%:*}"
+    local target="${key#*:}"
+
+    case "$type" in
+        s) tmux capture-pane -e -t "$target" -p 2>/dev/null || echo "Session: $target" ;;
+        w) tmux capture-pane -e -t "${target/:/\.}" -p 2>/dev/null || \
+           tmux capture-pane -e -t "${target%%:*}:${target#*:}" -p 2>/dev/null || \
+           echo "Window: $target" ;;
+        d) tree -L 1 -C "$target" 2>/dev/null || ls -laG "$target" 2>/dev/null ;;
+    esac
+}
+
+# --- kill -------------------------------------------------------------------
+
+do_kill() {
+    local key="$1"
+    local type="${key%%:*}"
+    local target="${key#*:}"
+
+    case "$type" in
+        s) tmux kill-session -t "=$target" 2>/dev/null ;;
+        w) tmux kill-window -t "${target%%:*}:${target#*:}" 2>/dev/null ;;
+    esac
+}
+
+# --- connect ----------------------------------------------------------------
+
+do_connect() {
+    local key="$1"
+    local type="${key%%:*}"
+    local target="${key#*:}"
+
+    case "$type" in
+        s) tmux switch-client -t "$target" ;;
+        w) tmux switch-client -t "${target%%:*}:${target#*:}" ;;
+        d)
+            local name
+            name=$(basename "$target")
+            name="${name//./-}"
+            name="${name//:/-}"
+            if tmux has-session -t "=$name" 2>/dev/null; then
+                tmux switch-client -t "$name"
+            else
+                tmux new-session -d -s "$name" -c "$target"
+                tmux switch-client -t "$name"
+            fi
+            ;;
+    esac
+}
+
+# --- picker -----------------------------------------------------------------
+
+run_picker() {
+    local selected
+    selected=$("$SELF" list all | fzf \
+        --delimiter '\t' --with-nth 2 \
+        --ansi --no-sort --layout=reverse \
+        --border-label ' tmux chooser ' --prompt '  ' \
+        --header '  ^a all  ^s sessions  ^w windows  ^d dirs  ^x kill' \
+        --bind 'tab:down,btab:up' \
+        --bind "ctrl-a:change-prompt(  )+reload($SELF list all)" \
+        --bind "ctrl-s:change-prompt(  )+reload($SELF list sessions)" \
+        --bind "ctrl-w:change-prompt(  )+reload($SELF list windows)" \
+        --bind "ctrl-d:change-prompt(  )+reload($SELF list dirs)" \
+        --bind "ctrl-x:execute-silent($SELF kill {1})+reload($SELF list all)" \
+        --preview-window 'right:55%' \
+        --preview "$SELF preview {1}" \
+    ) || true
+
+    if [[ -n "$selected" ]]; then
+        local key
+        key=$(printf '%s' "$selected" | cut -f1)
+        "$SELF" connect "$key"
+    fi
+}
+
+# --- main dispatch ----------------------------------------------------------
+
+case "${1:-run}" in
+    list)    case "${2:-all}" in
+                 all)      list_all ;;
+                 sessions) list_sessions ;;
+                 windows)  list_windows ;;
+                 dirs)     list_dirs ;;
+             esac ;;
+    preview) do_preview "$2" ;;
+    kill)    do_kill "$2" ;;
+    connect) do_connect "$2" ;;
+    run)     run_picker ;;
+    *)       echo "Usage: tmux-chooser [run|list|preview|kill|connect]"; exit 1 ;;
+esac
