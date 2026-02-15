@@ -87,16 +87,57 @@ list_all() {
 
 # --- preview ----------------------------------------------------------------
 
+capture_pane() {
+    local target="$1" max_lines="${2:-0}"
+    local output
+    output=$(tmux capture-pane -e -t "$target" -p 2>/dev/null)
+    # check if capture is blank (empty or whitespace-only)
+    if [[ -z "${output//[$'\n\t ']}" ]]; then
+        local cmd
+        cmd=$(tmux display-message -t "$target" -p '#{pane_current_command}' 2>/dev/null || true)
+        local path
+        path=$(tmux display-message -t "$target" -p '#{pane_current_path}' 2>/dev/null || true)
+        printf '\033[2m(no visible content)\n%s  %s\033[0m\n' "${cmd:-?}" "${path:+${path/#$HOME/\~}}"
+        return
+    fi
+    if [[ "$max_lines" -gt 0 ]]; then
+        printf '%s\n' "$output" | tail -n "$max_lines"
+    else
+        printf '%s\n' "$output"
+    fi
+}
+
 do_preview() {
     local key="$1"
     local type="${key%%:*}"
     local target="${key#*:}"
 
+    local session window
     case "$type" in
-        s) tmux capture-pane -e -t "$target" -p 2>/dev/null || echo "Session: $target" ;;
-        w) tmux capture-pane -e -t "${target/:/\.}" -p 2>/dev/null || \
-           tmux capture-pane -e -t "${target%%:*}:${target#*:}" -p 2>/dev/null || \
-           echo "Window: $target" ;;
+        s) capture_pane "$target" ;;
+        w)
+            session="${target%%:*}"
+            window="${target#*:}"
+            local pane_count
+            pane_count=$(tmux display-message -t "$session:$window" -p '#{window_panes}' 2>/dev/null) || {
+                echo "Window: $target"; return
+            }
+            if [[ "$pane_count" -eq 1 ]]; then
+                capture_pane "$session:$window"
+            else
+                local lines_per_pane=$(( (${FZF_PREVIEW_LINES:-40} - pane_count * 2) / pane_count ))
+                [[ "$lines_per_pane" -lt 5 ]] && lines_per_pane=5
+                local i
+                for (( i=0; i<pane_count; i++ )); do
+                    local cmd size
+                    cmd=$(tmux display-message -t "$session:$window.$i" -p '#{pane_current_command}' 2>/dev/null)
+                    size=$(tmux display-message -t "$session:$window.$i" -p '#{pane_width}x#{pane_height}' 2>/dev/null)
+                    printf '\033[1;36m── pane %s: %s (%s) ──\033[0m\n' "$i" "$cmd" "$size"
+                    capture_pane "$session:$window.$i" "$lines_per_pane"
+                    echo ""
+                done
+            fi
+            ;;
         d) tree -L 1 -C "$target" 2>/dev/null || ls -laG "$target" 2>/dev/null ;;
     esac
 }
