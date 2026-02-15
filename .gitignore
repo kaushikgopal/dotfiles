@@ -14,6 +14,7 @@
 .config/zsh/.zsh_sessions
 
 .agents/skills/agent-browser
+.agents/skills/superpowers
 .agents/tmp/**
 
 .claude/**
