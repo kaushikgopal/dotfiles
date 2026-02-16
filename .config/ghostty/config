@@ -26,6 +26,7 @@ focus-follows-mouse             = true
 ##############################################
 # Key bindings
 keybind = shift+enter=text:\n
+keybind = super+k=text:\x0c
 
 ##############################################
 # Look and Feel
