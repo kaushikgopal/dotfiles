@@ -145,6 +145,7 @@ brew "grpcurl" # caper
 
 #######################
 ######## AI apps
+brew "opencode"
 cask "claude-code"    # using gohan # curl -fsSL https://claude.ai/install.sh | bash
 # cask "codex"          # using gohan
 # brew "gemini-cli"     # using gohan # npm install -g @google/gemini-cli
