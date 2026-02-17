@@ -73,6 +73,8 @@ if status is-interactive
     abbr -a -- cly     claude --dangerously-skip-permissions
     abbr -a -- clp     claude --plugin-dir ~/dev/off/claude-marketplace/caper/android
 
+    abbr -a -- oc      opencode
+
     abbr -a -- ge      gemini
     abbr -a -- gey     gemini --yolo
 
