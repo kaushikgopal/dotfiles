@@ -33,10 +33,6 @@ echo -e "${GRAY}••••••• symlinking $dotfiles_dir/.agents -> $HOME/
 rm -rf "$HOME/.agents"
 ln -sfn "$dotfiles_dir/.agents" "$HOME/.agents"
 
-echo -e "${GRAY}••••••• symlinking $HOME/.agents/AGENTS.md -> $HOME/AGENTS.md ${NC}"
-rm -rf "$HOME/AGENTS.md"
-ln -sfn "$HOME/.agents/AGENTS.md" "$HOME/AGENTS.md"
-
 ##############################################################
 # Claude Code
 # ~/.claude is a real directory (not a repo symlink)
@@ -68,4 +64,4 @@ mkdir -p "$HOME/.codex"
 
 rm -rf "$HOME/.codex/prompts"
 ln -sfn "$HOME/.agents/commands" "$HOME/.codex/prompts"
-ln -sfn "$HOME/AGENTS.md" "$HOME/.codex/AGENTS.md"
+ln -sfn "$HOME/.agents/AGENTS.md" "$HOME/.codex/AGENTS.md"
