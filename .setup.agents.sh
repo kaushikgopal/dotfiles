@@ -34,6 +34,14 @@ rm -rf "$HOME/.agents"
 ln -sfn "$dotfiles_dir/.agents" "$HOME/.agents"
 
 ##############################################################
+# OpenCode
+##############################################################
+
+echo -e "${GRAY}••••••• symlinking (opencode) files${NC}"
+mkdir -p "$HOME/.config/opencode"
+ln -sfn "$dotfiles_dir/.config/opencode/plugins" "$HOME/.config/opencode/plugins"
+
+##############################################################
 # Claude Code
 # ~/.claude is a real directory (not a repo symlink)
 # - agent assets go through ~/.agents intermediary
@@ -52,8 +60,7 @@ ln -sfn "$HOME/.agents/commands"  "$HOME/.claude/commands"
 ln -sfn "$HOME/.agents/skills"    "$HOME/.claude/skills"
 ln -sfn "$dotfiles_dir/.claude/statusline.sh" "$HOME/.claude/statusline.sh"
 ln -sfn "$dotfiles_dir/.claude/settings.json" "$HOME/.claude/settings.json"
-
-mkdir -p "$HOME/.claude/hooks"
+ln -sfn "$dotfiles_dir/.claude/hooks" "$HOME/.claude/hooks"
 
 ##############################################################
 # Codex

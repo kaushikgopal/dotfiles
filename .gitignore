@@ -20,6 +20,10 @@
 .claude/**
 !.claude/statusline.sh
 !.claude/settings.json
+!.claude/hooks
+
+.config/opencode/**
+!.config/opencode/plugins
 
 
 .firebender/**
