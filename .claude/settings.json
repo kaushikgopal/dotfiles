@@ -15,7 +15,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "afplay $XDG_DATA_HOME/sound-stop-human"
+            "command": "afplay $XDG_DATA_HOME/sound-done-human"
           }
         ]
       }
