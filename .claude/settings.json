@@ -5,7 +5,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "afplay ~/.claude/hooks/sound-notification"
+            "command": "afplay $XDG_STATE_HOME/sound-notification-human"
           }
         ]
       }
@@ -15,7 +15,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "afplay ~/.claude/hooks/sound-stop"
+            "command": "afplay $XDG_STATE_HOME/sound-stop-human"
           }
         ]
       }
