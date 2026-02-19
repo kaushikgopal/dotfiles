@@ -39,6 +39,7 @@ ln -sfn "$dotfiles_dir/.agents" "$HOME/.agents"
 
 echo -e "${GRAY}••••••• symlinking (opencode) files${NC}"
 mkdir -p "$HOME/.config/opencode"
+ln -sfn "$dotfiles_dir/.config/opencode/opencode.json" "$HOME/.config/opencode/opencode.json"
 ln -sfn "$dotfiles_dir/.config/opencode/plugins" "$HOME/.config/opencode/plugins"
 
 ##############################################################
