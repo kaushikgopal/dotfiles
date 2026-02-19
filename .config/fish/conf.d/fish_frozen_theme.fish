@@ -8,49 +8,41 @@
 # for appropriate commands to add to ~/.config/fish/config.fish instead.
 # See also the release notes for fish 4.3.0 (run `help relnotes`).
 
-set --global fish_color_autosuggestion 6272a4
-set --global fish_color_cancel ff5555 --reverse
-set --global fish_color_command 5fafff
-set --global fish_color_comment 6272a4
-set --global fish_color_cwd 50fa7b
-set --global fish_color_cwd_root red
-set --global fish_color_end ffb86c
-set --global fish_color_error ff5555
-set --global fish_color_escape ff79c6
-set --global fish_color_hg_added green
-set --global fish_color_hg_clean green
-set --global fish_color_hg_copied magenta
-set --global fish_color_hg_deleted red
-set --global fish_color_hg_dirty red
-set --global fish_color_hg_modified yellow
-set --global fish_color_hg_renamed magenta
-set --global fish_color_hg_unmerged red
-set --global fish_color_hg_untracked yellow
+set --global fish_color_autosuggestion 6e738d
+set --global fish_color_cancel ed8796 --reverse
+set --global fish_color_command 8aadf4
+set --global fish_color_comment 8087a2
+set --global fish_color_cwd eed49f
+set --global fish_color_cwd_root ed8796
+set --global fish_color_end f5a97f
+set --global fish_color_error ed8796
+set --global fish_color_escape ee99a0
+set --global fish_color_gray 6e738d
 set --global fish_color_history_current --bold
-set --global fish_color_host bd93f9
-set --global fish_color_host_remote bd93f9
-set --global fish_color_keyword ff79c6
-set --global fish_color_normal f8f8f2
-set --global fish_color_operator 50fa7b
-set --global fish_color_option ffb86c
-set --global fish_color_param bd93f9
-set --global fish_color_quote f1fa8c
-set --global fish_color_redirection f8f8f2
-set --global fish_color_search_match --background=44475a
-set --global fish_color_selection --background=44475a
-set --global fish_color_status ff5555
-set --global fish_color_user 8be9fd
+set --global fish_color_host 8aadf4
+set --global fish_color_host_remote a6da95
+set --global fish_color_keyword c6a0f6
+set --global fish_color_normal cad3f5
+set --global fish_color_operator f5bde6
+set --global fish_color_option a6da95
+set --global fish_color_param f0c6c6
+set --global fish_color_quote a6da95
+set --global fish_color_redirection f5bde6
+set --global fish_color_search_match --background=363a4f
+set --global fish_color_selection --background=363a4f
+set --global fish_color_status ed8796
+set --global fish_color_user 8bd5ca
 set --global fish_color_valid_path --underline=single
 set --global fish_pager_color_background
-set --global fish_pager_color_completion f8f8f2
-set --global fish_pager_color_description 6272a4
-set --global fish_pager_color_prefix 8be9fd
-set --global fish_pager_color_progress 6272a4
+set --global fish_pager_color_completion cad3f5
+set --global fish_pager_color_description 6e738d
+set --global fish_pager_color_prefix f5bde6
+set --global fish_pager_color_progress 6e738d
 set --global fish_pager_color_secondary_background
 set --global fish_pager_color_secondary_completion
 set --global fish_pager_color_secondary_description
 set --global fish_pager_color_secondary_prefix
-set --global fish_pager_color_selected_background --background=44475a
-set --global fish_pager_color_selected_completion f8f8f2
-set --global fish_pager_color_selected_description 6272a4
-set --global fish_pager_color_selected_prefix 8be9fd
+set --global fish_pager_color_selected_background --background=363a4f
+set --global fish_pager_color_selected_completion cad3f5
+set --global fish_pager_color_selected_description 6e738d
+set --global fish_pager_color_selected_prefix f5bde6
