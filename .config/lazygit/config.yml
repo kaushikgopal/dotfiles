@@ -1,0 +1,8 @@
+gui:
+  # Keep lazygit's native theme; only override author color.
+  authorColors:
+    '*': green
+
+git:
+  pagers:
+    - pager: delta --dark --paging=never --line-numbers --hyperlinks --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"

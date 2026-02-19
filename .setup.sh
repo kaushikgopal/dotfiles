@@ -34,6 +34,7 @@ files_to_link=(
     .config/fish
     .config/ghostty
     .config/git
+    .config/lazygit
     .config/serie
     .config/zed
     .editorconfig
