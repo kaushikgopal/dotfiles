@@ -43,7 +43,7 @@ fish_color_selection --background=ccd0da
 fish_color_search_match --background=ccd0da
 fish_color_operator ea76cb
 fish_color_escape e64553
-fish_color_autosuggestion 9ca0b0
+fish_color_autosuggestion ea76cb
 fish_color_cancel d20f39 --reverse
 fish_color_option 40a02b
 fish_color_gray 9ca0b0
@@ -59,19 +59,19 @@ fish_color_host_remote 40a02b
 fish_color_user 179299
 
 # Completion Pager Colors
-fish_pager_color_progress 9ca0b0
+fish_pager_color_progress 8c8fa1
 fish_pager_color_background
-fish_pager_color_prefix ea76cb
+fish_pager_color_prefix 8839ef
 fish_pager_color_completion 4c4f69
-fish_pager_color_description 9ca0b0
+fish_pager_color_description 8c8fa1
 fish_pager_color_selected_background --background=ccd0da
-fish_pager_color_selected_prefix ea76cb
+fish_pager_color_selected_prefix 8839ef
 fish_pager_color_selected_completion 4c4f69
-fish_pager_color_selected_description 9ca0b0
+fish_pager_color_selected_description 8c8fa1
 fish_pager_color_secondary_background
-fish_pager_color_secondary_prefix ea76cb
+fish_pager_color_secondary_prefix 8839ef
 fish_pager_color_secondary_completion 4c4f69
-fish_pager_color_secondary_description 9ca0b0
+fish_pager_color_secondary_description 8c8fa1
 
 [dark]
 # preferred_background: 24273a
@@ -90,7 +90,7 @@ fish_color_selection --background=363a4f
 fish_color_search_match --background=363a4f
 fish_color_operator f5bde6
 fish_color_escape ee99a0
-fish_color_autosuggestion 6e738d
+fish_color_autosuggestion f5bde6
 fish_color_cancel ed8796 --reverse
 fish_color_option a6da95
 fish_color_gray 6e738d
@@ -108,14 +108,14 @@ fish_color_user 8bd5ca
 # Completion Pager Colors
 fish_pager_color_progress 6e738d
 fish_pager_color_background
-fish_pager_color_prefix f5bde6
+fish_pager_color_prefix c6a0f6
 fish_pager_color_completion cad3f5
 fish_pager_color_description 6e738d
 fish_pager_color_selected_background --background=363a4f
-fish_pager_color_selected_prefix f5bde6
+fish_pager_color_selected_prefix c6a0f6
 fish_pager_color_selected_completion cad3f5
 fish_pager_color_selected_description 6e738d
 fish_pager_color_secondary_background
-fish_pager_color_secondary_prefix f5bde6
+fish_pager_color_secondary_prefix c6a0f6
 fish_pager_color_secondary_completion cad3f5
 fish_pager_color_secondary_description 6e738d
