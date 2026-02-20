@@ -1,7 +1,6 @@
 # Bypass gohan wrapper; use native binary with work Bedrock credentials from env
 # Pass --personal to use personal account instead of work
 function claude
-    set -l _claude (set -q XDG_BIN_HOME; and echo $XDG_BIN_HOME; or echo ~/.local/bin)/claude
     if contains -- --personal $argv
         set -l filtered
         for arg in $argv
@@ -17,8 +16,8 @@ function claude
             -u CLAUDE_CODE_ENTRYPOINT \
             -u ANTHROPIC_DEFAULT_OPUS_MODEL \
             CLAUDE_CONFIG_DIR=~/.claude-personal \
-            $_claude $filtered
+            command claude $filtered
     else
-        $_claude $argv
+        command claude $argv
     end
 end
