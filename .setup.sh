@@ -36,6 +36,7 @@ files_to_link=(
     .config/git
     .config/lazygit
     .config/serie
+    .config/procs
     .config/zed
     .editorconfig
     .firebender
