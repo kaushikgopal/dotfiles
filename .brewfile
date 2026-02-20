@@ -35,6 +35,7 @@ brew "renameutils" # bulk renaming / copying
 brew "ripgrep"
 brew "rsync"
 brew "sox"
+brew "tmux"
 brew "trash"
 brew "tree"
 brew "wget"
@@ -44,7 +45,9 @@ brew "zoxide"    # after upgrading, run: regen-shell-caches
 brew "fish"
 brew "fzf"       # after upgrading, run: regen-shell-caches
 brew "gum"
-brew "tmux"
+
+brew "htop"     # better top
+brew "procs"    # better ps
 
 
 #brew "briss" # pdf cropping tool
@@ -146,9 +149,9 @@ brew "grpcurl" # caper
 #######################
 ######## AI apps
 brew "opencode"
-cask "claude-code"    # using gohan # curl -fsSL https://claude.ai/install.sh | bash
-cask "codex"          # using gohan
-# brew "gemini-cli"     # using gohan # npm install -g @google/gemini-cli
+# cask "claude-code"    # using eohan
+# cask "codex"          # using gohan
+# brew "gemini-cli"     # using gohan
 # brew "sst/tap/opencode"
 
 #######################
