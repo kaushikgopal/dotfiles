@@ -1,6 +1,15 @@
-# Use default opencode profile; pass --personal for personal account
+# Use default opencode profile; pass --personal for personal account, --yolo to skip all permission prompts
 function opencode
-    if contains -- --personal $argv
+    if contains -- --yolo $argv
+        set -l filtered
+        for arg in $argv
+            if test "$arg" != --yolo
+                set -a filtered $arg
+            end
+        end
+        env OPENCODE_PERMISSION='{"*":"allow"}' \
+            command opencode $filtered
+    else if contains -- --personal $argv
         set -l filtered
         for arg in $argv
             if test "$arg" != --personal
