@@ -1,9 +1,18 @@
 function fish_right_prompt
     # ------------------------------------------
-    set -l dt (set_color brgrey)(date "+%R")(set_color normal)
+    if not set -q __fish_right_prompt_counter
+        set -g __fish_right_prompt_counter 0
+    end
+    set -g __fish_right_prompt_counter (math "$__fish_right_prompt_counter + 1")
 
-    set -l duration "$cmd_duration$CMD_DURATION"
-    if test $duration -gt 100
+    if not set -q __fish_right_prompt_dt
+        set -g __fish_right_prompt_dt (set_color brgrey)(date "+%R")(set_color normal)
+    else if test (math "$__fish_right_prompt_counter % 20") -eq 0
+        set -g __fish_right_prompt_dt (set_color brgrey)(date "+%R")(set_color normal)
+    end
+
+    set -l duration $CMD_DURATION
+    if test -n "$duration"; and test $duration -gt 100
         set duration (math $duration / 1000)s
     else
         set duration
@@ -15,5 +24,5 @@ function fish_right_prompt
     and set -l venv (string replace -r '.*/' '' -- "$VIRTUAL_ENV")
 
     set_color normal
-    string join " " -- $venv $duration $dt
+    string join " " -- $venv $duration $__fish_right_prompt_dt
 end

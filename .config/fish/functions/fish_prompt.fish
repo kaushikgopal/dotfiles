@@ -53,24 +53,6 @@ function fish_prompt
     # [git branch]
 
 
-    set -g __fish_git_prompt_showcolorhints 1            # colorize
-    set -g __fish_git_prompt_show_informative_status 1   # show counts!
-
-    set -g __fish_git_prompt_showuntrackedfiles 'yes'    # show untracked info
-    set -g __fish_git_prompt_showstashstate 'yes'        # show stash info
-    set -g __fish_git_prompt_showupstream 'yes'          # show upstream info
-
-    set -g __fish_git_prompt_char_stateseparator ' '     # separator between states
-    set -g __fish_git_prompt_char_upstream_equal '='
-    set -g __fish_git_prompt_char_upstream_ahead '↑'
-    set -g __fish_git_prompt_char_upstream_behind '↓'
-    set -g __fish_git_prompt_char_cleanstate ''
-    set -g __fish_git_prompt_char_dirtystate '*'
-    set -g __fish_git_prompt_char_invalidstate '✗'
-    set -g __fish_git_prompt_char_stagedstate '+'
-    set -g __fish_git_prompt_char_stashstate '$'
-    set -g __fish_git_prompt_char_untrackedfiles ' ?'
-
     # remove surround paranthesis
     set -l vcs (fish_vcs_prompt ' %s' 2>/dev/null)
 

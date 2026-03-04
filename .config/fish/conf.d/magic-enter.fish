@@ -1,3 +1,5 @@
+status is-interactive; or return
+
 function magic-enter-cmd --description "Issue git status or ls on hitting enter in a dir"
     set -l cmd ll
     set -l is_git_repository (fish -c "git rev-parse --is-inside-work-tree >&2" 2>| grep true) # Special variable indicating git.
@@ -26,5 +28,6 @@ function magic-enter
     commandline -f execute
 end
 
-bind \r magic-enter
-bind -M insert \r magic-enter
+# Disabled for now; keep helpers available for explicit use.
+# bind \r magic-enter
+# bind -M insert \r magic-enter

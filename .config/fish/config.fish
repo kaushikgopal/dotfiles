@@ -73,7 +73,9 @@ if status is-interactive
     abbr -a -- cly     claude --dangerously-skip-permissions
     abbr -a -- clp     claude --plugin-dir ~/dev/off/claude-marketplace/caper/android
 
-    abbr -a -- oc      opencode
+    abbr -a -- oc       opencode
+    abbr -a -- ocw      opencode web --mdns # --mdns-domain myproject.local
+    abbr -a -- oca      opencode attach http://opencode.local:4096 --dir .
 
     abbr -a -- ge      gemini
     abbr -a -- gey     gemini --yolo
@@ -85,12 +87,12 @@ if status is-interactive
     abbr -a -- ta tmux attach -t
     abbr -a -- tk tmux kill-server
 
-    alias vimo='vimn'
-    alias vimt='vimn -t'
+    abbr -a -- vimo vimn
+    abbr -a -- vimt 'vimn -t'
 end
 
 # ----------------------------------------------------------------------------------------------------------------------
-# Path   # https://fishshell.com/docs/current/cmds/fish_add_path.html
+# Environment variables
 # set -Ux -> set once and forget
 # set -gx -> same as export
 
@@ -100,30 +102,49 @@ set -gx XDG_CONFIG_HOME $HOME/.config
 set -gx XDG_DATA_HOME $HOME/.local/share
 set -gx XDG_STATE_HOME $HOME/.local/state
 
+set -gx EDITOR vim
+
 set -gx ANDROID_HOME $HOME/Library/Android/sdk
 set -gx JAVA_HOME $HOME/Applications/Android\ Studio.app/Contents/jbr/Contents/Home
 # set -gx JAVA_HOME (/usr/libexec/java_home -v "17")
+
 # set -gx GOKU_EDN_CONFIG_FILE $XDG_CONFIG_HOME/karabiner/karabiner.edn
 set -gx BAT_CONFIG_PATH $XDG_CONFIG_HOME/.bat.conf
 set -gx RIPGREP_CONFIG_PATH $XDG_CONFIG_HOME/.ripgreprc
-fish_add_path \
-    /opt/homebrew/bin \
-    $HOME/.cargo/bin \
-    $XDG_BIN_HOME
 
-fish_add_path --append \
+# ----------------------------------------------------------------------------------------------------------------------
+# Path   # https://fishshell.com/docs/current/cmds/fish_add_path.html
+
+fish_add_path \
+    /Applications/Obsidian.app/Contents/MacOS \
+    /opt/homebrew/bin \
     /opt/homebrew/sbin \
-    /usr/local/bin \
-    /usr/bin \
-    /bin \
-    /usr/local/sbin \
-    /usr/sbin \
-    /sbin \
+    $HOME/.cargo/bin \
+    $XDG_BIN_HOME \
     "$ANDROID_HOME/platform-tools" \
     "$ANDROID_HOME/cmdline-tools/latest/bin" \
     "$ANDROID_HOME/tools" \
     "$ANDROID_HOME/tools/bin" \
     "$ANDROID_HOME/emulator"
+
+if status is-interactive
+    # git prompt defaults (set once at startup)
+    set -g __fish_git_prompt_showcolorhints 1
+    set -g __fish_git_prompt_show_informative_status 1
+    set -g __fish_git_prompt_showuntrackedfiles 'yes'
+    set -g __fish_git_prompt_showstashstate 'yes'
+    set -g __fish_git_prompt_showupstream 'yes'
+    set -g __fish_git_prompt_char_stateseparator ' '
+    set -g __fish_git_prompt_char_upstream_equal '='
+    set -g __fish_git_prompt_char_upstream_ahead '↑'
+    set -g __fish_git_prompt_char_upstream_behind '↓'
+    set -g __fish_git_prompt_char_cleanstate ''
+    set -g __fish_git_prompt_char_dirtystate '*'
+    set -g __fish_git_prompt_char_invalidstate '✗'
+    set -g __fish_git_prompt_char_stagedstate '+'
+    set -g __fish_git_prompt_char_stashstate '$'
+    set -g __fish_git_prompt_char_untrackedfiles ' ?'
+end
 
 
 # ----------------------------------------------------------------------------------------------------------------------

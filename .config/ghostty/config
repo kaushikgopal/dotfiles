@@ -35,9 +35,7 @@ keybind = super+p=toggle_command_palette
 # ghostty +list-themes
 # theme     = dark:batman-kg,light:Monokai Pro Machine
 # theme     = dark:Monokai Pro Machine,light:Monokai Pro Light
-# theme     = Monokai Pro Octagon
-# theme     = Monokai Pro Ristretto
-theme       = Catppuccin Mocha
+# theme       = Catppuccin Mocha
 # theme       = Catppuccin Frappe
 # theme       = Catppuccin Macchiato
 
