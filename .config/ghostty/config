@@ -38,15 +38,17 @@ keybind = super+p=toggle_command_palette
 # theme       = Catppuccin Mocha
 # theme       = Catppuccin Frappe
 # theme       = Catppuccin Macchiato
+theme       = dark:Catppuccin Macchiato,light:Catppuccin Latte
 
 adjust-cursor-thickness         = 3
 adjust-underline-position       = 3
 #background-opacity      = 0.95
 bell-features           = border
 bold-is-bright          = true
-cursor-style                = block
+cursor-style                = underline
 cursor-style-blink          = false
 #cursor-invert-fg-bg        = true
+cursor-color                = red
 cursor-opacity              = 0.6
 
 link-url                        = true
@@ -85,8 +87,8 @@ font-thicken            = true
 
 # Berkeley Mono (TX-02-Variable) -------- -->
 font-family             = TX-02-Variable
-font-size               = 13.5
-adjust-cell-height      = 25%
+font-size               = 13
+adjust-cell-height      = 30%
 font-variation          = wght=420
 font-variation-bold     = wght=750
 
