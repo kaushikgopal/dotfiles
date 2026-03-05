@@ -88,7 +88,7 @@ function gss --description 'Compact git status with prompt-style summary'
         end
     end
     if test $stash -gt 0
-        set -a repo_parts "$c_misc"stash:"$stash$normal"
+        set -a repo_parts "$c_misc\$$stash$normal"
     end
 
     set -l change_parts "$c_label"changes:"$normal" "$c_staged+$staged$normal" "$c_unstaged~$unstaged$normal" "$c_misc?$untracked$normal"
