@@ -100,12 +100,12 @@ function gss --description 'Compact git status with prompt-style summary'
     end
 
     echo (string join ' ' -- $repo_parts)
-    echo (string join ' ' -- $change_parts)
-    echo "$c_dim----------------------------------------$normal"
+    echo " "(string join ' ' -- $change_parts)
+    echo " $c_dim----------------------------------------$normal"
 
     if test $staged -eq 0 -a $unstaged -eq 0 -a $untracked -eq 0 -a $conflicted -eq 0
-        echo "$c_dim"working tree clean"$normal"
+        echo " $c_dim"working tree clean"$normal"
     else
-        command git -c color.status=always status --short --no-branch $argv
+        command git -c color.status=always status --short --no-branch $argv | string replace -r '^' ' '
     end
 end
