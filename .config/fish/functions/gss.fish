@@ -73,8 +73,11 @@ function gss --description 'Compact git status with prompt-style summary'
     set -l c_unstaged (set_color brred)
     set -l c_misc (set_color brblue)
     set -l c_dim (set_color brblack)
+    set -l label_width 8
+    set -l label_branch (printf "%*s" $label_width "branch:")
+    set -l label_changes (printf "%*s" $label_width "changes:")
 
-    set -l repo_parts "$c_label"branch:"$normal" "$c_branch$branch$normal"
+    set -l repo_parts "$c_label$label_branch$normal" "$c_branch$branch$normal"
     if test $has_upstream -eq 1
         if test $ahead -eq 0 -a $behind -eq 0
             set -a repo_parts "$c_upstream=$normal"
@@ -91,7 +94,7 @@ function gss --description 'Compact git status with prompt-style summary'
         set -a repo_parts "$c_misc\$$stash$normal"
     end
 
-    set -l change_parts "$c_label"changes:"$normal" "$c_staged+$staged$normal" "$c_unstaged~$unstaged$normal" "$c_misc?$untracked$normal"
+    set -l change_parts "$c_label$label_changes$normal" "$c_staged+$staged$normal" "$c_unstaged~$unstaged$normal" "$c_misc?$untracked$normal"
     if test $conflicted -gt 0
         set -a change_parts "$c_unstaged!$conflicted$normal"
     end
