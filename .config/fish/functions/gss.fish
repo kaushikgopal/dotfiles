@@ -66,44 +66,43 @@ function gss --description 'Compact git status with prompt-style summary'
     end
 
     set -l normal (set_color normal)
+    set -l c_label (set_color bryellow)
     set -l c_branch (set_color brgreen)
-    set -l c_dirty (set_color brred)
-    set -l c_index (set_color brgreen)
     set -l c_upstream (set_color brmagenta)
+    set -l c_staged (set_color brgreen)
+    set -l c_unstaged (set_color brred)
     set -l c_misc (set_color brblue)
-    set -l c_counts (set_color brblack)
+    set -l c_dim (set_color brblack)
 
-    set -l summary_parts "$c_branch$branch$normal"
+    set -l repo_parts "$c_label"branch:"$normal" "$c_branch$branch$normal"
     if test $has_upstream -eq 1
-        if test $ahead -gt 0
-            set -a summary_parts "$c_upstream↑$ahead$normal"
-        end
-        if test $behind -gt 0
-            set -a summary_parts "$c_upstream↓$behind$normal"
-        end
         if test $ahead -eq 0 -a $behind -eq 0
-            set -a summary_parts "$c_upstream=$normal"
+            set -a repo_parts "$c_upstream=$normal"
+        else
+            if test $ahead -gt 0
+                set -a repo_parts "$c_upstream↑$ahead$normal"
+            end
+            if test $behind -gt 0
+                set -a repo_parts "$c_upstream↓$behind$normal"
+            end
         end
-    end
-    if test $staged -gt 0
-        set -a summary_parts "$c_index+$staged$normal"
-    end
-    if test $unstaged -gt 0
-        set -a summary_parts "$c_dirty*$unstaged$normal"
-    end
-    if test $untracked -gt 0
-        set -a summary_parts "$c_misc?$untracked$normal"
     end
     if test $stash -gt 0
-        set -a summary_parts "$c_misc\$$stash$normal"
+        set -a repo_parts "$c_misc"stash:"$stash$normal"
     end
+
+    set -l change_parts "$c_label"changes:"$normal" "$c_staged+$staged$normal" "$c_unstaged~$unstaged$normal" "$c_misc?$untracked$normal"
     if test $conflicted -gt 0
-        set -a summary_parts "$c_dirty✗$conflicted$normal"
+        set -a change_parts "$c_unstaged!$conflicted$normal"
     end
 
-    echo (string join ' ' -- $summary_parts)
-    echo "$c_counts"(string join ' ' -- "staged:$staged" "unstaged:$unstaged" "untracked:$untracked" "stash:$stash" "conflicts:$conflicted")"$normal"
+    echo (string join ' ' -- $repo_parts)
+    echo (string join ' ' -- $change_parts)
+    echo "$c_dim----------------------------------------$normal"
 
-    echo -----
-    command git -c color.status=always status --short --branch --ahead-behind --show-stash $argv
+    if test $staged -eq 0 -a $unstaged -eq 0 -a $untracked -eq 0 -a $conflicted -eq 0
+        echo "$c_dim"working tree clean"$normal"
+    else
+        command git -c color.status=always status --short --no-branch $argv
+    end
 end
