@@ -52,9 +52,7 @@ function fish_prompt
     # ------------------------------------------
     # [git branch]
 
-
-    # remove surround paranthesis
-    set -l vcs (fish_vcs_prompt ' %s' 2>/dev/null)
+    set -l vcs (__kg_prompt_git_branch)
 
 
 
@@ -81,4 +79,23 @@ function fish_prompt
 
     # show prompt on new line
     echo  -n -e -s " "
+end
+
+function __kg_prompt_git_branch
+    if set -q __kg_prompt_non_git_pwd; and test "$__kg_prompt_non_git_pwd" = "$PWD"
+        return
+    end
+
+    set -l branch (command git branch --show-current 2>/dev/null)
+    if test -z "$branch"
+        set branch (command git rev-parse --short HEAD 2>/dev/null)
+    end
+
+    if test -z "$branch"
+        set -g __kg_prompt_non_git_pwd $PWD
+        return
+    end
+
+    set -e __kg_prompt_non_git_pwd
+    echo " "(set_color brgreen)$branch(set_color normal)
 end

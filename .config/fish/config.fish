@@ -127,26 +127,6 @@ fish_add_path \
     "$ANDROID_HOME/tools/bin" \
     "$ANDROID_HOME/emulator"
 
-if status is-interactive
-    # git prompt defaults (set once at startup)
-    set -g __fish_git_prompt_showcolorhints 1
-    set -g __fish_git_prompt_show_informative_status 1
-    set -g __fish_git_prompt_showuntrackedfiles 'yes'
-    set -g __fish_git_prompt_showstashstate 'yes'
-    set -g __fish_git_prompt_showupstream 'yes'
-    set -g __fish_git_prompt_char_stateseparator ' '
-    set -g __fish_git_prompt_char_upstream_equal '='
-    set -g __fish_git_prompt_char_upstream_ahead '↑'
-    set -g __fish_git_prompt_char_upstream_behind '↓'
-    set -g __fish_git_prompt_char_cleanstate ''
-    set -g __fish_git_prompt_char_dirtystate '*'
-    set -g __fish_git_prompt_char_invalidstate '✗'
-    set -g __fish_git_prompt_char_stagedstate '+'
-    set -g __fish_git_prompt_char_stashstate '$'
-    set -g __fish_git_prompt_char_untrackedfiles ' ?'
-end
-
-
 # ----------------------------------------------------------------------------------------------------------------------
 # Cached tool inits (for faster shell startup)
 
