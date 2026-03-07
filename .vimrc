@@ -66,11 +66,12 @@ set synmaxcol=240   " syntax highlight only for N colums
 " Colorscheme Theme
 " =========================================================
 set termguicolors     " enable true color (24-bit RGB) support
-packadd! dracula_pro
 syntax enable
-let g:dracula_colorterm = 0
-colorscheme dracula_pro
-"colorscheme alucard
+
+" packadd! dracula_pro
+" let g:dracula_colorterm = 0
+" colorscheme dracula_pro
+" colorscheme alucard
 
 
 " =========================================================
@@ -397,4 +398,3 @@ inoremap <s-tab> <c-n>
 
 "let g:g:smoothie_enabled=0
 set rtp+=~/.vim/plugins/vim-smoothie
-
