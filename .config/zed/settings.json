@@ -10,7 +10,7 @@
   "theme": {
     "mode": "system",
     "light": "Catppuccin Latte",
-    "dark": "Catppuccin Frappé",
+    "dark": "Dracula Pro",
   },
   // --------
   "buffer_font_family": "TX-02-Variable",
