@@ -1,5 +1,6 @@
 function fish_prompt
     set -l last_status $status
+    __kg_prompt_palette_load
     set -l normal (set_color normal)
     set -l usercolor (set_color $fish_color_user)
 
@@ -47,7 +48,7 @@ function fish_prompt
     #     set cwd (set_color -b brblack $col)
     # end
     # set -l pwd (set_color -b brblack black)" "(prompt_pwd)" "(set_color normal)
-    set -l pwd (set_color brgrey)" "(prompt_pwd)" "(set_color normal)
+    set -l pwd (set_color $__kg_prompt_cwd)" "(prompt_pwd)" "(set_color normal)
 
     # ------------------------------------------
     # [git branch]

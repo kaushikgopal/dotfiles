@@ -1,4 +1,6 @@
 function __kg_git_prompt_segment --description 'Render compact git status segment for fish prompt'
+    __kg_prompt_palette_load
+
     __kg_git_status_collect
     or return
 
@@ -7,11 +9,11 @@ function __kg_git_prompt_segment --description 'Render compact git status segmen
     end
 
     set -l normal (set_color normal)
-    set -l c_branch (set_color brgreen)
-    set -l c_upstream (set_color brmagenta)
-    set -l c_staged (set_color brgreen)
-    set -l c_unstaged (set_color brred)
-    set -l c_misc (set_color brblue)
+    set -l c_branch (set_color $__kg_prompt_branch)
+    set -l c_upstream (set_color $__kg_prompt_upstream)
+    set -l c_staged (set_color $__kg_prompt_staged)
+    set -l c_unstaged (set_color $__kg_prompt_unstaged)
+    set -l c_misc (set_color $__kg_prompt_misc)
 
     set -l parts "$c_branch$__kg_git_branch$normal"
 

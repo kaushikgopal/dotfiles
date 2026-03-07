@@ -1,4 +1,6 @@
 function gss --description 'Compact git status with prompt-style summary'
+    __kg_prompt_palette_load
+
     command git rev-parse --is-inside-work-tree >/dev/null 2>/dev/null
     or begin
         echo "gss: not inside a git repository"
@@ -12,13 +14,13 @@ function gss --description 'Compact git status with prompt-style summary'
     end
 
     set -l normal (set_color normal)
-    set -l c_label (set_color bryellow)
-    set -l c_branch (set_color brgreen)
-    set -l c_upstream (set_color brmagenta)
-    set -l c_staged (set_color brgreen)
-    set -l c_unstaged (set_color brred)
-    set -l c_misc (set_color brblue)
-    set -l c_dim (set_color brblack)
+    set -l c_label (set_color $__kg_prompt_label)
+    set -l c_branch (set_color $__kg_prompt_branch)
+    set -l c_upstream (set_color $__kg_prompt_upstream)
+    set -l c_staged (set_color $__kg_prompt_staged)
+    set -l c_unstaged (set_color $__kg_prompt_unstaged)
+    set -l c_misc (set_color $__kg_prompt_misc)
+    set -l c_dim (set_color $__kg_prompt_dim)
     set -l label_width 8
     set -l label_branch (printf "%*s" $label_width "branch:")
     set -l label_changes (printf "%*s" $label_width "changes:")
