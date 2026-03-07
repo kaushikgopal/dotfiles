@@ -1,44 +1,128 @@
-function __kg_prompt_palette_load --description 'Load prompt colors for Ghostty Dracula themes'
-    set -l mode light
+function __kg_prompt_palette_load --description 'Map the active fish theme file to prompt roles'
+    # fish stores the chosen theme name in `--theme=...` markers, but prompt code
+    # still needs concrete colors for prompt-only roles like git state and vi mode.
+    # Read those values from the active `.theme` file so the theme file stays the
+    # single source of truth for both fish-native colors and prompt accents.
 
-    if command -sq defaults
-        defaults read -g AppleInterfaceStyle >/dev/null 2>/dev/null
-        and set mode dark
-    end
-
-    if set -q __kg_prompt_palette_mode
-        if test "$__kg_prompt_palette_mode" = "$mode"
-            return
+    set -l theme_name dracpro
+    for token in $fish_color_cwd $fish_color_normal $fish_pager_color_prefix
+        if string match -q -- '--theme=*' $token
+            set theme_name (string replace -r '^--theme=' '' -- $token)
+            break
         end
     end
 
-    set -g __kg_prompt_palette_mode $mode
-
-    if test "$mode" = dark
-        set -g __kg_prompt_cwd '#b7b2cc'
-        set -g __kg_prompt_branch '#9580ff'
-        set -g __kg_prompt_upstream '#ff80bf'
-        set -g __kg_prompt_staged '#8aff80'
-        set -g __kg_prompt_unstaged '#ff9580'
-        set -g __kg_prompt_misc '#80ffea'
-        set -g __kg_prompt_label '#ffff80'
-        set -g __kg_prompt_dim '#6e6887'
-        set -g __kg_prompt_mode_default '#9580ff'
-        set -g __kg_prompt_mode_insert '#8aff80'
-        set -g __kg_prompt_mode_replace '#ff9580'
-        set -g __kg_prompt_mode_visual '#ff80bf'
-    else
-        set -g __kg_prompt_cwd '#625f72'
-        set -g __kg_prompt_branch '#644ac9'
-        set -g __kg_prompt_upstream '#a3144d'
-        set -g __kg_prompt_staged '#14710a'
-        set -g __kg_prompt_unstaged '#cb3a2a'
-        set -g __kg_prompt_misc '#036a96'
-        set -g __kg_prompt_label '#846e15'
-        set -g __kg_prompt_dim '#8d899f'
-        set -g __kg_prompt_mode_default '#644ac9'
-        set -g __kg_prompt_mode_insert '#14710a'
-        set -g __kg_prompt_mode_replace '#cb3a2a'
-        set -g __kg_prompt_mode_visual '#a3144d'
+    set -l color_theme unknown
+    if set -q fish_terminal_color_theme[1]
+        set color_theme $fish_terminal_color_theme[1]
     end
+
+    if set -q __kg_prompt_theme_name __kg_prompt_theme_variant __kg_prompt_cwd __kg_prompt_branch
+        and test "$__kg_prompt_theme_name" = "$theme_name"
+        and test "$__kg_prompt_theme_variant" = "$color_theme"
+        return
+    end
+
+    set -l theme_path "$HOME/.config/fish/themes/$theme_name.theme"
+    if set -q XDG_CONFIG_HOME[1]
+        set theme_path "$XDG_CONFIG_HOME/fish/themes/$theme_name.theme"
+    end
+
+    set -l cwd_color brblue
+    set -l user_color brgreen
+    set -l host_color brblue
+    set -l host_remote_color bryellow
+    set -l status_color red
+    set -l branch_color magenta
+    set -l upstream_color magenta
+    set -l staged_color green
+    set -l unstaged_color red
+    set -l misc_color cyan
+    set -l label_color yellow
+    set -l dim_color brblack
+
+    if test -r "$theme_path"
+        set -l active_section
+        while read -l line
+            set line (string trim -- $line)
+            if test -z "$line"
+                continue
+            end
+
+            if string match -q '#*' -- $line
+                continue
+            end
+
+            if string match -rq '^\[(light|dark|unknown)\]$' -- $line
+                set active_section (string replace -r '^\[(.*)\]$' '$1' -- $line)
+                continue
+            end
+
+            if test "$active_section" != "$color_theme"
+                continue
+            end
+
+            set -l tokens (string split ' ' -- (string replace -ra '\s+' ' ' -- $line))
+            set -l var_name $tokens[1]
+            set -l color_value
+            for token in $tokens[2..]
+                if not string match -q -- '--*' $token
+                    set color_value $token
+                    break
+                end
+            end
+
+            test -n "$color_value"; or continue
+
+            switch $var_name
+                case fish_color_cwd
+                    set cwd_color $color_value
+                case fish_color_user
+                    set user_color $color_value
+                case fish_color_host
+                    set host_color $color_value
+                case fish_color_host_remote
+                    set host_remote_color $color_value
+                case fish_color_status
+                    set status_color $color_value
+                    set unstaged_color $color_value
+                case fish_pager_color_prefix
+                    set branch_color $color_value
+                case fish_color_keyword
+                    set upstream_color $color_value
+                case fish_color_end
+                    set staged_color $color_value
+                case fish_color_redirection
+                    set misc_color $color_value
+                case fish_color_quote
+                    set label_color $color_value
+                case fish_color_gray
+                    set dim_color $color_value
+                case fish_color_comment
+                    if test "$dim_color" = brblack
+                        set dim_color $color_value
+                    end
+            end
+        end < "$theme_path"
+    end
+
+    set -g __kg_prompt_theme_name $theme_name
+    set -g __kg_prompt_theme_variant $color_theme
+    set -g __kg_prompt_cwd $cwd_color
+    set -g __kg_prompt_user $user_color
+    set -g __kg_prompt_host $host_color
+    set -g __kg_prompt_host_remote $host_remote_color
+    set -g __kg_prompt_status $status_color
+    set -g __kg_prompt_branch $branch_color
+    set -g __kg_prompt_upstream $upstream_color
+    set -g __kg_prompt_staged $staged_color
+    set -g __kg_prompt_unstaged $unstaged_color
+    set -g __kg_prompt_misc $misc_color
+    set -g __kg_prompt_label $label_color
+    set -g __kg_prompt_dim $dim_color
+
+    set -g __kg_prompt_mode_default $branch_color
+    set -g __kg_prompt_mode_insert $staged_color
+    set -g __kg_prompt_mode_replace $unstaged_color
+    set -g __kg_prompt_mode_visual $upstream_color
 end

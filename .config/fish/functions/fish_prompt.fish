@@ -1,8 +1,9 @@
 function fish_prompt
-    set -l last_status $status
     __kg_prompt_palette_load
+
+    set -l last_status $status
     set -l normal (set_color normal)
-    set -l usercolor (set_color $fish_color_user)
+    set -l usercolor (set_color $__kg_prompt_user)
 
     # ------------------------------------------
     # [prompt status & character]
@@ -12,7 +13,7 @@ function fish_prompt
 
     # If the last command failed (status not 0), show the error status in color.
     if test $last_status -ne 0
-        set prompt_status (set_color $fish_color_status)" $last_status$normal"
+        set prompt_status (set_color $__kg_prompt_status)" $last_status$normal"
     end
 
     # Set the default prompt delimiter with color.
@@ -60,17 +61,26 @@ function fish_prompt
     # ------------------------------------------
     # [prompt_host]
 
-    # Only show host if in SSH or container
-    # Store this in a global variable because it's slow and unchanging
-    if not set -q prompt_host
-        set -g prompt_host ""
+    # Only show host if in SSH or container.
+    # Cache the decision, but build the colored string fresh so theme changes apply.
+    if not set -q __kg_prompt_show_host
+        set -g __kg_prompt_show_host 0
         if set -q SSH_TTY
             or begin
                 command -sq systemd-detect-virt
                 and systemd-detect-virt -q
             end
-            set prompt_host $usercolor$USER$normal@(set_color $fish_color_host)$hostname$normal":"
+            set -g __kg_prompt_show_host 1
         end
+    end
+
+    set -l prompt_host ""
+    if test $__kg_prompt_show_host -eq 1
+        set -l hostcolor $__kg_prompt_host
+        if set -q SSH_TTY
+            set hostcolor $__kg_prompt_host_remote
+        end
+        set prompt_host $usercolor$USER$normal@(set_color $hostcolor)$hostname$normal":"
     end
 
     # ------------------------------------------

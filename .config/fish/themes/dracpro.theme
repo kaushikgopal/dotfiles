@@ -1,0 +1,150 @@
+# Dracula Pro palette for fish
+# activate this by `fish_config theme choose "dracpro"`
+#
+# This file is the source of truth for fish-native colors:
+# - syntax highlighting (`fish_color_*`)
+# - autosuggestions and search/selection colors
+# - built-in prompt colors like cwd/user/host/status
+# - completion pager colors (`fish_pager_color_*`)
+#
+# Prompt-only semantics that fish does not name directly (branch, staged,
+# unstaged, upstream, vi-mode accents) are derived from these theme vars in
+# `__kg_prompt_palette_load.fish`.
+
+[light]
+# preferred_background: f5f5f5
+
+# Syntax and commandline colors.
+fish_color_normal 1f1f1f
+fish_color_command 1f1f1f
+fish_color_keyword a3144d
+fish_color_quote 846e15
+fish_color_redirection 036a96 --bold
+fish_color_end 14710a
+fish_color_error cb3a2a
+fish_color_param 635d97
+fish_color_comment 635d97
+fish_color_selection --background=cfcfde
+fish_color_search_match 1f1f1f --background=cfcfde --bold
+fish_color_operator 036a96
+fish_color_escape a3144d
+fish_color_autosuggestion 8d899f
+fish_color_cancel cb3a2a --reverse
+fish_color_option 14710a
+fish_color_gray 8d899f
+fish_color_history_current --bold
+fish_color_status cb3a2a
+fish_color_valid_path 625f72 --underline
+
+# Built-in prompt colors used directly by `fish_prompt`.
+fish_color_cwd 625f72
+fish_color_cwd_root cb3a2a
+fish_color_host 625f72
+fish_color_host_remote 846e15
+fish_color_user 14710a
+
+# Completion pager and autocomplete menu colors.
+fish_pager_color_progress 8d899f
+fish_pager_color_background
+fish_pager_color_prefix 635d97 --bold
+fish_pager_color_completion 1f1f1f
+fish_pager_color_description 8d899f --italics
+fish_pager_color_selected_background --background=cfcfde
+fish_pager_color_selected_prefix 635d97 --bold
+fish_pager_color_selected_completion 1f1f1f
+fish_pager_color_selected_description 8d899f --italics
+fish_pager_color_secondary_background
+fish_pager_color_secondary_prefix 635d97 --bold
+fish_pager_color_secondary_completion 1f1f1f
+fish_pager_color_secondary_description 8d899f --italics
+
+[dark]
+# preferred_background: 22212c
+
+# Syntax and commandline colors.
+fish_color_normal f8f8f2
+fish_color_command f8f8f2
+fish_color_keyword ff80bf
+fish_color_quote ffff80
+fish_color_redirection 80ffea --bold
+fish_color_end 8aff80
+fish_color_error ff9580
+fish_color_param 7970a9
+fish_color_comment 7970a9
+fish_color_selection --background=454158
+fish_color_search_match f8f8f2 --background=454158 --bold
+fish_color_operator 80ffea
+fish_color_escape ff80bf
+fish_color_autosuggestion 6e6887
+fish_color_cancel ff9580 --reverse
+fish_color_option 8aff80
+fish_color_gray 6e6887
+fish_color_history_current --bold
+fish_color_status ff9580
+fish_color_valid_path b7b2cc --underline
+
+# Built-in prompt colors used directly by `fish_prompt`.
+fish_color_cwd b7b2cc
+fish_color_cwd_root ff9580
+fish_color_host b7b2cc
+fish_color_host_remote ffff80
+fish_color_user 8aff80
+
+# Completion pager and autocomplete menu colors.
+fish_pager_color_progress 6e6887
+fish_pager_color_background
+fish_pager_color_prefix 7970a9 --bold
+fish_pager_color_completion f8f8f2
+fish_pager_color_description 6e6887 --italics
+fish_pager_color_selected_background --background=454158
+fish_pager_color_selected_prefix 7970a9 --bold
+fish_pager_color_selected_completion f8f8f2
+fish_pager_color_selected_description 6e6887 --italics
+fish_pager_color_secondary_background
+fish_pager_color_secondary_prefix 7970a9 --bold
+fish_pager_color_secondary_completion f8f8f2
+fish_pager_color_secondary_description 6e6887 --italics
+
+[unknown]
+# Terminals that do not report light vs. dark use the dark palette.
+# This keeps `fish_config theme choose dracpro` working outside Ghostty too.
+fish_color_normal f8f8f2
+fish_color_command f8f8f2
+fish_color_keyword ff80bf
+fish_color_quote ffff80
+fish_color_redirection 80ffea --bold
+fish_color_end 8aff80
+fish_color_error ff9580
+fish_color_param 7970a9
+fish_color_comment 7970a9
+fish_color_selection --background=454158
+fish_color_search_match f8f8f2 --background=454158 --bold
+fish_color_operator 80ffea
+fish_color_escape ff80bf
+fish_color_autosuggestion 6e6887
+fish_color_cancel ff9580 --reverse
+fish_color_option 8aff80
+fish_color_gray 6e6887
+fish_color_history_current --bold
+fish_color_status ff9580
+fish_color_valid_path b7b2cc --underline
+
+fish_color_cwd b7b2cc
+fish_color_cwd_root ff9580
+fish_color_host b7b2cc
+fish_color_host_remote ffff80
+fish_color_user 8aff80
+
+fish_pager_color_progress 6e6887
+fish_pager_color_background
+fish_pager_color_prefix 7970a9 --bold
+fish_pager_color_completion f8f8f2
+fish_pager_color_description 6e6887 --italics
+fish_pager_color_selected_background --background=454158
+fish_pager_color_selected_prefix 7970a9 --bold
+fish_pager_color_selected_completion f8f8f2
+fish_pager_color_selected_description 6e6887 --italics
+fish_pager_color_secondary_background
+fish_pager_color_secondary_prefix 7970a9 --bold
+fish_pager_color_secondary_completion f8f8f2
+fish_pager_color_secondary_description 6e6887 --italics

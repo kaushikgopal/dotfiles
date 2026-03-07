@@ -6,6 +6,11 @@
 set -g fish_greeting
 
 if status is-interactive
+    # Load the named fish theme on every interactive shell start.
+    # `fish_config theme choose` applies the theme to the current session only,
+    # so new shells need to opt into `dracpro` here.
+    fish_config theme choose dracpro >/dev/null 2>/dev/null
+
     fish_vi_key_bindings # start vi mode
 end
 
