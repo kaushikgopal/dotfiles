@@ -211,42 +211,50 @@
 #####################
 # delta configuation
 [core]
-    pager = delta
+    pager = delta-theme
 [interactive]
-    diffFilter = delta --color-only
+    diffFilter = delta-theme --color-only
 [pager]
-    show = delta
+    show = delta-theme
 
 
 
 
 ######################
-# delta theme config (Nord palette, colorblind-friendly blue/red)
+# delta theme config (Dracula Pro palettes)
 [delta]
     navigate = false  # use n and N to move between diff sections
-    syntax-theme = Nord
-
     hunk-header-style = omit
     line-numbers = true
     line-numbers-left-format  = " {nm:>3} │"
     line-numbers-right-format = " {np:>3} │"
-
-    # Line number colors
-    line-numbers-minus-style = "#b3596b"        # claude removed
-    line-numbers-plus-style  = "#38a660"        # claude added
-    line-numbers-zero-style  = "#4C566A"        # nord3 muted
-
-    # Diff line styling - claude code dark palette (darkened for delta)
-    minus-style          = syntax "#5c1f29"      # dark red bg
-    minus-emph-style     = syntax "#864350"      # bright red bg
-    plus-style           = syntax "#1a4520"      # dark green bg
-    plus-emph-style      = syntax "#2a7d48"      # bright green bg
-
     zero-style = syntax
 
-    # File header styling
-    file-style = "#81A1C1" bold                 # nord9 blue
-    file-decoration-style = "#4C566A" ul        # nord3 underline
+[delta "dracpro-dark"]
+    dark = true
+    syntax-theme = Dracula
+    line-numbers-minus-style = "#ff9580"
+    line-numbers-plus-style  = "#8aff80"
+    line-numbers-zero-style  = "#6e6887"
+    minus-style              = syntax "#4f2a35"
+    minus-emph-style         = syntax "#6a3445"
+    plus-style               = syntax "#243b2c"
+    plus-emph-style          = syntax "#2d5640"
+    file-style               = "#9580ff" bold
+    file-decoration-style    = "#6e6887" ul
+
+[delta "dracpro-light"]
+    light = true
+    syntax-theme = GitHub
+    line-numbers-minus-style = "#cb3a2a"
+    line-numbers-plus-style  = "#14710a"
+    line-numbers-zero-style  = "#8d899f"
+    minus-style              = syntax "#edd4d8"
+    minus-emph-style         = syntax "#e0bcc4"
+    plus-style               = syntax "#d8e9d7"
+    plus-emph-style          = syntax "#c1dec3"
+    file-style               = "#644ac9" bold
+    file-decoration-style    = "#8d899f" ul
 
 
 [delta "chameleon"]
