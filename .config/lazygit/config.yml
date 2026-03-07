@@ -5,4 +5,4 @@ gui:
 
 git:
   pagers:
-    - pager: delta-theme --paging=never --line-numbers --hyperlinks --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"
+    - pager: ~/.config/git/delta-theme --paging=never --line-numbers --hyperlinks --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"

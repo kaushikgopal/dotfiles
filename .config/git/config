@@ -211,11 +211,11 @@
 #####################
 # delta configuation
 [core]
-    pager = delta-theme
+    pager = ~/.config/git/delta-theme
 [interactive]
-    diffFilter = delta-theme --color-only
+    diffFilter = ~/.config/git/delta-theme --color-only
 [pager]
-    show = delta-theme
+    show = ~/.config/git/delta-theme
 
 
 
