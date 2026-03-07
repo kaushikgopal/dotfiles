@@ -16,10 +16,6 @@
 .config/zed/conversations
 .config/zsh/.zsh_sessions
 
-.agents/skills/agent-browser
-.agents/skills/superpowers
-.agents/tmp/**
-
 .claude/**
 !.claude/statusline.sh
 !.claude/settings.json

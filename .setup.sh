@@ -35,7 +35,6 @@ files_to_link=(
     .config/ghostty
     .config/git
     .config/lazygit
-    .config/opencode
     .config/serie
     .config/procs
     .config/zed
