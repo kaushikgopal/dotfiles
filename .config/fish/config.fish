@@ -39,7 +39,9 @@ if status is-interactive
 
 
     abbr -a -- lsd 'tree -d -CFL 1'
-    abbr -a -- tre 'tree --dirsfirst -CFL 1'
+    abbr -a -- tre 'tree --dirsfirst -CFL'
+    abbr -a -- tre2 'tree --dirsfirst -CFL 2'
+    abbr -a -- tre3 'tree --dirsfirst -CFL 3'
 
     abbr -a -- o open
     abbr -a -- oo 'open .'
