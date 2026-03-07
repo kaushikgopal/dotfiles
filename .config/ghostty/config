@@ -33,12 +33,11 @@ keybind = super+p=toggle_command_palette
 ##############################################
 # Look and Feel
 # ghostty +list-themes
-# theme     = dark:batman-kg,light:Monokai Pro Machine
-# theme     = dark:Monokai Pro Machine,light:Monokai Pro Light
-# theme       = Catppuccin Mocha
-# theme       = Catppuccin Frappe
-# theme       = Catppuccin Macchiato
-theme       = dark:Catppuccin Macchiato,light:Catppuccin Latte
+# theme = Catppuccin Frappe
+# theme = Catppuccin Macchiato
+# theme = Catppuccin Mocha
+# theme = dark:Dracula,light:Flexoki Light
+theme = dark:dracpro-pro,light:dracpro-alucard
 
 adjust-cursor-thickness         = 3
 adjust-underline-position       = 3
