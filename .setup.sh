@@ -56,10 +56,11 @@ for file in "${files_to_link[@]}"; do
 done
 
 ##############################################################
-# Agents (instructions, skills, commands)
+# Agents now live in aikado
 ##############################################################
 
-source "$current_dir/.setup.agents.sh"
+echo -e "${GRAY}••••••• agent setup moved to ~/dev/oss/aikado ${NC}"
+echo -e "${GRAY}••••••• run: make -C ~/dev/oss/aikado setup-user ${NC}"
 
 # symlink each script in bin/ to ~/.local/bin/
 for script in "$current_dir"/bin/*; do
@@ -209,7 +210,7 @@ echo -e "${GRAY}---- symlink fish_history ${NC}"
 trash ~/.local/share/fish/fish_history
 ln -s $XDG_DATA_HOME/fish/fish_history ~/.local/share/fish/
 
-fish_config theme choose "catppuccin"
+fish_config theme choose "dracpro"
 fish_config theme save
 
 ##############################################################
