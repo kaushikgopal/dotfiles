@@ -27,7 +27,6 @@ brew "gawk"
 brew "ghostscript" # for pdfs
 brew "gnupg" # "openssl"
 brew "httpie"
-brew "hugo"
 brew "imagemagick"
 brew "llm"
 brew "openssl"
@@ -42,6 +41,10 @@ brew "wget"
 brew "yt-dlp"
 brew "zoxide"    # after upgrading, run: regen-shell-caches
 
+# ghostty based tmux alterantive
+tap "manaflow-ai/cmux"
+cask "cmux"
+
 brew "fish"
 brew "fzf"       # after upgrading, run: regen-shell-caches
 brew "gum"
@@ -49,6 +52,9 @@ brew "gum"
 brew "htop"     # better top
 brew "procs"    # better ps
 
+# website
+brew "hugo"
+brew "cloudflare-wrangler"
 
 #brew "briss" # pdf cropping tool
 #brew "btop"
