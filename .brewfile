@@ -89,6 +89,7 @@ brew "github-keygen"
 # cask "docker"
 
 brew "agent-browser"
+brew "gogcli"
 brew "mole"             # macOS cleaner app
 
 ######################
