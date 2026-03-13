@@ -124,6 +124,11 @@ brew "sdkman-cli"
 ##### Javascript and TypeScript
 brew "typescript"
 brew "node"
+# npm-installed CLIs (tracked here; require Node above)
+# npm install -g @google/gemini-cli
+# npm install -g @googleworkspace/cli
+# npm install -g @openai/codex
+# npm install -g defuddle
 
 ######################
 ##### .py
