@@ -76,8 +76,8 @@ if status is-interactive
     abbr -a -- co      codex
     abbr -a -- coy     codex --yolo
 
-    abbr -a -- cl      claude
-    abbr -a -- cly     claude --dangerously-skip-permissions
+    # abbr -a -- cl      claude
+    abbr -a -- cl     claude --dangerously-skip-permissions
     abbr -a -- clp     claude --plugin-dir ~/dev/off/claude-marketplace/caper/android
 
     abbr -a -- oc       opencode
