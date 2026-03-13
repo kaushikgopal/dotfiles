@@ -1,0 +1,6 @@
+#!/bin/bash
+# cmux-notify - wrapper for cmux notify, no-ops if cmux is not installed
+
+command -v cmux >/dev/null 2>&1 || exit 0
+read -r _stdin 2>/dev/null
+exec cmux notify "$@"
