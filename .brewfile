@@ -42,8 +42,8 @@ brew "yt-dlp"
 brew "zoxide"    # after upgrading, run: regen-shell-caches
 
 # ghostty based tmux alterantive
-tap "manaflow-ai/cmux"
-cask "cmux"
+# tap "manaflow-ai/cmux"
+# cask "cmux"
 
 brew "fish"
 brew "fzf"       # after upgrading, run: regen-shell-caches
