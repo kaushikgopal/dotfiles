@@ -82,14 +82,26 @@ font-thicken            = true
 
 # Berkeley Mono (TX-02-Variable) -------- -->
 font-family             = TX-02-Variable
-font-size               = 13
-adjust-cell-height      = 25%
-font-variation          = wght=400
+font-size               = 14.5
+adjust-cell-height      = 20%
+font-variation          = wght=420
 font-variation-bold     = wght=750
 
 font-feature            = ss02
 font-feature            = ss06
 font-feature            = ss12
+
+# # Jetbrains Mono -------- -->
+# font-family         = JetBrains Mono KG
+# font-size           = 14
+# adjust-cell-height  = 15%
+# font-style          = Regular
+# font-style-italic   = Regular Italic
+# font-feature   = cv07
+# font-feature   = cv08
+# font-feature   = cv19
+# font-feature   = cv20
+# font-feature   = cv10
 
 
 # # Source Code Pro -------- -->
