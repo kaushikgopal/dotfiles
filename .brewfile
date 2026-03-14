@@ -88,7 +88,6 @@ brew "github-keygen"
 # brew "docker-credential-helper-ecr"
 # cask "docker"
 
-brew "agent-browser"
 brew "gogcli"
 brew "mole"             # macOS cleaner app
 
@@ -128,6 +127,7 @@ brew "node"
 # npm install -g @google/gemini-cli
 # npm install -g @googleworkspace/cli
 # npm install -g @openai/codex
+# npm install -g playwriter
 # npm install -g defuddle
 
 ######################
@@ -178,7 +178,7 @@ cask "zed"
 cask "firefox", args: { appdir: "~/Applications" }
 cask "brave-browser"
 
-cask "ghostty"
+# cask "ghostty" # manual install
 cask "google-drive"
 cask "jetbrains-toolbox"
 cask "karabiner-elements"
