@@ -17,7 +17,7 @@ function __kg_prompt_palette_load --description 'Map the active fish theme file 
         set color_theme $fish_terminal_color_theme[1]
     end
 
-    if set -q __kg_prompt_theme_name __kg_prompt_theme_variant __kg_prompt_cwd __kg_prompt_branch
+    if set -q __kg_prompt_theme_name __kg_prompt_theme_variant __kg_prompt_cwd __kg_prompt_branch __kg_prompt_separator
         and test "$__kg_prompt_theme_name" = "$theme_name"
         and test "$__kg_prompt_theme_variant" = "$color_theme"
         return
@@ -40,7 +40,6 @@ function __kg_prompt_palette_load --description 'Map the active fish theme file 
     set -l misc_color cyan
     set -l label_color yellow
     set -l dim_color brblack
-    set -l autosuggestion_color brblack
     set -l separator_color 454158
     if test "$color_theme" = light
         set separator_color cfcfde
@@ -101,8 +100,6 @@ function __kg_prompt_palette_load --description 'Map the active fish theme file 
                     set misc_color $color_value
                 case fish_color_quote
                     set label_color $color_value
-                case fish_color_autosuggestion
-                    set autosuggestion_color $color_value
                 case fish_color_gray
                     set dim_color $color_value
                 case fish_color_comment
@@ -127,7 +124,6 @@ function __kg_prompt_palette_load --description 'Map the active fish theme file 
     set -g __kg_prompt_misc $misc_color
     set -g __kg_prompt_label $label_color
     set -g __kg_prompt_dim $dim_color
-    set -g __kg_prompt_autosuggestion $autosuggestion_color
     set -g __kg_prompt_separator $separator_color
 
     set -g __kg_prompt_mode_default $branch_color
