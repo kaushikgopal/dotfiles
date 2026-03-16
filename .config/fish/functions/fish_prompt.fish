@@ -2,11 +2,26 @@ function fish_prompt
     __kg_prompt_palette_load
 
     set -l last_status $status
+    __kg_prompt_separator
     set -l normal (set_color normal)
     set -l usercolor (set_color $__kg_prompt_user)
+    set -l prompt_leader " "
 
     # ------------------------------------------
     # [prompt status & character]
+
+    switch $fish_bind_mode
+        case default
+            set prompt_leader (set_color --bold $__kg_prompt_mode_default)" : "$normal
+        case insert
+            set prompt_leader (set_color --bold $__kg_prompt_mode_insert)" > "$normal
+        case replace_one
+            set prompt_leader (set_color --bold $__kg_prompt_mode_replace)" < "$normal
+        case visual
+            set prompt_leader (set_color --bold $__kg_prompt_mode_visual)" V "$normal
+        case '*'
+            set prompt_leader " "
+    end
 
     # Initialize prompt_status as empty.
     set -l prompt_status
@@ -87,7 +102,5 @@ function fish_prompt
     # assemble prompt
 
     string join "" -- $prompt_host $pwd $vcs $normal $prompt_status $delim
-
-    # show prompt on new line
-    echo  -n -e -s " "
+    echo -n -s $prompt_leader
 end
