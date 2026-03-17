@@ -127,7 +127,6 @@ brew "node"
 # npm install -g @google/gemini-cli
 # npm install -g @googleworkspace/cli
 # npm install -g @openai/codex
-# npm install -g playwriter
 # npm install -g defuddle
 
 ######################
@@ -161,6 +160,8 @@ brew "grpcurl" # caper
 #######################
 ######## AI apps
 brew "opencode"
+brew "agent-browser"
+
 # cask "claude-code"    # using eohan
 # cask "codex"          # using gohan
 # brew "gemini-cli"     # using gohan
