@@ -118,6 +118,9 @@ set -gx JAVA_HOME $HOME/Applications/Android\ Studio.app/Contents/jbr/Contents/H
 # set -gx GOKU_EDN_CONFIG_FILE $XDG_CONFIG_HOME/karabiner/karabiner.edn
 set -gx BAT_CONFIG_PATH $XDG_CONFIG_HOME/.bat.conf
 set -gx RIPGREP_CONFIG_PATH $XDG_CONFIG_HOME/.ripgreprc
+# Auto-shutdown agent-browser daemons after 10 minutes of inactivity so
+# leftover Chrome/Brave instances do not accumulate in the background.
+set -gx AGENT_BROWSER_IDLE_TIMEOUT_MS 600000
 
 # ----------------------------------------------------------------------------------------------------------------------
 # Path   # https://fishshell.com/docs/current/cmds/fish_add_path.html
