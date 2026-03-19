@@ -73,8 +73,7 @@ if status is-interactive
     #abbr -a -- lmm llm -m
     #abbr -a -- lmc llm cmd
 
-    abbr -a -- co      codex
-    abbr -a -- coy     codex --yolo
+    abbr -a -- co      codex --yolo
 
     # abbr -a -- cl      claude
     abbr -a -- cl     claude --dangerously-skip-permissions
