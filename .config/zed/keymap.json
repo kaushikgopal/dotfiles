@@ -6,31 +6,31 @@
 // To see the default key bindings run `zed: open default keymap`
 // from the command palette.
 [
-  {
-    "bindings": {
-      "cmd-o": "file_finder::Toggle",
-      "ctrl-alt-c": [
-        "agent::NewExternalAgentThread",
-        { "agent": "claude_code" }
-      ]
-    }
-  },
+  // {
+  //   "bindings": {
+  //     "cmd-o": "file_finder::Toggle",
+  //     "ctrl-alt-c": [
+  //       "agent::NewExternalAgentThread",
+  //       { "agent": "claude_code" }
+  //     ]
+  //   }
+  // },
   {
     "context": "Workspace",
     "bindings": {
       "cmd-p": "command_palette::Toggle",
       "cmd-ctrl-o": "project_symbols::Toggle",
-      "ctrl-alt-cmd-shift-g": "git_panel::ToggleFocus"
-    }
+      "ctrl-alt-cmd-shift-g": "git_panel::ToggleFocus",
+    },
   },
   {
     "context": "vim_mode == normal || vim_mode == visual || vim_mode == operator",
     "bindings": {
       "ctrl-shift-up": "editor::SelectLargerSyntaxNode",
-      "ctrl-shift-down": "editor::SelectSmallerSyntaxNode"
+      "ctrl-shift-down": "editor::SelectSmallerSyntaxNode",
       // "j k": "vim::NormalBefore"
-    }
-  }
+    },
+  },
   // [ c = [ is easy to type in vim and c - chunk
   // {
   //   "context": "vim_mode == normal",

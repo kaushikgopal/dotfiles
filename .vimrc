@@ -68,9 +68,9 @@ set synmaxcol=240   " syntax highlight only for N colums
 set termguicolors     " enable true color (24-bit RGB) support
 syntax enable
 
-" packadd! dracula_pro
-" let g:dracula_colorterm = 0
-" colorscheme dracula_pro
+packadd! dracula_pro
+let g:dracula_colorterm = 0
+colorscheme dracula_pro
 " colorscheme alucard
 
 
