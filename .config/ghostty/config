@@ -25,7 +25,6 @@ focus-follows-mouse             = true
 
 ##############################################
 # Key bindings
-keybind = shift+enter=text:\n
 keybind = super+k=text:\x0c
 keybind = super+shift+p=unbind
 keybind = super+p=toggle_command_palette
