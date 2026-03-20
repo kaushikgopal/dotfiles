@@ -24,6 +24,7 @@ pushd $HOME
 mkdir -p .config
 mkdir -p .config/karabiner  # see https://github.com/kaushikgopal/karabiner-kt.git for karabiner.json
 mkdir -p .local
+mkdir -p .local/bin
 
 # List of files to symlink (one per line for easy maintenance)
 files_to_link=(
