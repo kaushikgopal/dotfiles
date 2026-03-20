@@ -162,7 +162,7 @@ brew "grpcurl" # caper
 brew "opencode"
 brew "agent-browser"
 
-# cask "claude-code"    # using eohan
+# cask "claude-code"    # using eohan # curl -fsSL https://claude.ai/install.sh | bash
 # cask "codex"          # using gohan
 # brew "gemini-cli"     # using gohan
 # brew "sst/tap/opencode"
