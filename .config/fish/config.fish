@@ -61,7 +61,7 @@ if status is-interactive
     abbr -a -- rguuu 'rg -uuu'
 
     # git commands
-    abbr -a -- gg   lazygit
+    # abbr -a -- gg   lazygit
     abbr -a -- g    git # using a git function which is better
     abbr -a -- g.   git add .
     abbr -a -- gs   "git status -s"
