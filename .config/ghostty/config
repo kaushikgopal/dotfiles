@@ -84,7 +84,7 @@ font-thicken            = true
 font-family             = TX-02-Variable
 font-size               = 15
 adjust-cell-height      = 20%
-font-variation          = wght=400
+font-variation          = wght=410
 font-variation-bold     = wght=750
 
 font-feature            = ss02
@@ -94,7 +94,7 @@ font-feature            = ss12
 # # Jetbrains Mono -------- -->
 # font-family         = JetBrains Mono KG
 # font-size           = 14.5
-# adjust-cell-height  = 15%
+# adjust-cell-height  = 13%
 # font-style          = Light
 # font-style-italic   = Light Italic
 # font-feature   = cv03

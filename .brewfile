@@ -166,6 +166,7 @@ brew "agent-browser"
 # cask "codex"          # using gohan
 # brew "gemini-cli"     # using gohan
 # brew "sst/tap/opencode"
+# npm install -g @mariozechner/pi-coding-agent
 
 #######################
 ######## IDEs
@@ -176,7 +177,7 @@ cask "zed"
 
 ##############################################################
 ##### Mac apps
-cask "firefox", args: { appdir: "~/Applications" }
+# cask "firefox", args: { appdir: "~/Applications" }
 cask "brave-browser"
 
 # cask "ghostty" # manual install
