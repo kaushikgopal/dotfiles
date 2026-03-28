@@ -93,6 +93,7 @@ brew "mole"             # macOS cleaner app
 
 ######################
 ##### Web dev
+brew "cmark-gfm"  # GitHub Flavored Markdown → HTML (used by md-to-pdf for fast MD rendering)
 brew "htmltest"
 brew "web-ext"      # firefox add-on dev
 brew "prettier"     # markdown parsing
