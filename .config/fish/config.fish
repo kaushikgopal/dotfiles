@@ -233,3 +233,6 @@ function fish_user_key_bindings
 end
 
 test -f ~/.secrets.fish; and source ~/.secrets.fish
+
+# Added by graft setup script
+export PATH="$HOME/.gohan/bin:$PATH"
