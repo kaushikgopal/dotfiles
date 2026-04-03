@@ -271,6 +271,10 @@ set clipboard=unnamed
 " set rtp+=/usr/local/opt/fzf
 set rtp+=/opt/homebrew/opt/fzf  " Apple Silicon
 let $FZF_DEFAULT_COMMAND='fd -u --color=always'
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-s': 'split',
+  \ 'ctrl-v': 'vsplit' }
 nnoremap <silent> <leader>f :FZF<CR>
 
 
