@@ -288,6 +288,7 @@ if has('nvim')
   hi! link DiagnosticUnderlineWarn DraculaWarnLine
 
   hi! link WinSeparator DraculaWinSeparator
+  hi! link NormalFloat Pmenu
 
   if has('nvim-0.9')
     hi! link  @lsp.type.class DraculaCyan
@@ -976,6 +977,34 @@ if has('nvim')
   hi! link GitSignsDelete   DraculaRed
   hi! link GitSignsDeleteLn DraculaRed
   hi! link GitSignsDeleteNr DraculaRed
+  " }}}
+
+  " Saghen/blink.cmp {{{
+  hi! link BlinkCmpKindText DraculaFg
+  hi! link BlinkCmpKindMethod Function
+  hi! link BlinkCmpKindFunction Function
+  hi! link BlinkCmpKindConstructor DraculaCyan
+  hi! link BlinkCmpKindField DraculaOrange
+  hi! link BlinkCmpKindVariable DraculaPurpleItalic
+  hi! link BlinkCmpKindClass DraculaCyan
+  hi! link BlinkCmpKindInterface DraculaCyan
+  hi! link BlinkCmpKindModule DraculaYellow
+  hi! link BlinkCmpKindProperty DraculaPink
+  hi! link BlinkCmpKindUnit DraculaFg
+  hi! link BlinkCmpKindValue DraculaYellow
+  hi! link BlinkCmpKindEnum DraculaPink
+  hi! link BlinkCmpKindKeyword DraculaPink
+  hi! link BlinkCmpKindSnippet DraculaFg
+  hi! link BlinkCmpKindColor DraculaYellow
+  hi! link BlinkCmpKindFile DraculaYellow
+  hi! link BlinkCmpKindReference DraculaOrange
+  hi! link BlinkCmpKindFolder DraculaYellow
+  hi! link BlinkCmpKindEnumMember DraculaPurple
+  hi! link BlinkCmpKindConstant DraculaPurple
+  hi! link BlinkCmpKindStruct DraculaPink
+  hi! link BlinkCmpKindEvent DraculaFg
+  hi! link BlinkCmpKindOperator DraculaPink
+  hi! link BlinkCmpKindTypeParameter DraculaCyan
   " }}}
 
 endif
