@@ -353,6 +353,24 @@ xmap N <SID>(search-backward)zzzv
 " Markdown helpers
 "========================
 
+" Format markdown with prettier on :w (toggle with :MdFmt)
+let g:md_fmt_on_save = 1
+
+function! PrettierMarkdown()
+    if !g:md_fmt_on_save | return | endif
+    let l:pos = getpos('.')
+    silent %!prettier --prose-wrap always --stdin-filepath %
+    if v:shell_error
+        undo
+        echohl ErrorMsg | echom 'prettier: format failed' | echohl None
+    endif
+    call setpos('.', l:pos)
+endfunction
+
+autocmd BufWritePre *.md call PrettierMarkdown()
+command! MdFmt let g:md_fmt_on_save = !g:md_fmt_on_save
+    \ | echo 'Markdown format-on-save: ' . (g:md_fmt_on_save ? 'ON' : 'OFF')
+
 autocmd FileType markdown vmap <leader>l <Esc>`<i[<Esc>`>la]()<Esc>i
 autocmd FileType markdown nmap <leader>l <Esc>bi[<Esc>ea]()<Esc>i
 autocmd FileType markdown nmap <leader>L <Esc>bi[<Esc>$a]()<Esc>i
