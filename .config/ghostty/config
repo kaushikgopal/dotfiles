@@ -19,8 +19,18 @@ focus-follows-mouse             = true
 # Shell config
 # because i have both zsh and fish (mark this explicitly)
 
-#shell-integration               = nu
-#shell-integration-features      = cursor
+# Shell integration enables Ghostty to hook into the shell for features like
+# cursor shape changes per mode, and — critically — SSH terminfo distribution.
+#
+# ssh-terminfo: on first SSH to any host, Ghostty automatically pipes the
+# xterm-ghostty terminfo entry to the remote and installs it via `tic`.
+# This fixes broken backspace, garbled output, and missing colors when SSHing
+# to machines that don't have the ghostty terminfo installed (which is most of
+# them, since it only landed in ncurses 6.5-20241228). Without this, every new
+# machine you SSH to needs manual setup. With it, the first connection handles
+# it, result is cached per-host, and falls back to xterm-256color if tic fails.
+shell-integration               = fish
+shell-integration-features      = cursor,ssh-terminfo
 
 
 ##############################################
@@ -32,8 +42,7 @@ keybind = super+p=toggle_command_palette
 ##############################################
 # Look and Feel
 # ghostty +list-themes
-# theme = dark:Atom One Dark,light:Atom One Light
-theme = Atom One Dark
+theme = dark:Atom One Dark,light:Atom One Light
 
 adjust-cursor-thickness         = 3
 adjust-underline-position       = 3
@@ -80,23 +89,50 @@ font-thicken            = true
 #  coO08BbODQ |!iIlL17 $5SZ2zsz
 #  TtijJlFPRK vvw VVW \/V
 
+# # Source Code Pro -------- -->
+# # font-family           = Source Code Pro
+# font-family           = Hasklig
+# font-size             = 14.5
+# adjust-cell-height    = 10%
+# font-feature   = cv02
+# font-feature   = cv17
+
+# # Input Mono ---------- -->
+# font-family             = Input Mono
+# font-size               = 13
+# adjust-cell-height      = 23%
+# #font-style              = Light
+# #font-style-italic       = Light Italic
+# font-style-bold         = Medium
+# font-style-bold-italic  = Medium Italic
+
+# # SF Mono ---------- -->
+# font-family             = SF Mono
+# font-size               = 13
+# adjust-cell-height      = 22%
+# font-style              = Medium
+# font-style-italic       = Medium Italic
+# # font-style-bold         = Bold
+# # font-style-bold-italic  = Bold Italic
+
 # Berkeley Mono (TX-02-Variable) -------- -->
 font-family             = TX-02-Variable
-font-size               = 15
-adjust-cell-height      = 20%
-font-variation          = wght=410
-font-variation-bold     = wght=750
+font-size               = 14.5
+adjust-cell-height      = 25%
+font-variation          = wght=400
+font-variation-bold     = wght=800
 
-font-feature            = ss02
+font-feature            = ss01
+# font-feature            = ss02
 font-feature            = ss06
 font-feature            = ss12
 
 # # Jetbrains Mono -------- -->
 # font-family         = JetBrains Mono KG
-# font-size           = 14.5
-# adjust-cell-height  = 13%
-# font-style          = Light
-# font-style-italic   = Light Italic
+# font-size           = 13
+# adjust-cell-height  = 15%
+# font-style          = Regular
+# font-style-italic   = Regular Italic
 # font-feature   = cv03
 # font-feature   = cv07
 # font-feature   = cv08
@@ -104,14 +140,6 @@ font-feature            = ss12
 # font-feature   = cv19
 # font-feature   = cv20
 
-
-# # Source Code Pro -------- -->
-# # font-family           = Source Code Pro
-# font-family           = Hasklig
-# font-size             = 12.5
-# adjust-cell-height    = 25%
-# font-feature   = cv02
-# font-feature   = cv17
 
 
 # # Commit Mono - KG ---------- -->
@@ -123,13 +151,3 @@ font-feature            = ss12
 # font-style-italic       = 425Italic
 # font-style-bold         = 700Regular
 # font-style-bold-italic  = 700Italic
-
-
-# # SF Mono ---------- -->
-# font-family             = SF Mono
-# font-size               = 12
-# adjust-cell-height      = 32%
-# # font-style              = Regular
-# # font-style-italic       = Regular Italic
-# font-style-bold         = Bold
-# font-style-bold-italic  = Bold Italic
