@@ -270,7 +270,7 @@ set clipboard=unnamed
 " If installed using Homebrew
 " set rtp+=/usr/local/opt/fzf
 set rtp+=/opt/homebrew/opt/fzf  " Apple Silicon
-let $FZF_DEFAULT_COMMAND='fd -u --color=always'
+let $FZF_DEFAULT_COMMAND='fd -u'
 let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
   \ 'ctrl-s': 'split',
