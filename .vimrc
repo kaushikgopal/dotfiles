@@ -276,6 +276,7 @@ let g:fzf_action = {
   \ 'ctrl-s': 'split',
   \ 'ctrl-v': 'vsplit' }
 nnoremap <silent> <leader>f :FZF<CR>
+nnoremap <silent> <leader>g :Rg<CR>
 
 
 "========================

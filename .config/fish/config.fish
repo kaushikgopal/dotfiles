@@ -184,6 +184,14 @@ if status is-interactive
     # enable FZF for fish while disabling alt + c
     test -f $XDG_CACHE_HOME/fzf.fish; and FZF_ALT_C_COMMAND= source $XDG_CACHE_HOME/fzf.fish
 
+    # Auto-switch fzf color scheme based on macOS appearance
+    set -l appearance (defaults read -g AppleInterfaceStyle 2>/dev/null | string trim)
+    if test "$appearance" = Dark
+        set -gx FZF_DEFAULT_OPTS "--color=dark"
+    else
+        set -gx FZF_DEFAULT_OPTS "--color=light"
+    end
+
     # set -gx FZF_DEFAULT_COMMAND 'rg --files'
     # default command is different from ctrl + t
     set -gx FZF_CTRL_T_COMMAND 'rg --files'
@@ -229,6 +237,7 @@ function fish_user_key_bindings
         bind -M $mode \e\x7f backward-kill-word   # Alt-Backspace → delete previous word
         bind -M $mode \e\b  backward-kill-word    # Alt-Backspace (alternate)
         bind -M $mode \cu  backward-kill-line     # Ctrl-u → cut from line start
+        bind -M $mode \cg  __fzf_search_content   # Ctrl-g → live ripgrep search
     end
 end
 

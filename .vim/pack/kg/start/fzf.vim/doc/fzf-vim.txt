@@ -1,0 +1,545 @@
+fzf-vim.txt	fzf-vim	Last change: June 8 2025
+FZF-VIM - TABLE OF CONTENTS                                *fzf-vim* *fzf-vim-toc*
+==============================================================================
+
+  fzf :heart: vim                                |fzf-vim-fzfheart-vim|
+    Rationale                                    |fzf-vim-rationale|
+    Why you should use fzf on Vim                |fzf-vim-why-you-should-use-fzf-on-vim|
+    Installation                                 |fzf-vim-installation|
+      Using vim-plug                             |fzf-vim-using-vim-plug|
+      Dependencies                               |fzf-vim-dependencies|
+    Commands                                     |fzf-vim-commands|
+    Customization                                |fzf-vim-customization|
+      Configuration options of the base plugin   |fzf-vim-configuration-options-of-the-base-plugin|
+      Configuration options for fzf.vim          |fzf-vim-configuration-options-for-fzf-vim|
+        Preview window                           |fzf-vim-preview-window|
+        Command-level options                    |fzf-vim-command-level-options|
+        Command-level fzf options                |fzf-vim-command-level-fzf-options|
+        List type to handle multiple selections  |fzf-vim-list-type-to-handle-multiple-selections|
+      Advanced customization                     |fzf-vim-advanced-customization|
+        Vim functions                            |fzf-vim-vim-functions|
+        Example: Customizing Files command       |fzf-vim-example-customizing-files-command|
+        Example: git grep wrapper                |fzf-vim-example-git-grep-wrapper|
+    Mappings                                     |fzf-vim-mappings|
+    Completion functions                         |fzf-vim-completion-functions|
+    Custom completion                            |fzf-vim-custom-completion|
+      Reducer example                            |fzf-vim-reducer-example|
+    Status line of terminal buffer               |fzf-vim-status-line-of-terminal-buffer|
+      Hide statusline                            |fzf-vim-hide-statusline|
+      Custom statusline                          |fzf-vim-custom-statusline|
+    License                                      |fzf-vim-license|
+
+FZF :HEART: VIM                                           *fzf-vim-fzfheart-vim*
+==============================================================================
+
+Things you can do with {fzf}{1} and Vim.
+
+                                           {1} https://github.com/junegunn/fzf
+
+
+RATIONALE                                                    *fzf-vim-rationale*
+==============================================================================
+
+{fzf}{1} itself is not a Vim plugin, and the official repository only provides
+the {basic wrapper function}{2} for Vim. It's up to the users to write their
+own Vim commands with it. However, I've learned that many users of fzf are not
+familiar with Vimscript and are looking for the "default" implementation of
+the features they can find in the alternative Vim plugins.
+
+          {1} https://github.com/junegunn/fzf
+          {2} https://github.com/junegunn/fzf/blob/master/README-VIM.md#fzfrun
+
+
+WHY YOU SHOULD USE FZF ON VIM            *fzf-vim-why-you-should-use-fzf-on-vim*
+==============================================================================
+
+Because you can and you love fzf.
+
+fzf runs asynchronously and can be orders of magnitude faster than similar Vim
+plugins. However, the benefit may not be noticeable if the size of the input
+is small, which is the case for many of the commands provided here.
+Nevertheless I wrote them anyway since it's really easy to implement custom
+selector with fzf.
+
+
+INSTALLATION                                              *fzf-vim-installation*
+==============================================================================
+
+fzf.vim depends on the basic Vim plugin of {the main fzf repository}{1}, which
+means you need to set up both "fzf" and "fzf.vim" on Vim. To learn more about
+fzf/Vim integration, see {README-VIM}{3}.
+
+                 {1} https://github.com/junegunn/fzf
+                 {3} https://github.com/junegunn/fzf/blob/master/README-VIM.md
+
+
+< Using vim-plug >____________________________________________________________~
+                                                        *fzf-vim-using-vim-plug*
+>
+    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+    Plug 'junegunn/fzf.vim'
+<
+`fzf#install()` makes sure that you have the latest binary, but it's optional,
+so you can omit it if you use a plugin manager that doesn't support hooks.
+
+
+< Dependencies >______________________________________________________________~
+                                                          *fzf-vim-dependencies*
+
+ - {fzf}{1} 0.54.0 or above
+ - For syntax-highlighted preview, install {bat}{4}
+ - If {delta}{5} is available, `GF?`, `Commits` and `BCommits` will use it to
+   format `git diff` output.
+ - `Ag` requires {The Silver Searcher (ag)}{6}
+ - `Rg` requires {ripgrep (rg)}{7}
+ - `Tags` and `Helptags` require Perl
+ - `Tags PREFIX` requires `readtags` command from {Universal Ctags}{8}
+>
+    # Installing dependencies using Homebrew
+    brew install fzf bat ripgrep the_silver_searcher perl universal-ctags
+<
+                             {1} https://github.com/junegunn/fzf
+                             {4} https://github.com/sharkdp/bat
+                             {5} https://github.com/dandavison/delta
+                             {6} https://github.com/ggreer/the_silver_searcher
+                             {7} https://github.com/BurntSushi/ripgrep
+                             {8} https://ctags.io/
+
+
+COMMANDS                                                      *fzf-vim-commands*
+==============================================================================
+
+       *:Files* *:GFiles* *:Buffers* *:Colors* *:Ag* *:Rg* *:RG* *:Lines* *:BLines* *:Tags* *:BTags*
+   *:Changes* *:Marks* *:BMarks* *:Jumps* *:Windows* *:Locate* *:History* *:Snippets* *:Commits*
+                                *:BCommits* *:Commands* *:Maps* *:Helptags* *:Filetypes*
+
+ -----------------------+--------------------------------------------------------------------------------------
+ Command                | List                                                                                 ~
+ -----------------------+--------------------------------------------------------------------------------------
+  `:Files [PATH]`         | Files (runs  `$FZF_DEFAULT_COMMAND`  if defined)
+  `:GFiles [OPTS]`        | Git files ( `git ls-files` )
+  `:GFiles?`              | Git files ( `git status` )
+  `:Buffers`              | Open buffers
+  `:Colors`               | Color schemes
+  `:Ag [PATTERN]`         | {ag}{6} search result ( `ALT-A`  to select all,  `ALT-D`  to deselect all)
+  `:Rg [PATTERN]`         | {rg}{7} search result ( `ALT-A`  to select all,  `ALT-D`  to deselect all)
+  `:RG [PATTERN]`         | {rg}{7} search result; relaunch ripgrep on every keystroke
+  `:Lines [QUERY]`        | Lines in loaded buffers
+  `:BLines [QUERY]`       | Lines in the current buffer
+  `:Tags [PREFIX]`        | Tags in the project ( `ctags -R` )
+  `:BTags [QUERY]`        | Tags in the current buffer
+  `:Changes`              | Changelist across all open buffers
+  `:Marks`                | Marks
+  `:BMarks`               | Marks in the current buffer
+  `:Jumps`                | Jumps
+  `:Windows`              | Windows
+  `:Locate PATTERN`       |  `locate`  command output
+  `:History`              |  `v:oldfiles`  and open buffers
+  `:History:`             | Command history
+  `:History/`             | Search history
+  `:Snippets`             | Snippets ({UltiSnips}{9})
+  `:Commits [LOG_OPTS]`   | Git commits (requires {fugitive.vim}{10})
+  `:BCommits [LOG_OPTS]`  | Git commits for the current buffer; visual-select lines to track changes in the range
+  `:Commands`             | Commands
+  `:Maps`                 | Normal mode mappings
+  `:Helptags`             | Help tags [1]
+  `:Filetypes`            | File types
+ -----------------------+--------------------------------------------------------------------------------------
+
+                                                      *g:fzf_vim.command_prefix*
+
+ - Most commands support CTRL-T / CTRL-X / CTRL-V key bindings to open in a new
+   tab, a new split, or in a new vertical split
+ - Bang-versions of the commands (e.g. `Ag!`) will open fzf in fullscreen
+ - You can set `g:fzf_vim.command_prefix` to give the same prefix to the commands
+   - e.g. `let g:fzf_vim.command_prefix = 'Fzf'` and you have `FzfFiles`, etc.
+
+(1: `Helptags` will shadow the command of the same name from {pathogen}{11}.
+But its functionality is still available via `call pathogen#helptags()`. [↩])
+
+                             {6} https://github.com/ggreer/the_silver_searcher
+                             {7} https://github.com/BurntSushi/ripgrep
+                             {7} https://github.com/BurntSushi/ripgrep
+                             {9} https://github.com/SirVer/ultisnips
+                             {10} https://github.com/tpope/vim-fugitive
+                             {11} https://github.com/tpope/vim-pathogen
+
+
+CUSTOMIZATION                                            *fzf-vim-customization*
+==============================================================================
+
+
+< Configuration options of the base plugin >__________________________________~
+                              *fzf-vim-configuration-options-of-the-base-plugin*
+
+Every command in fzf.vim internally calls `fzf#wrap` function of the main
+repository which supports a set of global option variables. So please read
+through {README-VIM}{3} to learn more about them.
+
+                 {3} https://github.com/junegunn/fzf/blob/master/README-VIM.md
+
+
+< Configuration options for fzf.vim >_________________________________________~
+                                     *fzf-vim-configuration-options-for-fzf-vim*
+
+                                                                     *g:fzf_vim*
+
+All configuration values for this plugin are stored in `g:fzf_vim` dictionary,
+so make sure to initialize it before assigning any configuration values to it.
+>
+    " Initialize configuration dictionary
+    let g:fzf_vim = {}
+<
+
+Preview window~
+                                                        *fzf-vim-preview-window*
+
+                                                      *g:fzf_vim.preview_window*
+
+Some commands will show the preview window on the right. You can customize the
+behavior with `g:fzf_vim.preview_window`. Here are some examples:
+
+                                                        *g:fzf_vim.preview_bash*
+>
+    " This is the default option:
+    "   - Preview window on the right with 50% width
+    "   - CTRL-/ will toggle preview window.
+    " - Note that this array is passed as arguments to fzf#vim#with_preview function.
+    " - To learn more about preview window options, see `--preview-window` section of `man fzf`.
+    let g:fzf_vim.preview_window = ['right,50%', 'ctrl-/']
+
+    " Preview window is hidden by default. You can toggle it with ctrl-/.
+    " It will show on the right with 50% width, but if the width is smaller
+    " than 70 columns, it will show above the candidate list
+    let g:fzf_vim.preview_window = ['hidden,right,50%,<70(up,40%)', 'ctrl-/']
+
+    " Empty value to disable preview window altogether
+    let g:fzf_vim.preview_window = []
+
+    " fzf.vim needs bash to display the preview window.
+    " On Windows, fzf.vim will first see if bash is in $PATH, then if
+    " Git bash (C:\Program Files\Git\bin\bash.exe) is available.
+    " If you want it to use a different bash, set this variable.
+    "   let g:fzf_vim = {}
+    "   let g:fzf_vim.preview_bash = 'C:\Git\bin\bash.exe'
+<
+
+Command-level options~
+                                                 *fzf-vim-command-level-options*
+
+*g:fzf_vim.commands_expect* *g:fzf_vim.tags_command* *g:fzf_vim.commits_log_options*
+                                                        *g:fzf_vim.buffers_jump*
+>
+    " [Buffers] Jump to the existing window if possible (default: 0)
+    let g:fzf_vim.buffers_jump = 1
+
+    " [Ag|Rg|RG] Display path on a separate line for narrow screens (default: 0)
+    " * Requires Perl and fzf 0.56.0 or later
+    let g:fzf_vim.grep_multi_line = 0
+       " PATH:LINE:COL:LINE
+    let g:fzf_vim.grep_multi_line = 1
+       " PATH:LINE:COL:
+       " LINE
+    let g:fzf_vim.grep_multi_line = 2
+       " PATH:LINE:COL:
+       " LINE
+       " (empty line between items using --gap option)
+
+    " [[B]Commits] Customize the options used by 'git log':
+    let g:fzf_vim.commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
+
+    " [Tags] Command to generate tags file
+    let g:fzf_vim.tags_command = 'ctags -R'
+
+    " [Commands] --expect expression for directly executing the command
+    let g:fzf_vim.commands_expect = 'alt-enter,ctrl-x'
+<
+
+Command-level fzf options~
+                                             *fzf-vim-command-level-fzf-options*
+
+You can set fzf options for each command by setting
+`g:fzf_vim.{command}_options`.
+>
+    " In string
+    let g:fzf_vim.buffers_options = '--style full --border-label " Open Buffers "'
+
+    " In list (No need to quote or escape values)
+    let g:fzf_vim.buffers_options = ['--style', 'full', '--border-label', ' Open Buffers ']
+<
+
+List type to handle multiple selections~
+                               *fzf-vim-list-type-to-handle-multiple-selections*
+
+The following commands will fill the quickfix list when multiple entries are
+selected.
+
+ - `Ag`
+ - `Rg` / `RG`
+ - `Lines` / `BLines`
+ - `Tags` / `BTags`
+
+                                                            *g:fzf_vim.listproc*
+
+By setting `g:fzf_vim.listproc`, you can make them use location list instead.
+>
+    " Default: Use quickfix list
+    let g:fzf_vim.listproc = { list -> fzf#vim#listproc#quickfix(list) }
+
+    " Use location list instead of quickfix list
+    let g:fzf_vim.listproc = { list -> fzf#vim#listproc#location(list) }
+<
+You can customize the list type per command by defining variables named
+`g:fzf_vim.listproc_{command_name_in_lowercase}`.
+
+                                   *g:fzf_vim.listproc_rg* *g:fzf_vim.listproc_ag*
+>
+    " Command-wise customization
+    let g:fzf_vim.listproc_ag = { list -> fzf#vim#listproc#quickfix(list) }
+    let g:fzf_vim.listproc_rg = { list -> fzf#vim#listproc#location(list) }
+<
+You can further customize the behavior by providing a custom function to
+process the list instead of using the predefined `fzf#vim#listproc#quickfix`
+or `fzf#vim#listproc#location`.
+>
+    " A customized version of fzf#vim#listproc#quickfix.
+    " The last two lines are commented out not to move to the first entry.
+    function! g:fzf_vim.listproc(list)
+      call setqflist(a:list)
+      copen
+      wincmd p
+      " cfirst
+      " normal! zvzz
+    endfunction
+<
+
+< Advanced customization >____________________________________________________~
+                                                *fzf-vim-advanced-customization*
+
+
+Vim functions~
+                                                         *fzf-vim-vim-functions*
+
+Each command in fzf.vim is backed by a Vim function. You can override a
+command or define a variation of it by calling its corresponding function.
+
+ ----------+---------------------------------------------------------------------------------
+ Command   | Vim function                                                                    ~
+ ----------+---------------------------------------------------------------------------------
+  `Files`    |  `fzf#vim#files(dir, [spec dict], [fullscreen bool])`
+  `GFiles`   |  `fzf#vim#gitfiles(git_options, [spec dict], [fullscreen bool])`
+  `GFiles?`  |  `fzf#vim#gitfiles('?', [spec dict], [fullscreen bool])`
+  `Buffers`  |  `fzf#vim#buffers([query string], [bufnrs list], [spec dict], [fullscreen bool])`
+  `Colors`   |  `fzf#vim#colors([spec dict], [fullscreen bool])`
+  `Rg`       |  `fzf#vim#grep(command, [spec dict], [fullscreen bool])`
+  `RG`       |  `fzf#vim#grep2(command_prefix, query, [spec dict], [fullscreen bool])`
+ ...       | ...
+ ----------+---------------------------------------------------------------------------------
+
+(We can see that the last two optional arguments of each function are
+identical. They are directly passed to `fzf#wrap` function. If you haven't
+read {README-VIM}{3} already, please read it before proceeding.)
+
+                 {3} https://github.com/junegunn/fzf/blob/master/README-VIM.md
+
+
+Example: Customizing Files command~
+                                     *fzf-vim-example-customizing-files-command*
+
+This is the default definition of `Files` command:
+>
+    command! -bang -nargs=? -complete=dir Files call fzf#vim#files(<q-args>, <bang>0)
+<
+Let's say you want to a variation of it called `ProjectFiles` that only
+searches inside `~/projects` directory. Then you can do it like this:
+>
+    command! -bang ProjectFiles call fzf#vim#files('~/projects', <bang>0)
+<
+Or, if you want to override the command with different fzf options, just pass
+a custom spec to the function.
+>
+    command! -bang -nargs=? -complete=dir Files
+        \ call fzf#vim#files(<q-args>, {'options': ['--layout=reverse', '--info=inline']}, <bang>0)
+<
+Want a preview window?
+>
+    command! -bang -nargs=? -complete=dir Files
+        \ call fzf#vim#files(<q-args>, {'options': ['--layout=reverse', '--info=inline', '--preview', 'cat {}']}, <bang>0)
+<
+It kind of works, but you probably want a nicer previewer program than `cat`.
+fzf.vim ships {a versatile preview script}{12} you can readily use. It
+internally executes {bat}{4} for syntax highlighting, so make sure to install
+it.
+>
+    command! -bang -nargs=? -complete=dir Files
+        \ call fzf#vim#files(<q-args>, {'options': ['--layout=reverse', '--info=inline', '--preview', '~/.vim/plugged/fzf.vim/bin/preview.sh {}']}, <bang>0)
+<
+However, it's not ideal to hard-code the path to the script which can be
+different in different circumstances. So in order to make it easier to set up
+the previewer, fzf.vim provides `fzf#vim#with_preview` helper function.
+Similarly to `fzf#wrap`, it takes a spec dictionary and returns a copy of it
+with additional preview options.
+>
+    command! -bang -nargs=? -complete=dir Files
+        \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--layout=reverse', '--info=inline']}), <bang>0)
+<
+You can just omit the spec argument if you only want the previewer.
+>
+    command! -bang -nargs=? -complete=dir Files
+        \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+<
+                                            {12} bin/preview.sh
+                                            {4} https://github.com/sharkdp/bat
+
+
+Example: git grep wrapper~
+                                              *fzf-vim-example-git-grep-wrapper*
+
+The following example implements `GGrep` command that works similarly to
+predefined `Ag` or `Rg` using `fzf#vim#grep`.
+
+ - We set the base directory to git root by setting `dir` attribute in spec
+   dictionary.
+ - {The preview script}{12} supports `grep` format (`FILE_PATH:LINE_NO:...`), so
+   we can just wrap the spec with `fzf#vim#with_preview` as before to enable
+   previewer.
+>
+    command! -bang -nargs=* GGrep
+      \ call fzf#vim#grep(
+      \   'git grep --line-number -- '.fzf#shellescape(<q-args>),
+      \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0)
+<
+                                                           {12} bin/preview.sh
+
+
+MAPPINGS                                                      *fzf-vim-mappings*
+==============================================================================
+
+ ---------------------------------+------------------------------------------
+ Mapping                          | Description                              ~
+ ---------------------------------+------------------------------------------
+ <plug>(fzf-maps-n)               | Normal mode mappings
+ <plug>(fzf-maps-i)               | Insert mode mappings
+ <plug>(fzf-maps-x)               | Visual mode mappings
+ <plug>(fzf-maps-o)               | Operator-pending mappings
+ <plug>(fzf-complete-word)        |  `cat /usr/share/dict/words`
+ <plug>(fzf-complete-path)        | Path completion using  `find`  (file + dir)
+ <plug>(fzf-complete-file)        | File completion using  `find`
+ <plug>(fzf-complete-line)        | Line completion (all open buffers)
+ <plug>(fzf-complete-buffer-line) | Line completion (current buffer only)
+ ---------------------------------+------------------------------------------
+>
+    " Mapping selecting mappings
+    nmap <leader><tab> <plug>(fzf-maps-n)
+    xmap <leader><tab> <plug>(fzf-maps-x)
+    omap <leader><tab> <plug>(fzf-maps-o)
+
+    " Insert mode completion
+    imap <c-x><c-k> <plug>(fzf-complete-word)
+    imap <c-x><c-f> <plug>(fzf-complete-path)
+    imap <c-x><c-l> <plug>(fzf-complete-line)
+<
+
+COMPLETION FUNCTIONS                              *fzf-vim-completion-functions*
+==============================================================================
+
+ -----------------------------------------+--------------------------------------
+ Function                                 | Description                          ~
+ -----------------------------------------+--------------------------------------
+  `fzf#vim#complete#path(command, [spec])`  | Path completion
+  `fzf#vim#complete#word([spec])`           | Word completion
+  `fzf#vim#complete#line([spec])`           | Line completion (all open buffers)
+  `fzf#vim#complete#buffer_line([spec])`    | Line completion (current buffer only)
+ -----------------------------------------+--------------------------------------
+>
+    " Path completion with custom source command
+    inoremap <expr> <c-x><c-f> fzf#vim#complete#path('fd')
+    inoremap <expr> <c-x><c-f> fzf#vim#complete#path('rg --files')
+
+    " Word completion with custom spec with popup layout option
+    inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'window': { 'width': 0.2, 'height': 0.9, 'xoffset': 1 }})
+<
+
+CUSTOM COMPLETION                                    *fzf-vim-custom-completion*
+==============================================================================
+
+`fzf#vim#complete` is a helper function for creating custom fuzzy completion
+using fzf. If the first parameter is a command string or a Vim list, it will
+be used as the source.
+>
+    " Replace the default dictionary completion with fzf-based fuzzy completion
+    inoremap <expr> <c-x><c-k> fzf#vim#complete('cat /usr/share/dict/words')
+<
+For advanced uses, you can pass an options dictionary to the function. The set
+of options is pretty much identical to that for `fzf#run` only with the
+following exceptions:
+
+ - `reducer` (funcref)
+   - Reducer transforms the output lines of fzf into a single string value
+ - `prefix` (string or funcref; default: `\k*$`)
+   - Regular expression pattern to extract the completion prefix
+   - Or a function to extract completion prefix
+ - Both `source` and `options` can be given as funcrefs that take the completion
+   prefix as the argument and return the final value
+ - `sink` or `sink*` are ignored
+>
+    " Global line completion (not just open buffers. ripgrep required.)
+    inoremap <expr> <c-x><c-l> fzf#vim#complete(fzf#wrap({
+      \ 'prefix': '^.*$',
+      \ 'source': 'rg -n ^ --color always',
+      \ 'options': '--ansi --delimiter : --nth 3..',
+      \ 'reducer': { lines -> join(split(lines[0], ':\zs')[2:], '') }}))
+<
+
+< Reducer example >___________________________________________________________~
+                                                       *fzf-vim-reducer-example*
+>
+    function! s:make_sentence(lines)
+      return substitute(join(a:lines), '^.', '\=toupper(submatch(0))', '').'.'
+    endfunction
+
+    inoremap <expr> <c-x><c-s> fzf#vim#complete({
+      \ 'source':  'cat /usr/share/dict/words',
+      \ 'reducer': function('<sid>make_sentence'),
+      \ 'options': '--multi --reverse --margin 15%,0',
+      \ 'left':    20})
+<
+
+STATUS LINE OF TERMINAL BUFFER          *fzf-vim-status-line-of-terminal-buffer*
+==============================================================================
+
+When fzf starts in a terminal buffer (see {fzf/README-VIM.md}{13}), you may
+want to customize the statusline of the containing buffer.
+
+{13} https://github.com/junegunn/fzf/blob/master/README-VIM.md#fzf-inside-terminal-buffer
+
+
+< Hide statusline >___________________________________________________________~
+                                                       *fzf-vim-hide-statusline*
+>
+    autocmd! FileType fzf set laststatus=0 noshowmode noruler
+      \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+<
+
+< Custom statusline >_________________________________________________________~
+                                                     *fzf-vim-custom-statusline*
+>
+    function! s:fzf_statusline()
+      " Override statusline as you like
+      highlight fzf1 ctermfg=161 ctermbg=251
+      highlight fzf2 ctermfg=23 ctermbg=251
+      highlight fzf3 ctermfg=237 ctermbg=251
+      setlocal statusline=%#fzf1#\ >\ %#fzf2#fz%#fzf3#f
+    endfunction
+
+    autocmd! User FzfStatusLine call <SID>fzf_statusline()
+<
+
+LICENSE                                                        *fzf-vim-license*
+==============================================================================
+
+MIT
+
+
+==============================================================================
+vim:tw=78:sw=2:ts=2:ft=help:norl:nowrap:
