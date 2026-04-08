@@ -1,0 +1,108 @@
+#!/usr/bin/env bash
+# tmux-save-ai-sessions: capture running Claude/Codex session IDs from all tmux panes
+#
+# Walks every pane's process tree, identifies Claude Code and Codex CLI
+# instances, extracts their session IDs, and writes a mapping file that
+# tmux-restore-ai-sessions uses to resume them after a restart.
+#
+# Claude: reads ~/.claude/sessions/<pid>.json → sessionId
+# Codex:  lsof on the Rust binary → open rollout JSONL → UUID in filename
+#
+# Usage:
+#   tmux-save-ai-sessions                    # save to default path
+#   tmux-save-ai-sessions <state-file>       # save to custom path
+#
+# tmux-resurrect hook config (tmux.conf):
+#   set -g @resurrect-hook-post-save-all '$XDG_BIN_HOME/tmux-save-ai-sessions'
+
+set -euo pipefail
+
+STATE_FILE="${1:-$HOME/.tmux/resurrect/ai-sessions.txt}"
+mkdir -p "$(dirname "$STATE_FILE")"
+: > "$STATE_FILE"
+
+# ---------------------------------------------------------------------------
+# Recursively collect all descendant PIDs of a given process.
+# Output order is depth-first (parent before children), so the leaf process
+# (the actual binary) is always last.
+# ---------------------------------------------------------------------------
+get_descendants() {
+    local pid=$1
+    local children
+    children=$(pgrep -P "$pid" 2>/dev/null) || true
+    for child in $children; do
+        echo "$child"
+        get_descendants "$child"
+    done
+}
+
+# ---------------------------------------------------------------------------
+# Claude Code: the actual process writes ~/.claude/sessions/<pid>.json
+# containing { "pid": ..., "sessionId": "...", ... }.
+# Returns the sessionId if any descendant PID has a matching file.
+# ---------------------------------------------------------------------------
+find_claude_session() {
+    local pids=("$@")
+    for pid in "${pids[@]}"; do
+        local session_file="$HOME/.claude/sessions/${pid}.json"
+        if [[ -f "$session_file" ]]; then
+            jq -r '.sessionId // empty' "$session_file" 2>/dev/null
+            return
+        fi
+    done
+}
+
+# ---------------------------------------------------------------------------
+# Codex CLI: the Rust binary (leaf process) holds the rollout JSONL file open.
+# The session UUID is embedded in the filename:
+#   rollout-<timestamp>-<session-uuid>.jsonl
+#
+# To avoid running lsof on every node.js wrapper in the tree, we skip PIDs
+# whose command starts with a node interpreter.
+# ---------------------------------------------------------------------------
+find_codex_session() {
+    local pids=("$@")
+    for pid in "${pids[@]}"; do
+        local cmd
+        cmd=$(ps -o command= -p "$pid" 2>/dev/null) || continue
+        # skip node.js wrappers — only the Rust binary has the file handle
+        [[ "$cmd" == *"/bin/node "* ]] && continue
+
+        local sid
+        sid=$(lsof -p "$pid" 2>/dev/null \
+            | awk '/rollout-/{print $NF}' \
+            | grep -oE '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}' \
+            | head -1) || true
+        if [[ -n "${sid:-}" ]]; then
+            echo "$sid"
+            return
+        fi
+    done
+}
+
+# ---------------------------------------------------------------------------
+# Scan every tmux pane for AI CLI sessions.
+# Format: tool|session:window.pane|session_id|cwd
+# ---------------------------------------------------------------------------
+tmux list-panes -a -F '#{session_name}:#{window_index}.#{pane_index} #{pane_pid} #{pane_current_path}' \
+| while read -r pane shell_pid cwd; do
+    mapfile -t descendants < <(get_descendants "$shell_pid")
+    [[ ${#descendants[@]} -eq 0 ]] && continue
+
+    # Claude Code
+    sid=$(find_claude_session "${descendants[@]}")
+    if [[ -n "${sid:-}" ]]; then
+        echo "claude|${pane}|${sid}|${cwd}" >> "$STATE_FILE"
+        continue
+    fi
+
+    # Codex CLI
+    sid=$(find_codex_session "${descendants[@]}")
+    if [[ -n "${sid:-}" ]]; then
+        echo "codex|${pane}|${sid}|${cwd}" >> "$STATE_FILE"
+        continue
+    fi
+done
+
+count=$(wc -l < "$STATE_FILE" | tr -d ' ')
+echo "tmux-save-ai-sessions: saved $count AI session(s) → $STATE_FILE"
