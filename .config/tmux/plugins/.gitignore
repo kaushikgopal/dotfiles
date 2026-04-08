@@ -1,0 +1,5 @@
+# Ignore plugins installed by TPM at runtime (prefix + I).
+# Only the tpm submodule itself is tracked.
+*
+!tpm
+!.gitignore

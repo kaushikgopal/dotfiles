@@ -62,15 +62,6 @@ done
 echo -e "${GRAY}••••••• agent setup moved to ~/dev/oss/aikado ${NC}"
 echo -e "${GRAY}••••••• run: make -C ~/dev/oss/aikado setup-user ${NC}"
 
-# install TPM (tmux plugin manager) — plugins are declared in tmux.conf
-# and installed on first launch with prefix + I
-if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
-    echo -e "${PURPLE}••••••• installing TPM (tmux plugin manager)${NC}"
-    git clone https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
-else
-    echo -e "${GRAY}••••••• TPM already installed${NC}"
-fi
-
 # symlink each script in bin/ to ~/.local/bin/
 for script in "$current_dir"/bin/*; do
     [ -f "$script" ] || continue
