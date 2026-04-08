@@ -1,4 +1,6 @@
-# Ignore plugins installed by TPM at runtime (prefix + I).
+# TPM (tmux plugin manager) installs plugins here via `prefix + I`.
+# These are runtime artifacts — TPM git-clones them from the @plugin
+# declarations in tmux.conf, so they don't belong in version control.
 # Only the tpm submodule itself is tracked.
 *
 !tpm
