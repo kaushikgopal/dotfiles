@@ -165,29 +165,29 @@ function clone_if_absent {
 # delete_if_exists /etc/manpaths.d/git
 # # sudo pkgutil --forget --pkgs=GitOSX\.Installer\.git[A-Za-z0-9]*\.[a-z]*.pkg
 
-##############################################################
-# zsh shell
-##############################################################
-#echo -e "\n\n\n${YELLOW}---- Setting up zsh shell through brew${NC}"
-#brew install zsh
-
-curl https://lab.al0.de/a0n/oh-my-zsh/-/raw/master/plugins/adb/_adb >$(brew --prefix)/share/zsh/site-functions/_adb
-chmod +x $(brew --prefix)/share/zsh/site-functions/_adb
-
+# ##############################################################
+# # zsh shell
+# ##############################################################
+# #echo -e "\n\n\n${YELLOW}---- Setting up zsh shell through brew${NC}"
+# #brew install zsh
+#
+# curl https://lab.al0.de/a0n/oh-my-zsh/-/raw/master/plugins/adb/_adb >$(brew --prefix)/share/zsh/site-functions/_adb
+# chmod +x $(brew --prefix)/share/zsh/site-functions/_adb
+#
 # allow different shells to recognize this environment variable for macos
 launchctl setenv XDG_CONFIG_HOME ~/.config
 
-##############################################################
-# Nu shell
-##############################################################
-
-if [[ "nu" == $(basename "${SHELL}") ]]; then
-    echo -e "${GRAY}---- default shell is nu shell${NC}"
-else
-    echo -e "${GRAY}---- default shell is NOT nu shell${NC}"
-    sudo chsh -s $(brew --prefix)/bin/nu $(whoami)
-fi
-
+# ##############################################################
+# # Nu shell
+# ##############################################################
+#
+# if [[ "nu" == $(basename "${SHELL}") ]]; then
+#     echo -e "${GRAY}---- default shell is nu shell${NC}"
+# else
+#     echo -e "${GRAY}---- default shell is NOT nu shell${NC}"
+#     sudo chsh -s $(brew --prefix)/bin/nu $(whoami)
+# fi
+#
 
 ##############################################################
 # Fish shell
@@ -325,11 +325,6 @@ sudo xcode-select --switch /Library/Developer/CommandLineTools/
 # SDK man for .kt dev & kscript
 curl -s "https://get.sdkman.io" | bash
 sdk install kotlin
-
-mkdir -p ~/.warp/themes
-pushd ~/.warp/themes
-git clone https://github.com/juliabresolin/warp-theme-dark-modern
-popd
 
 unset delete_if_exists
 unset clone_if_absent
