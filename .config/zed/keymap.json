@@ -1,26 +1,10 @@
-// Zed keymap
-//
-// For information on binding keys, see the Zed
-// documentation: https://zed.dev/docs/key-bindings
-//
-// To see the default key bindings run `zed: open default keymap`
-// from the command palette.
 [
-  // {
-  //   "bindings": {
-  //     "cmd-o": "file_finder::Toggle",
-  //     "ctrl-alt-c": [
-  //       "agent::NewExternalAgentThread",
-  //       { "agent": "claude_code" }
-  //     ]
-  //   }
-  // },
   {
     "context": "Workspace",
     "bindings": {
       "cmd-p": "command_palette::Toggle",
+      "cmd-t": "file_finder::Toggle",
       "cmd-ctrl-o": "project_symbols::Toggle",
-      "ctrl-alt-cmd-shift-g": "git_panel::ToggleFocus",
     },
   },
   {
@@ -31,12 +15,4 @@
       // "j k": "vim::NormalBefore"
     },
   },
-  // [ c = [ is easy to type in vim and c - chunk
-  // {
-  //   "context": "vim_mode == normal",
-  //   "bindings": {
-  //     "g h": "editor::GoToHunk",
-  //     "g shift-h": "editor::GoToPreviousHunk"
-  //   }
-  // }
 ]

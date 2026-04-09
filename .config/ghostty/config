@@ -108,12 +108,12 @@ font-thicken            = true
 
 # # SF Mono ---------- -->
 # font-family             = SF Mono
-# font-size               = 13
-# adjust-cell-height      = 22%
-# font-style              = Medium
-# font-style-italic       = Medium Italic
-# # font-style-bold         = Bold
-# # font-style-bold-italic  = Bold Italic
+# font-size               = 14
+# adjust-cell-height      = 30%
+# # font-style              = Medium
+# # font-style-italic       = Medium Italic
+# font-style-bold         = Semibold
+# font-style-bold-italic  = Semibold Italic
 
 # Berkeley Mono (TX-02-Variable) -------- -->
 font-family             = TX-02-Variable

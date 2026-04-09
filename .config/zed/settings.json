@@ -8,17 +8,51 @@
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
   // --------
+  // "buffer_font_family": "SF Mono",
+  // "buffer_font_size": 13,
+  // "buffer_font_weight": 550,
+  // // "buffer_line_height": { "custom": 1.55 },
+  // --------
   "buffer_font_family": "TX-02-Variable",
+  "buffer_font_weight": 410,
   "buffer_font_size": 15,
   "buffer_line_height": { "custom": 1.45 },
-  "buffer_font_weight": 400,
   "buffer_font_features": {
-    "ss02": true, // 0
+    "ss01": true, // 0 // slashed
+    // "ss02": true, // 0 // dot
     // "ss05": true, // r
-    "ss06": true, // |
+    // "ss06": true, // |
     "ss12": true, // ligatures -> !=
   },
-  // // --------
+  // --------
+  // "buffer_font_family": "JetBrains Mono KG",
+  // "buffer_font_weight": 400,
+  // "buffer_font_size": 15.5,
+  // "buffer_line_height": { "custom": 1.45 },
+  // "buffer_font_features": {
+  // // "cv01": true, // l (classic)
+  // // "cv05": true, // curled l
+  // // "cv02": true, // t
+  // "cv03": true, // g
+  // // "cv04": true, // j
+  // // "cv06": true, // m
+  // "cv07": true, // w
+  // "cv08": true, // Kk (classic)
+  // // "cv09": true, // f  (classic)
+  // "cv10": true, // r  (classic)
+  // // "cv17": true, // f (curled top)
+  // // "cv11": true, // y  (classic)
+  // // "cv12": true, // u (classic)
+  // // "cv14": true, // $
+  // // "cv15": true, // &
+  // // "cv16": true, // Q
+  // // "cv18": true, // 269
+  // "cv19": true, // 8
+  // "cv20": true, // 5
+  // "ss19": true, // Broken = ligatures != == === !===
+  // // "ss20": true, // raised bar f
+  // },
+  // --------
   // // "buffer_font_family": "Source Code Pro",
   // "buffer_font_family": "Hasklig",
   // "buffer_font_weight": 450,
@@ -30,41 +64,12 @@
   //   "cv16": true, // $ through
   //   "cv17": true, // sharper 1 head
   // },
-  // --------
-  // "buffer_font_family": "SF Mono",
-  // "buffer_font_size": 11.5,
+
   // --------
   // "buffer_font_size": 13.5,
   // "buffer_font_weight": 575,
   // "buffer_font_family": "CommitMono-KGS",
   // // --------
-  // "buffer_font_family": "JetBrains Mono KG",
-  // "buffer_font_size": 14.5,
-  // "buffer_line_height": { "custom": 1.5 },
-  // "buffer_font_features": {
-  //   // "cv01": true, // l (classic)
-  //   // "cv05": true, // curled l
-  //   // "cv02": true, // t
-  //   "cv03": true, // g
-  //   // "cv04": true, // j
-  //   // "cv06": true, // m
-  //   "cv07": true, // w
-  //   "cv08": true, // Kk (classic)
-  //   // "cv09": true, // f  (classic)
-  //   "cv10": true, // r  (classic)
-  //   // "cv17": true, // f (curled top)
-  //   // "cv11": true, // y  (classic)
-  //   // "cv12": true, // u (classic)
-  //   // "cv14": true, // $
-  //   // "cv15": true, // &
-  //   // "cv16": true, // Q
-  //   // "cv18": true, // 269
-  //   "cv19": true, // 8
-  //   "cv20": true, // 5
-  //   "ss19": true, // Broken = ligatures != == === !===
-  //   // "ss20": true, // raised bar f
-  // },
-  // --------
   // "buffer_font_family": "Google Sans Code",
   // "buffer_font_size": 12,
   // // "buffer_line_height": { "custom": 1.5 },
