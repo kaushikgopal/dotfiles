@@ -28,7 +28,6 @@ brew "ghostscript" # for pdfs
 brew "gnupg" # "openssl"
 brew "httpie"
 brew "imagemagick"
-brew "llm"
 brew "openssl"
 brew "renameutils" # bulk renaming / copying
 brew "ripgrep"
@@ -162,6 +161,7 @@ brew "grpcurl" # caper
 ######## AI apps
 brew "opencode"
 brew "agent-browser"
+brew "lightpanda-io/browser/lightpanda"
 
 # cask "claude-code"    # using eohan # curl -fsSL https://claude.ai/install.sh | bash
 # cask "codex"          # using gohan
@@ -190,7 +190,6 @@ cask "netnewswire"
 cask "obsidian"
 cask "raycast"
 cask "slack"
-cask "spotify"
 cask "soundsource"
 cask "tailscale-app"
 cask "the-unarchiver"
