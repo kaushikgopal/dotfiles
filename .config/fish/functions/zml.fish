@@ -10,7 +10,7 @@
 #   Esc / Ctrl-C — cancel
 
 function zml --description "zmx session picker with fzf preview"
-    set -l sessions (zmx list 2>/dev/null)
+    set -l sessions (zmx list --short 2>/dev/null)
 
     if test (count $sessions) -eq 0
         echo "No zmx sessions running. Create one with: zmn <name>"
@@ -25,8 +25,8 @@ function zml --description "zmx session picker with fzf preview"
         --header '  enter: attach  ctrl-x: kill  ctrl-r: refresh' \
         --preview 'zmx history {} 2>/dev/null || echo "(no scrollback)"' \
         --preview-window 'right:55%:wrap' \
-        --bind "ctrl-x:execute-silent(zmx kill {})+reload(zmx list 2>/dev/null)" \
-        --bind "ctrl-r:reload(zmx list 2>/dev/null)" \
+        --bind "ctrl-x:execute-silent(zmx kill {})+reload(zmx list --short 2>/dev/null)" \
+        --bind "ctrl-r:reload(zmx list --short 2>/dev/null)" \
     )
 
     if test -n "$session"

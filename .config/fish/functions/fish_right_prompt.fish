@@ -26,11 +26,15 @@ function fish_right_prompt
         set duration
     end
 
+    # zmx session indicator — matches green bold "tmux" from tmux theme.conf
+    set -q ZMX_SESSION
+    and set -l zmx_indicator (set_color --bold green)"zmx"(set_color normal)
+
     set -q VIRTUAL_ENV_DISABLE_PROMPT
     or set -g VIRTUAL_ENV_DISABLE_PROMPT true
     set -q VIRTUAL_ENV
     and set -l venv (string replace -r '.*/' '' -- "$VIRTUAL_ENV")
 
     set_color normal
-    string join " " -- $venv $duration $__fish_right_prompt_dt
+    string join " " -- $zmx_indicator $venv $duration $__fish_right_prompt_dt
 end
