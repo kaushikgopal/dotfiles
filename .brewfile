@@ -34,15 +34,14 @@ brew "ripgrep"
 brew "rsync"
 brew "sox"
 brew "tmux"
+# session persistence for Ghostty (transparent detacher, no terminal-in-terminal)
+tap "neurosnap/tap"
+brew "neurosnap/tap/zmx"
 brew "trash"
 brew "tree"
 brew "wget"
 brew "yt-dlp"
 brew "zoxide"    # after upgrading, run: regen-shell-caches
-
-# ghostty based tmux alterantive
-# tap "manaflow-ai/cmux"
-# cask "cmux"
 
 brew "fish"
 brew "fzf"       # after upgrading, run: regen-shell-caches
@@ -210,7 +209,7 @@ cask "font-sn-pro"
 #cask "font-cascadia-code"
 #cask "font-cascadia-code-pl"
 #cask "font-geist"
-#cask "font-geist-mono"
+cask "font-geist-mono"
 #cask "font-hasklig"     # ligature version of font-source-code-pro
 #cask "font-ia-writer-duo"
 #cask "font-ia-writer-mono"

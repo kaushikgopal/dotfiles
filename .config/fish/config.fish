@@ -88,10 +88,10 @@ if status is-interactive
 
     abbr -a -- z   zed
 
-    abbr -a -- tm  tmux
-    abbr -a -- tn tmux new -s
-    abbr -a -- ta tmux attach -t
-    abbr -a -- tk tmux kill-server
+    # zmx — transparent session persistence for Ghostty
+    # (no terminal-in-terminal; full Ghostty feature passthrough)
+    abbr -a -- zm  zmx
+    abbr -a -- zmn 'zmx attach'
 
     abbr -a -- vimo vimn
     abbr -a -- vimt 'vimn -t'
@@ -167,6 +167,7 @@ function regen-shell-caches
     mkdir -p $XDG_CACHE_HOME
     fzf --fish > $XDG_CACHE_HOME/fzf.fish && echo "  ✓ fzf"
     zoxide init --cmd j fish > $XDG_CACHE_HOME/zoxide.fish && echo "  ✓ zoxide"
+    zmx completions fish > ~/.config/fish/completions/zmx.fish 2>/dev/null && echo "  ✓ zmx"
     echo "Done. Restart your shell."
 end
 
