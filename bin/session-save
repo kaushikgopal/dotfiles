@@ -18,6 +18,53 @@ STATE_FILE="${1:-$HOME/.session-save}"
 : > "$STATE_FILE"
 
 # ---------------------------------------------------------------------------
+# Query Ghostty for tab titles + working directories so we can capture the
+# user's actual tab names. Builds parallel arrays for cwd-based lookup.
+# Falls back gracefully if Ghostty isn't running.
+# ---------------------------------------------------------------------------
+declare -a gt_titles=()
+declare -a gt_cwds=()
+declare -a gt_used=()
+
+ghostty_tabs=$(osascript <<'AS' 2>/dev/null || true
+tell application "Ghostty"
+    set output to ""
+    repeat with w in windows
+        repeat with t in tabs of w
+            set tabName to name of t
+            set term to focused terminal of t
+            set termCwd to working directory of term
+            set output to output & tabName & "|" & termCwd & linefeed
+        end repeat
+    end repeat
+    return output
+end tell
+AS
+)
+
+while IFS='|' read -r title tcwd; do
+    [[ -n "$title" && -n "$tcwd" ]] || continue
+    gt_titles+=("$title")
+    gt_cwds+=("$tcwd")
+    gt_used+=(0)
+done <<< "$ghostty_tabs"
+
+# Match a cwd to a Ghostty tab title. Each tab is consumed once so
+# duplicate cwds get distinct titles (first-match, FIFO order).
+find_tab_title() {
+    local cwd="$1" tool="$2"
+    for i in "${!gt_cwds[@]}"; do
+        if [[ "${gt_cwds[$i]}" == "$cwd" && "${gt_used[$i]}" -eq 0 ]]; then
+            gt_used[$i]=1
+            echo "${gt_titles[$i]}"
+            return
+        fi
+    done
+    # Fallback: tool + directory basename
+    echo "${tool}: $(basename "$cwd")"
+}
+
+# ---------------------------------------------------------------------------
 # Claude Code: session files are named <pid>.json. An alive PID means the
 # session is actively running.
 # ---------------------------------------------------------------------------
@@ -30,7 +77,8 @@ for f in "$HOME"/.claude/sessions/*.json; do
     cwd=$(jq -r '.cwd // empty' "$f" 2>/dev/null) || continue
     [[ -n "$sid" && -n "$cwd" ]] || continue
 
-    echo "claude|${sid}|${cwd}" >> "$STATE_FILE"
+    title=$(find_tab_title "$cwd" "claude")
+    echo "claude|${sid}|${cwd}|${title}" >> "$STATE_FILE"
 done
 
 # ---------------------------------------------------------------------------
@@ -55,7 +103,8 @@ while IFS= read -r pid; do
     cwd=$(head -1 "$jsonl" | jq -r '.payload.cwd // .cwd // empty' 2>/dev/null) || true
     [[ -n "${cwd:-}" ]] || continue
 
-    echo "codex|${sid}|${cwd}" >> "$STATE_FILE"
+    title=$(find_tab_title "$cwd" "codex")
+    echo "codex|${sid}|${cwd}|${title}" >> "$STATE_FILE"
 done < <(pgrep -x codex 2>/dev/null || true)
 
 # ---------------------------------------------------------------------------

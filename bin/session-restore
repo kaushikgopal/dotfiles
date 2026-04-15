@@ -45,7 +45,7 @@ echo 'tell application "Ghostty"' > "$tmpfile"
 first=1
 count=0
 
-while IFS='|' read -r tool sid cwd; do
+while IFS='|' read -r tool sid cwd tab_title; do
     [[ -z "$tool" || "$tool" == \#* ]] && continue
 
     case "$tool" in
@@ -54,7 +54,8 @@ while IFS='|' read -r tool sid cwd; do
         *)      echo "  skip (unknown tool: $tool)" >&2; continue ;;
     esac
 
-    tab_title="${tool}: $(basename "${cwd}")"
+    # Fall back to tool: dirname if title wasn't captured
+    [[ -n "$tab_title" ]] || tab_title="${tool}: $(basename "${cwd}")"
 
     if [[ "$DRY_RUN" -eq 1 ]]; then
         echo "  [$tab_title]  $cwd"
