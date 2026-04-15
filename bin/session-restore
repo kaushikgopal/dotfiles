@@ -54,8 +54,10 @@ while IFS='|' read -r tool sid cwd; do
         *)      echo "  skip (unknown tool: $tool)" >&2; continue ;;
     esac
 
+    tab_title="${tool}: $(basename "${cwd}")"
+
     if [[ "$DRY_RUN" -eq 1 ]]; then
-        echo "  $tool  $cwd"
+        echo "  [$tab_title]  $cwd"
         echo "    $resume_cmd"
         count=$((count + 1))
         continue
@@ -70,10 +72,13 @@ APPLESCRIPT
 
     if [[ "$first" -eq 1 ]]; then
         echo '    set win to new window with configuration cfg' >> "$tmpfile"
+        echo "    set term to focused terminal of selected tab of win" >> "$tmpfile"
         first=0
     else
-        echo '    new tab in win with configuration cfg' >> "$tmpfile"
+        echo '    set newTab to new tab in win with configuration cfg' >> "$tmpfile"
+        echo "    set term to focused terminal of newTab" >> "$tmpfile"
     fi
+    echo "    perform action \"set_tab_title:${tab_title}\" on term" >> "$tmpfile"
 
     count=$((count + 1))
 done < "$STATE_FILE"
