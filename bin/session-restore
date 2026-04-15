@@ -57,7 +57,7 @@ while IFS='|' read -r tool sid cwd; do
     if [[ "$DRY_RUN" -eq 1 ]]; then
         echo "  $tool  $cwd"
         echo "    $resume_cmd"
-        ((count++))
+        count=$((count + 1))
         continue
     fi
 
@@ -75,7 +75,7 @@ APPLESCRIPT
         echo '    new tab in win with configuration cfg' >> "$tmpfile"
     fi
 
-    ((count++))
+    count=$((count + 1))
 done < "$STATE_FILE"
 
 echo 'end tell' >> "$tmpfile"
