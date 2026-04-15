@@ -1,0 +1,69 @@
+#!/usr/bin/env bash
+# session-save: capture running Claude/Codex session IDs
+#
+# Scans for alive Claude Code and Codex CLI processes, extracts their
+# session IDs and working directories, and writes a mapping file that
+# session-restore uses to resume them after a restart.
+#
+# Claude: checks ~/.claude/sessions/<pid>.json for alive PIDs
+# Codex:  lsof on the Rust binary → open rollout JSONL → UUID in filename
+#
+# Usage:
+#   session-save                    # save to default path
+#   session-save <state-file>       # save to custom path
+
+set -euo pipefail
+
+STATE_FILE="${1:-$HOME/.session-save}"
+: > "$STATE_FILE"
+
+# ---------------------------------------------------------------------------
+# Claude Code: session files are named <pid>.json. An alive PID means the
+# session is actively running.
+# ---------------------------------------------------------------------------
+for f in "$HOME"/.claude/sessions/*.json; do
+    [[ -f "$f" ]] || continue
+    pid=$(basename "$f" .json)
+    kill -0 "$pid" 2>/dev/null || continue
+
+    sid=$(jq -r '.sessionId // empty' "$f" 2>/dev/null) || continue
+    cwd=$(jq -r '.cwd // empty' "$f" 2>/dev/null) || continue
+    [[ -n "$sid" && -n "$cwd" ]] || continue
+
+    echo "claude|${sid}|${cwd}" >> "$STATE_FILE"
+done
+
+# ---------------------------------------------------------------------------
+# Codex CLI: the Rust binary holds the rollout JSONL file open. The session
+# UUID is embedded in the filename. We skip node.js wrappers since only the
+# Rust binary has the file handle.
+# ---------------------------------------------------------------------------
+while IFS= read -r pid; do
+    [[ -n "$pid" ]] || continue
+    cmd=$(ps -o command= -p "$pid" 2>/dev/null) || continue
+    [[ "$cmd" == *"/bin/node "* ]] && continue
+
+    jsonl=$(lsof -p "$pid" 2>/dev/null \
+        | awk '/rollout-.*\.jsonl/{print $NF}' \
+        | head -1) || true
+    [[ -n "${jsonl:-}" && -f "$jsonl" ]] || continue
+
+    sid=$(basename "$jsonl" .jsonl \
+        | grep -oE '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}') || true
+    [[ -n "${sid:-}" ]] || continue
+
+    cwd=$(head -1 "$jsonl" | jq -r '.payload.cwd // .cwd // empty' 2>/dev/null) || true
+    [[ -n "${cwd:-}" ]] || continue
+
+    echo "codex|${sid}|${cwd}" >> "$STATE_FILE"
+done < <(pgrep -x codex 2>/dev/null || true)
+
+# ---------------------------------------------------------------------------
+count=$(wc -l < "$STATE_FILE" | tr -d ' ')
+if [[ "$count" -eq 0 ]]; then
+    echo "session-save: no alive sessions found"
+    rm -f "$STATE_FILE"
+    exit 0
+fi
+
+echo "session-save: saved $count session(s) → $STATE_FILE"

@@ -1,0 +1,95 @@
+#!/usr/bin/env bash
+# session-restore: resume Claude/Codex sessions as Ghostty tabs
+#
+# Reads the mapping file written by session-save and opens Ghostty tabs
+# via AppleScript, each with the correct working directory and resume
+# command typed via initial input.
+#
+# First session opens a new window; subsequent sessions become tabs in
+# that window.
+#
+# Usage:
+#   session-restore                    # restore from default path
+#   session-restore --dry              # preview without opening tabs
+#   session-restore <state-file>       # restore from custom path
+
+set -euo pipefail
+
+DRY_RUN=0
+STATE_FILE="$HOME/.session-save"
+
+for arg in "$@"; do
+    case "$arg" in
+        --dry) DRY_RUN=1 ;;
+        *)     STATE_FILE="$arg" ;;
+    esac
+done
+
+if [[ ! -f "$STATE_FILE" ]]; then
+    echo "session-restore: no state file at $STATE_FILE" >&2
+    echo "Run 'session-save' first."
+    exit 1
+fi
+
+if [[ ! -s "$STATE_FILE" ]]; then
+    echo "session-restore: state file is empty"
+    exit 0
+fi
+
+# Build the AppleScript in a temp file to avoid quoting issues
+tmpfile=$(mktemp /tmp/session-restore.XXXXXX)
+trap 'rm -f "$tmpfile"' EXIT
+
+echo 'tell application "Ghostty"' > "$tmpfile"
+
+first=1
+count=0
+
+while IFS='|' read -r tool sid cwd; do
+    [[ -z "$tool" || "$tool" == \#* ]] && continue
+
+    case "$tool" in
+        claude) resume_cmd="claude --resume '${sid}'" ;;
+        codex)  resume_cmd="codex resume '${sid}'" ;;
+        *)      echo "  skip (unknown tool: $tool)" >&2; continue ;;
+    esac
+
+    if [[ "$DRY_RUN" -eq 1 ]]; then
+        echo "  $tool  $cwd"
+        echo "    $resume_cmd"
+        ((count++))
+        continue
+    fi
+
+    # Each session gets its own surface configuration with cwd + resume command
+    cat >> "$tmpfile" <<APPLESCRIPT
+    set cfg to new surface configuration
+    set initial working directory of cfg to "${cwd}"
+    set initial input of cfg to "${resume_cmd}" & return
+APPLESCRIPT
+
+    if [[ "$first" -eq 1 ]]; then
+        echo '    set win to new window with configuration cfg' >> "$tmpfile"
+        first=0
+    else
+        echo '    new tab in win with configuration cfg' >> "$tmpfile"
+    fi
+
+    ((count++))
+done < "$STATE_FILE"
+
+echo 'end tell' >> "$tmpfile"
+
+if [[ "$count" -eq 0 ]]; then
+    echo "session-restore: nothing to restore"
+    exit 0
+fi
+
+if [[ "$DRY_RUN" -eq 1 ]]; then
+    echo ""
+    echo "session-restore: $count session(s) would be restored"
+    exit 0
+fi
+
+osascript "$tmpfile"
+echo "session-restore: restored $count session(s) in Ghostty"
