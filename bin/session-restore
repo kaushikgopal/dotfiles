@@ -49,8 +49,8 @@ while IFS='|' read -r tool sid cwd; do
     [[ -z "$tool" || "$tool" == \#* ]] && continue
 
     case "$tool" in
-        claude) resume_cmd="claude --resume '${sid}'" ;;
-        codex)  resume_cmd="codex resume '${sid}'" ;;
+        claude) resume_cmd="claude --dangerously-skip-permissions --resume '${sid}'" ;;
+        codex)  resume_cmd="codex --yolo resume '${sid}'" ;;
         *)      echo "  skip (unknown tool: $tool)" >&2; continue ;;
     esac
 
