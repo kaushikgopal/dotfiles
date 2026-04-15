@@ -34,21 +34,20 @@ brew "ripgrep"
 brew "rsync"
 brew "sox"
 brew "tmux"
-# session persistence for Ghostty (transparent detacher, no terminal-in-terminal)
-tap "neurosnap/tap"
-brew "neurosnap/tap/zmx"
 brew "trash"
 brew "tree"
 brew "wget"
-brew "yt-dlp"
 brew "zoxide"    # after upgrading, run: regen-shell-caches
 
 brew "fish"
 brew "fzf"       # after upgrading, run: regen-shell-caches
-brew "gum"
 
 brew "htop"     # better top
 brew "procs"    # better ps
+
+# zmx - session persistence
+tap "neurosnap/tap"
+brew "neurosnap/tap/zmx"
 
 # website
 brew "hugo"
@@ -57,7 +56,6 @@ brew "cloudflare-wrangler"
 #brew "briss" # pdf cropping tool
 #brew "btop"
 #brew "carapace"
-#brew "difftastic" # delta is pretty darn good
 #brew "exa"
 #brew "exiftool"
 #brew "eye-d3"
@@ -82,9 +80,6 @@ brew "git-lfs"
 brew "lazygit"
 brew "gh"
 brew "github-keygen"
-# brew "docker-compose"
-# brew "docker-credential-helper-ecr"
-# cask "docker"
 
 brew "gogcli"
 brew "mole"             # macOS cleaner app
@@ -95,7 +90,6 @@ brew "cmark-gfm"  # GitHub Flavored Markdown → HTML (used by md-to-pdf for fas
 brew "htmltest"
 brew "web-ext"      # firefox add-on dev
 brew "prettier"     # markdown parsing
-#brew "flyctl"
 
 ######################
 ##### android (zulu)
@@ -161,6 +155,7 @@ brew "grpcurl" # caper
 brew "opencode"
 brew "agent-browser"
 brew "lightpanda-io/browser/lightpanda"
+brew "yt-dlp"    # fetch YouTube video metadata (view counts) without OAuth — used by pull-analytics-for-fragmented
 
 # cask "claude-code"    # using eohan # curl -fsSL https://claude.ai/install.sh | bash
 # cask "codex"          # using gohan
@@ -184,7 +179,7 @@ cask "brave-browser"
 cask "google-drive"
 cask "jetbrains-toolbox"
 cask "karabiner-elements"
-cask "loopback"
+# cask "loopback"
 cask "netnewswire"
 cask "obsidian"
 cask "raycast"
@@ -202,14 +197,15 @@ cask "the-unarchiver"
 #cask "zerotier-one"
 
 cask "font-figtree"
+cask "font-geist"
+cask "font-geist-mono"
 cask "font-inter"
 cask "font-jost"
+cask "font-sf-mono"
 cask "font-sn-pro"
 
 #cask "font-cascadia-code"
 #cask "font-cascadia-code-pl"
-#cask "font-geist"
-cask "font-geist-mono"
 #cask "font-hasklig"     # ligature version of font-source-code-pro
 #cask "font-ia-writer-duo"
 #cask "font-ia-writer-mono"
@@ -226,12 +222,11 @@ cask "font-geist-mono"
 #cask "font-plus-jakarta-sans"
 #cask "font-roboto-mono"
 #cask "font-sf-compact"
-#cask "font-sf-mono"
 #cask "font-sf-pro"
 #cask "font-source-code-pro"
 #cask "kaushikgopal/tools/font-recursive-kg"
 
-brew "mas"
+# brew "mas"
 # mas "Folder Quick Look", id: 6753110395
 
 # mas "iA Writer", id: 775737590
