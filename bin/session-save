@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 # session-save: capture running Claude/Codex session IDs with Ghostty tab titles
 #
-# Connects alive sessions to their Ghostty tab titles by using zmx as an
-# intermediary (zmx PID = fish PID → claude/codex PID via process tree).
-# Falls back to direct cwd matching when zmx is not available.
+# Finds alive Claude and Codex sessions by checking PIDs in their session
+# files, then matches each session to its Ghostty tab by comparing the
+# session's cwd against each tab's working directory (reported via OSC 7).
 #
 # Save format: tool|session_id|cwd|tab_title
 #
@@ -46,100 +46,18 @@ while IFS='|' read -r title tcwd; do
 done <<< "$ghostty_tabs"
 
 # ---------------------------------------------------------------------------
-# Phase 2: Build a fish-PID → Ghostty-tab-title map.
+# Phase 2: Find alive sessions and write the save file.
 #
-# When zmx is available, we use its session list to bridge the gap:
-#   zmx session name → zmx PID (= fish PID)
-#   zmx session name → Ghostty tab (matched by name, then cwd)
-#
-# When zmx is absent, we skip this and match sessions to tabs by cwd later.
-# ---------------------------------------------------------------------------
-declare -A pid_to_title=()
-
-if command -v zmx &>/dev/null; then
-    declare -a zmx_names=() zmx_pids=() zmx_dirs=()
-
-    while IFS=$'\t' read -r name_field pid_field _ _ startdir_field _; do
-        [[ "$pid_field" == *pid=* ]] || continue
-        zname=$(echo "$name_field" | sed 's/^[→ ]*//' | sed 's/^name=//')
-        zpid=$(echo "$pid_field" | sed 's/pid=//')
-        zdir=$(echo "$startdir_field" | sed 's/start_dir=//')
-        zmx_names+=("$zname")
-        zmx_pids+=("$zpid")
-        zmx_dirs+=("$zdir")
-    done < <(zmx list 2>/dev/null)
-
-    # Match each zmx session to the best Ghostty tab.
-    # Priority: exact name → name-is-prefix → cwd match → fallback.
-    for zi in "${!zmx_names[@]}"; do
-        zname="${zmx_names[$zi]}"
-        zpid="${zmx_pids[$zi]}"
-        zdir="${zmx_dirs[$zi]}"
-        matched_title=""
-
-        # Strategy 1: exact name match (e.g. zmx "buffer-skill" = tab "buffer-skill")
-        for gi in "${!gt_titles[@]}"; do
-            if [[ "${gt_used[$gi]}" -eq 0 && "${gt_titles[$gi]}" == "$zname" ]]; then
-                matched_title="${gt_titles[$gi]}"
-                gt_used[$gi]=1
-                break
-            fi
-        done
-
-        # Strategy 2: tab name is a prefix of zmx name
-        # (e.g. tab "kindred" matches zmx "kindred-related-posts")
-        if [[ -z "$matched_title" ]]; then
-            for gi in "${!gt_titles[@]}"; do
-                if [[ "${gt_used[$gi]}" -eq 0 && "$zname" == "${gt_titles[$gi]}"* ]]; then
-                    matched_title="${gt_titles[$gi]}"
-                    gt_used[$gi]=1
-                    break
-                fi
-            done
-        fi
-
-        # Strategy 3: cwd match (zmx start_dir == Ghostty tab cwd)
-        if [[ -z "$matched_title" ]]; then
-            for gi in "${!gt_titles[@]}"; do
-                if [[ "${gt_used[$gi]}" -eq 0 && "${gt_cwds[$gi]}" == "$zdir" ]]; then
-                    matched_title="${gt_titles[$gi]}"
-                    gt_used[$gi]=1
-                    break
-                fi
-            done
-        fi
-
-        # No Strategy 4 — detached zmx sessions (no Ghostty tab) should NOT
-        # steal titles from other tabs. Unmatched sessions fall through to the
-        # cwd-based fallback in get_tab_title().
-
-        [[ -n "$matched_title" ]] && pid_to_title["$zpid"]="$matched_title"
-    done
-fi
-
-# ---------------------------------------------------------------------------
-# Phase 3: Find alive sessions and write the save file.
+# Match each session to a Ghostty tab by comparing cwds. Fish sends OSC 7
+# on every prompt, so Ghostty's "working directory" tracks the real cwd.
 # ---------------------------------------------------------------------------
 
-# Helper: look up tab title for a claude/codex process.
-# Walks up the process tree to find the fish shell PID, then checks the map.
-# Sets _result instead of echoing, to avoid subshell (which would lose gt_used state).
+# Sets _result instead of echoing, to avoid subshell (which would lose
+# gt_used state across calls).
 _result=""
 resolve_tab_title() {
-    local pid="$1" tool="$2" cwd="$3"
+    local tool="$1" cwd="$2"
 
-    # Walk up: claude → node → fish. Fish PID is the grandparent.
-    local parent grandparent
-    parent=$(ps -o ppid= -p "$pid" 2>/dev/null | tr -d ' ') || true
-    grandparent=$(ps -o ppid= -p "$parent" 2>/dev/null | tr -d ' ') || true
-
-    # Check the zmx-based PID→title map
-    if [[ -n "${pid_to_title[$grandparent]:-}" ]]; then
-        _result="${pid_to_title[$grandparent]}"
-        return
-    fi
-
-    # Fallback: direct cwd match against Ghostty tabs (works when no zmx)
     for gi in "${!gt_titles[@]}"; do
         if [[ "${gt_used[$gi]}" -eq 0 && "${gt_cwds[$gi]}" == "$cwd" ]]; then
             gt_used[$gi]=1
@@ -148,7 +66,7 @@ resolve_tab_title() {
         fi
     done
 
-    # Last resort
+    # Last resort: derive a title from the tool name and directory
     _result="${tool}: $(basename "$cwd")"
 }
 
@@ -162,7 +80,7 @@ for f in "$HOME"/.claude/sessions/*.json; do
     cwd=$(jq -r '.cwd // empty' "$f" 2>/dev/null) || continue
     [[ -n "$sid" && -n "$cwd" ]] || continue
 
-    resolve_tab_title "$pid" "claude" "$cwd"
+    resolve_tab_title "claude" "$cwd"
     echo "claude|${sid}|${cwd}|${_result}" >> "$STATE_FILE"
 done
 
@@ -184,7 +102,7 @@ while IFS= read -r pid; do
     cwd=$(head -1 "$jsonl" | jq -r '.payload.cwd // .cwd // empty' 2>/dev/null) || true
     [[ -n "${cwd:-}" ]] || continue
 
-    resolve_tab_title "$pid" "codex" "$cwd"
+    resolve_tab_title "codex" "$cwd"
     echo "codex|${sid}|${cwd}|${_result}" >> "$STATE_FILE"
 done < <(pgrep -x codex 2>/dev/null || true)
 
