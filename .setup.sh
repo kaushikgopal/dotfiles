@@ -26,6 +26,7 @@ git -C "$current_dir" submodule update --init --recursive
 pushd $HOME
 
 mkdir -p .config
+mkdir -p .config/cmux
 mkdir -p .config/karabiner  # see https://github.com/kaushikgopal/karabiner-kt.git for karabiner.json
 mkdir -p .local
 mkdir -p .local/bin
@@ -38,6 +39,7 @@ files_to_link=(
     .config/.ripgreprc
     .config/fish
     .config/ghostty
+    .config/cmux/settings.json
     .config/git
     .config/lazygit
     .config/serie
