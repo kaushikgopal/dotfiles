@@ -72,6 +72,8 @@ packadd! dracula_pro
 let g:dracula_colorterm = 0
 
 " auto-switch dark/light theme based on macOS appearance
+set background=dark
+colorscheme dracula_pro
 function! SyncAppearance()
     let l:mode = system("defaults read -g AppleInterfaceStyle 2>/dev/null")
     if l:mode =~# 'Dark'
@@ -83,8 +85,8 @@ function! SyncAppearance()
     endif
 endfunction
 
-call SyncAppearance()
-autocmd FocusGained * call SyncAppearance()
+"call SyncAppearance()
+"autocmd FocusGained * call SyncAppearance()
 
 
 " =========================================================
@@ -256,6 +258,18 @@ nnoremap <leader>s :set spell!<cr>
 " newer vim versions will sync clilpboard now
 set clipboard=unnamed
 
+" Keep the file tree predictable and make the split read like a thin divider
+" instead of a reversed block. The box-drawing glyph renders more cleanly in
+" terminal Vim than the default pipe.
+let g:netrw_winsize = -40
+set fillchars-=vert:\|
+set fillchars+=vert:│
+highlight VertSplit cterm=NONE gui=NONE ctermfg=240 ctermbg=NONE guifg=#6272A4 guibg=NONE
+highlight WinSeparator cterm=NONE gui=NONE ctermfg=240 ctermbg=NONE guifg=#6272A4 guibg=NONE
+
+" Toggle the left-hand file tree and keep edits in the main window.
+nnoremap <silent> <leader>e :Lexplore<CR>
+
 " pad current line with empty line above/below/around
 "inoremap <silent> <leader>o <C-\><C-O>:call append(line('.')-1, '')<CR><Esc>
 "nnoremap <silent> <leader>o :call append(line('.')-1, '')<CR><Esc>
@@ -271,11 +285,13 @@ set clipboard=unnamed
 " set rtp+=/usr/local/opt/fzf
 set rtp+=/opt/homebrew/opt/fzf  " Apple Silicon
 let $FZF_DEFAULT_COMMAND='fd -u'
+let g:fzf_vim = {}
+let g:fzf_vim.preview_window = ['right,60%', 'ctrl-/']
 let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
   \ 'ctrl-s': 'split',
   \ 'ctrl-v': 'vsplit' }
-nnoremap <silent> <leader>f :FZF<CR>
+nnoremap <silent> <leader>f :Files<CR>
 nnoremap <silent> <leader>g :Rg<CR>
 
 

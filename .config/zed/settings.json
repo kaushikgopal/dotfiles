@@ -13,17 +13,31 @@
   // "buffer_font_weight": 550,
   // // "buffer_line_height": { "custom": 1.55 },
   // --------
-  "buffer_font_family": "TX-02-Variable",
-  "buffer_font_weight": 410,
-  "buffer_font_size": 15,
+  "theme": "Zedokai Darker (Filter Octagon)",
+  "buffer_font_family": "Geist Mono",
+  "buffer_font_size": 13.5,
+  "buffer_font_weight": 400,
   "buffer_line_height": { "custom": 1.45 },
   "buffer_font_features": {
-    "ss01": true, // 0 // slashed
-    // "ss02": true, // 0 // dot
-    // "ss05": true, // r
-    // "ss06": true, // |
-    "ss12": true, // ligatures -> !=
+    // "ss01": true, // no descending tail on a
+    // "ss02": true, // alternate a
+    // "ss03": true, // alternate l
+    "ss04": true, // alternate R
+    "ss06": true, // alternate G
+    "ss11": true, // ligatures
   },
+  // --------
+  // "buffer_font_family": "TX-02-Variable",
+  // "buffer_font_weight": 410,
+  // "buffer_font_size": 15,
+  // "buffer_line_height": { "custom": 1.45 },
+  // "buffer_font_features": {
+  //   "ss01": true, // 0 // slashed
+  //   // "ss02": true, // 0 // dot
+  //   // "ss05": true, // r
+  //   // "ss06": true, // |
+  //   "ss12": true, // ligatures -> !=
+  // },
   // --------
   // "buffer_font_family": "JetBrains Mono KG",
   // "buffer_font_weight": 400,

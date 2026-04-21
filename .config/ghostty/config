@@ -13,8 +13,8 @@ clipboard-trim-trailing-spaces  = true
 copy-on-select                  = clipboard
 mouse-hide-while-typing         = true
 focus-follows-mouse             = true
-
 macos-option-as-alt            = true
+
 
 ##############################################
 # Shell config
@@ -43,7 +43,10 @@ keybind = super+p=toggle_command_palette
 ##############################################
 # Look and Feel
 # ghostty +list-themes
-theme = dark:Atom One Dark,light:Atom One Light
+# theme = dark:Zenwritten Dark,light:Zenwritten Light
+# theme = dark:Atom One Dark,light:Atom One Light
+# theme = dark:Monokai Pro Octagon,light:Monokai Pro Light
+theme = Monokai Pro Octagon
 
 adjust-cursor-thickness         = 3
 adjust-underline-position       = 3
@@ -63,7 +66,7 @@ window-padding-y                = 8
 window-padding-balance          = true
 
 
-#macos-titlebar-style    = tabs
+# macos-titlebar-style    = tabs
 #window-theme            = ghostty
 
 ##############################################
@@ -90,65 +93,34 @@ font-thicken            = true
 #  coO08BbODQ |!iIlL17 $5SZ2zsz
 #  TtijJlFPRK vvw VVW \/V
 
-# # Source Code Pro -------- -->
-# # font-family           = Source Code Pro
-# font-family           = Hasklig
-# font-size             = 14.5
-# adjust-cell-height    = 10%
-# font-feature   = cv02
-# font-feature   = cv17
+# Geist Mono -------- -->
+font-family             = Geist Mono
+font-variation          = wght=350
+font-variation-bold     = wght=700
+# font-size               = 14
+# adjust-cell-height      = 10%
+font-size               = 13
+adjust-cell-height      = 15%
+font-feature            = ss04,ss11
+# ss03 - alternative l
+# ss06 - alternative G
 
-# # Input Mono ---------- -->
-# font-family             = Input Mono
-# font-size               = 13
-# adjust-cell-height      = 23%
-# #font-style              = Light
-# #font-style-italic       = Light Italic
-# font-style-bold         = Medium
-# font-style-bold-italic  = Medium Italic
+# # Berkeley Mono (TX-02-Variable) -------- -->
+# font-family             = TX-02-Variable
+# font-size               = 14.5
+# adjust-cell-height      = 15%
+# font-variation          = wght=420
+# font-variation-bold     = wght=800
+#
+# font-feature            = ss01
+# # font-feature            = ss02
+# font-feature            = ss06
 
 # # SF Mono ---------- -->
 # font-family             = SF Mono
 # font-size               = 14
-# adjust-cell-height      = 30%
+# adjust-cell-height      = 20%
 # # font-style              = Medium
 # # font-style-italic       = Medium Italic
 # font-style-bold         = Semibold
 # font-style-bold-italic  = Semibold Italic
-
-# Berkeley Mono (TX-02-Variable) -------- -->
-font-family             = TX-02-Variable
-font-size               = 14.5
-adjust-cell-height      = 25%
-font-variation          = wght=400
-font-variation-bold     = wght=800
-
-font-feature            = ss01
-# font-feature            = ss02
-font-feature            = ss06
-font-feature            = ss12
-
-# # Jetbrains Mono -------- -->
-# font-family         = JetBrains Mono KG
-# font-size           = 13
-# adjust-cell-height  = 15%
-# font-style          = Regular
-# font-style-italic   = Regular Italic
-# font-feature   = cv03
-# font-feature   = cv07
-# font-feature   = cv08
-# font-feature   = cv10
-# font-feature   = cv19
-# font-feature   = cv20
-
-
-
-# # Commit Mono - KG ---------- -->
-# # font-family             = CommitMono-KGS
-# font-family             = CommitMono-KG
-# font-size               = 12.5
-# adjust-cell-height      = 42%
-# font-style              = 425Regular
-# font-style-italic       = 425Italic
-# font-style-bold         = 700Regular
-# font-style-bold-italic  = 700Italic
