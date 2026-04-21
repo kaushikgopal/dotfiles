@@ -45,10 +45,6 @@ brew "fzf"       # after upgrading, run: regen-shell-caches
 brew "htop"     # better top
 brew "procs"    # better ps
 
-# zmx - session persistence
-tap "neurosnap/tap"
-brew "neurosnap/tap/zmx"
-
 # website
 brew "hugo"
 brew "cloudflare-wrangler"

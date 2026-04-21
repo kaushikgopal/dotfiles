@@ -75,9 +75,9 @@ if status is-interactive
 
     abbr -a -- co      codex --yolo
 
-    # abbr -a -- cl      claude
-    abbr -a -- cl     claude --dangerously-skip-permissions
-    abbr -a -- clp     claude --plugin-dir ~/dev/off/claude-marketplace/caper/android
+    # abbr -a -- cc      claude
+    abbr -a -- cc     claude --dangerously-skip-permissions
+    abbr -a -- ccp     claude --plugin-dir ~/dev/off/claude-marketplace/caper/android
 
     abbr -a -- oc       opencode
     abbr -a -- ocw      opencode web --mdns # --mdns-domain myproject.local
@@ -87,11 +87,6 @@ if status is-interactive
     abbr -a -- gey     gemini --yolo
 
     abbr -a -- z   zed
-
-    # zmx — transparent session persistence for Ghostty
-    # (no terminal-in-terminal; full Ghostty feature passthrough)
-    abbr -a -- zm  zmx
-    abbr -a -- zmn 'zmx attach'
 
     abbr -a -- vimo vimn
     abbr -a -- vimt 'vimn -t'
@@ -167,7 +162,6 @@ function regen-shell-caches
     mkdir -p $XDG_CACHE_HOME
     fzf --fish > $XDG_CACHE_HOME/fzf.fish && echo "  ✓ fzf"
     zoxide init --cmd j fish > $XDG_CACHE_HOME/zoxide.fish && echo "  ✓ zoxide"
-    zmx completions fish > ~/.config/fish/completions/zmx.fish 2>/dev/null && echo "  ✓ zmx"
     echo "Done. Restart your shell."
 end
 
