@@ -15,6 +15,7 @@
 .config/zed/prompts
 .config/zed/conversations
 .config/zsh/.zsh_sessions
+.vim/.netrwhist
 
 .claude/**
 !.claude/statusline.sh
