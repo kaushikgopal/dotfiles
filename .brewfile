@@ -26,28 +26,23 @@ brew "ffmpeg"
 brew "gawk"
 brew "ghostscript" # for pdfs
 brew "gnupg" # "openssl"
-brew "httpie"
 brew "imagemagick"
+brew "mole"             # macOS cleaner app
 brew "openssl"
-brew "renameutils" # bulk renaming / copying
 brew "ripgrep"
 brew "rsync"
 brew "sox"
 brew "tmux"
 brew "trash"
-brew "tree"
 brew "wget"
-brew "zoxide"    # after upgrading, run: regen-shell-caches
+brew "yazi"     # file manager
+brew "zoxide"   # after upgrading, run: regen-shell-caches
 
 brew "fish"
 brew "fzf"       # after upgrading, run: regen-shell-caches
 
 brew "htop"     # better top
 brew "procs"    # better ps
-
-# website
-brew "hugo"
-brew "cloudflare-wrangler"
 
 #brew "briss" # pdf cropping tool
 #brew "btop"
@@ -69,16 +64,15 @@ brew "cloudflare-wrangler"
 
 #############
 ##### general
+brew "gh"
 brew "git"
 brew "git-delta"
-brew "serie"            # better git logs
 brew "git-lfs"
-brew "lazygit"
-brew "gh"
 brew "github-keygen"
+brew "lazygit"
+brew "serie"            # better git logs
 
 brew "gogcli"
-brew "mole"             # macOS cleaner app
 
 ######################
 ##### Web dev
@@ -86,6 +80,11 @@ brew "cmark-gfm"  # GitHub Flavored Markdown → HTML (used by md-to-pdf for fas
 brew "htmltest"
 brew "web-ext"      # firefox add-on dev
 brew "prettier"     # markdown parsing
+
+# website
+brew "hugo"
+brew "cloudflare-wrangler"
+
 
 ######################
 ##### android (zulu)
@@ -148,7 +147,7 @@ brew "grpcurl" # caper
 
 #######################
 ######## AI apps
-brew "opencode"
+#brew "opencode"
 brew "agent-browser"
 brew "lightpanda-io/browser/lightpanda"
 brew "yt-dlp"    # fetch YouTube video metadata (view counts) without OAuth — used by pull-analytics-for-fragmented
@@ -168,19 +167,17 @@ cask "zed"
 
 ##############################################################
 ##### Mac apps
-# cask "firefox", args: { appdir: "~/Applications" }
+#cask "firefox", args: { appdir: "~/Applications" }
 cask "brave-browser"
 
-# cask "ghostty" # manual install
+#cask "ghostty" # manual install
+#cask "soundsource"
 cask "google-drive"
-cask "jetbrains-toolbox"
 cask "karabiner-elements"
-# cask "loopback"
 cask "netnewswire"
 cask "obsidian"
 cask "raycast"
 cask "slack"
-cask "soundsource"
 cask "tailscale-app"
 cask "the-unarchiver"
 
@@ -188,8 +185,9 @@ cask "the-unarchiver"
 #cask "1password-cli"   # required for Raycast/Alfred integration
 #cask "imageoptim"
 #cask "keyboard-maestro"
-#cask "superduper"
+#cask "loopback"
 #cask "soulver"
+#cask "superduper"
 #cask "zerotier-one"
 
 cask "font-figtree"
