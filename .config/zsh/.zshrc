@@ -68,8 +68,6 @@ ZSH_HIGHLIGHT_STYLES[path_prefix]=
 # FZF
 # Set up fzf key bindings and fuzzy completion
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-# use fzf extended regex matchers
-export FZF_DEFAULT_OPS="--extended"
 
 # # Added by OrbStack: command-line tools and integration
 # source ~/.orbstack/shell/init.zsh 2>/dev/null || :
@@ -104,3 +102,9 @@ source "$(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme"
 # To remove this functionality, leave the block, and enter "NO-TOUCH" in the BEGIN line, and comment the line below:
 source /Users/kg/.caper_configurations
 ### END--Caper Configurations.
+
+# Keep file discovery in one place for both generic fzf pickers and Ctrl-T.
+# We include hidden files so dot-configs show up, but still drop .git noise.
+export FZF_DEFAULT_COMMAND="rg --files --hidden -g '!.git' -g '!.git/**'"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_CTRL_T_OPTS="--height 60% --layout=reverse --border --preview 'bat --color=always --style=numbers --line-range=:500 {}' --preview-window=right:60%:wrap"

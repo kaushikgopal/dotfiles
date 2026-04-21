@@ -14,11 +14,6 @@ TERM='xterm-256color'
 EDITOR='nvim'
 VISUAL='nvim'
 
-
-export FZF_DEFAULT_COMMAND='fd --type file --no-ignore-vcs --color=always'
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_DEFAULT_OPTS="--ansi"
-
 GITHUB_USERNAME="kaushikgopal"
 
 HOMEBREW_CACHE="/Library/Caches/Homebrew"

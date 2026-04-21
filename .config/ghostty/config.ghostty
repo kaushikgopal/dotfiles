@@ -96,7 +96,7 @@ font-thicken            = true
 # Geist Mono -------- -->
 font-family             = Geist Mono
 font-variation          = wght=350
-font-variation-bold     = wght=700
+font-variation-bold     = wght=650
 # font-size               = 14
 # adjust-cell-height      = 10%
 font-size               = 13

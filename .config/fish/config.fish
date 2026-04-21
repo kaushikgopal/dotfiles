@@ -78,6 +78,7 @@ if status is-interactive
     # abbr -a -- cc      claude
     abbr -a -- cc     claude --dangerously-skip-permissions
     abbr -a -- ccp     claude --plugin-dir ~/dev/off/claude-marketplace/caper/android
+    abbr -a -- restart_karabiner 'launchctl kickstart -k gui/(id -u)/org.pqrs.service.agent.karabiner_console_user_server'
 
     abbr -a -- oc       opencode
     abbr -a -- ocw      opencode web --mdns # --mdns-domain myproject.local
@@ -187,9 +188,9 @@ if status is-interactive
         set -gx FZF_DEFAULT_OPTS "--color=light"
     end
 
-    # set -gx FZF_DEFAULT_COMMAND 'rg --files'
-    # default command is different from ctrl + t
-    set -gx FZF_CTRL_T_COMMAND 'rg --files'
+    set -l fzf_file_command 'rg --files --hidden -g "!.git" -g "!.git/**"'
+    set -gx FZF_DEFAULT_COMMAND $fzf_file_command
+    set -gx FZF_CTRL_T_COMMAND $fzf_file_command
 
     # Ctrl+T preview with syntax highlighting
     set -gx FZF_CTRL_T_OPTS " \

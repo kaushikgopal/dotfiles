@@ -284,7 +284,7 @@ nnoremap <silent> <leader>e :Lexplore<CR>
 " If installed using Homebrew
 " set rtp+=/usr/local/opt/fzf
 set rtp+=/opt/homebrew/opt/fzf  " Apple Silicon
-let $FZF_DEFAULT_COMMAND='fd -u'
+" :Files inherits from the default fzf command.
 let g:fzf_vim = {}
 let g:fzf_vim.preview_window = ['right,60%', 'ctrl-/']
 let g:fzf_action = {
