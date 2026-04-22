@@ -43,7 +43,6 @@ if status is-interactive
     abbr -a -- tre2 'tree --dirsfirst -CFL 2'
     abbr -a -- tre3 'tree --dirsfirst -CFL 3'
 
-    abbr -a -- o    yazi
     abbr -a -- oo   'open .'
     abbr -a -- t    trash
 
@@ -91,6 +90,19 @@ if status is-interactive
 
     abbr -a -- vimo vimn
     abbr -a -- vimt 'vimn -t'
+end
+
+# Match Yazi's recommended shell-wrapper flow so quitting with `q` can update
+# the parent shell CWD while `Q` still exits without changing directories.
+function o --description "Open Yazi and adopt its last working directory"
+    set -l tmp (mktemp -t "yazi-cwd.XXXXXX")
+    command yazi $argv --cwd-file="$tmp"
+
+    if read -z cwd < "$tmp"; and test "$cwd" != "$PWD"; and test -d "$cwd"
+        builtin cd -- "$cwd"
+    end
+
+    rm -f -- "$tmp"
 end
 
 # ----------------------------------------------------------------------------------------------------------------------

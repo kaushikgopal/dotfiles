@@ -1,3 +1,6 @@
+[mgr]
+show_hidden = true
+
 [opener]
 default-app = [
   { run = 'open "$@"', desc = "Default App", orphan = true, for = "macos" },
