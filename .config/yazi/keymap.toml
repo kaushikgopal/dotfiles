@@ -1,5 +1,8 @@
 [mgr]
 prepend_keymap = [
+  { on = [ "g", "h" ], run = "cd ~", desc = "Cd to home" },
+  { on = [ "g", "0" ], run = 'shell -- for d in "$HOME"/Library/CloudStorage/GoogleDrive-*/"My Drive"; do [ -d "$d" ] && exec ya emit cd "$d"; done', desc = "Cd to Google Drive" },
+  { on = [ "g", "t" ], run = "cd /tmp", desc = "Cd to /tmp" },
   { on = "O", run = "open --interactive",      desc = "Open with..." },
   { on = "P", run = "open --with preview-app", desc = "Open in Preview" },
   { on = "F", run = "open --with finder",      desc = "Reveal in Finder" },
