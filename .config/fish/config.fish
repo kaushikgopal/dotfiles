@@ -43,9 +43,9 @@ if status is-interactive
     abbr -a -- tre2 'tree --dirsfirst -CFL 2'
     abbr -a -- tre3 'tree --dirsfirst -CFL 3'
 
-    abbr -a -- o open
-    abbr -a -- oo 'open .'
-    abbr -a -- t trash
+    abbr -a -- o    yazi
+    abbr -a -- oo   'open .'
+    abbr -a -- t    trash
 
     abbr -a -- b   bat
     abbr -a -- cat bat
