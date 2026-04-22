@@ -34,6 +34,7 @@ brew "rsync"
 brew "sox"
 brew "tmux"
 brew "trash"
+brew "tree"
 brew "wget"
 brew "yazi"     # file manager
 brew "zoxide"   # after upgrading, run: regen-shell-caches
