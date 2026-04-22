@@ -22,7 +22,7 @@ brew "coreutils" # for gnu date
 brew "curl"
 brew "fastfetch" # like neofetch, but faster
 brew "fd"
-brew "ffmpeg"
+brew "ffmpeg-full" # full allows things like transcript used for fragmented clips
 brew "gawk"
 brew "ghostscript" # for pdfs
 brew "gnupg" # "openssl"
