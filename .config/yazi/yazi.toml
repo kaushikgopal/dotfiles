@@ -1,0 +1,15 @@
+[opener]
+default-app = [
+  { run = 'open "$@"', desc = "Default App", orphan = true, for = "macos" },
+]
+preview-app = [
+  { run = 'open -a Preview "$@"', desc = "Preview", orphan = true, for = "macos" },
+]
+finder = [
+  { run = 'open -R "$1"', desc = "Finder", orphan = true, for = "macos" },
+]
+
+[open]
+prepend_rules = [
+  { name = "*", use = ["default-app", "preview-app", "finder"] },
+]

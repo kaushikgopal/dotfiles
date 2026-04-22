@@ -45,6 +45,7 @@ files_to_link=(
     .config/serie
     .config/procs
     .config/zed
+    .config/yazi
     .editorconfig
     .firebender
     .hushlogin

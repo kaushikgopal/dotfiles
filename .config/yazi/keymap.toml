@@ -1,0 +1,6 @@
+[mgr]
+prepend_keymap = [
+  { on = "O", run = "open --interactive",      desc = "Open with..." },
+  { on = "P", run = "open --with preview-app", desc = "Open in Preview" },
+  { on = "F", run = "open --with finder",      desc = "Reveal in Finder" },
+]
