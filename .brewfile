@@ -26,6 +26,7 @@ brew "ffmpeg-full" # full allows things like transcript used for fragmented clip
 brew "gawk"
 brew "ghostscript" # for pdfs
 brew "gnupg" # "openssl"
+brew "gum"   # agent-kombat
 brew "imagemagick"
 brew "mole"             # macOS cleaner app
 brew "openssl"
@@ -121,6 +122,8 @@ brew "node"
 ######################
 ##### .py
 brew "uv"    # python
+# uv-managed CLIs (tracked here; require uv above)
+# uv tool install --python 3.12 whisperx  # for fragmented video clip sharing
 # brew "pipx"
 # brew "pyenv"     # after upgrading, run: regen-shell-caches
 # brew "pyenv-virtualenv"
