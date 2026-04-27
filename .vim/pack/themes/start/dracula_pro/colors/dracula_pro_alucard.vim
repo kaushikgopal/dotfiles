@@ -62,6 +62,9 @@ let g:dracula_pro#palette.color_15 = '#2C2B31'
 
 runtime colors/dracula_pro_base.vim
 
+" The shared base declares itself dark; Alucard is the light variant.
+set background=light
+
 " Fix Pmenu. The BgDark is too close to the selection value.
 highlight! link Pmenu      DraculaBgLighter
 highlight! link PmenuSbar  DraculaBgLighter

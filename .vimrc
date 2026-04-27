@@ -71,22 +71,23 @@ syntax enable
 packadd! dracula_pro
 let g:dracula_colorterm = 0
 
-" auto-switch dark/light theme based on macOS appearance
-set background=dark
-colorscheme dracula_pro
-function! SyncAppearance()
+" Auto-switch dark/light theme based on macOS appearance.
+function! SyncAppearance() abort
     let l:mode = system("defaults read -g AppleInterfaceStyle 2>/dev/null")
     if l:mode =~# 'Dark'
         set background=dark
         colorscheme dracula_pro
     else
-        set background=light
         colorscheme dracula_pro_alucard
     endif
 endfunction
 
-"call SyncAppearance()
-"autocmd FocusGained * call SyncAppearance()
+call SyncAppearance()
+
+augroup vimrcAppearance
+    autocmd!
+    autocmd FocusGained * call SyncAppearance()
+augroup END
 
 
 " =========================================================
