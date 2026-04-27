@@ -12,4 +12,6 @@
 # @raycast.author Kaush
 # @raycast.authorURL https://kau.sh
 
-pbpaste | perl -0pe 's/(?<!\n)\n(?!\n)/ /g' | pbcopy
+# Join wrapped lines while collapsing whitespace around the break down to one
+# space, but leave paragraph breaks intact.
+pbpaste | perl -0pe 's/(\S)[ \t]*\n[ \t]*(\S)/$1 $2/g' | pbcopy
