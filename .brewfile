@@ -27,6 +27,7 @@ brew "gawk"
 brew "ghostscript" # for pdfs
 brew "gnupg" # "openssl"
 brew "gum"   # agent-kombat
+brew "glow"  # nicer Markdown previewer
 brew "imagemagick"
 brew "mole"             # macOS cleaner app
 brew "openssl"
