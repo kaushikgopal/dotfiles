@@ -81,7 +81,7 @@ if status is-interactive
     abbr -a -- ocw      opencode web --mdns # --mdns-domain myproject.local
     abbr -a -- oca      opencode attach localhost:4096 --dir .
 
-    abbr -a -- glo     glow -p
+    abbr -a -- glo     glow-watch
 
     abbr -a -- ge      gemini
     abbr -a -- gey     gemini --yolo
