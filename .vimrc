@@ -70,6 +70,8 @@ syntax enable
 
 packadd! dracula_pro
 let g:dracula_colorterm = 0
+" set background=dark
+" colorscheme dracula_pro
 
 " Auto-switch dark/light theme based on macOS appearance.
 function! SyncAppearance() abort
