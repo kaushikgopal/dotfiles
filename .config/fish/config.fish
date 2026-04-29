@@ -74,14 +74,14 @@ if status is-interactive
 
     abbr -a -- co      codex --yolo
 
-    # abbr -a -- cc      claude
-    abbr -a -- cc     claude --dangerously-skip-permissions
-    abbr -a -- ccp     claude --plugin-dir ~/dev/off/claude-marketplace/caper/android
-    abbr -a -- restart_karabiner 'launchctl kickstart -k gui/(id -u)/org.pqrs.service.agent.karabiner_console_user_server'
+    abbr -a -- cl     claude --dangerously-skip-permissions
+    abbr -a -- clp     claude --plugin-dir ~/dev/off/claude-marketplace/caper/android
 
     abbr -a -- oc       opencode
     abbr -a -- ocw      opencode web --mdns # --mdns-domain myproject.local
     abbr -a -- oca      opencode attach localhost:4096 --dir .
+
+    abbr -a -- glo     glow -p
 
     abbr -a -- ge      gemini
     abbr -a -- gey     gemini --yolo
@@ -90,6 +90,8 @@ if status is-interactive
 
     abbr -a -- vimo vimn
     abbr -a -- vimt 'vimn -t'
+
+    abbr -a -- restart_karabiner 'launchctl kickstart -k gui/(id -u)/org.pqrs.service.agent.karabiner_console_user_server'
 end
 
 # Match Yazi's recommended shell-wrapper flow so quitting with `q` can update
