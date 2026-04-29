@@ -1,5 +1,6 @@
 # Keep Markdown previews live without entering Glow's pager, which blocks
-# file-change refreshes until the pager exits.
+# file-change refreshes until the pager exits. Watchexec owns stdin so keys
+# pressed after Glow exits are handled instead of echoing raw escape bytes.
 function glow-watch --description "Preview Markdown with Glow and refresh on save"
     if test (count $argv) -eq 0
         echo "glow-watch: expected a Markdown file"
@@ -24,5 +25,5 @@ function glow-watch --description "Preview Markdown with Glow and refresh on sav
         return 127
     end
 
-    command watchexec --clear --restart --shell=none --watch "$file" -- glow $argv -- "$file"
+    command watchexec --interactive --quiet --clear --restart --shell=none --watch "$file" -- glow $argv -- "$file"
 end
