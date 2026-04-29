@@ -377,23 +377,46 @@ xmap N <SID>(search-backward)zzzv
 " Markdown helpers
 "========================
 
-" Format markdown with prettier on :w (toggle with :MdFmt)
+" Format markdown with prettier on :w (toggle with :MdFmtToggle).
 let g:md_fmt_on_save = 1
 
-function! PrettierMarkdown()
-    if !g:md_fmt_on_save | return | endif
-    let l:pos = getpos('.')
-    silent %!prettier --prose-wrap always --stdin-filepath %
+function! PrettierMarkdown(...) abort
+    if !g:md_fmt_on_save && !a:0 | return | endif
+    if !executable('prettier')
+        echohl ErrorMsg | echom 'prettier: command not found' | echohl None
+        return
+    endif
+
+    let l:prose_wrap = a:0 ? a:1 : get(b:, 'md_prose_wrap', 'always')
+    let l:filepath = expand('%:p')
+    if empty(l:filepath)
+        let l:filepath = 'stdin.md'
+    endif
+
+    let l:view = winsaveview()
+    execute 'silent %!prettier --prose-wrap ' . shellescape(l:prose_wrap) .
+        \ ' --stdin-filepath ' . shellescape(l:filepath)
     if v:shell_error
         undo
         echohl ErrorMsg | echom 'prettier: format failed' | echohl None
     endif
-    call setpos('.', l:pos)
+    call winrestview(l:view)
 endfunction
 
-autocmd BufWritePre *.md call PrettierMarkdown()
-command! MdFmt let g:md_fmt_on_save = !g:md_fmt_on_save
+function! MarkdownWrap(prose_wrap, textwidth) abort
+    let b:md_prose_wrap = a:prose_wrap
+    let &l:textwidth = a:textwidth
+    call PrettierMarkdown(a:prose_wrap)
+    echo 'Markdown hard wrap: ' . (a:textwidth ? 'ON' : 'OFF') . ' for this buffer'
+endfunction
+
+autocmd BufWritePre *.md,*.markdown call PrettierMarkdown()
+command! MdFmtToggle let g:md_fmt_on_save = !g:md_fmt_on_save
     \ | echo 'Markdown format-on-save: ' . (g:md_fmt_on_save ? 'ON' : 'OFF')
+command! MdUnwrap call MarkdownWrap('never', 0)
+command! MdHardWrap call MarkdownWrap('always', 80)
+command! MdSoftWrap setlocal wrap linebreak breakindent
+command! MdNoSoftWrap setlocal nowrap nolinebreak nobreakindent
 
 autocmd FileType markdown vmap <leader>l <Esc>`<i[<Esc>`>la]()<Esc>i
 autocmd FileType markdown nmap <leader>l <Esc>bi[<Esc>ea]()<Esc>i
