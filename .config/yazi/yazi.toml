@@ -1,5 +1,5 @@
 [mgr]
-show_hidden = true
+ratio = [2, 5, 4]
 
 [opener]
 default-app = [
