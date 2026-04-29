@@ -39,6 +39,8 @@ shell-integration-features      = cursor,ssh-terminfo
 keybind = super+k=text:\x0c
 keybind = super+shift+p=unbind
 keybind = super+p=toggle_command_palette
+# Prompt for the current tab title so restored sessions keep readable labels.
+keybind = super+shift+r=prompt_tab_title
 # Global drop-down terminal. Ghostty reuses the same window, so this acts like
 # a summon/hide scratch terminal instead of spawning new windows.
 keybind = global:ctrl+shift+space=toggle_quick_terminal
