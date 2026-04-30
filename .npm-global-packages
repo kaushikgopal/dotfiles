@@ -1,0 +1,3 @@
+# npm globals installed by ~/.npm.sh
+# Pin versions so dev-server tooling stays stable across machines.
+portless@0.12.0

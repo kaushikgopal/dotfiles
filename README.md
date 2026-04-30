@@ -24,7 +24,8 @@ chmod +x .setup.sh
 ## updates
 
 ```sh
-./.update.sh
+./.brew.sh
+./.npm.sh
 ```
 
 ## adding to dotfiles

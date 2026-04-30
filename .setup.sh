@@ -36,6 +36,8 @@ files_to_link=(
     .bashrc
     .brewfile
     .brew.sh
+    .npm-global-packages
+    .npm.sh
     .config/.ripgreprc
     .config/fish
     .config/ghostty

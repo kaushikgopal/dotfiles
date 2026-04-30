@@ -17,6 +17,13 @@ brew bundle --force cleanup --file="~/.brewfile"
 echo -e "${PURPLE}---- installing from brewfile${NC}"
 brew bundle install -v --file="~/.brewfile"
 
+echo -e "${PURPLE}---- installing npm global CLIs${NC}"
+if [ -x "$HOME/.npm.sh" ]; then
+    "$HOME/.npm.sh"
+else
+    echo -e "${GRAY}---- ~/.npm.sh not found; skipping npm global CLIs${NC}"
+fi
+
 echo -e "${PURPLE}---- cask upgrade (via cu) ${NC}"
 brew cu --all --cleanup --yes
 
