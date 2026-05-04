@@ -155,7 +155,7 @@ brew "grpcurl" # caper
 ######## AI apps
 #brew "opencode"
 brew "agent-browser"
-brew "lightpanda-io/browser/lightpanda"
+#brew "lightpanda-io/browser/lightpanda"
 brew "yt-dlp"    # fetch YouTube video metadata (view counts) without OAuth — used by pull-analytics-for-fragmented
 
 # cask "claude-code"    # using eohan # curl -fsSL https://claude.ai/install.sh | bash
