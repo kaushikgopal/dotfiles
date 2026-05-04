@@ -73,6 +73,134 @@ let g:dracula_colorterm = 0
 " set background=dark
 " colorscheme dracula_pro
 
+" Glow's Markdown renderer uses simple terminal styles instead of a Vim
+" colorscheme. Keep the approximation narrow: Markdown syntax gets Glow-like
+" colors, and Markdown windows get a quieter document background without
+" changing the rest of the editor.
+function! s:GlowHi(group, fg, bg, attr) abort
+    execute 'highlight ' . a:group
+        \ . ' guifg=' . (empty(a:fg) ? 'NONE' : a:fg)
+        \ . ' guibg=' . (empty(a:bg) ? 'NONE' : a:bg)
+        \ . ' gui=' . (empty(a:attr) ? 'NONE' : a:attr)
+endfunction
+
+function! s:ApplyGlowMarkdownHighlights() abort
+    if &background ==# 'light'
+        let l:document_fg = '#1c1c1c'
+        let l:document_bg = '#fffdf5'
+        let l:muted = '#6c6c6c'
+        let l:dim = '#b2b2b2'
+        let l:heading = '#005fff'
+        let l:link = '#00af87'
+        let l:link_text = '#00875f'
+        let l:inline_code_bg = '#e4e4e4'
+        let l:code_block_bg = '#eeeeee'
+    else
+        let l:document_fg = '#d0d0d0'
+        let l:document_bg = '#1b1b1b'
+        let l:muted = '#808080'
+        let l:dim = '#585858'
+        let l:heading = '#00afff'
+        let l:link = '#008787'
+        let l:link_text = '#00af5f'
+        let l:inline_code_bg = '#303030'
+        let l:code_block_bg = '#373737'
+    endif
+
+    call s:GlowHi('GlowMarkdownNormal', l:document_fg, l:document_bg, 'NONE')
+    call s:GlowHi('GlowMarkdownMuted', l:muted, 'NONE', 'NONE')
+    call s:GlowHi('GlowMarkdownLineNr', l:dim, l:document_bg, 'NONE')
+    call s:GlowHi('GlowMarkdownCursorLine', 'NONE', l:inline_code_bg, 'NONE')
+    call s:GlowHi('GlowMarkdownCursorLineNr', l:heading, l:document_bg, 'bold')
+    call s:GlowHi('GlowMarkdownColorColumn', 'NONE', l:inline_code_bg, 'NONE')
+    call s:GlowHi('GlowMarkdownHeading', l:heading, 'NONE', 'bold')
+    call s:GlowHi('GlowMarkdownH1', '#ffff87', '#5f5fff', 'bold')
+    call s:GlowHi('GlowMarkdownCode', '#ff5f5f', l:inline_code_bg, 'NONE')
+    call s:GlowHi('GlowMarkdownCodeBlock', l:muted, l:code_block_bg, 'NONE')
+    call s:GlowHi('GlowMarkdownQuote', l:muted, 'NONE', 'NONE')
+    call s:GlowHi('GlowMarkdownLink', l:link, 'NONE', 'underline')
+    call s:GlowHi('GlowMarkdownLinkText', l:link_text, 'NONE', 'bold')
+    call s:GlowHi('GlowMarkdownListMarker', l:link_text, 'NONE', 'bold')
+    call s:GlowHi('GlowMarkdownRule', l:dim, 'NONE', 'NONE')
+    call s:GlowHi('GlowMarkdownEmphasis', 'NONE', 'NONE', 'italic')
+    call s:GlowHi('GlowMarkdownStrong', 'NONE', 'NONE', 'bold')
+    call s:GlowHi('GlowMarkdownStrongEmphasis', 'NONE', 'NONE', 'bold,italic')
+    call s:GlowHi('GlowMarkdownStrike', l:muted, 'NONE', 'strikethrough')
+
+    highlight! link markdownH1 GlowMarkdownH1
+    highlight! link markdownH2 GlowMarkdownHeading
+    highlight! link markdownH3 GlowMarkdownHeading
+    highlight! link markdownH4 GlowMarkdownHeading
+    highlight! link markdownH5 GlowMarkdownHeading
+    highlight! link markdownH6 GlowMarkdownHeading
+    highlight! link markdownH1Delimiter GlowMarkdownH1
+    highlight! link markdownH2Delimiter GlowMarkdownHeading
+    highlight! link markdownH3Delimiter GlowMarkdownHeading
+    highlight! link markdownH4Delimiter GlowMarkdownHeading
+    highlight! link markdownH5Delimiter GlowMarkdownHeading
+    highlight! link markdownH6Delimiter GlowMarkdownHeading
+    highlight! link markdownHeadingDelimiter GlowMarkdownHeading
+    highlight! link markdownHeadingRule GlowMarkdownRule
+    highlight! link markdownBlockquote GlowMarkdownQuote
+    highlight! link markdownCode GlowMarkdownCode
+    highlight! link markdownCodeBlock GlowMarkdownCodeBlock
+    highlight! link markdownCodeDelimiter GlowMarkdownCodeBlock
+    highlight! link markdownLinkText GlowMarkdownLinkText
+    highlight! link markdownLinkTextDelimiter GlowMarkdownMuted
+    highlight! link markdownLinkDelimiter GlowMarkdownMuted
+    highlight! link markdownUrl GlowMarkdownLink
+    highlight! link markdownUrlDelimiter GlowMarkdownMuted
+    highlight! link markdownUrlTitle GlowMarkdownMuted
+    highlight! link markdownListMarker GlowMarkdownListMarker
+    highlight! link markdownOrderedListMarker GlowMarkdownListMarker
+    highlight! link markdownRule GlowMarkdownRule
+    highlight! link markdownBold GlowMarkdownStrong
+    highlight! link markdownBoldDelimiter GlowMarkdownMuted
+    highlight! link markdownItalic GlowMarkdownEmphasis
+    highlight! link markdownItalicDelimiter GlowMarkdownMuted
+    highlight! link markdownBoldItalic GlowMarkdownStrongEmphasis
+    highlight! link markdownBoldItalicDelimiter GlowMarkdownMuted
+    highlight! link markdownStrike GlowMarkdownStrike
+    highlight! link markdownStrikeDelimiter GlowMarkdownMuted
+endfunction
+
+function! s:SyncGlowMarkdownWindowTheme() abort
+    if &filetype ==# 'markdown'
+        if exists('&winhighlight')
+            let &l:winhighlight = join([
+                \ 'Normal:GlowMarkdownNormal',
+                \ 'NormalNC:GlowMarkdownNormal',
+                \ 'EndOfBuffer:GlowMarkdownNormal',
+                \ 'SignColumn:GlowMarkdownNormal',
+                \ 'LineNr:GlowMarkdownLineNr',
+                \ 'CursorLine:GlowMarkdownCursorLine',
+                \ 'CursorLineNr:GlowMarkdownCursorLineNr',
+                \ 'ColorColumn:GlowMarkdownColorColumn',
+                \ 'Folded:GlowMarkdownCodeBlock',
+                \ 'NonText:GlowMarkdownMuted',
+                \ 'SpecialKey:GlowMarkdownMuted',
+                \ ], ',')
+        elseif exists('&wincolor')
+            let &l:wincolor = 'GlowMarkdownNormal'
+        endif
+    else
+        if exists('&winhighlight') && &l:winhighlight =~# 'GlowMarkdown'
+            setlocal winhighlight=
+        endif
+        if exists('&wincolor') && &l:wincolor ==# 'GlowMarkdownNormal'
+            setlocal wincolor=
+        endif
+    endif
+endfunction
+
+augroup vimrcGlowMarkdown
+    autocmd!
+    autocmd ColorScheme * call <SID>ApplyGlowMarkdownHighlights()
+        \ | call <SID>SyncGlowMarkdownWindowTheme()
+    autocmd FileType markdown call <SID>SyncGlowMarkdownWindowTheme()
+    autocmd BufEnter,WinEnter * call <SID>SyncGlowMarkdownWindowTheme()
+augroup END
+
 " Auto-switch dark/light theme based on macOS appearance.
 function! SyncAppearance() abort
     let l:mode = system("defaults read -g AppleInterfaceStyle 2>/dev/null")
