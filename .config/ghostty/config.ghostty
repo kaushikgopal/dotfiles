@@ -50,8 +50,8 @@ keybind = global:ctrl+shift+space=toggle_quick_terminal
 # ghostty +list-themes
 # theme = dark:Zenwritten Dark,light:Zenwritten Light
 # theme = dark:Atom One Dark,light:Atom One Light
-theme = dark:Monokai Pro Octagon,light:Monokai Pro Light
-# theme = Monokai Pro Octagon
+# theme = dark:Monokai Pro Octagon,light:Monokai Pro Light
+theme = Monokai Pro Octagon
 
 adjust-cursor-thickness         = 3
 adjust-underline-position       = 3
@@ -100,9 +100,9 @@ font-thicken            = true
 
 # Geist Mono -------- -->
 font-family             = Geist Mono
-font-variation          = wght=350
+font-variation          = wght=400
 font-variation-bold     = wght=600
-font-size               = 13
+font-size               = 13.5
 adjust-cell-height      = 20%
 font-feature            = ss04,ss11
 # ss03 - alternative l
@@ -110,10 +110,10 @@ font-feature            = ss04,ss11
 
 # # Berkeley Mono (TX-02-Variable) -------- -->
 # font-family             = TX-02-Variable
-# font-size               = 14.5
-# adjust-cell-height      = 15%
-# font-variation          = wght=420
-# font-variation-bold     = wght=800
+# font-size               = 13.5
+# adjust-cell-height      = 30%
+# font-variation          = wght=400
+# font-variation-bold     = wght=700
 #
 # font-feature            = ss01
 # # font-feature            = ss02
