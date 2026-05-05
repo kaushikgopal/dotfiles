@@ -411,7 +411,7 @@ nnoremap <silent> <leader>e :Lexplore<CR>
 "nnoremap <silent> <leader><CR> :call append(line('.')-1, '')<CR>:call append('.', '')<CR><Esc>
 
 "=========================
-" FZF quick flie search
+" FZF project navigation
 "=========================
 " If installed using Homebrew
 " set rtp+=/usr/local/opt/fzf
@@ -423,8 +423,10 @@ let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
   \ 'ctrl-s': 'split',
   \ 'ctrl-v': 'vsplit' }
+" FZF pickers for files, content, and open buffers.
 nnoremap <silent> <leader>f :Files<CR>
 nnoremap <silent> <leader>g :Rg<CR>
+nnoremap <silent> <leader>b :Buffers<CR>
 
 
 "========================
