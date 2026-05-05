@@ -17,6 +17,7 @@
 set nobackup         " turn backup off
 set title            " change the terminal's title
 set directory=/tmp// " change location of swap files
+set hidden           " keep edited buffers open when fzf switches files
 
 
 set ignorecase smartcase " ignore case letters when search
