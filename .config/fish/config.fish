@@ -53,6 +53,7 @@ if status is-interactive
     abbr -a -- bir './bin/rails'
     abbr -a -- gr gradle
     abbr -a -- gw './gradlew'
+    abbr -a -- pipw 'env PIP_CONFIG_FILE=$PIP_CONFIG_WORK pip install'
 
     # abbr -a -- fd 'rg --files'  # use rg instead of fd (one less dep)
     abbr -a -- rgu 'rg -u'
