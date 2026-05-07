@@ -213,12 +213,11 @@ function! SyncAppearance() abort
     endif
 endfunction
 
-call SyncAppearance()
-
-augroup vimrcAppearance
-    autocmd!
-    autocmd FocusGained * call SyncAppearance()
-augroup END
+"call SyncAppearance()
+" augroup vimrcAppearance
+"     autocmd!
+"     autocmd FocusGained * call SyncAppearance()
+" augroup END
 
 
 " =========================================================
