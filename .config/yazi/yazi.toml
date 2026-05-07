@@ -14,5 +14,5 @@ finder = [
 
 [open]
 prepend_rules = [
-  { name = "*", use = ["default-app", "preview-app", "finder"] },
+  { url = "*", use = ["default-app", "preview-app", "finder"] },
 ]
