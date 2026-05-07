@@ -72,6 +72,7 @@ files_to_link=(
     .brew.sh
     .npm-global-packages
     .npm.sh
+    .update.sh
     .config/.ripgreprc
     .config/fish
     .config/ghostty
@@ -148,7 +149,8 @@ fi
 echo -e "${GRAY}---- Turning homebrew analytics off.${NC}"
 brew analytics off
 
-BREW_INSTALL_ONLY=1 source "$HOME/.brew.sh"
+BREW_INSTALL_ONLY=1 "$HOME/.brew.sh"
+"$HOME/.npm.sh"
 
 echo -e "${YELLOW}---- setting up github${NC}"
 

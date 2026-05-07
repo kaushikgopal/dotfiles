@@ -11,6 +11,7 @@
 .config/fish/fish_variables
 .config/fish/functions/caperwt.fish
 .brewfile.local
+.npm-global-packages.local
 # we maintain karabiner in a separate repo
 .config/karabiner
 .config/zed/prompts

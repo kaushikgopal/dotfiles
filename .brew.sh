@@ -2,9 +2,6 @@
 
 set -euo pipefail
 
-# for regular updates on existing mac
-# `bash ~/.config/setup.sh NOOS`
-
 YELLOW='\033[1;33m'     # switching section
 GRAY='\033[1;30m'       # info
 PURPLE='\033[1;35m'     # making change
@@ -33,13 +30,6 @@ if [ -f "$LOCAL_BREWFILE" ]; then
     echo -e "${GRAY}---- installing dependencies from local brewfile${NC}"
 fi
 brew bundle install -v --file="$BREWFILE"
-
-echo -e "${PURPLE}---- installing npm global CLIs${NC}"
-if [ -x "$HOME/.npm.sh" ]; then
-    "$HOME/.npm.sh"
-else
-    echo -e "${GRAY}---- ~/.npm.sh not found; skipping npm global CLIs${NC}"
-fi
 
 if [[ "$BREW_INSTALL_ONLY" != "1" ]]; then
     echo -e "${PURPLE}---- cask upgrade (via cu) ${NC}"
