@@ -11,6 +11,45 @@ PURPLE='\033[1;35m'
 # No Color
 NC='\033[0m'
 
+function load_homebrew_shellenv {
+    if command -v brew >/dev/null 2>&1; then
+        return
+    fi
+
+    # Fresh Homebrew installs are not visible to non-login bootstrap shells until
+    # we load shellenv explicitly.
+    if [ -x /opt/homebrew/bin/brew ]; then
+        eval "$(/opt/homebrew/bin/brew shellenv)"
+    elif [ -x /usr/local/bin/brew ]; then
+        eval "$(/usr/local/bin/brew shellenv)"
+    fi
+}
+
+function install_command_line_tools_if_missing {
+    if xcode-select -p >/dev/null 2>&1; then
+        echo -e "${GRAY}---- Xcode command line tools are already installed.${NC}"
+        return
+    fi
+
+    echo -e "${YELLOW}---- installing Xcode command tools (without all of Xcode)${NC}"
+    touch /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress
+    if ! sudo softwareupdate --install -a --verbose; then
+        rm -f /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress
+        return 1
+    fi
+    rm -f /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress
+}
+
+function setup_aikado_agents {
+    if [ -d "$AIKADO_DIR" ]; then
+        echo -e "${GRAY}••••••• setting up agents from $AIKADO_DIR ${NC}"
+        make -C "$AIKADO_DIR" setup-user
+    else
+        echo -e "${GRAY}••••••• aikado not found at $AIKADO_DIR ${NC}"
+        echo -e "${GRAY}••••••• run: AIKADO_DIR=/path/to/aikado ./.setup.sh ${NC}"
+    fi
+}
+
 ##############################################################
 # Setup the dotfiles symlinks
 ##############################################################
@@ -61,8 +100,8 @@ done
 # Agents now live in aikado
 ##############################################################
 
-echo -e "${GRAY}••••••• agent setup moved to ~/dev/oss/aikado ${NC}"
-echo -e "${GRAY}••••••• run: make -C ~/dev/oss/aikado setup-user ${NC}"
+AIKADO_DIR="${AIKADO_DIR:-$HOME/dev/per/aikado}"
+echo -e "${GRAY}••••••• agent setup path: $AIKADO_DIR ${NC}"
 
 # symlink each script in bin/ to ~/.local/bin/
 for script in "$current_dir"/bin/*; do
@@ -74,27 +113,34 @@ done
 
 popd
 
-# exit the script (temporarily)
-exit 0
+# Keep the full bootstrap path active for new machines. The sections below are
+# guarded so reruns do not reinstall or delete machine-specific state by default.
+# exit 0
 
 ##############################################################
 # Basics (git & dotfiles)
 ##############################################################
 
-echo -e "\n\n\n${PURPLE}---- Check for Apple Software Updates then restart your computer. \n Have you done this (no seriously!)${NC}"
+echo -e "${YELLOW}---- Asking for an admin password upfront${NC}"
+sudo -v
 
-echo -e "\n\n\n${YELLOW}---- installing Xcode command tools (without all of Xcode)${NC}"
-touch /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress
-softwareupdate --install -a --verbose
-rm -f /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress
-# install xcode
-# xcode-select --install
+install_command_line_tools_if_missing
+setup_aikado_agents
+
+if [[ "${RUN_SOFTWARE_UPDATE:-0}" == "1" ]]; then
+    echo -e "\n\n\n${YELLOW}---- installing available Apple Software Updates${NC}"
+    sudo softwareupdate --install -a --verbose
+else
+    echo -e "${GRAY}---- skipping Apple Software Updates. Set RUN_SOFTWARE_UPDATE=1 to run them.${NC}"
+fi
 
 echo -e "${YELLOW}---- setting up homebrew${NC}"
 
+load_homebrew_shellenv
 if ! command -v brew &>/dev/null; then
     echo -e "\n\n\n${YELLOW}---- Homebrew not found. Installing...${NC}"
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    load_homebrew_shellenv
 else
     echo -e "${GRAY}---- Homebrew is already installed.${NC}"
 fi
@@ -102,38 +148,34 @@ fi
 echo -e "${GRAY}---- Turning homebrew analytics off.${NC}"
 brew analytics off
 
+source "$HOME/.brew.sh"
+
 echo -e "${YELLOW}---- setting up github${NC}"
-brew install git
-brew install gh
 
 echo -e "\n\n\n${YELLOW}---- Setting up git${NC}"
-gh auth status &>tmp_gh_login.txt
-if grep -om1 "Logged in" tmp_gh_login.txt; then
-    rm -f tmp_gh_login.txt
+if gh auth status >/dev/null 2>&1; then
     echo -e "${GRAY}---- logged in to github${NC}"
 else
-    rm -f tmp_gh_login.txt
     echo -e "${PURPLE}---- you need to setup github, follow the prompts now ${NC}"
     gh auth login
 fi
 
-echo -e "${YELLOW}---- setting up dotfiles${NC}"
-cd $HOME
+# we are expecting you set this up independently
+#
+# echo -e "${YELLOW}---- setting up dotfiles${NC}"
+# cd $HOME
 
-if git rev-parse --git-dir >/dev/null 2>&1; then
-    echo -e "${GRAY}---- looks like dotfile repo is setup${NC}"
-else
-    echo -e "${PURPLE}---- setting up home to point to dotfiles${NC}"
-    git init -b master
-    git remote add origin https://github.com/kaushikgopal/dotfiles.git
-    git fetch origin
-    git reset --hard origin/master
-fi
+# if git rev-parse --git-dir >/dev/null 2>&1; then
+#     echo -e "${GRAY}---- looks like dotfile repo is setup${NC}"
+# else
+#     echo -e "${PURPLE}---- setting up home to point to dotfiles${NC}"
+#     git init -b master
+#     git remote add origin https://github.com/kaushikgopal/dotfiles.git
+#     git fetch origin
+#     git reset --hard origin/master
+# fi
 
 git config --global credential.helper osxkeychain
-
-echo -e "${YELLOW}---- Asking for an admin password upfront${NC}"
-sudo -v
 
 function delete_if_exists {
     if [ -f "$1" ]; then
@@ -157,11 +199,13 @@ function clone_if_absent {
     fi
 }
 
-echo -e "${GRAY}---- delete native git if it exists${NC}"
-# sudo rm -rf /usr/bin/git
-delete_if_exists /etc/paths.d/git
-delete_if_exists /etc/manpaths.d/git
-# sudo pkgutil --forget --pkgs=GitOSX\.Installer\.git[A-Za-z0-9]*\.[a-z]*.pkg
+if [[ "${REMOVE_LEGACY_GIT_PATHS:-0}" == "1" ]]; then
+    echo -e "${GRAY}---- deleting legacy Git installer paths if present${NC}"
+    delete_if_exists /etc/paths.d/git
+    delete_if_exists /etc/manpaths.d/git
+else
+    echo -e "${GRAY}---- leaving legacy Git installer paths alone. Set REMOVE_LEGACY_GIT_PATHS=1 to remove them.${NC}"
+fi
 
 # ##############################################################
 # # zsh shell
@@ -172,8 +216,11 @@ delete_if_exists /etc/manpaths.d/git
 # curl https://lab.al0.de/a0n/oh-my-zsh/-/raw/master/plugins/adb/_adb >$(brew --prefix)/share/zsh/site-functions/_adb
 # chmod +x $(brew --prefix)/share/zsh/site-functions/_adb
 #
-# allow different shells to recognize this environment variable for macos
-launchctl setenv XDG_CONFIG_HOME ~/.config
+# Allow GUI-launched apps to see the same config root. This can fail over
+# headless SSH sessions, so it should not block the rest of bootstrap.
+if ! launchctl setenv XDG_CONFIG_HOME ~/.config; then
+    echo -e "${GRAY}---- launchctl setenv failed; continuing because shell config already exports XDG_CONFIG_HOME${NC}"
+fi
 
 # ##############################################################
 # # Nu shell
@@ -208,9 +255,9 @@ else
     sudo chsh -s $(brew --prefix)/bin/fish $(whoami)
 fi
 
-echo -e "${GRAY}---- symlink fish_history ${NC}"
-trash ~/.local/share/fish/fish_history
-ln -s $XDG_DATA_HOME/fish/fish_history ~/.local/share/fish/
+# echo -e "${GRAY}---- symlink fish_history ${NC}"
+# trash ~/.local/share/fish/fish_history
+# ln -s $XDG_DATA_HOME/fish/fish_history ~/.local/share/fish/
 
 fish_config theme choose "dracpro"
 fish_config theme save
@@ -298,8 +345,7 @@ cd ~
 # needed for shift-recurrence pirate
 # pip3 install --user git+git://github.com/GothenburgBitFactory/tasklib@develop
 
-source $HOME/.brew.sh
-$(brew --prefix)/opt/fzf/install
+# fzf shell integration is generated and sourced by fish config.fish.
 # source $HOME/.macos.sh
 # source $HOME/.cleanup.sh
 
@@ -308,5 +354,8 @@ $(brew --prefix)/opt/fzf/install
 # curl -s "https://get.sdkman.io" | bash
 # sdk install kotlin
 
-unset delete_if_exists
-unset clone_if_absent
+unset -f load_homebrew_shellenv
+unset -f install_command_line_tools_if_missing
+unset -f setup_aikado_agents
+unset -f delete_if_exists
+unset -f clone_if_absent
