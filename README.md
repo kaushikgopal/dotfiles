@@ -28,6 +28,18 @@ chmod +x .setup.sh
 ./.npm.sh
 ```
 
+## machine-specific Homebrew packages
+
+Keep packages that should exist on every Mac in `.brewfile`.
+
+For machine-local experiments, create `~/.brewfile.local`. `.brewfile` loads it
+when it exists, so the regular `.brew.sh` run installs those packages and
+protects them from cleanup.
+
+```sh
+./.brew.sh
+```
+
 ## adding to dotfiles
 
 From the `.gitignore` file, you'll notice i ignore *everything*. This is intentional. In keeping with the above goals, i _only_ add the things i feel necessary for my specific environment.

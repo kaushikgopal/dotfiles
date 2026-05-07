@@ -1,5 +1,6 @@
 # file location: ~/.brewfile
 # brew bundle --file=".brewfile"
+# for machine-local packages create a ~/.brewfile.local
 
 ##############################################################
 ##### Settings
@@ -27,18 +28,17 @@ brew "gawk"
 brew "ghostscript" # for pdfs
 brew "gnupg" # "openssl"
 brew "gum"   # agent-kombat
-brew "glow"  # nicer Markdown previewer
 brew "imagemagick"
 brew "mole"             # macOS cleaner app
 brew "openssl"
 brew "ripgrep"
 brew "rsync"
 brew "sox"
-brew "tmux"
 brew "trash"
 brew "tree"
 brew "wget"
 brew "yazi"     # file manager
+brew "yt-dlp"    # fetch YouTube video metadata (view counts) without OAuth — used by pull-analytics-for-fragmented
 brew "zoxide"   # after upgrading, run: regen-shell-caches
 
 brew "fish"
@@ -47,23 +47,8 @@ brew "fzf"       # after upgrading, run: regen-shell-caches
 brew "htop"     # better top
 brew "procs"    # better ps
 
-#brew "briss" # pdf cropping tool
-#brew "btop"
-#brew "carapace"
-#brew "exa"
-#brew "exiftool"
-#brew "eye-d3"
-#brew "neovim"
-#brew "nushell"
-#brew "pgcli"
-#brew "poppler"
-#brew "powerlevel10k"
-#brew "starship"
-#brew "xmlstarlet" # fine-grain xml manipulation
-#brew "youtube-dl"
-
 ##############################################################
-##### development
+##### PROGRAMMING
 
 #############
 ##### general
@@ -75,49 +60,21 @@ brew "github-keygen"
 brew "lazygit"
 brew "serie"            # better git logs
 
-brew "gogcli"
-
 ######################
 ##### Web dev
 brew "cmark-gfm"  # GitHub Flavored Markdown → HTML (used by md-to-pdf for fast MD rendering)
-brew "htmltest"
-brew "web-ext"      # firefox add-on dev
+#brew "htmltest"
 brew "prettier"     # markdown parsing
 
 # website
 brew "hugo"
 brew "cloudflare-wrangler"
 
-
-######################
-##### android (zulu)
-# tap "mdogan/zulu"     # use sdk man
-# cask "zulu-jdk17"     # use sdk man
-# brew "kotlin"         # use sdk man
-# brew "gradle"         # use sdk man
-brew "scrcpy"
-brew "ktfmt"
-
-tap "sdkman/tap"
-brew "sdkman-cli"
-
-######################
-##### Ruby
-
-# brew "asdf"
-# brew "ruby-build"
-# brew "rbenv"
-# brew "ruby-install"
-# brew "postgresql"
-
 ######################
 ##### Javascript and TypeScript
 brew "typescript"
 brew "node"
 # npm-installed CLIs live in ~/.npm-global-packages and install via ~/.npm.sh.
-# npm install -g @google/gemini-cli
-# npm install -g @googleworkspace/cli
-# npm install -g @openai/codex
 # npm install -g defuddle
 # npm install -g portless@0.12.0
 
@@ -126,13 +83,6 @@ brew "node"
 brew "uv"    # python
 # uv-managed CLIs (tracked here; require uv above)
 # uv tool install --python 3.12 whisperx  # for fragmented video clip sharing
-# brew "pipx"
-# brew "pyenv"     # after upgrading, run: regen-shell-caches
-# brew "pyenv-virtualenv"
-# brew "python-tabulate"
-# brew "python@3.10"
-# brew "python3"   # caper local mock server
-# brew "python-yq" # caper local mock server
 
 ######################
 ##### go
@@ -144,96 +94,22 @@ brew "rustup-init" # we need rustup so we can manage stable toolchains required 
 brew "rust-script" # we depend on rust-script for shebang-driven Rust executables like commadd
 # remember to run `rustup-init -y`
 
-
-######################
-##### work
-brew "bazelisk"
-# cask "orbstack"
-brew "grpcurl" # caper
-
 #######################
 ######## AI apps
-#brew "opencode"
 brew "agent-browser"
-#brew "lightpanda-io/browser/lightpanda"
-brew "yt-dlp"    # fetch YouTube video metadata (view counts) without OAuth — used by pull-analytics-for-fragmented
-
-# cask "claude-code"    # using eohan # curl -fsSL https://claude.ai/install.sh | bash
-# cask "codex"          # using gohan
-# brew "gemini-cli"     # using gohan
-# brew "sst/tap/opencode"
-# npm install -g @mariozechner/pi-coding-agent
-
-#######################
-######## IDEs
-# cask "cursor"
-cask "zed"
-#cask "visual-studio-code"
-
 
 ##############################################################
-##### Mac apps
-#cask "firefox", args: { appdir: "~/Applications" }
-cask "brave-browser"
+##### macOS APPS
 
-#cask "ghostty" # manual install
-#cask "soundsource"
-cask "google-drive"
-cask "karabiner-elements"
-cask "netnewswire"
+cask "ghostty"
 cask "obsidian"
-cask "raycast"
-cask "slack"
 cask "tailscale-app"
-cask "the-unarchiver"
 
-#cask "1password"       # install 1password manually
-#cask "1password-cli"   # required for Raycast/Alfred integration
-#cask "imageoptim"
-#cask "keyboard-maestro"
-#cask "loopback"
-#cask "soulver"
-#cask "superduper"
-#cask "zerotier-one"
+#######################
+######## Fonts
 
-cask "font-figtree"
-cask "font-geist"
 cask "font-geist-mono"
-cask "font-inter"
-cask "font-jost"
-cask "font-sf-mono"
-cask "font-sn-pro"
-
-#cask "font-cascadia-code"
-#cask "font-cascadia-code-pl"
-#cask "font-hasklig"     # ligature version of font-source-code-pro
-#cask "font-ia-writer-duo"
-#cask "font-ia-writer-mono"
-#cask "font-ia-writer-quattro"
-#cask "font-ibm-plex"
-#cask "font-ibm-plex-mono"
-#cask "font-ibm-plex-mono"
-#cask "font-ibm-plex-mono-kg"
-#cask "font-ibm-plex-sans"
-#cask "font-ibm-plex-serif"
-#cask "font-jetbrains-mono"
-#cask "font-lilex"
-#cask "font-new-york"
-#cask "font-plus-jakarta-sans"
-#cask "font-roboto-mono"
-#cask "font-sf-compact"
-#cask "font-sf-pro"
-#cask "font-source-code-pro"
-#cask "kaushikgopal/tools/font-recursive-kg"
-
-# brew "mas"
-# mas "Folder Quick Look", id: 6753110395
-
-# mas "iA Writer", id: 775737590
-# mas "Xcode", id: 497799835
-# mas "Hand Mirror", id: 1502839586
-# mas "Things 3", id: 904280696
-
+cask "font-geist"
 
 ##############################################################
 ##### Helpful commands
@@ -244,3 +120,9 @@ cask "font-sn-pro"
 # brew deps --tree --installed asdf
 
 # see ~/.brew.sh for more commands
+
+##############################################################
+##### Machine-local packages
+
+local_brewfile = File.expand_path("~/.brewfile.local")
+instance_eval(File.read(local_brewfile), local_brewfile) if File.exist?(local_brewfile)

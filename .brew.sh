@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -euo pipefail
+
 # for regular updates on existing mac
 # `bash ~/.config/setup.sh NOOS`
 
@@ -8,14 +10,15 @@ GRAY='\033[1;30m'       # info
 PURPLE='\033[1;35m'     # making change
 NC='\033[0m' # No Color
 
+BREWFILE="$HOME/.brewfile"
 
 echo -e "\n\n\n${YELLOW}---- Homebrew updates${NC}"
 
-echo -e "${PURPLE}---- clean up to match brewfile ${NC}"
-brew bundle --force cleanup --file="~/.brewfile"
+echo -e "${PURPLE}---- clean up to match brewfile${NC}"
+brew bundle --force cleanup --file="$BREWFILE"
 
 echo -e "${PURPLE}---- installing from brewfile${NC}"
-brew bundle install -v --file="~/.brewfile"
+brew bundle install -v --file="$BREWFILE"
 
 echo -e "${PURPLE}---- installing npm global CLIs${NC}"
 if [ -x "$HOME/.npm.sh" ]; then
