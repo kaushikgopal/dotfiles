@@ -261,8 +261,7 @@ fi
 # trash ~/.local/share/fish/fish_history
 # ln -s $XDG_DATA_HOME/fish/fish_history ~/.local/share/fish/
 
-fish_config theme choose "dracpro"
-fish_config theme save
+# config.fish applies dracpro on each interactive fish startup.
 
 ##############################################################
 # DEV
