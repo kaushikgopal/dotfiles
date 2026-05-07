@@ -9,7 +9,7 @@
 function graft --wraps=graft --description 'Worktree manager with shell integration'
 	# Set marker to indicate shell integration is active
 	set -gx GRAFT_SHELL_INTEGRATION 1
-	set -gx GRAFT_COMPLETION_VERSION 3
+	set -gx GRAFT_COMPLETION_VERSION 5
 
 	# Run the actual graft binary
 	command graft $argv
