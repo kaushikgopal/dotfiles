@@ -12,6 +12,7 @@ NC='\033[0m' # No Color
 
 BREWFILE="$HOME/.brewfile"
 LOCAL_BREWFILE="$HOME/.brewfile.local"
+BREW_INSTALL_ONLY="${BREW_INSTALL_ONLY:-0}"
 
 echo -e "\n\n\n${YELLOW}---- Homebrew updates${NC}"
 
@@ -20,8 +21,12 @@ if [ -f "$LOCAL_BREWFILE" ]; then
     echo -e "${GRAY}---- ~/.brewfile will load local dependencies during cleanup and install${NC}"
 fi
 
-echo -e "${PURPLE}---- clean up to match brewfile${NC}"
-brew bundle --force cleanup --file="$BREWFILE"
+if [[ "$BREW_INSTALL_ONLY" != "1" ]]; then
+    echo -e "${PURPLE}---- clean up to match brewfile${NC}"
+    brew bundle --force cleanup --file="$BREWFILE"
+else
+    echo -e "${GRAY}---- bootstrap mode: skipping cleanup, cask upgrade, brew update, and brew upgrade${NC}"
+fi
 
 echo -e "${PURPLE}---- installing from brewfile${NC}"
 if [ -f "$LOCAL_BREWFILE" ]; then
@@ -36,13 +41,15 @@ else
     echo -e "${GRAY}---- ~/.npm.sh not found; skipping npm global CLIs${NC}"
 fi
 
-echo -e "${PURPLE}---- cask upgrade (via cu) ${NC}"
-brew cu --all --cleanup --yes
+if [[ "$BREW_INSTALL_ONLY" != "1" ]]; then
+    echo -e "${PURPLE}---- cask upgrade (via cu) ${NC}"
+    brew cu --all --cleanup --yes
 
-echo -e "${PURPLE}\n\n\n\n---- updating formulae${NC}"
-echo -e "${GRAY}\nupdate the local downloaded git repo with latest code${NC}"
-brew update
+    echo -e "${PURPLE}\n\n\n\n---- updating formulae${NC}"
+    echo -e "${GRAY}\nupdate the local downloaded git repo with latest code${NC}"
+    brew update
 
-echo -e "${PURPLE}---- upgrading packages${NC}"
-echo -e "${GRAY}\ndoes the actual upgrade of packages to update formulate from above step${NC}"
-brew upgrade
+    echo -e "${PURPLE}---- upgrading packages${NC}"
+    echo -e "${GRAY}\ndoes the actual upgrade of packages to update formulate from above step${NC}"
+    brew upgrade
+fi

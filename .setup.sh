@@ -148,7 +148,7 @@ fi
 echo -e "${GRAY}---- Turning homebrew analytics off.${NC}"
 brew analytics off
 
-source "$HOME/.brew.sh"
+BREW_INSTALL_ONLY=1 source "$HOME/.brew.sh"
 
 echo -e "${YELLOW}---- setting up github${NC}"
 
