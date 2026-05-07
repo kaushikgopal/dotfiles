@@ -157,11 +157,11 @@ function clone_if_absent {
     fi
 }
 
-# echo -e "${GRAY}---- delete native git if it exists${NC}"
-# # sudo rm -rf /usr/bin/git
-# delete_if_exists /etc/paths.d/git
-# delete_if_exists /etc/manpaths.d/git
-# # sudo pkgutil --forget --pkgs=GitOSX\.Installer\.git[A-Za-z0-9]*\.[a-z]*.pkg
+echo -e "${GRAY}---- delete native git if it exists${NC}"
+# sudo rm -rf /usr/bin/git
+delete_if_exists /etc/paths.d/git
+delete_if_exists /etc/manpaths.d/git
+# sudo pkgutil --forget --pkgs=GitOSX\.Installer\.git[A-Za-z0-9]*\.[a-z]*.pkg
 
 # ##############################################################
 # # zsh shell
@@ -289,10 +289,10 @@ cd ~
 # MISC.
 ##############################################################
 
-if [ ! -f /usr/local/bin/pdflatex ]; then
-    echo -e "\n\n\n${PURPLE}---- enable quick look plugins${NC}"
-    sudo ln -s /Library/Tex/Distributions/.DefaultTeX/Contents/Programs/x86_64/pdflatex /usr/local/bin/
-fi
+# if [ ! -f /usr/local/bin/pdflatex ]; then
+#     echo -e "\n\n\n${PURPLE}---- enable quick look plugins${NC}"
+#     sudo ln -s /Library/Tex/Distributions/.DefaultTeX/Contents/Programs/x86_64/pdflatex /usr/local/bin/
+# fi
 
 # echo -e "\n\n\n${YELLOW}---- Install TaskWarrior dependencies${NC}"
 # needed for shift-recurrence pirate
@@ -303,26 +303,10 @@ $(brew --prefix)/opt/fzf/install
 # source $HOME/.macos.sh
 # source $HOME/.cleanup.sh
 
-# if (( $# > 0 ))
-# then
-#     # atleast one argument supplied
-#     echo -e "${GRAY}---- ignoring OS updates${NC}"
-#     echo -e "${GRAY}---- ignoring Mac specific changes${NC}"
-# else
-#     source $HOME/.config/macos.sh
-#
-#     echo -e "\n\n\n${YELLOW}---- running macOS system update now${NC}"
-#     touch /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress;
-#     softwareupdate --install -a --verbose
-#     rm /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress
-xcode-select --install
-#sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer
-sudo xcode-select --switch /Library/Developer/CommandLineTools/
-# fi
 
-# SDK man for .kt dev & kscript
-curl -s "https://get.sdkman.io" | bash
-sdk install kotlin
+# # SDK man for .kt dev & kscript
+# curl -s "https://get.sdkman.io" | bash
+# sdk install kotlin
 
 unset delete_if_exists
 unset clone_if_absent

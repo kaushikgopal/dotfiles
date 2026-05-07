@@ -1,3 +1,5 @@
 # npm globals installed by ~/.npm.sh
 # Pin versions so dev-server tooling stays stable across machines.
+defuddle
+@googleworkspace/cli
 portless@0.12.0

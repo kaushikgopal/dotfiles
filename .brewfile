@@ -29,6 +29,7 @@ brew "ghostscript" # for pdfs
 brew "gnupg" # "openssl"
 brew "gum"   # agent-kombat
 brew "imagemagick"
+brew "jq"
 brew "mole"             # macOS cleaner app
 brew "openssl"
 brew "ripgrep"
@@ -75,12 +76,11 @@ brew "cloudflare-wrangler"
 brew "typescript"
 brew "node"
 # npm-installed CLIs live in ~/.npm-global-packages and install via ~/.npm.sh.
-# npm install -g defuddle
-# npm install -g portless@0.12.0
 
 ######################
 ##### .py
 brew "uv"    # python
+brew "python@3.13" # last30days and gcloud virtualenvs need a modern Python
 # uv-managed CLIs (tracked here; require uv above)
 # uv tool install --python 3.12 whisperx  # for fragmented video clip sharing
 
@@ -97,6 +97,11 @@ brew "rust-script" # we depend on rust-script for shebang-driven Rust executable
 #######################
 ######## AI apps
 brew "agent-browser"
+
+##############################################################
+##### Agent skills runtime
+
+cask "brave-browser" # agent-browser-kg and md-to-pdf use Brave directly
 
 ##############################################################
 ##### macOS APPS
