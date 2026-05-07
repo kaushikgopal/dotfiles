@@ -11,13 +11,22 @@ PURPLE='\033[1;35m'     # making change
 NC='\033[0m' # No Color
 
 BREWFILE="$HOME/.brewfile"
+LOCAL_BREWFILE="$HOME/.brewfile.local"
 
 echo -e "\n\n\n${YELLOW}---- Homebrew updates${NC}"
+
+if [ -f "$LOCAL_BREWFILE" ]; then
+    echo -e "${GRAY}---- found local brewfile @ ~/.brewfile.local${NC}"
+    echo -e "${GRAY}---- ~/.brewfile will load local dependencies during cleanup and install${NC}"
+fi
 
 echo -e "${PURPLE}---- clean up to match brewfile${NC}"
 brew bundle --force cleanup --file="$BREWFILE"
 
 echo -e "${PURPLE}---- installing from brewfile${NC}"
+if [ -f "$LOCAL_BREWFILE" ]; then
+    echo -e "${GRAY}---- installing dependencies from local brewfile${NC}"
+fi
 brew bundle install -v --file="$BREWFILE"
 
 echo -e "${PURPLE}---- installing npm global CLIs${NC}"
