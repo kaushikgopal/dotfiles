@@ -18,10 +18,6 @@ NC='\033[0m'
 # capture the current directory
 current_dir=$(pwd)
 
-# ensure submodules are initialized (TPM lives at .config/tmux/plugins/tpm)
-echo -e "${GRAY}••••••• initializing git submodules${NC}"
-git -C "$current_dir" submodule update --init --recursive
-
 # move into the home directory first
 pushd $HOME
 
@@ -53,7 +49,6 @@ files_to_link=(
     .profile
     .vim
     .vimrc
-    .config/tmux
 )
 
 for file in "${files_to_link[@]}"; do
