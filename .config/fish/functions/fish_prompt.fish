@@ -4,7 +4,6 @@ function fish_prompt
     set -l last_status $status
     __kg_prompt_separator
     set -l normal (set_color normal)
-    set -l usercolor (set_color $__kg_prompt_user)
     set -l prompt_leader " "
 
     # ------------------------------------------
@@ -78,10 +77,14 @@ function fish_prompt
 
     # Only show host if in SSH or container.
     # Cache the decision, but build the colored string fresh so theme changes apply.
-    if not set -q __kg_prompt_show_host
+    if not set -q __kg_prompt_show_host; or not set -q __kg_prompt_is_ssh
         set -g __kg_prompt_show_host 0
+        set -g __kg_prompt_is_ssh 0
         if set -q SSH_TTY
-            or begin
+            or set -q SSH_CONNECTION
+            set -g __kg_prompt_show_host 1
+            set -g __kg_prompt_is_ssh 1
+        else if begin
                 command -sq systemd-detect-virt
                 and systemd-detect-virt -q
             end
@@ -91,11 +94,11 @@ function fish_prompt
 
     set -l prompt_host ""
     if test $__kg_prompt_show_host -eq 1
-        set -l hostcolor $__kg_prompt_host
-        if set -q SSH_TTY
-            set hostcolor $__kg_prompt_host_remote
+        if test $__kg_prompt_is_ssh -eq 1
+            set prompt_host (set_color $__kg_prompt_status)$USER@$hostname$normal":"
+        else
+            set prompt_host (set_color $__kg_prompt_user)$USER$normal@(set_color $__kg_prompt_host)$hostname$normal":"
         end
-        set prompt_host $usercolor$USER$normal@(set_color $hostcolor)$hostname$normal":"
     end
 
     # ------------------------------------------

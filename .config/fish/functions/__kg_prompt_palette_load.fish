@@ -17,7 +17,7 @@ function __kg_prompt_palette_load --description 'Map the active fish theme file 
         set color_theme $fish_terminal_color_theme[1]
     end
 
-    if set -q __kg_prompt_theme_name __kg_prompt_theme_variant __kg_prompt_cwd __kg_prompt_branch __kg_prompt_separator
+    if set -q __kg_prompt_theme_name __kg_prompt_theme_variant __kg_prompt_cwd __kg_prompt_branch __kg_prompt_separator __kg_prompt_background
         and test "$__kg_prompt_theme_name" = "$theme_name"
         and test "$__kg_prompt_theme_variant" = "$color_theme"
         return
@@ -41,8 +41,10 @@ function __kg_prompt_palette_load --description 'Map the active fish theme file 
     set -l label_color yellow
     set -l dim_color brblack
     set -l separator_color 454158
+    set -l background_color 22212c
     if test "$color_theme" = light
         set separator_color cfcfde
+        set background_color f5f5f5
     end
 
     if test -r "$theme_path"
@@ -53,16 +55,21 @@ function __kg_prompt_palette_load --description 'Map the active fish theme file 
                 continue
             end
 
-            if string match -q '#*' -- $line
-                continue
-            end
-
             if string match -rq '^\[(light|dark|unknown)\]$' -- $line
                 set active_section (string replace -r '^\[(.*)\]$' '$1' -- $line)
                 continue
             end
 
             if test "$active_section" != "$color_theme"
+                continue
+            end
+
+            if string match -qr '^# preferred_background:' -- $line
+                set background_color (string replace -r '^# preferred_background:\s*' '' -- $line)
+                continue
+            end
+
+            if string match -q '#*' -- $line
                 continue
             end
 
@@ -125,6 +132,7 @@ function __kg_prompt_palette_load --description 'Map the active fish theme file 
     set -g __kg_prompt_label $label_color
     set -g __kg_prompt_dim $dim_color
     set -g __kg_prompt_separator $separator_color
+    set -g __kg_prompt_background $background_color
 
     set -g __kg_prompt_mode_default $branch_color
     set -g __kg_prompt_mode_insert $staged_color

@@ -31,6 +31,12 @@ function fish_right_prompt
     set -q VIRTUAL_ENV
     and set -l venv (string replace -r '.*/' '' -- "$VIRTUAL_ENV")
 
+    set -l ssh_badge
+    if set -q SSH_TTY
+        or set -q SSH_CONNECTION
+        set ssh_badge (set_color $__kg_prompt_background -b $__kg_prompt_status)" SSH "(set_color normal)
+    end
+
     set_color normal
-    string join " " -- $venv $duration $__fish_right_prompt_dt
+    string join " " -- $ssh_badge $venv $duration $__fish_right_prompt_dt
 end
