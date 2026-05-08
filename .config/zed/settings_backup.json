@@ -28,7 +28,7 @@
     },
   },
   "cursor_blink": false,
-  "hide_mouse": "on_typing_and_action",
+  "hide_mouse": "on_typing_and_movement",
   "relative_line_numbers": "enabled",
   "terminal": {
     "font_size": 12.5,
