@@ -4,7 +4,7 @@
 # ghostty +show-config --default --docs
 
 ##############################################
-# Misc
+# Behavior
 
 window-save-state               = always
 quit-after-last-window-closed   = true
@@ -15,10 +15,8 @@ mouse-hide-while-typing         = true
 focus-follows-mouse             = true
 macos-option-as-alt            = true
 
-
 ##############################################
 # Shell config
-# because i have both zsh and fish (mark this explicitly)
 
 # Shell integration enables Ghostty to hook into the shell for features like
 # cursor shape changes per mode, and — critically — SSH terminfo distribution.
@@ -46,70 +44,46 @@ keybind = super+shift+r=prompt_tab_title
 keybind = global:ctrl+shift+space=toggle_quick_terminal
 
 ##############################################
-# Look and Feel
+# Theme
 # ghostty +list-themes
+# ghostty +list-fonts
+
 # theme = dark:Zenwritten Dark,light:Zenwritten Light
 # theme = dark:Atom One Dark,light:Atom One Light
 # theme = dark:Monokai Pro Octagon,light:Monokai Pro Light
 # theme = Monokai Pro Octagon
 # theme = Monokai Pro Machine
-theme = Catpuccin Frappe
+# theme = Catppuccin Macchiato
+# theme = Ayu
+theme = Ayu Mirage
 
 adjust-cursor-thickness         = 3
 adjust-underline-position       = 3
-#background-opacity      = 0.95
 bell-features           = border
 bold-is-bright          = true
-cursor-style                = underline
-cursor-style-blink          = false
-#cursor-invert-fg-bg        = true
 cursor-color                = red
 cursor-opacity              = 0.6
-
+cursor-style                = underline
+cursor-style-blink          = false
+font-thicken            = true
 link-url                        = true
-
+minimum-contrast        = 1.05
+window-padding-balance          = true
 window-padding-x                = 10
 window-padding-y                = 8
-window-padding-balance          = true
-
 
 # macos-titlebar-style    = tabs
-#window-theme            = ghostty
-
-##############################################
-# Font combos
-# ghostty +list-fonts
-# lLiI1 oO0
-##############################################
-
-font-thicken            = true
-
-###########################################
-#########  FONT MATRIX ################
-
-#  !ilI17 AHH-eye-ell-Eye-one-seven
-#  co0ODQ see-oh-zero-Oh-Dee-Cue
-#  b6&B80 bee-six-et-Bee-eight-zero
-#  sS5$S  ess-Ess-five-dollar-Ess
-#  abcdefghijklmnopqrstuvwxyz .?!'"
-#  ABCDEFGHIJKLMNOPQRSTUVWXYZ ,;:-_
-#  1234567890 ,._-+=>< --__ ~-+=><
-#  !@#$%^&*() <> '"`~_-=+*\/|!?,.:;
-#  {}[]()<>$*-+=/#_%^@\&|~?'" !,.;:
-#  a@ B8 dbqp E3 i! 96 G6& g9qCGQ
-#  coO08BbODQ |!iIlL17 $5SZ2zsz
-#  TtijJlFPRK vvw VVW \/V
+# cursor-invert-fg-bg        = true
+# background-opacity      = 0.95
+# window-theme            = ghostty
 
 # Geist Mono -------- -->
 font-family             = Geist Mono
-font-variation          = wght=350
-# font-variation-bold     = wght=600
+font-feature            = ss04,ss11
 font-size               = 13
 adjust-cell-height      = 30%
-font-feature            = ss04,ss11
-
-# # ss03 - alternative l
-# # ss06 - alternative G
+font-variation          = wght=350
+font-variation-bold     = wght=600
 
 # # Berkeley Mono (TX-02-Variable) -------- -->
 # font-family             = TX-02-Variable
@@ -127,3 +101,21 @@ font-feature            = ss04,ss11
 # # font-style-italic       = Medium Italic
 # font-style-bold         = Semibold
 # font-style-bold-italic  = Semibold Italic
+
+###########################################
+#########  FONT MATRIX ################
+
+# lLiI1 oO0
+#  !ilI17 AHH-eye-ell-Eye-one-seven
+#  co0ODQ see-oh-zero-Oh-Dee-Cue
+#  b6&B80 bee-six-et-Bee-eight-zero
+#  sS5$S  ess-Ess-five-dollar-Ess
+#  abcdefghijklmnopqrstuvwxyz .?!'"
+#  ABCDEFGHIJKLMNOPQRSTUVWXYZ ,;:-_
+#  1234567890 ,._-+=>< --__ ~-+=><
+#  !@#$%^&*() <> '"`~_-=+*\/|!?,.:;
+#  {}[]()<>$*-+=/#_%^@\&|~?'" !,.;:
+#  a@ B8 dbqp E3 i! 96 G6& g9qCGQ
+#  coO08BbODQ |!iIlL17 $5SZ2zsz
+#  TtijJlFPRK vvw VVW \/V
+
