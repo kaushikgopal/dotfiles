@@ -66,6 +66,7 @@ cursor-opacity              = 0.6
 cursor-style                = underline
 cursor-style-blink          = false
 font-thicken            = true
+font-thicken-strength   = 1
 link-url                        = true
 minimum-contrast        = 1.05
 window-padding-balance          = true
@@ -74,14 +75,16 @@ window-padding-y                = 8
 
 # macos-titlebar-style    = tabs
 # cursor-invert-fg-bg        = true
-# background-opacity      = 0.95
+# background-opacity  = 0.85
+# background-blur     = 16
 # window-theme            = ghostty
 
 # Geist Mono -------- -->
 font-family             = Geist Mono
 font-feature            = ss04,ss11
 font-size               = 13
-adjust-cell-height      = 30%
+# adjust-cell-height      = 30%
+adjust-cell-height      = 6
 font-variation          = wght=350
 font-variation-bold     = wght=600
 
