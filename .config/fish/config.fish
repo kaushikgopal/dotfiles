@@ -35,64 +35,37 @@ if status is-interactive
 
     # https://fishshell.com/docs/3.2/cmds/abbr.html#internals
 
-    abbr -a -- ppath 'echo "$PATH\n\n" | tr ":" "\n"' # print path
-
-
-    abbr -a -- lsd 'tree -d -CFL 1'
-    abbr -a -- tre 'tree --dirsfirst -CFL'
-    abbr -a -- tre2 'tree --dirsfirst -CFL 2'
-    abbr -a -- tre3 'tree --dirsfirst -CFL 3'
-
-    abbr -a -- oo   'open .'
-    abbr -a -- t    trash
-
     abbr -a -- b   bat
-    abbr -a -- cat bat
-
     abbr -a -- bid './bin/dev'
-    abbr -a -- bir './bin/rails'
+    abbr -a -- cl   claude --dangerously-skip-permissions
+    abbr -a -- clp  claude --plugin-dir ~/dev/off/claude-marketplace/caper/android
+    abbr -a -- co   codex --yolo
+    abbr -a -- fd 'rg --files'  # use rg instead of fd (one less dep)
+    abbr -a -- g    git # using a git function which is better
+    abbr -a -- g.   git add .
+    abbr -a -- ge      gemini
+    abbr -a -- gey     gemini --yolo
     abbr -a -- gr gradle
+    abbr -a -- gs "git status -s"
     abbr -a -- gw './gradlew'
+    abbr -a -- lsd 'tree -d -CFL 1'
+    abbr -a -- oc       opencode
+    abbr -a -- oca      opencode attach localhost:4096 --dir .
+    abbr -a -- ocw      opencode web --mdns # --mdns-domain myproject.local
+    abbr -a -- oo 'open .'
     abbr -a -- pipw 'env PIP_CONFIG_FILE=$PIP_CONFIG_WORK pip install'
-
-    # abbr -a -- fd 'rg --files'  # use rg instead of fd (one less dep)
+    abbr -a -- ppath 'echo "$PATH\n\n" | tr ":" "\n"' # print path
+    abbr -a -- restart_karabiner 'launchctl kickstart -k gui/(id -u)/org.pqrs.service.agent.karabiner_console_user_server'
     abbr -a -- rgu 'rg -u'
     abbr -a -- rguu 'rg -uu'
     abbr -a -- rguuu 'rg -uuu'
-
-    # git commands
-    # abbr -a -- gg   lazygit
-    abbr -a -- g    git # using a git function which is better
-    abbr -a -- g.   git add .
-    abbr -a -- gs   "git status -s"
-    abbr -a -- gcm  git cm
-    abbr -a -- greb 'git rebase --interactive HEAD~'
-
-    # llm commands
-    #abbr -a -- lm  llm
-    #abbr -a -- lmm llm -m
-    #abbr -a -- lmc llm cmd
-
-    abbr -a -- co      codex --yolo
-
-    abbr -a -- cl     claude --dangerously-skip-permissions
-    abbr -a -- clp     claude --plugin-dir ~/dev/off/claude-marketplace/caper/android
-
-    abbr -a -- oc       opencode
-    abbr -a -- ocw      opencode web --mdns # --mdns-domain myproject.local
-    abbr -a -- oca      opencode attach localhost:4096 --dir .
-
-    abbr -a -- gl     glow --tui
-
-    abbr -a -- ge      gemini
-    abbr -a -- gey     gemini --yolo
-
-    abbr -a -- z   zed
-
+    abbr -a -- t   trash
+    abbr -a -- tre 'tree --dirsfirst -CFL'
+    abbr -a -- tre2 'tree --dirsfirst -CFL 2'
+    abbr -a -- tre3 'tree --dirsfirst -CFL 3'
     abbr -a -- vimo vimn
     abbr -a -- vimt 'vimn -t'
-
-    abbr -a -- restart_karabiner 'launchctl kickstart -k gui/(id -u)/org.pqrs.service.agent.karabiner_console_user_server'
+    abbr -a -- z   zed
 end
 
 # Match Yazi's recommended shell-wrapper flow so quitting with `q` can update
