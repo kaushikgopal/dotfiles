@@ -52,8 +52,8 @@ keybind = global:ctrl+shift+space=toggle_quick_terminal
 # theme = dark:Atom One Dark,light:Atom One Light
 # theme = dark:Monokai Pro Octagon,light:Monokai Pro Light
 # theme = Monokai Pro Octagon
-theme = Monokai Pro Machine
-
+# theme = Monokai Pro Machine
+theme = Catpuccin Frappe
 
 adjust-cursor-thickness         = 3
 adjust-underline-position       = 3
