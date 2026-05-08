@@ -108,7 +108,6 @@ cask "brave-browser" # agent-browser-kg and md-to-pdf use Brave directly
 
 cask "ghostty"
 cask "obsidian"
-cask "tailscale-app"
 
 #######################
 ######## Fonts
