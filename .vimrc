@@ -306,7 +306,8 @@ set tabstop=4
 
 "let g:netrw_altv=1  " open vertical split
 let g:netrw_banner = 0
-"let g:netrw_browse_split = 2
+" Open selected file in previous editing window so netrw stays visible on :q
+let g:netrw_browse_split = 4
 let g:netrw_list_hide= '.*\.swp$' " don't display .swp files
 let g:netrw_liststyle = 3 " use tree style by default
 "let g:netrw_winsize = 25 " set width to 25% of page
