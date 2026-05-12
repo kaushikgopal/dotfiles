@@ -54,8 +54,8 @@ keybind = global:ctrl+shift+space=toggle_quick_terminal
 # theme = Monokai Pro Octagon
 # theme = Monokai Pro Machine
 # theme = Catppuccin Macchiato
-# theme = Ayu
-theme = Ayu Mirage
+theme = Ayu
+# theme = Ayu Mirage
 
 adjust-cursor-thickness         = 3
 adjust-underline-position       = 3
