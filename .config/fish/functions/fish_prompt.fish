@@ -95,7 +95,7 @@ function fish_prompt
     set -l prompt_host ""
     if test $__kg_prompt_show_host -eq 1
         if test $__kg_prompt_is_ssh -eq 1
-            set prompt_host (set_color $__kg_prompt_host_remote)$USER@$hostname$normal
+            set prompt_host (set_color --bold $__kg_prompt_host_remote)$USER@$hostname$normal
         else
             set prompt_host (set_color $__kg_prompt_user)$USER$normal@(set_color $__kg_prompt_host)$hostname$normal
         end
