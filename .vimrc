@@ -390,13 +390,35 @@ nnoremap <leader>s :set spell!<cr>
 " newer vim versions will sync clilpboard now
 set clipboard=unnamed
 
+" Quiet high-contrast UI chrome so the buffer content carries the focus.
+function! s:ApplyQuietUiHighlights() abort
+    highlight LineNr guifg=#606875 guibg=NONE gui=NONE
+    highlight LineNrAbove guifg=#606875 guibg=NONE gui=NONE
+    highlight LineNrBelow guifg=#606875 guibg=NONE gui=NONE
+    highlight CursorLineNr guifg=#d7995b guibg=#242630 gui=bold
+    highlight CursorLine guibg=#20222a gui=NONE
+    highlight ColorColumn guibg=#2a211f
+    highlight Directory guifg=#7aa2a2 gui=NONE
+    highlight VertSplit cterm=NONE gui=NONE ctermfg=240 ctermbg=NONE guifg=#3d4350 guibg=NONE
+    highlight WinSeparator cterm=NONE gui=NONE ctermfg=240 ctermbg=NONE guifg=#3d4350 guibg=NONE
+
+    highlight GlowMarkdownLineNr guifg=#606875 guibg=#1b1b1b gui=NONE
+    highlight GlowMarkdownCursorLine guibg=#20222a gui=NONE
+    highlight GlowMarkdownCursorLineNr guifg=#d7995b guibg=#242630 gui=bold
+    highlight GlowMarkdownColorColumn guibg=#2a211f
+endfunction
+
+augroup vimrcQuietUi
+    autocmd!
+    autocmd ColorScheme * call <SID>ApplyQuietUiHighlights()
+augroup END
+call s:ApplyQuietUiHighlights()
+
 " Make the netrw split read like a thin divider
 " instead of a reversed block. The box-drawing glyph renders more cleanly in
 " terminal Vim than the default pipe.
 set fillchars-=vert:\|
 set fillchars+=vert:│
-highlight VertSplit cterm=NONE gui=NONE ctermfg=240 ctermbg=NONE guifg=#6272A4 guibg=NONE
-highlight WinSeparator cterm=NONE gui=NONE ctermfg=240 ctermbg=NONE guifg=#6272A4 guibg=NONE
 
 " Toggle the left-hand file tree and keep edits in the main window.
 nnoremap <silent> <leader>e :Lexplore<CR>
