@@ -422,9 +422,39 @@ let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
   \ 'ctrl-s': 'split',
   \ 'ctrl-v': 'vsplit' }
+
+" Keep the grep picker readable in narrow panes: ripgrep still searches file
+" contents, but fzf displays only filename, line number, and a short parent path.
+function! s:rg_compact_command_prefix() abort
+  let l:helper = exists('$XDG_BIN_HOME') && !empty($XDG_BIN_HOME)
+    \ ? expand('$XDG_BIN_HOME/rg-fzf-compact')
+    \ : expand('~/.local/bin/rg-fzf-compact')
+  return executable(l:helper) ? fzf#shellescape(l:helper) : ''
+endfunction
+
+function! s:rg_compact(query, fullscreen) abort
+  let l:spec = fzf#vim#with_preview({
+    \ 'placeholder': '{2}:{3}:{4}',
+    \ 'options': [
+    \   '--prompt', 'Rg> ',
+    \   '--delimiter', "\t",
+    \   '--with-nth', '1',
+    \   '--accept-nth', '{2}:{3}:{4}:',
+    \   '--color', 'bg+:#3a3a3a'
+    \ ]}, 'right,60%,wrap,+{3}/2', 'ctrl-/')
+  let l:command_prefix = s:rg_compact_command_prefix()
+  if empty(l:command_prefix)
+    echoerr 'rg-fzf-compact helper not found'
+    return
+  endif
+  call fzf#vim#grep2(l:command_prefix, a:query, l:spec, a:fullscreen)
+endfunction
+
+command! -bang -nargs=* RgCompact call <SID>rg_compact(<q-args>, <bang>0)
+
 " FZF pickers for files, content, and open buffers.
 nnoremap <silent> <leader>f :Files<CR>
-nnoremap <silent> <leader>g :Rg<CR>
+nnoremap <silent> <leader>g :RgCompact<CR>
 nnoremap <silent> <leader>b :Buffers<CR>
 
 

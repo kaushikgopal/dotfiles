@@ -1,0 +1,58 @@
+#!/usr/bin/env bash
+
+query=${1-}
+if [[ -z "$query" ]]; then
+  exit 0
+fi
+
+rg --column --line-number --no-heading --color=never --smart-case -- "$query" \
+  | awk '
+    BEGIN {
+      FS = ":"
+      OFS = "\t"
+
+      reset = "\033[0m"
+      dim = "\033[2m"
+      file_color = "\033[36m"
+      line_color = "\033[33m"
+      label_width = 28
+    }
+
+    {
+      path = $1
+      line = $2
+      col = $3
+
+      n = split(path, parts, "/")
+      file = parts[n]
+      dir = ""
+
+      if (n > 1) {
+        start = n > 3 ? n - 2 : 1
+        for (i = start; i < n; i++) {
+          dir = dir (dir == "" ? "" : "/") parts[i]
+        }
+        if (start > 1) {
+          dir = ".../" dir
+        }
+      }
+
+      label_len = length(file) + 1 + length(line)
+      padding_len = label_width - label_len
+      if (padding_len < 2) {
+        padding_len = 2
+      }
+
+      padding = ""
+      for (i = 0; i < padding_len; i++) {
+        padding = padding " "
+      }
+
+      display = file_color file reset dim ":" reset line_color line reset
+      if (dir != "") {
+        display = display padding dim dir reset
+      }
+
+      print display, path, line, col
+    }
+  '
