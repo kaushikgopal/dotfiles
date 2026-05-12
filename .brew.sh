@@ -43,3 +43,16 @@ if [[ "$BREW_INSTALL_ONLY" != "1" ]]; then
     echo -e "${GRAY}\ndoes the actual upgrade of packages to update formulate from above step${NC}"
     brew upgrade
 fi
+
+# Hermes/Homebrew Python note:
+# As of hermes-agent 2026.5.7 on Brainiac, Homebrew python@3.14's
+# pyexpat extension may link against macOS /usr/lib/libexpat.1.dylib and fail
+# with "Symbol not found: _XML_SetAllocTrackerActivationThreshold". If a future
+# brew upgrade/reinstall brings that failure back, uncomment and run this
+# targeted repair after brew has finished.
+#
+# PYPATH="/opt/homebrew/Cellar/python@3.14/3.14.4_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/lib-dynload/pyexpat.cpython-314-darwin.so"
+# if [ -f "$PYPATH" ]; then
+#     install_name_tool -change /usr/lib/libexpat.1.dylib /opt/homebrew/opt/expat/lib/libexpat.1.dylib "$PYPATH" 2>/dev/null || true
+#     codesign --force --sign - "$PYPATH"
+# fi
