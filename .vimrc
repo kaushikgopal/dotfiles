@@ -304,13 +304,13 @@ set tabstop=4
 " Netrw : Vim's file browser
 " =========================================================
 
-"let g:netrw_altv=1  " open vertical split
+" Keep netrw compact and tree-shaped for project browsing with :Lexplore.
 let g:netrw_banner = 0
-" Open selected file in previous editing window so netrw stays visible on :q
-let g:netrw_browse_split = 4
 let g:netrw_list_hide= '.*\.swp$' " don't display .swp files
 let g:netrw_liststyle = 3 " use tree style by default
-"let g:netrw_winsize = 25 " set width to 25% of page
+let g:netrw_winsize = -40
+" Open selected files in the previous editing window instead of replacing the tree.
+let g:netrw_browse_split = 4
 
 " ===================================
 " autocmd (file settings/defaults)
@@ -390,10 +390,9 @@ nnoremap <leader>s :set spell!<cr>
 " newer vim versions will sync clilpboard now
 set clipboard=unnamed
 
-" Keep the file tree predictable and make the split read like a thin divider
+" Make the netrw split read like a thin divider
 " instead of a reversed block. The box-drawing glyph renders more cleanly in
 " terminal Vim than the default pipe.
-let g:netrw_winsize = -40
 set fillchars-=vert:\|
 set fillchars+=vert:│
 highlight VertSplit cterm=NONE gui=NONE ctermfg=240 ctermbg=NONE guifg=#6272A4 guibg=NONE
