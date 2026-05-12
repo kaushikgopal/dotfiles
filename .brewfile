@@ -27,7 +27,7 @@ brew "ffmpeg-full" # full allows things like transcript used for fragmented clip
 brew "gawk"
 brew "ghostscript" # for pdfs
 brew "gnupg" # "openssl"
-brew "gum"   # agent-kombat
+brew "gum"   # agent-kombat + aikado skills import
 brew "imagemagick"
 brew "jq"
 brew "mole"             # macOS cleaner app
