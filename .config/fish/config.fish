@@ -59,8 +59,6 @@ if status is-interactive
     abbr -a -- rgu 'rg -u'
     abbr -a -- rguu 'rg -uu'
     abbr -a -- rguuu 'rg -uuu'
-    abbr -a -- skilli 'npx -y skills@latest add $HOME_AIKADO --agent universal -y --skill'
-    abbr -a -- skilll 'npx -y skills@latest add $HOME_AIKADO --list'
     abbr -a -- t   trash
     abbr -a -- tre 'tree --dirsfirst -CFL'
     abbr -a -- tre2 'tree --dirsfirst -CFL 2'
@@ -95,7 +93,6 @@ set -gx XDG_DATA_HOME $HOME/.local/share
 set -gx XDG_STATE_HOME $HOME/.local/state
 
 set -gx EDITOR vim
-set -gx HOME_AIKADO $HOME/dev/per/aikado
 
 set -gx ANDROID_HOME $HOME/Library/Android/sdk
 set -gx JAVA_HOME $HOME/Applications/Android\ Studio.app/Contents/jbr/Contents/Home
