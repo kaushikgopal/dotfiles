@@ -1,0 +1,30 @@
+# Cursor OpenCode - adapted from OpenCode's bundled Cursor theme.
+#
+# Ghostty themes are ANSI palettes, so this maps OpenCode's semantic UI and
+# syntax colors onto terminal color slots instead of trying to preserve every
+# token scope one-for-one.
+
+palette = 0=#181818
+palette = 1=#e34671
+palette = 2=#3fa266
+palette = 3=#f1b467
+palette = 4=#81a1c1
+palette = 5=#e394dc
+palette = 6=#82d2ce
+palette = 7=#e4e4e4
+
+palette = 8=#5f5f5f
+palette = 9=#fc6b83
+palette = 10=#70b489
+palette = 11=#f8c762
+palette = 12=#88c0d0
+palette = 13=#aaa0fa
+palette = 14=#88c0d0
+palette = 15=#ffffff
+
+background = #181818
+foreground = #e4e4e4
+cursor-color = #82d2ce
+cursor-text = #181818
+selection-background = #2b4c4c
+selection-foreground = #e4e4e4

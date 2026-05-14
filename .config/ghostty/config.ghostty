@@ -54,14 +54,16 @@ keybind = global:ctrl+shift+space=toggle_quick_terminal
 # theme = Monokai Pro Octagon
 # theme = Monokai Pro Machine
 # theme = Catppuccin Macchiato
-theme = Ayu
+# theme = Catppuccin Mocha
+# theme = Atom One Dark
+theme = cursor-opencode
 # theme = Ayu Mirage
 
 adjust-cursor-thickness         = 3
 adjust-underline-position       = 3
 bell-features           = border
 bold-is-bright          = true
-cursor-color                = red
+cursor-color                = #82d2ce
 cursor-opacity              = 0.6
 cursor-style                = underline
 cursor-style-blink          = false
@@ -85,7 +87,7 @@ font-feature            = ss04,ss11
 font-size               = 13
 # adjust-cell-height      = 30%
 adjust-cell-height      = 6
-font-variation          = wght=350
+font-variation          = wght=400
 font-variation-bold     = wght=600
 
 # # Berkeley Mono (TX-02-Variable) -------- -->
@@ -121,4 +123,3 @@ font-variation-bold     = wght=600
 #  a@ B8 dbqp E3 i! 96 G6& g9qCGQ
 #  coO08BbODQ |!iIlL17 $5SZ2zsz
 #  TtijJlFPRK vvw VVW \/V
-
