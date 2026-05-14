@@ -56,7 +56,7 @@ keybind = global:ctrl+shift+space=toggle_quick_terminal
 # theme = Catppuccin Macchiato
 # theme = Catppuccin Mocha
 # theme = Atom One Dark
-theme = cursor-opencode
+theme = kursor
 # theme = Ayu Mirage
 
 adjust-cursor-thickness         = 3

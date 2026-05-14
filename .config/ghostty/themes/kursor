@@ -1,4 +1,4 @@
-# Cursor OpenCode - adapted from OpenCode's bundled Cursor theme.
+# Kursor - adapted from OpenCode's bundled Cursor theme.
 #
 # Ghostty themes are ANSI palettes, so this maps OpenCode's semantic UI and
 # syntax colors onto terminal color slots instead of trying to preserve every
