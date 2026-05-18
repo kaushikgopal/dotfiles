@@ -112,8 +112,7 @@ cask "obsidian"
 #######################
 ######## Fonts
 
-cask "font-geist-mono"
-cask "font-geist"
+cask "font-lilex"
 
 ##############################################################
 ##### Helpful commands
