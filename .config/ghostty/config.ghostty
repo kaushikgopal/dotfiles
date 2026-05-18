@@ -58,6 +58,7 @@ keybind = global:ctrl+shift+space=toggle_quick_terminal
 # theme = Atom One Dark
 theme = kursor
 # theme = Ayu Mirage
+theme = dark:kursor-dark,light:kursor
 
 adjust-cursor-thickness         = 3
 adjust-underline-position       = 3
