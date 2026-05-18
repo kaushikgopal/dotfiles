@@ -49,7 +49,7 @@ if status is-interactive
     abbr -a -- gs "git status -s"
     abbr -a -- gw './gradlew'
     abbr -a -- lsd 'tree -d -CFL 1'
-    abbr -a -- oc       opencode
+    abbr -a -- oc       opencode --yolo
     abbr -a -- oca      opencode attach localhost:4096 --dir .
     abbr -a -- ocw      opencode web --mdns # --mdns-domain myproject.local
     abbr -a -- oo 'open .'
