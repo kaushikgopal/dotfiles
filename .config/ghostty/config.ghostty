@@ -82,68 +82,6 @@ window-padding-y                = 8
 # background-blur     = 16
 # window-theme            = ghostty
 
-## Geist Mono -------- -->
-#font-family             = Geist Mono
-#font-size               = 13
-#adjust-cell-height      = 5
-#font-variation          = wght=375
-#font-variation-bold     = wght=600
-#font-feature            = ss04,ss11
-#
-##
-#
-# Lilex -------- -->
-font-family             = Lilex
-font-size               = 14
-adjust-cell-height      = 5
-font-feature            = cv15,ss04, cv11,cv13
-#font-style              = Regular
-#font-style-bold         = Medium
-# calt  - :> :< >: <: :>: :<: <:> >:< <:<>:>
-# ss01 - <<=
-# cv15 # ss04 ############
-# cv13  ()
-# cv11          |> <|
-# cv02 cv03     g
-
-
-
-## Recursive -------- -->
-#font-family             = Recursive
-#font-size               = 14
-#adjust-cell-height      = 7
-#font-variation          = wght=370
-## font-variation          = CASL=0
-#font-feature            = dlig,ss05,ss07,ss08,ss10
-## ss02  - single story g
-#### ss03  - simplified f
-#### ss04  - simplified i
-#### ss05  - simplified l
-# ss06  - simplified r
-# ss07  - simplified italic diagnols kwxyz
-# ss08  - no serif LZ
-# ss10  - dotted 0
-# ss11  - simplified 1
-# ss12  - simplified @
-
-
-
-
-
-
-## Berkeley Mono (TX-02-Variable) -------- -->
-#font-family             = TX-02-Variable
-#font-variation          = wght=375
-#font-variation-bold     = wght=700
-#font-size               = 14
-#adjust-cell-height      = 7
-#font-feature            = ss01,ss06
-#
-#
-#
-#
-
-
 ###########################################
 #########  FONT MATRIX ################
 
@@ -160,3 +98,71 @@ font-feature            = cv15,ss04, cv11,cv13
 #  a@ B8 dbqp E3 i! 96 G6& g9qCGQ
 #  coO08BbODQ |!iIlL17 $5SZ2zsz
 #  TtijJlFPRK vvw VVW \/V
+
+# Geist Mono -------- -->
+font-family             = Geist Mono
+font-size               = 14
+adjust-cell-height      = 5
+font-feature            = ss03,ss11
+font-variation          = wght=400
+# font-variation-bold     = wght=600
+# ss01  - no descending tail on a
+###### ss02  - alternate a
+###### ss03  - alternate l
+###### ss04  - alternate R
+# ss06  - alternate G
+# ss11  - ligatures
+
+## Berkeley Mono (TX-02-Variable) -------- -->
+#font-family             = TX-02-Variable
+#font-size               = 14
+#adjust-cell-height      = 7
+## font-feature            = ss01,ss06
+##font-variation          = wght=375
+##font-variation-bold     = wght=700
+## |
+####
+####
+###
+
+
+## Recursive -------- -->
+#font-family             = Recursive
+#font-size               = 13.5
+#adjust-cell-height      = 8
+#font-feature            = dlig,ss04,ss06,ss08,ss10,ss11,ss12
+#font-variation          = CASL=0
+##font-variation          = wght=350
+##font-variation-bold         = Medium
+## ss02  - single story g
+#### ss03  - simplified f
+#### ss04  - simplified i
+### ss05  - simplified l
+# ss06  - simplified r
+# ss07  - simplified italic diagnols kwxyz
+# ss08  - no serif LZ
+# ss10  - dotted 0
+# ss11  - simplified 1
+# ss12  - simplified @
+
+
+
+## Lilex -------- -->
+#font-family             = Lilex
+#font-size               = 14
+#adjust-cell-height      = 5
+#font-feature            = cv15,ss04, cv11,cv13
+##font-style              = Regular
+#font-style-bold         = Medium
+## calt  - :> :< >: <: :>: :<: <:> >:< <:<>:>
+#### ss01 - <<=
+#### cv15 # ss04 ############
+#### cv13  ()
+# cv11          |> <|
+# cv02 cv03     g
+
+
+
+
+
+

@@ -9,38 +9,37 @@
 {
   "cli_default_open_behavior": "new_window",
   "theme": "Zedokai Darker (Filter Machine)",
-  // "buffer_font_family": "Recursive",
-  "buffer_font_size": 13.5,
+  "buffer_font_size": 14.5,
   "buffer_line_height": { "custom": 1.45 },
-  // ------------------------ Recursive
-  "buffer_font_features": {
-    "cv02": true,
-    "cv11": true,
-    "cv13": true,
-    "ss04": true, "cv15": true
-  },
-  // ------------------------ Recursive
+  // ------------------------ Lilex
+  // "buffer_font_features": {
+  //   "cv11": true,
+  //   "cv13": true,
+  //   "ss04": true, "cv15": true
+  // },
+  // // ------------------------ Recursive
+  // "buffer_font_family": "Recursive",
   // "buffer_font_features": {
   //   "dlig": true,
   //   // "ss02": false, // single story g
-  //   "ss03": true, // simplified f
-  //   // "ss04": false, // simplified i
+  //   "ss04": false, // simplified i
   //   "ss05": true, // simplified i
-  //   // "ss06": false, // simplified r
+  //   "ss06": false, // simplified r
   //   "ss08": true, // no serif LZ
   //   "ss10": true, // dotted 0
   //   "ss11": true, // simplified 1
   //   "ss12": true, // simplified @
   // },
   // ------------------------ Geist Mono
-  //   "buffer_font_features": {
-  //     // "ss01": true, // no descending tail on a
-  //     // "ss02": true, // alternate a
-  //     // "ss03": true, // alternate l
-  //     "ss04": true, // alternate R
-  //     // "ss06": true, // alternate G
-  //     "ss11": true, // ligatures
-  //   },
+  "buffer_font_family": "Geist Mono",
+  "buffer_font_features": {
+    // "ss01": true, // no descending tail on a
+    // "ss02": true, // alternate a
+    "ss03": true, // alternate l
+    // "ss04": true, // alternate R
+    // "ss06": true, // alternate G
+    "ss11": true, // ligatures ->
+  },
   // --------
   "autosave": {
     "after_delay": {
