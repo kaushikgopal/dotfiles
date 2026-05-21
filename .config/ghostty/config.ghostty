@@ -101,10 +101,10 @@ window-padding-y                = 8
 
 # Geist Mono -------- -->
 font-family             = Geist Mono
-font-size               = 14
+font-size               = 13.5
 adjust-cell-height      = 5
 font-feature            = ss03,ss11
-font-variation          = wght=400
+#font-variation          = wght=400
 # font-variation-bold     = wght=600
 # ss01  - no descending tail on a
 ###### ss02  - alternate a
