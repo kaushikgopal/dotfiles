@@ -99,31 +99,31 @@ window-padding-y                = 8
 #  coO08BbODQ |!iIlL17 $5SZ2zsz
 #  TtijJlFPRK vvw VVW \/V
 
-# Geist Mono -------- -->
-font-family             = Geist Mono
-font-size               = 13.5
-adjust-cell-height      = 5
-font-feature            = ss03,ss11
-#font-variation          = wght=400
-# font-variation-bold     = wght=600
-# ss01  - no descending tail on a
-###### ss02  - alternate a
-###### ss03  - alternate l
-###### ss04  - alternate R
-# ss06  - alternate G
-# ss11  - ligatures
+## Geist Mono -------- -->
+#font-family             = Geist Mono
+#font-size               = 13.5
+#adjust-cell-height      = 5
+#font-feature            = ss03,ss11
+##font-variation          = wght=400
+## font-variation-bold     = wght=600
+## ss01  - no descending tail on a
+####### ss02  - alternate a
+####### ss03  - alternate l
+####### ss04  - alternate R
+## ss06  - alternate G
+## ss11  - ligatures
 
-## Berkeley Mono (TX-02-Variable) -------- -->
-#font-family             = TX-02-Variable
-#font-size               = 14
-#adjust-cell-height      = 7
-## font-feature            = ss01,ss06
-##font-variation          = wght=375
-##font-variation-bold     = wght=700
-## |
-####
-####
+# Berkeley Mono (TX-02-Variable) -------- -->
+font-family             = TX-02-Variable
+font-size               = 14
+adjust-cell-height      = 4
+# font-feature            = ss01,ss06
+#font-variation          = wght=375
+#font-variation-bold     = wght=700
+# |
 ###
+###
+##
 
 
 ## Recursive -------- -->
@@ -147,19 +147,19 @@ font-feature            = ss03,ss11
 
 
 
-## Lilex -------- -->
-#font-family             = Lilex
-#font-size               = 14
-#adjust-cell-height      = 5
-#font-feature            = cv15,ss04, cv11,cv13
-##font-style              = Regular
-#font-style-bold         = Medium
-## calt  - :> :< >: <: :>: :<: <:> >:< <:<>:>
-#### ss01 - <<=
-#### cv15 # ss04 ############
-#### cv13  ()
-# cv11          |> <|
-# cv02 cv03     g
+# # Lilex -------- -->
+# font-family             = Lilex
+# font-size               = 14
+# adjust-cell-height      = 4
+# font-feature            = cv15,ss04, cv11,cv13
+# #font-style              = Regular
+# font-style-bold         = Medium
+# # calt  - :> :< >: <: :>: :<: <:> >:< <:<>:>
+# ### ss01 - <<=
+# ### cv15 # ss04 ############
+# ### cv13  ()
+# # cv11          |> <|
+# # cv02 cv03     g
 
 
 
