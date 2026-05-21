@@ -115,8 +115,8 @@ window-padding-y                = 8
 
 # Berkeley Mono (TX-02-Variable) -------- -->
 font-family             = TX-02-Variable
-font-size               = 14
-adjust-cell-height      = 4
+font-size               = 13.5
+adjust-cell-height      = 6
 # font-feature            = ss01,ss06
 #font-variation          = wght=375
 #font-variation-bold     = wght=700
