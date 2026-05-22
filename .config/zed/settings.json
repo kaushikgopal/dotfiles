@@ -63,7 +63,7 @@
   "wrap_guides": [80],
   // --------
   "project_panel": {
-    "dock": "left",
+    "dock": "right",
   },
   "outline_panel": {
     "dock": "left",
