@@ -50,7 +50,7 @@ if status is-interactive
     abbr -a -- gw './gradlew'
     abbr -a -- lsd 'tree -d -CFL 1'
     abbr -a -- oc       opencode --yolo
-    abbr -a -- oca      opencode attach localhost:4096 --dir .
+    abbr -a -- oca      opencode attach localhost:4096 --yolo --dir .
     abbr -a -- ocw      opencode web --mdns # --mdns-domain myproject.local
     abbr -a -- oo 'open .'
     abbr -a -- pipw 'env PIP_CONFIG_FILE=$PIP_CONFIG_WORK pip install'
