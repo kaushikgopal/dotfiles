@@ -103,40 +103,73 @@ window-padding-y                = 8
 font-family             = Geist Mono
 font-size               = 13.5
 adjust-cell-height      = 3
-font-feature            = ss03,ss11
-font-variation          = wght=420
+font-feature            = ss03,ss06,ss11
+#font-variation          = wght=350
 font-variation-bold     = wght=600
 # ss01  - no descending tail on a
-####### ss02  - alternate a
-####### ss03  - alternate l
-####### ss04  - alternate R
-## ss06  - alternate G
-## ss11  - ligatures
+################## ss02  - alternate a
+################## ss03  - alternate l
+################## ss04  - alternate R
+### ss06  - alternate G
+### ss11  - ligatures
+
+
+## IBM Plex Mono -------- -->
+#font-family             = IBM Plex Mono
+#font-size               = 14
+#adjust-cell-height      = 3
+#font-feature            = ss02
+##font-style              = Regular
+##font-style-bold         = Medium
+## ss02 - single story g
+###
+###
+###
+
+
+
 
 ## Berkeley Mono (TX-02-Variable) -------- -->
 #font-family             = TX-02-Variable
-#font-size               = 13.5
-#adjust-cell-height      = 6
-## font-feature            = ss01,ss06
+#font-size               = 14
+#adjust-cell-height      = 4
+##font-feature            = ss01,ss06
 ##font-variation          = wght=375
 ##font-variation-bold     = wght=700
 ## |
-####
-####
-###
+##########
+##########
+#########
+
+
+
+
+## Lilex -------- -->
+#font-family             = Lilex
+#font-size               = 13
+#adjust-cell-height      = 4
+#font-feature            = cv15,ss04,   cv02,cv11,cv13
+##font-style              = Regular
+#font-style-bold         = Medium
+## calt  - :> :< >: <: :>: :<: <:> >:< <:<>:>
+#### ### ss01 - <<=
+#### ### cv15 # ss04 ############
+#### ### cv13  ()
+# # cv11          |> <|
+# # cv02 cv03     g
 
 
 ## Recursive -------- -->
 #font-family             = Recursive
 #font-size               = 13.5
-#adjust-cell-height      = 8
-#font-feature            = dlig,ss04,ss06,ss08,ss10,ss11,ss12
+#adjust-cell-height      = 6
+#font-feature            = dlig,ss06,ss08,ss10,ss11,ss12
 #font-variation          = CASL=0
-##font-variation          = wght=350
+#font-variation          = wght=375
 ##font-variation-bold         = Medium
-## ss02  - single story g
-#### ss03  - simplified f
-#### ss04  - simplified i
+### ss02  - single story g
+##### ss03  - simplified f
+##### ss04  - simplified i
 ### ss05  - simplified l
 # ss06  - simplified r
 # ss07  - simplified italic diagnols kwxyz
@@ -145,21 +178,6 @@ font-variation-bold     = wght=600
 # ss11  - simplified 1
 # ss12  - simplified @
 
-
-
-# # Lilex -------- -->
-# font-family             = Lilex
-# font-size               = 14
-# adjust-cell-height      = 4
-# font-feature            = cv15,ss04, cv11,cv13
-# #font-style              = Regular
-# font-style-bold         = Medium
-# # calt  - :> :< >: <: :>: :<: <:> >:< <:<>:>
-# ### ss01 - <<=
-# ### cv15 # ss04 ############
-# ### cv13  ()
-# # cv11          |> <|
-# # cv02 cv03     g
 
 
 
