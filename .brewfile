@@ -13,6 +13,7 @@ is_arm = Hardware::CPU.arm? # TODO: All lines that are based on this condition a
 
 # tap "homebrew/bundle"
 tap "buo/cask-upgrade" # better cask upgrading (see `cu`)
+tap "oven-sh/bun" # Bun JavaScript runtime
 
 ##############################################################
 ##### Unix/CLI tools
@@ -73,6 +74,7 @@ brew "cloudflare-wrangler"
 
 ######################
 ##### Javascript and TypeScript
+brew "oven-sh/bun/bun"
 brew "typescript"
 brew "node"
 # npm-installed CLIs live in ~/.npm-global-packages and install via ~/.npm.sh.
