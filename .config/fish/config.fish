@@ -41,6 +41,7 @@ if status is-interactive
     abbr -a -- clp  claude --plugin-dir ~/dev/off/claude-marketplace/caper/android
     abbr -a -- co   codex --yolo
     abbr -a -- fd 'rg --files'  # use rg instead of fd (one less dep)
+    abbr -a -- ff 'firefox -no-remote -profile ~/.firefox-automation --marionette' # use for agent-browser use
     abbr -a -- g    git # using a git function which is better
     abbr -a -- g.   git add .
     abbr -a -- ge      gemini
@@ -49,7 +50,7 @@ if status is-interactive
     abbr -a -- gs "git status -s"
     abbr -a -- gw './gradlew'
     abbr -a -- lsd 'tree -d -CFL 1'
-    abbr -a -- oc       opencode --yolo
+    abbr -a -- oc       opencode
     abbr -a -- oca      opencode attach localhost:4096 --yolo --dir .
     abbr -a -- ocw      opencode web --mdns # --mdns-domain myproject.local
     abbr -a -- oo 'open .'
