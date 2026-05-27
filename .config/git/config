@@ -240,15 +240,16 @@
 [delta "dracpro-dark"]
     dark = true
     syntax-theme = Dracula
+    keep-plus-minus-markers = true
     line-numbers-minus-style = "#ff9580"
     line-numbers-plus-style  = "#8aff80"
-    line-numbers-zero-style  = "#6e6887"
-    minus-style              = syntax "#4f2a35"
-    minus-emph-style         = syntax "#6a3445"
-    plus-style               = syntax "#243b2c"
-    plus-emph-style          = syntax "#2d5640"
+    line-numbers-zero-style  = "#8b85a3"
+    minus-style              = syntax "#35101F"
+    minus-emph-style         = syntax "#4F0D27"
+    plus-style               = syntax "#1D2F24"
+    plus-emph-style          = syntax "#234731"
     file-style               = "#9580ff" bold
-    file-decoration-style    = "#6e6887" ul
+    file-decoration-style    = "#8b85a3" ul
 
 [delta "dracpro-light"]
     light = true

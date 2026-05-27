@@ -2,12 +2,4 @@
 
 set -euo pipefail
 
-mode_feature="dracpro-light"
-
-if command -v defaults >/dev/null 2>&1; then
-    if defaults read -g AppleInterfaceStyle >/dev/null 2>/dev/null; then
-        mode_feature="dracpro-dark"
-    fi
-fi
-
-exec delta --features="$mode_feature" "$@"
+exec delta --features=dracpro-dark "$@"
