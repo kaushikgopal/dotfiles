@@ -104,7 +104,7 @@ font-family             = Geist Mono
 font-size               = 13.5
 adjust-cell-height      = 3
 font-feature            = ss03,ss06,ss11
-#font-variation          = wght=350
+font-variation          = wght=420
 font-variation-bold     = wght=600
 # ss01  - no descending tail on a
 ################## ss02  - alternate a
