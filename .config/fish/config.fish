@@ -40,7 +40,7 @@ if status is-interactive
     abbr -a -- cl   claude --dangerously-skip-permissions
     abbr -a -- clp  claude --plugin-dir ~/dev/off/claude-marketplace/caper/android
     abbr -a -- co   codex --yolo
-    abbr -a -- fd 'rg --files'  # use rg instead of fd (one less dep)
+    abbr -a -- fd 'rg --files | rg'  # use rg instead of fd (one less dep)
     abbr -a -- ff 'firefox -no-remote -profile ~/.firefox-automation --marionette' # use for agent-browser use
     abbr -a -- g    git # using a git function which is better
     abbr -a -- g.   git add .
