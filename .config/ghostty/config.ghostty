@@ -102,29 +102,29 @@ window-padding-y                = 8
 # Geist Mono -------- -->
 font-family             = Geist Mono
 font-size               = 13.5
-adjust-cell-height      = 2
+adjust-cell-height      = 5
 font-feature            = ss03,ss06,ss11
-#font-variation          = wght=350
+#font-variation          = wght=410
 font-variation-bold     = wght=600
 # ss01  - no descending tail on a
-############################ ss02  - alternate a
-############################ ss03  - alternate l
-############################ ss04  - alternate R
+############################# ss02  - alternate a
+############################# ss03  - alternate l
+############################# ss04  - alternate R
 ### ss06  - alternate G
 ### ss11  - ligatures
 
 
 ## Berkeley Mono (TX-02-Variable) -------- -->
 #font-family             = TX-02-Variable
-#font-size               = 13
-#adjust-cell-height      = 5
+#font-size               = 13.5
+#adjust-cell-height      = 6
 ##font-feature            = ss01,ss06
 ##font-variation          = wght=375
 ##font-variation-bold     = wght=700
 ## |
+###################
+###################
 ##################
-##################
-#################
 
 
 
@@ -135,11 +135,11 @@ font-variation-bold     = wght=600
 #adjust-cell-height      = 6
 ###font-feature            = ss01,ss06
 ###font-variation          = wght=375
+##font-style              = Medium
 #font-style-bold         = Semibold
 ### |
+########################
 #######################
-#######################
-######################
 
 
 
