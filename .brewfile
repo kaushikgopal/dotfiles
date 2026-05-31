@@ -98,6 +98,8 @@ brew "rust-script" # we depend on rust-script for shebang-driven Rust executable
 
 #######################
 ######## AI apps
+brew "anomalyco/tap/opencode"
+cask "openchamber"
 brew "agent-browser"
 
 ##############################################################
