@@ -50,9 +50,6 @@ if status is-interactive
     abbr -a -- gs "git status -s"
     abbr -a -- gw './gradlew'
     abbr -a -- lsd 'tree -d -CFL 1'
-    abbr -a -- oc       opencode
-    abbr -a -- oca      opencode attach localhost:4096 --yolo --dir .
-    abbr -a -- ocw      opencode web --mdns # --mdns-domain myproject.local
     abbr -a -- oo 'open .'
     abbr -a -- pipw 'env PIP_CONFIG_FILE=$PIP_CONFIG_WORK pip install'
     abbr -a -- ppath 'echo "$PATH\n\n" | tr ":" "\n"' # print path
@@ -67,6 +64,11 @@ if status is-interactive
     abbr -a -- vimo vimn
     abbr -a -- vimt 'vimn -t'
     abbr -a -- z   zed
+
+    abbr -a -- oc       opencode
+    abbr -a -- ocs      opencode serve --port 4096 >/tmp/opencode.log 2>&1 & disown  # --hostname 127.0.0.1 # default
+    # abbr -a -- ocw      opencode web --mdns # --mdns-domain myproject.local
+    abbr -a -- oca      opencode attach http://127.0.0.1:4096 --dir .
 end
 
 # Match Yazi's recommended shell-wrapper flow so quitting with `q` can update
