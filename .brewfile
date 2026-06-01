@@ -67,6 +67,7 @@ brew "serie"            # better git logs
 brew "cmark-gfm"  # GitHub Flavored Markdown → HTML (used by md-to-pdf for fast MD rendering)
 #brew "htmltest"
 brew "prettier"     # markdown parsing
+brew "cloudflared"  # required for openchamber tunneling
 
 # website
 brew "hugo"
