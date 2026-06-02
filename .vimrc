@@ -318,7 +318,7 @@ let g:netrw_browse_split = 4
 
 " Limit column width for all markdown files
 " auto hard wrap markdown files to 80
-au BufRead,BufNewFile *.md,*.txt,*.markdown setlocal textwidth=80
+au BufRead,BufNewFile *.md,*.txt,*.markdown if g:md_fmt_on_save | setlocal textwidth=80 | endif
 
 augroup vimrcEx
     " Clear all autocmds in the group
@@ -594,6 +594,7 @@ endfunction
 
 autocmd BufWritePre *.md,*.markdown call PrettierMarkdown()
 command! MdFmtToggle let g:md_fmt_on_save = !g:md_fmt_on_save
+    \ | let &l:textwidth = g:md_fmt_on_save ? 80 : 0
     \ | echo 'Markdown format-on-save: ' . (g:md_fmt_on_save ? 'ON' : 'OFF')
 command! MdUnwrap call MarkdownWrap('never', 0)
 command! MdHardWrap call MarkdownWrap('always', 80)
