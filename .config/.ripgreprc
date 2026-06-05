@@ -75,7 +75,7 @@ web:*.{html,css,js}*
 
 # rg foo --files-without-match
 #        # invert (i.e. show filenames without the pattern)
-
+#        # but applies to the full command
 
 # ------------------------------------
 ## Searching based on filename/path
