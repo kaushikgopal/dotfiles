@@ -118,8 +118,8 @@ cask "obsidian"
 #######################
 ######## Fonts
 
-cask "font-sf-mono"
 cask "font-geist-mono"
+cask "font-ibm-plex-sans"
 
 
 ##############################################################
