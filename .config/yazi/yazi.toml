@@ -11,8 +11,12 @@ preview-app = [
 finder = [
   { run = 'open -R "$1"', desc = "Finder", orphan = true, for = "macos" },
 ]
+[[opener.bulk-rename]]
+run = "vim %s"
+block = true
 
 [open]
 prepend_rules = [
+  { mime = "text/*", use = ["bulk-rename"] },
   { url = "*", use = ["default-app", "preview-app", "finder"] },
 ]
