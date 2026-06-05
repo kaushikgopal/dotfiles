@@ -66,9 +66,9 @@ if status is-interactive
     abbr -a -- z   zed
 
     abbr -a -- oc       opencode
-    abbr -a -- ocs      opencode serve --port 4096 >/tmp/opencode.log 2>&1 & disown  # --hostname 127.0.0.1 # default
-    # abbr -a -- ocw      opencode web --mdns # --mdns-domain myproject.local
-    abbr -a -- oca      opencode attach http://127.0.0.1:4096 --dir .
+    abbr -a -- ocs      "nohup opencode serve --port 4096 >/tmp/opencode.log 2>&1 &"  # --hostname 127.0.0.1 # default
+    abbr -a -- oca      opencode attach http://127.0.0.1:4096
+    abbr -a -- ocad     opencode attach http://127.0.0.1:4096 --dir .
 end
 
 # Match Yazi's recommended shell-wrapper flow so quitting with `q` can update
