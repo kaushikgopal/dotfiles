@@ -107,7 +107,6 @@ brew "agent-browser"
 ##### Agent skills runtime
 
 cask "brave-browser" # agent-browser-kg and md-to-pdf use Brave directly
-cask "firefox"
 
 ##############################################################
 ##### macOS APPS
