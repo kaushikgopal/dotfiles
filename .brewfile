@@ -12,7 +12,6 @@ cask_args appdir: '/Applications'
 is_arm = Hardware::CPU.arm? # TODO: All lines that are based on this condition are currently not working for ARM architecture - and thus this check
 
 # tap "homebrew/bundle"
-tap "buo/cask-upgrade" # better cask upgrading (see `cu`)
 tap "oven-sh/bun" # Bun JavaScript runtime
 
 ##############################################################

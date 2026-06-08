@@ -32,8 +32,8 @@ fi
 brew bundle install -v --file="$BREWFILE"
 
 if [[ "$BREW_INSTALL_ONLY" != "1" ]]; then
-    echo -e "${PURPLE}---- cask upgrade (via cu) ${NC}"
-    brew cu --all --cleanup --yes
+    echo -e "${PURPLE}---- upgrading casks and formulae${NC}"
+    brew upgrade --greedy
 
     echo -e "${PURPLE}\n\n\n\n---- updating formulae${NC}"
     echo -e "${GRAY}\nupdate the local downloaded git repo with latest code${NC}"
