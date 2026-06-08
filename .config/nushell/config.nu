@@ -34,7 +34,7 @@ $env.BAT_CONFIG_PATH = ($nu.home-path | path join '.config' '.bat.conf')
 use std/util "path add"
 
 # prepends
-path add "/opt/homebrew/opt/sdkman-cli/libexec/candidates/gradle/current/bin"
+# path add "/opt/homebrew/opt/sdkman-cli/libexec/candidates/gradle/current/bin"
 path add "~/.local/bin"
 path add "~/.pyenv/shims"
 path add "/sbin"
