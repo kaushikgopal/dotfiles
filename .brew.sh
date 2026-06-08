@@ -44,11 +44,11 @@ if [[ "$BREW_INSTALL_ONLY" != "1" ]]; then
     brew upgrade
 fi
 
-# Auto-repair Homebrew python@3.14 pyexpat linking.
+# Repair Homebrew python@3.14 pyexpat linking when BREW_REPAIR_PYTHON=1.
 # macOS /usr/lib/libexpat.1.dylib is missing _XML_SetAllocTrackerActivationThreshold,
-# which breaks pip and anything that imports xml.parsers.expat. This finds the
-# currently installed pyexpat.so and relinks it to Homebrew's expat if needed.
-if brew list python@3.14 &>/dev/null; then
+# which breaks pip and anything that imports xml.parsers.expat. Run with:
+#   BREW_REPAIR_PYTHON=1 ~/.brew.sh
+if [[ "${BREW_REPAIR_PYTHON:-0}" == "1" ]] && brew list python@3.14 &>/dev/null; then
     PYPATH=$(find /opt/homebrew/Cellar/python@3.14 -path '*/lib-dynload/pyexpat.cpython-314-darwin.so' -print -quit 2>/dev/null)
     if [ -f "$PYPATH" ]; then
         if otool -L "$PYPATH" | grep -q '/usr/lib/libexpat.1.dylib'; then
