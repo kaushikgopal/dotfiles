@@ -326,6 +326,7 @@ augroup vimrcEx
 
     " change markdown options
     autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+    autocmd FileType markdown setlocal wrap linebreak breakindent textwidth=0
     autocmd BufNewFile,BufReadPost *.fish set syntax=sh
 
 
@@ -560,7 +561,7 @@ xmap N <SID>(search-backward)zzzv
 "========================
 
 " Format markdown with prettier on :w (toggle with :MdFmtToggle).
-let g:md_fmt_on_save = 1
+let g:md_fmt_on_save = 0
 
 function! PrettierMarkdown(...) abort
     if !g:md_fmt_on_save && !a:0 | return | endif
