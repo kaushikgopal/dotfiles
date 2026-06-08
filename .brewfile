@@ -116,8 +116,9 @@ cask "obsidian"
 #######################
 ######## Fonts
 
-cask "font-geist-mono"
+cask "font-lilex"
 cask "font-ibm-plex-sans"
+cask "font-geist-mono"
 cask "kaushikgopal/tools/font-recursive-kg"
 
 
