@@ -174,22 +174,37 @@ window-padding-y                = 8
 
 
 
-# Recursive -------- -->
-font-family             = Recursive
+# Recursive KG ------------------- ->
+font-family             = Recursive KG
 font-size               = 13.5
-adjust-cell-height      = 10
-font-feature            = dlig,ss03,ss06,ss08,ss10,ss11
-font-variation          = CASL=0
+adjust-cell-height      = 8
 font-variation          = wght=375
-#font-variation-bold         = Medium
-######### ss02  - single story g
-########### ss03  - simplified f
-########### ss04  - simplified i
-### ss05  - simplified l
-# ss06  - simplified r
-# ss07  - simplified italic diagnols kwxyz
-# ss08  - no serif LZ
-# ss10  - dotted 0
-# ss11  - simplified 1
-# ss12  - simplified @
+
+
+
+
+
+
+
+
+
+
+## Recursive -------- -->
+#font-family             = Recursive
+#font-size               = 13.5
+#adjust-cell-height      = 10
+#font-feature            = dlig,ss03,ss06,ss08,ss10,ss11
+#font-variation          = CASL=0
+#font-variation          = wght=375
+##font-variation-bold         = Medium
+########## ss02  - single story g
+############ ss03  - simplified f
+############ ss04  - simplified i
+#### ss05  - simplified l
+## ss06  - simplified r
+## ss07  - simplified italic diagnols kwxyz
+## ss08  - no serif LZ
+## ss10  - dotted 0
+## ss11  - simplified 1
+## ss12  - simplified @
 
