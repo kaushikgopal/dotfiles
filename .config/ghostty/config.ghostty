@@ -58,7 +58,9 @@ keybind = global:ctrl+shift+space=toggle_quick_terminal
 # theme = Atom One Dark
 # theme = Ayu Mirage
 # theme = dark:kursor-dark,light:kursor
-theme = kursor
+# theme = kursor
+# theme = Cobalt Next
+theme = Cobalt2
 
 adjust-cursor-thickness         = 3
 adjust-underline-position       = 3
@@ -99,118 +101,109 @@ window-padding-y                = 8
 #  coO08BbODQ |!iIlL17 $5SZ2zsz
 #  TtijJlFPRK vvw VVW \/V
 
-## Geist Mono -------- -->
-#font-family             = Geist Mono
-#font-size               = 14
-#adjust-cell-height      = 6
-#font-feature            = ss06,ss11
-#font-variation          = wght=390
-#font-variation-bold     = wght=550
-## ss01  - no descending tail on a
-########### ss02  - alternate a
-########### ss03  - alternate l
-############## ss04  - alternate R
-## ss06  - alternate G
-## ss11  - ligatures
-
-
-## Berkeley Mono (TX-02-Variable) -------- -->
-#font-family             = TX-02-Variable
-#font-size               = 14
-#adjust-cell-height      = 6
-##font-feature            = ss01,ss06
-#font-variation          = wght=400
-##font-variation-bold     = wght=700
-## |
-#####################
-#####################
-####################
+#Moxy ------------------- ->
+font-family             = Moxy
+font-size               = 12
+adjust-cell-height      = 9
+font-feature            = ss09
+font-variation          = CASL=0.5
+font-variation          = wght=400
+# \n \\ \b \\b     #    ( ) |> <|
+###  → ↑ ↓ ← ↔ ↕          -  ↩ ↪ ↰ ↱ ↲ ↳ ↶ ↷ ↺ ↻ ⇄ ⇆
+# ---> --> -> → ↓ ↑ ← <- <-- <---
+# ss02 (g) ss04 (i) ss06 (r) ss09 (69)
 
 
 
 
-## SF Mono -------- -->
+
+
+
+
+
+# SF Mono -------- -->
 #font-family             = SF Mono
-#font-size               = 13.5
-#adjust-cell-height      = 7
-###font-feature            = ss01,ss06
-###font-variation          = wght=375
-##font-style              = Medium
+#font-size               = 11.5
+#adjust-cell-height      = 8
 #font-style-bold         = Semibold
-######## |
 #############################
 ############################
-
-
-
-
-# Lilex -------- -->
-font-family             = Lilex
-font-size               = 14
-adjust-cell-height      = 6
-font-feature            = ss01,ss02,ss03,   cv03,cv06,cv11,cv13,cv15
-#font-style              = Regular
-font-style-bold         = Medium
-
-# ss01  <<= >>= ||= |=
-# ss02  === == !== !=
-# ss03  \\
-# ss04 #############
-
-# cv02 cv03     g
-# cv08          <= >=
-# cv11          |> <|
-# cv13          ()
-# cv15          #
-# calt  - :> :< >: <: :>: :<: <:> >:< <:<>:>
-
-
-## Commit Mono -------- -->
-#font-family             = CommitMonoV143
-#font-size               = 14
-#adjust-cell-height      = 12
-#font-feature            = ss01,ss02,ss03,ss04,ss05,cv02,cv07,cv11
-#font-variation          = wght=400
-## ss01    ligatures             # ss02    -> =>
-## cv02    alt g                 # cv04    alt i          # cv06  - alt 6,9
-##### cv10    alt l                 # cv11    alt 1
-##### cv03    square dots ij        # cv07    dotted 0       #
-##### ss03    smart case (1:1) 2+3  # ss04    spacing ... << # ss05    kerning
-
-
-
-
-## Recursive KG ------------------- ->
-#font-family             = Recursive KG
-#font-size               = 14
-#adjust-cell-height      = 8
-#font-variation          = wght=375
 #
 #
 #
 #
 #
 #
-
-
-
-
-## Recursive -------- -->
-#font-family             = Recursive
-#font-size               = 13.5
+#
+#
+#
+#
+##
+##
+#
+#### Berkeley Mono (TX-02-Variable) -------- -->
+#font-family             = TX-02-Variable
+#font-size               = 12.5
 #adjust-cell-height      = 10
-#font-feature            = dlig,ss03,ss06,ss08,ss10,ss11
-#font-variation          = CASL=0
-#font-variation          = wght=375
-##font-variation-bold         = Medium
-########## ss02  - single story g
-############ ss03  - simplified f
-############ ss04  - simplified i
-#### ss05  - simplified l
-## ss06  - simplified r
-## ss07  - simplified italic diagnols kwxyz
-## ss08  - no serif LZ
-## ss10  - dotted 0
-## ss11  - simplified 1
-## ss12  - simplified @
-
+##font-feature            = ss01,ss06
+#font-variation          = wght=420
+##font-variation-italic   = slnt=-16
+###font-variation-bold     = wght=700
+### |
+#######################
+#######################
+######################
+##
+##
+##
+##
+##
+##
+##
+##
+##Geist Mono -------- -->
+#font-family             = Geist Mono
+#font-size               = 12.5
+#adjust-cell-height      = 7
+#font-feature            = ss04,ss06,ss11
+#font-variation          = wght=400
+#font-variation-bold     = wght=550
+## ss01  - no descending tail on a
+############# ss02  - alternate a
+############# ss03  - alternate l
+################ ss04  - alternate R
+## ss06  - alternate G
+## ss11  - ligatures
+#
+#
+#
+#
+#
+#
+#
+## Lilex -------- -->
+#font-family             = Lilex
+#font-size               = 12
+#adjust-cell-height      = 8
+#font-feature            = ss02,ss03,   cv02,cv11,cv13,cv15
+#font-variation          = wght=420
+#font-variation-bold     = wght=550
+## calt  - :> :< >: <: :>: :<: <:> >:< <:<>:>
+##### ss01  <<= >>= ||= |=       # ss02  === == !== !=
+##### ss03  \\                   # ss04 #############  # cv15          #
+## cv02 cv03  g
+## cv08          <= >= # cv11          |> <|
+## cv13          ()
+#
+#
+#
+#
+#
+#
+#
+## MonoLisa ---------- ->
+#font-family             = MonoLisa
+#font-size               = 12
+#adjust-cell-height      = 11
+#font-feature           = ss02
+## alt i r (ss02)
