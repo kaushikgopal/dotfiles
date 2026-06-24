@@ -51,15 +51,12 @@ keybind = global:ctrl+shift+space=toggle_quick_terminal
 # theme = dark:Zenwritten Dark,light:Zenwritten Light
 # theme = dark:Atom One Dark,light:Atom One Light
 # theme = dark:Monokai Pro Octagon,light:Monokai Pro Light
-# theme = Monokai Pro Machine
-# theme = Monokai Pro KG
 # theme = Catppuccin Macchiato
 # theme = Catppuccin Mocha
 # theme = Atom One Dark
 # theme = Ayu Mirage
 # theme = dark:kursor-dark,light:kursor
 # theme = kursor
-# theme = Cobalt Next
 theme = Cobalt2
 
 adjust-cursor-thickness         = 3
@@ -101,27 +98,27 @@ window-padding-y                = 8
 #  coO08BbODQ |!iIlL17 $5SZ2zsz
 #  TtijJlFPRK vvw VVW \/V
 
-#Moxy ------------------- ->
-font-family             = Moxy
-font-size               = 12
-adjust-cell-height      = 9
-font-feature            = ss09
-font-variation          = CASL=0.5
-font-variation          = wght=400
-# \n \\ \b \\b     #    ( ) |> <|
-###  → ↑ ↓ ← ↔ ↕          -  ↩ ↪ ↰ ↱ ↲ ↳ ↶ ↷ ↺ ↻ ⇄ ⇆
-# ---> --> -> → ↓ ↑ ← <- <-- <---
-# ss02 (g) ss04 (i) ss06 (r) ss09 (69)
-
-
-
-
-
-
-
-
-
-# SF Mono -------- -->
+##Moxy ------------------- ->
+#font-family             = Moxy
+#font-size               = 13.5
+#adjust-cell-height      = 9
+#font-feature            = ss09
+#font-variation          = CASL=0.5
+##font-variation          = wght=400
+## \n \\ \b \\b     #    ( ) |> <|
+####  → ↑ ↓ ← ↔ ↕          -  ↩ ↪ ↰ ↱ ↲ ↳ ↶ ↷ ↺ ↻ ⇄ ⇆
+## ---> --> -> → ↓ ↑ ← <- <-- <---
+## ss02 (g) ss04 (i) ss06 (r) ss09 (69)
+## U % /
+#
+#
+#
+#
+#
+#
+#
+#
+## SF Mono -------- -->
 #font-family             = SF Mono
 #font-size               = 11.5
 #adjust-cell-height      = 8
@@ -143,10 +140,10 @@ font-variation          = wght=400
 #
 #### Berkeley Mono (TX-02-Variable) -------- -->
 #font-family             = TX-02-Variable
-#font-size               = 12.5
-#adjust-cell-height      = 10
+#font-size               = 13.5
+#adjust-cell-height      = 11
 ##font-feature            = ss01,ss06
-#font-variation          = wght=420
+#font-variation          = wght=400
 ##font-variation-italic   = slnt=-16
 ###font-variation-bold     = wght=700
 ### |
@@ -164,7 +161,7 @@ font-variation          = wght=400
 ##Geist Mono -------- -->
 #font-family             = Geist Mono
 #font-size               = 12.5
-#adjust-cell-height      = 7
+#adjust-cell-height      = 5
 #font-feature            = ss04,ss06,ss11
 #font-variation          = wght=400
 #font-variation-bold     = wght=550
@@ -181,27 +178,27 @@ font-variation          = wght=400
 #
 #
 #
-## Lilex -------- -->
-#font-family             = Lilex
-#font-size               = 12
-#adjust-cell-height      = 8
-#font-feature            = ss02,ss03,   cv02,cv11,cv13,cv15
-#font-variation          = wght=420
-#font-variation-bold     = wght=550
-## calt  - :> :< >: <: :>: :<: <:> >:< <:<>:>
-##### ss01  <<= >>= ||= |=       # ss02  === == !== !=
-##### ss03  \\                   # ss04 #############  # cv15          #
-## cv02 cv03  g
-## cv08          <= >= # cv11          |> <|
-## cv13          ()
-#
-#
-#
-#
-#
-#
-#
-## MonoLisa ---------- ->
+# Lilex -------- -->
+font-family             = Lilex
+font-size               = 14
+adjust-cell-height      = 9
+font-feature            = ss02,ss03,   cv11,cv13,cv15
+font-variation          = wght=350
+font-variation-bold     = wght=600
+# calt  - :> :< >: <: :>: :<: <:> >:< <:<>:>
+#### ss01  <<= >>= ||= |=       # ss02  === == !== !=
+#### ss03  \\                   # ss04 #############  # cv15          #
+# cv02 cv03  g
+# cv08          <= >= # cv11          |> <|
+# cv13          ()
+
+
+
+
+
+
+
+# MonoLisa ---------- ->
 #font-family             = MonoLisa
 #font-size               = 12
 #adjust-cell-height      = 11
