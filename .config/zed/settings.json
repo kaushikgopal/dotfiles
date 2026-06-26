@@ -7,39 +7,52 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "diff_view_style": "split",
   "cli_default_open_behavior": "new_window",
   "theme": "Zedokai Darker (Filter Machine)",
-  "buffer_font_size": 14.5,
-  "buffer_line_height": { "custom": 1.45 },
-  // ------------------------ Lilex
+  // // ------------------------ Lilex
+  // "buffer_font_family": "Lilex",
+  // "buffer_font_size": 14,
+  // "buffer_line_height": { "custom": 1.65 },
   // "buffer_font_features": {
-  //   "cv11": true,
-  //   "cv13": true,
-  //   "ss04": true, "cv15": true
+  //   // "ss01": true, // <<= >>= ||= |=
+  //   "ss02": true, // === == !== !=
+  //   "ss03": true, // \\
+  //   "cv03": true, // g
+  //   "cv11": true, // |> <|
+  //   "cv13": true, // ()
+  //   "cv15": true, //
   // },
-  // // ------------------------ Recursive
-  // "buffer_font_family": "Recursive",
-  // "buffer_font_features": {
-  //   "dlig": true,
-  //   // "ss02": false, // single story g
-  //   "ss04": false, // simplified i
-  //   "ss05": true, // simplified i
-  //   "ss06": false, // simplified r
-  //   "ss08": true, // no serif LZ
-  //   "ss10": true, // dotted 0
-  //   "ss11": true, // simplified 1
-  //   "ss12": true, // simplified @
-  // },
-  // ------------------------ Geist Mono
-  "buffer_font_family": "Geist Mono",
+  // ------------------------ Moxy |>
+  "buffer_font_family": "Moxy",
+  "buffer_font_size": 13.75,
+  "buffer_font_weight": 375,
+  "buffer_line_height": { "custom": 1.65 },
   "buffer_font_features": {
-    // "ss01": true, // no descending tail on a
-    // "ss02": true, // alternate a
-    "ss03": true, // alternate l
-    // "ss04": true, // alternate R
-    // "ss06": true, // alternate G
-    "ss11": true, // ligatures ->
+    "lilx": true,
+    "titl": true,
+    "ss02": true,
+    "ss09": true,
+    "ss10": true,
+    "ss11": true,
+    // moxy = ss02 (g) ss03 (f) ss06 (r) ss09 (69) ss10 (0) ss11 (1) titl (Q)
+    // ss04 (i) ss08 (LZ)
   },
+  // // ------------------------ SF Mono
+  // "buffer_font_family": "SF Mono",
+  // "buffer_font_size": 14,
+  // "buffer_line_height": { "custom": 1.65 },
+  // // ------------------------ Geist Mono
+  // "buffer_font_family": "Geist Mono",
+  // "buffer_line_height": { "custom": 1.5 },
+  // "buffer_font_features": {
+  //   "ss01": true, // no descending tail on a
+  //   // "ss02": true, // alternate a
+  //   "ss03": true, // alternate l
+  //   "ss04": true, // alternate R
+  //   "ss06": true, // alternate G
+  //   "ss11": true, // ligatures ->
+  // },
   // --------
   "autosave": {
     "after_delay": {
@@ -94,7 +107,7 @@
     "syntax": {
       "link_text": { "font_style": "normal" },
       "link_uri": { "font_style": "italic" },
-      "title": { "font_weight": 900 },
+      "title": { "font_weight": 700 },
     },
   },
   // ----------------------------------- EXTENSIONS
