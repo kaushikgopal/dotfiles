@@ -90,10 +90,52 @@ window-padding-y                = 8
 #  a@ B8 dbqp E3 i! 96 G6& g9qCGQ
 #  coO08BbODQ |!iIlL17 $5SZ2zsz
 #  TtijJlFPRK vvw VVW \/V
+#  1234567890   $ @ . •
+# ---> --> -> → ↓ ↑ ← <- <-- <---
 
+#Moxy ------------------- ->
+font-family             = Moxy
+font-size               = 13
+adjust-cell-height      = 11
+font-variation          = wght=360
+font-feature            = lilx,moxy,ss05,ss07,ss08
+font-variation          = CASL=0
+# \n \\ \b \\b     #    ( ) |> <|
+###  → ↑ ↓ ← ↔ ↕          -  ↩ ↪ ↰ ↱ ↲ ↳ ↶ ↷ ↺ ↻ ⇄ ⇆
+# ---> --> -> → ↓ ↑ ← <- <-- <---
+# moxy = ss02 (g) ss03 (f) ss06 (r) ss09 (69) ss10 (0) ss11 (1) titl (Q)
+# ss04 (i) ss05 (l) ss08 (LZ) ss07 (kwxyz - italics)
+# % / \ @ & $ • ✓
+
+
+##### little tilt ttt lll iii hhnn uu
+##### {} () $ + @ ` 777
+##### www vvv xxx RRR HHH LLL ZZZ
+
+
+# SF Mono -------- -->
+#font-family             = SF Mono
+#font-size               = 13
+#adjust-cell-height      = 8
+##font-style              = Medium
+#font-style-bold         = Semibold
+#############################
+############################
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+##
+##
 ## Lilex -------- -->
 #font-family             = Lilex
-#font-size               = 12.5
+#font-size               = 13
 #adjust-cell-height      = 8
 #font-feature            = ss02,ss03,   cv03,cv11,cv13,cv15
 #font-variation          = wght=400
@@ -111,7 +153,7 @@ window-padding-y                = 8
 #
 #
 #
-#Geist Mono -------- -->
+# #Geist Mono -------- -->
 #font-family             = Geist Mono
 #font-size               = 13.5
 #adjust-cell-height      = 7
@@ -131,49 +173,10 @@ window-padding-y                = 8
 #
 #
 #
-#Moxy ------------------- ->
-font-family             = Moxy
-font-size               = 13
-adjust-cell-height      = 9
-font-feature            = lilx,titl,ss02,ss09,ss10,ss11
-font-variation          = CASL=0.25
-#font-variation          = wght=400
-# \n \\ \b \\b     #    ( ) |> <|
-###  → ↑ ↓ ← ↔ ↕          -  ↩ ↪ ↰ ↱ ↲ ↳ ↶ ↷ ↺ ↻ ⇄ ⇆
-# ---> --> -> → ↓ ↑ ← <- <-- <---
-# moxy = ss02 (g) ss03 (f) ss06 (r) ss09 (69) ss10 (0) ss11 (1) titl (Q)
-# ss04 (i) ss08 (LZ)
-# U % /
-
-##### VAVAVA ATLAS VITAL ZHZH
-##### little tilt ttt lll iii hhnn uu
-##### {} () $ + @ ` 777
-##### www vvv xxx RRR HHH LLL ZZZ
-
-# SF Mono -------- -->
-#font-family             = SF Mono
-#font-size               = 13
-#adjust-cell-height      = 10
-##font-style              = Medium
-#font-style-bold         = Semibold
-#############################
-############################
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-##
-##
 ### Berkeley Mono (TX-02-Variable) -------- -->
 #font-family             = TX-02-Variable
 #font-size               = 13.5
-#adjust-cell-height      = 11
+#adjust-cell-height      = 10
 ##font-feature            = ss01,ss06
 #font-variation          = wght=400
 ##font-variation-italic   = slnt=-16
@@ -190,3 +193,4 @@ font-variation          = CASL=0.25
 ##
 ##
 ##
+
