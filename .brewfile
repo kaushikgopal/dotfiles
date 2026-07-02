@@ -101,6 +101,7 @@ brew "rust-script" # we depend on rust-script for shebang-driven Rust executable
 brew "anomalyco/tap/opencode"
 cask "openchamber"
 brew "agent-browser"
+brew "herdr"
 
 ##############################################################
 ##### Agent skills runtime
