@@ -98,7 +98,7 @@ font-family             = Moxy
 font-size               = 13
 adjust-cell-height      = 11
 font-variation          = wght=360
-font-feature            = lilx,moxy,ss05,ss07,ss08
+font-feature            = lilx,  ss02,ss03,ss09,ss10,ss11,titl    ,ss05,ss07,ss08
 font-variation          = CASL=0
 # \n \\ \b \\b     #    ( ) |> <|
 ###  → ↑ ↓ ← ↔ ↕          -  ↩ ↪ ↰ ↱ ↲ ↳ ↶ ↷ ↺ ↻ ⇄ ⇆
