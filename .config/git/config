@@ -216,13 +216,16 @@
   cmd = code --wait $MERGED
 
 #####################
-# delta configuation
+# diff pager configuration
+# hunk (hunk.dev) is the primary pager for `git diff` / `git show`.
+# delta stays as interactive.diffFilter: hunk is a TUI, not a --color-only
+# passthrough filter, so it cannot color `git add -p` / `git add -i`.
 [core]
-    pager = ~/.config/git/delta-theme
+    pager = hunk pager
 [interactive]
     diffFilter = ~/.config/git/delta-theme --color-only
 [pager]
-    show = ~/.config/git/delta-theme
+    show = hunk pager
 
 
 

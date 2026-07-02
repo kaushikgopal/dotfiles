@@ -1,0 +1,8 @@
+# hunk — terminal diff viewer (https://hunk.dev)
+# config reference: https://github.com/modem-dev/hunk#config
+#
+# Only this customization file is tracked in dotfiles. hunk's auto-managed
+# state.json (version tracking) stays in the local ~/.config/hunk/ dir and is
+# intentionally NOT symlinked here, so it won't churn the repo on every run.
+
+theme = "midnight"
