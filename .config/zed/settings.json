@@ -10,33 +10,17 @@
   "diff_view_style": "split",
   "cli_default_open_behavior": "new_window",
   "theme": "Zedokai Darker (Filter Machine)",
-  // // ------------------------ Lilex
-  // "buffer_font_family": "Lilex",
-  // "buffer_font_size": 14,
-  // "buffer_line_height": { "custom": 1.65 },
-  // "buffer_font_features": {
-  //   // "ss01": true, // <<= >>= ||= |=
-  //   "ss02": true, // === == !== !=
-  //   "ss03": true, // \\
-  //   "cv03": true, // g
-  //   "cv11": true, // |> <|
-  //   "cv13": true, // ()
-  //   "cv15": true, //
-  // },
   // ------------------------ Moxy |>
   "buffer_font_family": "Moxy",
   "buffer_font_size": 13.75,
-  "buffer_font_weight": 375,
+  "buffer_font_weight": 360,
   "buffer_line_height": { "custom": 1.65 },
   "buffer_font_features": {
     "lilx": true,
-    "titl": true,
-    "ss02": true,
-    "ss09": true,
-    "ss10": true,
-    "ss11": true,
-    // moxy = ss02 (g) ss03 (f) ss06 (r) ss09 (69) ss10 (0) ss11 (1) titl (Q)
-    // ss04 (i) ss08 (LZ)
+    "moxy": true,
+    "ss05": true,
+    "ss07": true,
+    "ss08": true,
   },
   // // ------------------------ SF Mono
   // "buffer_font_family": "SF Mono",
@@ -52,6 +36,19 @@
   //   "ss04": true, // alternate R
   //   "ss06": true, // alternate G
   //   "ss11": true, // ligatures ->
+  // },
+  // // ------------------------ Lilex
+  // "buffer_font_family": "Lilex",
+  // "buffer_font_size": 14,
+  // "buffer_line_height": { "custom": 1.65 },
+  // "buffer_font_features": {
+  //   // "ss01": true, // <<= >>= ||= |=
+  //   "ss02": true, // === == !== !=
+  //   "ss03": true, // \\
+  //   "cv03": true, // g
+  //   "cv11": true, // |> <|
+  //   "cv13": true, // ()
+  //   "cv15": true, //
   // },
   // --------
   "autosave": {
@@ -79,18 +76,19 @@
     "dock": "right",
   },
   "outline_panel": {
-    "dock": "left",
+    "dock": "right",
   },
   "collaboration_panel": {
-    "dock": "left",
+    "dock": "right",
   },
   "agent": {
-    "dock": "right",
+    "flexible": false,
+    "dock": "left",
     "favorite_models": [],
     "model_parameters": [],
   },
   "git_panel": {
-    "dock": "left",
+    "dock": "right",
   },
   // --------------------------------- THEME
   // ---- THEME overrides
