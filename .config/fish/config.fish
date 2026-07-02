@@ -75,6 +75,9 @@ if status is-interactive
     abbr -a -- hel      herdr session list
     abbr -a -- hea      herdr session attach
 
+    abbr -a -- hu       hunk
+    abbr -a -- hud      hunk diff
+
 
 end
 

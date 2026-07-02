@@ -55,11 +55,13 @@ brew "procs"    # better ps
 ##### general
 brew "gh"
 brew "git"
-brew "git-delta"
 brew "git-lfs"
 brew "github-keygen"
+
 brew "lazygit"
-brew "serie"            # better git logs
+brew "serie"               # better git logs
+brew "git-delta"
+brew "modem-dev/tap/hunk"  # hunk - better diff
 
 ######################
 ##### Web dev
