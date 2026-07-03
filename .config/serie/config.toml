@@ -1,2 +1,2 @@
 [core.user_command]
-commands_1 = { name = "git diff ", commands = ["sh", "-c", "git diff --color=always {{first_parent_hash}} {{target_hash}} | delta"] }
+commands_1 = { name = "git diff ", commands = ["sh", "-c", "git diff --color=always {{first_parent_hash}} {{target_hash}} | hunk pager"] }
