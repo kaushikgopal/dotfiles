@@ -1,0 +1,13 @@
+[keys]
+prefix = "f8"
+rename_tab = "prefix+comma"
+rename_workspace = "prefix+shift+comma"
+
+[[keys.command]]
+key = "prefix+shift+g"
+type = "pane"
+command = "lazygit"
+description = "lazygit"
+
+[ui]
+agent_panel_sort = "priority"

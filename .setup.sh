@@ -62,6 +62,7 @@ pushd $HOME
 
 mkdir -p .config
 mkdir -p .config/karabiner  # see https://github.com/kaushikgopal/karabiner-kt.git for karabiner.json
+mkdir -p .config/herdr
 mkdir -p .config/hunk       # only config.toml is symlinked; state.json stays local (see .config/hunk/config.toml)
 mkdir -p .local
 mkdir -p .local/bin
@@ -78,6 +79,7 @@ files_to_link=(
     .config/fish
     .config/ghostty
     .config/git
+    .config/herdr/config.toml
     .config/hunk/config.toml
     .config/lazygit
     .config/serie
