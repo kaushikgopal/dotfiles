@@ -59,6 +59,8 @@ brew "git-lfs"
 brew "github-keygen"
 
 brew "lazygit"
+brew "neovim"
+brew "tree-sitter-cli"     # Neovim Treesitter parser installs
 brew "serie"               # better git logs
 brew "git-delta"
 brew "modem-dev/tap/hunk"  # hunk - better diff

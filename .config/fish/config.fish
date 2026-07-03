@@ -61,6 +61,7 @@ if status is-interactive
     abbr -a -- tre 'tree --dirsfirst -CFL'
     abbr -a -- tre2 'tree --dirsfirst -CFL 2'
     abbr -a -- tre3 'tree --dirsfirst -CFL 3'
+    abbr -a -- vi nvim
     abbr -a -- vimo vimn
     abbr -a -- vimt 'vimn -t'
     abbr -a -- z   zed

@@ -82,6 +82,7 @@ files_to_link=(
     .config/herdr/config.toml
     .config/hunk/config.toml
     .config/lazygit
+    .config/nvim
     .config/serie
     .config/procs
     .config/zed
