@@ -149,6 +149,7 @@ api.nvim_create_autocmd("FileType", {
     vim.opt_local.wrap = true
     vim.opt_local.linebreak = true
     vim.opt_local.breakindent = true
+    vim.opt_local.colorcolumn = ""
     vim.opt_local.textwidth = 0
     vim.opt_local.complete:append("kspell")
 
@@ -254,9 +255,22 @@ require("lazy").setup({
     ft = { "markdown" },
     dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-mini/mini.icons" },
     opts = {
-      heading = { width = "full" },
-      code = { width = "full" },
+      heading = {
+        width = "full",
+        sign = false,
+        position = "inline",
+        icons = { "# ", "## ", "### ", "#### ", "##### ", "###### " },
+      },
+      code = {
+        width = "full",
+        sign = true,
+        conceal_delimiters = true,
+        language = true,
+        border = "none",
+      },
       pipe_table = { style = "full" },
+      quote = { enabled = false },
+      sign = { enabled = false },
     },
   },
 }, {
