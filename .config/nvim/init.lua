@@ -42,6 +42,7 @@ opt.colorcolumn = "80"
 opt.scrolloff = 2
 opt.sidescrolloff = 2
 opt.termguicolors = true
+opt.guicursor = "n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50"
 
 -- Editing
 opt.smartindent = true
@@ -70,6 +71,12 @@ keymap("n", "<leader>e", "<cmd>Lexplore<CR>", { silent = true, desc = "Open netr
 -- ============================================================================
 -- Autocommands
 -- ============================================================================
+
+local function apply_theme_overrides()
+  local crimson_dark = "#3b1f2a"
+
+  api.nvim_set_hl(0, "Visual", { bg = crimson_dark })
+end
 
 api.nvim_create_autocmd("TextYankPost", {
   callback = function()
@@ -224,6 +231,7 @@ require("lazy").setup({
     priority = 1000,
     config = function()
       vim.cmd.colorscheme("catppuccin-mocha")
+      apply_theme_overrides()
     end,
   },
   {

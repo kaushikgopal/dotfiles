@@ -56,7 +56,7 @@ adjust-cursor-thickness         = 3
 adjust-underline-position       = 3
 bell-features           = border
 bold-is-bright          = true
-cursor-color                = #70b8b5
+cursor-color                = #FF4685
 cursor-opacity              = 0.6
 cursor-style                = underline
 cursor-style-blink          = false
@@ -193,4 +193,3 @@ font-variation          = CASL=0
 ##
 ##
 ##
-
