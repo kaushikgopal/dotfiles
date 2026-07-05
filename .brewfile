@@ -121,10 +121,8 @@ cask "obsidian"
 #######################
 ######## Fonts
 
-cask "font-lilex"
-cask "font-ibm-plex-sans"
-cask "font-geist-mono"
-cask "kaushikgopal/tools/font-moxy"
+# install VF version directly
+# cask "kaushikgopal/tools/font-moxy"
 
 
 ##############################################################
