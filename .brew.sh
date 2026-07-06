@@ -27,20 +27,21 @@ trust_brewfile_entries() {
     [ -f "$LOCAL_BREWFILE" ] && files+=("$LOCAL_BREWFILE")
     [ ${#files[@]} -eq 0 ] && return 0
 
-    # Trust explicit tap entries
+    # Trust explicit tap entries. `|| true` on each pipeline because grep
+    # returns 1 when there are no matches, and `set -euo pipefail` would abort.
     grep -hoE '^tap "[a-z0-9_-]+/[a-z0-9_-]+"' "${files[@]}" 2>/dev/null \
         | sed -E 's/^tap "([^"]+)".*/\1/' | sort -u \
-        | while read -r t; do brew trust --tap "$t" 2>/dev/null || true; done
+        | while read -r t; do brew trust --tap "$t" 2>/dev/null || true; done || true
 
     # Trust non-official formula entries (contain at least one slash)
     grep -hoE '^brew "[a-z0-9_-]+/[a-z0-9_./-]+"' "${files[@]}" 2>/dev/null \
         | sed -E 's/^brew "([^"]+)".*/\1/' | sort -u \
-        | while read -r f; do brew trust --formula "$f" 2>/dev/null || true; done
+        | while read -r f; do brew trust --formula "$f" 2>/dev/null || true; done || true
 
     # Trust non-official cask entries (contain at least one slash)
     grep -hoE '^cask "[a-z0-9_-]+/[a-z0-9_./-]+"' "${files[@]}" 2>/dev/null \
         | sed -E 's/^cask "([^"]+)".*/\1/' | sort -u \
-        | while read -r c; do brew trust --cask "$c" 2>/dev/null || true; done
+        | while read -r c; do brew trust --cask "$c" 2>/dev/null || true; done || true
 }
 
 echo -e "\n\n\n${YELLOW}---- Homebrew updates${NC}"
