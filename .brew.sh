@@ -17,8 +17,9 @@ LOCAL_BREWFILE="$HOME/.brewfile.local"
 BREW_INSTALL_ONLY="${BREW_INSTALL_ONLY:-0}"
 
 # Trust every non-official tap/formula/cask referenced in the Brewfile(s) so
-# `brew bundle` doesn't refuse to load them from untrusted taps. Trusting a
-# tap alone is NOT enough — each formula/cask must be trusted by full name.
+# `brew bundle` doesn't refuse to load them from untrusted taps. Both the TAP
+# and each formula/cask must be trusted: brew bundle --force cleanup can untap
+# undeclared taps, and re-tapping requires tap trust (not just formula trust).
 # Idempotent. Needed on fresh or SSH'd machines where interactive `brew trust`
 # hasn't been run yet.
 trust_brewfile_entries() {
@@ -27,18 +28,27 @@ trust_brewfile_entries() {
     [ -f "$LOCAL_BREWFILE" ] && files+=("$LOCAL_BREWFILE")
     [ ${#files[@]} -eq 0 ] && return 0
 
-    # Trust explicit tap entries. `|| true` on each pipeline because grep
-    # returns 1 when there are no matches, and `set -euo pipefail` would abort.
-    grep -hoE '^tap "[a-z0-9_-]+/[a-z0-9_-]+"' "${files[@]}" 2>/dev/null \
-        | sed -E 's/^tap "([^"]+)".*/\1/' | sort -u \
-        | while read -r t; do brew trust --tap "$t" 2>/dev/null || true; done || true
+    # Collect every non-official tap mentioned (explicit taps + the tap portion
+    # of every formula/cask path, i.e. the first two slash-separated segments).
+    local all_taps
+    all_taps=$({
+        grep -hoE '^tap "[a-z0-9_-]+/[a-z0-9_-]+"' "${files[@]}" 2>/dev/null \
+            | sed -E 's/^tap "([^"]+)".*/\1/'
+        grep -hoE '^(brew|cask) "[a-z0-9_-]+/[a-z0-9_-]+/[a-z0-9_./-]+"' "${files[@]}" 2>/dev/null \
+            | sed -E 's/^(brew|cask) "([a-z0-9_-]+\/[a-z0-9_-]+)\/.*/\2/'
+    } | sort -u)
 
-    # Trust non-official formula entries (contain at least one slash)
+    # Trust every tap. `|| true` guards against grep no-match (pipefail + set -e).
+    echo "$all_taps" | while read -r t; do
+        [ -n "$t" ] && brew trust --tap "$t" 2>/dev/null || true
+    done || true
+
+    # Trust non-official formula entries by full name
     grep -hoE '^brew "[a-z0-9_-]+/[a-z0-9_./-]+"' "${files[@]}" 2>/dev/null \
         | sed -E 's/^brew "([^"]+)".*/\1/' | sort -u \
         | while read -r f; do brew trust --formula "$f" 2>/dev/null || true; done || true
 
-    # Trust non-official cask entries (contain at least one slash)
+    # Trust non-official cask entries by full name
     grep -hoE '^cask "[a-z0-9_-]+/[a-z0-9_./-]+"' "${files[@]}" 2>/dev/null \
         | sed -E 's/^cask "([^"]+)".*/\1/' | sort -u \
         | while read -r c; do brew trust --cask "$c" 2>/dev/null || true; done || true
