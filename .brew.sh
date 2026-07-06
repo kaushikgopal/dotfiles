@@ -16,24 +16,31 @@ BREWFILE="$HOME/.brewfile"
 LOCAL_BREWFILE="$HOME/.brewfile.local"
 BREW_INSTALL_ONLY="${BREW_INSTALL_ONLY:-0}"
 
-# Trust every non-official tap referenced in the Brewfile(s) so `brew bundle`
-# doesn't refuse to load formulae/casks from untrusted taps. Idempotent:
-# re-trusting an already-trusted tap is a no-op. This is needed on fresh or
-# SSH'd machines where the interactive `brew trust` hasn't been run yet.
-trust_brewfile_taps() {
+# Trust every non-official tap/formula/cask referenced in the Brewfile(s) so
+# `brew bundle` doesn't refuse to load them from untrusted taps. Trusting a
+# tap alone is NOT enough — each formula/cask must be trusted by full name.
+# Idempotent. Needed on fresh or SSH'd machines where interactive `brew trust`
+# hasn't been run yet.
+trust_brewfile_entries() {
     local files=()
     [ -f "$BREWFILE" ] && files+=("$BREWFILE")
     [ -f "$LOCAL_BREWFILE" ] && files+=("$LOCAL_BREWFILE")
     [ ${#files[@]} -eq 0 ] && return 0
 
-    {
-        grep -hoE '^(tap|brew|cask) "[a-z0-9_-]+/[a-z0-9_-]+' "${files[@]}" 2>/dev/null \
-            | sed -E 's/^(tap|brew|cask) "([a-z0-9_-]+\/[a-z0-9_-]+).*/\2/' \
-            | sort -u \
-            | while read -r tap; do
-                brew trust --tap "$tap" >/dev/null 2>&1 || true
-              done
-    } || true
+    # Trust explicit tap entries
+    grep -hoE '^tap "[a-z0-9_-]+/[a-z0-9_-]+"' "${files[@]}" 2>/dev/null \
+        | sed -E 's/^tap "([^"]+)".*/\1/' | sort -u \
+        | while read -r t; do brew trust --tap "$t" 2>/dev/null || true; done
+
+    # Trust non-official formula entries (contain at least one slash)
+    grep -hoE '^brew "[a-z0-9_-]+/[a-z0-9_./-]+"' "${files[@]}" 2>/dev/null \
+        | sed -E 's/^brew "([^"]+)".*/\1/' | sort -u \
+        | while read -r f; do brew trust --formula "$f" 2>/dev/null || true; done
+
+    # Trust non-official cask entries (contain at least one slash)
+    grep -hoE '^cask "[a-z0-9_-]+/[a-z0-9_./-]+"' "${files[@]}" 2>/dev/null \
+        | sed -E 's/^cask "([^"]+)".*/\1/' | sort -u \
+        | while read -r c; do brew trust --cask "$c" 2>/dev/null || true; done
 }
 
 echo -e "\n\n\n${YELLOW}---- Homebrew updates${NC}"
@@ -43,8 +50,8 @@ if [ -f "$LOCAL_BREWFILE" ]; then
     echo -e "${GRAY}---- ~/.brewfile will load local dependencies during cleanup and install${NC}"
 fi
 
-echo -e "${GRAY}---- trusting taps referenced in Brewfile(s)${NC}"
-trust_brewfile_taps
+echo -e "${GRAY}---- trusting taps/formulae/casks referenced in Brewfile(s)${NC}"
+trust_brewfile_entries
 
 if [[ "$BREW_INSTALL_ONLY" != "1" ]]; then
     echo -e "${PURPLE}---- clean up to match brewfile${NC}"
