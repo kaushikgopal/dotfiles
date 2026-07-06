@@ -5,6 +5,10 @@ GRAY='\033[1;30m'       # info
 PURPLE='\033[1;35m'     # making change
 NC='\033[0m' # No Color
 
+# Match the interactive fish/zsh env so brew reads the same trust store
+# (~/.config/homebrew/trust.json) that `brew trust` writes to interactively.
+export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
+
 function delete_if_exists {
     if [ -f "$1" ]; then
         echo -e "$1 exists."
