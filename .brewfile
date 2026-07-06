@@ -12,7 +12,7 @@ cask_args appdir: '/Applications'
 is_arm = Hardware::CPU.arm? # TODO: All lines that are based on this condition are currently not working for ARM architecture - and thus this check
 
 # tap "homebrew/bundle"
-tap "oven-sh/bun" # Bun JavaScript runtime
+tap "oven-sh/bun", trusted: true # Bun JavaScript runtime
 
 ##############################################################
 ##### Unix/CLI tools
@@ -62,7 +62,7 @@ brew "lazygit"
 brew "neovim"
 brew "tree-sitter-cli"     # Neovim Treesitter parser installs
 brew "serie"               # better git logs
-brew "modem-dev/tap/hunk"  # hunk - better diff
+brew "modem-dev/tap/hunk", trusted: true  # hunk - better diff
 
 ######################
 ##### Web dev
@@ -77,7 +77,7 @@ brew "cloudflare-wrangler"
 
 ######################
 ##### Javascript and TypeScript
-brew "oven-sh/bun/bun"
+brew "oven-sh/bun/bun", trusted: true
 brew "typescript"
 brew "node"
 # npm-installed CLIs live in ~/.npm-global-packages and install via ~/.npm.sh.
@@ -101,7 +101,7 @@ brew "rust-script" # we depend on rust-script for shebang-driven Rust executable
 
 #######################
 ######## AI apps
-brew "anomalyco/tap/opencode"
+brew "anomalyco/tap/opencode", trusted: true
 cask "openchamber"
 brew "agent-browser"
 brew "herdr"
