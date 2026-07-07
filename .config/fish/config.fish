@@ -74,6 +74,8 @@ if status is-interactive
     abbr -a -- oca      opencode attach http://127.0.0.1:4096
     abbr -a -- ocad     opencode attach http://127.0.0.1:4096 --dir .
 
+    abbr -a -- pih      'pi -p'                      # headless, answers, exits
+
     abbr -a -- he       herdr
     abbr -a -- hes      herdr session
     abbr -a -- hel      herdr session list
