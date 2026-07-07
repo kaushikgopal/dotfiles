@@ -67,9 +67,9 @@ if status is-interactive
     abbr -a -- z   zed
 
     abbr -a -- oc       opencode
-    abbr -a -- ocr      opencode run            # headless, answers, exits
-    abbr -a -- ocm      opencode --mini         # split-footer, auto-submits, stays interactive
-    abbr -a -- ocp      opencode --prompt       # full tUI, auto-submits, stays interactive
+    abbr -a -- ocr      opencode run                # headless, answers, exits
+    abbr -a -- ocm      opencode --mini --prompt    # split-footer, auto-submits, stays interactive
+    abbr -a -- ocp      opencode --prompt           # full tUI, auto-submits, stays interactive
     abbr -a -- ocs      "nohup opencode serve --port 4096 >/tmp/opencode.log 2>&1 &"  # --hostname 127.0.0.1 # default
     abbr -a -- oca      opencode attach http://127.0.0.1:4096
     abbr -a -- ocad     opencode attach http://127.0.0.1:4096 --dir .
