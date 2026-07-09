@@ -21,6 +21,7 @@ description = "lazygit"
 
 [ui]
 agent_panel_sort = "priority"
+accent = "#326FD6"
 
 # send desktop notifications through Ghostty's escape sequences
 [ui.toast]
