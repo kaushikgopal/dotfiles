@@ -259,6 +259,18 @@ require("lazy").setup({
     end,
   },
   {
+    "dmtrKovalenko/fff.nvim",
+    build = function()
+      require("fff.download").download_or_build_binary()
+    end,
+    lazy = false,
+    opts = {},
+    keys = {
+      { "<leader>f", function() require("fff").find_files() end, desc = "Find files" },
+      { "<leader>g", function() require("fff").live_grep() end, desc = "Grep files" },
+    },
+  },
+  {
     "MeanderingProgrammer/render-markdown.nvim",
     ft = { "markdown" },
     dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-mini/mini.icons" },
