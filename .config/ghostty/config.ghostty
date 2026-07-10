@@ -50,7 +50,8 @@ keybind = global:ctrl+shift+space=toggle_quick_terminal
 
 # theme = dark:kursor-dark,light:kursor
 # theme = kursor
-theme = Cobalt2
+# theme = Cobalt2
+theme = Catppuccin Mocha
 
 adjust-cursor-thickness         = 3
 adjust-underline-position       = 3
@@ -97,10 +98,11 @@ window-padding-y                = 8
 font-family             = Moxy
 font-size               = 12.5
 adjust-cell-height      = 11
+font-variation          = CASL=0
 font-variation          = wght=400
+font-variation-bold     = wght=800
 font-feature            = lilx,moxy
 #font-feature            = lilx,moxy,ss06
-font-variation          = CASL=0
 # \n \\ \b \\b     #    ( ) |> <|
 ###  → ↑ ↓ ← ↔ ↕          -  ↩ ↪ ↰ ↱ ↲ ↳ ↶ ↷ ↺ ↻ ⇄ ⇆
 # ---> --> -> → ↓ ↑ ← <- <-- <---
@@ -111,7 +113,6 @@ font-variation          = CASL=0
 ##### little tilt ttt lll iii hhnn uu
 ##### {} () $ + @ ` 777
 ##### www vvv xxx RRR HHH LLL ZZZ
-
 
 ## Geist Mono -------- -->
 #font-family             = Geist Mono
