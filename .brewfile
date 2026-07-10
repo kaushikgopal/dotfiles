@@ -17,6 +17,7 @@ tap "oven-sh/bun", trusted: true # Bun JavaScript runtime
 ##############################################################
 ##### Unix/CLI tools
 
+brew "ast-grep"  # we use this in pi (custom extension read-plus)
 brew "bash"      # esp. when you run scripts macOS is still on 3.2
 brew "bat"
 brew "coreutils" # for gnu date
@@ -28,10 +29,12 @@ brew "gawk"
 brew "ghostscript" # for pdfs
 brew "gnupg" # "openssl"
 brew "gum"   # agent-kombat + aikado skills import
+brew "herdr"
 brew "imagemagick"
 brew "jq"
 brew "mole"             # macOS cleaner app
 brew "openssl"
+brew "poppler"
 brew "ripgrep"
 brew "rsync"
 brew "sox"
@@ -42,10 +45,12 @@ brew "yazi"     # file manager
 brew "yt-dlp"    # fetch YouTube video metadata (view counts) without OAuth — used by pull-analytics-for-fragmented
 brew "zoxide"   # after upgrading, run: regen-shell-caches
 
+
 brew "fish"
 brew "fzf"       # after upgrading, run: regen-shell-caches
 
-brew "htop"     # better top
+brew "btop"     # better top
+#brew "htop"     # better top
 brew "procs"    # better ps
 
 ##############################################################
@@ -101,10 +106,12 @@ brew "rust-script" # we depend on rust-script for shebang-driven Rust executable
 
 #######################
 ######## AI apps
-brew "anomalyco/tap/opencode", trusted: true
-cask "openchamber"
 brew "agent-browser"
-brew "herdr"
+
+brew "anomalyco/tap/opencode", trusted: true
+cask "chatgpt"
+
+cask "openchamber"
 
 ##############################################################
 ##### Agent skills runtime

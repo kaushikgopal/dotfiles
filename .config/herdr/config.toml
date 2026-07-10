@@ -3,16 +3,6 @@ prefix = "f8"
 rename_tab = "prefix+comma"
 rename_workspace = "prefix+shift+comma"
 
-# prefix-free direct chords (ctrl+alt is safe across Ghostty/iTerm2/Kitty/WezTerm)
-focus_pane_left  = ["prefix+h", "ctrl+alt+h"]
-focus_pane_down  = ["prefix+j", "ctrl+alt+j"]
-focus_pane_up    = ["prefix+k", "ctrl+alt+k"]
-focus_pane_right = ["prefix+l", "ctrl+alt+l"]
-new_tab          = ["prefix+c", "ctrl+alt+c"]
-split_vertical   = ["prefix+v", "ctrl+alt+d"]
-split_horizontal = ["prefix+minus", "ctrl+alt+shift+d"]
-zoom             = ["prefix+z", "ctrl+alt+z"]
-
 [[keys.command]]
 key = "prefix+shift+g"
 type = "pane"

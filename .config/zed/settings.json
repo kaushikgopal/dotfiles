@@ -7,6 +7,35 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "agent_servers": {
+    "claude": {
+      "type": "custom",
+      "command": "node",
+      "args": [
+        "/Users/kg/Library/Application Support/Zed/external_agents/claude-code-acp/0.12.6/node_modules/@zed-industries/claude-code-acp/dist/index.js",
+      ],
+      "env": {
+        "CLAUDE_CODE_EXECUTABLE": "/Users/kg/.config/gohan/bin/claude",
+      },
+    },
+    "codex": {
+      "type": "custom",
+      "command": "/Users/kg/Library/Application Support/Zed/external_agents/codex/v0.8.2/codex-acp",
+      "env": {
+        "CODEX_PATH": "/Users/kg/.config/gohan/bin/codex",
+      },
+    },
+    "gemini": {
+      "type": "custom",
+      "command": "/Users/kg/.config/gohan/bin/gemini",
+      "args": ["--acp"],
+    },
+    "opencode": {
+      "type": "custom",
+      "command": "/Users/kg/.config/gohan/bin/opencode",
+      "args": ["acp"],
+    },
+  },
   "diff_view_style": "split",
   "cli_default_open_behavior": "new_window",
   "theme": "Zedokai Darker (Filter Machine)",
@@ -18,9 +47,7 @@
   "buffer_font_features": {
     "lilx": true,
     "moxy": true,
-    "ss05": true,
-    "ss07": true,
-    "ss08": true,
+    // "ss06": true,
   },
   // // ------------------------ SF Mono
   // "buffer_font_family": "SF Mono",

@@ -95,10 +95,11 @@ window-padding-y                = 8
 
 #Moxy ------------------- ->
 font-family             = Moxy
-font-size               = 13
+font-size               = 12.5
 adjust-cell-height      = 11
-font-variation          = wght=360
-font-feature            = lilx,  ss02,ss03,ss09,ss10,ss11,titl    ,ss05,ss07,ss08
+font-variation          = wght=400
+font-feature            = lilx,moxy
+#font-feature            = lilx,moxy,ss06
 font-variation          = CASL=0
 # \n \\ \b \\b     #    ( ) |> <|
 ###  → ↑ ↓ ← ↔ ↕          -  ↩ ↪ ↰ ↱ ↲ ↳ ↶ ↷ ↺ ↻ ⇄ ⇆
@@ -107,12 +108,31 @@ font-variation          = CASL=0
 # ss04 (i) ss05 (l) ss08 (LZ) ss07 (kwxyz - italics)
 # % / \ @ & $ • ✓
 
-
 ##### little tilt ttt lll iii hhnn uu
 ##### {} () $ + @ ` 777
 ##### www vvv xxx RRR HHH LLL ZZZ
 
 
+## Geist Mono -------- -->
+#font-family             = Geist Mono
+#font-size               = 13
+#adjust-cell-height      = 7
+#font-feature            = ss01,ss03,ss04,ss06,ss11
+#font-variation          = wght=420
+#font-variation-bold     = wght=550
+## ss01 (a) ss02 (a) ss03 (l) ss04 (R) ss06 (G) ss11 (lig)
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
 # SF Mono -------- -->
 #font-family             = SF Mono
 #font-size               = 13
@@ -146,26 +166,6 @@ font-variation          = CASL=0
 ## cv02 cv03  g
 ## cv08          <= >= # cv11          |> <|
 ## cv13          ()
-#
-#
-#
-#
-#
-#
-#
-# #Geist Mono -------- -->
-#font-family             = Geist Mono
-#font-size               = 13.5
-#adjust-cell-height      = 7
-#font-feature            = ss01,ss03,ss04,ss06,ss11
-#font-variation          = wght=420
-#font-variation-bold     = wght=550
-## ss01 (a) ss02 (a) ss03 (l) ss04 (R) ss06 (G) ss11 (lig)
-#
-#
-#
-#
-#
 #
 #
 #
