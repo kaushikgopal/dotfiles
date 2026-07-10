@@ -32,6 +32,7 @@ opt.clipboard = "unnamedplus"
 
 -- UI
 opt.mouse = "a"
+opt.foldcolumn = "auto"
 opt.wrap = false
 opt.visualbell = true
 opt.number = true
@@ -244,8 +245,13 @@ require("lazy").setup({
       require("nvim-treesitter").setup()
       api.nvim_create_autocmd("FileType", {
         pattern = treesitter_filetypes,
-        callback = function()
+        callback = function(args)
           pcall(vim.treesitter.start)
+
+          if vim.bo[args.buf].filetype == "json" then
+            vim.opt_local.foldmethod = "expr"
+            vim.opt_local.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+          end
         end,
       })
     end,
