@@ -1,5 +1,7 @@
+onboarding = false
+
 [keys]
-prefix = "f8"
+prefix = "ctrl+h"
 rename_tab = "prefix+comma"
 rename_workspace = "prefix+shift+comma"
 
@@ -11,7 +13,6 @@ description = "lazygit"
 
 [ui]
 agent_panel_sort = "priority"
-accent = "#326FD6"
 
 # send desktop notifications through Ghostty's escape sequences
 [ui.toast]
@@ -20,3 +21,11 @@ delay_seconds = 1
 
 [ui.toast.herdr]
 position = "bottom-right"
+
+[theme]
+name = "terminal"
+
+[theme.custom]
+panel_bg = "transparent"
+surface_dim = "#1f1f1f"
+accent = "#326FD6"
