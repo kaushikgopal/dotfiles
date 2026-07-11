@@ -48,10 +48,10 @@ keybind = global:ctrl+shift+space=toggle_quick_terminal
 # ghostty +list-themes
 # ghostty +list-fonts
 
-# theme = dark:kursor-dark,light:kursor
-# theme = kursor
-# theme = Cobalt2
-theme = Catppuccin Mocha
+#theme = dark:kursor-dark,light:kursor
+#theme = kursor
+#theme = Cobalt2
+theme = dark:Catppuccin Mocha,light:Catppuccin Macchiato
 
 adjust-cursor-thickness         = 3
 adjust-underline-position       = 3
@@ -96,11 +96,11 @@ window-padding-y                = 8
 
 #Moxy ------------------- ->
 font-family             = Moxy
-font-size               = 12.5
-adjust-cell-height      = 11
-font-variation          = CASL=0
-font-variation          = wght=400
-font-variation-bold     = wght=800
+font-size               = 13
+adjust-cell-height      = 10
+font-variation          = CASL=0.75
+font-variation          = wght=375
+font-variation-bold     = wght=700
 font-feature            = lilx,moxy
 #font-feature            = lilx,moxy,ss06
 # \n \\ \b \\b     #    ( ) |> <|
@@ -114,6 +114,26 @@ font-feature            = lilx,moxy
 ##### {} () $ + @ ` 777
 ##### www vvv xxx RRR HHH LLL ZZZ
 
+# # SF Mono -------- -->
+#font-family             = SF Mono
+#font-size               = 12.5
+#adjust-cell-height      = 8
+##font-style              = Medium
+#font-style-bold         = Semibold
+#############################
+############################
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+##
+##
 ## Geist Mono -------- -->
 #font-family             = Geist Mono
 #font-size               = 13
@@ -134,26 +154,6 @@ font-feature            = lilx,moxy
 #
 #
 #
-# SF Mono -------- -->
-#font-family             = SF Mono
-#font-size               = 13
-#adjust-cell-height      = 8
-##font-style              = Medium
-#font-style-bold         = Semibold
-#############################
-############################
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-##
-##
 ## Lilex -------- -->
 #font-family             = Lilex
 #font-size               = 13
