@@ -96,12 +96,13 @@ window-padding-y                = 8
 
 #Moxy ------------------- ->
 font-family             = Moxy
-font-size               = 13
-adjust-cell-height      = 10
-font-variation          = CASL=0.75
-font-variation          = wght=375
+font-size               = 12.5
+adjust-cell-height      = 12
+font-variation          = CASL=0
+font-variation          = wght=400
 font-variation-bold     = wght=700
-font-feature            = lilx,moxy
+font-feature            = lilx, ss02,ss03,ss05,ss07,ss08,ss09,ss10,title
+#font-feature            = lilx,moxy
 #font-feature            = lilx,moxy,ss06
 # \n \\ \b \\b     #    ( ) |> <|
 ###  → ↑ ↓ ← ↔ ↕          -  ↩ ↪ ↰ ↱ ↲ ↳ ↶ ↷ ↺ ↻ ⇄ ⇆
@@ -109,16 +110,15 @@ font-feature            = lilx,moxy
 # moxy = ss02 (g) ss03 (f) ss06 (r) ss09 (69) ss10 (0) ss11 (1) titl (Q)
 # ss04 (i) ss05 (l) ss08 (LZ) ss07 (kwxyz - italics)
 # % / \ @ & $ • ✓
-
 ##### little tilt ttt lll iii hhnn uu
 ##### {} () $ + @ ` 777
 ##### www vvv xxx RRR HHH LLL ZZZ
 
 # # SF Mono -------- -->
 #font-family             = SF Mono
-#font-size               = 12.5
-#adjust-cell-height      = 8
-##font-style              = Medium
+#font-size               = 12
+#adjust-cell-height      = 10
+#font-style              = Medium
 #font-style-bold         = Semibold
 #############################
 ############################
@@ -137,7 +137,7 @@ font-feature            = lilx,moxy
 ## Geist Mono -------- -->
 #font-family             = Geist Mono
 #font-size               = 13
-#adjust-cell-height      = 7
+#adjust-cell-height      = 6
 #font-feature            = ss01,ss03,ss04,ss06,ss11
 #font-variation          = wght=420
 #font-variation-bold     = wght=550
