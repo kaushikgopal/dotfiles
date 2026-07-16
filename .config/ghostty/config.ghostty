@@ -96,10 +96,10 @@ window-padding-y                = 8
 
 #Moxy ------------------- ->
 font-family             = Moxy
-font-size               = 12.5
+font-size               = 13
 adjust-cell-height      = 12
 font-variation          = CASL=0
-font-variation          = wght=400
+font-variation          = wght=350
 font-variation-bold     = wght=700
 font-feature            = lilx, ss02,ss03,ss05,ss07,ss08,ss09,ss10,title
 #font-feature            = lilx,moxy
