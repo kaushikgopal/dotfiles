@@ -108,11 +108,6 @@ brew "rust-script" # we depend on rust-script for shebang-driven Rust executable
 ######## AI apps
 brew "agent-browser"
 
-brew "anomalyco/tap/opencode", trusted: true
-cask "chatgpt"
-
-cask "openchamber"
-
 ##############################################################
 ##### Agent skills runtime
 
