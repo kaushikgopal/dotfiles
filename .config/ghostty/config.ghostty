@@ -96,12 +96,12 @@ window-padding-y                = 8
 
 #Moxy ------------------- ->
 font-family             = Moxy
-font-size               = 13
-adjust-cell-height      = 12
+font-size               = 12.5
+adjust-cell-height      = 11
 font-variation          = CASL=0
-font-variation          = wght=350
+font-variation          = wght=400
 font-variation-bold     = wght=700
-font-feature            = lilx, ss02,ss03,ss05,ss07,ss08,ss09,ss10,title
+font-feature            = lilx, ss02,ss05,ss06,ss07,ss08,ss09,ss10,title
 #font-feature            = lilx,moxy
 #font-feature            = lilx,moxy,ss06
 # \n \\ \b \\b     #    ( ) |> <|
@@ -176,8 +176,8 @@ font-feature            = lilx, ss02,ss03,ss05,ss07,ss08,ss09,ss10,title
 #
 ### Berkeley Mono (TX-02-Variable) -------- -->
 #font-family             = TX-02-Variable
-#font-size               = 13.5
-#adjust-cell-height      = 10
+#font-size               = 12
+#adjust-cell-height      = 9
 ##font-feature            = ss01,ss06
 #font-variation          = wght=400
 ##font-variation-italic   = slnt=-16
