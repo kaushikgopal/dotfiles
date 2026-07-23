@@ -32,3 +32,6 @@ name = "terminal"
 panel_bg = "transparent"
 surface_dim = "#1f1f1f"
 accent = "#326FD6"
+
+[worktrees]
+directory = "~/dev/trees"
