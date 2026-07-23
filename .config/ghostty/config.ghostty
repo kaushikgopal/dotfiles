@@ -50,8 +50,8 @@ keybind = global:ctrl+shift+space=toggle_quick_terminal
 
 #theme = dark:kursor-dark,light:kursor
 #theme = kursor
-#theme = Cobalt2
-theme = dark:Catppuccin Mocha,light:Catppuccin Macchiato
+theme = Cobalt2
+# theme = dark:Catppuccin Mocha,light:Catppuccin Macchiato
 
 adjust-cursor-thickness         = 3
 adjust-underline-position       = 3
