@@ -50,8 +50,8 @@ keybind = global:ctrl+shift+space=toggle_quick_terminal
 
 #theme = dark:kursor-dark,light:kursor
 #theme = kursor
-theme = Cobalt2
-# theme = dark:Catppuccin Mocha,light:Catppuccin Macchiato
+# theme = Cobalt2
+theme = dark:Catppuccin Mocha,light:Catppuccin Macchiato
 
 adjust-cursor-thickness         = 3
 adjust-underline-position       = 3
@@ -96,12 +96,12 @@ window-padding-y                = 8
 
 #Moxy ------------------- ->
 font-family             = Moxy
-font-size               = 12.5
-adjust-cell-height      = 11
-font-variation          = CASL=0
-font-variation          = wght=400
-font-variation-bold     = wght=700
-font-feature            = lilx, ss02,ss05,ss06,ss07,ss08,ss09,ss10,title
+font-size               = 13.5
+adjust-cell-height      = 7
+font-variation          = CASL=0.5
+#font-variation          = wght=360
+font-variation-bold     = wght=600
+font-feature            = lilx, ss02,ss05,ss06,ss07,ss08,ss09,ss10,titl
 #font-feature            = lilx,moxy
 #font-feature            = lilx,moxy,ss06
 # \n \\ \b \\b     #    ( ) |> <|
@@ -114,10 +114,10 @@ font-feature            = lilx, ss02,ss05,ss06,ss07,ss08,ss09,ss10,title
 ##### {} () $ + @ ` 777
 ##### www vvv xxx RRR HHH LLL ZZZ
 
-# # SF Mono -------- -->
+## SF Mono -------- -->
 #font-family             = SF Mono
-#font-size               = 12
-#adjust-cell-height      = 10
+#font-size               = 13
+#adjust-cell-height      = 9
 #font-style              = Medium
 #font-style-bold         = Semibold
 #############################
@@ -136,11 +136,11 @@ font-feature            = lilx, ss02,ss05,ss06,ss07,ss08,ss09,ss10,title
 ##
 ## Geist Mono -------- -->
 #font-family             = Geist Mono
-#font-size               = 13
-#adjust-cell-height      = 6
+#font-size               = 13.5
+#adjust-cell-height      = 5
 #font-feature            = ss01,ss03,ss04,ss06,ss11
-#font-variation          = wght=420
-#font-variation-bold     = wght=550
+#font-variation          = wght=400
+#font-variation-bold     = wght=600
 ## ss01 (a) ss02 (a) ss03 (l) ss04 (R) ss06 (G) ss11 (lig)
 #
 #
@@ -176,8 +176,8 @@ font-feature            = lilx, ss02,ss05,ss06,ss07,ss08,ss09,ss10,title
 #
 ### Berkeley Mono (TX-02-Variable) -------- -->
 #font-family             = TX-02-Variable
-#font-size               = 12
-#adjust-cell-height      = 9
+#font-size               = 13.5
+#adjust-cell-height      = 7
 ##font-feature            = ss01,ss06
 #font-variation          = wght=400
 ##font-variation-italic   = slnt=-16
