@@ -97,11 +97,11 @@ window-padding-y                = 8
 #Moxy ------------------- ->
 font-family             = Moxy
 font-size               = 13.5
-adjust-cell-height      = 7
+adjust-cell-height      = 8
 font-variation          = CASL=0.5
-#font-variation          = wght=360
+font-variation          = wght=375
 font-variation-bold     = wght=600
-font-feature            = lilx, ss02,ss05,ss06,ss07,ss08,ss09,ss10,titl
+font-feature            = lilx, ss02,ss05,ss07,ss08,ss09,ss10,titl
 #font-feature            = lilx,moxy
 #font-feature            = lilx,moxy,ss06
 # \n \\ \b \\b     #    ( ) |> <|
@@ -114,14 +114,19 @@ font-feature            = lilx, ss02,ss05,ss06,ss07,ss08,ss09,ss10,titl
 ##### {} () $ + @ ` 777
 ##### www vvv xxx RRR HHH LLL ZZZ
 
-## SF Mono -------- -->
-#font-family             = SF Mono
+## Lilex -------- -->
+#font-family             = Lilex
 #font-size               = 13
-#adjust-cell-height      = 9
-#font-style              = Medium
-#font-style-bold         = Semibold
-#############################
-############################
+#adjust-cell-height      = 6
+#font-feature            = ss02,ss03,   cv03,cv11,cv13,cv15
+#font-variation          = wght=400
+#font-variation-bold     = wght=600
+## calt  - :> :< >: <: :>: :<: <:> >:< <:<>:>
+##### ss01  <<= >>= ||= |=       # ss02  === == !== !=
+##### ss03  \\                   # ss04 #############  # cv15          #
+## cv02 cv03  g
+## cv08          <= >= # cv11          |> <|
+## cv13          ()
 #
 #
 #
@@ -129,11 +134,6 @@ font-feature            = lilx, ss02,ss05,ss06,ss07,ss08,ss09,ss10,titl
 #
 #
 #
-#
-#
-#
-##
-##
 ## Geist Mono -------- -->
 #font-family             = Geist Mono
 #font-size               = 13.5
@@ -147,26 +147,6 @@ font-feature            = lilx, ss02,ss05,ss06,ss07,ss08,ss09,ss10,titl
 #
 #
 #
-#
-#
-#
-#
-#
-#
-#
-## Lilex -------- -->
-#font-family             = Lilex
-#font-size               = 13
-#adjust-cell-height      = 8
-#font-feature            = ss02,ss03,   cv03,cv11,cv13,cv15
-#font-variation          = wght=400
-#font-variation-bold     = wght=600
-## calt  - :> :< >: <: :>: :<: <:> >:< <:<>:>
-##### ss01  <<= >>= ||= |=       # ss02  === == !== !=
-##### ss03  \\                   # ss04 #############  # cv15          #
-## cv02 cv03  g
-## cv08          <= >= # cv11          |> <|
-## cv13          ()
 #
 #
 #
