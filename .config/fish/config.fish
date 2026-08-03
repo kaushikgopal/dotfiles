@@ -40,8 +40,10 @@ if status is-interactive
     abbr -a -- cl   claude --dangerously-skip-permissions
     abbr -a -- clp  claude --plugin-dir ~/dev/off/claude-marketplace/caper/android
     abbr -a -- co   codex --yolo
-    abbr -a -- fd 'rg --files 2>/dev/null | rg'  # use rg instead of fd (one less dep)
-    abbr -a -- ff 'firefox -no-remote -profile ~/.firefox-automation --marionette' # use for agent-browser use
+    abbr -a -- fd   'rg --files 2>/dev/null | rg'  # use rg instead of fd (one less dep)
+    abbr -a -- fdu  'rg -u --files 2>/dev/null | rg'  # use rg instead of fd (one less dep)
+    abbr -a -- fduu 'rg -uu --files 2>/dev/null | rg'  # use rg instead of fd (one less dep)
+    abbr -a -- fduu 'rg -uuu --files 2>/dev/null | rg'  # use rg instead of fd (one less dep)
     abbr -a -- g    git # using a git function which is better
     abbr -a -- g.   git add .
     abbr -a -- ge      gemini
