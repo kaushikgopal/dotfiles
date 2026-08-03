@@ -33,6 +33,7 @@ brew "herdr"
 brew "imagemagick"
 brew "jq"
 brew "mole"             # macOS cleaner app
+brew "mosh"             # mobile shell — resilient SSH from iPhone (Moshi) to laptop/Brainiac
 brew "openssl"
 brew "poppler"
 brew "ripgrep"
