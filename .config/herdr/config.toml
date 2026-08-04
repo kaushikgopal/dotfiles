@@ -35,3 +35,6 @@ accent = "#326FD6"
 
 [worktrees]
 directory = "~/dev/trees"
+
+[experimental]
+kitty_graphics = true
