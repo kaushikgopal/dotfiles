@@ -94,32 +94,52 @@ window-padding-y                = 8
 #  1234567890   $ @ . •
 # ---> --> -> → ↓ ↑ ← <- <-- <---
 
-#Moxy ------------------- ->
-font-family             = Moxy
-font-size               = 13.5
-adjust-cell-height      = 8
-font-variation          = CASL=0.5
-font-variation          = wght=375
-font-variation-bold     = wght=600
-font-feature            = lilx, ss02,ss05,ss07,ss08,ss09,ss10,titl
-#font-feature            = lilx,moxy
-#font-feature            = lilx,moxy,ss06
-# \n \\ \b \\b     #    ( ) |> <|
-###  → ↑ ↓ ← ↔ ↕          -  ↩ ↪ ↰ ↱ ↲ ↳ ↶ ↷ ↺ ↻ ⇄ ⇆
-# ---> --> -> → ↓ ↑ ← <- <-- <---
-# moxy = ss02 (g) ss03 (f) ss06 (r) ss09 (69) ss10 (0) ss11 (1) titl (Q)
-# ss04 (i) ss05 (l) ss08 (LZ) ss07 (kwxyz - italics)
-# % / \ @ & $ • ✓
-##### little tilt ttt lll iii hhnn uu
-##### {} () $ + @ ` 777
-##### www vvv xxx RRR HHH LLL ZZZ
+## Code Saver (Dharma Foundary) -------- -->
+font-family             = Code Saver VF
+font-size               = 15.5
+adjust-cell-height      = 4
+font-variation          = wght=500
+font-variation-bold     = wght=700
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+##Moxy ------------------- ->
+#font-family             = Moxy
+#font-size               = 12.5
+#adjust-cell-height      = 7
+#font-variation          = CASL=0.5
+#font-variation          = wght=400
+#font-variation-bold     = wght=600
+#font-feature            = lilx, ss02,ss03,ss05,ss07,ss08,ss09,ss10,titl
+##font-feature            = lilx,moxy
+##font-feature            = lilx,moxy,ss06
+## \n \\ \b \\b     #    ( ) |> <|
+####  → ↑ ↓ ← ↔ ↕          -  ↩ ↪ ↰ ↱ ↲ ↳ ↶ ↷ ↺ ↻ ⇄ ⇆
+## ---> --> -> → ↓ ↑ ← <- <-- <---
+## moxy = ss02 (g) ss03 (f) ss06 (r) ss09 (69) ss10 (0) ss11 (1) titl (Q)
+## ss04 (i) ss05 (l) ss08 (LZ) ss07 (kwxyz - italics)
+## % / \ @ & $ • ✓
+###### little tilt ttt lll iii hhnn uu
+###### {} () $ + @ ` 777
+###### www vvv xxx RRR HHH LLL ZZZ
+#
 ## Lilex -------- -->
 #font-family             = Lilex
-#font-size               = 13
-#adjust-cell-height      = 6
-#font-feature            = ss02,ss03,   cv03,cv11,cv13,cv15
-#font-variation          = wght=400
+#font-size               = 12.5
+#adjust-cell-height      = 4
+#font-feature            = ss02,ss03,   cv02,cv11,cv13,cv15
+#font-variation          = wght=450
 #font-variation-bold     = wght=600
 ## calt  - :> :< >: <: :>: :<: <:> >:< <:<>:>
 ##### ss01  <<= >>= ||= |=       # ss02  === == !== !=
@@ -134,12 +154,32 @@ font-feature            = lilx, ss02,ss05,ss07,ss08,ss09,ss10,titl
 #
 #
 #
+### SF Mono -------- -->
+#font-family             = SF Mono
+#font-size               = 13
+#adjust-cell-height      = 5
+#font-variation          = wght=450
+#font-variation-bold     = wght=700
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
 ## Geist Mono -------- -->
 #font-family             = Geist Mono
-#font-size               = 13.5
-#adjust-cell-height      = 5
+#font-size               = 13
+#adjust-cell-height      = 3
 #font-feature            = ss01,ss03,ss04,ss06,ss11
-#font-variation          = wght=400
+#font-variation          = wght=420
 #font-variation-bold     = wght=600
 ## ss01 (a) ss02 (a) ss03 (l) ss04 (R) ss06 (G) ss11 (lig)
 #
@@ -157,9 +197,9 @@ font-feature            = lilx, ss02,ss05,ss07,ss08,ss09,ss10,titl
 ### Berkeley Mono (TX-02-Variable) -------- -->
 #font-family             = TX-02-Variable
 #font-size               = 13.5
-#adjust-cell-height      = 7
+#adjust-cell-height      = 8
 ##font-feature            = ss01,ss06
-#font-variation          = wght=400
+#font-variation          = wght=420
 ##font-variation-italic   = slnt=-16
 ###font-variation-bold     = wght=700
 ### |
