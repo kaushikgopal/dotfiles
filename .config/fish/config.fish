@@ -79,7 +79,7 @@ if status is-interactive
     abbr -a -- pih      'pi -p'                      # headless, answers, exits
 
     abbr -a -- he       herdr
-    abbr -a -- hes      herdr session
+    abbr -a -- hes      herdr --session         # to create a new session
     abbr -a -- hel      herdr session list
     abbr -a -- hea      herdr session attach
 
