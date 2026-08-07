@@ -9,18 +9,31 @@
 function graft --wraps=graft --description 'Worktree manager with shell integration'
 	# Set marker to indicate shell integration is active
 	set -gx GRAFT_SHELL_INTEGRATION 1
-	set -gx GRAFT_COMPLETION_VERSION 5
+	set -gx GRAFT_COMPLETION_VERSION 9
+
+	# Clear stale shell commands before running graft. Cobra does not run
+	# PersistentPreRun for help output, so the binary alone cannot guarantee this.
+	set -l graft_state_home "$XDG_STATE_HOME"
+	if test -z "$graft_state_home"
+		set graft_state_home "$HOME/.local/state"
+	end
+	set -l command_file "$graft_state_home/graft/commands.sh"
+	set command_file_ready 0
+	if test -n "$command_file"
+		set command_dir (dirname "$command_file")
+		if command mkdir -p -- "$command_dir" 2>/dev/null; and true > "$command_file" 2>/dev/null
+			set command_file_ready 1
+		end
+	end
 
 	# Run the actual graft binary
 	command graft $argv
 	set exit_code $status
 
-	# Get the command file path from graft itself
-	set command_file (command graft statefile 2>/dev/null)
-
-	if test -n "$command_file" -a -f "$command_file" -a -s "$command_file"
+	if test "$command_file_ready" -eq 1; and test "$exit_code" -ne 126; and test "$exit_code" -ne 127; and test -f "$command_file" -a -s "$command_file"
 		# Execute the commands from the file (enables automatic cd)
 		source "$command_file"
+		command printf '' > "$command_file"
 	end
 
 	return $exit_code
