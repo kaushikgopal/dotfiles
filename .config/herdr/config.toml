@@ -23,7 +23,7 @@ delivery = "terminal"
 delay_seconds = 1
 
 [ui.toast.herdr]
-position = "bottom-right"
+# position = "bottom-right"
 
 [theme]
 name = "terminal"
