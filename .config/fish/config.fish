@@ -127,6 +127,9 @@ set -gx RIPGREP_CONFIG_PATH $XDG_CONFIG_HOME/.ripgreprc
 # leftover Chrome/Brave instances do not accumulate in the background.
 set -gx AGENT_BROWSER_IDLE_TIMEOUT_MS 600000
 
+# disable fff indexing/searching in home directory (it'll hose the machine)
+set -gx FFF_ENABLE_HOME_SCAN 0
+
 # ----------------------------------------------------------------------------------------------------------------------
 # Path   # https://fishshell.com/docs/current/cmds/fish_add_path.html
 
