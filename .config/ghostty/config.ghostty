@@ -98,7 +98,7 @@ window-padding-y                = 8
 font-family             = Code Saver VF
 font-size               = 15.5
 adjust-cell-height      = 3
-font-variation          = wght=500
+font-variation          = wght=420
 font-variation-bold     = wght=700
 
 
@@ -116,9 +116,9 @@ font-variation-bold     = wght=700
 
 ##Moxy ------------------- ->
 #font-family             = Moxy
-#font-size               = 12.5
+#font-size               = 14.5
 #adjust-cell-height      = 7
-#font-variation          = CASL=0.5
+#font-variation          = CASL=1
 #font-variation          = wght=400
 #font-variation-bold     = wght=600
 #font-feature            = lilx, ss02,ss03,ss05,ss07,ss08,ss09,ss10,titl
