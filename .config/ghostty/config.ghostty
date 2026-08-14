@@ -97,7 +97,7 @@ window-padding-y                = 8
 ## Code Saver (Dharma Foundary) -------- -->
 font-family             = Code Saver VF
 font-size               = 16.5
-adjust-cell-height      = 3
+adjust-cell-height      = 2
 font-variation          = wght=450
 font-variation-bold     = wght=700
 
