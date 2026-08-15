@@ -2,7 +2,6 @@ gui:
   # Keep lazygit's native theme; only override author color.
   authorColors:
     '*': green
-
 git:
-  pagers:
-    - pager: hunk pager
+  diffRenderers:
+    - command: hunk pager
