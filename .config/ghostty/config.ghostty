@@ -96,12 +96,12 @@ window-padding-y                = 8
 
 ## Code Saver (Dharma Foundary) -------- -->
 font-family             = Code Saver VF
-font-size               = 16.5
-adjust-cell-height      = 2
-font-variation          = wght=450
-font-variation-bold     = wght=700
-
-
+font-size               = 16
+adjust-cell-height      = 4
+font-variation          = wght=400
+font-variation-bold     = wght=600
+font-feature            = ss02
+# ss01 ss02 (r)
 
 
 
@@ -116,12 +116,12 @@ font-variation-bold     = wght=700
 
 ##Moxy ------------------- ->
 #font-family             = Moxy
-#font-size               = 14.5
-#adjust-cell-height      = 7
-#font-variation          = CASL=0.5
+#font-size               = 15
+#adjust-cell-height      = 8
+#font-variation          = CASL=0
 #font-variation          = wght=400
 #font-variation-bold     = wght=600
-#font-feature            = lilx, ss02,ss03,ss05,ss07,ss08,ss09,ss10,titl
+#font-feature            = lilx, ss02,ss03,ss05,ss06,ss07,ss08,ss09,ss11,titl
 ##font-feature            = lilx,moxy
 ##font-feature            = lilx,moxy,ss06
 ## \n \\ \b \\b     #    ( ) |> <|
