@@ -46,8 +46,15 @@
   "buffer_line_height": { "custom": 1.65 },
   "buffer_font_features": {
     "lilx": true,
-    "moxy": true,
-    // "ss06": true,
+    "ss02": true,
+    "ss03": true,
+    "ss05": true,
+    "ss06": true,
+    "ss07": true,
+    "ss08": true,
+    "ss09": true,
+    "ss10": true,
+    "titl": true,
   },
   // // ------------------------ SF Mono
   // "buffer_font_family": "SF Mono",
