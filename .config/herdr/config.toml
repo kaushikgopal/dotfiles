@@ -18,6 +18,7 @@ description = "lazygit"
 # sidebar_collapsed_mode = "hidden"
 # send desktop notifications through Ghostty's escape sequences
 
+agent_panel_sort = "priority"
 [ui.toast]
 delivery = "terminal"
 delay_seconds = 1
