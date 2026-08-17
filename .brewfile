@@ -85,7 +85,7 @@ brew "cloudflare-wrangler"
 ##### Javascript and TypeScript
 brew "oven-sh/bun/bun", trusted: true
 brew "typescript"
-brew "node"
+brew "node"  # also for npx serve
 # npm-installed CLIs live in ~/.npm-global-packages and install via ~/.npm.sh.
 
 ######################
